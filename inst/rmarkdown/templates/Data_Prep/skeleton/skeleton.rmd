@@ -1,0 +1,272 @@
+---
+title: "Data Preparation Template"
+output:
+  html_document:
+    toc: true
+    toc_level: 2
+---
+
+```{r preamble, include=F}
+#source drive.r here
+
+#load extra libraries
+library(knitr)
+library(plyr)
+library(ggplot2)
+library(GGally)
+library(Hmisc)
+#off the cuff utility funcitons
+
+pretty.stat = function(x,na.rm=T,digits=4)
+  {
+  m = mean(x,na.rm=na.rm)
+  ci=c(NA,NA)
+  if(length(x)>1) ci = t.test(x,na.rm=na.rm)$conf.int
+  st = format(c(m,ci),digits=digits,trim=T)
+  paste0(st[1]," (",st[2], " -- ", st[3],")" )
+  }
+
+#set global options
+  #set echo=F to hide code in output
+opts_knit$set(echo=T)
+```
+
+This template is very simple in that there is only PK and PD data.  But the approach is similar if demographic, lab, and vitals are also to be loaded and merged.  The sections (suggested) are:
+
+* Summarize the protocol and statement of work
+    * Put important points from protocol in this document so it's at hand.
+    * Reviewer/QC can use it as a quick intro to input and goals and check details
+* Data Import
+    * Load each dataset and show the structure
+    * Update column names if necessary
+    * Filter unused data
+        * Unused lab values, for instance
+        * Don't accidentally drop subjects here
+    * Transform data as needed
+        * Dates and times, relative times, etc...
+        * log transform
+        * Add AMT, EVID columns to EX and PC data
+    * Compare against expectations from protocol
+        * Correct number of subjects, treatments
+        * 
+* Data Merging
+    * Append EX and PC data (PD data too)
+    * Merge demo, labs, vitals as covariates
+    * Show data counts before and after the merge
+    * Table of sample subject
+* Exclusions
+    * Create exclusion column
+    * Apply rules to set exclusion values
+    * Add manual exclusions
+    * Display table of exclusions
+        * Count of observations by exclusion value
+        * Count of dose events by exclusion value (if applicable)
+        * List of subjects who are completely excluded (all observations)
+* Data Exploration
+    * Use plots and tables here to refine exclusion criteria
+    * Subject timelines (good for multiple dose studies)
+    * Conc by subject, treatment, dosing day, etc...
+    * Covariate distributions, correlations
+* Save Data
+    * Save to NONMEM folder or wherever.
+    
+## Background and Protocol
+
+Simulated data for 2 compartment PK model with tumor growth model for PD.
+
+## Data Import
+
+The data are stored in the \\Data subfolder.  There datasets include:
+* PKdata - already includes demo and lab data as covariates
+* TUMORdata - longitudinal tumor size data
+
+We will combine both datasets into a single PK/PD dataset.
+
+### PK Data
+
+When loading the PK data, note that the header is not formatted consistently with the data.  Header is not comma delimited.
+
+* Get the names by loading as whitespace seperated.
+* Load the data without the names
+* Apply the names and change CID to ID
+
+```{r loadPK, cache=T}
+pk.names = read.csv("./Data/PKdata.csv", sep="", nrows=1)
+pk.df = read.csv("./Data/PKdata.csv", skip=1)
+names(pk.df) = names(pk.names)
+names(pk.df)[1]="id"
+```
+
+#### Data Structure
+
+Check the structure of the PK data
+```{r}
+str(pk.df)
+```
+
+Number of subjects: `r length(unique(pk.df$id))`
+
+#### Data Transformations
+
+* log transform dv
+* add blq for dv < 0.1
+```{r echo=F}
+check.id = pk.df$id[9]
+pk.df$lndv = log(pk.df$dv)
+pk.df$blq = ifelse(pk.df$dv<0.1 & pk.df$evid==0,1,0)
+```
+Choose a subject to follow through the transformations - id = `r check.id`
+
+
+#### Table: PK data for sample subject
+```{r showPK, results='asis'}
+kable(subset(pk.df,id==check.id),row.names=F)
+```
+
+### PD Data
+When loading the PD data, note that the header is not formatted consistently with the data.  Header is not comma delimited.
+
+* Get the names by loading as whitespace seperated.
+* Load the data without the names
+* Apply the names and change CID to ID
+
+```{r loadPD, cache=T}
+pd.names = read.csv("./Data/TUMORdata.csv", sep="", nrows=1)
+pd.df = read.csv("./Data/TUMORdata.csv", skip=1)
+names(pd.df) = names(pk.names)
+names(pd.df)[1]="id"
+```
+
+#### Data Structure
+
+Check the structure of the PD data
+```{r}
+str(pd.df)
+```
+
+Number of subjects: `r length(unique(pd.df$id))`
+
+#### Data Transformations
+
+* Log transform the tumor size
+* Remove the doses
+* add blq column
+
+```{r echo=F}
+pd.df$lndv = log(pd.df$dv)
+pd.df$blq = 0
+pd.df = subset(pd.df,evid==0)
+```
+
+#### Table: PD data for sample subject
+```{r showPD, results='asis'}
+kable(subset(pd.df,id==check.id),row.names=F)
+```
+
+## Merge data
+
+### Cross check data
+
+```{r xcheck}
+pk.ids = unique(pk.df$id)
+pd.ids = unique(pd.df$id)
+pk.nin.pd = pk.ids[pk.ids %nin% pd.ids]
+pd.nin.pk = pd.ids[pd.ids %nin% pk.ids]
+```
+
+Subjects in PK not in PD: `r pk.nin.pd`
+
+Subject in PD not in PK: `r pd.nin.pk`
+
+### Combine data
+
+```{r MergeData, results='asis'}
+data.df = rbind(pk.df,pd.df)
+data.df = arrange(data.df,id,time,evid)
+kable(subset(data.df,id==check.id),row.names=F)
+```
+
+Number of records:
+
+  * PK: `r nrow(pk.df)`
+  * PD: `r nrow(pd.df)`
+  * Data: `r nrow(data.df)`
+  
+## Exclusions
+
+Exclusion rules:
+
+* Subjects with no PK data
+* BLQ
+
+```{r excl, results='asis'}
+data.df$excl="OK"
+data.df$excl[data.df$id %in% pd.nin.pk] = "NoPK"
+data.df$excl[data.df$blq==1] = "BLQ"
+excl.tab = table(data.df$excl, data.df$dose)
+
+excl.df=as.data.frame.matrix(addmargins(excl.tab))
+kable(excl.df,row.names=T)
+```
+
+## Exploratory Data Analysis
+
+Create some plots and tables to get an overall feel for the data and check that it is put together correctly.
+
+### Covariates
+
+```{r covars}
+# check the covariate distributions in only included subjects
+covars.df = subset(data.df,excl=="OK" & !duplicated(id),select=Cs(sex,race,bmi,wt,ht,age))
+covars.df$sex=factor(c("F","M")[covars.df$sex])
+covars.df$race=factor(Cs(White,Black,Asian,Other)[covars.df$race])
+
+ggpairs(covars.df)
+```
+
+### Subject Timelines
+
+This plot is meant to show the timing of doses and observations.  Adjust the plot size as necessary to see the data in the output.  Use this as a diagnostic to ensure that the exclusion rules are working ok.  Revise exclusion rules as necessary.
+
+```{r fig.height=100, fig.width=10}
+data.df$obs = Cs(Dose,PK,NA,PD)[data.df$cmt]
+ggplot(data.df) + 
+  geom_point(data=data.df, mapping=aes(x=time, y=obs, color=excl, shape=Cs(Dose,PK,NA,PD)[data.df$cmt]),
+             size=2) + 
+  facet_grid(id~.) + 
+  theme_bw() + 
+  theme(legend.position="top") +
+  labs(colour="EXCL", x="Time from first dose (h)",y="Observation", shape="Observation")
+```
+
+### PK & PD by Subject
+
+```{r fig.height=100, fig.width=10}
+df = droplevels(subset(data.df,evid==0))
+df$obs = paste(df$id,df$obs)
+ggplot(df,aes(x=time, y=dv, color=excl)) + 
+  geom_point() + 
+  facet_wrap(~obs,scales="free_y",ncol=2) + 
+  theme_bw() + 
+  theme(legend.position="top") +
+  labs(colour="Conc.Flag", x="Time from first dose (h)",y="Concentration (ng/ml) or Tumor size (mm)", shape="Observation")
+```
+
+### Table: Cmax by dose level
+```{r PKsummary, results='asis'}
+df = ddply(subset(data.df, cmt==2 & evid==0 & excl=="OK"), .(id), summarise,
+           dose=dose[1],
+           N = length(dv),
+           Cmax = max(dv))
+df = ddply(df, .(dose), summarise,
+           N.obs=sum(N),
+           N.subj=length(N),
+           Cmax = pretty.stat(Cmax))
+kable(df,row.names=F)
+```
+
+
+## Write out the combined dataset
+```{}
+
+```

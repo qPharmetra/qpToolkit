@@ -1,0 +1,7 @@
+variable,val.lo,val.base,val.hi,lab.lo,lab.base,lab.hi
+efficacy 1,4,10,16,21,20,18
+efficacy 2,5,10,15,50,55,60
+efficacy 3,6,10,14,0,5,10
+tolerabilty 1,7,10,13,10,15,20
+tolerabilty 2,8,10,12,5,10,15
+regimen,9,10,11,TID,BID,QD

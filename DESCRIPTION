@@ -1,0 +1,29 @@
+Package: qpToolkit
+Type: Package
+Title: qPharmetra R Tools
+Version: 0.1.5
+Date: 2015-09-15
+Authors@R: as.person(c(
+    "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
+    "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
+    "Lee Hodge <lee.hodge@qpharmetra.com [aut]"))
+Description: Makes qPharmetra R functions easily available to users
+License: GPLv3
+VignetteBuilder: knitr
+Depends: R (>= 3.1.0), knitr, rmarkdown, tables, xtable, plyr, dplyr
+Imports:
+  Hmisc(>= 3.14),
+  MASS(>= 7.3),
+  XML(>= 3.98),
+  deSolve(>= 1.10),
+  ellipse(>= 0.3),
+  gdata(>= 2.13.3),
+  foreign(>= 0.8),
+  lattice(>= 0.20),
+  latticeExtra(>= 0.6),
+  metrumrg(>= 5.55),
+  nlme(>= 3.1),
+  reshape(>= 0.8.5),
+  ggplot2(>= 1.0.0),
+  xpose4,
+  reshape2

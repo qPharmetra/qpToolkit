@@ -1,0 +1,21 @@
+---
+title: "qpToolkit Vignettes"
+author: "Klaas Prins & Jason Chittenden"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{qpToolkit Vignettes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Vignette | Description
+--------:|:-----------
+[Using the nlme.xxx domain](ExamplesnlmexxxFunctionsqpToolkit.html) | Parameter tables, GOF & VPC plots based on nlme objects
+[Using the nm.xxx domain](ExamplesnlmexxxFunctionsqpToolkit.html) | Parameter tables, GOF & VPC plots, runrecords & bootstrap post-processing of NONMEM runs 
+[Using the get.xxx domain](qpToolkitgetFunctions.html) | Additional functions that get/extract/parse information from NONMEM runs 
+[Run a NONMEM Analysis](RunaNONMEMAnalysis.html) | Stepwise example project for a typical analysis involving NONMEM 
+[Plotting Examples](qpToolkitPlottingTips.html) | Examples using lattice and ggplot for qP Modelers
+[PK and PK-PK Superposition](qpToolkitPKPDpredictionFunctions.html)| Examples for PK and PK-PD Superpositioning
+[Using_General_Purpose_Functions](qpToolkitGeneralPurposeFunctions.html) | Standard functions used in daily R Programming
+[qP Color Palette](qPColorPalette.html) | Examples of qPharmetra Colors

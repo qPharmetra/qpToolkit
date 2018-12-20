@@ -1,0 +1,42 @@
+---
+title: "qpToolkit get_xxx Functions"
+author: "Klaas Prins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{qpToolkit get_xxx Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, echo=F, results='hide',message=F,warning=F}
+library(qpToolkit)
+```
+
+## the get.xxx functions
+
+```{r}
+example("get.description")
+example("get.shrinkage")
+example("get.eigen")
+example("get.ofv")
+example("get.dOFV")
+example("get.diag.names")
+example("get.nm.version")
+```
+
+## the get.[multiple].xpose.tables functions
+
+```{r}
+example("get.xpose.tables")
+example("get.multiple.xpose.tables")
+```
+
+## the read.xxx functions
+
+```{r}
+example("read.out")
+example("read.ext")
+example("read.mod")
+```

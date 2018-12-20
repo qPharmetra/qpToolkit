@@ -1,0 +1,264 @@
+---
+title: "<Project>: Analysis Notebook"
+author: "`r Sys.getenv('USERNAME')`"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_level: 2
+    css: qpharmetra.css
+---
+
+```{r, include=F}
+# FIRST THING, source the .Rprofile to find the project info file and turn on packrat
+source("../.Rprofile")
+library(qpToolkit)
+library(plyr)
+library(reshape)
+
+
+# path to examples NONMEM folder
+nm.path = file.path(getOption("qpExampleDir"))
+
+save.plot.gg = function(filename="you_should_name_this_plot.png", 
+                        plot=last_plot(), path="./output/graphs", 
+                        width=6, height=4)
+  {
+  ggsave(filename=file.path(path,filename),plot=plot, width=width, height = height)
+  }
+
+swap.values = function(x, cur, repl) repl[match(x,cur)]
+
+#source("../nm.process.coveffects.r")
+
+#hide the code blocks in the output
+opts_chunk$set(echo=F)
+```
+
+This is an analysis notebook template/example using RMarkdown.  This analysis uses examples from the NONMEM examples folder in a couple model development steps. Example 1 is a base model, example2 is the known covariate model (i.e. it was apparently simulated).  The base model is reconfigured and run through PSN::SCM and the final model is rerun as example 3.  This analysis notebook template demonstrates a few key features of Rmarkdown and the qpToolkit functionality:
+
+* Production of an analysis document containing text, tables and plots.
+* Accessing NONMEM run data in qp formatting folders
+* Using a 'child' rmd file to run commonly repeated tasks like:
+    * Printing parameter tables
+    * Making GOF and diagnostic plots
+* Data and model exploration steps
+* Model validation
+
+Note that a TOC with two levels is requested, so h2 and h3 headers (with two or three hashes) will be presented.  One suggestions is to start each major analysis step with an h2 header, and place subsequent major sections in h3 headers.
+
+A key feature of this template is the use of a subreport to show model results.  Within a given project, it is assumed that one would like to review model results in a consistent manner (same plots, tables, etc.).  The sub report eliminates repititious coding of these features.
+
+IMPORTANT NOTE:  Be sure to place your copy of /utils and drive.r in the project folder.  These are not included in order to save space.
+
+## Dataset
+
+The dataset used in this study is the example1.csv from the NONMEM examples. The example2.csv dataset is the same but has the covariates added.
+
+### Exploratory Data Analysis
+
+```{r}
+data.df = read.csv(file.path(nm.path,"example2.csv"),skip=1)
+data.df = rename(data.df,c("E"="EVID","M"="MDV","CONC"="DV"))
+```
+
+#### Spaghetti Plot
+
+It make make sense to stratify the plots by dose, day, cycle, etc...
+
+```{r}
+ggplot(subset(data.df,EVID==0), aes(x=TIME,y=DV,group=ID)) + geom_line() + 
+  scale_y_log10() +
+  theme_bw() + labs(x="Time (h)", y="Concentration (ng/ml)")
+```
+
+##### With smoother on mean
+
+```{r}
+ggplot(subset(data.df,EVID==0), aes(x=TIME,y=DV,group=ID)) + geom_line(alpha=.2) + 
+  theme_bw() + 
+  labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10() + 
+  stat_summary(aes(group=NULL),fun.data = "mean_cl_normal", colour = "red", geom="smooth")
+```
+
+#### Covariate Correlations
+If you have the GGally package, enable the code in this section
+
+```{r, eval=F, echo=F}
+library(GGally)
+cov.names = Cs(Gender,Age)
+covs.df = data.df[!duplicated(data.df$ID),cov.names]
+covs.df$Gender = as.factor(c("M","F")[covs.df$Gender+1])
+p.cov.corr.png = ggpairs(covs.df, diag=list(continuous="density", discrete="bar"), axisLabels="show")
+print(p.cov.corr.png)
+
+```
+
+## Structural models
+
+This shows how to pick up runrecord information.  When using PSN::runrecord be sure to set -max_lvl=0.
+
+### Run Directory Comparison
+
+```{r results='asis'}
+rr =  read.runrec("AAruninfo.txt",nm.path)
+kable(process.runrec(rr,plain=T),row.names=F)
+```
+
+One compartment is clearly sufficient
+
+### Example 1: Base Model
+This starts a subreport on run: example 1
+```{r}
+run="Example1"
+options("nmDir"=nm.path)
+```
+```{r child="ModelReportChild.rmd"}
+
+```
+
+Write some notes about the GOF here.  You can use the text in presentations or reports.
+
+
+
+
+
+## Covariate modeling
+
+### Covariate Signals
+nm.covplot explores post-hoc fits vs covariates.
+
+```{r covSignals, echo=F}
+cov = nm.covplot("example2",path=nm.path,covlist=list(cat=c("GNDR"),con=c("AGE"))
+                 ,parameters = Cs("CL","V1"), eta.skip=Cs(ETA3,ETA4))
+
+cov$parContVarPlot()
+cov$parCatVarPlot()
+```
+
+### Eta covariate plots
+The covariate plots can also be made for etas, to detect bias.
+```{r,echo=FALSE}
+cov$eta.dens()
+cov$eta.splom()
+cov$etaContVarPlot()
+cov$etaCatVarPlot()
+```
+
+### SCM Model Building
+
+Print the steps in the process.  nm.process.scm also gives a Latex output that be used in reports.  Here we grab the results and format them for markdown.
+
+```{r, results='asis', warning=FALSE}
+
+scm.trail=nm.process.scm(file.path(nm.path, "scm_example2"))
+
+cat("\n#### Summary of Steps \n")
+kable(scm.trail$summary)
+
+cat("\n#### Final Model \n")
+kable(scm.trail$model)
+
+cat("\n#### Model Building Steps \n")
+
+for(i in 1:length(scm.trail$steps))
+  {
+  cat(paste0("\n", scm.trail$steps[[i]]$label,"\n"))
+  print(kable(scm.trail$steps[[i]]$runs[[1]]))
+  cat(paste0("\n", scm.trail$steps[[i]]$action,"\n"))
+  }
+```
+
+
+## Final Model 
+```{r}
+run="example3"
+```
+```{r child="ModelReportChild.rmd"}
+
+```
+
+### Parameter estimates
+
+These should come from parTab, converted to a list or even just the estimates transposed.  ETAs need to be inserted as zeros.  Need to add a utility function for this.
+
+```{r result='asis'}
+params.df = nm.params.table("example3",path=nm.path)
+kable(params.df)
+```
+
+Good diagnostics.  Parameter estimates are precise, with Theta CV% generally <15-20%.
+
+## How much structural model variance is explained?
+```{r results='asis'}
+xml.base=nm.extract.xml("example1",nm.path)
+xml.final=nm.extract.xml("example3",nm.path)
+
+w.base=c(diag(make.symmetric(xml.base$omega[[5]],triangle="lower")))
+         #,diag(make.symmetric(xml.base$sigma[[5]] ,triangle="lower")))
+w.final=c(diag(make.symmetric(xml.final$omega[[1]],triangle="lower")))
+         #,diag(make.symmetric(xml)))
+w.names = c(paste("ETA",1:(length(xml.base$etabar[[1]][[1]]))))
+            #,paste("SIGMA",1:(length(xml.base$epsshrink[[1]]))))
+var.df = data.frame(Parameter=w.names,Base=w.base,Final=w.final) 
+var.df$Explained=1-var.df$Final/var.df$Base
+kable(var.df)
+```
+
+
+## Covariate Effect Plots
+Create equations for V1 and CL.  If you add a list called "label", the elements will be used on the y axes of plots.
+
+```{r}
+eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
+             )
+eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+
+```
+
+Now get the parameter values and pack into a list.  Add the ETA elements (only need two).
+```{r}
+params.l=as.list(setNames(params.df$Estimate,params.df$Parameter))
+params.l$ETA1=0
+params.l$ETA2=0
+```
+
+Create covariate object
+
+```{r echo=F}
+
+xpose.df = get.xpose.tables("example3",nm.path)
+xpose.df = xpose.df[!duplicated(xpose.df$ID),c("GNDR","AGE","CL","V1")]
+covs.info = makeCovInfo(xpose.df[,c("GNDR","AGE")],cat.covs = "GNDR")
+covs.info$GNDR$label = "Gender (kg)"
+covs.info$AGE$label = "Age (Y)"
+covs.info$AGE$breaks = c(1:5,(1:8)*10)
+covs.info$AGE$center=33.72
+
+```
+
+Print the plots
+
+```{r }
+tmp=nm.extract.xml("example3",nm.path)
+coveffs.l=nm.process.coveffects(eqs,covs.info,data.frame(params.l),xpose.df,
+                             make.symmetric(unlist(tmp$omega),triangle = "lower"))
+
+plot(coveffs.l)
+
+```
+
+
+* Shaded areas represent 95% prediction intervals around the population values (solid lines).
+
+## VPC Final Model
+
+First plot is xpose (preferred) style, second is simplified style.
+```{r, echo=FALSE, warning=FALSE, message=F}
+myVPC = nm.read.vpc(path = file.path(nm.path, "vpc_final_strt"))
+
+ggvpc_xpose(myVPC) + scale_y_log10() + facet_wrap(~strata)
+
+ggvpc_standard(myVPC) + scale_y_log10() + facet_wrap(~strata)
+```

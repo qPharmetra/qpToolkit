@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>the get.xxx functions</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>the get.xxx functions</h2>
+
+<pre><code class="r">example(&quot;get.description&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.dsc&gt; get.description(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## [1] &quot;2 compartment model&quot;
+</code></pre>
+
+<pre><code class="r">example(&quot;get.shrinkage&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.shr&gt; get.shrinkage(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $version
+## [1] &quot;7.3.0&quot;
+## 
+## $eta
+## $eta$`ITERATIVE TWO STAGE (NO PRIOR)`
+## [1] &quot;3.2921E+00  1.9372E+01  2.2485E+01  1.4424E+01&quot;
+## 
+## $eta$`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+## [1] &quot;3.6915E+00  2.1278E+01  2.7772E+01  1.5419E+01&quot;
+## 
+## $eta$`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+## [1] &quot;3.4087E+00  2.3225E+01  2.7424E+01  1.7550E+01&quot;
+## 
+## $eta$`MCMC BAYESIAN ANALYSIS`
+## [1] &quot;3.0463E+00  2.0021E+01  2.4030E+01  1.4177E+01&quot;
+## 
+## 
+## $ebv
+## $ebv$`ITERATIVE TWO STAGE (NO PRIOR)`
+## [1] &quot;3.2923E+00  1.9372E+01  2.2486E+01  1.4424E+01&quot;
+## 
+## $ebv$`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+## [1] &quot;3.6925E+00  2.1279E+01  2.7775E+01  1.5414E+01&quot;
+## 
+## $ebv$`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+## [1] &quot;3.6776E+00  2.1445E+01  2.8427E+01  1.5574E+01&quot;
+## 
+## $ebv$`MCMC BAYESIAN ANALYSIS`
+## [1] &quot;3.3162E+00  1.9861E+01  2.4449E+01  1.5063E+01&quot;
+## 
+## 
+## $eps
+## $eps$`ITERATIVE TWO STAGE (NO PRIOR)`
+## [1] &quot;3.1728E+01&quot;
+## 
+## $eps$`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+## [1] &quot;2.9315E+01&quot;
+## 
+## $eps$`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+## [1] &quot;3.0800E+01&quot;
+## 
+## $eps$`MCMC BAYESIAN ANALYSIS`
+## [1] &quot;3.0941E+01&quot;
+</code></pre>
+
+<pre><code class="r">example(&quot;get.eigen&quot;)
+</code></pre>
+
+<pre><code>## 
+## get.gn&gt; get.eigen(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`ITERATIVE TWO STAGE (NO PRIOR)`
+##  [1] 0.129 0.252 0.320 0.338 0.449 0.504 0.618 0.773 0.951 1.060 1.370
+## [12] 1.440 1.570 1.760 3.450
+## 
+## $`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+##  [1] 0.147 0.288 0.333 0.395 0.496 0.563 0.701 0.815 0.961 1.130 1.270
+## [12] 1.500 1.560 1.840 2.990
+## 
+## $`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+##  [1] 0.174 0.352 0.423 0.483 0.598 0.711 0.810 0.870 0.904 0.968 1.080
+## [12] 1.220 1.430 2.020 2.970
+## 
+## $`MCMC BAYESIAN ANALYSIS`
+##  [1] 0.273 0.435 0.539 0.572 0.684 0.737 0.874 0.910 0.950 0.993 1.050
+## [12] 1.260 1.410 1.880 2.430
+## 
+## $`FIRST ORDER CONDITIONAL ESTIMATION WITH INTERACTION (NO PRIOR)`
+##  [1] 0.139 0.343 0.400 0.436 0.522 0.652 0.784 0.798 0.856 0.879 1.010
+## [12] 1.210 1.430 1.800 3.730
+## 
+## 
+## get.gn&gt; get.eigen(run = &quot;example2&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`ITERATIVE TWO STAGE (NO PRIOR)`
+##  [1] 0.0176 0.0224 0.0235 0.0430 0.0676 0.1940 0.2500 0.2840 0.4550 0.5570
+## [11] 0.6730 0.6970 1.0400 1.1000 1.2800 1.5300 1.6700 1.7300 2.4000 2.7200
+## [21] 4.2400
+## 
+## $`IMPORTANCE SAMPLING (NO PRIOR)`
+##  [1] 0.0260 0.0279 0.0353 0.0446 0.0533 0.1870 0.2660 0.3050 0.4910 0.5580
+## [11] 0.5880 0.6620 1.1200 1.2300 1.3400 1.5000 1.5500 1.6400 2.3900 2.7300
+## [21] 4.2500
+## 
+## $`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+##  [1] 0.0170 0.0214 0.0229 0.0437 0.1380 0.2930 0.3710 0.4440 0.5580 0.6620
+## [11] 0.8410 0.9180 1.1300 1.1800 1.2600 1.5600 1.7400 1.9300 2.4100 2.5600
+## [21] 2.9100
+## 
+## $`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+##  [1] 0.0256 0.0269 0.0336 0.0451 0.0717 0.2440 0.3200 0.3530 0.4620 0.5830
+## [11] 0.6210 0.8340 1.1900 1.2500 1.3300 1.4700 1.4900 1.6200 2.4400 2.7200
+## [21] 3.8800
+## 
+## $`MCMC BAYESIAN ANALYSIS`
+##  [1] 0.0260 0.0292 0.0336 0.0407 0.1660 0.2750 0.3460 0.4820 0.5310 0.5980
+## [11] 0.6720 0.7510 1.1100 1.2200 1.3100 1.4900 1.6300 1.8800 2.4100 2.7600
+## [21] 3.2400
+## 
+## $`FIRST ORDER CONDITIONAL ESTIMATION WITH INTERACTION (NO PRIOR)`
+##  [1] 0.0258 0.0277 0.0352 0.0444 0.0596 0.2050 0.2700 0.2980 0.4990 0.5620
+## [11] 0.6200 0.6790 1.1000 1.3300 1.3600 1.4900 1.5600 1.6000 2.4000 2.7400
+## [21] 4.0900
+</code></pre>
+
+<pre><code class="r">example(&quot;get.ofv&quot;)
+</code></pre>
+
+<pre><code>## 
+## get.fv&gt; get.ofv(&quot;example2&quot;, path = getOption(&quot;qpExampleDir&quot;))
+##    FINAL VALUE OF OBJECTIVE FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -10771.86                            -10783.92 
+##   FINAL VALUE OF LIKELIHOOD FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -19993.88                            -10777.68 
+## AVERAGE VALUE OF LIKELIHOOD FUNCTION  MINIMUM VALUE OF OBJECTIVE FUNCTION 
+##                            -19185.25                            -10772.14 
+## 
+## get.fv&gt; sapply(c(&quot;example1&quot;,&quot;example2&quot;), get.ofv, path = getOption(&quot;qpExampleDir&quot;))
+## $example1
+##    FINAL VALUE OF OBJECTIVE FUNCTION   FINAL VALUE OF LIKELIHOOD FUNCTION 
+##                            -1120.262                            -2477.376 
+##    FINAL VALUE OF OBJECTIVE FUNCTION AVERAGE VALUE OF LIKELIHOOD FUNCTION 
+##                            -1145.027                            -2313.897 
+##  MINIMUM VALUE OF OBJECTIVE FUNCTION 
+##                            -1121.028 
+## 
+## $example2
+##    FINAL VALUE OF OBJECTIVE FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -10771.86                            -10783.92 
+##   FINAL VALUE OF LIKELIHOOD FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -19993.88                            -10777.68 
+## AVERAGE VALUE OF LIKELIHOOD FUNCTION  MINIMUM VALUE OF OBJECTIVE FUNCTION 
+##                            -19185.25                            -10772.14
+</code></pre>
+
+<pre><code class="r">example(&quot;get.dOFV&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.OFV&gt; get.dOFV(runs = c(&quot;example1&quot;,&quot;example2&quot;), path = getOption(&quot;qpExampleDir&quot;))
+##   Run Ref        OFV      dOFV
+## 1   1   1  -1121.028        NA
+## 2   2   1 -10772.143 -9651.115
+##                                    Description
+## 1                          2 compartment model
+## 2 Covariate Model CL and V with Gender and Age
+## 
+## gt.OFV&gt; # note this example is for two non-nested models. It has not other value to to illustrate the tool
+## gt.OFV&gt; 
+## gt.OFV&gt; 
+## gt.OFV&gt;
+</code></pre>
+
+<pre><code class="r">example(&quot;get.diag.names&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.dg.&gt; covMatrix = get.covmat(path = getOption(&quot;qpExampleDir&quot;), run = &quot;example2&quot;)
+## 
+## gt.dg.&gt; get.diag.names(names = sub(&quot; +&quot;, &quot;&quot;, trimSpace(names(covMatrix[[1]]))))
+## $OMEGA
+## OMEGA(1,1) OMEGA(2,1) OMEGA(2,2) OMEGA(3,1) OMEGA(3,2) OMEGA(3,3) 
+##       TRUE      FALSE       TRUE      FALSE      FALSE       TRUE 
+## OMEGA(4,1) OMEGA(4,2) OMEGA(4,3) OMEGA(4,4) 
+##      FALSE      FALSE      FALSE       TRUE 
+## 
+## $SIGMA
+## SIGMA(1,1) 
+##       TRUE
+</code></pre>
+
+<pre><code class="r">example(&quot;get.nm.version&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.nm.&gt; get.nm.version(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## [1] &quot;7.3.0&quot;
+</code></pre>
+
+<h2>the get.[multiple].xpose.tables functions</h2>
+
+<pre><code class="r">example(&quot;get.xpose.tables&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.xp.&gt; out.1 = get.xpose.tables(path = getOption(&quot;qpExampleDir&quot;), run= &quot;example2&quot;)
+## 
+## gt.xp.&gt; head(out.1)
+##   ID   AGE GNDR     CL     V1      Q    V2      ETA1      ETA2      ETA3
+## 1  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 2  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 3  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 4  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 5  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 6  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+##        ETA4 TIME     CONC    IPRED     PRED       RES     WRES    CPRED
+## 1 -0.059266  0.0  0.00000  0.50655 11.77200  0.000000  0.00000 11.75800
+## 2 -0.059266  0.1 10.81000 11.77100 11.21800 -0.407540 -0.62317 11.20400
+## 3 -0.059266  0.4 10.73000 10.19200  9.73380  0.996170  0.75051  9.72390
+## 4 -0.059266  0.7 10.16400  8.86610  8.48640  1.677600  1.69430  8.47910
+## 5 -0.059266  4.0  3.07600  2.78820  2.72770  0.348280  0.94116  2.72860
+## 6 -0.059266 20.0  0.46933  0.49492  0.50655 -0.037218 -0.92902  0.50687
+##      CWRES    EPRED     ERES    EWRES EVID
+## 1  0.00000 11.81500  0.00000  0.00000    1
+## 2 -0.58736 11.24800 -0.43840 -0.64966    0
+## 3  0.72572  9.73860  0.99141  0.74473    0
+## 4  1.63050  8.47500  1.68900  1.70950    0
+## 5  0.91301  2.71720  0.35880  0.94456    0
+## 6 -0.95120  0.50669 -0.03736 -0.93890    0
+</code></pre>
+
+<pre><code class="r">example(&quot;get.multiple.xpose.tables&quot;)
+</code></pre>
+
+<pre><code>## 
+## gt.m..&gt; test = get.multiple.xpose.tables(runs = c(&quot;example1&quot;,&quot;example2&quot;)
+## gt.m..+  , path = getOption(&quot;qpExampleDir&quot;), carryAlong = c(&quot;CONC&quot;,&quot;TIME&quot;,&quot;EVID&quot;))
+## 
+## gt.m..&gt; names(test)
+## [1] &quot;model&quot; &quot;ID&quot;    &quot;PRED&quot;  &quot;IPRED&quot; &quot;CWRES&quot; &quot;CONC&quot;  &quot;TIME&quot;  &quot;EVID&quot; 
+## 
+## gt.m..&gt; head(subset(test,model == &quot;example1&quot;))
+##      model ID       PRED      IPRED     CWRES       CONC TIME EVID
+## 1 example1  1 19.9630000 19.5040000  0.000000  0.0000000  0.0    1
+## 2 example1  1 14.7260000 14.3590000  0.049976 14.9710000  0.2    0
+## 3 example1  1  4.6506000  4.4470000 -0.098391  4.3913000  1.0    0
+## 4 example1  1  0.5599100  0.4629000  0.093168  0.5166800  4.0    0
+## 5 example1  1  0.3472700  0.2993000 -0.341580  0.2919100  7.0    0
+## 6 example1  1  0.0034158  0.0054122  0.470610  0.0058076 40.0    0
+## 
+## gt.m..&gt; head(subset(test,model == &quot;example2&quot;))
+##        model ID     PRED    IPRED    CWRES     CONC TIME EVID
+## 601 example2  1 11.77200  0.50655  0.00000  0.00000  0.0    1
+## 602 example2  1 11.21800 11.77100 -0.58736 10.81000  0.1    0
+## 603 example2  1  9.73380 10.19200  0.72572 10.73000  0.4    0
+## 604 example2  1  8.48640  8.86610  1.63050 10.16400  0.7    0
+## 605 example2  1  2.72770  2.78820  0.91301  3.07600  4.0    0
+## 606 example2  1  0.50655  0.49492 -0.95120  0.46933 20.0    0
+## 
+## gt.m..&gt; xyplot(CWRES ~ value | variable * model
+## gt.m..+        , data = reshape2::melt(test, measure.vars = Cs(TIME,PRED))
+## gt.m..+        , panel = panel.cwres
+## gt.m..+        , scales = list(x = list(relation = &quot;free&quot;))
+## gt.m..+ )
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<h2>the read.xxx functions</h2>
+
+<pre><code class="r">example(&quot;read.out&quot;)
+</code></pre>
+
+<pre><code>## 
+## read.t&gt; head(read.out(path=getOption(&quot;qpExampleDir&quot;), run=&quot;example1&quot;, file.ext = &quot;.lst&quot;))
+## [1] &quot;Wed 10/28/2015 &quot;                                         
+## [2] &quot;09:20 PM&quot;                                                
+## [3] &quot;;Model Desc: Two compartment Model, Using ADVAN3, TRANS4&quot;
+## [4] &quot;;Project Name: nm7examples&quot;                              
+## [5] &quot;;Project ID: NO PROJECT DESCRIPTION&quot;                     
+## [6] &quot;$PROBLEM    RUN# Example 1 (from samp5l)&quot;
+</code></pre>
+
+<pre><code class="r">example(&quot;read.ext&quot;)
+</code></pre>
+
+<pre><code>## 
+## red.xt&gt; read.ext(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`First Order Conditional Estimation with Interaction (No Prior)`
+##    ITERATION    THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1    0.0e+00  1.633960 1.5576000 0.7458190 2.3478500 0.05798520  0.1770000
+## 2    5.0e+00  1.673980 1.6140900 0.8302580 2.3914000 0.05479820  0.1569080
+## 3    1.0e+01  1.676700 1.6118700 0.8340870 2.3940800 0.05571030  0.1618530
+## 4    1.5e+01  1.686310 1.6111900 0.8139870 2.3904700 0.05665560  0.1651220
+## 5    2.0e+01  1.686540 1.6108000 0.8183850 2.3906900 0.05726200  0.1646560
+## 6    2.5e+01  1.686750 1.6112100 0.8191190 2.3911300 0.05716500  0.1650260
+## 7    3.0e+01  1.686920 1.6112900 0.8196180 2.3916300 0.05716410  0.1650600
+## 8    3.3e+01  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 9   -1.0e+09  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 10  -1.0e+09  0.043180 0.0476109 0.0699832 0.0515872 0.00757063  0.0271869
+## 11  -1.0e+09  0.138801 0.3426480 0.3997250 0.4364790 0.52212300  0.6516330
+## 12  -1.0e+09 26.903000 0.1388010 3.7341600 0.0000000 0.00000000  0.0000000
+## 13  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.23908800  0.4062770
+## 14  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.01583230  0.0334585
+## 15  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##      OMEGA(2,1) OMEGA(2,2) OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3) OMEGA(4,1)
+## 1  -0.000428264  0.1561880  0.0126053 -0.000713190  0.1975260 -0.0179167
+## 2  -0.000403712  0.1359930  0.0122718 -0.000663722  0.1859870 -0.0133695
+## 3  -0.000432699  0.1295100  0.0159343 -0.000517306  0.1960030 -0.0087187
+## 4  -0.000561129  0.1333960  0.0126990  0.000326150  0.1910740 -0.0121500
+## 5  -0.001986370  0.1312260  0.0119768  0.015282300  0.1866400 -0.0131544
+## 6  -0.000778044  0.1314490  0.0123702  0.015890100  0.1873990 -0.0127808
+## 7  -0.000744653  0.1314240  0.0124075  0.015960200  0.1875490 -0.0127377
+## 8  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 9  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 10  0.020798200  0.0313100  0.0299001  0.035725600  0.0719070  0.0235760
+## 11  0.784397000  0.7981560  0.8555510  0.879394000  1.0117600  1.2145000
+## 12  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+## 13 -0.005037600  0.3625310  0.0705401  0.101633000  0.4330680 -0.0809622
+## 14  0.141350000  0.0431825  0.1628810  0.226604000  0.0830204  0.1547840
+## 15  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  0.01452820  0.0267534  0.1655500 -1115.895
+## 2  0.01238560  0.0415674  0.1501960 -1120.035
+## 3  0.00531919  0.0396320  0.1432600 -1120.268
+## 4  0.00921431  0.0358207  0.1510600 -1120.818
+## 5  0.01369540  0.0327462  0.1495190 -1121.025
+## 6  0.01386650  0.0332032  0.1498620 -1121.028
+## 7  0.01390470  0.0332660  0.1499010 -1121.028
+## 8  0.01390610  0.0332702  0.1499060 -1121.028
+## 9  0.01390610  0.0332702  0.1499060 -1121.028
+## 10 0.02407020  0.0425812  0.0382220     0.000
+## 11 1.43382000  1.7968600  3.7341600     0.000
+## 12 0.00000000  0.0000000  0.0000000     0.000
+## 13 0.09907190  0.1984220  0.3871770     0.000
+## 14 0.16592100  0.2081350  0.0493598     0.000
+## 15 0.00000000  0.0000000  0.0000000     0.000
+## 
+## 
+## red.xt&gt; ## now parse an output where multiple $EST calls have been performed
+## red.xt&gt; read.ext(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;), file.ext = &quot;.mext&quot;)
+## $`Iterative Two Stage (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1)
+## 1   0.00e+00  2.0000000 2.0000000 2.0000000 2.0000000 0.60000000
+## 2   5.00e+00  1.7222300 1.6204400 0.9846850 2.4888600 0.06630990
+## 3   1.00e+01  1.6867900 1.5898000 0.8452100 2.3904000 0.05794970
+## 4   1.50e+01  1.6835200 1.5898000 0.8219940 2.3770800 0.05668360
+## 5   2.00e+01  1.6830000 1.5894200 0.8150150 2.3740400 0.05593690
+## 6   2.50e+01  1.6829800 1.5889000 0.8129080 2.3734700 0.05542440
+## 7   3.00e+01  1.6830700 1.5885500 0.8124320 2.3735900 0.05506940
+## 8   3.50e+01  1.6831800 1.5883500 0.8124240 2.3738200 0.05484080
+## 9   4.00e+01  1.6832500 1.5882400 0.8125030 2.3740200 0.05469110
+## 10  4.50e+01  1.6833000 1.5881900 0.8125790 2.3741500 0.05460050
+## 11  5.00e+01  1.6833300 1.5881600 0.8126310 2.3742400 0.05454570
+## 12  5.50e+01  1.6833500 1.5881400 0.8126640 2.3742900 0.05451680
+## 13  6.00e+01  1.6833600 1.5881300 0.8126820 2.3743200 0.05449140
+## 14  6.50e+01  1.6833700 1.5881200 0.8126950 2.3743400 0.05448070
+## 15  7.00e+01  1.6833700 1.5881200 0.8127000 2.3743500 0.05447340
+## 16  7.50e+01  1.6833700 1.5881200 0.8127040 2.3743500 0.05447040
+## 17  8.00e+01  1.6833800 1.5881200 0.8127070 2.3743600 0.05446710
+## 18  8.50e+01  1.6833800 1.5881200 0.8127080 2.3743600 0.05446650
+## 19  9.00e+01  1.6833800 1.5881200 0.8127100 2.3743600 0.05446550
+## 20  9.50e+01  1.6833800 1.5881200 0.8127100 2.3743600 0.05446730
+## 21  1.00e+02  1.6833800 1.5881200 0.8127100 2.3743600 0.05446810
+## 22  1.05e+02  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470
+## 23  1.05e+02  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470
+## 24 -1.00e+09  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470
+## 25 -1.00e+09  0.0461817 0.0490153 0.0652742 0.0539291 0.00761176
+## 26 -1.00e+09  0.1287040 0.2521200 0.3201370 0.3375210 0.44938400
+## 27 -1.00e+09 26.8244000 0.1287040 3.4524200 0.0000000 0.00000000
+## 28 -1.00e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23337700
+## 29 -1.00e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01630790
+## 30 -1.00e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000
+##    OMEGA(1,1) OMEGA(2,1) OMEGA(2,2)  OMEGA(3,1) OMEGA(3,2) OMEGA(3,3)
+## 1   0.1500000 0.01000000  0.1500000 0.010000000  0.0100000  0.1500000
+## 2   0.1779420 0.01882720  0.1113590 0.008160170  0.0365088  0.1757050
+## 3   0.1662390 0.00710622  0.1191350 0.000922876  0.0366138  0.1886450
+## 4   0.1643060 0.00453556  0.1264720 0.001156440  0.0281036  0.1914710
+## 5   0.1641600 0.00397758  0.1300250 0.002389590  0.0225122  0.1964270
+## 6   0.1643560 0.00395403  0.1316580 0.003556400  0.0197104  0.2016880
+## 7   0.1646180 0.00410183  0.1325150 0.004496240  0.0183623  0.2059410
+## 8   0.1648400 0.00426502  0.1330060 0.005173160  0.0176964  0.2089230
+## 9   0.1650030 0.00439454  0.1333120 0.005627310  0.0173526  0.2108730
+## 10  0.1651090 0.00448224  0.1334950 0.005914760  0.0171647  0.2120820
+## 11  0.1651770 0.00454064  0.1336100 0.006093940  0.0170593  0.2128230
+## 12  0.1652170 0.00457388  0.1336730 0.006199410  0.0169990  0.2132570
+## 13  0.1652420 0.00459500  0.1337130 0.006262790  0.0169647  0.2135170
+## 14  0.1652550 0.00460598  0.1337360 0.006300060  0.0169435  0.2136680
+## 15  0.1652650 0.00461446  0.1337540 0.006323930  0.0169316  0.2137650
+## 16  0.1652710 0.00461983  0.1337650 0.006338620  0.0169245  0.2138260
+## 17  0.1652740 0.00462278  0.1337700 0.006347380  0.0169199  0.2138600
+## 18  0.1652750 0.00462368  0.1337710 0.006351210  0.0169174  0.2138750
+## 19  0.1652750 0.00462271  0.1337680 0.006350990  0.0169159  0.2138740
+## 20  0.1652750 0.00462271  0.1337680 0.006351070  0.0169157  0.2138740
+## 21  0.1652750 0.00462265  0.1337680 0.006351140  0.0169155  0.2138740
+## 22  0.1652740 0.00462212  0.1337660 0.006350150  0.0169159  0.2138710
+## 23  0.1652740 0.00462212  0.1337660 0.006350150  0.0169159  0.2138710
+## 24  0.1652740 0.00462212  0.1337660 0.006350150  0.0169159  0.2138710
+## 25  0.0289772 0.02313910  0.0349217 0.032498800  0.0382768  0.0648382
+## 26  0.5039670 0.61759500  0.7734270 0.950563000  1.0629000  1.3721500
+## 27  0.0000000 0.00000000  0.0000000 0.000000000  0.0000000  0.0000000
+## 28  0.4065390 0.03108600  0.3657410 0.033775800  0.1000110  0.4624610
+## 29  0.0356388 0.15321000  0.0477411 0.170522000  0.2219530  0.0701012
+## 30  0.0000000 0.00000000  0.0000000 0.000000000  0.0000000  0.0000000
+##     OMEGA(4,1) OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)        OBJ
+## 1   0.01000000  0.0100000  0.0100000   0.150000  -234.3627
+## 2  -0.00580553  0.0201868  0.0161868   0.134416 -1112.9740
+## 3  -0.01739400  0.0196290  0.0327745   0.146616 -1119.9428
+## 4  -0.01844750  0.0155689  0.0381413   0.151976 -1120.2901
+## 5  -0.01792900  0.0135732  0.0422893   0.155309 -1120.3523
+## 6  -0.01723500  0.0128063  0.0457926   0.157771 -1120.3406
+## 7  -0.01661550  0.0125638  0.0484409   0.159556 -1120.3177
+## 8  -0.01614910  0.0125130  0.0502571   0.160763 -1120.2987
+## 9  -0.01582890  0.0125220  0.0514364   0.161552 -1120.2845
+## 10 -0.01562420  0.0125408  0.0521652   0.162039 -1120.2758
+## 11 -0.01549540  0.0125578  0.0526120   0.162339 -1120.2700
+## 12 -0.01541990  0.0125677  0.0528749   0.162516 -1120.2668
+## 13 -0.01537440  0.0125746  0.0530305   0.162621 -1120.2647
+## 14 -0.01534740  0.0125789  0.0531227   0.162683 -1120.2635
+## 15 -0.01533050  0.0125825  0.0531815   0.162723 -1120.2626
+## 16 -0.01531910  0.0125848  0.0532185   0.162749 -1120.2624
+## 17 -0.01531320  0.0125856  0.0532392   0.162763 -1120.2619
+## 18 -0.01531070  0.0125858  0.0532486   0.162768 -1120.2619
+## 19 -0.01531110  0.0125851  0.0532488   0.162768 -1120.2618
+## 20 -0.01531100  0.0125850  0.0532490   0.162768 -1120.2618
+## 21 -0.01531090  0.0125849  0.0532490   0.162768 -1120.2619
+## 22 -0.01531180  0.0125848  0.0532469   0.162766 -1120.2618
+## 23 -0.01531180  0.0125848  0.0532469   0.162766 -1120.2618
+## 24 -0.01531180  0.0125848  0.0532469   0.162766 -1120.2618
+## 25  0.02761300  0.0273385  0.0450168   0.040638     0.0000
+## 26  1.44483000  1.5695600  1.7647200   3.452420     0.0000
+## 27  0.00000000  0.0000000  0.0000000   0.000000     0.0000
+## 28 -0.09335600  0.0852889  0.2853890   0.403443     0.0000
+## 29  0.17287300  0.1794120  0.1857240   0.050364     0.0000
+## 30  0.00000000  0.0000000  0.0000000   0.000000     0.0000
+## 
+## $`Stochastic Approximation Expectation-Maximization (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1)
+## 1   -3.0e+03  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470
+## 2   -2.9e+03  1.6387100 1.5594500 0.7273210 2.3466100 0.05916100
+## 3   -2.8e+03  1.6236200 1.5591200 0.6730810 2.3293400 0.06180060
+## 4   -2.7e+03  1.6566400 1.6028100 0.7960210 2.3701600 0.06266950
+## 5   -2.6e+03  1.6540300 1.6199800 0.7351480 2.3575400 0.05939270
+## 6   -2.5e+03  1.6522700 1.5792600 0.7774180 2.3589600 0.06290830
+## 7   -2.4e+03  1.6346500 1.5784400 0.7196130 2.3215500 0.06442210
+## 8   -2.3e+03  1.6316000 1.5710800 0.6745370 2.3157300 0.05797910
+## 9   -2.2e+03  1.6367000 1.6305800 0.7052150 2.3317700 0.06687770
+## 10  -2.1e+03  1.6269200 1.5232100 0.6814660 2.3316700 0.05604720
+## 11  -2.0e+03  1.6277900 1.5500200 0.7087390 2.3472100 0.05291590
+## 12  -1.9e+03  1.6303100 1.5236600 0.7424690 2.3505300 0.05405190
+## 13   0.0e+00  1.6211900 1.5317300 0.6996950 2.3331300 0.05405190
+## 14   1.0e+02  1.6279800 1.5363900 0.7349190 2.3418600 0.05270070
+## 15   2.0e+02  1.6329700 1.5437900 0.7417480 2.3475600 0.05366130
+## 16   3.0e+02  1.6327400 1.5470200 0.7378460 2.3435200 0.05333160
+## 17   4.0e+02  1.6328200 1.5504200 0.7360380 2.3429900 0.05370980
+## 18   5.0e+02  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 19  -1.0e+09  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 20  -1.0e+09  0.0473452 0.0549876 0.0678456 0.0533304 0.00709799
+## 21  -1.0e+09  0.1708940 0.3052370 0.3743220 0.3848760 0.50568800
+## 22  -1.0e+09 18.1641000 0.1708940 3.1041400 0.0000000 0.00000000
+## 23  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23187000
+## 24  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01530600
+## 25  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000
+##    OMEGA(1,1)   OMEGA(2,1) OMEGA(2,2)  OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3)
+## 1   0.2479110  6.93318e-03   0.200649  0.00952522  0.025373900  0.3208060
+## 2   0.1671730 -1.36751e-02   0.155428  0.02032360 -0.045769600  0.1625540
+## 3   0.1641730 -1.92846e-03   0.141237  0.01136830 -0.033524300  0.1079540
+## 4   0.1681500  1.12230e-03   0.136433  0.00110022  0.030926100  0.1217670
+## 5   0.1924640  1.43644e-02   0.128209  0.03877490  0.030195300  0.1595340
+## 6   0.1614820  2.73592e-03   0.117391 -0.00358101  0.025225200  0.1676190
+## 7   0.1567660 -1.51455e-02   0.126365 -0.00592758 -0.000679692  0.1117680
+## 8   0.1527460 -2.78948e-02   0.171447  0.01755620 -0.042057300  0.1414210
+## 9   0.1730100 -1.86468e-04   0.113197 -0.00186648  0.006326660  0.0958769
+## 10  0.1592740 -1.49024e-02   0.141980  0.00725141 -0.039506800  0.1369100
+## 11  0.1549110 -5.46747e-03   0.160058  0.01292830 -0.010360800  0.1729740
+## 12  0.1735590  1.35594e-02   0.151858  0.01507130 -0.038068100  0.2441320
+## 13  0.1707950  6.73434e-03   0.154136  0.02555920 -0.028328200  0.2245150
+## 14  0.1702030 -9.11465e-04   0.164074  0.02195790 -0.020277800  0.2114370
+## 15  0.1710560 -9.73948e-06   0.157078  0.02157150 -0.017722500  0.2113180
+## 16  0.1689530 -2.56594e-04   0.155001  0.01756410 -0.014272400  0.2104140
+## 17  0.1687880  6.16291e-04   0.155044  0.01664730 -0.012715300  0.2079370
+## 18  0.1685860 -2.43010e-04   0.154364  0.01801720 -0.012497300  0.2116010
+## 19  0.1685860 -2.43010e-04   0.154364  0.01801720 -0.012497300  0.2116010
+## 20  0.0283242  2.47905e-02   0.040713  0.03205130  0.046675000  0.0624189
+## 21  0.5466770  6.81905e-01   0.808982  0.92736300  1.165800000  1.2467400
+## 22  0.0000000  0.00000e+00   0.000000  0.00000000  0.000000000  0.0000000
+## 23  0.4105920 -1.50640e-03   0.392891  0.09539330 -0.069148700  0.4600020
+## 24  0.0344918  1.53762e-01   0.051812  0.16353000  0.260037000  0.0678464
+## 25  0.0000000  0.00000e+00   0.000000  0.00000000  0.000000000  0.0000000
+##     OMEGA(4,1)   OMEGA(4,2)  OMEGA(4,3) OMEGA(4,4)   SAEMOBJ
+## 1  -0.02296770  0.018877300  0.07987040  0.2441490 -2606.162
+## 2  -0.00802073  0.008490050  0.01898890  0.1709730 -2430.559
+## 3  -0.03172900  0.010777700 -0.02392630  0.1298120 -2449.484
+## 4  -0.01915940  0.017809300 -0.00356824  0.1327270 -2432.628
+## 5  -0.00520062  0.027842200  0.00657973  0.1406260 -2420.958
+## 6  -0.02270010  0.033216400  0.03922240  0.1611090 -2427.960
+## 7  -0.02344630 -0.004424840 -0.00544716  0.1445560 -2453.089
+## 8  -0.02421130 -0.021294100  0.01019990  0.1393360 -2462.270
+## 9  -0.01908200  0.027500400 -0.00391397  0.1437910 -2440.238
+## 10 -0.01705770  0.025126600  0.00106890  0.1492130 -2463.403
+## 11 -0.01198950  0.016914700  0.04166320  0.2027240 -2447.647
+## 12 -0.01098250 -0.000613824  0.04053950  0.1557120 -2412.779
+## 13 -0.01429500  0.003246850  0.03480000  0.1663990 -2447.128
+## 14 -0.00956001  0.013157700  0.03819020  0.1601710 -2492.637
+## 15 -0.00995849  0.012352400  0.03974030  0.1610990 -2491.971
+## 16 -0.01317660  0.012753400  0.04010640  0.1619850 -2493.509
+## 17 -0.01479510  0.012353600  0.03809500  0.1609590 -2492.725
+## 18 -0.01374220  0.012028400  0.04053520  0.1627420 -2492.043
+## 19 -0.01374220  0.012028400  0.04053520  0.1627420 -2492.043
+## 20  0.02652110  0.030859700  0.04238850  0.0408370     0.000
+## 21  1.33896000  1.653810000  1.78460000  3.1041400     0.000
+## 22  0.00000000  0.000000000  0.00000000  0.0000000     0.000
+## 23 -0.08296530  0.075890500  0.21843600  0.4034120     0.000
+## 24  0.16336500  0.189427000  0.19138600  0.0506145     0.000
+## 25  0.00000000  0.000000000  0.00000000  0.0000000     0.000
+## 
+## $`Objective Function Evaluation by Importance Sampling (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1)
+## 1      0e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 2      1e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 3      2e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 4      3e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 5      4e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 6      5e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 7     -1e+09  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390
+## 8     -1e+09  0.0434084 0.0523151 0.0686892 0.0522198 0.00624247
+## 9     -1e+09  0.2040500 0.3598770 0.4671660 0.5071510 0.65072400
+## 10    -1e+09 13.7435000 0.2040500 2.8043600 0.0000000 0.00000000
+## 11    -1e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23187000
+## 12    -1e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01346110
+## 13    -1e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000
+##    OMEGA(1,1)  OMEGA(2,1) OMEGA(2,2) OMEGA(3,1) OMEGA(3,2) OMEGA(3,3)
+## 1   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 2   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 3   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 4   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 5   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 6   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 7   0.1685860 -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010
+## 8   0.0279757  0.02356600  0.0372362  0.0298380  0.0383233  0.0606987
+## 9   0.7188930  0.77450500  0.8623790  0.8953540  0.9877420  1.0998800
+## 10  0.0000000  0.00000000  0.0000000  0.0000000  0.0000000  0.0000000
+## 11  0.4105920 -0.00150640  0.3928910  0.0953933 -0.0691487  0.4600020
+## 12  0.0340675  0.14611800  0.0473874  0.1513750  0.2104240  0.0659766
+## 13  0.0000000  0.00000000  0.0000000  0.0000000  0.0000000  0.0000000
+##    OMEGA(4,1) OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  -0.0137422  0.0120284  0.0405352  0.1627420 -1145.140
+## 2  -0.0137422  0.0120284  0.0405352  0.1627420 -1145.637
+## 3  -0.0137422  0.0120284  0.0405352  0.1627420 -1145.012
+## 4  -0.0137422  0.0120284  0.0405352  0.1627420 -1144.855
+## 5  -0.0137422  0.0120284  0.0405352  0.1627420 -1144.071
+## 6  -0.0137422  0.0120284  0.0405352  0.1627420 -1145.873
+## 7  -0.0137422  0.0120284  0.0405352  0.1627420 -1145.873
+## 8   0.0236205  0.0264289  0.0364792  0.0378499     0.000
+## 9   1.2612100  1.4046000  2.0021000  2.8043600     0.000
+## 10  0.0000000  0.0000000  0.0000000  0.0000000     0.000
+## 11 -0.0829653  0.0758905  0.2184360  0.4034120     0.000
+## 12  0.1460780  0.1640860  0.1636000  0.0469122     0.000
+## 13  0.0000000  0.0000000  0.0000000  0.0000000     0.000
+## 
+## $`First Order Conditional Estimation with Interaction (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1)
+## 1    0.0e+00  1.6301100 1.5484000 0.7391950 2.3420900 0.05848970
+## 2    5.0e+00  1.6757200 1.6109000 0.8346650 2.3893300 0.05447550
+## 3    1.0e+01  1.6756900 1.6080400 0.8330760 2.3887100 0.05654850
+## 4    1.5e+01  1.6854300 1.6133200 0.8220930 2.3912400 0.05691200
+## 5    2.0e+01  1.6867500 1.6112000 0.8191030 2.3911200 0.05716510
+## 6    2.3e+01  1.6869300 1.6112900 0.8196040 2.3916100 0.05716290
+## 7   -1.0e+09  1.6869300 1.6112900 0.8196040 2.3916100 0.05716290
+## 8   -1.0e+09  0.0432046 0.0478577 0.0704887 0.0518067 0.00935508
+## 9   -1.0e+09  0.0994675 0.2875420 0.3602960 0.4093320 0.43926200
+## 10  -1.0e+09 42.5318000 0.0994675 4.2305300 0.0000000 0.00000000
+## 11  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23908800
+## 12  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01956410
+## 13  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000
+##    OMEGA(1,1)   OMEGA(2,1) OMEGA(2,2) OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3)
+## 1   0.1733470 -0.003258460  0.1559170 0.00585389 -0.003601550   0.201272
+## 2   0.1546320 -0.003053190  0.1352870 0.00601178 -0.003206850   0.185337
+## 3   0.1602260 -0.003214570  0.1264060 0.01109770 -0.000427698   0.174209
+## 4   0.1643700  0.000103787  0.1306050 0.01277070  0.018363300   0.187145
+## 5   0.1650240 -0.000783667  0.1314490 0.01236840  0.015886000   0.187397
+## 6   0.1650620 -0.000741584  0.1314290 0.01241200  0.015956400   0.187549
+## 7   0.1650620 -0.000741584  0.1314290 0.01241200  0.015956400   0.187549
+## 8   0.0273185  0.022288500  0.0320360 0.02980410  0.035340300   0.088357
+## 9   0.5374090  0.729687000  0.8091900 0.86088700  0.884479000   1.002930
+## 10  0.0000000  0.000000000  0.0000000 0.00000000  0.000000000   0.000000
+## 11  0.4062780 -0.005034900  0.3625320 0.07054430  0.101633000   0.433069
+## 12  0.0336205  0.151557000  0.0441837 0.16130500  0.226252000   0.102013
+## 13  0.0000000  0.000000000  0.0000000 0.00000000  0.000000000   0.000000
+##    OMEGA(4,1) OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  -0.0224928 0.01652150  0.0284230  0.1658080 -1115.016
+## 2  -0.0140070 0.01204680  0.0429975  0.1498880 -1119.691
+## 3  -0.0116656 0.00368172  0.0317690  0.1394510 -1120.068
+## 4  -0.0119951 0.01349970  0.0338444  0.1480420 -1121.001
+## 5  -0.0127829 0.01386540  0.0332020  0.1498600 -1121.028
+## 6  -0.0127355 0.01390540  0.0332715  0.1499080 -1121.028
+## 7  -0.0127355 0.01390540  0.0332715  0.1499080 -1121.028
+## 8   0.0239593 0.02376170  0.0499630  0.0410975     0.000
+## 9   1.1245900 1.40287000  1.8215200  4.2305300     0.000
+## 10  0.0000000 0.00000000  0.0000000  0.0000000     0.000
+## 11 -0.0809617 0.09906640  0.1984280  0.3871790     0.000
+## 12  0.1580650 0.16371400  0.2394620  0.0530731     0.000
+## 13  0.0000000 0.00000000  0.0000000  0.0000000     0.000
+## 
+## 
+## red.xt&gt; ## a large one
+## red.xt&gt; read.ext(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`First Order Conditional Estimation with Interaction (No Prior)`
+##    ITERATION    THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1    0.0e+00  1.633960 1.5576000 0.7458190 2.3478500 0.05798520  0.1770000
+## 2    5.0e+00  1.673980 1.6140900 0.8302580 2.3914000 0.05479820  0.1569080
+## 3    1.0e+01  1.676700 1.6118700 0.8340870 2.3940800 0.05571030  0.1618530
+## 4    1.5e+01  1.686310 1.6111900 0.8139870 2.3904700 0.05665560  0.1651220
+## 5    2.0e+01  1.686540 1.6108000 0.8183850 2.3906900 0.05726200  0.1646560
+## 6    2.5e+01  1.686750 1.6112100 0.8191190 2.3911300 0.05716500  0.1650260
+## 7    3.0e+01  1.686920 1.6112900 0.8196180 2.3916300 0.05716410  0.1650600
+## 8    3.3e+01  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 9   -1.0e+09  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 10  -1.0e+09  0.043180 0.0476109 0.0699832 0.0515872 0.00757063  0.0271869
+## 11  -1.0e+09  0.138801 0.3426480 0.3997250 0.4364790 0.52212300  0.6516330
+## 12  -1.0e+09 26.903000 0.1388010 3.7341600 0.0000000 0.00000000  0.0000000
+## 13  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.23908800  0.4062770
+## 14  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.01583230  0.0334585
+## 15  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##      OMEGA(2,1) OMEGA(2,2) OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3) OMEGA(4,1)
+## 1  -0.000428264  0.1561880  0.0126053 -0.000713190  0.1975260 -0.0179167
+## 2  -0.000403712  0.1359930  0.0122718 -0.000663722  0.1859870 -0.0133695
+## 3  -0.000432699  0.1295100  0.0159343 -0.000517306  0.1960030 -0.0087187
+## 4  -0.000561129  0.1333960  0.0126990  0.000326150  0.1910740 -0.0121500
+## 5  -0.001986370  0.1312260  0.0119768  0.015282300  0.1866400 -0.0131544
+## 6  -0.000778044  0.1314490  0.0123702  0.015890100  0.1873990 -0.0127808
+## 7  -0.000744653  0.1314240  0.0124075  0.015960200  0.1875490 -0.0127377
+## 8  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 9  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 10  0.020798200  0.0313100  0.0299001  0.035725600  0.0719070  0.0235760
+## 11  0.784397000  0.7981560  0.8555510  0.879394000  1.0117600  1.2145000
+## 12  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+## 13 -0.005037600  0.3625310  0.0705401  0.101633000  0.4330680 -0.0809622
+## 14  0.141350000  0.0431825  0.1628810  0.226604000  0.0830204  0.1547840
+## 15  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  0.01452820  0.0267534  0.1655500 -1115.895
+## 2  0.01238560  0.0415674  0.1501960 -1120.035
+## 3  0.00531919  0.0396320  0.1432600 -1120.268
+## 4  0.00921431  0.0358207  0.1510600 -1120.818
+## 5  0.01369540  0.0327462  0.1495190 -1121.025
+## 6  0.01386650  0.0332032  0.1498620 -1121.028
+## 7  0.01390470  0.0332660  0.1499010 -1121.028
+## 8  0.01390610  0.0332702  0.1499060 -1121.028
+## 9  0.01390610  0.0332702  0.1499060 -1121.028
+## 10 0.02407020  0.0425812  0.0382220     0.000
+## 11 1.43382000  1.7968600  3.7341600     0.000
+## 12 0.00000000  0.0000000  0.0000000     0.000
+## 13 0.09907190  0.1984220  0.3871770     0.000
+## 14 0.16592100  0.2081350  0.0493598     0.000
+## 15 0.00000000  0.0000000  0.0000000     0.000
+</code></pre>
+
+<pre><code class="r">example(&quot;read.mod&quot;)
+</code></pre>
+
+<pre><code>## 
+## red.md&gt; head(read.mod(path=getOption(&quot;qpExampleDir&quot;), run=&quot;example1&quot;, file.ext = &quot;.ctl&quot;))
+## [1] &quot;;Model Desc: Two compartment Model, Using ADVAN3, TRANS4&quot;
+## [2] &quot;;Project Name: nm7examples&quot;                              
+## [3] &quot;;Project ID: NO PROJECT DESCRIPTION&quot;                     
+## [4] &quot;$PROB RUN# Example 1 (from samp5l)&quot;                      
+## [5] &quot;;; 1. Based on:0&quot;                                        
+## [6] &quot;;; 2. Description:&quot;
+</code></pre>
+
+</body>
+
+</html>

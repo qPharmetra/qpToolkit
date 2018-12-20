@@ -1,0 +1,123 @@
+---
+title: "Examples nm_xxx Functions qpToolkit"
+author: "Klaas Prins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Examples nm_xxx Functions qpToolkit}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=F, results='hide',message=F,warning=F}
+library(qpToolkit)
+```
+
+## nm.params.table
+
+```{r}
+example("nm.params.table")
+```
+
+## get.theta/omega/sigma
+
+```{r}
+example("get.theta")
+example("get.omega")
+example("get.sigma")
+```
+
+## Processing parameter table and run records
+
+```{r}
+example("process.parTable")
+example("process.runrec")
+```
+
+
+## nm.parse2r.operators
+
+```{r}
+example("nm.parse2r.operators")
+```
+
+
+## nm.parse.control.stream
+
+```{r}
+example("nm.parse.control.stream")
+```
+
+## nm.modeltrail.graph
+
+```{r}
+#example("nm.modeltrail.graph")
+```
+
+## nm.compare.plot
+
+```{r, fig.width=8, fig.height=3}
+example("nm.compare.plot")
+```
+
+## nm.unzip
+
+```{r}
+example("nm.unzip")
+```
+
+## nm.cormat/covmat.extract
+
+```{r}
+example("nm.covmat.extract")
+example("nm.cormat.extract")
+```
+
+## nm.unzip
+
+```{r}
+example("nm.process.scm")
+```
+
+## nm.runtime
+
+```{r}
+example("nm.runtime")
+```
+
+## nm.read.vpc
+
+```{r}
+example("nm.read.vpc")
+```
+
+## nm.extract.xml
+
+```{r}
+example("nm.extract.xml")
+```
+
+## nm.extract.ext
+
+```{r}
+example("nm.extract.ext")
+```
+
+## nm.insert.evid2amt0
+
+```{r}
+example("nm.insert.evid2amt0")
+```
+
+## nm.insert.dose.multiple.compartments
+
+```{r}
+example("nm.insert.dose.multiple.compartments")
+```
+
+
+## nm.remove.section
+
+```{r}
+example("nm.remove.section")
+```

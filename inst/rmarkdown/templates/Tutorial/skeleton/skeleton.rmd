@@ -1,0 +1,287 @@
+---
+title: "R Markdown Tutorial"
+author: "Jason Chittenden"
+date: "Wednesday, January 21, 2015"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r preamble, include=F}
+library(plyr)
+library(xtable)
+library(knitr)
+library(ggplot2)
+library(reshape2)
+opts_chunk$set(echo=T)
+plot.flag = T
+```
+
+This is an R Markdown and knitr document.  The document itself is a .rmd file, which you can consider the "input script".  The "output" is a formatted HTML, Word, or pdf document.  R Markdown is very easy to use from RStudio, which provides point and click compilation.  See online resources for how to install Rstudio, the knitr package (required for processing code chunks), and how to knit a .rmd file.  What we'll talk about in *this* document is why Rmarkdown/knitr is useful and how to use some of its features.
+
+## Why R Markdown and Knitr
+
+### Challenges/Inefficiencies with current approach
+Think about the data analyses you've run and the problems you've encountered.  We can classify those in at least a couple categories:
+
+1. Getting the R commands to run
+    - "It doesn't run on my computer"!  Different people run different R environments.  The drive.R script tries to fix this, but one of the key things it does is wipe the environment.
+2. Reproducing the results
+    - Have you ever encountered "Phantom code"?  The script author maybe ran code from the console, but forgot to put it into the script.
+    - Mismatched results?  How do you communicate results to another analyst (maybe for QC/QA)?  One way is to copy the results from the console as a comment in the R code.  You get a mismatch to the comments... is it because the code the results are different now, or did the original analyst forget to update the result-comments?
+3. Presenting the results
+    -  Plots, tables, text, equations... let's assemble them all into a powerpoint presentation, just to be able to discuss the project.  We get to repeat this when the client updates data, requests a change to the analysis or plots, or we find a mistake, or we expand the analysis (mo' models, mo' money).
+
+### How do Knitr and Markdown help?
+
+Markdown provides a way to write document with richer formatting than text (e.g. we can put in italic, bold, bulleted lists, hyperlinks, graphics).  We can even include equations due to an HTML plug-in called MathJax, using LaTeX notation, e.g.:
+
+$C_p = Dose \frac{F}{V} \frac{k_a}{k_a - k_{e}} \left(e^{-k_e t} - e^{-k_a t} \right)$
+
+Now the real cool thing... we can include R code in our document by writing "chunks".
+
+We can write code to do a computation, like simulate some data:
+
+```{r}
+theta = c(V=10, ke=.5, ka=1)
+dose=100
+omega = diag(.1,3)
+N.subj = 24
+rand = matrix(rnorm(N.subj*3,0,1),ncol=3)
+eta=exp( rand %*% t(chol(omega)))
+phi = sweep(eta,MARGIN=2,theta,'*')
+colnames(phi)=names(theta)
+phi.df = data.frame(cbind(id=1:N.subj,phi))
+
+time.df = data.frame(time = c(.5, 1, 1.5, 2, 3, 4, 6, 8, 12, 24))
+cp.df = merge(phi.df,time.df)
+cp.df = arrange(cp.df,id,time)
+cp.df = within(cp.df,
+               {
+                 dv = dose*ka/(ka-ke)*(exp(-ke*time)-exp(-ka*time))
+               })
+```
+
+What did we just do?  We made a dataframe of simulated subjects using a 1 compartment, extravascular model.
+
+Let's look at the data:
+
+```{r eval=plot.flag}
+ggplot(cp.df, aes(x=time,y=dv,group=id)) + geom_point() + geom_line() + theme_bw() + scale_y_log10()
+```
+
+How about a summary of the data?  Cmax, AUC
+
+```{r results='asis'}
+# get parameters
+summary.df = ddply(cp.df,.(id),summarise,
+                   Cmax = max(dv),
+                   AUC = dose/(ke*V)[1])
+Cmax.mean = mean(summary.df$Cmax) #save it for easy reference
+#stack and do summaries
+summary.df = melt(summary.df,id="id")
+summary.df = ddply(summary.df,.(variable),summarise,
+                   mean=mean(value),
+                   log.mean=exp(mean(log(value))),
+                   sd = sd(value)
+                   )
+kable(summary.df, row.names=F, digits=2)
+```
+
+The mean Cmax is (computed live): `r format(Cmax.mean,digits=4)`
+
+Here's the value pasted from when it was run from the command line:
+```
+# Copy Cmax from console
+# 48.48 
+```
+
+Neat, we ran a simulation, made a plot and a summary table.  All the results are right in front of us (in the HTML output)
+
+So, with this small example maybe we can already see how knitr and markdown address the problems above:
+
+1. Getting the R commands to run
+    - Knitr runs the R code chunks in a new R session.  The session is not contaminated by anything we've done on the console in our RStudio session.  Because of this, knitr uses only what is explicitly set up in the Markdown script (loading libraries, global options, devices, etc...). Running in its own private session forces you to make sure the code works.  Not working?  No results.
+2. Reproducing the results
+    - Let's say we want to change the dose?  Go into the code chunk above and run it.  Knit the file.  There, updated.  Everything else hangs together.
+    - What was the mean Cmax? Does it match the value from the console?  Have fun QCing that :)
+    - The point is that we don't have to put the results back in the script.  It's enough to have them in the HTML output!!
+3. Presenting the results
+    - Well, the stuff is right there.  Sure, we can argue about details on the plots or content and format of the table.  But those issues are part of R, not Rmarkdown/knitr, so not new.
+    - Having the tables come out in HTML is really nice.  You can copy paste them into slides, when the time is right.  We can even improve on the default HTML formatting.
+    - The HTML output format is great for showing *lots* of plots and exploring data. Size is not much of a limit here.
+
+## What to use Markdown for?
+
+There are some ways to use Markdown and knitr that make a lot of sense.  Ask yourself these questions:
+
+* Would I like to see my plots and tables without fumbling through multiple programs?
+* Would I like to share these results with somebody without having them re-run the R script?
+* Would it make sense to have a report of this analysis, but without incurring a lot of overhead?
+* Would I consider using LaTeX for this, if LaTeX weren't such a pain?
+
+If you answered yes to any of these, Markdown and Knitr may be useful.  Here are some common things you can use it for:
+
+* Data Prep
+    * Automatially capture QC checkpoints
+* Analysis Notebook
+    * Plots + Tables + Equations + images (e.g. snippets from SOW/report, graphics) all in one output
+* QC Work
+    * Source originator scripts and check key steps.
+    * Generate sharable, auditable record of the QC process.
+* Presentations
+    * Create beamer (pdf) or html5 (ioslides) presentations in a repeatable process
+    * Very useful if data or analysis will be updated several times
+* Report Appendices
+    * Like an analysis notebook, but with presentation details in mind (e.g. hide code, polish table formatting)
+    
+## Tips and tricks
+
+### Finding Help
+RStudio provides a help button with two options when the active tab is an rmd file.  Have a look at the Markdown Quick Reference.  There are some other good references online:
+
+* [RStudios R Markdown V2 site](http://rmarkdown.rstudio.com/)
+    * The "Authoring" tree covers how to do it.
+    * The "Formats" tree covers topics specific to different output formats
+* [Cheatsheet](http://rmarkdown.rstudio.com/RMarkdownCheatSheet.pdf)
+    * Great overview
+* [Reference Guide](http://rmarkdown.rstudio.com/RMarkdownReferenceGuide.pdf)
+    * A good rundown on chunk options
+    
+### Overall setup
+
+This is a suggestion only
+
+1. YAML header
+    - Type of document
+    - additional settings like table of contents
+2. Preamble
+    - load libraries
+    - source utility files
+    - set global options
+    - add utiltiy functions
+    - set 'include = F' if you want to hide the messages generated by all of this activity.
+3. Introduction/Overview section (Pre-Ramble)
+    - What is this document about?
+4. Do stuff
+    - Break up the document into sections.
+    - Describe what the code should do.
+    - write the code chunk(s)
+    - run the code chunk(s) in the console to debug.
+    - write comments about the output.
+5. Repeat 4 as necessary for new sections.
+
+### Plots
+
+HTML doesn't have real estate limits like documents do.  So, if you want to plot 1000 subjects in a 10 x 100 grid, go nuts.  Just make the output dimensions of the plot larger to control how big each panel is on screen.  If you want panels about 1inch square, make it 10in by 100in.
+
+There are a couple useful chunk options for plots:
+
+* fig.width = 7
+* fig.height = 7
+* fig.path = 'figure/'
+
+Plots are saved in the fig.path directory.  This can be changed by chunk or set for the entire document by calling opts_chunk() in any chunk (best done in preamble though).  Plots will be named after the chunk they are created from.  If you want to easily find the files consider naming chunks with plots in them.
+
+You can still save plots to a file the same way you always have.
+
+### Tables
+
+There a few ways to make a nice table with Rmarkdown.  Tables come out in HTML documents as html tables (as opposed to images) and can easily be copied into powerpoint or word documents.
+
+#### Hard coded
+
+Tables can be 'hard coded' in the Markdown using dashes '-' and pipes '|'.
+
+Table: Lord of the Rings Characters
+
+Name  | Species | Origin
+------|---------|--------
+Bilbo | Hobbit  | Shire
+Gandalf | Maia  | Valinor
+Thorin | Dwarf  | Ered Luin
+Boromir | Human | Gondor
+
+
+#### kable
+Generate a table from a data.frame very easily using the kable function in the knitr package.  It's not very flexible, but usually does fine if formatting isn't the main goal.  By default, kable will create a table in Markdown.  Set results='asis' to have knitr process the generated Markdown into html.  Set row.names=F to omit row names.
+
+```{r results='asis'}
+cyls.summary = ddply(mpg,.(cyl),summarise,N=length(year),mean.displacement=mean(displ),mean.hwy=mean(hwy))
+kable(cyls.summary, row.names=F, digits=2)
+```
+
+#### xtable
+You can also use xtable.  Set the output format to HTML (not latex).  HTML won't have the latex style formatting you may be used to.  This method is less convenient because of the two step process required.  But xtable offers more flexibility in formatting cells contents.
+
+```{r results='asis'}
+cyls.x = xtable(cyls.summary,digits=c(0,1,2,2,1))
+print.xtable(cyls.x, include.rownames=F, type='html')
+```
+
+#### additional formatting control (style sheets)
+We are working on a qP stylesheet that makes the tables look more like the booktabs option in LaTeX.
+
+### Preamble
+
+We usually want to load libraries for our analyses.  This invariably generates a wall of text telling us about the libraries, directories, missing bits, warnings, errors, etc...  Sometimes we want to see this, like in an analysis notebook, so we can ensure nothing suspicious has happened.  Other times we want to hide this bit of code entirely, maybe to show results to a client.  Use the "include" flag.
+
+### Caching
+
+If a chunk takes a long time to run, try caching it.  Just put 'cache=T' in the chunk options.  A subdirectory will be created with cache files.  If the inputs or code of the chunk change, the chunk will be computed.  Otherwise it will load from cache.  Try not to isolate the time consuming bit and put it in its own chunk so that you won't be changing things too often.  The best candidates are file loading and simulations.
+
+Sometimes caching screws up.  If code in a cached chunk is running wierdly, delete the cache directory.
+
+### Conditional evaluation
+Maybe you don't want caching, but just want to avoid running a chunk.  Here's a scenario, with run times: 
+
+1. We simulate data (2 hrs)
+2. Save it to disk (5 secs)
+3. Load it (2 min)
+4. Do stuff (1 min)
+
+So, we can set the chunk option 'eval=F' for steps 1 and 2 (after running them once).  That R code will be skipped and any variables modified or created there will not be present in the knitr session.  Nonetheless, if we've written modular code steps 3 and 4 should still work fine.
+
+You can set a global variable in the preamble (sim.flag=F) and use it to toggle the eval option, 'eval=sim.flag' Try it with plot.flag in this example.  The code chunk is still echoed, but the plot doesn't show up in the output.
+
+### Presentation ready output
+
+Maybe you want to show output to a client, but don't want to take a tour of 1000 lines of code.  You can set a the default for the chunk option 'echo' in the preable.  This example sets it to T.  Set it to F and see what happens.
+
+### Recommendations for developing code
+Develop your code just like you normally would.  Run the lines (ctrl+enter) or the chunks (ctrl+alt+c) to put variables into the Rstudio workspace.  If you get to a point where you want to see plots in larger windows than the viewer screen, knit the file.
+
+Occasionally knit the file to make sure you don't have a problem with phantom code.  Review the results in the popup viewer or in your browser (right click on the html output in the Files tab for a popup menu with the options)
+
+For data management activities, try to write out results of important steps.  Show the QC person that the step worked.  Pick subject to use and follow that subject through the transformations.
+
+For EDA and analyses, add comments in the markdown at decision points.  Use inline R to capture important things like estimates, p-values, counts, whatever.  What you do here can easily be copied to a presentation or report.
+
+For QC, make a copy of the originator RMD or R file (convert to RMD by breaking it into chunks) and run it.  Compare results with originator.  Insert QC checks in the QC RMD file.  If you find something, you have a record of how the originator code ran, and what you found.  At the end of the QC you have an artifact that shows the QC due diligence.  When QCing reports, if necessary, copy tables or figures as image files and import them into the RMD file to contrast with the QC calculations.
+
+### Errors
+
+If knitr throws an error, it is usually due to one of these things:
+
+* installation
+    - make sure latest RStudio is installed.
+* missing library
+    - see what function it complained about
+* general R error
+    - clear the workspace and run all chunks (ctrl+alt+r)
+* caching error
+    - it won't tell you it's a caching error, but it usually complains about a function missing.  If the proper library is loaded, and the code runs in the console...
+    - delete the cache directory
+
+### Formatting RMarkdown Lists
+
+* Leave a blank line between a code chunk and following text.
+* To use outline style lists, indent using 4 spaces:
+    * like this
+  * not like this (see how this one isn't indented in the output)
+* Leave a blank line before and after a list
+
+## Conclusion
+
+R Markdown and Knitr provide a way to combine results of R based analyses into a readable, sharable document.  The learning curve is pretty shallow and there's a lot that you can do with very little skill, like putting plots and tables together in an analysis workbook.  Try it on your next project.

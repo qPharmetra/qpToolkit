@@ -1,0 +1,61 @@
+#### Parameter Estimates
+```{r, echo = F, results='asis'}
+#run is set in the parent document
+# parameter estimate table
+outPar = nm.params.table(run,path = nm.path)
+outPar.tab = if(sum(isNumeric(outPar$SE))!=0){
+  (outPar[isNumeric(outPar$SE), ])
+  } else (outPar[outPar$Estimate!=0,])
+kable(outPar.tab,row.names=F)
+```
+
+
+#### load NONMEM output tables
+```{r, echo = F}
+run.out = get.xpose.tables(run=run,path=nm.path)
+
+# make a plot data set
+myPlotData = run.out[order(run.out$ID,run.out$TIME), ]
+
+```
+
+
+#### CWRES vs elapsed time and population prediction
+```{r, echo = F}
+xyplot(CWRES ~ value | paste(variable)
+       , data = melt(myPlotData[myPlotData$EVID==0, ], measure.vars = c("TIME","PRED"))
+       , groups = ID
+       , panel = function(x,y,...)
+       {
+         panel.xyplot(x,y,... , type = 'l',col = gray[5])
+         panel.loess(x,y,..., col = blue[7], lwd=2)
+         panel.abline(h=c(-2,0,2),lty = 2, col = gray[7])
+         panel.xyplot(x,y,... , col = 1, type = 'p', pch = "+", cex = 0.5)
+       }
+       , scales = list(x = list(relation = "free"))
+       , aspect = 1
+       , layout = c(2,1)
+)  
+```
+
+#### DV vs PRED or IPRED
+```{r, echo = F}
+xyplot(CONC ~ value | paste(variable)
+       , data = melt(myPlotData[myPlotData$EVID==0, ], measure.vars = c("IPRED","PRED"))
+       , groups = ID
+       , panel = panel.residual
+       , scales = list(log = 10)
+       , xscale.components = xscale.components.log10.3
+       , yscale.components = yscale.components.log10.3
+       , aspect = 1
+) 
+```
+
+#### QQ Plot of CWRES
+```{r, echo = F}
+ggplot(myPlotData[myPlotData$EVID==0, ],aes(sample=CWRES))+stat_qq()+geom_abline(slope=1)+coord_fixed()
+```
+
+
+
+

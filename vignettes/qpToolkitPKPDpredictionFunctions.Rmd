@@ -1,0 +1,31 @@
+---
+title: "qpToolkit PKPD Prediction Functions"
+author: "Klaas Prins"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{qpToolkit PKPD Prediction Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, echo=F, results='hide',message=F,warning=F}
+library(qpToolkit)
+```
+
+## Examples of Pharmacokinetic Predictions
+
+```{r}
+example("pkPredPlot")
+```
+
+## Examples of Pharmacokinetic-Pharmacodynamic Predictions
+
+```{r}
+example("pkpdPredPlot")
+```
+
+
+
+
