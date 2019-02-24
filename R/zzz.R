@@ -13,7 +13,7 @@
 .onAttach <- function(libname, pkgname){
   packageStartupMessage(qP.welcome(Sys.getenv("USERNAME")))
   packageStartupMessage(paste("package path =", path.package("qpToolkit")))
-  packageStartupMessage(paste(R.installation.validation()$IQ.message))
+  #packageStartupMessage(paste(R.installation.validation()$IQ.message))
   packageStartupMessage("setting stringsAsFactors to FALSE as qPharmetra default")
   if(getOption("stringsAsFactors")) {
      options(stringsAsFactors = F) 
