@@ -15,6 +15,7 @@
 #' @export
 #' @import Hmisc
 #' @examples
+#' \dontrun{
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir")
 #'   , filename = "raw_results_bs4011.csv"
 #'   , structure.filename = "raw_results_structure"
@@ -23,6 +24,7 @@
 #' names(myBoot)
 #' str(myBoot$bootstrap)
 #' myBoot$structure
+#' }
 #' 
 read.bootstrap = function(
   path =getOption("nmDir"),       # where do the bootstrap results reside?
@@ -34,7 +36,7 @@ read.bootstrap = function(
   default.names = c("model", "minimization.successful","covariance.step.successful","covariance.step.warnings","estimate.near.boundary")
   
   ## read bootstrap raw results
-  bootstrap.data <- read.csv(paste(path, filename, sep="/"), header=T)
+  bootstrap.data <- read.csv(paste(path, filename, sep="/"), header=TRUE)
   ## replace underscores, brackets and commas
   for (i in 1:length(names(bootstrap.data))) {
     names(bootstrap.data)[i] <- gsub("\\_", "\\.", names(bootstrap.data)[i]) 
@@ -42,7 +44,7 @@ read.bootstrap = function(
   
   ## read and process bootstrap structure file
   struct = scan(file=paste(path,structure.filename, sep="/"),
-                what="character",sep=  "\n", quiet=T)
+                what="character",sep=  "\n", quiet=TRUE)
   struct = struct[2:(which(substring(struct,1,3)=="[1]")-1)]
   struct = struct[substring(struct, 1,12) != "line_numbers"]
   struct = unPaste(struct,sep = "=")

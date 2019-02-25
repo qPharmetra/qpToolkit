@@ -20,7 +20,7 @@
 read.ext = function(run
                     , path = getOption("nmDir")
                     , file.ext = ".ext"
-                    , quiet=T
+                    , quiet=TRUE
 )
 {
   x = invisible(scan(file = file.path(path, run, paste(run,gsub("[.]","",file.ext), sep="."))
@@ -31,7 +31,7 @@ read.ext = function(run
   loc = grep("TABLE NO", x)
   idx = 0 ## idx is 1 in case we have only one estimation method
   if(length(loc) == 1) idx = 1
-  loc = matrix(c(loc,c(loc[-1]-1,length(x))), nrow = 2, byrow = T)
+  loc = matrix(c(loc,c(loc[-1]-1,length(x))), nrow = 2, byrow = TRUE)
   loc
   
   ## turn this into a list

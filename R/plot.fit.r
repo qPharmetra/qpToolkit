@@ -38,7 +38,7 @@
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
 #' plot.fit(fm1DNase1.predict)
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
-#' plot.fit(fm1DNase1.predict, logX = T)
+#' plot.fit(fm1DNase1.predict, logX = TRUE)
 #' 
 #' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
 #' {
@@ -93,14 +93,14 @@
 plot.fit = function(input, newFunc, 
   yLabel, xLabel, label.cex = 1.25,
   xLimits, yLimits,  
-  title, plot.title = T, 
+  title, plot.title = TRUE, 
   layout, aspect,
-  mnplot = T, seplot = T,
-  logX = F, logY = F, 
+  mnplot = TRUE, seplot = TRUE,
+  logX = FALSE, logY = FALSE, 
   pointcol = gray[8],
   linecol = qp.blue,
   axis.lim.widener = 0.035,
-  do.plot = T ,
+  do.plot = TRUE ,
   abline = NULL,
   ...)
 {
@@ -125,17 +125,17 @@ plot.fit = function(input, newFunc,
   ## axes limits
   if(missing(yLimits)){
    if(mnplot){
-    yLimits = range(c(unlist(input$pred$pred[, Cs(Lower, Upper)]),unlist(input$pred$partres[, Cs(Lower, Upper)])), na.rm = T)
+    yLimits = range(c(unlist(input$pred$pred[, Cs(Lower, Upper)]),unlist(input$pred$partres[, Cs(Lower, Upper)])), na.rm = TRUE)
     yLimits = yLimits + c(-1.02, 1.02) * diff(yLimits) * axis.lim.widener
     }
-   if(!mnplot) yLimits = range(c(input$obsData$partres,input$pred$pred$Mean), na.rm = T)
+   if(!mnplot) yLimits = range(c(input$obsData$partres,input$pred$pred$Mean), na.rm = TRUE)
   }
   if(missing(xLimits)) {
-    xLimits = range(input$pred$pred[, xfVarNames], na.rm = T)
+    xLimits = range(input$pred$pred[, xfVarNames], na.rm = TRUE)
     xLimits = xLimits + c(-1.02, 1.02) * diff(xLimits) * axis.lim.widener
     }
-  if(input$method == "residuals" & mnplot) yLimits = range(c(input$pred$partres[,Cs(Lower,Upper)]), na.rm = T)
-  if(input$method == "residuals" & !mnplot) yLimits = range(c(input$obsData$partres), na.rm = T)
+  if(input$method == "residuals" & mnplot) yLimits = range(c(input$pred$partres[,Cs(Lower,Upper)]), na.rm = TRUE)
+  if(input$method == "residuals" & !mnplot) yLimits = range(c(input$obsData$partres), na.rm = TRUE)
   
   ## scales
   myXscale = myYscale = list(cex = label.cex)
@@ -155,7 +155,7 @@ plot.fit = function(input, newFunc,
   thePlot = xyplot(plotForm,
     data = input$pred$pred,
     partres = input$pred$partres,
-    subscripts = T,
+    subscripts = TRUE,
     main = myTitle,
     yfv = yfVarNames,
     lc = linecol,
@@ -210,7 +210,7 @@ plot.fit = function(input, newFunc,
         lsegments(x0 = xpar, x1 = xpar, y0 = ylo, y1 = yup, col = gray[8])
 
         ## CI bar ends
-        wi = rep(range(x, na.rm = T) / 100, length(xpar))
+        wi = rep(range(x, na.rm = TRUE) / 100, length(xpar))
         lsegments(x0 = xpar-wi, x1 = xpar+wi, y0 = ylo, y1 = ylo, col = gray[8])
         lsegments(x0 = xpar-wi, x1 = xpar+wi, y0 = yup, y1 = yup, col = gray[8])
       } # end  ! all(

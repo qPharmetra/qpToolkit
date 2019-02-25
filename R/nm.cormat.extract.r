@@ -19,7 +19,7 @@ nm.cormat.extract = function(run, path = getOption("nmDir"))
 {
   internalDir = paste(path, run, run, sep = "/")
   corText   = scan(file = paste(internalDir,".cor", sep = ""), 
-                   what = "character",sep = "\n", quiet = T)
+                   what = "character",sep = "\n", quiet = TRUE)
   locs = grep("TABLE", substring(corText, 1,6))   
   ## define locations for each varcov table in the text
   corNames = substring(unlist(unPaste(corText[locs], ":")[[2]]),2)

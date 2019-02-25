@@ -24,7 +24,7 @@ nm.unzip = function(run
                     , zip.program = "c:/progra~1/7-zip/7z"
                     , filename = paste(run, extension,sep="")
                     , zip.filename = paste(filename,zip.extension,sep = "")
-                    , quiet = T
+                    , quiet = TRUE
 )
 {
   currentwd = getwd()
@@ -33,7 +33,7 @@ nm.unzip = function(run
   zip.call = paste(zip.program, "e", zip.filename)
   if(!quiet) cat("call:",zip.call,"\n")
   setwd(newwd)
-  invisible(system(zip.call, show.output.on.console=ifelse(quiet,F,T)))
+  invisible(system(zip.call, show.output.on.console=ifelse(quiet,FALSE,TRUE)))
   setwd(currentwd)
 }
 

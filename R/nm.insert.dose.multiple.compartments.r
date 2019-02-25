@@ -23,7 +23,7 @@
 nm.insert.dose.multiple.compartments = function(data
                                                 , dose.in.cmt = c(1,2)
                                                 , ...
-                                                , quiet = T
+                                                , quiet = TRUE
 )
 {
   my.dots = paste(

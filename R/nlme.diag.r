@@ -49,7 +49,7 @@
 #' # note here we refer to the $object, given the model was created with nlme.run()
 
 nlme.diag = function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
-  nx=8, output = FALSE, print.eta.norm=T, print.eta.v.var=T,
+  nx=8, output = FALSE, print.eta.norm=TRUE, print.eta.v.var=TRUE,
   asp.eta.norm=1, asp.eta.v.var=1){
 
   if (is.null(xvar.label)) xvar.label = xvar
@@ -62,7 +62,7 @@ nlme.diag = function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
 #  if(length(keyCovVars)==0) { plot(ranef(obj)); return()}
 
   ## deal with subsetting
-  filter.seq = rep(T, nrow(ds))
+  filter.seq = rep(TRUE, nrow(ds))
 	if(!missing(subset.modeldata))
   {
     message(" -- observation data subsetted by ", subset.modeldata)
@@ -140,8 +140,8 @@ nlme.diag = function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
    trellis.strip.color()
 
    if (print.eta.norm & print.eta.v.var) {
-      plot(qqplot, split = c(1,1,2,1), more = T)
-      plot(etaxv,  split = c(2,1,2,1), more = F)
+      plot(qqplot, split = c(1,1,2,1), more = TRUE)
+      plot(etaxv,  split = c(2,1,2,1), more = FALSE)
    }
    else if (print.eta.norm) {
       plot(qqplot)

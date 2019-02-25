@@ -74,9 +74,9 @@ nlme.modeltrail = function(...)
     X = eval(parse(text = paste(x, "$object", sep = "")))
     is.list(eval(parse(text = x))) & all(names(eval(parse(text = x))) %in% c("object", "problem", "reference"))
   })
-  if(any(unlist(test)==F)) 
+  if(any(unlist(test)==FALSE)) 
   {
-    cat(paste(nams[unlist(test == F)], collapse = "\n"))
+    cat(paste(nams[unlist(test == FALSE)], collapse = "\n"))
     cat("... do(es) not have elements 'object', 'model', 'reference'")
   }
 

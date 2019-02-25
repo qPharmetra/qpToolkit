@@ -31,7 +31,7 @@
 nlme.extract = function(obj, 
   method = "components", 
   newdata = NULL, 
-  sample = F, 
+  sample = FALSE, 
   nSignif = 3,    ## number of significant digits for output tables using signif()
   nSignif.CV = 0  ## number of decimals reported for CV% values using round()
   )
@@ -48,11 +48,11 @@ nlme.extract = function(obj,
 	WARNINGS = ""
 
 	## test if we can use intervals to extract point estimates
-	intervals.OK = T
+	intervals.OK = TRUE
 	if(obj$apVar[1] == "Non-positive definite approximate variance-covariance")
 	{
 		WARNINGS = c(WARNINGS, "\nrandom effects var/cov matrix non-positive / semi-definite. extracted point estimates only")
-		intervals.OK = F
+		intervals.OK = FALSE
 	}
 
 	## perform further checks on input
@@ -108,14 +108,14 @@ nlme.extract = function(obj,
 	
 	ss2 = as.data.frame(do.call("cbind", ss1))
 	names(ss2) = unlist(lapply(tmp, names))
-	if(intervals.OK == T) rvar = nlme.getRanPars(obj)$var 
-	if(intervals.OK == F) rvar = NULL 
+	if(intervals.OK == TRUE) rvar = nlme.getRanPars(obj)$var 
+	if(intervals.OK == FALSE) rvar = NULL 
 	ranef = list(ranef = c(val, list(var=rvar)))
 
 	## create sampling grid of fixed effects
 	myfix = nlme.getFixPars(obj)$coef
 	if(sample) myfix = nlme.simPars(nlme.getFixPars(obj), N = 1) 
-	fixDF = data.frame(matrix(rep(myfix, nr), ncol = length(fixef(obj)), byrow = T))
+	fixDF = data.frame(matrix(rep(myfix, nr), ncol = length(fixef(obj)), byrow = TRUE))
 	names(fixDF) = names(fixef(obj))
 	ss2 = cbind(ss2, fixDF)
 
@@ -178,7 +178,7 @@ nlme.extract = function(obj,
   fixTab = fixTab[, Cs(Parameter, Est.se, CV, CI95)]
 	fixTab
 	
-	if(intervals.OK == T)
+	if(intervals.OK)
 	{
 		simRE = nlme.simPars(nlme.getRanPars(obj), N = 1000)
 		ranEst = attr(obj$apVar, "Pars")
@@ -209,7 +209,7 @@ nlme.extract = function(obj,
     ranTab	
 	}
 
-	if(intervals.OK == F)
+	if(intervals.OK == FALSE)
 	{
 		ranTab = data.frame(Parameter = names(unlist(val)), 
 			Est.se = unlist(val),

@@ -25,7 +25,7 @@
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
 #' plot.fit(fm1DNase1.predict)
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
-#' plot.fit(fm1DNase1.predict, logX = T)
+#' plot.fit(fm1DNase1.predict, logX = TRUE)
 
 nls.predict = function(func,
   object,
@@ -62,8 +62,8 @@ nls.predict = function(func,
   rpnum = nrow(xnew)
   idx = rep(1 : rpnum, nrow(newdata))
   xnew = data.frame(xnew[idx,])
-  idx = matrix(rep(1:nrow(newdata), rpnum), ncol = nrow(newdata), nrow = rpnum, byrow=T)
-  idx = matrix(idx, ncol=1, byrow=T)
+  idx = matrix(rep(1:nrow(newdata), rpnum), ncol = nrow(newdata), nrow = rpnum, byrow=TRUE)
+  idx = matrix(idx, ncol=1, byrow=TRUE)
   newdata = as.data.frame(newdata[idx, ])
   newdata[, names(newdata) %in% xfVarNames] = c(xnew)
   names(newdata)

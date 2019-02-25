@@ -58,13 +58,13 @@ function(runs,                                                          ## runs 
   names(name.objv) = name.runs
   test.objv = lapply(name.objv, function(x) lapply(x, function(y) any(y == "MCMCOBJ")))
   
-  checked = rep(T, length(runs))
+  checked = rep(TRUE, length(runs))
   
-  if(any(unlist(test.objv) == F) )
+  if(any(unlist(test.objv) == FALSE) )
      {
     cat(paste(names(unlist(test.objv)[!unlist(test.objv)]), collapse = "\n"),
         "\n ... are not Bayesian runs and will be discarded.\n")
-    if(all(unlist(test.objv) == F)) {
+    if(all(unlist(test.objv) == FALSE)) {
       cat("As none of the runs supplied are Bayesian runs the entire routine aborted\n")
       return()
     }
@@ -93,7 +93,7 @@ function(runs,                                                          ## runs 
       layout = c(1,lunique(dfr$model)),
       panel = function(x,...)
       {
-       panel.densitystrip(x, y=0, col = col.area, horizontal = T, factor = 1, col.line = gray[5])
+       panel.densitystrip(x, y=0, col = col.area, horizontal = TRUE, factor = 1, col.line = gray[5])
        panel.abline(v = mean(x), col = col.mean, lwd = 3)
        panel.abline(v = quantile(x,c(0.025,0.975)), lty = 2, col = col.percentiles)
       },

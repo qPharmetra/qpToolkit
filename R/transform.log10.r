@@ -12,10 +12,10 @@
 #' @return log10(x)
 #' @export transform.log10
 #' @examples
-#' transform.log10(c(1,10,100), log = T)
+#' transform.log10(c(1,10,100), log = TRUE)
 #' transform.log10(c(2,3,200,1000,33330), 2)
 transform.log10 = function(x, log)
 {
-  if({is.logical(log) & log == T} || is.numeric(log)) log10(x) else x
+  if({is.logical(log) & log == TRUE} || is.numeric(log)) log10(x) else x
 }
 

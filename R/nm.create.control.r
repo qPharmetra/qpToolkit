@@ -121,7 +121,7 @@ nm.create.control = function(run,
   modelFile.extension = ".ctl",
   seed = 1234567,
   newDataFile = NULL, ## by default the model data set will be loaded and used for simulation
-  uncertainty = F,  ## Switch to determine whether sims are done with parameter uncertainty
+  uncertainty = FALSE,  ## Switch to determine whether sims are done with parameter uncertainty
   sim = NULL,
   table = NULL
 )
@@ -165,8 +165,8 @@ nm.create.control = function(run,
     tmp = removeSection("TABLE", ctl)
     ctl = tmp[[1]]
     table = unlist(tmp[[2]])
-    table = sub("\\.tab", "sim.tab", table, ignore.case=T)
-    table = sub("\\.par", "sim.par", table, ignore.case=T)
+    table = sub("\\.tab", "sim.tab", table, ignore.case=TRUE)
+    table = sub("\\.par", "sim.par", table, ignore.case=TRUE)
     ctl = c(ctl, table)   
   }
   
@@ -181,7 +181,7 @@ nm.create.control = function(run,
   write(ctl, paste(path, paste(run, "sim", modelFile.extension, sep = ""), sep = "/"))
 }
 
-examples = F
+examples = FALSE
 if(examples)
 {
   nm.create.control("run11", path = getOption("qpExampleDir"), table = "$TABLE PRED IPRED DV ONEHEADER NOPRINT FILE = sim.tab")

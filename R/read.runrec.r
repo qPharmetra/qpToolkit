@@ -22,7 +22,7 @@
 
 read.runrec = function(filename, path = getOption("nmDir"))
 {
-  runrec = read.table(file=paste(path,filename, sep="/"), sep=";", skip=5, header=F)
+  runrec = read.table(file=paste(path,filename, sep="/"), sep=";", skip=5, header=FALSE)
   runrec = runrec[, 1:18]
   names(runrec) = Cs(Run,Ref,OFV,dOFV,CondNum,Minimization,CovStep,Label, Description, StructMod, 
                      something,IIV,IOV, ResMod, Estimation,DataSet,nObs,nID)

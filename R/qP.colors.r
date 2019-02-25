@@ -12,7 +12,7 @@
 #' nc = length(blue)
 #' cols = c(8,8,8,8,8,4,2,1,1,1)
 
-#' plot(1:nc, seq(-0.45,0.3,length=nc), type = 'n', axes = F, xlab ="", ylab = "",
+#' plot(1:nc, seq(-0.45,0.3,length=nc), type = 'n', axes = FALSE, xlab ="", ylab = "",
 #'  xlim = c(0.5, nc + 0.5))
 #' for(i in 1:nc)
 #' {
@@ -39,7 +39,7 @@
 #'       , data = expand.grid(xval = 1, yval = 1, color = names(my.colors))
 #'       , xlim = c(0,1)
 #'       , ylim = c(0,1)
-#'       , as.table = T
+#'       , as.table = TRUE
 #'       , panel = function(x,y,...)
 #'       {
 #'         panel.rect(xleft = 0, ybottom = 0
@@ -60,9 +60,9 @@
 #' )
 #'
 #' par(pty = "m")
-#' plot(0:1,0:1, type = 'n',axes = F, xlab = "", ylab = "")
-#' polygon(x = c(0,1,1,0),y=c(0.5,0.5,0,0), col = qp.blue, border = F)
-#' polygon(x = c(0,1,1,0),y=c(1,1,0.5,0.5), col = qp.green, border = F)
+#' plot(0:1,0:1, type = 'n',axes = FALSE, xlab = "", ylab = "")
+#' polygon(x = c(0,1,1,0),y=c(0.5,0.5,0,0), col = qp.blue, border = FALSE)
+#' polygon(x = c(0,1,1,0),y=c(1,1,0.5,0.5), col = qp.green, border = FALSE)
 #' text(0.5,0.75, "qPharmetra", col = "white", cex = 5)
 #' text(0.5,0.25, "qPharmetra", col = "white", cex = 5)
 #' 

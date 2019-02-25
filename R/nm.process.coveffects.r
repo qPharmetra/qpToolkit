@@ -76,7 +76,7 @@ eval.eqs=function(.data,  ...)
 # modified from plyr::mutate
 covInfo = function(cov.name
                    ,cov.vals
-                   ,cov.cat = F
+                   ,cov.cat = FALSE
                    ,cov.center=median(cov.vals)
                    ,cov.min=min(cov.vals)
                    ,cov.max=max(cov.vals)
@@ -92,7 +92,7 @@ covInfo = function(cov.name
 }
 
 # ROXYGEN Documentation
-#' Make a covInfo S3 object
+#' Print a covInfo S3 object
 #' @describeIn nm.process.coveffects
 #' @description Prints a covInfo object.  
 #' @param x A covInfo object
@@ -168,13 +168,13 @@ bootsamp = function(equ, .data, varcov, N=10000)
   stopifnot(cov %in% all.vars(equ[[1]]))
   
   #get typical value (ETAs = 0)
-  coveff.df = data.frame(eval.eqs(ptab,equ), stringsAsFactors=F)
+  coveff.df = data.frame(eval.eqs(ptab,equ), stringsAsFactors=FALSE)
   #get cov,param,group columns if they exist
   cols =c(cov,param)
   if("group" %in% names(ptab)) cols=c(cols,"group")
   coveff.df = cbind(Cov=cov, Par=param,
                     Parameter=paste(param,cov,sep="."),coveff.df[,cols],
-                    stringsAsFactors=F)
+                    stringsAsFactors=FALSE)
   names(coveff.df)[4:5]=c("cov.val","typical")
   
   # bootsample for mean, var, sd, 95%PI
@@ -280,7 +280,7 @@ nm.process.coveffects= function(eqs,covs.info,pars, xpose.df, omega, Nboot=10000
 
       #generate pairlist from xpose data
       x.df=data.frame(Par=par,Cov=i,cov.val=xpose.df[[i]], Parameter=eff.name,
-                      posthoc=xpose.df[[par]],stringsAsFactors = F)
+                      posthoc=xpose.df[[par]],stringsAsFactors = FALSE)
       if(length(cats.group)>0){
         #add group
         x.df$group=xpose.df$group
@@ -304,6 +304,14 @@ nm.process.coveffects= function(eqs,covs.info,pars, xpose.df, omega, Nboot=10000
                  eq.cov=eqs, covs.info=covs.info), class="covEffects")
   
 }
+
+#' Plot a covariate effects object
+#'
+#' @param a covEffects object from nm.process.coveffects 
+#' @param idx Names of the plots to print. Defaults to all plots.
+#'
+#' @export
+#'
 
 plot.covEffects=function(obj, idx=names(obj$plot))
 {

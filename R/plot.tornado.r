@@ -52,7 +52,7 @@
 #' @examples 
 #' torn.ds = read.csv(
 #'   file.path(getOption("qpExampleDir"), "../Excel/tornado.ds.csv")
-#' , stringsAsFactors = F)
+#' , stringsAsFactors = FALSE)
 #' plot.tornado(torn.ds
 #'              , xlim=c(0,20)
 #'              , xlab="Dollars"
@@ -60,19 +60,19 @@
 #'              , cex.main=2
 #'              , bar.width=.50
 #'              , base.round=1
-#'              , show.base=F
+#'              , show.base=FALSE
 #' )
 
 plot.tornado = function(torn.ds, main="", xlim=range(c(torn.ds$val.hi,torn.ds$val.lo)), xlab="Output", bar.width=.75, base.round=0, cex.main=1.5,
 					cex.xaxis=cex.main*0.5, cex.yaxis=cex.main*.65, cex.barlab=cex.main*.55,
-					cex.baslab=cex.main*.5, bar.col="#0A41A5", show.base=T, adj.ylabs=0)
+					cex.baslab=cex.main*.5, bar.col="#0A41A5", show.base=TRUE, adj.ylabs=0)
 {
 	par(mfrow=c(1,1), mar=c(5,8,8,1))
 
 	torn.ds$range = abs(torn.ds$val.hi-torn.ds$val.lo)
 	torn.ds = torn.ds[order(torn.ds$range),]
 
-	plot(1, 1, xlim=xlim, ylim=c(0, 1 + nrow(torn.ds)*2), type="n", axes=F,
+	plot(1, 1, xlim=xlim, ylim=c(0, 1 + nrow(torn.ds)*2), type="n", axes=FALSE,
 			xlab=xlab, ylab="", main=main, col=8, cex=cex.main)
 	at = seq(min(xlim), max(xlim), diff(xlim)*0.2)
 	axis(side=1, at=at, labels=as.character(at), cex.axis=cex.xaxis)

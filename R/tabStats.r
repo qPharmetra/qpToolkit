@@ -21,7 +21,7 @@
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabSummarize}} 
 #' @export
 #' @examples  
-#' ok = duplicated(pkpdData$id) == F
+#' ok = duplicated(pkpdData$id) == FALSE
 #' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]))
 #' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), parName = "Race", ndigits.categorical=0)
 #' tabStats(pkpdData$sex[ok], list(dose = pkpdData$dose[ok]))

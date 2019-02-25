@@ -28,7 +28,7 @@ nm.read.vpc = function(path = getOption("nmDir")
                        , vpc_results = "vpc_results.csv"
                        , vpctab = dir(path=path,pattern = "^vpctab")[1]
                        , PI.limits = c(0.025,0.05,0.1,0.30,0.70,0.9,0.95,0.975)
-                       , PI.ci.area.smooth=F
+                       , PI.ci.area.smooth=FALSE
 )
 {
   rootName = unlist(unPaste(path)[(length(unPaste(path)))])

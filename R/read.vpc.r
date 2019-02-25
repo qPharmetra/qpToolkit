@@ -16,7 +16,7 @@ read.vpc = function(path = path, result = result, tab=tab)
 {
    if(length(grep(":", path))==0) path = paste(getwd(), path, sep="/")
    vpc.results = read.npc.vpc.results(vpc.results =  paste(path, result, sep = "/"))
-   vpc.tab = read.table(paste(path, tab, sep = "/"), header=T, sep = ",")
+   vpc.tab = read.table(paste(path, tab, sep = "/"), header=TRUE, sep = ",")
    if(length(vpc.tab$"strata_no")==0)
    {
       vpc.results$result.tables = list(vpc.results$result.tables)

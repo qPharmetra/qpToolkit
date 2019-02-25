@@ -43,5 +43,5 @@ nm.insert.evid2amt0 = function(data, ..., quiet = TRUE)
 if(F)
 {
   nmData2 = nm.insert.evid2amt0(nmData)
-  nmData2 = nm.insert.evid2amt0(nmData,  quiet=T, ID, TIME,-EVID)
+  nmData2 = nm.insert.evid2amt0(nmData,  quiet=TRUE, ID, TIME,-EVID)
 }

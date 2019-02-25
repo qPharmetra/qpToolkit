@@ -65,7 +65,7 @@ ggvpc_standard = function(vpc
                           , point.size = 1.5
                           , point.col = "darkslategrey"
                           , yrange.stretch = c(0.9,1.1)
-                          , quiet = T
+                          , quiet = TRUE
 )
 {
   #PI = c(0.025,0.975); area.col = cobalt;linecol.pred = ketchup;linesize.pred = 1; linetype.obs = "dashed";linecol.obs = "black";linesize.obs = 0.5;alpha = 0.5;point.shape = 15;point.col = "black";yrange.stretch = c(0.9,1.1)

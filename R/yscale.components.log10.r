@@ -21,7 +21,7 @@
 #' )
 #' 
 #' # labels at half log10 unit intervals
-#' #' xyplot(DV ~ TIME
+#' xyplot(DV ~ TIME
 #'        , data = datf
 #'        , scales = list(log = 10)
 #'        , yscale.components = yscale.components.log10.3

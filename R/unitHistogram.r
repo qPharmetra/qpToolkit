@@ -23,7 +23,7 @@ unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type 
 {
   ## create a histogram
   if(is.null(myCuts)) myCuts = seq(min(x),max(x))
-  numeric.input = floor(as.numeric(as.character(cut3(x, cuts = myCuts, levels.mean = T))))
+  numeric.input = floor(as.numeric(as.character(cut3(x, cuts = myCuts, levels.mean = TRUE))))
   bar.lengths = table(numeric.input)
   bar.lengths = bar.lengths/max(bar.lengths)
   if(is.null(xlim)) xLimits = c((min(x) - offset), max(x))  else xLimits = xlim
@@ -44,7 +44,7 @@ unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type 
     } else {
       polygon(x = c(xx[i]+offset, xx[i]-offset, xx[i]-offset, xx[i]+offset), 
               y = c(0,0, bar.lengths[i], bar.lengths[i]),
-              col = col.hist, border = T, angle = -1, density = -1)
+              col = col.hist, border = TRUE, angle = -1, density = -1)
     }
     
   }

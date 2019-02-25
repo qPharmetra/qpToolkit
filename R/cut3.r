@@ -21,8 +21,8 @@
 #' @import Hmisc
 #' @examples 
 #' pkpdData = example.pkpdData()
-#' sunique(cut3(pkpdData$wt, g=10, levels.mean=T))
-#' lunique(cut3(pkpdData$wt, g=10, levels.mean=T))
+#' sunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
+#' lunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
 
 cut3 = 
   function (x, cuts, m = 150, g, levels.mean = FALSE, digits, minmax = TRUE, 
@@ -160,7 +160,7 @@ cut3 =
 if(F)
   {
   unique(cut2(pkpdData$time, g = 4))
-  unique(cut2(pkpdData$time, g = 4, levels.mean = T))
-  unique(cut3(pkpdData$time, g = 4, levels.mean = T)) 
+  unique(cut2(pkpdData$time, g = 4, levels.mean = TRUE))
+  unique(cut3(pkpdData$time, g = 4, levels.mean = TRUE)) 
 }
 

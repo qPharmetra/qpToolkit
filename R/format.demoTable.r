@@ -9,7 +9,7 @@
 #' @examples 
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
-#' ok = duplicated(pkpdData$id) == F
+#' ok = duplicated(pkpdData$id) == FALSE
 #' myFormula =  dose ~ race + wt + bmi + sex
 #' my.formatted.demoTable = format.demoTable(
 #'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
@@ -17,7 +17,7 @@
 #' )
 #' print(my.formatted.demoTable
 #'   , sanitize.text.function = identity
-#'   , booktabs = T
+#'   , booktabs = TRUE
 #' )
 
 

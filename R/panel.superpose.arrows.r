@@ -31,7 +31,7 @@
 #'             panel = panel.superpose.arrows,
 #'             ylim = c(-25,115),
 #'             scales=list(x=list(relation="free")),
-#'             as.table = T,
+#'             as.table = TRUE,
 #'             xlab = list("Mean of Indiv Predicted Drug Concentration (nmol/L)", cex=1.2),
 #' ylab = list("Mean Thingy Inhibition (%)", cex=1.2)
 #'))
