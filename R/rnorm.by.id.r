@@ -9,8 +9,9 @@
 #' @export
 #' @seealso \code{\link{sample.by.id}}
 #' @examples
-#' sam = rnorm.by.id(pkpdData$id, mean = 0, sd = 1)
-#' tapply(sam,pkpdData$id, unique) 
+#' df = example.pkpdData()
+#' sam = rnorm.by.id(df$id, mean = 0, sd = 1)
+#' tapply(sam,df$id, unique) 
 
 rnorm.by.id = function(id, mean = 0, sd = 1)
   {

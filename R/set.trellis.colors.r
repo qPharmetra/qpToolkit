@@ -8,9 +8,10 @@
 #' @export 
 #' @import lattice
 #' @examples
-#' xyplot(value~ time | format(dose) * type, data = pkpdData)
+#' df = example.pkpdData()
+#' xyplot(value~ time | format(dose) * type, data = df)
 #' set.trellis.colors ()
-#' xyplot(value~ time | format(dose), data = pkpdData, groups = type)
+#' xyplot(value~ time | format(dose), data = df, groups = type)
 
 set.trellis.colors = function(symbol = list(fill = gray[2],col = gray[6]), line = list(col = gray[7]))
 {

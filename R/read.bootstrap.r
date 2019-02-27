@@ -36,7 +36,7 @@ read.bootstrap = function(
   default.names = c("model", "minimization.successful","covariance.step.successful","covariance.step.warnings","estimate.near.boundary")
   
   ## read bootstrap raw results
-  bootstrap.data <- read.csv(paste(path, filename, sep="/"), header=TRUE)
+  bootstrap.data <- read.csv(file.path(path, filename), header=TRUE)
   ## replace underscores, brackets and commas
   for (i in 1:length(names(bootstrap.data))) {
     names(bootstrap.data)[i] <- gsub("\\_", "\\.", names(bootstrap.data)[i]) 

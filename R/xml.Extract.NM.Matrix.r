@@ -11,8 +11,9 @@
 #' @seealso \code{\link{nm.extract.xml}}, \code{\link{make.symmetric}}
 #' @return A matrix
 #' @export xml.Extract.NM.Matrix
-#' @import XML
+#' @importFrom XML  xmlAttrs xmlValue
 #' @examples 
+#' \dontrun{
 #' library(XML)
 #' run = "example1"
 #' filename = "C:/nm73g64/examples/example1.xml"
@@ -32,6 +33,7 @@
 #' omega = lapply(asXMLNode(tmp[["omega"]])$children, xml.Extract.NM.Matrix)
 #'
 #' make.symmetric(unlist(omega))
+#' }
 xml.Extract.NM.Matrix = function(y){
   theNames = lapply(y$children, xmlAttrs)
   theValues = as.numeric(unlist(lapply(y$children, xmlValue)))

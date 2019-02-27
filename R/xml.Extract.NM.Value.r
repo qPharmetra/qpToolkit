@@ -14,6 +14,7 @@
 #' @import XML
 #' @export xml.Extract.NM.Value
 #' @examples 
+#' \dontrun{
 #' library(XML)
 #' run = "example1"
 #' filename = "C:/nm73g64/examples/example1.xml"
@@ -29,6 +30,7 @@
 #' 
 #' xml.Extract.NM.Value(asXMLNode(tmp[["theta"]]), what = "theta")
 #' xml.Extract.NM.Value(asXMLNode(tmp[["thetase"]]), what = "theta")
+#' }
 
 xml.Extract.NM.Value = function(x, what = "theta")
 {

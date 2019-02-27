@@ -7,6 +7,16 @@
   if(getOption("stringsAsFactors")) {
     options(stringsAsFactors = FALSE) 
   }
+   if(Sys.getenv("UNZIP_CALL")==""){
+      options(unzip.call = "c:/progra~1/7-zip/7z e %s.7z")
+   } else{
+      options(unzip.call = Sys.getenv("UNZIP_CALL"))
+   }
+   if(Sys.getenv("ZIP_CALL")==""){
+      options(zip.call = "c:/progra~1/7-zip/7z a %s.7z")
+   } else{
+      options(zip.call = Sys.getenv("ZIP_CALL"))
+   }
   
 }
 

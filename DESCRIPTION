@@ -1,8 +1,8 @@
 Package: qpToolkit
 Type: Package
 Title: qPharmetra R Tools
-Version: 0.1.6
-Date: 2018-06-12
+Version: 0.1.7
+Date: 2019-02-26
 Authors@R: as.person(c(
     "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
     "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
@@ -27,3 +27,4 @@ Imports:
   ggplot2(>= 1.0.0),
   xpose4,
   reshape2
+RoxygenNote: 6.1.1
