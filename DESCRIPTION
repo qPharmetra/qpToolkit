@@ -27,5 +27,7 @@ Imports:
   ggplot2(>= 1.0.0),
   xpose4,
   reshape2
+Suggests:
+  testthat
 RoxygenNote: 6.1.1
 Remotes: github::metrumresearchgroup/metrumrg
