@@ -17,10 +17,10 @@ example.xpose.VPC = function()
 {
    cat("xpose.VPC(file.path(getOption('nmDir'),'vpc1/vpc_results.csv')
        , file.path(getOption('nmDir'),'vpc1/vpctab1')
-       , logy=T 
+       , logy=TRUE 
        , by='STRT'
        , col=grey(0.4),  cex = 1
-       , PI.ci.area.smooth = T
+       , PI.ci.area.smooth = TRUE
        , PI.real.med.col = PI.real.med.col
        , PI.real.down.col = PI.real.down.col
        , PI.real.up.col = PI.real.up.col
@@ -42,7 +42,7 @@ example.CWRES.plot = function()
              , xlab = list('Time after Dose',cex=1.25),
              , ylab = list('Conditional weighted residuals', cex = 1.25),
              , aspect = 1,
-             , as.table = T
+             , as.table = TRUE
    )"
    )
 }
@@ -88,11 +88,11 @@ example.pkpdData = function()
    pkpdData$age[pkpdData$age<20] = 20
    pkpdData$age[pkpdData$age>80] = 80
    pkpdData$wt = round(rnorm.by.id(pkpdData$id, mean = 75, sd = 10), 0)
-   pkpdData$ht = sample.by.id(pkpdData$id, 158:200, T)
+   pkpdData$ht = sample.by.id(pkpdData$id, 158:200, TRUE)
    pkpdData$bmi = round(pkpdData$wt / (pkpdData$ht/100) ^2, 1)
-   pkpdData$sex = sample.by.id(pkpdData$id, c("M","F"), T)
+   pkpdData$sex = sample.by.id(pkpdData$id, c("M","F"), TRUE)
    pkpdData$race = sample.by.id(pkpdData$id, 
-                                rep(c("Caucasian","Asian","Black","Other"), c(10,3,3,1)), T)
+                                rep(c("Caucasian","Asian","Black","Other"), c(10,3,3,1)), TRUE)
    pkpdData$endpoint = rep("effect", nrow(pkpdData))
    pkpdData$trt = ifelse(pkpdData$dose == 0, "Placebo", paste("drug ",pkpdData$dose, "mg", sep = ""))
    

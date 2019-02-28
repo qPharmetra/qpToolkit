@@ -22,14 +22,14 @@
 
 get.covmat = function(run, path = paste(getwd(),"NONMEM", sep="/"), ext = "cov")
 {
-  check.unzipped = F
+  check.unzipped = FALSE
   covFileName = paste(path,run,paste(run,ext,sep="."),sep="/")
   zipFileName = paste(path,run,paste(run,ext,"7z",sep="."),sep="/")
   if(!file.exists(covFileName))
   {
     if(file.exists(zipFileName))
     {
-      check.unzipped = T
+      check.unzipped = TRUE
       nm.unzip(run = run, extension = paste(".",ext,sep=""), path = paste(path, run, sep="/"))
     }
   }

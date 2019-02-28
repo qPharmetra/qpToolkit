@@ -21,6 +21,8 @@
 #' @import lattice
 #' @importFrom metrumrg snap
 #' @examples 
+#' \dontrun{
+#' pkpdData = example.pkpdData()
 #' xyplot(value ~ time | dose *  type
 #'        , data = pkpdData
 #'        , subset = dose > 0 & value > 0
@@ -57,20 +59,20 @@
 #'      }
 #'       , yscale.components = yscale.components.log10.3
 #')
-#'
+#'}
 panel.meanspag = 
   function(x, y, subscripts, groups, ..., 
            myFun = mean, 
            sumText = "Mean", 
            individual.col = gray[5], type = "l", 
            average.lwd = 3, average.col = red[8],
-           add.legend = T, legend.panel.row, legend.panel.column, legend.x, legend.y,
-           show.points=F
+           add.legend = TRUE, legend.panel.row, legend.panel.column, legend.x, legend.y,
+           show.points=FALSE
   )
   {
     panel.superpose(x,y, subscripts, groups, ..., col = individual.col, type = type)
     
-    panel.avg.LP(x,y, fun = myFun, col = average.col, lwd = average.lwd, horizontal = F
+    panel.avg.LP(x,y, fun = myFun, col = average.col, lwd = average.lwd, horizontal = FALSE
                  , type="b", show.points=show.points, pch=16)
     if(add.legend) {
       if(missing(legend.panel.row)) legend.panel.row = 1

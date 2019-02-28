@@ -59,7 +59,7 @@ odeSim = function(state, times,  func, parms, simPar, simParValues, method = "ls
     ## Return the output combined with the parameters and states used for this particular simulation scenario
     mySimPar[mySimPar%in%names(myState)] =
       paste(mySimPar[mySimPar%in%names(myState)],"init",sep=".")
-    simVals = data.frame(matrix(x,nrow=nrow(myOut),ncol=length(x),byrow=T))
+    simVals = data.frame(matrix(x,nrow=nrow(myOut),ncol=length(x),byrow=TRUE))
     names(simVals) = mySimPar
     cbind(myOut,simVals)
   },

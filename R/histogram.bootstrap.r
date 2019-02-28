@@ -34,7 +34,9 @@
 #' @import Hmisc
 #' @examples
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
-#' histogram.bootstrap(myBoot, path = "C:/Test", filename.prefix = "Test") ## now take a look there
+#' temp.dir = tempdir()
+#' cat(temp.dir)
+#' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") ## now take a look there
 
 histogram.bootstrap = function(bootstrap,
                                filename.prefix = "bootstrapPage",
@@ -105,9 +107,9 @@ histogram.bootstrap = function(bootstrap,
   
   for (i in 1:ncol(p1)) {
     if (mode(p1[[i]]) == "numeric" &&
-          sum(p1[[i]],na.rm=T)) {
+          sum(p1[[i]],na.rm=TRUE)) {
       sp <- summary(p1[[i]])
-      dp <- density(p1[[i]], na.rm=T)
+      dp <- density(p1[[i]], na.rm=TRUE)
       parmlabel <- names(p1)[i]
       
       if (total == 0) {
@@ -118,7 +120,7 @@ histogram.bootstrap = function(bootstrap,
       }
       total <- total + 1
       
-      qu <- quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm=T)
+      qu <- quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm=TRUE)
       
       legend=paste("n = ", nrow(p1), sep="")  
       if (showmean) {legend=paste(legend, "; Mean = ", sp[4], sep="")}
@@ -131,7 +133,7 @@ histogram.bootstrap = function(bootstrap,
            col = histCol,
            xlim = c(min(dp$x), max(dp$x)),
            breaks = 20,
-           probability = T,
+           probability = TRUE,
            sub=legend,
            ...)
       

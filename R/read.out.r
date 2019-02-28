@@ -17,7 +17,7 @@
 #' @examples
 #' head(read.out(path=getOption("qpExampleDir"), run="example1", file.ext = ".lst"))
 
-read.out = function(run, path = getOption("nmDir"), file.ext = ".lst", quiet = T)
+read.out = function(run, path = getOption("nmDir"), file.ext = ".lst", quiet = TRUE)
 {
   outName = paste(path, paste(run, file.ext, sep=""), sep="/")
   out = invisible(scan(file = outName, what="character", sep="\n", quiet = quiet))

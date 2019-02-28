@@ -27,7 +27,7 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   {
     yl = info$ypred.lo
     yh = info$ypred.hi
-    if(logY==T) { yh = log10(yh); yl = log10(yl) }
+    if(logY) { yh = log10(yh); yl = log10(yl) }
     #if(logX==T) { x = log10(x)}
     llines(x,yl, col = col.scheme$pred$outer,  type = lineType, lwd = 1.5)
     llines(x,yh, col = col.scheme$pred$outer,  type = lineType, lwd = 1.5)
@@ -38,9 +38,9 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   {
     yl = info$ypred.lo
     yh = info$ypred.hi
-    if(logY==T) {yh = log10(yh); yl = log10(yl)}
+    if(logY) {yh = log10(yh); yl = log10(yl)}
     #if(logX==T) { x = log10(x)}
-    lpolygon(c(x,rev(x)), c(yl,rev(yh)), col = col.scheme$pred$area, border = F)
+    lpolygon(c(x,rev(x)), c(yl,rev(yh)), col = col.scheme$pred$area, border = FALSE)
   }
   
   if(showPredAs == "xpose")
@@ -53,14 +53,14 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
     yhu = info$ypred.hi.up
     ycd = info$ypred.cen.dn
     ycu = info$ypred.cen.up    
-    if(logY==T) {
+    if(logY) {
       yh = log10(yh); yl = log10(yl);yld = log10(yld)
       ylu = log10(ylu);yhd = log10(yhd); yhu = log10(yhu);ycd = log10(ycd); ycu = log10(ycu)
     }
     #if(logX==T) { x = log10(x)}
-    lpolygon(c(x,rev(x)), c(ylu,rev(yld)), col = col.scheme$pred$area,outer, border = F)
-    lpolygon(c(x,rev(x)), c(yhu,rev(yhd)), col = col.scheme$pred$area.outer, border = F)
-    lpolygon(c(x,rev(x)), c(ycu,rev(ycd)), col = col.scheme$pred$area.central, border = F)
+    lpolygon(c(x,rev(x)), c(ylu,rev(yld)), col = col.scheme$pred$area,outer, border = FALSE)
+    lpolygon(c(x,rev(x)), c(yhu,rev(yhd)), col = col.scheme$pred$area.outer, border = FALSE)
+    lpolygon(c(x,rev(x)), c(ycu,rev(ycd)), col = col.scheme$pred$area.central, border = FALSE)
     llines(x, yl,  type = lineType, col = col.scheme$pred$outer, lwd = 1.5)
     llines(x, yh,  type = lineType, col = col.scheme$pred$outer, lwd = 1.5)
   }
@@ -72,14 +72,14 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   mysubs = OBS$strata_no == unique(vpc$strata_no[subscripts]) 
   #subscripts = vpc$strata_no == 1
   head(OBS)
-  if(logY == T) OBS[mysubs, 2] = log10(OBS[mysubs, 2])
-  if(logX == T) OBS[mysubs, 3] = log10(OBS[mysubs, 3])
+  if(logY) OBS[mysubs, 2] = log10(OBS[mysubs, 2])
+  if(logX) OBS[mysubs, 3] = log10(OBS[mysubs, 3])
   if(showObsDots) panel.xyplot(OBS[mysubs, 3], OBS[mysubs, 2], ..., cex = obscex.dot,
                                pch = obspch.dot, col = col.scheme$obs$dot, type = 'p')
   if(showObsLines){
-    if(logY==T) {vpc[, Cs(yobs.lo,yobs.cen, yobs.hi)] = 
+    if(logY) {vpc[, Cs(yobs.lo,yobs.cen, yobs.hi)] = 
                    log10(vpc[, Cs(yobs.lo,yobs.cen, yobs.hi)])}
-    if(logX==T) {vpc[, xCov] = log10(vpc[, xCov])}
+    if(logX) {vpc[, xCov] = log10(vpc[, xCov])}
     
     panel.xyplot(vpc[subscripts,xCov], vpc$yobs.lo[subscripts], ...,  
                  col =  col.scheme$obs$line, type = lineType, lty = 2)
@@ -92,7 +92,7 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
 
 if(F)
 {
-  nm.vpcplot(file.path(nmDir, "vpc2169_all"), logY = T)
+  nm.vpcplot(file.path(nmDir, "vpc2169_all"), logY = TRUE)
   ## note the plotting is done using panel.nonmem.vpc inside the function
 }
 

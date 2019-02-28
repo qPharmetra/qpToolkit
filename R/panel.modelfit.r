@@ -20,11 +20,11 @@
 #'        , data = subset(out)
 #'        , scales = list(x = list(relation = 'free'),y = list(log=10))
 #'        , panel = panel.modelfit
-#'        , logY = T
+#'        , logY = TRUE
 #'        , yscale.components = yscale.components.log10
 #' )
 
-panel.modelfit = function(x, y, groups, subscripts, logX = F, logY = F, type.obs = "b", ...)
+panel.modelfit = function(x, y, groups, subscripts, logX = FALSE, logY = FALSE, type.obs = "b", ...)
 {
    for(i in unique(groups[subscripts]))   
    {

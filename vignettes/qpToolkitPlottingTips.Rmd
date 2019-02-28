@@ -105,7 +105,7 @@ ggvpc_xpose(vpc, point.size = 2) +
 example("histogram.bootstrap")
 ```
 
-Now check out C:/test/test1.png etc...
+Now check out the temp directory printed above.
 
 ## create parameter table of bootstrap results
 

@@ -15,16 +15,17 @@
 #' @export
 #' @seealso \code{\link{png.slide.semi}}, \code{\link{png.report}}
 #' @examples
-#' png.slide.full(filename="../WorkArea/output/graphs/myPNGslidefullexample.png")
+#' png.slide.full(filename=file.path(tempdir(),"/myPNGslidefullexample.png"))
 #' set.seed(1234567)
 #' plot(x=1:25,y=rnorm(25,50,5))
 #' dev.off()
 
 png.slide.full = function(
-  filename = "C:/Test/test.png", 
+  filename, 
   w = 10, h = 7.5, units="in", 
   psize = 10, bg="transparent", res=600, ...)
 {
+   if(missing(filename)) stop("filename must be provided.")
   png(filename = filename, width = w, height = h, 
       units = units, pointsize = psize, bg = bg, res = res, ...)
 }

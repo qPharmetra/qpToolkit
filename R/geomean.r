@@ -15,7 +15,7 @@
 #' x = rlnorm(1000)
 #' mean(x)
 #' geomean(x)
-geomean = function(x, na.rm = F)
+geomean = function(x, na.rm = FALSE)
 {
   if(na.rm) x = x[!is.na(x)]
   exp(mean(log(x)))

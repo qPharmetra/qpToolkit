@@ -20,7 +20,7 @@
 #' xyplot(ypred ~ time
 #'        , data = myData
 #'        , groups = dose
-#'        , subscripts = T
+#'        , subscripts = TRUE
 #'        , nn = sqrt(myData$n/10)
 #'        , panel = function(x,y, nn = nn, groups, subscripts,...)
 #'        {

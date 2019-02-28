@@ -27,7 +27,7 @@ nm.compare.plot = function(runs
                            , alias = list(DV = "CONC", TIME = "TAFD") ## in case of $INPUT CONC=DV TAFD=TIME etc...
                            , dot.size = 1 ## relative dot size
                            , text.size = 1 ## relative fontsize
-                           , log = F
+                           , log = FALSE
                            )
 {
   myOrder = runs
@@ -72,7 +72,7 @@ nm.compare.plot = function(runs
   ## add model info
   ofv = as.vector(sapply(runs, function(x, mypath) get.ofv(x,path = mypath)[1], mypath = path))
   cat(ofv)
-  tmp = molten[duplicated(molten$run) == F,]
+  tmp = molten[duplicated(molten$run) == FALSE,]
   tmp = rbind(tmp,tmp)
   tmp$xValue = rep(0:1, ea = length(runs))
   tmp$value = rep(0:1, ea = length(runs))

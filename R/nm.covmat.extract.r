@@ -26,7 +26,7 @@ nm.covmat.extract = function(run, path = getOption("nmDir"))
 {
   internalDir = paste(path, run,run,sep = "/")
   covText   = scan(file = paste(internalDir,".cov", sep = ""), 
-    what = "character",sep = "\n", quiet = T)
+    what = "character",sep = "\n", quiet = TRUE)
   locs = grep("TABLE", substring(covText, 1,6))   
     ## define locations for each varcov table in the text
   covNames = substring(unlist(unPaste(covText[locs], ":")[[2]]),2)

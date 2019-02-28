@@ -9,14 +9,14 @@
 #' @return list of data frames used to plot a VPC
 #' @export
 #' @note This function is used by nm.read.vpc and is intended for that purpose only; running this function alone will not help the average R programmer. Please note that qPharmetra's default VPC plot tool is xpose.VPC. Use this tool in case one needs more flexibility to post-process results before plotting, and when stratifcation by more than one variable is needed.
-#' @import Hmisc
+#' @importFrom xpose4 read.npc.vpc.results
 
 
-read.vpc = function(path = path, result = result, tab=tab)
+read.vpc = function(path = "./", result = result, tab=tab)
 {
-   if(length(grep(":", path))==0) path = paste(getwd(), path, sep="/")
-   vpc.results = read.npc.vpc.results(vpc.results =  paste(path, result, sep = "/"))
-   vpc.tab = read.table(paste(path, tab, sep = "/"), header=T, sep = ",")
+   #if(length(grep(":", path))==0) path = paste(getwd(), path, sep="/")
+   vpc.results = read.npc.vpc.results(vpc.results =  file.path(path, result))
+   vpc.tab = read.table(paste(path, tab, sep = "/"), header=TRUE, sep = ",")
    if(length(vpc.tab$"strata_no")==0)
    {
       vpc.results$result.tables = list(vpc.results$result.tables)

@@ -51,7 +51,7 @@ pkpdPredPlot = function(doses, t.doses, t.obs, pk.func, e.func, parms, output = 
    
    ## depict which function was used
    text(x = 0.075 * max(t.obs), y = 1.075* max(ypr.c), 
-        substring(deparse(substitute(pk.func)),4), col = "blue", xpd = T)
+        substring(deparse(substitute(pk.func)),4), col = "blue", xpd = TRUE)
    } else list(t.obs=t.obs, ypr=ypr, ypr.sd = ypr.sd
                     , doses = doses, t.doses=t.doses, pk.func = pk.func, e.func = e.func)
 } ## pkpdPredPlot

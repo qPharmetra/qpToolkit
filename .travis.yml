@@ -4,7 +4,7 @@ language: R
 sudo: false
 cache: packages
 
-apt-packages:
+apt_packages:
   - p7zip-full
   - libxml2-dev
 warnings_are_errors: false

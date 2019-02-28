@@ -25,7 +25,7 @@
 #' 
 #' # 2comp elimination, 0-order absoorption
 #' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
-#'    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = T
+#'    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE
 #' )
 #' 
 #' ## demo effect prediction after single and multiple doses
@@ -38,20 +38,20 @@
 #'    , parms = c(1,10, 0.25, 0.05)
 #' )
 
-pkPredPlot = function(doses, t.doses, t.obs, pk.func, parms, log = F, output=F) 
+pkPredPlot = function(doses, t.doses, t.obs, pk.func, parms, log = FALSE, output=FALSE) 
 {
   t.obs = sort(unique(c(t.obs, t.doses)))
   ypr = pk.pred(doses, t.doses, t.obs, pk.func, parms) 
   ypr.sd = pk.pred(doses[1], t.doses[1], t.obs, pk.func, parms) 
   doLog = ""
-  if(log == T) doLog = "y"
+  if(log) doLog = "y"
   if(!output){
      plot(t.obs, ypr, type = "l", log = doLog, xlab = "Time (unit)",ylab = "Concentration")
   lines(t.obs[t.obs>t.doses[2]], ypr.sd[t.obs>t.doses[2]], col = "red", lty = 2) 
   for(i in 1:length(t.doses))
     segments(x0 = t.doses[i], x1 = t.doses[i], y0 = 0, y1 = ypr[t.obs == t.doses[i]], lty = 2)
   text(x = 0.075 * max(t.obs), y = 1.075* max(ypr)
-       , deparse(substitute(pk.func)), col = qp.blue, xpd = T
+       , deparse(substitute(pk.func)), col = qp.blue, xpd = TRUE
   )
   } else list(t.obs=t.obs, ypr=ypr, ypr.sd = ypr.sd
               , doses = doses, t.doses=t.doses, pk.func = pk.func)

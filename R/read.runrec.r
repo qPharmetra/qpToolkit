@@ -14,15 +14,16 @@
 #' @import Hmisc
 #' @seealso \code{\link{process.runrec}}
 #' @examples
-#' rr = read.runrec(filename = "AAruninfo2.txt"
-#' , path = file.path(getOption("qpExampleDir"),"../runrec")
+#' rr = read.runrec(filename = "AAruninfo.txt"
+#' , path = file.path(getOption("qpExampleDir"))
 #' )
 #' rr
 #' process.runrec(rr)
 
 read.runrec = function(filename, path = getOption("nmDir"))
 {
-  runrec = read.table(file=paste(path,filename, sep="/"), sep=";", skip=5, header=F)
+   if(missing(filename)) stop("filename must be included.")
+  runrec = read.table(file=file.path(path,filename), sep=";", skip=5, header=FALSE)
   runrec = runrec[, 1:18]
   names(runrec) = Cs(Run,Ref,OFV,dOFV,CondNum,Minimization,CovStep,Label, Description, StructMod, 
                      something,IIV,IOV, ResMod, Estimation,DataSet,nObs,nID)

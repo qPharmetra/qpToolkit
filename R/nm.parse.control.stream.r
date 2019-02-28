@@ -20,7 +20,7 @@
 nm.parse.control.stream = function(run
                                    , path = getOption("nmDir")
                                    , file.ext = ".mod"
-                                   , quiet= T
+                                   , quiet= TRUE
 )
 {
    ctl = read.mod(run=run, path=path, file.ext=file.ext, quiet=quiet)

@@ -44,7 +44,7 @@
 #'   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
 #' 
 #' ## PI smoothed
-#' nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt"),PI.ci.area.smooth=T) -> vpc.all
+#' nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt"),PI.ci.area.smooth=TRUE) -> vpc.all
 #' ggvpc_xpose(vpc.all
 #'             , PI = c(0.05,0.95)) + 
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") +
@@ -65,7 +65,7 @@ ggvpc_xpose = function(vpc
                        , point.size = 1.25
                        , point.col = "darkslategrey"
                        , yrange.stretch = c(0.9,1.1)
-                       , quiet = T
+                       , quiet = TRUE
 )
 {
   if(!quiet) message("preparing plot ...")

@@ -19,7 +19,7 @@ panel.avg.LP = function (x, y, fun = mean
                          , horizontal = TRUE, lwd = reference.line$lwd, 
                          lty = reference.line$lty, col, col.line = 
                          reference.line$col, type = "l", ...,
-                         identifier = "linejoin", show.points=F) 
+                         identifier = "linejoin", show.points=FALSE) 
 {# modified version of panel.average so that lines and points can be produced, used
   # in panel.meanspag
   x <- as.numeric(x)
@@ -60,7 +60,7 @@ if (F) {
   
   xyplot(y ~ x, data=pData,
          panel=function(x,y,...) {
-           panel.avg.LP(x,y, fun=mean, col=red[8], lwd=3, horizontal=F, type="b", show.points=T, pch=16)
+           panel.avg.LP(x,y, fun=mean, col=red[8], lwd=3, horizontal=FALSE, type="b", show.points=TRUE, pch=16)
          }
   )
   
@@ -69,7 +69,7 @@ if (F) {
                 , groups = id
                 , type="l"
                 , panel=function(x,y,...){
-                   panel.meanspag(x,y,..., add.legend=F, show.points=T )
+                   panel.meanspag(x,y,..., add.legend=FALSE, show.points=TRUE )
                 }
                 , ylab = list("X stuff", cex=1)
                 , xlab = list("Y stuff", cex=1)

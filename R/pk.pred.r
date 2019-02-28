@@ -20,7 +20,7 @@
 #' 
 #' # 2comp elimination, 0-order absoorption
 #' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
-#'    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = T
+#'    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE
 #' )
 #' 
 #' ## demo effect prediction after single and multiple doses
@@ -227,7 +227,7 @@ pk.2comp.iv = function(dose, tob, parms){
 } # pk.2comp.iv
 if(F){
   pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
-	 pk.func = pk.2comp.iv, parms = c(10,30, 3, 90), log = T)
+	 pk.func = pk.2comp.iv, parms = c(10,30, 3, 90), log = TRUE)
 }
 
 # ROXYGEN Documentation
@@ -263,7 +263,7 @@ pk.2comp.0abs = function(dose, tob, parms){
 } ## pk.2comp.0abs
 if(F){
   pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
-	 pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = T)
+	 pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE)
 }
  
 # ROXYGEN Documentation
@@ -297,7 +297,7 @@ pk.2comp.1abs = function(dose, tob, parms){
 } # pk.2comp.1abs
 if(F){
   pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
-	 pk.func = pk.2comp.1abs, parms = c(10,30, 3, 90,100), log = T)
+	 pk.func = pk.2comp.1abs, parms = c(10,30, 3, 90,100), log = TRUE)
 }
                                                c(10,30, 3, 90)
 # ROXYGEN Documentation
@@ -328,7 +328,7 @@ pk.2comp.1abs.m = function(dose, tob, parms){
 } # pk.2comp.1abs.m
 if(F){
   pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
-	 pk.func = pk.2comp.1abs.m, parms = c(10,0.2, 0.03, 0.25, 50), log = T)
+	 pk.func = pk.2comp.1abs.m, parms = c(10,0.2, 0.03, 0.25, 50), log = TRUE)
 }
 
 # ROXYGEN Documentation
@@ -562,7 +562,7 @@ pk.3comp.1abs = function(dose, tob, parms){
 } # pk.3comp.1abs
 if(F){
   pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
-	 pk.func = pk.3comp.1abs, parms = c(3,3,5,40,2,100, 4), log=T)
+	 pk.func = pk.3comp.1abs, parms = c(3,3,5,40,2,100, 4), log=TRUE)
 }
 
 # ROXYGEN Documentation

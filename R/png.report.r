@@ -20,10 +20,11 @@
 #' dev.off()
 
 png.report = function(
-  filename = "C:/Test/test.png", 
+  filename, 
   w = 6, h = 4, units="in", 
   psize = 10, bg="transparent", res=600, ...)
 {
+   if(missing(filename)) stop("filename must be provided.")
   png(filename = filename, width = w, height = h, 
       units = units, pointsize = psize, bg = bg, res = res, ...)
 }

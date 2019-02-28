@@ -15,7 +15,7 @@ extract.character = function(x, collapse = FALSE)
   x = as.character(x)
   w1 = gregexpr("[A-Z]?[a-z]*", x)
   x = substring(x, unlist(w1), unlist(w1) + attr(w1[[1]], "match.length")-1)
-  x = if(collapse == F) x[x != ""] else paste(x[x != ""], collapse = "")
+  x = if(collapse == FALSE) x[x != ""] else paste(x[x != ""], collapse = "")
   return(x)
 }
 

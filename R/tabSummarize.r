@@ -12,7 +12,7 @@
 #' @examples 
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
-#' ok = duplicated(pkpdData$id) == F
+#' ok = duplicated(pkpdData$id) == FALSE
 #' tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
 #' # check the categorical summary for race
 #' round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
@@ -89,7 +89,7 @@ tabSummarize = function(formula
 if(F)
 {
   options(width = 150)
-  ok = duplicated(pkpdData$id) == F
+  ok = duplicated(pkpdData$id) == FALSE
   tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
   ## check the categorical summary for race
   round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)

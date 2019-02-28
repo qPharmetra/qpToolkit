@@ -16,8 +16,8 @@
 panel.nlme.vpc.obs = function(x, y, logY, showPredAs, showObsDots, showObsLines,  
                               col.scheme, obscex.dot, obspch.dot, ...)
 {
-  if(showObsDots == T) panel.xyplot(x,y, ..., cex = obscex.dot, pch = obspch.dot, col = col.scheme$obs$dot, type = 'p')
-  if(showObsLines == T)
+  if(showObsDots ) panel.xyplot(x,y, ..., cex = obscex.dot, pch = obspch.dot, col = col.scheme$obs$dot, type = 'p')
+  if(showObsLines)
   {
     yy = Hmisc::summarize(y, list(x = x), smedian.hilow, stat.name = "central")
     llines(yy$x, yy$central,  col = col.scheme$obs$line, lwd = 2.5)
