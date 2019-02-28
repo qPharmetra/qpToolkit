@@ -28,3 +28,4 @@ Imports:
   xpose4,
   reshape2
 RoxygenNote: 6.1.1
+Remotes: github::metrumresearchgroup/metrumrg
