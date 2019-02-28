@@ -5,7 +5,7 @@ sudo: false
 cache: packages
 
 apt-packages:
-  - 7zip-full
+  - p7zip-full
 warnings_are_errors: false
 env:
   global:
