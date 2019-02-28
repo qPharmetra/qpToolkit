@@ -9,5 +9,5 @@ apt-packages:
 warnings_are_errors: false
 env:
   global:
-    - ZIP_CALL=7z a %s.7z %s
-    - UNZIP_CALL=7z e %s.7z
+    - ZIP_CALL="7z a %s.7z %s"
+    - UNZIP_CALL="7z e %s.7z"
