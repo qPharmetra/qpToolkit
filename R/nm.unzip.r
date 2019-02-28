@@ -34,10 +34,14 @@ nm.unzip = function(run
 {
    currentwd = getwd()
    newwd = path
-   if(!quiet) cat("path:", newwd, "\n")
+   if(!quiet) cat("path:", path, "\n")
    zip.call = sprintf(zip.call, zip.filename)
    if(!quiet) cat("call:",zip.call,"\n")
    setwd(newwd)
    invisible(system(zip.call, ignore.stdout=quiet, ignore.stderr = quiet))
    setwd(currentwd)
+   if(!file.exists(zip.filename)){
+      stop(sprintf("Unzip failed: %s\nUnzip call:", zip.filename, zip.call))
+   } 
+   
 }
