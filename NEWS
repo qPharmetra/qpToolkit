@@ -1,7 +1,7 @@
 0.1.7
    Ported to github and R>3.2.2
 0.1.6
-   ?
+   disable IQ checks for exporting projects
 0.1.5
    fixed ggvpc_standard improved argument use aligned with autograph color scheme
    fixed ggvpc_xpose improved argument use aligned with autograph color scheme

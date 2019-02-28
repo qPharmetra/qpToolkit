@@ -27,3 +27,5 @@ Imports:
   ggplot2(>= 1.0.0),
   xpose4,
   reshape2
+Remotes: github::metrumresearchgroup/metrumrg
+  
