@@ -6,6 +6,7 @@ cache: packages
 
 apt-packages:
   - p7zip-full
+  - libxml2-dev
 warnings_are_errors: false
 env:
   global:
