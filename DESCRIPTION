@@ -28,7 +28,7 @@ Imports:
   xpose4,
   reshape2
 Suggests:
-  testthat
+  testthat,
   pkgdown
 RoxygenNote: 6.1.1
 Remotes: github::metrumresearchgroup/metrumrg
