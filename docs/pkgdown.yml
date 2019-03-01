@@ -1,0 +1,15 @@
+pandoc: 2.3.1
+pkgdown: 1.3.0
+pkgdown_sha: ~
+articles:
+  ASeriesofqpToolkitVignettes: ASeriesofqpToolkitVignettes.html
+  CreateDemographicsTable: CreateDemographicsTable.html
+  ExamplesnlmexxxFunctionsqpToolkit: ExamplesnlmexxxFunctionsqpToolkit.html
+  ExamplesnmxxxFunctionsqpToolkit: ExamplesnmxxxFunctionsqpToolkit.html
+  RunaNONMEMAnalysis: RunaNONMEMAnalysis.html
+  qPColorPalette: qPColorPalette.html
+  qpToolkitGeneralPurposeFunctions: qpToolkitGeneralPurposeFunctions.html
+  qpToolkitPKPDpredictionFunctions: qpToolkitPKPDpredictionFunctions.html
+  qpToolkitPlottingTips: qpToolkitPlottingTips.html
+  qpToolkitgetFunctions: qpToolkitgetFunctions.html
+
