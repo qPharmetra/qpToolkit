@@ -25,7 +25,7 @@
 #' process.parTable(
 #'    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
 #'  , transformations = list(logit=c(7,9))
-#'  , plain = T
+#'  , plain = TRUE
 #'  , missing.format = "...."
 #' )
 
@@ -35,9 +35,9 @@ process.parTable = function(nm
                             , sig = 3
                             , transformations
                             , Descriptor
-                            , plain=F
+                            , plain=FALSE
                             , missing.format = "....."
-                            , remove.fixed.sigma = F
+                            , remove.fixed.sigma = FALSE
 )
 {    
     if(is.data.frame(nm))
@@ -59,7 +59,7 @@ process.parTable = function(nm
     parTab$Parameter = as.character(parTab$Parameter)
     parTab$CV.perc[okEst] = abs(round(asNumeric(as.character(parTab$CV.perc[okEst])),1))
     
-    skipTrans = F ## default
+    skipTrans = FALSE ## default
     if(!all(is.na(parTab$SE)))
     {
       cilo = parTab$Estimate[okEst] + qt(p=(1-ci)/2, df = 1e5) * asNumeric(parTab$SE[okEst])
@@ -69,7 +69,7 @@ process.parTable = function(nm
                                  as.character(signif(cilo,sig))," - ", signif(ciup,sig), 
                                  ")", sep = "")
     } else {
-      skipTrans = T  ## toggle to later skip tranforming SE, 95%CI etc..
+      skipTrans = TRUE  ## toggle to later skip tranforming SE, 95%CI etc..
       parTab$SE = parTab$CI95 = parTab$CV.perc = rep("-", nrow(parTab))
     }
     
@@ -125,7 +125,7 @@ process.parTable = function(nm
     
     ## make greek symbols
     if(!plain){
-      parTab$Parameter = casefold(parTab$Parameter, F)
+      parTab$Parameter = casefold(parTab$Parameter, FALSE)
       isth = grepl("theta", parTab$Parameter)
       isom = grepl("omega", parTab$Parameter)
       issi = grepl("sigma", parTab$Parameter)

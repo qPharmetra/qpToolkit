@@ -23,13 +23,13 @@
 #'    , caption = "Full Stepwise Covariate Building output"
 #'    , label =  'Tab:scmfull')
 #'       , sanitize.text.function = function(x)x
-#'       , include.rownames = F
+#'       , include.rownames = FALSE
 #'       , size = "small"
 #'       , caption.placement ="top"
 #'       , booktabs = TRUE
 #'       , tabular.environment = "longtable"
 #'       , floating = FALSE
-#'       #  , only.contents = T
+#'       #  , only.contents = TRUE
 #' )
 
 nm.process.scm = function(path) 

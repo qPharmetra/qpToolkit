@@ -45,12 +45,12 @@ R.installation.validation = function()
    allowed.packs = allowed.packs[,c("Package","Version")]
    
    #compare versions of packages installed, vs. what was in qpRepos during release of this qpToolkit version
-   compare.packs = merge(current.packs,allowed.packs,suffixes=c(".current",".allowed"),by="Package",all.x=T)
+   compare.packs = merge(current.packs,allowed.packs,suffixes=c(".current",".allowed"),by="Package",all.x=TRUE)
    
    ## ----- Jason to create this and change the line above ---- ##
    compare.packs$non.approved = is.na(compare.packs$Version.allowed)
    compare.packs$bad.version = compare.packs$Version.current!=compare.packs$Version.allowed
-   IQ.pack.versions = sum(compare.packs$bad.version,na.rm=T)>0
+   IQ.pack.versions = sum(compare.packs$bad.version,na.rm=TRUE)>0
    IQ.pack.extras = sum(compare.packs$non.approved)>0
    
    IQ.message = ifelse(IQ.Rversion | IQ.pack.versions,"IQ FAILED","IQ PASSED")

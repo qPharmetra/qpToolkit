@@ -73,14 +73,14 @@ nlme.vpcplot = function(object,
                         ## use if newdata in extract.nlme was specified
                         xLabel, yLabel, 
                         xLimits, yLimits, 
-                        logY = F,
+                        logY = FALSE,
                         color.style = list(observed = rgb(0.2,0.2,0.2), central = blue[10], inner = blue[4], outer = blue[1]),
                         symbol = list(pch = 15, cex = 0.5),
                         aspect = 1, cex.label = 1.5, 
                         nx = NULL,
                         showPredAs = "area",
-                        showObsDots = T,
-                        showObsLines = T,
+                        showObsDots = TRUE,
+                        showObsLines = TRUE,
                         obscol.dot = gray[8], obscex.dot = 0.5, obspch.dot = 1,
                         obscol.line = gray[10],
                         predcol.central = blue[6],
@@ -105,7 +105,7 @@ nlme.vpcplot = function(object,
   myScales = list(cex = 0.8)
   myComponents = yscale.components.default
   
-  if(logY == T){
+  if(logY){
     myScales = list(x = list(cex = 0.8), y = list(cex = 0.8, log = 10))
     myComponents = yscale.components.log10
   }
@@ -210,7 +210,7 @@ nlme.vpcplot = function(object,
            xlim = xLimits)	
   
   
-  print(plot.pred, split = c(1,1,1,1), more = T)
-  print(plot.obs,  split = c(1,1,1,1), more = F)
+  print(plot.pred, split = c(1,1,1,1), more = TRUE)
+  print(plot.obs,  split = c(1,1,1,1), more = FALSE)
 }
 

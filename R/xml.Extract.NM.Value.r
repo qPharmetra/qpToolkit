@@ -14,6 +14,7 @@
 #' @import XML
 #' @export xml.Extract.NM.Value
 #' @examples 
+#' \dontrun{
 #' library(XML)
 #' run = "example1"
 #' filename = "C:/nm73g64/examples/example1.xml"
@@ -29,11 +30,12 @@
 #' 
 #' xml.Extract.NM.Value(asXMLNode(tmp[["theta"]]), what = "theta")
 #' xml.Extract.NM.Value(asXMLNode(tmp[["thetase"]]), what = "theta")
+#' }
 
 xml.Extract.NM.Value = function(x, what = "theta")
 {
   theValues = unlist(lapply(x$children, function(y) as.numeric(xmlValue(y))))
-  theNames = paste(casefold(what,upper=T),
+  theNames = paste(casefold(what,upper=TRUE),
                    unlist(lapply(x$children, xmlAttrs)), sep="")
   if(!is.null(theValues)) names(theValues) = theNames
   return(theValues)

@@ -80,7 +80,7 @@ nlme.predict = function(
   level = 1,
   method = "partial.residuals",
   use.etas = "estimated",
-  uncertainty = F,
+  uncertainty = FALSE,
   reference.subset = NULL,
   nrep = 20)
 {
@@ -93,7 +93,7 @@ nlme.predict = function(
   obsData = getData(object)
   
   ## deal with subsetting
-  filter.seq = rep(T, nrow(obsData))
+  filter.seq = rep(TRUE, nrow(obsData))
 	if(!missing(subset.modeldata))
   {
     message(" -- observation data subsetted by ", subset.modeldata)
@@ -123,11 +123,11 @@ nlme.predict = function(
   {
     if(length(nx) == 1) ## cut3(x, g=nx)
     {
-      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), g=nx, levels.mean = T)
-      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), g=nx, levels.mean = T)
+      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), g=nx, levels.mean = TRUE)
+      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), g=nx, levels.mean = TRUE)
     } else {
-      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), cuts=nx, levels.mean = T)
-      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), cuts=nx, levels.mean = T)
+      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), cuts=nx, levels.mean = TRUE)
+      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), cuts=nx, levels.mean = TRUE)
     }
   }
   
@@ -195,8 +195,8 @@ nlme.predict = function(
     rpnum = nrow(xnew)
     idx = rep(1 : rpnum, nrow(mpData))
     xnew = data.frame(xnew[idx,])
-    idx = matrix(rep(1:nrow(mpData), rpnum), ncol = nrow(mpData), nrow = rpnum, byrow=T)
-    idx = matrix(idx, ncol=1, byrow=T)
+    idx = matrix(rep(1:nrow(mpData), rpnum), ncol = nrow(mpData), nrow = rpnum, byrow=TRUE)
+    idx = matrix(idx, ncol=1, byrow=TRUE)
     simData = as.data.frame(mpData[idx, ])
     simData[, names(simData) %in% xfVarNames] = c(xnew)
     #names(simData)
@@ -213,7 +213,7 @@ nlme.predict = function(
   etas$theGroup = row.names(etas)
   names(etas)[names(etas) == "theGroup"] = gpNames
 
-  simData = merge(simData, etas, by = gpNames, all.x = T)
+  simData = merge(simData, etas, by = gpNames, all.x = TRUE)
   dim(simData)
   #str(simData)
 
@@ -250,7 +250,7 @@ nlme.predict = function(
     {
       #sampled.etas = apply(as.matrix(theETAS), 2, function(y, ids) sample.by.id(ids, y), ids = mpData$id)
       sampled.etas = apply(as.matrix(theETAS), 2, function(y, ids) sample.by.id(ids, y), ids = data[,group.var])  # FLH 9/24/2011
-      sData = cbind(data, data.frame(matrix(rep(unlist(fxpars[x, ]), nrow(data)), ncol = length(fxpars[x,]), byrow = T)), data.frame(sampled.etas))
+      sData = cbind(data, data.frame(matrix(rep(unlist(fxpars[x, ]), nrow(data)), ncol = length(fxpars[x,]), byrow = TRUE)), data.frame(sampled.etas))
       names(sData) = c(names(data), nms.fix, nms.eta)  ; head(sData)
       ypr = eval(form, sData)
       if(!is.null(reference.subset))

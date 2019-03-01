@@ -85,7 +85,7 @@ meta.map = function(meta.ds, compNm, trialNm, refNm,
        type = 'n',
        xlab = " ",
        ylab = " ",
-       axes=F)
+       axes=FALSE)
   # Draw the segments connecting the nodes
   segments(x0=comp.map$c1x, y0=comp.map$c1y, x1=comp.map$c2x, y1=comp.map$c2y, lwd=comp.map$lwds, col=gray[5])
 

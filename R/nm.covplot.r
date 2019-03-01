@@ -60,25 +60,25 @@
 #' head(nmcov$catData.par)# essential: catVariable catValue variable value
 #' 
 #' #for continuous plots get kickstarted with:
-#' # xyplot(value ~ conValue | casefold(variable, upper=T) * conVariable
+#' # xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable
 #' #  , data = conData, panel = panel.xyplot)
 #' #for categorical plots:
 #' # xyplot(value ~ as.factor(paste(catValue)) | variable * catVariable
-#' #  , data = catData, panel = panel.bwplot, horizontal = F)
+#' #  , data = catData, panel = panel.bwplot, horizontal = FALSE)
 #' 
 nm.covplot = function(run = "run1", 
   path = getOption("nmDir"), 
   id.var = "ID",
-  iov = F,
-  eta.densities = T,
+  iov = FALSE,
+  eta.densities = TRUE,
   eta.skip = NULL,
-  shrinkage = F,
+  shrinkage = FALSE,
   covlist = list(cat = c(NULL), con = c(NULL)),
   catcov.sep = 5, # max number of unique values for a covariate to be assigned 'categorical'
   parameters = NULL,
   aspect = "fill",
   pcx = 0.5,  # pointsize
-  uniques = F, ## set to TRUE to look at one value per ID only
+  uniques = FALSE, ## set to TRUE to look at one value per ID only
   which.list = 1  ## which element of the list in case multiple regression methods were used
   )
 {
@@ -86,7 +86,7 @@ nm.covplot = function(run = "run1",
 #   require(latticeExtra)
 #   require(reshape)
 #   
-  id.var = casefold(id.var, upper = F)
+  id.var = casefold(id.var, upper = FALSE)
   
   ## reset everything
   parContVarPlot = parCatVarPlot = etaContVarPlot = etaCatVarPlot = eta.dens = eta.splom = NULL
@@ -97,13 +97,13 @@ nm.covplot = function(run = "run1",
   
   ## read NONMEM table output
   nmcov = get.xpose.tables(run = run, path = path) 
-  names(nmcov) = casefold(names(nmcov), upper=F)
+  names(nmcov) = casefold(names(nmcov), upper=FALSE)
   if(length(nmcov[, id.var]) == 0){
     message(paste(id.var, "does not exist in",run,". nm.covplot.procedure stopped"));return()
   }
 
   ## need to add a workaround for IOV in which case we do not want to drop OCCs within individual
-  nmcov = nmcov[duplicated(nmcov[, id.var]) == F, ]
+  nmcov = nmcov[duplicated(nmcov[, id.var]) == FALSE, ]
   
   ## pull the ETAs from the NONMEM output table
   eta.names = names(nmcov)[grep("et", names(nmcov))]
@@ -112,7 +112,7 @@ nm.covplot = function(run = "run1",
   ## remove ETAs per instruction
   if(!is.null(eta.skip))
   {
-    nok = eta.names %nin% casefold(eta.skip, upper = F)
+    nok = eta.names %nin% casefold(eta.skip, upper = FALSE)
     eta.names = eta.names[nok]
     eta.list = eta.list[nok]
   }
@@ -162,13 +162,13 @@ nm.covplot = function(run = "run1",
   if(is.null(covlist$cat)) {
     cat.list = intersect(default.covlist$cat, names(data)) 
     } else {
-      covlist$cat = casefold(covlist$cat, upper = F) 
+      covlist$cat = casefold(covlist$cat, upper = FALSE) 
       cat.list = intersect(covlist$cat, names(data))
     }
   if(is.null(covlist$con)) {
     con.list = intersect(default.covlist$con, names(data))
     } else {
-      covlist$con = casefold(covlist$con, upper = F) 
+      covlist$con = casefold(covlist$con, upper = FALSE) 
       con.list = intersect(covlist$con, names(data))
     }
   #intersect(eta.list, names(data))
@@ -181,7 +181,7 @@ nm.covplot = function(run = "run1",
        	panel.lines(lowess(x,y), col = red[7], lwd = 2)
        	panel.abline(h = 0, v = 0, col = gray[5])
      },
-     varnames = casefold(eta.list, upper = T),
+     varnames = casefold(eta.list, upper = TRUE),
      pscales = 1,
      xlab="", ylab = "")
   }
@@ -213,7 +213,7 @@ nm.covplot = function(run = "run1",
       shrink = unique(shrink) * 100
       names(shrink) = eta.list
     } 
-    names(shrink) = casefold(names(shrink), upper = F)
+    names(shrink) = casefold(names(shrink), upper = FALSE)
     shrink = round(shrink[eta.names], 2)
     shrink = data.frame(variable = names(shrink), etashrink = shrink)
     etas = stableMerge(etas, shrink)
@@ -240,7 +240,7 @@ nm.covplot = function(run = "run1",
         zy = zy + c(apply(zx, 2, function(ooo)unitDensity(ooo)$y)) * 0.5
         zx = c(zx)
 
-       if(ed) metrumrg::panel.stratify(panel.levels = metrumrg::panel.densitystrip,  x = x, y = y, horizontal = T, border = T, col = gray[1], ...)
+       if(ed) metrumrg::panel.stratify(panel.levels = metrumrg::panel.densitystrip,  x = x, y = y, horizontal = TRUE, border = TRUE, col = gray[1], ...)
 
        xtpos = current.panel.limits()$xlim[1] + diff(current.panel.limits()$xlim)*0.1
        ytpos = current.panel.limits()$ylim[1] + diff(current.panel.limits()$ylim)*0.95
@@ -252,14 +252,14 @@ nm.covplot = function(run = "run1",
          ltext(xtpos, ytpos, expression(paste(eta[sh]," (%)")), cex = 1)
        }
        
-       panel.superpose(x=zx, y = zy, groups = zz, subscripts = T,..., col = red[3], type = "l")
+       panel.superpose(x=zx, y = zy, groups = zz, subscripts = TRUE,..., col = red[3], type = "l")
        panel.segments(x1=0, x2=0, y1=1, y2=max(etas$index)+1.2, col = gray[3])
       },
       ylab = "",
       xlab = "deviation",
       scales = list(y = list(at=seq(lunique(levels(etas$variable)))
-                             , labels = casefold(levels(etas$variable),upper=T))),
-      as.table = T
+                             , labels = casefold(levels(etas$variable),upper=TRUE))),
+      as.table = TRUE
     )
   }
 
@@ -273,7 +273,7 @@ nm.covplot = function(run = "run1",
   etaContVarPlot = function()
   { 
     useOuterStrips(
-      xyplot(value ~ conValue | casefold(variable, upper=T) * conVariable,
+      xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
      data = conData.eta,
     pcx = pcx,
     panel = function(x,y, ..., pcx)
@@ -302,9 +302,9 @@ nm.covplot = function(run = "run1",
   etaCatVarPlot = function()
   { 
   useOuterStrips(
-    xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=T) * catVariable,
+    xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
     data = catData.eta,
-    horizontal = F,
+    horizontal = FALSE,
     panel =  function(x,y,...)
     {
       panel.bwplot(x,y,...)
@@ -326,12 +326,12 @@ nm.covplot = function(run = "run1",
   {
   conData = reshape2::melt(data, measure.vars = con.list)
   names(conData)[names(conData) %in% Cs(variable,value)] = Cs(conVariable, conValue)
-  conData.par = reshape2::melt(conData, measure.vars = casefold(parameters,upper = F))
+  conData.par = reshape2::melt(conData, measure.vars = casefold(parameters,upper = FALSE))
 
   parContVarPlot = function()
   { 
     useOuterStrips(
-      xyplot(value ~ conValue | casefold(variable, upper=T) * conVariable,
+      xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
     data = conData.par,
     pcx = pcx,
     panel = function(x,y, ..., pcx)
@@ -355,14 +355,14 @@ nm.covplot = function(run = "run1",
   {
   catData = reshape2::melt(data, measure.vars = cat.list)
   names(catData)[names(catData) %in% Cs(variable,value)] = Cs(catVariable, catValue)
-  catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = F))
+  catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
   parCatVarPlot = function()
   { 
     useOuterStrips(
-      xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=T) * catVariable,
+      xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
     data = catData.par,
-    horizontal = F,
+    horizontal = FALSE,
     panel =  function(x,y,...)
     {
       panel.bwplot(x,y,...)

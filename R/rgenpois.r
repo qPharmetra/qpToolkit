@@ -43,7 +43,7 @@ rgenpois = function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
   ## scan.size should be 2-fold lambda
     
   ## start fresh
-  T = N = rep(0, length(lambda))
+  #T = N = rep(0, length(lambda)) <jtc removed, don't redefine T, not used anyway>
   R = runif(length(lambda))
 
   nnn = scan.size
@@ -58,7 +58,7 @@ rgenpois = function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
   gp1 = sweep(XXX, 1, sq-1, "^")
   gp2 = sweep(gp1, 2, lambda,  "*")
   interim.disp = sweep(mymat,2,disp,"*")
-  GP = gp2 * exp(-matrix(rep(lambda,ea=nnn+1), nrow=nnn+1, byrow=F)-interim.disp)
+  GP = gp2 * exp(-matrix(rep(lambda,ea=nnn+1), nrow=nnn+1, byrow=FALSE)-interim.disp)
   GP = GP / exp(LFAC)
   GP = apply(GP, 2, cumsum)
   GP = apply(sweep(GP, 2, R), 2, function(x) max(cumsum(x<0)))

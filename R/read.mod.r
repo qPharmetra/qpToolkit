@@ -13,7 +13,7 @@
 #' @examples
 #' head(read.mod(path=getOption("qpExampleDir"), run="example1", file.ext = ".ctl"))
 
-read.mod = function(run, path = getOption("nmDir"), file.ext = ".mod", quiet = T)
+read.mod = function(run, path = getOption("nmDir"), file.ext = ".mod", quiet = TRUE)
 {
    theRun = paste(run,gsub("[.]","",file.ext), sep=".")
    ctl = scan(file = file.path(path,theRun), what = "character", sep = "\n", quiet=quiet)

@@ -48,11 +48,11 @@ nm.vpcplot = function(path,
          tab = dir(path=path,pattern = "^vpctab")[1],
          PI.limits = c(0.025,0.975),
          subset = NULL,
-         output = F,
+         output = FALSE,
          relabel.strata = NULL,
          subtitle = "",
-         logY = F,
-         logX = F,
+         logY = FALSE,
+         logX = FALSE,
          xLabel = NULL,
          yLabel = NULL,
          cex.label = 1.25,
@@ -65,8 +65,8 @@ nm.vpcplot = function(path,
          yscale.components = NULL,
          layout,
          showPredAs = "area",
-         showObsDots = T,
-         showObsLines = T,
+         showObsDots = TRUE,
+         showObsLines = TRUE,
          lineType = "l",
          central.lwd = 1.5,
          obscol.dot = gray[8], 
@@ -153,7 +153,7 @@ nm.vpcplot = function(path,
   apply(x[,Cs(lower.xcov,upper.xcov)],1,mean)};  return(x)})#x = VPCSIM[[2]]
 
   ## apply check for log
-  if(logY == T)
+  if(logY)
   SIM = lapply(SIM, function(x){ #x = SIM[[4]]
     xx = x[, Cs(ypred.lo, ypred.cen, ypred.hi, yobs.lo, yobs.cen, yobs.hi)]
     msel = which(xx<=0)
@@ -182,9 +182,9 @@ c.or.unlist = function(x) if(is.list(x)) unlist(x) else c(x)
 ## sometimes the strata appear as list and sometimes as a matrix
 VPC = do.call("rbind", SIM)
 
-if(logX == T & any(obs[,xCov] <= 0)) 
+if(logX & any(obs[,xCov] <= 0)) 
 {
-  obs[,xCov][obs[,xCov] <= 0] = min(obs[,xCov][obs[,xCov] > 0], na.rm=T)
+  obs[,xCov][obs[,xCov] <= 0] = min(obs[,xCov][obs[,xCov] > 0], na.rm=TRUE)
   VPC$xcov[VPC$xcov == 0] = min(obs[,xCov])
 }
 
@@ -261,15 +261,15 @@ myScales = list(x = list(relation = "free"))
 myComponents.y = yscale.components.default
 myComponents.x = xscale.components.default
 
-if(logY == T){
+if(logY){
   myScales = list(y = list(log = 10), x = list(relation = "free"))
   myComponents.y = yscale.components.log10
 }
-if(logX == T){
+if(logX){
   myScales = list(x = list(log = 10, relation = "free"))
   myComponents.x = xscale.components.log10
 }
-if(logY == T & logX == T){
+if(logY & logX ){
   myScales = list(y = list(log = 10), x = list(log = 10, relation = "free"))
   myComponents.x = xscale.components.log10
   myComponents.y = yscale.components.log10
@@ -318,7 +318,7 @@ VPC =
   ) 
 
 output.results = "VPC done"
-if(output == T) output.results = list(vpc = vpcdump, obs = obs)
+if(output) output.results = list(vpc = vpcdump, obs = obs)
 else return(VPC)
 
 }
@@ -326,6 +326,6 @@ else return(VPC)
 
 if(F)
 {
-  nm.vpcplot(file.path(nmDir, "vpc2169_all"), logY = T)
+  nm.vpcplot(file.path(nmDir, "vpc2169_all"), logY = TRUE)
   ## note the plotting is done using panel.nonmem.vpc inside the function
 }

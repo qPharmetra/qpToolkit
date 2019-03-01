@@ -31,27 +31,28 @@
 #' @importFrom gdata read.xls
 #' @importFrom foreign read.xport
 #' @examples
+#' \dontrun{
 #' load.data(xlsFiles="ExampleInput.xlsx",
 #' xlsNames="XLinput1", 
-#' xlsSheets=1, doScan=F)
+#' xlsSheets=1, doScan=FALSE)
 #' head(XLinput1)
 #' head(iXLinput1)
 #' load.data(xlsFiles="ExampleInput.xlsx",
 #'           xlsNames="XLinput2", 
 #'           xlsSheets=2,            # NOTE WE can specify which worksheet (tab) of the Excel file
-#'           doScan=F)
+#'           doScan=FALSE)
 #' head(iXLinput2)
 # Exammple of providing a LIST of files to import
 #' load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),
 #'           csvNames=c("CSVinput1", "CSVinput2"),
-#'           doScan=F)
+#'           doScan=FALSE)
 #' head(CSVinput1)
 #' load.data() # loading JUST doing automatic search for files ("scan")
-
+#' }
 load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
   dir = "../project input/client data/data",
   xlsNames, xptNames, csvNames, tabNames, perl="C:/Perl64/bin/perl.exe",
-  xlsSheets, doScan=T, target.env=parent.frame()) {
+  xlsSheets, doScan=TRUE, target.env=parent.frame()) {
 
   if(!missing(xptNames)) {
     if(missing(xptFiles)|length(xptNames)!=length(xptFiles)) {
@@ -159,7 +160,7 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
   }
   if(length(csvFiles)>0) {  # LH
     for(i in 1:length(csvFiles)) {
-      fileData = read.csv(paste(dir,csvFiles[i], sep="/"), as.is=T)
+      fileData = read.csv(paste(dir,csvFiles[i], sep="/"), as.is=TRUE)
       names(fileData) = tolower(names(fileData))
       fileData$rec.id = 1:nrow(fileData)
       assign(paste("i", csvNames[i], sep=""), fileData,
@@ -171,7 +172,7 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
   }
   if(length(tabFiles)>0) {  # LH
     for(i in 1:length(tabFiles)) {
-      fileData = read.delim(paste(dir,tabFiles[i], sep="/"), as.is=T)
+      fileData = read.delim(paste(dir,tabFiles[i], sep="/"), as.is=TRUE)
       names(fileData) = tolower(names(fileData))
       fileData$rec.id = 1:nrow(fileData)
       assign(paste("i", tabNames[i], sep=""), fileData,
@@ -187,7 +188,7 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
 if (F) {
   load.data(xlsFiles="ExampleInput.xlsx",
             xlsNames="XLinput1", 
-            xlsSheets=1, doScan=F)
+            xlsSheets=1, doScan=FALSE)
   #[1] "Created data frame XLinput1"
   
   head(XLinput1)
@@ -211,7 +212,7 @@ if (F) {
   load.data(xlsFiles="ExampleInput.xlsx",
             xlsNames="XLinput2", 
             xlsSheets=2,            # NOTE WE can specify which worksheet (tab) of the Excel file
-            doScan=F)
+            doScan=FALSE)
   
   head(iXLinput2)
   #   e        f g        h rec.id
@@ -225,7 +226,7 @@ if (F) {
   # Exammple of providing a LIST of files to import
   load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),
             csvNames=c("CSVinput1", "CSVinput2"),
-            doScan=F)
+            doScan=FALSE)
   #[1] "Created data frame CSVinput1"
   #[1] "Created data frame CSVinput2"
   

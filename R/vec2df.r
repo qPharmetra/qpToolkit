@@ -17,7 +17,7 @@
 
 vec2df = function(x, n = 1)
 {
-  xDF = data.frame(matrix(rep(x, n), ncol = length(x), byrow = T))
+  xDF = data.frame(matrix(rep(x, n), ncol = length(x), byrow = TRUE))
   names(xDF) = names(x)
   return(xDF)
 }

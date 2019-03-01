@@ -26,10 +26,10 @@
 #' @export
 #' @examples 
 #' meta.analysis.ds = read.csv(file.path(getOption("qpExampleDir")
-#'  , "../Excel/meta.analysis.ds.csv"),stringsAsFactors = F)
+#'  , "../Excel/meta.analysis.ds.csv"),stringsAsFactors = FALSE)
 #' table.meta.analysis.summary(meta.analysis.ds
 #'  , cov.cols=c("age","fem.pct","dis.score.bl","drug.ir")
-#'  , cov.cat=c(F,F,F,T)
+#'  , cov.cat=c(FALSE,FALSE,FALSE,TRUE)
 #' )
 
 table.meta.analysis.summary = function(data, cov.cols=NULL, cov.cat=NULL)

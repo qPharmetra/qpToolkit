@@ -12,18 +12,18 @@
 #' print(
 #'    xtable(
 #'       data.frame(original=numvec
-#'                  ,latex.TRUE= formatted.signif(numvec,3, T,F)
-#'                  ,align.TRUE= formatted.signif(numvec,3, F,T)
-#'                  ,all.TRUE = formatted.signif(numvec,3, T,T)
+#'                  ,latex.TRUE= formatted.signif(numvec,3, TRUE,FALSE)
+#'                  ,align.TRUE= formatted.signif(numvec,3, FALSE,TRUE)
+#'                  ,all.TRUE = formatted.signif(numvec,3, TRUE,TRUE)
 #'       )
 #'    )
-#'    , booktabs=T
+#'    , booktabs=TRUE
 #'    , sanitize.text.function = identity
 #' )
 #' # now take this to a LaTeX compiler!
 
 
-formatted.signif = function(x, digits=3, latex = F, align.dot = F){
+formatted.signif = function(x, digits=3, latex = FALSE, align.dot = FALSE){
   res = vector(length=length(x))
   for(i in 1:length(x))
   {

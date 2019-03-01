@@ -45,11 +45,11 @@ nm.extract.xml = function(
   xml.extension = ".xml",
   zip.extension = ".7z",
   zip.program = "c:/progra~1/7-zip/7z",
-  remove.obsolete = F,
+  remove.obsolete = FALSE,
   na.value = "n.d.",
-  control_stream = F,
-  get.xpose.tables = T,
-  quiet = T)
+  control_stream = FALSE,
+  get.xpose.tables = TRUE,
+  quiet = TRUE)
 {
   #xml.extension = ".xml";zip.extension = ".7z";remove.obsolete = F;na.value = "n.d.";control_stream = F;  path = paste(getwd(),"NONMEM", run, sep = "/")
   #signif = 4;signif.se = signif;signif.cv = signif;signif.est = signif;filename = paste(path,run,paste(run, xml.extension,sep=""),sep="/")
