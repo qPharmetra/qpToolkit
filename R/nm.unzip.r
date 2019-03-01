@@ -19,23 +19,24 @@
 
 nm.unzip = function(run
                     , path = file.path(getOption("nmDir"), run)
-                    , zip.extension = ".7z"
+                    , zip.extension = NULL
                     , extension = ".xml"
-                    , zip.program = "c:/progra~1/7-zip/7z"
+                    , zip.call = getOption("unzip.call")
                     , filename = paste(run, extension,sep="")
-                    , zip.filename = paste(filename,zip.extension,sep = "")
-                    , quiet = T
+                    , zip.filename = file.path(path,filename)
+                    , quiet = TRUE
 )
 {
-  currentwd = getwd()
-  newwd = path
-  if(!quiet) cat("path:", newwd, "\n")
-  zip.call = paste(zip.program, "e", zip.filename)
-  if(!quiet) cat("call:",zip.call,"\n")
-  setwd(newwd)
-  invisible(system(zip.call, show.output.on.console=ifelse(quiet,F,T)))
-  setwd(currentwd)
+   currentwd = getwd()
+   newwd = path
+   if(!quiet) cat("path:", path, "\n")
+   zip.call = sprintf(zip.call, zip.filename)
+   if(!quiet) cat("call:",zip.call,"\n")
+   setwd(newwd)
+   invisible(system(zip.call, ignore.stdout=quiet, ignore.stderr = quiet))
+   setwd(currentwd)
+   if(!file.exists(zip.filename)){
+      stop(sprintf("Unzip failed: %s\nUnzip call:%s", zip.filename, zip.call))
+   } 
+   
 }
-
-
-

@@ -1,9 +1,8 @@
 .Rproj.user
-
 .Rhistory
-
 .RData
-
 .Ruserdata
-
-man/*
+docs
+inst/doc
+vignettes/*.R
+vignettes/*.html
