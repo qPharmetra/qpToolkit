@@ -14,8 +14,9 @@ env:
     - UNZIP_CALL="7z e %s.7z"
     
 after_success:
+  - Rscript -e 'covr::codecov()'
   - Rscript -e 'pkgdown::build_site()'
-
+  
 deploy:
   provider: pages
   skip-cleanup: true
