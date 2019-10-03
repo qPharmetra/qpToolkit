@@ -13,7 +13,6 @@
 #' @param distr The distribution parameter.
 #' @return Box-Cox tranformation of \code{distr} with \code{shape}.
 #' @export
-#' @import Hmisc
 #' @examples
 #' x = rnorm(1000, mean = 0, sd = 0.25)
 #' x.boxcox.pos = boxcoxf(0.5,x)

@@ -18,7 +18,10 @@
 #' @return list with extracted nlme object information, model summary, model parameter table, or, when method = "samples", a matrix with predictions for data.frame \code{getData(obj)} or \code{newdata}.
 #' @export nlme.extract
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.diag}}, \code{\link{nlme.vpc}},  \code{\link{nlme.simPars}}, \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}
-#' @import nlme MASS Hmisc
+#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getResponseFormula residuals fitted predict
+#' @importFrom nlme getGroupsFormula pdMatrix intervals
+#' @importFrom Hmisc Cs
 #' @examples
 #' fm1 <- nlme::nlme(height ~ SSasymp(age, Asym, R0, lrc),
 #' data = Loblolly,
@@ -237,8 +240,5 @@ nlme.extract = function(obj,
 		else (return(ss2))
 }
 
-if(F)
-{
 
-} 
 

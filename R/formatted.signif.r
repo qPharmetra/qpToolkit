@@ -5,6 +5,7 @@
 #' @return A formatted character vector containing \code{x} in with significant \code{digits} format
 #' @seealso \code{\link{signif}}
 #' @export
+#' @importFrom Hmisc unPaste
 #' @examples
 #' library(xtable)
 #' formatted.signif(c(5,4.99, 4.99999,5.0000001,5001),4)
@@ -34,7 +35,7 @@ formatted.signif = function(x, digits=3, latex = FALSE, align.dot = FALSE){
   if(latex) for(i in 1:length(x))
   {
     if(grepl("e", res[i])){
-      tmp = unPaste(res[i], sep = "e")
+      tmp = Hmisc::unPaste(res[i], sep = "e")
       res[i] = paste0(tmp[[1]],"$\\cdot$10$^{", as.numeric(tmp[[2]]),"}$")
     }
   }

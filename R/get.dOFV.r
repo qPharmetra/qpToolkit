@@ -13,7 +13,7 @@
 #' @param file.ext file extension of the NONMEM output file (defaults to .lst)
 #' @return Placeholder for return description
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @seealso \code{\link{get.ofv}} which is called inside \code{get.dOFV}, \code{\link{read.out}}
 #' @examples
 #' get.dOFV(runs = c("example1","example2"), path = getOption("qpExampleDir"))

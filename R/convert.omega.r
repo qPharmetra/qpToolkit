@@ -11,7 +11,7 @@
 #' @return reordered named vector.
 #' @export
 #' @seealso \code{\link{convert.sigma}}
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 
 convert.omega = function (x) 
 {

@@ -5,7 +5,8 @@
 #' @seealso \code{\link{tabStats}}, \code{\link{tabSummarize}}
 #' @note This function is primarily used for demographics tables
 #' @export format.demoTable
-#' @import nlme
+#' @importFrom nlme getCovariateFormula
+#' @importFrom Hmisc Cs
 #' @examples 
 #' options(width = 150)
 #' pkpdData = example.pkpdData()

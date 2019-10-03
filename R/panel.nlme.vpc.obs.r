@@ -12,6 +12,7 @@
 #' @note Not to be used as standalone. Will be be called by \code{nlme.vpcplot}
 #' @seealso \code{\link{nlme.vpcplot}}
 #' @import lattice
+#' @importFrom Hmisc summarize
 
 panel.nlme.vpc.obs = function(x, y, logY, showPredAs, showObsDots, showObsLines,  
                               col.scheme, obscex.dot, obspch.dot, ...)

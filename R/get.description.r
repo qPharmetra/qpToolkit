@@ -7,7 +7,6 @@
 #' @return The model's description tag as a character string
 #' @export get.description
 #' @seealso \code{\link{get.nm.version}}, \code{\link{get.ofv}}, \code{\link{read.out}}
-#' @import Hmisc lattice
 #' @examples
 #' get.description(run = "example1", path = getOption("qpExampleDir"))
 

@@ -24,7 +24,3 @@ superPosition = function(val, time, tau)
   return(rowSums(newval))
 }
 
-if(F){
-  pPK = superPosition(15*exp(-0.15*seq(0,84)), time = seq(0,84), tau = 8)
-  plot(seq(0,84), pPK, type = 'l')
-}

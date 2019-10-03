@@ -15,7 +15,7 @@
 #' @param return.samp if T returns the non-summarized predictions as well
 #' @return a list with 
 #' @export nlme.vpc
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @examples
 #' library(nlme)
 #' pkpdData = example.pkpdData()

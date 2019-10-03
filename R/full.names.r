@@ -9,7 +9,7 @@
 #' @param x Shorthand / Abbreviate column names
 #' @return Column names written out in full
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @examples
 #' full.names(c("wt","race","age"))
 full.names = function(x)

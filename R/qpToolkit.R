@@ -1,4 +1,4 @@
-#' qpToolkit: Makes qPharmetra R functions easily available to users
+#' qpToolkit: Tools for population PK/PD modeling, visualization, and reporting.
 #'
 #' The qpToolkit package provides different categories of important functions:
 #' \itemize{
@@ -8,7 +8,7 @@
 #' \item{R qualification}}
 #' 
 #' @section qpToolkit functions:
-#' The qpToolkit functions ...
+#' Watch here for forthcoming summaries of the qpToolkit functions.
 #'
 #' @docType package
 #' @name qpToolkit

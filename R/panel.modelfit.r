@@ -10,7 +10,6 @@
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
-#' @importFrom reshape2 melt
 #' @examples
 #' library(Hmisc)
 #' out = get.xpose.tables('example1',getOption('qpExampleDir'))

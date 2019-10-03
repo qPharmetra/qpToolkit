@@ -11,7 +11,7 @@
 #' @return list with fixed effect point estimates and variance-covariance matrix 
 #' @export nlme.getFixPars
 #' @seealso \code{\link{nlme.getRanPars}}, \code{\link{nlme.simPars}}, \code{\link{nlme.extract}}
-#' @import nlme 
+#' @importFrom nlme fixef 
 #' @examples
 #' library(nlme)
 #' fm1 <- nlme(height ~ SSasymp(age, Asym, R0, lrc),

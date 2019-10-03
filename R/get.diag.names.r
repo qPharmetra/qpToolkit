@@ -11,7 +11,7 @@
 #' @param sep separator - defaults to comma (e.g. OMEGA(1,1))
 #' @return named vector of logicals; TRUE for giagonal, FALSE for off-diagonal elements
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 #' @examples    
 #' covMatrix = get.covmat(path = getOption("qpExampleDir"), run = "example2")
 #' get.diag.names(names = sub(" +", "", trimSpace(names(covMatrix[[1]]))))
@@ -43,7 +43,7 @@ get.diag.names = function(names, sep = ",")
   mySIGMANames = gsub("SIGMA","", mySIGMANames)
   nams = names[isSIGMA]
   if(length(names[isSIGMA]) == 1) diagonal.sigma = TRUE else {
-    offDiag = apply(apply(sapply(mySIGMANames, function(x,sep) unlist(unPaste(x,sep=sep)),sep=sep),1,as.numeric),1,diff)
+    offDiag = apply(apply(sapply(mySIGMANames, function(x,sep) unlist(Hmisc::unPaste(x,sep=sep)),sep=sep),1,as.numeric),1,diff)
     diagonal.sigma = offDiag == 0
   }
   names(diagonal.sigma) = nams

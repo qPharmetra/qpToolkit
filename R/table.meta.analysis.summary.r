@@ -24,6 +24,7 @@
 #'	Whether each covariate is continous or categorical is specified in the "cov.cat" argument.
 #' @return Summarized meta-analysis dataset
 #' @export
+#' @importFrom Hmisc summarize
 #' @examples 
 #' meta.analysis.ds = read.csv(file.path(getOption("qpExampleDir")
 #'  , "../Excel/meta.analysis.ds.csv"),stringsAsFactors = FALSE)

@@ -14,7 +14,7 @@
 #' @return data.fame the xpose tables for runs and an additional column 'model' containinng the rootnames of runs for stratification in post-processing
 #' @export
 #' @seealso \code{\link{get.xpose.tables}}
-#' @import Hmisc lattice
+#' @importFrom Hmisc Cs
 #' @examples
 #' library(Hmisc)
 #' library(lattice)

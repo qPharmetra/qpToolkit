@@ -13,7 +13,10 @@
 #' @param xrange number of equal-spaced x covariate values created from \code{min(x)} to \code{max(x)}
 #' @return a graph or a multi-level list with observed and predicted output 
 #' @export
-#' @import nlme Hmisc
+#' @importFrom Hmisc summarize
+#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getResponseFormula residuals fitted predict
+#' @importFrom nlme getGroupsFormula
 #' @seealso \code{\link{plot.fit}}, \code{\link{nlme.predict}}
 #' @examples
 #' DNase1 <- subset(DNase, Run == 1)

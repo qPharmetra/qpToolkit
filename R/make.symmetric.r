@@ -11,7 +11,7 @@
 #' @param triangle defaulting to 'upper', can also take the value 'lower' 
 #' @return A matrix of dimension ncol x ncol
 #' @seealso \code{\link{xml.Extract.NM.Matrix}}
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @export
 #' @examples 
 #'   make.symmetric(c(0.12,

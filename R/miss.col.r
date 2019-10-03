@@ -4,7 +4,6 @@
 #' @param df.1 first data.frame  
 #' @param df.2 second data.frame
 #' @return Placeholder for return description
-#' @import Hmisc
 #' @export
 #' @examples
 #' my.df.1 = data.frame(a=1:3,b=4:6,c=7:9)

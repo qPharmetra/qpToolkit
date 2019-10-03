@@ -31,7 +31,6 @@
 #' @param ... Optional arguments passed on to hist
 #' @return Histograms of bootstrapped parameter estimates
 #' @export histogram.bootstrap
-#' @import Hmisc
 #' @examples
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
 #' temp.dir = tempdir()

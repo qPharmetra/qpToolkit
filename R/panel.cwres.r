@@ -11,8 +11,9 @@
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
-#' @importFrom reshape2 melt
 #' @examples 
+#' library(lattice)
+#' library(reshape2)
 #'  out = get.xpose.tables("example2", getOption("qpExampleDir"))
 #'  trellis.strip.color()
 #' xyplot(CWRES ~ value | variable

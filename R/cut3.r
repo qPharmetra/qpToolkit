@@ -17,8 +17,7 @@
 #' @param onlycuts same value as \code{cut2}
 #' @return A numeric vector
 #' @export
-#' @note This function was based on \code{cut2} from the Hmisc package. Instead of returning factors it returns numeric values representating the mean of the bins
-#' @import Hmisc
+#' @note This function was based on \code{\link[Hmisc]{cut2}} from the Hmisc package. Instead of returning factors it returns numeric values representating the mean of the bins
 #' @examples 
 #' pkpdData = example.pkpdData()
 #' sunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
@@ -159,8 +158,8 @@ cut3 =
 
 if(F)
   {
-  unique(cut2(pkpdData$time, g = 4))
-  unique(cut2(pkpdData$time, g = 4, levels.mean = TRUE))
+  unique(Hmisc::cut2(pkpdData$time, g = 4))
+  unique(Hmisc::cut2(pkpdData$time, g = 4, levels.mean = TRUE))
   unique(cut3(pkpdData$time, g = 4, levels.mean = TRUE)) 
 }
 

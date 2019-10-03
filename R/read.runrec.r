@@ -11,7 +11,7 @@
 #' @param path diretory where the runrecord resides
 #' @return Data.frame with all information extracted from the runrecord.
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @seealso \code{\link{process.runrec}}
 #' @examples
 #' rr = read.runrec(filename = "AAruninfo.txt"

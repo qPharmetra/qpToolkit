@@ -11,7 +11,8 @@
 #' @return data.frame containing the nlme model trail 
 #' @seealso \code{\link{nlme.run}}
 #' @export nlme.modeltrail
-#' @import nlme Hmisc
+#' @importFrom nlme anova.lme
+#' @importFrom Hmisc Cs
 #' @examples
 #' library(nlme)
 #' pkpdData = example.pkpdData()

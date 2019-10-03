@@ -15,7 +15,7 @@
 #' @param comp.col color of comparator nodes
 #' @param dist distance for text position
 #' @return A graph mapping the dimensions of the meta-analysis dataset
-#' @import Hmisc ellipse
+#' @importFrom ellipse ellipse
 #' @seealso \code{\link{make.map}} 
 #' @export
 #' @examples

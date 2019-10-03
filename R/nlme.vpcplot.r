@@ -35,9 +35,12 @@
 #' @return A VPC plot.
 #' @export nlme.vpcplot
 #' @seealso \code{\link{nlme.vpc}}, \code{\link{nlme.extract}}
-#' @import nlme Hmisc lattice
+#' @import lattice
+#' @importFrom nlme getData getCovariateFormula
+#' @importFrom nlme getResponseFormula getGroupsFormula
+#' @importFrom Hmisc Cs unPaste
 #' @examples
-#' library(nlme)
+#' # library(nlme)
 #' pkpdData = example.pkpdData()
 #' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
 #'  {
@@ -93,7 +96,7 @@ nlme.vpcplot = function(object,
                         
 )
 {
-  options(warn = -1)
+  options(warn = -1) # maybe need to capture and restore
   
   ## turn individual layout options into a list
   #showObsDots = T; showObsLines = T;obscol.dot = gray[8];obscex.dot = 0.5;obspch.dot = 1;obscol.line = gray[10];predcol.central = blue[6]

@@ -7,8 +7,6 @@
 #' @return data frame with THETA estimates, coefficient of variation, standard error, and estimated/fixed information. 
 #' @export
 #' @seealso \code{\link{nm.params.table}}, \code{\link{get.omega}}, \code{\link{get.sigma}}
-#' @import Hmisc
-#' @importFrom metrumrg stableMerge
 #' @examples
 #' get.theta("example1",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
 

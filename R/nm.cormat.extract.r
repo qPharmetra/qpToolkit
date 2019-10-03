@@ -6,7 +6,7 @@
 #' @return Covariate matrix
 #' @export
 #' @seealso \code{\link{extract.varcov}}, \code{\link{get.covmat}}, \code{\link{nm.covmat.extract}}
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 #' @examples
 #' nm.unzip(run="example1", extension=".cor", path = file.path(getOption("qpExampleDir"),"example1"))
 #' run1.cormat =  nm.cormat.extract("example1", path = getOption("qpExampleDir"))

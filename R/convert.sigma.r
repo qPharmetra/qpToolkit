@@ -11,7 +11,7 @@
 #' @return reordered named vector.
 #' @export
 #' @seealso \code{\link{convert.omega}}
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 
 convert.sigma = function(x){
   ## cov and cor matrix have upper triangle

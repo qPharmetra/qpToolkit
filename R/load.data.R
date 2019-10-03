@@ -39,7 +39,7 @@
 #' head(iXLinput1)
 #' load.data(xlsFiles="ExampleInput.xlsx",
 #'           xlsNames="XLinput2", 
-#'           xlsSheets=2,            # NOTE WE can specify which worksheet (tab) of the Excel file
+#'           xlsSheets=2,            # NOTE We can specify which worksheet (tab) of the Excel file
 #'           doScan=FALSE)
 #' head(iXLinput2)
 # Exammple of providing a LIST of files to import

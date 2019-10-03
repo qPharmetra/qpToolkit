@@ -13,7 +13,7 @@
 #' @return A character vector with members of length \code{len}, with \code{sep} located in the same position
 #' of each member.
 #' @export align.around.decimal.point
-#' @import Hmisc
+#' @usage align.around.decimal.point(x, sep = '.', Len)
 #' @examples
 #' align.around.decimal.point(c(1,100, 0.01))
 

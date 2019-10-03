@@ -12,8 +12,8 @@
 #' @param central function for central tendency of distribution
 #' @param nsig number of significant digits in output
 #' @return A data.frame with the bootstrap estimates.
-#' @export
-#' @import Hmisc
+#' @export bootstrap.ParTab
+#' @importFrom Hmisc Cs
 #' @examples
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))

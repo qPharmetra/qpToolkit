@@ -8,7 +8,6 @@
 #' @return shrinkage values
 #' @export get.shrinkage
 #' @seealso \code{\link{get.nm.version}}, \code{\link{get.ofv}}, \code{\link{read.out}}
-#' @import Hmisc lattice
 #' @examples
 #' get.shrinkage(run = "example1", path = getOption("qpExampleDir"))
 

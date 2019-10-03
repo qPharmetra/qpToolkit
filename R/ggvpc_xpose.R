@@ -21,6 +21,7 @@
 #' @note Editing and stratification to be done by adding ggplot layer
 #' @seealso \code{\link{nm.read.vpc}},  \code{\link{ggvpc_standard}} 
 #' @import ggplot2 
+#' @importFrom Hmisc unPaste
 #' @examples
 #' library(ggplot2)
 #' ## example of vpc NOT involving stratification

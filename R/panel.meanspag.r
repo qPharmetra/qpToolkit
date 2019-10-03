@@ -19,9 +19,10 @@
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
-#' @importFrom metrumrg snap
 #' @examples 
 #' \dontrun{
+#' library(lattice)
+#' library(metrumrg)
 #' pkpdData = example.pkpdData()
 #' xyplot(value ~ time | dose *  type
 #'        , data = pkpdData

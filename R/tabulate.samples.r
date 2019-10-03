@@ -17,7 +17,7 @@
 #' @return Named vector of numeric and oddCode entries
 #' @export
 #' @seealso \code{\link{whichNumeric}}
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @examples 
 #' library(Hmisc)
 #' my.df = data.frame( analyte.1=Cs(1,2,3,4,BLOQ,5,6,NS,7,M),

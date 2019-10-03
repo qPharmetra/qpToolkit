@@ -6,7 +6,7 @@
 #' @param N sample size of the requested predictions
 #' @return Matrix with parameter prediction 
 #' @export nlme.simPars
-#' @import MASS
+#' @importFrom MASS mvrnorm
 #' @seealso \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}, \code{\link{nlme.extract}}
 #' @examples
 #' library(nlme)

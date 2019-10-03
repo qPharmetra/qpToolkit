@@ -15,7 +15,7 @@
 #' @return data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information. 
 #' @export
 #' @seealso \code{\link{process.parTable}}
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @importFrom metrumrg stableMerge
 #' @examples
 #' nm.params.table(run = "example1", path = getOption("qpExampleDir"))

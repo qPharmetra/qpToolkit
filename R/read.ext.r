@@ -9,7 +9,7 @@
 #' #' @return A list with data.frames (as many as there where \code{$EST} calls in the NONMEM control stream) containing the .ext output
 #' @seealso \code{\link{read.out}}
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 #' @examples
 #' read.ext(run = "example1", path = getOption("qpExampleDir"))
 #' ## now parse an output where multiple $EST calls have been performed

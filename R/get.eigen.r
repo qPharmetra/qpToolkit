@@ -4,7 +4,7 @@
 #' @description Get the Eigen values from a NONMEM run. Requires the user to have run NONMEM with $COV ... PRINT=E option.
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
-#' @param file.ext extensionof the NONMEM output file (.lst)
+#' @param file.ext extension of the NONMEM output file (.lst)
 #' @return list with named vectors with Eigen values for each estimation method
 #' @export
 #' @seealso \code{\link{get.nm.version}}, \code{\link{get.shrinkage}}, \code{\link{get.ofv}}, \code{\link{read.out}}

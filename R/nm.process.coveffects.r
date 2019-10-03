@@ -100,6 +100,7 @@ covInfo = function(cov.name
 #' @return A covInfo object 
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export
+#' @method
 #' 
 #print.covInfo
 print.covInfo=function(x) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
@@ -311,6 +312,7 @@ nm.process.coveffects= function(eqs,covs.info,pars, xpose.df, omega, Nboot=10000
 #' @param x a covEffects object from nm.process.coveffects 
 #' @param y names of the plots to print (defaults to all)
 #' @param \dots ignored
+#' @import ggplot2
 #' @export
 #'
 

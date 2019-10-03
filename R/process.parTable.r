@@ -15,7 +15,7 @@
 #' @return Either a LaTeX preformatted parameter estimate table (default) or a fully processed parameter estimate table without LaTeX preformatting (for inclusion into Microsoft products).
 #' @export
 #' @seealso \code{\link{nm.params.table}}, \code{\link{process.runrec}}
-#' @import Hmisc 
+#' @importFrom Hmisc Cs 
 #' @examples 
 #' process.parTable(
 #'    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"), runIndex = 1)

@@ -4,7 +4,8 @@
 #' @param ... a vector consisting of an nlme call, a problem statement, and a reference number (to which the run will be compared)
 #' @return a list with the nlme object and the assocated proble statement and reference number
 #' @export nlme.run
-#' @import nlme Hmisc
+#' @importFrom nlme nlme
+#' @importFrom Hmisc Cs
 #' @seealso \code{\link{nlme.modeltrail}}, \code{\link{nlme.vpc}}
 #' @examples
 #' library(nlme)

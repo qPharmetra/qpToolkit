@@ -24,7 +24,7 @@
 #' @param quiet if TRUE (default) silences any message returned by the function and subfunctions.
 #' @return An extensive list with all elements extracted from the XML output
 #' @export
-#' @import Hmisc XML
+#' @import XML
 #' @note Works for NM7.2 (up to 9 OMEGAs) and NM7.3 (bug free)
 #' @examples
 #' tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))

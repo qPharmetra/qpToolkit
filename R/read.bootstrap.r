@@ -13,7 +13,7 @@
 #' @param parlist Define what elements are needed from the bootstrap?
 #' @return A list with data frame withy summary boostrap results
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 #' @examples
 #' \dontrun{
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir")

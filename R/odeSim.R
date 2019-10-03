@@ -80,7 +80,3 @@ odeSim = function(state, times,  func, parms, simPar, simParValues, method = "ls
   return(out)
 }
 
-if(F)
-{
-  
-}

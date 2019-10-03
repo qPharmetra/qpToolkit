@@ -8,7 +8,7 @@
 #' @return A dataset summarizing the dimensions of the meta-analysis dataset
 #' @return Placeholder for return description
 #' @seealso \code{\link{meta.map}}
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @note not intended to be used as standalone. Is called from qP function meta.map()
 #' @examples
 #' test = c("Ref", paste("comp", 1:5, sep=""))

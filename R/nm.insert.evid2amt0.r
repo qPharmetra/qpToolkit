@@ -10,6 +10,7 @@
 #' @importFrom dplyr filter mutate arrange bind_rows
 #' @seealso \code{\link{nm.insert.dose.multiple.compartments}}
 #' @examples
+#' library(Hmisc)
 #' library(dplyr)
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)

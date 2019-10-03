@@ -7,7 +7,6 @@
 #' @return data frame with SIGMA estimates, coefficient of variation, standard error, and estimated/fixed information. 
 #' @export
 #' @seealso \code{\link{nm.params.table}}, \code{\link{get.theta}}, \code{\link{get.omega}}
-#' @import Hmisc
 #' @importFrom metrumrg stableMerge
 #' @examples
 #' get.sigma("example2",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")

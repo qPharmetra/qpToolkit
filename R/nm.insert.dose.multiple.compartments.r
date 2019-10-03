@@ -7,11 +7,10 @@
 #' @return A data.frame with input dataset supplied with additional doses
 #' @export nm.insert.dose.multiple.compartments
 #' @importFrom lazyeval lazy_dots
-#' @import dplyr
+#' @importFrom dplyr bind_rows mutate arrange
 #' @seealso \code{\link{nm.insert.evid2amt0}}
 #' @examples
 #' library(dplyr)
-#' library(Hmisc)
 #' ## original data:
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))

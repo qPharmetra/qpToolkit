@@ -20,7 +20,11 @@
 #' @return Diagnostic plots
 #' @export nlme.diag
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.predict}}
-#' @import nlme Hmisc lattice
+#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getResponseFormula residuals fitted predict
+#' @importFrom nlme getGroupsFormula
+#' @importFrom Hmisc Cs
+#' @import lattice
 #' @importFrom reshape2 melt
 #' @examples
 #' ## define modeling function

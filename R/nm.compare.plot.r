@@ -9,7 +9,6 @@
 #' @param log a logical indicating if the GOF plots need to be logged
 #' @return A plot
 #' @export
-#' @import Hmisc
 #' @importFrom latticeExtra useOuterStrips ggplot2like
 #' @importFrom reshape2 melt
 #' @examples

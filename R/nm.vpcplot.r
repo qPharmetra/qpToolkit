@@ -41,7 +41,8 @@
 #' @return a lattice VPC graph
 #' @note This function should not be used as it was marked for future deprecation. qPharmetra's default VPC plot tool is xpose.VPC
 #' @export
-#' @import lattice Hmisc
+#' @import lattice
+#' @importFrom nlme getCovariateFormula
 
 nm.vpcplot = function(path, 
          result = "vpc_results.csv", 

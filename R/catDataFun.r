@@ -7,7 +7,6 @@
 #' unique values in \code{y}.
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{tabStats}},  \code{\link{tabStats}}
 #' @export
-#' @import Hmisc
 #' @examples
 #' catDataFun(data.frame(Sex=rep(c("Female","Male"), times= c(40,60)))$Sex)
 

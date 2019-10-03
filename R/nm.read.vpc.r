@@ -16,7 +16,8 @@
 #' @note Please note that qPharmetra's default VPC plot tool is xpose.VPC. Use this function with the \code{ggvpc} functions in case one needs more flexibility to post-process results before plotting, and when stratifcation by more than one variable is needed.
 #' @export
 #' @seealso \code{\link{ggvpc_xpose}},  \code{\link{ggvpc_standard}}, \code{\link{read.vpc}}
-#' @import Hmisc xpose4
+#' @import xpose4
+#' @importFrom Hmisc unPaste Cs
 #' @examples
 #' myVPC = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_strt"))
 #' 

@@ -13,7 +13,7 @@
 #' @param quiet if TRUE no message will be returned.
 #' @return A named list with all \code{$PK, $ERROR, $THETA} etc... elements of the control stream
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 #' @examples 
 #' nm.parse.control.stream("example1", path = getOption("qpExampleDir"), file.ext = ".ctl")
 #' 

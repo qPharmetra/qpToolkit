@@ -9,7 +9,6 @@
 #' @return A formatted character vector containing count and percentage of 
 #' unique values in \code{x}.
 #' @export 
-#' @import Hmisc
 #' @examples
 #' out = expand.grid(ID=1:5, DOSE = c(0,500,100,4000))
 #' factor(out$DOSE)

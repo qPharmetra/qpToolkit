@@ -8,7 +8,7 @@
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabStats}}
 #' @note This function is primarily used for demographics tables
 #' @export
-#' @import nlme
+#' @importFrom nlme nlme getResponseFormula getCovariateFormula
 #' @examples 
 #' options(width = 150)
 #' pkpdData = example.pkpdData()

@@ -7,7 +7,6 @@
 #' @param after the column after which to put who: may be character, integer, NA, or NULL
 #' @return data.frame: a variant of x
 #' @export reorder.names
-#' @import Hmisc
 #' @examples
 #' testData = expand.grid(start=1,middle=LETTERS[1:3], end=c("K","L"))
 #' reorder.names(testData, who = "start", after = "end")

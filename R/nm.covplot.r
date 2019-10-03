@@ -17,10 +17,11 @@
 #' @param shrinkage providing shrinkage values. This is currently ignored
 #' @return A list with plots and properly sorted / molten data.frames for customized plots
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc unPaste Cs Cbind
 #' @importFrom latticeExtra useOuterStrips
 #' @importFrom metrumrg panel.densitystrip panel.stratify
 #' @importFrom reshape2 melt
+#' @import lattice
 #' @examples
 #' args(nm.covplot)
 #' nmcov = nm.covplot(path = getOption("qpExampleDir")

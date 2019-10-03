@@ -25,7 +25,9 @@
 #' @param ... any other arguments to be passed on to the lattice call
 #' @return A plot
 #' @export plot.fit
-#' @import lattice nlme
+#' @import lattice
+#' @importFrom nlme getResponseFormula getCovariatesFormula getGroupsFormula
+#' @importFrom Hmisc Cs
 #' @examples
 #' pkpdData = example.pkpdData()
 #' 

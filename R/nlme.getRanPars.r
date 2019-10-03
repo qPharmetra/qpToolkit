@@ -11,7 +11,6 @@
 #' @return list with fixed effect point estimates and variance-covariance matrix 
 #' @export nlme.getRanPars
 #' @seealso \code{\link{nlme.getFixPars}}, \code{\link{nlme.simPars}}, \code{\link{nlme.extract}}
-#' @import nlme
 #' @examples
 #' library(nlme)
 #' fm1 <- nlme(height ~ SSasymp(age, Asym, R0, lrc),
@@ -20,7 +19,7 @@
 #'   random = Asym ~ 1,
 #'   start = c(Asym = 103, R0 = -8.5, lrc = -3.3)
 #'   )
-#' nlme.getFixPars(fm1)
+#' nlme.getRanPars(fm1)
 
 nlme.getRanPars = function(object)
   {
@@ -32,12 +31,3 @@ nlme.getRanPars = function(object)
     return(val)
   }
 
-if(F)
-{
-  fm1 <- nlme(height ~ SSasymp(age, Asym, R0, lrc),
-              data = Loblolly,
-              fixed = Asym + R0 + lrc ~ 1,
-              random = Asym ~ 1,
-              start = c(Asym = 103, R0 = -8.5, lrc = -3.3))
-  nlme.getRanPars(fm1)
-} 

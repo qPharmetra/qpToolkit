@@ -16,7 +16,7 @@
 #' @return A named list. The sole item in the list should have a name that is the estimation method 
 #' used (e.g. "First Order Conditional Estimation with Interaction").  That named item will be a 
 #' data frame containing the covariance matrix.
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 #' @export extract.varcov
 #' @seealso \code{\link{nm.covmat.extract}}, \code{\link{get.covmat}}
 #' @examples

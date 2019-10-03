@@ -10,6 +10,7 @@
 #' @export
 #' @import lattice
 #' @examples
+#' library(lattice)
 #' myData = data.frame(  n = c(5,100,332,12,50,74)
 #' , value = c(0.13,0.78,0.49,0.67,0.34,0.57)
 #' , dose = c(20,25,50,30,40,35)

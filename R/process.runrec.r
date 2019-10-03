@@ -9,7 +9,7 @@
 #' @return Either a LaTeX preformatted runrecord table (default) or a fully processed runrecord table without LaTeX preformatting (for inclusion into Microsoft products).
 #' @export
 #' @seealso \code{\link{read.runrec}}, \code{\link{process.parTable}}
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 #' @examples
 #' rr = read.runrec(filename = "AAruninfo.txt", path = file.path(getOption("qpExampleDir")))
 #' process.runrec(rr)

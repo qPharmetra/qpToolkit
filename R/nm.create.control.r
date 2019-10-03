@@ -8,7 +8,7 @@
 #' @note This function is only used by \code{nm.create.control}.
 #' @seealso \code{\link{nm.create.control}}
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc unPaste
 
 makeRandom = function(sw="omega", ctl, ranEf){
   # sw   = either "omega" or "sigma" for IIV or residual random effects
@@ -78,7 +78,7 @@ makeRandom = function(sw="omega", ctl, ranEf){
 #' @param out output from nm.extract.xml
 #' @return single draw from quasi-posterior parameter distribution
 #' @export
-#' @import Hmisc
+#' @importFrom MASS mvrnorm
 
 uncertainParams = function(out){
   ## Take output from nm.extract and return sampled fixed and random effects 
@@ -113,7 +113,7 @@ uncertainParams = function(out){
 #' @return A control stream ready for execution written to file
 #' #' @note THIS FUNCTION HAS NOT BEEN THOROUGHLY TESTED. USE WITH CAUTION AND ADAPT AS NEEDED ON THE PROJECT LEVEL.
 #' @export
-#' @import Hmisc
+#' @importFrom Hmisc Cs
 
 nm.create.control = function(run,
   path = getOption("nmDir"),
