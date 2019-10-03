@@ -13,6 +13,7 @@
 #' @export
 #' @import lattice
 #' @examples
+#' library(lattice)
 #' pkpdData = example.pkpdData()
 #' pkpdData$blq = 0
 #' pkpdData$blq[pkpdData$type=="PK"&pkpdData$value<0.1] = 1

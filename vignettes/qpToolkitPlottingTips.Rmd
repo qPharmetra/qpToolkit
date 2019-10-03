@@ -1,12 +1,14 @@
 ---
-title: "qpToolkit General Purpose Functions"
+title: "qpToolkit Plotting Tips"
 author: "Klaas Prins"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{qpToolkit General Purpose Functions}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{qpToolkit Plotting Tips}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -40,25 +42,25 @@ example("plot.tornado")
 ```{r}
 example.xpose.VPC()
 library(xpose4)
-xpose.VPC(file.path(getOption('qpExampleDir'),'vpc_final_strt/vpc_results.csv')
-       , file.path(getOption('qpExampleDir'),'vpc_final_strt/vpctab')
-       , logy=T 
-       , by='STRT'
-       , col=grey(0.4),  cex = 1
-       , PI.ci.area.smooth = T
-       , PI.ci.med.arcol = PI.ci.med.arcol
-       , PI.real.med.col = PI.real.med.col
-       , PI.real.down.col = PI.real.down.col
-       , PI.real.up.col = PI.real.up.col
-       , PI.ci.down.arcol = PI.ci.down.arcol
-       , PI.ci.up.arcol = PI.ci.up.arcol
+xpose.VPC(
+   system.file(package = 'qpToolkit','NONMEM/vpc_final_strt/vpc_results.csv'),
+   system.file(package = 'qpToolkit','NONMEM/vpc_final_strt/vpctab'), 
+   logy=T,, by='STRT',
+       col=grey(0.4),  cex = 1,
+       PI.ci.area.smooth = T,
+       PI.ci.med.arcol = PI.ci.med.arcol,
+       PI.real.med.col = PI.real.med.col,
+       PI.real.down.col = PI.real.down.col,
+       PI.real.up.col = PI.real.up.col,
+       PI.ci.down.arcol = PI.ci.down.arcol,
+       PI.ci.up.arcol = PI.ci.up.arcol
    )
 ```
 
 ## example VPC plot using qPharmetra's ggvpc
 
 ```{r}
-vpc = nm.read.vpc(file.path(getOption('qpExampleDir'),'vpc_final_strt'), PI.ci.area.smooth=T)
+vpc = nm.read.vpc(system.file(package = 'qpToolkit','/NONMEM/vpc_final_strt'), PI.ci.area.smooth=T)
 
 ggvpc_xpose(vpc, point.size = 2) +
    facet_grid(~strata) +
@@ -73,7 +75,7 @@ ggvpc_standard(vpc, point.size = 2) +
 
 Since we do not have data availabel, we quickly scramble some data, dupliacte and tweak it
 ```{r}
-vpc = nm.read.vpc(file.path(getOption('qpExampleDir'),'vpc_final_strt'), PI.ci.area.smooth=T)
+vpc = nm.read.vpc(system.file(package = 'qpToolkit','/NONMEM/vpc_final_strt'), PI.ci.area.smooth=T)
 vpc = lapply(vpc, function(x) expand.data(x, values=1:2,name = "pat.class"))
 
 vpc$obs$TIME[vpc$obs$pat.class==1] = vpc$obs$TIME[vpc$obs$pat.class==1]/0.5

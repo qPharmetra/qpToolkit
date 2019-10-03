@@ -53,7 +53,7 @@ eval.eqs=function(.data,  ...)
 
 # ROXYGEN Documentation
 #' Make a covInfo S3 object
-#' @describeIn nm.process.coveffects
+#' @describeIn nm.process.coveffects Make a covInfo S3 object
 #' @description Constructs a covInfo (covariate information) object from a vector.  
 #' @param cov.name The name of the covariate
 #' @param cov.vals A vector of values
@@ -64,6 +64,7 @@ eval.eqs=function(.data,  ...)
 #' @param cov.label The printed name of the covariate (e.g. seen on plot axes)
 #' @param cov.breaks The points at which simulations and plots would be assessed
 #' @return A covInfo object 
+#' @seealso \code{\link{print.covInfo}}
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export covInfo
 #' @examples
@@ -93,7 +94,7 @@ covInfo = function(cov.name
 
 # ROXYGEN Documentation
 #' Print a covInfo S3 object
-#' @describeIn nm.process.coveffects
+# @describeIn nm.process.coveffects Print a covInfo S3 object
 #' @description Prints a covInfo object.  
 #' @param x A covInfo object
 #' @return A covInfo object 
@@ -105,7 +106,7 @@ print.covInfo=function(x) cat(x$name, ": (", x$min, x$center, x$max, ")", x$labe
 
 # ROXYGEN Documentation
 #' Make a list of covInfo objects from a data frame.
-#' @describeIn nm.process.coveffects
+#' @describeIn nm.process.coveffects Make a list of covInfo objects from a data frame
 #' @description Takes a data frame and creates covInfo objects based on its columns.  
 #' @param df A data frame
 #' @param cnames A vector of column names to create covInfo objects for
@@ -114,7 +115,7 @@ print.covInfo=function(x) cat(x$name, ": (", x$min, x$center, x$max, ")", x$labe
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export 
 #' 
-#make a list of covInfo objects from a dataframe.  User can override elements as desired
+# make a list of covInfo objects from a dataframe.  User can override elements as desired
 makeCovInfo= function(df, cnames=names(df), cat.covs="")
 {
   #df is a data.frame of all the covariates (and maybe other things)
@@ -307,15 +308,15 @@ nm.process.coveffects= function(eqs,covs.info,pars, xpose.df, omega, Nboot=10000
 
 #' Plot a covariate effects object
 #'
-#' @param a covEffects object from nm.process.coveffects 
-#' @param idx Names of the plots to print. Defaults to all plots.
-#'
+#' @param x a covEffects object from nm.process.coveffects 
+#' @param y names of the plots to print (defaults to all)
+#' @param \dots ignored
 #' @export
 #'
 
-plot.covEffects=function(obj, idx=names(obj$plot))
+plot.covEffects = function(x, y=names(x$plot), ...)
 {
-  for(i in idx) print(obj$plot[[i]])
+  for(i in y) print(x$plot[[i]])
 }
 
 coveff.plot=function(xpose.df, ppred.df, box, grouping)

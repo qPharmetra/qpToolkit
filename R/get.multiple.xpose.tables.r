@@ -16,6 +16,8 @@
 #' @seealso \code{\link{get.xpose.tables}}
 #' @import Hmisc lattice
 #' @examples
+#' library(Hmisc)
+#' library(lattice)
 #'  test = get.multiple.xpose.tables(runs = c("example1","example2")
 #'  , path = getOption("qpExampleDir"), carryAlong = c("CONC","TIME","EVID"))
 #' names(test)

@@ -89,7 +89,7 @@ uncertainParams = function(out){
   omLen = length(out$ranef[[len]])
   covMat = out$covariance[[len]]
   expected = c(out$fixef[[len]],out$sigef[[len]], out$ranef[[len]])
-  vec = mvrnorm(n=1, mean=expected, Sigma=covMat)
+  vec = mvrnorm(n=1, mu=expected, Sigma=covMat)
   outParams=vector("list")
   outParams$fixed = vec[1:fixLen]
   outParams$sigma = vec[(fixLen+1):(fixLen+sigLen)]

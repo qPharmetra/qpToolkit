@@ -1,16 +1,16 @@
 Package: qpToolkit
 Type: Package
 Title: qPharmetra R Tools
-Version: 0.1.7
-Date: 2019-02-26
+Version: 0.2.0
 Authors@R: as.person(c(
     "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
     "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
-    "Lee Hodge <lee.hodge@qpharmetra.com [aut]"))
-Description: Makes qPharmetra R functions easily available to users
+    "Lee Hodge <lee.hodge@qpharmetra.com> [aut]",
+    "Tim Bergsma <tim.bergsma@qpharmetra.com> [ctb]"))
+Description: Tools for population PK/PD modeling, visualization, and reporting.
 License: file LICENSE
 VignetteBuilder: knitr
-Depends: R (>= 3.1.0), knitr, rmarkdown, tables, xtable, plyr, dplyr
+Depends: R (>= 3.1.0)
 Imports:
   Hmisc(>= 3.14),
   MASS(>= 7.3),
@@ -23,13 +23,22 @@ Imports:
   latticeExtra(>= 0.6),
   metrumrg(>= 5.55),
   nlme(>= 3.1),
-  reshape(>= 0.8.5),
   ggplot2(>= 1.0.0),
+  lazyeval,
   xpose4,
-  reshape2
+  reshape2,
+  knitr,
+  rmarkdown,
+  tables,
+  xtable,
+  plyr,
+  dplyr,
+  magrittr
 Suggests:
-    testthat,
-    pkgdown,
-    covr
+  testthat,
+  pkgdown,
+  covr,
+  GGally
 RoxygenNote: 6.1.1
+Encoding: UTF-8
 Remotes: github::metrumresearchgroup/metrumrg

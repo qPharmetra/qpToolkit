@@ -13,6 +13,7 @@
 #' @importFrom latticeExtra useOuterStrips ggplot2like
 #' @importFrom reshape2 melt
 #' @examples
+#' library(Hmisc)
 #' nm.compare.plot(runs = c("example1","example2")
 #' , path =getOption("qpExampleDir")
 #' , alias = list(DV = "CONC",TIME = "TIME")

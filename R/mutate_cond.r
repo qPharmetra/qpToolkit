@@ -7,6 +7,8 @@
 #' @return the dataset with the conditional mutation
 #' @export mutate_cond
 #' @examples
+#' library(magrittr)
+#' library(dplyr)
 #' nmData = example.NONMEM.dataset() %>% 
 #'    mutate(CMT = swap(EVID, 0:1, 2:1)) %>%
 #'    mutate_cond(condition = CMT>1

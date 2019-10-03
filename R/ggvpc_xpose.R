@@ -22,6 +22,7 @@
 #' @seealso \code{\link{nm.read.vpc}},  \code{\link{ggvpc_standard}} 
 #' @import ggplot2 
 #' @examples
+#' library(ggplot2)
 #' ## example of vpc NOT involving stratification
 #'  nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt")) -> vpc.all
 #' 

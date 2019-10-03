@@ -1,10 +1,10 @@
 # ROXYGEN Documentation
 #' Panel function for Residual Variability Plots
-#' @description Panel function to plot DV, PRED, IPRED overlays individual profiles
+#' @description Panel function to plot DV, PRED, IPRED overlays for individual profiles
 #' @param x,y numeric vectors x and y
-#' @param groups same as lattice groups
-#' @param subscripts
-#' @param logX log the x-axis (defaults to F)
+#' @param groups see \code{\link[lattice]{xyplot}}
+#' @param subscripts see \code{\link[lattice]{xyplot}}
+#' @param logX log the x-axis (defaults to F) 
 #' @param logY log the y-axis (defaults to F)
 #' @param type.obs line type for observed data (defaults to 'b' for both lines and points)
 #' @return Lattice panel output (invisible)
@@ -12,6 +12,7 @@
 #' @import lattice
 #' @importFrom reshape2 melt
 #' @examples
+#' library(Hmisc)
 #' out = get.xpose.tables('example1',getOption('qpExampleDir'))
 #' out$EVID=0
 #' trellis.strip.color()

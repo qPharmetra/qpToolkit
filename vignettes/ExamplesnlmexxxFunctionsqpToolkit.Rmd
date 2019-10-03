@@ -1,12 +1,14 @@
 ---
-title: "Examples_nlme_xxx_Functions_qpToolkit"
+title: "qpToolkit Examples for nlme_xxx Functions"
 author: "Klaas Prins"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Examples_nlme_xxx_Functions_qpToolkit}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{qpToolkit Examples for nlme_xxx Functions}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, echo=F, results='hide',message=F,warning=F}

@@ -1,8 +1,7 @@
 #' Print a welcome message
 #' 
-#' @param name A Character string.  Whom is being addressed (default is "Dude").
+#' @param name length one character: who is being addressed
 #' @return A welcoming message
 #' @keywords internal
 
-qP.welcome = function(name="Dude") cat(paste0("Welcome to the qPharmetra Toolkit for R, ", name))
-
+qP.welcome = function(name="") cat(sep = ', ', "Welcome to the qPharmetra Toolkit for R", if(name == '') NULL else name)

@@ -3,6 +3,8 @@
 #' @return text (\code{example.xpose.VPC} and \code{example.CWRES.plot}) or a NONMEM data.frame (\code{example.NONMEM.dataset})
 #' @export example.xpose.VPC example.CWRES.plot example.NONMEM.dataset example.pkpdData
 #' @examples
+#' library(dplyr)
+#' library(magrittr)
 #' example.xpose.VPC()
 #' 
 #' example.CWRES.plot()

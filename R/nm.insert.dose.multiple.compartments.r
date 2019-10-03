@@ -6,8 +6,12 @@
 #' @param ... (unquoted) columns to sort the result by
 #' @return A data.frame with input dataset supplied with additional doses
 #' @export nm.insert.dose.multiple.compartments
+#' @importFrom lazyeval lazy_dots
+#' @import dplyr
 #' @seealso \code{\link{nm.insert.evid2amt0}}
 #' @examples
+#' library(dplyr)
+#' library(Hmisc)
 #' ## original data:
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
@@ -20,12 +24,12 @@
 #' )
 #' tbl_df(nmData3[, Cs(ID,TIME,EVID,AMT,CMT,DV)])
 
-nm.insert.dose.multiple.compartments = function(data
-                                                , dose.in.cmt = c(1,2)
-                                                , ...
-                                                , quiet = TRUE
-)
-{
+nm.insert.dose.multiple.compartments = function(
+  data, 
+  dose.in.cmt = c(1,2), 
+  ..., 
+  quiet = TRUE
+){
   my.dots = paste(
     unlist(
       lapply(

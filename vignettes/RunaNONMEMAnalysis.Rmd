@@ -5,8 +5,10 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Run a NONMEM Analysis}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -14,9 +16,12 @@ vignette: >
 library(qpToolkit)
 library(plyr)
 library(reshape)
+library(knitr)
+library(ggplot2)
 
 # path to examples NONMEM folder
-nm.path = file.path(getOption("qpExampleDir"))
+# nm.path = file.path(getOption("qpExampleDir"))
+nm.path = system.file(package = 'qpToolkit', 'NONMEM')
 #hide the code blocks in the output
 opts_chunk$set(echo=F)
 ```
@@ -68,16 +73,16 @@ ggplot(subset(data.df,EVID==0), aes(x=TIME,y=DV,group=ID)) + geom_line(alpha=.2)
 ```
 
 #### Covariate Correlations
-If you have the GGally package, enable the code in this section
+If you have the GGally package, enable the code in this section.
 
-```{r, eval=F, echo=F}
+```{r, eval=T, echo=F}
 library(GGally)
+library(Hmisc)
 cov.names = Cs(Gender,Age)
 covs.df = data.df[!duplicated(data.df$ID),cov.names]
 covs.df$Gender = as.factor(c("M","F")[covs.df$Gender+1])
 p.cov.corr.png = ggpairs(covs.df, diag=list(continuous="density", discrete="bar"), axisLabels="show")
 print(p.cov.corr.png)
-
 ```
 
 ## Structural models
@@ -91,7 +96,7 @@ rr =  read.runrec("AAruninfo.txt",nm.path)
 kable(process.runrec(rr,plain=T),row.names=F)
 ```
 
-One compartment is clearly sufficient
+One compartment is clearly sufficient.
 
 ### Example 1: Base Model
 This starts a subreport on run: example 1
@@ -250,7 +255,6 @@ covs.info$GNDR$label = "Gender (kg)"
 covs.info$AGE$label = "Age (Y)"
 covs.info$AGE$breaks = c(1:5,(1:8)*10)
 covs.info$AGE$center=33.72
-
 ```
 
 Print the plots
@@ -265,7 +269,7 @@ coveffs.l = nm.process.coveffects(eqs = eqs
                                      unlist(tmp$omega),triangle = "upper")
 )
 
-plot(coveffs.l)
+# plot(coveffs.l)
 ```
 
 * Shaded areas represent 95% prediction intervals around the population values (solid lines).

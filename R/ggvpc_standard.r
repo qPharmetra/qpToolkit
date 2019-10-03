@@ -25,6 +25,7 @@
 #' @seealso \code{\link{nm.read.vpc}},  \code{\link{ggvpc_xpose}} 
 #' @import ggplot2 
 #' @examples
+#' library(ggplot2)
 #' vpc.all = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_strt"))
 #' ggvpc_standard(vpc.all) 
 #' 
