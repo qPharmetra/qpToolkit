@@ -74,7 +74,7 @@ A VPC plot.
 Plot a VPC of an nlme object
 }
 \examples{
-library(nlme)
+# library(nlme)
 pkpdData = example.pkpdData()
 EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
  {

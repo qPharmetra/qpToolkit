@@ -15,6 +15,8 @@
 #' @examples
 #' library(lattice)
 #' library(reshape2)
+#' library(Hmisc)
+
 #' trellis.strip.color()
 #' xyplot(CONC ~ value | variable
 #'        , data = subset(

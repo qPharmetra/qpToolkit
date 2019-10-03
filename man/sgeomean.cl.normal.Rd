@@ -23,6 +23,7 @@ Vector of three values, representing the geometric mean, and the lower and  uppe
 Make a summary of the geometric mean and 95\% CI of the input
 }
 \examples{
+library(Hmisc)
 test.vector = rlnorm(1000,log(100),0.5)
 hist(test.vector)
 smean.cl.normal(test.vector) ## arithmetic mean and 95\% confidence intervals

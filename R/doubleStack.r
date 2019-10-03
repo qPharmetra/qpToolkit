@@ -3,7 +3,7 @@
 #' @param data dataset containing all variables specified in vars1 and vars2   
 #' @param vars1 The first variable to stack by. For example \code{c(WT,AGE,BMI,SEX)} 
 #' @param vars2 The second variable to stack by after the first stack. For example \code{c(ETA1,ETA2,ETA3)} 
-#' @importFrom rehape2 melt
+#' @importFrom reshape2 melt
 #' @return A data.frame 
 #' @export
 #'

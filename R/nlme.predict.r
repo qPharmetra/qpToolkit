@@ -24,10 +24,10 @@
 #' @param nrep number of replicates to simulate. Defaults to 20.
 #' @return a graph or a multi-level list with observed and predicted output 
 #' @export nlme.predict
-#' @importFrom Hmisc Cs summarize
+#' @importFrom Hmisc Cs summarize smean.cl.normal
 #' @importFrom MASS mvrnorm
 #' @importFrom nlme getData getCovariateFormula fixef ranef 
-#' @importFrom nlme getResponseFormula residuals fitted predict
+#' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula random.effects
 #' @examples   
 #' pkpdData = example.pkpdData()

@@ -46,6 +46,7 @@ Plot basic vpc with 95\% PI and observed data. This call is to be extended with 
 Editing and stratification to be done by adding ggplot layer
 }
 \examples{
+library(ggplot2)
 vpc.all = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_strt"))
 ggvpc_standard(vpc.all) 
 

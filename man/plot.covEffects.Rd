@@ -4,12 +4,14 @@
 \alias{plot.covEffects}
 \title{Plot a covariate effects object}
 \usage{
-\method{plot}{covEffects}(obj, idx = names(obj$plot))
+\method{plot}{covEffects}(x, y = names(x$plot), ...)
 }
 \arguments{
-\item{idx}{Names of the plots to print. Defaults to all plots.}
+\item{x}{a covEffects object from nm.process.coveffects}
 
-\item{a}{covEffects object from nm.process.coveffects}
+\item{y}{names of the plots to print (defaults to all)}
+
+\item{\dots}{ignored}
 }
 \description{
 Plot a covariate effects object

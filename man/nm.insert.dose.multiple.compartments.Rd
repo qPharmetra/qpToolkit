@@ -23,6 +23,8 @@ A data.frame with input dataset supplied with additional doses
 To model drug entry into the system from multiple absorption sites this function allows to turn a NONMEM datset into one with additional doses in differetn compartments.
 }
 \examples{
+library(dplyr)
+library(Hmisc)
 ## original data:
 nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))

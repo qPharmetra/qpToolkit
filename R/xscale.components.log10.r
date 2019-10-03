@@ -9,6 +9,7 @@
 #' @note Not to be called by user. 
 #' @import lattice
 #' @examples
+#' library(lattice)
 #' set.seed(1234)
 #' datf = data.frame(DV = exp(rlnorm(1000, sdlog=0.5)), TIME = seq(1000))
 #' 

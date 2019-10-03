@@ -8,6 +8,7 @@
 #' @export 
 #' @import lattice
 #' @examples
+#' library(lattice)
 #' df = example.pkpdData()
 #' xyplot(value~ time | format(dose) * type, data = df)
 #' set.trellis.colors ()

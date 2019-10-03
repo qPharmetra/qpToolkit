@@ -4,7 +4,7 @@
 \alias{align.around.decimal.point}
 \title{Padding numeric vector around decimal point}
 \usage{
-\method{align}{around.decimal.point}(x, sep = "\\\\.", len)
+align.around.decimal.point(x, sep = '.', Len)
 }
 \arguments{
 \item{x}{A vector of numbers.}

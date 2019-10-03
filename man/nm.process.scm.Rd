@@ -16,6 +16,7 @@ A character vector with processed SCM output, ready for inclusion into a (LaTeX)
 Read and process SCM output file such that the output can be directly copied into Microsoft products and LaTeX typesetting.
 }
 \examples{
+library(xtable)
 ## the code below works if a number of scmlog.txt files are in folder NONMEM/scm files
 myPath = file.path(getOption("qpExampleDir"),"scm_example2")
 scm = nm.process.scm(myPath)
@@ -23,7 +24,7 @@ names(scm)
 
 scm$summary
 
-# populate an appendix with scm output 
+# populate an appendix with scm output
 print(xtable(scm$scm.latex
    , caption = "Full Stepwise Covariate Building output"
    , label =  'Tab:scmfull')

@@ -4,10 +4,10 @@
 \alias{qP.welcome}
 \title{Print a welcome message}
 \usage{
-qP.welcome(name = "Dude")
+qP.welcome(name = "")
 }
 \arguments{
-\item{name}{A Character string.  Whom is being addressed (default is "Dude").}
+\item{name}{length one character: who is being addressed}
 }
 \value{
 A welcoming message

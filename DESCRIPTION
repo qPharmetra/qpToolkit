@@ -27,18 +27,15 @@ Imports:
   lazyeval,
   xpose4,
   reshape2,
-  knitr,
-  rmarkdown,
-  tables,
-  xtable,
-  plyr,
   dplyr,
-  magrittr
+  magrittr,
+  knitr
 Suggests:
   testthat,
   pkgdown,
   covr,
-  GGally
+  GGally,
+  xtable
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 Remotes: github::metrumresearchgroup/metrumrg

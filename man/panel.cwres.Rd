@@ -27,6 +27,9 @@ Lattice panel output (invisible)
 Panel function to plot CWRES vs any covariate
 }
 \examples{
+library(lattice)
+library(reshape2)
+library(Hmisc)
  out = get.xpose.tables("example2", getOption("qpExampleDir"))
  trellis.strip.color()
 xyplot(CWRES ~ value | variable

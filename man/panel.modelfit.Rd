@@ -10,7 +10,9 @@ panel.modelfit(x, y, groups, subscripts, logX = FALSE, logY = FALSE,
 \arguments{
 \item{x, y}{numeric vectors x and y}
 
-\item{groups}{same as lattice groups}
+\item{groups}{see \code{\link[lattice]{xyplot}}}
+
+\item{subscripts}{see \code{\link[lattice]{xyplot}}}
 
 \item{logX}{log the x-axis (defaults to F)}
 
@@ -22,9 +24,10 @@ panel.modelfit(x, y, groups, subscripts, logX = FALSE, logY = FALSE,
 Lattice panel output (invisible)
 }
 \description{
-Panel function to plot DV, PRED, IPRED overlays individual profiles
+Panel function to plot DV, PRED, IPRED overlays for individual profiles
 }
 \examples{
+library(Hmisc)
 out = get.xpose.tables('example1',getOption('qpExampleDir'))
 out$EVID=0
 trellis.strip.color()

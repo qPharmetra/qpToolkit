@@ -50,6 +50,7 @@ Plot basic vpc with 95\% CI of 2.5th, 50th & 97.5th predicted percentile and obs
 Editing and stratification to be done by adding ggplot layer
 }
 \examples{
+library(ggplot2)
 ## example of vpc NOT involving stratification
  nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt")) -> vpc.all
 

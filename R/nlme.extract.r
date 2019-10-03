@@ -19,7 +19,7 @@
 #' @export nlme.extract
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.diag}}, \code{\link{nlme.vpc}},  \code{\link{nlme.simPars}}, \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}
 #' @importFrom nlme getData getCovariateFormula fixef ranef 
-#' @importFrom nlme getResponseFormula residuals fitted predict
+#' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula pdMatrix intervals
 #' @importFrom Hmisc Cs
 #' @examples

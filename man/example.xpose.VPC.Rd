@@ -13,6 +13,8 @@ text (\code{example.xpose.VPC} and \code{example.CWRES.plot}) or a NONMEM data.f
 examples for qPharmetra style VPC and GOF plots and a NONMEM data set
 }
 \examples{
+library(dplyr)
+library(magrittr)
 example.xpose.VPC()
 
 example.CWRES.plot()

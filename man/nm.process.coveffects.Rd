@@ -3,12 +3,21 @@
 \name{make.eqs}
 \alias{make.eqs}
 \alias{eval.eqs}
+\alias{covInfo}
+\alias{makeCovInfo}
 \alias{nm.process.coveffects}
 \title{Make a list of equations}
 \usage{
 make.eqs(...)
 
 eval.eqs(.data, ...)
+
+covInfo(cov.name, cov.vals, cov.cat = FALSE,
+  cov.center = median(cov.vals), cov.min = min(cov.vals),
+  cov.max = max(cov.vals), cov.label = cov.name,
+  cov.breaks = pretty(cov.vals))
+
+makeCovInfo(df, cnames = names(df), cat.covs = "")
 
 nm.process.coveffects(eqs, covs.info, pars, xpose.df, omega,
   Nboot = 10000, pi.wid = 0.9)
@@ -17,6 +26,28 @@ nm.process.coveffects(eqs, covs.info, pars, xpose.df, omega,
 \item{...}{A series of named formulas}
 
 \item{.data}{is data.frame, list, or environment}
+
+\item{cov.name}{The name of the covariate}
+
+\item{cov.vals}{A vector of values}
+
+\item{cov.cat}{A boolean indicating if the covariate is categorical}
+
+\item{cov.center}{The typical value of the covariate}
+
+\item{cov.min}{The minimum value of the covariate}
+
+\item{cov.max}{The maximum value of the covariate}
+
+\item{cov.label}{The printed name of the covariate (e.g. seen on plot axes)}
+
+\item{cov.breaks}{The points at which simulations and plots would be assessed}
+
+\item{df}{A data frame}
+
+\item{cnames}{A vector of column names to create covInfo objects for}
+
+\item{cat.covs}{A vector of categorical column names.  Must be a subset of cnames}
 
 \item{eqs}{A list of calls}
 
@@ -38,10 +69,18 @@ in a given environment.
 
 .data is returned with the evaluated expressions added
 
+A covInfo object
+
+A list of covInfo objects
+
 A list including lists of: covariate effect plots, table of covariate effects,
 table of post-hoc values -- for each covariate effect; the call list; the list of covInfo
 }
 \description{
+Constructs a covInfo (covariate information) object from a vector.
+
+Takes a data frame and creates covInfo objects based on its columns.
+
 A list of equations that define the covariate relationships is...
 }
 \section{Functions}{
@@ -51,9 +90,17 @@ input formulas.
 
 \item \code{eval.eqs}: Evaluate a list of calls in an environment, list, 
 or data.frame.
+
+\item \code{covInfo}: Make a covInfo S3 object
+
+\item \code{makeCovInfo}: Make a list of covInfo objects from a data frame
 }}
 
 \note{
+This function is used with \code{nm.process.coveffects}
+
+This function is used with \code{nm.process.coveffects}
+
 This function is used with \code{nm.process.coveffects}
 
 This function is used with \code{nm.process.coveffects}
@@ -69,4 +116,12 @@ eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
             )
 eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")            
 
+eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+            ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
+            )
+eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")            
+
+}
+\seealso{
+\code{\link{print.covInfo}}
 }

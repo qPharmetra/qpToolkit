@@ -49,6 +49,8 @@ Lattice panel function for spagghetti plots with a mean line
 }
 \examples{
 \dontrun{
+library(lattice)
+library(metrumrg)
 pkpdData = example.pkpdData()
 xyplot(value ~ time | dose *  type
        , data = pkpdData

@@ -19,6 +19,7 @@ Lattice panel output (invisible)
 when called before a lattice call, the strip panels will be set in grayscales
 }
 \examples{
+library(lattice)
 df = example.pkpdData()
 xyplot(value~ time | format(dose) * type, data = df)
 set.trellis.colors ()

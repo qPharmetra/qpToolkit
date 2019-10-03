@@ -11,7 +11,7 @@ get.eigen(run, path = getOption("nmDir"), file.ext = ".lst")
 
 \item{path}{directory where \code{run} resides}
 
-\item{file.ext}{extensionof the NONMEM output file (.lst)}
+\item{file.ext}{extension of the NONMEM output file (.lst)}
 }
 \value{
 list with named vectors with Eigen values for each estimation method

@@ -21,7 +21,7 @@
 #' @export nlme.diag
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.predict}}
 #' @importFrom nlme getData getCovariateFormula fixef ranef 
-#' @importFrom nlme getResponseFormula residuals fitted predict
+#' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula
 #' @importFrom Hmisc Cs
 #' @import lattice

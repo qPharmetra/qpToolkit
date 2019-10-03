@@ -52,7 +52,7 @@ head(XLinput1)
 head(iXLinput1)
 load.data(xlsFiles="ExampleInput.xlsx",
           xlsNames="XLinput2", 
-          xlsSheets=2,            # NOTE WE can specify which worksheet (tab) of the Excel file
+          xlsSheets=2,            # NOTE We can specify which worksheet (tab) of the Excel file
           doScan=FALSE)
 head(iXLinput2)
 load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),

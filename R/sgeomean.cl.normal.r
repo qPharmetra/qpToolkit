@@ -9,6 +9,7 @@
 #' @return Vector of three values, representing the geometric mean, and the lower and  upper component of the confidence interval.
 #' @export
 #' @examples
+#' library(Hmisc)
 #' test.vector = rlnorm(1000,log(100),0.5)
 #' hist(test.vector)
 #' smean.cl.normal(test.vector) ## arithmetic mean and 95% confidence intervals

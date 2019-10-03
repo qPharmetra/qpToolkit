@@ -26,7 +26,7 @@
 #' @return A plot
 #' @export plot.fit
 #' @import lattice
-#' @importFrom nlme getResponseFormula getCovariatesFormula getGroupsFormula
+#' @importFrom nlme getResponseFormula getCovariateFormula getGroupsFormula
 #' @importFrom Hmisc Cs
 #' @examples
 #' pkpdData = example.pkpdData()

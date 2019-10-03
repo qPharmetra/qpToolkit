@@ -23,7 +23,7 @@ fm1 <- nlme(height ~ SSasymp(age, Asym, R0, lrc),
   random = Asym ~ 1,
   start = c(Asym = 103, R0 = -8.5, lrc = -3.3)
   )
-nlme.getFixPars(fm1)
+nlme.getRanPars(fm1)
 }
 \seealso{
 \code{\link{nlme.getFixPars}}, \code{\link{nlme.simPars}}, \code{\link{nlme.extract}}

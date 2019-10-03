@@ -33,7 +33,7 @@ A numeric vector
 Divide numeric variable into bins
 }
 \note{
-This function was based on \code{cut2} from the Hmisc package. Instead of returning factors it returns numeric values representating the mean of the bins
+This function was based on \code{\link[Hmisc]{cut2}} from the Hmisc package. Instead of returning factors it returns numeric values representating the mean of the bins
 }
 \examples{
 pkpdData = example.pkpdData()

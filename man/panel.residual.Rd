@@ -27,6 +27,9 @@ Lattice panel output (invisible)
 Panel function to plot residuals vs any covariate or DV vs (I)PRED
 }
 \examples{
+library(lattice)
+library(reshape2)
+library(Hmisc)
 trellis.strip.color()
 xyplot(CONC ~ value | variable
        , data = subset(
