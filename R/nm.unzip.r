@@ -9,9 +9,9 @@
 #'   option unzip.call.
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
-anything else that has been zipped
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
-#' @param extension file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or #' @param zip.call full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"
+#' @param extension file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped
+#' @param zip.call full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"
 #' @param filename file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults
 #' @param zip.filename filename of the zip file to extract. Is automatically populated with qP workflow defaults
 #' @param quiet whether to suppress process messages
@@ -19,7 +19,8 @@ anything else that has been zipped
 #' @export
 #' @examples 
 #' file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
-#' nm.unzip(run="example1", extension=".cov", path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
+#' nm.unzip(run="example1", extension=".cov", 
+#' path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
 #' file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 

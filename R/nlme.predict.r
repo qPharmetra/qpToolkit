@@ -46,23 +46,28 @@
 #'   # Return effect-site concentration
 #'   dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 #' }
-#' fit.PD004.nlme = nlme.run(model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-#'                           data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
-#'                           fixed = base + cl + v + ka + keo ~ 1, 
-#'                           random = cl.eta ~ 1, 
-#'                           groups = ~ id, 
-#'                           start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
-#'                           problem = "True Model",
-#'                           reference = 4)
+#' fit.PD004.nlme = nlme.run(
+#'   model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
+#'   data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
+#'   fixed = base + cl + v + ka + keo ~ 1, 
+#'   random = cl.eta ~ 1, 
+#'   groups = ~ id, 
+#'   start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
+#'   problem = "True Model",
+#'   reference = 4)
 #' summary(fit.PD004.nlme$object)
 #' nlme.extract(fit.PD004.nlme$object)$table
 #' 
 #' # simple fit vs time
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object)
 #' plot(fit.PD004.pred.nlme)
-#' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object, method = "partial.residuals")
+#' fit.PD004.pred.nlme = nlme.predict(
+#'   func = value ~ time , fit.PD004.nlme$object, method = "partial.residuals"
+#' )
 #' plot(fit.PD004.pred.nlme) ## this is the same: PARTIAL RESIDUALS
-#' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object, method = "prediction")
+#' fit.PD004.pred.nlme = nlme.predict(
+#'   func = value ~ time , fit.PD004.nlme$object, method = "prediction"
+#' )
 #' plot(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
 #' 
 #' ## note that prediction and partial residual type of model fit plots are very different
@@ -70,7 +75,9 @@
 #' # fit vs time by dose
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object)
 #' plot(fit.PD004.pred.nlme) 
-#' fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals")
+#' fit.PD004.pred.nlme = nlme.predict(
+#'   func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals"
+#' )
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
 
@@ -269,7 +276,7 @@ nlme.predict = function(
       return(ypr)      
     },  form = objectForm, 
         data = mpData, 
-        fxpars = uncPars,                                             
+        fxpars = uncPars,                     
         nms.fix = names(fixpars), 
         theETAS = etas[, names(etas) %nin% gpNames], 
         nms.eta = names(etas)[names(etas) %nin% gpNames],

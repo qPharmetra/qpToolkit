@@ -26,6 +26,8 @@ panel.avg.LP(x, y, fun = mean, horizontal = TRUE,
 
 \item{type}{same as type in a lattice call (default is "l" for lines)}
 
+\item{\dots}{passed to panel.points() and panel.lines()}
+
 \item{identifier}{option to join lines (which is default)}
 
 \item{show.points}{logical indicating to show observed data dots}

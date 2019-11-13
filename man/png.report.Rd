@@ -31,7 +31,7 @@ A graph written to file in .png format that can be included into reports, for ex
 Writes graph to file for inclusion in report. The function opens a graphics device, after which the plot call(s) should follow. To be executed, the graphics device needs to be closed with \code{dev.off()}.
 }
 \examples{
-png.report(filename="test.png") 
+\dontrun{ png.report(filename="test.png") }
 set.seed(1234567)
 plot(x=1:25,y=rnorm(25,50,5))
 dev.off()

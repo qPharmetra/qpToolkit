@@ -10,6 +10,10 @@ formatted.signif(x, digits = 3, latex = FALSE, align.dot = FALSE)
 \item{x}{a vector of values to be processed into significant digits format}
 
 \item{digits}{single value specifying the number of significant digits}
+
+\item{latex}{whether to convert scientific notation to latex equivalent (e -> *10^)}
+
+\item{align.dot}{whether to decimal-align the result}
 }
 \value{
 A formatted character vector containing \code{x} in with significant \code{digits} format

@@ -8,6 +8,12 @@ panel.superpose.arrows(x, y, subscripts, groups, ...)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}
+
+\item{subscripts}{unused}
+
+\item{groups}{grouping levels}
+
+\item{\dots}{unused}
 }
 \value{
 Lattice panel output (invisible)

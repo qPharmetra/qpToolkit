@@ -12,9 +12,15 @@ panel.superpose.bubble(x, y, n, groups, subscripts, cols = NULL,
 
 \item{n}{the column containing the sample ie of each record}
 
+\item{groups}{grouping levels}
+
+\item{subscripts}{subscripts}
+
 \item{cols}{bubble colors}
 
 \item{syms}{bubbles symbol types}
+
+\item{\dots}{passed to llines() and lpoints()}
 }
 \value{
 Lattice panel output (invisible)

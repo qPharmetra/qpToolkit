@@ -9,11 +9,39 @@ panel.nonmem.vpc(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   lineType, central.lwd, ...)
 }
 \arguments{
+\item{x}{x variable}
+
+\item{y}{y variable}
+
+\item{OBS}{list with element: strata_no}
+
+\item{vpc}{list with element: strata_no}
+
+\item{subscripts}{subscripts for vpc}
+
 \item{logY}{logical for logging Y coordinate}
 
 \item{logX}{logical for logging X coordinate}
 
-\item{other}{a collection of parameters are available to modify the layout of the VPC}
+\item{showPredAs}{choice of 'lines', 'area', or 'xpose'}
+
+\item{showObsDots}{whether to show observations as dots}
+
+\item{showObsLines}{whether to show observations as lines}
+
+\item{xCov}{covariates of interest from vpc}
+
+\item{col.scheme}{list with elements: [pred: [outer, central, area], obs: [dot, line]]}
+
+\item{obscex.dot}{cex for observations}
+
+\item{obspch.dot}{pch for observations}
+
+\item{lineType}{line type for observations and predictions}
+
+\item{central.lwd}{line width for predicted central tendency}
+
+\item{\dots}{passed to panel.xyplot() and llines()}
 }
 \value{
 Lattice panel output (invisible)

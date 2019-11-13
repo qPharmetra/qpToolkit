@@ -86,8 +86,6 @@ eff.3comp.1abs(dose, tob, parms)
 \item{dose}{vector of dose amounts (individual pk.xxx functions)}
 
 \item{tob}{vector of time observations  (individual pk.xxx functions)}
-
-\item{e.func}{function object predicting effects}
 }
 \value{
 PK predictions, PK plots

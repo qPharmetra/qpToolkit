@@ -1,11 +1,7 @@
-
-# ROXYGEN Documentation
 #' qPharmetra Colors
-#' @description a set of qPharmetra colors to be used for plotting
-#' @section Notes:
-#' Colors are named rgb codes
-#' @return qPharmetra logo colors qp.blue, qp.green, and the following low saturated colors: lime,apple,emerald, cobalt, cyan, cobalt, indigo, violet, pink, magenta, crimson, ketchup, orange,amber,yellow,brown,olive,steel,mauve,taupe.
-#' @export qp.colors qp.green qp.blue qp.colors qp.colors.sorted lime apple emerald cobalt cyan cobalt indigo violet pink magenta crimson ketchup orange amber yellow brown olive steel mauve taupe gray blue green red purple teal obs.color loi.color smooth.color smooth.ci.color lin.fit.col abline.color box.plot.color histogram.color abline.color.box ipred.color pred.color PI.ci.med.arcol PI.real.med.col PI.real.down.col PI.real.up.col PI.ci.down.arcol PI.ci.up.arcol pred.lty ipred.lty
+#' 
+#' A set of qPharmetra colors to be used for plotting
+#' 
 #' @family qpcolors
 #' @examples
 #' ## the greens and the blues
@@ -66,130 +62,313 @@
 #' polygon(x = c(0,1,1,0),y=c(1,1,0.5,0.5), col = qp.green, border = FALSE)
 #' text(0.5,0.75, "qPharmetra", col = "white", cex = 5)
 #' text(0.5,0.25, "qPharmetra", col = "white", cex = 5)
+'qp.colors'
+
+#' qP Colors Sorted
 #' 
+#' A sorted version of qP colors
+'qp.colors.sorted'
 
-qp.blue = rgb(20/255,74/255,144/255)
-qp.green = rgb(76/255,181/255,79/255)
+#' qp.blue
+#' 
+#' @family qpcolors
+'qp.blue'
+# foo <- Hmisc::Cs(
+#    qp.blue,
+#    qp.green,
+#    blue,
+#    green,
+#    red,
+#    purple,
+#    gray,
+#    blue,
+#    green,
+#    red,
+#    purple,
+#    lime,
+#    apple,
+#    emerald,
+#    teal,
+#    cyan,
+#    cobalt,
+#    indigo,
+#    violet,
+#    pink,
+#    magenta,
+#    crimson,
+#    ketchup,
+#    orange,
+#    amber,
+#    yellow,
+#    brown,
+#    olive,
+#    steel,
+#    mauve,
+#    taupe,
+#    qp.colors,
+#    qp.colors.sorted,
+#    # autograph
+#    obs.color,
+#    loi.color,
+#    smooth.color,
+#    smooth.ci.color,
+#    lin.fit.col,
+#    abline.color,
+#    box.plot.color,
+#    histogram.color,
+#    abline.color.box,
+#    pred.color,
+#    ipred.color,
+#    PI.ci.med.arcol,
+#    PI.real.med.col,
+#    PI.real.down.col,
+#    PI.real.up.col,
+#    PI.ci.down.arcol,
+#    PI.ci.up.arcol
+# )
+# for(i in foo){
+#    writeLines(paste("#'", i))
+#    writeLines("#'")
+#    writeLines("#' @family qpcolors")
+#    writeLines(paste0('"',i,'"'))
+#    writeLines('')
+# }
+#' qp.blue
+#'
+#' @family qpcolors
+"qp.blue"
 
-nc = 7
-blue  	= rgb(seq(230,0,length=nc),seq(230,0,length=nc),seq(255,240,length=nc),maxColorValue = 255) 
-green		= rgb(seq(230,0,length=nc),seq(255,150,length=nc), seq(230,0,length=nc), maxColorValue = 255)
-red		= rgb(seq(255,240,length=nc),seq(230,10,length=nc), seq(230,10,length=nc), maxColorValue = 255)
-purple	= rgb(seq(255,240,length=nc),seq(230,10,length=nc), seq(255,240,length=nc), maxColorValue = 255)
-gray        = rgb(seq(242,0,length=10),seq(242,0,length=10),seq(242,0,length=10), maxColorValue = 255)
+#' qp.green
+#'
+#' @family qpcolors
+"qp.green"
 
-## add superdark example as eighth option
-blue  = c(blue , rgb(0,0,150,maxColorValue = 255),rgb(0,0,80,maxColorValue = 255), rgb(0,0,30,maxColorValue = 255))
-green = c(green, rgb(0,150,0,maxColorValue = 255),rgb(0,80,0,maxColorValue = 255),rgb(0,30,0,maxColorValue = 255))
-red   = c(red  , rgb(150,0,0,maxColorValue = 255),rgb(80,0,0,maxColorValue = 255),rgb(30,0,0,maxColorValue = 255))
-purple= c(purple, rgb(150,0,150,maxColorValue = 255),rgb(80,0,80,maxColorValue = 255),rgb(30,0,30,maxColorValue = 255))
+#' blue
+#'
+#' @family qpcolors
+"blue"
 
-nc = length(blue)
-names(blue) = paste("blue", 1:nc,sep = "")
-names(green) = paste("green", 1:nc,sep = "")
-names(red) = paste("red", 1:nc,sep = "")
-names(purple) = paste("purple", 1:nc,sep = "")
-names(gray) = paste("gray", 1:nc,sep = "")
+#' green
+#'
+#' @family qpcolors
+"green"
 
+#' red
+#'
+#' @family qpcolors
+"red"
 
-lime =  rgb(164/255,196/255,0/255)
-apple = rgb(96/255,169/255,23/255)
-emerald = rgb(0,138/255,0)
-teal = rgb(0,171/255,169/255)
-cyan = rgb(27/255,161/255,226/255)
-cobalt = rgb(0,80/255,239/255)
-indigo = rgb(106/255,0,1)
-violet = rgb(170/255,0,1)
-pink = rgb(244/255,114/255,208/255)
-magenta = rgb(216/255,0,115/255)
-crimson = rgb(162/255,0,37/255)
-ketchup = rgb(229/255,20/255,0)
-orange = rgb(250/255,104/255,0)
-amber = rgb(240/255,163/255,10/255)
-yellow = rgb(227/255,200/255,0)
-brown = rgb(130/255,90/255,44/255)
-olive = rgb(109/255,135/255,100/255)
-steel = rgb(100/255,118/255,135/255)
-mauve = rgb(118/255,96/255,138/255)
-taupe = rgb(135/255,121/255,78/255)
+#' purple
+#'
+#' @family qpcolors
+"purple"
 
+#' gray
+#'
+#' @family qpcolors
+"gray"
 
-qp.colors = c(qp.blue = qp.blue,
-              qp.green = qp.green, 
-              ketchup = ketchup, 
-              amber = amber, 
-              brown = brown, 
-              cobalt = cobalt,
-              emerald = emerald, 
-              orange = orange, 
-              indigo = indigo, 
-              apple = apple, 
-              cyan = cyan, 
-              violet = violet, 
-              pink = pink, 
-              steel = steel, 
-              crimson = crimson, 
-              yellow = yellow, 
-              teal = teal,
-              olive = olive, 
-              lime = lime, 
-              magenta = magenta, 
-              mauve = mauve, 
-              taupe = taupe
-)
+#' blue
+#'
+#' @family qpcolors
+"blue"
 
-qp.colors.sorted =  c(
-   lime = lime, 
-   apple = apple, 
-   qp.green = qp.green,
-   emerald = emerald,
-   teal = teal,
-   cyan = cyan, 
-   cobalt = cobalt,
-   qp.blue = qp.blue,
-   indigo = indigo, 
-   violet = violet,
-   pink = pink,
-   magenta = magenta,
-   ketchup = ketchup, 
-   crimson = crimson,
-   brown = brown,
-   orange = orange,
-   amber = amber, 
-   yellow = yellow, 
-   olive = olive, 
-   taupe = taupe, 
-   mauve = mauve, 
-   steel = steel
-)
+#' green
+#'
+#' @family qpcolors
+"green"
 
-## autographs colors
+#' red
+#'
+#' @family qpcolors
+"red"
 
-obs.color="slategrey"
-loi.color="black" 
-smooth.color=emerald
-smooth.ci.color=emerald 
-lin.fit.col="blue"
-abline.color="darkslategrey"
-box.plot.color="#2C858D"
-histogram.color="#2C858D"
-abline.color.box="#6A2D8A"
-pred.color=ketchup
-ipred.lty = 1
-ipred.color=cobalt 
-pred.lty = 1
-PI.ci.med.arcol = emerald
-PI.real.med.col= "blue"
-PI.real.down.col="darkslategrey"
-PI.real.up.col="darkslategrey"
+#' purple
+#'
+#' @family qpcolors
+"purple"
 
-#' @name PI.ci.down.arcol
-#' @docType data
-#' @keywords data
-PI.ci.down.arcol = gray(0.2)
+#' lime
+#'
+#' @family qpcolors
+"lime"
 
-#' @name PI.ci.up.arcol
-#' @docType data
-#' @keywords data
-PI.ci.up.arcol = gray(0.2)
+#' apple
+#'
+#' @family qpcolors
+"apple"
 
+#' emerald
+#'
+#' @family qpcolors
+"emerald"
+
+#' teal
+#'
+#' @family qpcolors
+"teal"
+
+#' cyan
+#'
+#' @family qpcolors
+"cyan"
+
+#' cobalt
+#'
+#' @family qpcolors
+"cobalt"
+
+#' indigo
+#'
+#' @family qpcolors
+"indigo"
+
+#' violet
+#'
+#' @family qpcolors
+"violet"
+
+#' pink
+#'
+#' @family qpcolors
+"pink"
+
+#' magenta
+#'
+#' @family qpcolors
+"magenta"
+
+#' crimson
+#'
+#' @family qpcolors
+"crimson"
+
+#' ketchup
+#'
+#' @family qpcolors
+"ketchup"
+
+#' orange
+#'
+#' @family qpcolors
+"orange"
+
+#' amber
+#'
+#' @family qpcolors
+"amber"
+
+#' yellow
+#'
+#' @family qpcolors
+"yellow"
+
+#' brown
+#'
+#' @family qpcolors
+"brown"
+
+#' olive
+#'
+#' @family qpcolors
+"olive"
+
+#' steel
+#'
+#' @family qpcolors
+"steel"
+
+#' mauve
+#'
+#' @family qpcolors
+"mauve"
+
+#' taupe
+#'
+#' @family qpcolors
+"taupe"
+
+#' obs.color (Autograph)
+#'
+#' @family qpcolors
+"obs.color"
+
+#' loi.color (Autograph)
+#'
+#' @family qpcolors (Autograph)
+"loi.color"
+
+#' smooth.color (Autograph)
+#'
+#' @family qpcolors
+"smooth.color"
+
+#' smooth.ci.color (Autograph)
+#'
+#' @family qpcolors
+"smooth.ci.color"
+
+#' lin.fit.col (Autograph)
+#'
+#' @family qpcolors
+"lin.fit.col"
+
+#' abline.color (Autograph)
+#'
+#' @family qpcolors
+"abline.color"
+
+#' box.plot.color (Autograph)
+#'
+#' @family qpcolors
+"box.plot.color"
+
+#' histogram.color (Autograph)
+#'
+#' @family qpcolors
+"histogram.color"
+
+#' abline.color.box (Autograph)
+#'
+#' @family qpcolors
+"abline.color.box" 
+
+#' pred.color (Autograph)
+#'
+#' @family qpcolors
+"pred.color"
+
+#' ipred.color (Autograph)
+#'
+#' @family qpcolors
+"ipred.color"
+
+#' PI.ci.med.arcol (Autograph)
+#'
+#' @family qpcolors
+"PI.ci.med.arcol"
+
+#' PI.real.med.col (Autograph)
+#'
+#' @family qpcolors
+"PI.real.med.col"
+
+#' PI.real.down.col (Autograph)
+#'
+#' @family qpcolors
+"PI.real.down.col"
+
+#' PI.real.up.col (Autograph)
+#'
+#' @family qpcolors
+"PI.real.up.col"
+
+#' PI.ci.down.arcol (Autograph)
+#'
+#' @family qpcolors
+"PI.ci.down.arcol"
+
+#' PI.ci.up.arcol (Autograph)
+#'
+#' @family qpcolors (Autograph)
+"PI.ci.up.arcol"

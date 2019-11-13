@@ -4,12 +4,14 @@
 \alias{transform_log10}
 \title{Log10 transformation}
 \usage{
-transform_log10(`_data`, ..., log)
+transform_log10(x, ..., log)
 }
 \arguments{
-\item{log}{If TRUE or any numeric value the log base 10 of x will be taken}
-
 \item{x}{Value to log with base 10}
+
+\item{\dots}{ignored}
+
+\item{log}{If TRUE or any numeric value the log base 10 of x will be taken}
 }
 \value{
 log10(x)
@@ -19,5 +21,5 @@ Takes the log10 of the input in case argument log is T or a numeric value
 }
 \examples{
 transform_log10(c(1,10,100), log = TRUE)
-transform_log10(c(2,3,200,1000,33330), 2)
+transform_log10(c(2,3,200,1000,33330), log = 2)
 }

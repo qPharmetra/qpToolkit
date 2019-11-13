@@ -19,7 +19,7 @@ Read the run record into readable table. This function assumes runrecord has bee
 }
 \examples{
 rr = read.runrec(filename = "AAruninfo.txt"
-, path = file.path(getOption("qpExampleDir"))
+, path = system.file(package = 'qpToolkit','NONMEM')
 )
 rr
 process.runrec(rr)

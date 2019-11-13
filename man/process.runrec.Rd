@@ -23,7 +23,10 @@ Either a LaTeX preformatted runrecord table (default) or a fully processed runre
 Process the run record into a data frame ready for integration into LaTeX report. Note that the function assumes runrecord has been run with PsN option -maxlvl=0 and the function depends on input from \code{read.runrec}
 }
 \examples{
-rr = read.runrec(filename = "AAruninfo.txt", path = file.path(getOption("qpExampleDir")))
+rr = read.runrec(
+ filename = "AAruninfo.txt", 
+ path = system.file(package = 'qpToolkit','NONMEM')
+)
 process.runrec(rr)
 process.runrec(rr, plain = TRUE)
 }

@@ -32,7 +32,8 @@
 #' 
 #' #contents of the list
 #' names(nmcov)
-#' #[1] "covdata"        "eta.splom"      "eta.dens"       "conData.eta"    "catData.eta"    "conData.par"    "catData.par"   
+#' #[1] "covdata"        "eta.splom"      "eta.dens"       
+#' # "conData.eta"    "catData.eta"    "conData.par"    "catData.par"   
 #' #[8] "etaContVarPlot" "etaCatVarPlot"  "parContVarPlot" "parCatVarPlot" 
 #' 
 #' # let's look at the plots

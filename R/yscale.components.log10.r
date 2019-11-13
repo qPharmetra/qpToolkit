@@ -1,12 +1,9 @@
-
-# ROXYGEN Documentation
-#' Nice log10 y axes labels
-#' @description Labels 10-logged y axes appropriately in lattice
+#' Labels 10-logged y axes appropriately in lattice
 #' @param lim internal required argument. 
 #' @param \dots passed to yscale.components.default()
 #' @return Nothing. It's a function to be called inside a lattice call
-#' @export yscale.components.log10 yscale.components.log10.3
-#' @seealso \code{\link{xscale.components.log10}}, \code{\link{xscale.components.log10.3}}
+#' @export
+#' @family scale.components
 #' @note Not to be called by user.
 #' @import lattice
 #' @examples 
@@ -39,6 +36,15 @@ yscale.components.log10 = function (lim, ...){
   ans$left$labels$labels = parse(text = tick.at)
   ans
 }
+#' Labels 10-logged y axes appropriately in lattice (ticks at powers of 1 and 3)
+#' @param lim internal required argument. 
+#' @param \dots passed to yscale.components.default()
+#' @return Nothing. It's a function to be called inside a lattice call
+#' @export yscale.components.log10 yscale.components.log10.3
+#' @family scale.components
+#' @note Not to be called by user.
+#' @import lattice
+#' @export
 
 yscale.components.log10.3 = function (lim, ...){
   ans = yscale.components.default(lim = lim, ...)

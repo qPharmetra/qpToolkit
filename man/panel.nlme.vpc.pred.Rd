@@ -8,7 +8,33 @@ panel.nlme.vpc.pred(x, y, OBS, vpc, subscripts, logY, showPredAs,
   showObsDots, showObsLines, xCov, col.scheme, obscex.dot, obspch.dot, ...)
 }
 \arguments{
-\item{other}{a collection of parameters are available to modify the layout of the VPC}
+\item{x}{x variable}
+
+\item{y}{y variable}
+
+\item{OBS}{unused}
+
+\item{vpc}{unused}
+
+\item{subscripts}{unused}
+
+\item{logY}{whether to log-transform the y axis}
+
+\item{showPredAs}{choice of 'lines' or 'area'}
+
+\item{showObsDots}{unused}
+
+\item{showObsLines}{unused}
+
+\item{xCov}{unused}
+
+\item{col.scheme}{list with elements: [pred: [outer, area, inner]]}
+
+\item{obscex.dot}{unused}
+
+\item{obspch.dot}{unused}
+
+\item{\dots}{passed to llines()}
 }
 \value{
 Lattice panel output (invisible)

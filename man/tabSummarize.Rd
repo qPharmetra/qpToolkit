@@ -15,6 +15,8 @@ tabSummarize(formula, data, nSignif = 3, extra.blank.line = TRUE,
 \item{nSignif}{number of significant digits in output}
 
 \item{extra.blank.line}{a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility}
+
+\item{ndigits.categorical}{passed to \code{\link{tabStats}}}
 }
 \value{
 Table with summarized data, of class \code{demoTable}
@@ -31,7 +33,8 @@ pkpdData = example.pkpdData()
 ok = duplicated(pkpdData$id) == FALSE
 tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
 # check the categorical summary for race
-round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
+round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], 
+pkpdData$dose[ok]), 2, sum) * 100)
 # OK
 myFormula =  dose ~ race + wt + bmi + sex
 format(

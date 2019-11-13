@@ -1,6 +1,3 @@
-
-
-
 # ROXYGEN Documentation
 #' Create covariate plot and data
 #' @param path directory where vpc_results and vpctab files reside
@@ -109,8 +106,9 @@ nm.vpcplot = function(path,
             length as the number of start in th VPC. VPC plot routine aborted.")
     return()
   }
-
+  stop('this function requires review')
   ## CHECK exchange.values not defined
+  exchange.values <- function(x)x
   if(!is.null(relabel.strata) & length(relabel.strata$old) == length(vpc$vpc$strata.names))
   {
     vpc$vpc$strata.names = exchange.values(vpc$vpc$strata.names, relabel.strata$old, relabel.strata$new)

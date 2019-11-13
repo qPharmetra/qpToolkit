@@ -67,8 +67,11 @@ Histograms of bootstrapped parameter estimates
 Create histograms of PsN boostrap output read with read.bootstrap
 }
 \examples{
-myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
+myBoot = read.bootstrap(path = getOption("qpExampleDir"),
+filename = "bootstrap/raw_results_bs4011.csv",
+structure.filename = "bootstrap/raw_results_structure")
 temp.dir = tempdir()
 cat(temp.dir)
-histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") ## now take a look there
+histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") 
+## now take a look there
 }

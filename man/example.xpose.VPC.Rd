@@ -6,22 +6,15 @@
 \usage{
 example.xpose.VPC()
 }
-\value{
-text (\code{example.xpose.VPC} and \code{example.CWRES.plot}) or a NONMEM data.frame (\code{example.NONMEM.dataset})
-}
 \description{
-examples for qPharmetra style VPC and GOF plots and a NONMEM data set
+examples for qPharmetra style VPC
 }
 \examples{
-library(dplyr)
-library(magrittr)
 example.xpose.VPC()
-
-example.CWRES.plot()
-
-nmData = example.NONMEM.dataset()
-nmData \%>\% group_by(DOSE) \%>\% summarise(nID=lunique(ID), nObs = length(DV))
-
-pkpdData = example.pkpdData()
-tbl_df(pkpdData)
 }
+\seealso{
+Other qpexamples: \code{\link{example.CWRES.plot}},
+  \code{\link{example.NONMEM.dataset}},
+  \code{\link{example.pkpdData}}
+}
+\concept{qpexamples}

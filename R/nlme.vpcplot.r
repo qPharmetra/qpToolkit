@@ -58,44 +58,46 @@
 #'    # Return effect-site concentration
 #'    dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 #'  }
-#'  fit.PD004.nlme = nlme.run(model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-#'                            data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
-#'                            fixed = base + cl + v + ka + keo ~ 1, 
-#'                            random = cl.eta ~ 1, 
-#'                            groups = ~ id, 
-#'                            start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
-#'                            problem = "True Model",
-#'                            reference = 4)
+#'  fit.PD004.nlme = nlme.run(
+#'    model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
+#'    data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
+#'    fixed = base + cl + v + ka + keo ~ 1, 
+#'    random = cl.eta ~ 1, 
+#'    groups = ~ id, 
+#'    start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
+#'    problem = "True Model",
+#'    reference = 4)
 #'  summary(fit.PD004.nlme$object)
 #'  nlme.extract(fit.PD004.nlme$object)$table
 #'  vpc.PD004.nlme = nlme.vpc(fit.PD004.nlme$object, nrep = 100)
 #'  nlme.vpcplot(fit.PD004.nlme$object, vpc.PD004.nlme)
 
-nlme.vpcplot = function(object, 
-                        vpc, 
-                        formula,
-                        obsData = NULL, 	## defaults to obsData = getData(object)
-                        ## use if newdata in extract.nlme was specified
-                        xLabel, yLabel, 
-                        xLimits, yLimits, 
-                        logY = FALSE,
-                        color.style = list(observed = rgb(0.2,0.2,0.2), central = blue[10], inner = blue[4], outer = blue[1]),
-                        symbol = list(pch = 15, cex = 0.5),
-                        aspect = 1, cex.label = 1.5, 
-                        nx = NULL,
-                        showPredAs = "area",
-                        showObsDots = TRUE,
-                        showObsLines = TRUE,
-                        obscol.dot = gray[8], obscex.dot = 0.5, obspch.dot = 1,
-                        obscol.line = gray[10],
-                        predcol.central = blue[6],
-                        predcol.outer = blue[7],
-                        predcol.area = blue[1],
-                        predcol.inner = blue[3],
-                        ...
-                        
-                        ## must add option to summarize observed (as lines) instead of or on top of raw data dots
-                        
+nlme.vpcplot = function(
+  object, 
+  vpc, 
+  formula,
+  obsData = NULL, 	## defaults to obsData = getData(object)
+  ## use if newdata in extract.nlme was specified
+  xLabel, yLabel, 
+  xLimits, yLimits, 
+  logY = FALSE,
+  color.style = list(observed = rgb(0.2,0.2,0.2), central = blue[10], inner = blue[4], outer = blue[1]),
+  symbol = list(pch = 15, cex = 0.5),
+  aspect = 1, cex.label = 1.5, 
+  nx = NULL,
+  showPredAs = "area",
+  showObsDots = TRUE,
+  showObsLines = TRUE,
+  obscol.dot = gray[8], obscex.dot = 0.5, obspch.dot = 1,
+  obscol.line = gray[10],
+  predcol.central = blue[6],
+  predcol.outer = blue[7],
+  predcol.area = blue[1],
+  predcol.inner = blue[3],
+  ...
+
+## must add option to summarize observed (as lines) instead of or on top of raw data dots
+
 )
 {
   options(warn = -1) # maybe need to capture and restore

@@ -24,6 +24,8 @@ unitHistogram(x, myCuts = NULL, lwd.bar = 4, offset = 0.4,
 \item{xlim}{limits of x coordinate}
 
 \item{ylab}{label of the frequency (y label)}
+
+\item{\dots}{passed to plot()}
 }
 \value{
 A histogram

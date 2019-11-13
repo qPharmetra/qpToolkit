@@ -17,6 +17,14 @@ A covInfo object
 \description{
 Prints a covInfo object.
 }
+\details{
+Prints a covInfo object.
+}
 \note{
 This function is used with \code{nm.process.coveffects}
 }
+\seealso{
+Other coveffects: \code{\link{covInfo}},
+  \code{\link{eval.eqs}}, \code{\link{make.eqs}}
+}
+\concept{coveffects}

@@ -14,11 +14,11 @@ panel.cwres(x, y, ..., col = obs.color, col.line = abline.color,
 
 \item{col}{symbol color (defaults to obs.color)}
 
-\item{cex}{symbol size}
+\item{col.line}{color of abline}
 
-\item{smooth.col}{color of smooth line}
+\item{pch}{symbol}
 
-\item{lwd.loess}{line width of loess smooth}
+\item{col.loess}{color of smooth line}
 }
 \value{
 Lattice panel output (invisible)

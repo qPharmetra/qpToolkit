@@ -18,11 +18,13 @@ nm.unzip(run, path = file.path(getOption("nmDir"), run),
 
 \item{extension}{file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped}
 
+\item{zip.call}{full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"}
+
 \item{filename}{file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults}
 
 \item{zip.filename}{filename of the zip file to extract. Is automatically populated with qP workflow defaults}
 
-\item{zip.program}{full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"}
+\item{quiet}{whether to suppress process messages}
 }
 \value{
 The zipped file is extracted to disk in the same location. Nothing is returned to R.
@@ -37,7 +39,8 @@ Many large filews like XML outpout and covariance matrices are zipped by (qPharm
 }
 \examples{
 file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
-nm.unzip(run="example1", extension=".cov", path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
+nm.unzip(run="example1", extension=".cov", 
+path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
 file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 }

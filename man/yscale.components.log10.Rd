@@ -2,12 +2,14 @@
 % Please edit documentation in R/yscale.components.log10.r
 \name{yscale.components.log10}
 \alias{yscale.components.log10}
-\title{Nice log10 y axes labels}
+\title{Labels 10-logged y axes appropriately in lattice}
 \usage{
 yscale.components.log10(lim, ...)
 }
 \arguments{
 \item{lim}{internal required argument.}
+
+\item{\dots}{passed to yscale.components.default()}
 }
 \value{
 Nothing. It's a function to be called inside a lattice call
@@ -40,5 +42,8 @@ xyplot(DV ~ TIME
 )
 }
 \seealso{
-\code{\link{xscale.components.log10}}, \code{\link{xscale.components.log10.3}}
+Other scale.components: \code{\link{xscale.components.log10.3}},
+  \code{\link{xscale.components.log10}},
+  \code{\link{yscale.components.log10.3}}
 }
+\concept{scale.components}

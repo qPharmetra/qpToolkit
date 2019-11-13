@@ -5,7 +5,7 @@
 \title{Panel function for Residual Variability Plots}
 \usage{
 panel.modelfit(x, y, groups, subscripts, logX = FALSE, logY = FALSE,
-  type.obs = "b", ...)
+  type.obs = "b", pred.lty = "solid", ipred.lty = "solid", ...)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}
@@ -19,6 +19,12 @@ panel.modelfit(x, y, groups, subscripts, logX = FALSE, logY = FALSE,
 \item{logY}{log the y-axis (defaults to F)}
 
 \item{type.obs}{line type for observed data (defaults to 'b' for both lines and points)}
+
+\item{pred.lty}{line type for population predictions}
+
+\item{ipred.lty}{line type for individual predictions}
+
+\item{\dots}{passed to llines()}
 }
 \value{
 Lattice panel output (invisible)

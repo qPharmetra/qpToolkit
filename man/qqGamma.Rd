@@ -16,6 +16,8 @@ qqGamma(x, ylab = deparse(substitute(x)),
 \item{xlab}{x label}
 
 \item{main}{main title of the plot}
+
+\item{\dots}{passed to qqplot}
 }
 \value{
 character vector with the NONMEM output. Each element i the vector represents a line in the NONMEM output file

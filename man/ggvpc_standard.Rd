@@ -32,9 +32,13 @@ ggvpc_standard(vpc, PI = c(0.025, 0.975), area.col = PI.ci.med.arcol,
 
 \item{point.shape}{numeric value for dot shape}
 
+\item{point.size}{numeric value for dot size}
+
 \item{point.col}{color of observed data dots}
 
 \item{yrange.stretch}{vector of c(min,max) which will proportionally rescale the lower and upper limits of the Y axis}
+
+\item{quiet}{whether to suppress process messages}
 }
 \value{
 A ggplot object to be extended optionally

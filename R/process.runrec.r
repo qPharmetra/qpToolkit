@@ -1,4 +1,3 @@
-
 # ROXYGEN Documentation
 #' Format runrecord for reports
 #' @description Process the run record into a data frame ready for integration into LaTeX report. Note that the function assumes runrecord has been run with PsN option -maxlvl=0 and the function depends on input from \code{read.runrec}
@@ -10,12 +9,16 @@
 #' @export
 #' @seealso \code{\link{read.runrec}}, \code{\link{process.parTable}}
 #' @examples
-#' rr = read.runrec(filename = "AAruninfo.txt", path = file.path(getOption("qpExampleDir")))
+#' rr = read.runrec(
+#'  filename = "AAruninfo.txt", 
+#'  path = system.file(package = 'qpToolkit','NONMEM')
+#' )
 #' process.runrec(rr)
 #' process.runrec(rr, plain = TRUE)
-process.runrec = function(runrec, 
-                          improvement = list(value = -6.63, color = "blue"),
-                          carryAlong = NULL, plain=FALSE)
+process.runrec = function(
+  runrec, 
+  improvement = list(value = -6.63, color = "blue"),
+  carryAlong = NULL, plain=FALSE)
 {
   runrec = runrec[, c('Run','Ref','OFV','dOFV','CondNum','Minimization','Description', carryAlong)]
   runrec$CondNum = round(runrec$CondNum)

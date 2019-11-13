@@ -19,10 +19,12 @@ Derive Last Observation Carried Forward (LOCF). Preserves factors as well.
 }
 \examples{
 locf(c(NA,NA,1,NA,NA,2,NA,NA,NA,NA,3))
-# Note that initial missing values take next value (1), so next value carried backward at beginning
+# Note that initial missing values take next value (1), 
+# so next value carried backward at beginning
 # Example with "."
 locf(c(".",".",1,".",".",2,".",".",".",".",3), na=".")
-# Note, if you have text in the vector, it is all converted to text.  This is by design so we can use different types.
+# Note, if you have text in the vector, it is all converted to text.  
+# This is by design so we can use different types.
 # Examples with factors
 fac=as.factor(c(".",".","A",".",".","B",".",".",".",".","C")) 
 locf(fac,na=".")

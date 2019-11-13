@@ -33,14 +33,15 @@
 #'    # Return effect-site concentration
 #'    dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 #'  }
-#'  fit.PD004.nlme = nlme.run(model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-#'                            data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
-#'                            fixed = base + cl + v + ka + keo ~ 1, 
-#'                            random = cl.eta ~ 1, 
-#'                            groups = ~ id, 
-#'                            start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
-#'                            problem = "True Model",
-#'                            reference = 4)
+#'  fit.PD004.nlme = nlme.run(
+#'    model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
+#'    data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
+#'    fixed = base + cl + v + ka + keo ~ 1, 
+#'    random = cl.eta ~ 1, 
+#'    groups = ~ id, 
+#'    start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
+#'    problem = "True Model",
+#'    reference = 4)
 #'  summary(fit.PD004.nlme$object)
 #'  nlme.extract(fit.PD004.nlme$object)$table
 #'  vpc.PD004.nlme = nlme.vpc(fit.PD004.nlme$object, nrep = 100)
@@ -71,7 +72,7 @@ nlme.vpc = function(object, nrep = 10, covariates, fun = smedian.hilow, newdata 
 	iqr = Hmisc::summarize(vpc.object, theList, fun, conf.int = 0.75, stat.name = 'Central')
 	names(iqr)[names(iqr)%in% c('Lower','Upper')] = c('LowerQ', 'UpperQ')
 	qsObject = cbind(qsObject, iqr[, c('LowerQ', 'UpperQ')])
-	                                                                       
+	                       
 	## sort covariates by default so that time is first
 	if(any(covariates %in% "time")) covariates = c("time", covariates[covariates %nin% "time"])
 

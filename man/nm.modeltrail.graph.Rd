@@ -13,6 +13,8 @@ nm.modeltrail.graph(runs, path = getOption("nmDir"), file.ext = ".ext",
 
 \item{path}{directory where \code{runs} reside}
 
+\item{file.ext}{file extension of the run.ext file. Defaults to ".ext"}
+
 \item{col.area}{polygon color of the density plot}
 
 \item{col.mean}{color of the mean line}
@@ -24,8 +26,6 @@ nm.modeltrail.graph(runs, path = getOption("nmDir"), file.ext = ".ext",
 \item{strip.size}{scalar to for the strip size in case strip text is too small ortoo large}
 
 \item{...}{graphical arguments passed on to the lattice plots}
-
-\item{extension}{file extension of the run.ext file. Defaults to ".ext"}
 }
 \value{
 Lattice graph with the distributions of the MCMC Bayesian OFV, supplied with mean line and 2.5th and 97.5th percentiles

@@ -21,8 +21,14 @@
 #' @seealso \code{\link{nm.covmat.extract}}, \code{\link{get.covmat}}
 #' @examples
 #' \dontrun{
-#' nm.unzip(path = file.path(getOption("qpExampleDir"),"run11"),run = "run11",extension = ".cov")
-#' covText   = scan(file = file.path(getOption("qpExampleDir"),"run11","run11.cov"), what = "character",sep = "\n", quiet = T)
+#' nm.unzip(
+#'   path = file.path(getOption("qpExampleDir"),"run11"),
+#'   run = "run11",extension = ".cov"
+#' )
+#' covText = scan(
+#'   file = file.path(getOption("qpExampleDir"),"run11","run11.cov"), 
+#'   what = "character",sep = "\n", quiet = T
+#' )
 #' 
 #' ## the heart of the function: parse space delimited text into a matrix
 #' cov = extract.varcov(covText[-1])

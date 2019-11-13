@@ -27,6 +27,8 @@ nm.covplot(run = "run1", path = getOption("nmDir"), id.var = "ID",
 
 \item{covlist}{a list with elements \code{cat} and \code{con} each representing a character vector with categorical and continuous covariates, respectively.}
 
+\item{catcov.sep}{max number of unique values for a covariate to be assigned 'categorical'}
+
 \item{parameters}{a character vector with parameter names to plot}
 
 \item{aspect}{lattice banking aspect for rectangular or square plots. Defaults to 'fill'}
@@ -51,7 +53,8 @@ nmcov = nm.covplot(path = getOption("qpExampleDir")
 
 #contents of the list
 names(nmcov)
-#[1] "covdata"        "eta.splom"      "eta.dens"       "conData.eta"    "catData.eta"    "conData.par"    "catData.par"   
+#[1] "covdata"        "eta.splom"      "eta.dens"       
+# "conData.eta"    "catData.eta"    "conData.par"    "catData.par"   
 #[8] "etaContVarPlot" "etaCatVarPlot"  "parContVarPlot" "parCatVarPlot" 
 
 # let's look at the plots

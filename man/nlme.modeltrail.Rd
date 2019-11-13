@@ -32,38 +32,43 @@ EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
   # Return effect-site concentration
   dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 }
-fit.PD001.nlme = nlme.run(model = value ~ base * exp(base.eta) , 
-                          data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-                          fixed = base ~ 1, 
-                          random = base.eta  ~ 1, 
-                          groups = ~ id, 
-                          start = c(base = 1),
-                          problem = "Baseline Only Model",
-                          reference = 0)
-fit.PD002.nlme = nlme.run(model = value ~ base * exp(base.eta) + tSlope*time, 
-                          data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-                          fixed = base + tSlope ~ 1, 
-                          random = base.eta  ~ 1, 
-                          groups = ~ id, 
-                          start = c(base = 1, tSlope = 0.01),
-                          problem = "Linear Time-Slope Model",
-                          reference = 1)
-fit.PD003.nlme = nlme.run(model = value ~ base * exp(base.eta) + tSlope*time + dSlope * dose, 
-                          data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-                          fixed = base + tSlope + dSlope ~ 1, 
-                          random = base.eta  ~ 1, 
-                          groups = ~ id, 
-                          start = c(base = 1, tSlope = 0.01, dSlope = 0.01),
-                          problem = "Linear Time-Slope+Dose-Slope Model",
-                          reference = 2)
-fit.PD004.nlme = nlme.run(model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-                          data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-                          fixed = base + cl + v + ka + keo ~ 1, 
-                          random = cl.eta ~ 1, 
-                          groups = ~ id, 
-                          start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
-                          problem = "True Model",
-                          reference = 3)
+fit.PD001.nlme = nlme.run(
+   model = value ~ base * exp(base.eta) , 
+   data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
+   fixed = base ~ 1, 
+   random = base.eta  ~ 1, 
+   groups = ~ id, 
+   start = c(base = 1),
+   problem = "Baseline Only Model",
+   reference = 0
+)
+fit.PD002.nlme = nlme.run(
+   model = value ~ base * exp(base.eta) + tSlope*time, 
+   data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
+   fixed = base + tSlope ~ 1, 
+   random = base.eta  ~ 1, 
+   groups = ~ id, 
+   start = c(base = 1, tSlope = 0.01),
+   problem = "Linear Time-Slope Model",
+   reference = 1)
+fit.PD003.nlme = nlme.run(
+   model = value ~ base * exp(base.eta) + tSlope*time + dSlope * dose, 
+   data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
+   fixed = base + tSlope + dSlope ~ 1, 
+   random = base.eta  ~ 1, 
+   groups = ~ id, 
+   start = c(base = 1, tSlope = 0.01, dSlope = 0.01),
+   problem = "Linear Time-Slope+Dose-Slope Model",
+   reference = 2)
+fit.PD004.nlme = nlme.run(
+   model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
+   data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
+   fixed = base + cl + v + ka + keo ~ 1, 
+   random = cl.eta ~ 1, 
+   groups = ~ id, 
+   start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
+   problem = "True Model",
+   reference = 3)
 nlme.modeltrail(fit.PD001.nlme,fit.PD002.nlme,fit.PD003.nlme,fit.PD004.nlme)
 }
 \seealso{

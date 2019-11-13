@@ -17,6 +17,8 @@ panel.meanspag(x, y, subscripts, groups, ..., myFun = mean,
 
 \item{groups}{default lattice pass-through}
 
+\item{\dots}{passed to panel.superpose()}
+
 \item{myFun}{the summarization function (mean)}
 
 \item{sumText}{text to describe the summary function ("mean")}

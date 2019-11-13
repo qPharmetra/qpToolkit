@@ -18,7 +18,8 @@
 #' @importFrom metrumrg stableMerge
 #' @examples
 #' nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-#' nm.params.table("example2",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)", return.all = TRUE)
+#' nm.params.table("example2",  path = getOption("qpExampleDir"), 
+#' fixed.text = "(fixed to 0)", return.all = TRUE)
 nm.params.table = function(
   run,
   path = getOption("nmDir"),

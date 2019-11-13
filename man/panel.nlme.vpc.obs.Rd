@@ -8,7 +8,25 @@ panel.nlme.vpc.obs(x, y, logY, showPredAs, showObsDots, showObsLines,
   col.scheme, obscex.dot, obspch.dot, ...)
 }
 \arguments{
-\item{other}{a collection of parameters are available to modify the layout of the VPC}
+\item{x}{x variable}
+
+\item{y}{y variable}
+
+\item{logY}{unused}
+
+\item{showPredAs}{unused}
+
+\item{showObsDots}{whether to show observations as dots}
+
+\item{showObsLines}{whether to show observations as lines}
+
+\item{col.scheme}{list with elements: [obs: [dot, line]]}
+
+\item{obscex.dot}{cex for observations}
+
+\item{obspch.dot}{pch for observations}
+
+\item{\dots}{passed to panel.xyplot()}
 }
 \value{
 Nothing -> internal to a lattice call

@@ -16,9 +16,13 @@ panel.residual(x, y, abline = "identity", col = obs.color, cex = 1,
 
 \item{cex}{symbol size}
 
+\item{span}{passed to panel.loess()}
+
 \item{lwd.loess}{line width of loess smooth}
 
 \item{smooth.col}{color of smooth line}
+
+\item{\dots}{passed to panel.xyplot(), panel.abline(), and panel.loess()}
 }
 \value{
 Lattice panel output (invisible)

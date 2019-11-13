@@ -36,10 +36,13 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' @export histogram.bootstrap
 #' @importFrom grDevices dev.cur dev.off
 #' @examples
-#' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
+#' myBoot = read.bootstrap(path = getOption("qpExampleDir"),
+#' filename = "bootstrap/raw_results_bs4011.csv",
+#' structure.filename = "bootstrap/raw_results_structure")
 #' temp.dir = tempdir()
 #' cat(temp.dir)
-#' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") ## now take a look there
+#' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") 
+#' ## now take a look there
 histogram.bootstrap = function(bootstrap,
                                filename.prefix = "bootstrapPage",
                                path, 

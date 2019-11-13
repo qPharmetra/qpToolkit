@@ -21,8 +21,6 @@ pkpdPredPlot(doses, t.doses, t.obs, pk.func, e.func, parms,
 \item{parms}{numeric vector (may be a named vector but is not required)}
 
 \item{output}{if TRUE the simulation input and outpout is returned as list. If FALSE (default) the plot is created.}
-
-\item{log}{logical indicating to log the Y axis}
 }
 \value{
 A plot or a list with output

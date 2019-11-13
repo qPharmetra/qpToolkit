@@ -1,20 +1,11 @@
 globalVariables('EVID')
 #' qPharmetra examples for plot, VPC and NONMEM dataset
-#' @description examples for qPharmetra style VPC and GOF plots and a NONMEM data set
-#' @return text (\code{example.xpose.VPC} and \code{example.CWRES.plot}) or a NONMEM data.frame (\code{example.NONMEM.dataset})
-#' @export example.xpose.VPC example.CWRES.plot example.NONMEM.dataset example.pkpdData
+#' @description examples for qPharmetra style VPC 
+#and GOF plots and a NONMEM data set
+#' @family qpexamples
+#' @export
 #' @examples
-#' library(dplyr)
-#' library(magrittr)
 #' example.xpose.VPC()
-#' 
-#' example.CWRES.plot()
-#' 
-#' nmData = example.NONMEM.dataset()
-#' nmData %>% group_by(DOSE) %>% summarise(nID=lunique(ID), nObs = length(DV))
-#' 
-#' pkpdData = example.pkpdData()
-#' tbl_df(pkpdData)
 
 example.xpose.VPC = function()
 {
@@ -31,6 +22,13 @@ example.xpose.VPC = function()
        , PI.ci.up.arcol = PI.ci.up.arcol
    )")
 }
+#' 
+#' Examples for qPharmetra style CWRES plot
+#and a NONMEM data set
+#' @family qpexamples
+#' @export
+#' @examples
+#' example.CWRES.plot()
 
 example.CWRES.plot = function()
 {
@@ -49,6 +47,21 @@ example.CWRES.plot = function()
    )"
    )
 }
+
+#' Examples for qPharmetra style NONMEM data set
+#' @param ID number of subjects
+#' @param TIME sequence of times
+#' @param DOSE sequence of dose amounts
+#' @param \dots ignored
+#' @family qpexamples
+#' @export
+#' @examples
+#' library(dplyr)
+#' library(magrittr)
+#' nmData = example.NONMEM.dataset()
+#' nmData %>% group_by(DOSE) %>% summarise(nID=lunique(ID), nObs = length(DV))
+#' pkpdData = example.pkpdData()
+#' tbl_df(pkpdData)
 
 example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
 {
@@ -77,8 +90,16 @@ example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
    return(nmdata)
 }
 
-  example.pkpdData = function()
-{
+#' Examples for qPharmetra style PKPD data set
+#' 
+#' @family qpexamples
+#' @export
+#' @examples
+#' library(dplyr)
+#' pkpdData = example.pkpdData()
+#' tbl_df(pkpdData)
+
+example.pkpdData = function(){
    set.seed(1234)
    nsub=32
    pkpdData = list(NULL)

@@ -21,6 +21,8 @@ tabStats(x, BY, nSignif = 3, conFunc1 = conDataFun1,
 
 \item{catFunc}{defaults to catDataFun}
 
+\item{ndigits.categorical}{passed to catFunc}
+
 \item{parName}{is automatically populated but the parameter name can be specified here by the user.}
 }
 \value{
@@ -37,7 +39,8 @@ This function is primarily used for demographics tables
 pkpdData = example.pkpdData()
 ok = duplicated(pkpdData$id) == FALSE
 tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]))
-tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), parName = "Race", ndigits.categorical=0)
+tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), parName = "Race", 
+ndigits.categorical=0)
 tabStats(pkpdData$sex[ok], list(dose = pkpdData$dose[ok]))
 tabStats(x=pkpdData$wt, BY = list(dose = pkpdData$dose))
 tabStats(x=pkpdData$bmi, BY = list(dose = pkpdData$dose))

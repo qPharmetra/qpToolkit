@@ -24,7 +24,7 @@
 #' @param obspch.dot pch for observations
 #' @param lineType line type for observations and predictions
 #' @param central.lwd line width for predicted central tendency
-#' @param \dots
+#' @param \dots passed to panel.xyplot() and llines()
 #' @return Lattice panel output (invisible)
 #' @note Not to be used as standalone. Will be be called by \code{nm.vpcplot}. Furthermore, the \code{nm.vpcplot} routine will go deprecated soon, thus it is not adviced to use this function going forward. Instead use xpose.VPC.
 #' @seealso \code{\link{nm.vpcplot}}

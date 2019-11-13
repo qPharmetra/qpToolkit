@@ -40,6 +40,8 @@ ggvpc_xpose(vpc, PI = c(0.025, 0.975),
 \item{point.col}{color of observed data dots}
 
 \item{yrange.stretch}{vector of c(min,max) which will proportionally rescale the lower and upper limits of the Y axis}
+
+\item{quiet}{whether to suppress process messages}
 }
 \value{
 A ggplot object to be extended optionally
@@ -74,7 +76,8 @@ ggvpc_xpose(vpc.all
   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
 
 ## PI smoothed
-nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt"),PI.ci.area.smooth=TRUE) -> vpc.all
+nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt"),
+PI.ci.area.smooth=TRUE) -> vpc.all
 ggvpc_xpose(vpc.all
             , PI = c(0.05,0.95)) + 
   labs(x="Time (h)", y="Concentration (ng/ml)") +

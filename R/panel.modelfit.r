@@ -1,4 +1,17 @@
-# ROXYGEN Documentation
+globalVariables(c(
+   'PI.ci.down.arcol', 'PI.ci.med.arcol', 'PI.ci.up.arcol',
+   'PI.real.down.col', 'PI.real.med.col', 'PI.real.up.col', 
+   'abline.color', 'abline.color.box', 'amber', 'apple', 
+   'blue', 'box.plot.color', 'brown', 'cobalt', 'crimson', 
+   'cyan', 'emerald', 'gray', 'green', 'histogram.color', 
+   'indigo', 'ipred.color', 'ketchup', 'lime', 'lin.fit.col', 
+   'loi.color', 'magenta', 'mauve', 'obs.color', 'olive', 
+   'orange', 'pink', 'pred.color', 'purple', 'qp.colors', 
+   'qp.colors.sorted', 'qp.green', 'red','smooth.ci.color', 
+   'smooth.color', 'steel', 'taupe', 'teal', 'violet',
+   'yellow','qp.blue'
+))
+
 #' Panel function for Residual Variability Plots
 #' @description Panel function to plot DV, PRED, IPRED overlays for individual profiles
 #' @param x,y numeric vectors x and y
@@ -7,6 +20,8 @@
 #' @param logX log the x-axis (defaults to F) 
 #' @param logY log the y-axis (defaults to F)
 #' @param type.obs line type for observed data (defaults to 'b' for both lines and points)
+#' @param pred.lty line type for population predictions
+#' @param ipred.lty line type for individual predictions
 #' @param \dots passed to llines()
 #' @return Lattice panel output (invisible)
 #' @export
@@ -25,7 +40,10 @@
 #'        , yscale.components = yscale.components.log10
 #' )
 
-panel.modelfit = function(x, y, groups, subscripts, logX = FALSE, logY = FALSE, type.obs = "b", ...)
+panel.modelfit = function(
+   x, y, groups, subscripts, 
+   logX = FALSE, logY = FALSE, type.obs = "b", 
+   pred.lty = 'solid', ipred.lty = 'solid', ...)
 {
    for(i in unique(groups[subscripts]))   
    {

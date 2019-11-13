@@ -14,7 +14,11 @@
 #' @return A data.frame with the bootstrap estimates.
 #' @export bootstrap.ParTab
 #' @examples
-#' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
+#' myBoot = read.bootstrap(
+#'  path = getOption("qpExampleDir"),
+#'  filename = "bootstrap/raw_results_bs4011.csv",
+#'  structure.filename = "bootstrap/raw_results_structure"
+#' )
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
 bootstrap.ParTab = function(bootstrap
                             , idx = list(theta=1,omega=1,sigma=1)

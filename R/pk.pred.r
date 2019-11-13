@@ -712,7 +712,8 @@ eff.2comp.iv = function(dose, tob, parms){
   q   = parms[3]  # intercompartmental clearance
   v2  = parms[4]  # peripheral volume
   keo = parms[5]  # effect-site rate constant
-  # ka = ## CHECK
+  ka  = parms[6]  # meaning for iv dosing requires review
+  stop('this function requires review')
   
   k10 = cl  / v1
   k12 = q   / v1

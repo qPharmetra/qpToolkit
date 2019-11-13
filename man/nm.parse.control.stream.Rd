@@ -12,9 +12,9 @@ nm.parse.control.stream(run, path = getOption("nmDir"),
 
 \item{path}{directory where \code{run} resides}
 
-\item{quiet}{if TRUE no message will be returned.}
+\item{file.ext}{file extension of NONMEM control stream (.mod)}
 
-\item{extension}{file extension of NONMEM control stream (.mod)}
+\item{quiet}{if TRUE no message will be returned.}
 }
 \value{
 A named list with all \code{$PK, $ERROR, $THETA} etc... elements of the control stream

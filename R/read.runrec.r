@@ -14,7 +14,7 @@
 #' @seealso \code{\link{process.runrec}}
 #' @examples
 #' rr = read.runrec(filename = "AAruninfo.txt"
-#' , path = file.path(getOption("qpExampleDir"))
+#' , path = system.file(package = 'qpToolkit','NONMEM')
 #' )
 #' rr
 #' process.runrec(rr)
