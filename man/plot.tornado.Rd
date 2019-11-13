@@ -4,7 +4,7 @@
 \alias{plot.tornado}
 \title{Tornado plots}
 \usage{
-\method{plot}{tornado}(torn.ds, main = "",
+\method{plot}{tornado}(x, ..., main = "",
   xlim = range(c(torn.ds$val.hi, torn.ds$val.lo)), xlab = "Output",
   bar.width = 0.75, base.round = 0, cex.main = 1.5,
   cex.xaxis = cex.main * 0.5, cex.yaxis = cex.main * 0.65,
@@ -12,7 +12,9 @@
   bar.col = "#0A41A5", show.base = TRUE, adj.ylabs = 0)
 }
 \arguments{
-\item{torn.ds}{Dataset containing sensitivity analysis results to be plotted. Column names should include: \code{variable} - names of variable (will be plotted as y axis labels), \code{val.lo} - low value of objective when variable is swung to an extreme, \code{val.base}    base value of objective when all variables are at base, \code{val.hi} - high value of the objective when variable is swung to an extreme, \code{lab.lo} -    label associated with low, \code{lab.base} -    label associated with base, \code{lab.hi}    label associated with high}
+\item{x}{Dataset containing sensitivity analysis results to be plotted. Column names should include: \code{variable} - names of variable (will be plotted as y axis labels), \code{val.lo} - low value of objective when variable is swung to an extreme, \code{val.base}    base value of objective when all variables are at base, \code{val.hi} - high value of the objective when variable is swung to an extreme, \code{lab.lo} -    label associated with low, \code{lab.base} -    label associated with base, \code{lab.hi}    label associated with high}
+
+\item{\dots}{ignored}
 
 \item{main}{graphical parameter}
 
@@ -47,10 +49,10 @@ A tornado plot
 Create a tornado plot given a table of sensitivity analysis results
 }
 \examples{
-torn.ds = read.csv(
+torn.ds = as.tornado(read.csv(
   file.path(getOption("qpExampleDir"), "../Excel/tornado.ds.csv")
-, stringsAsFactors = FALSE)
-plot.tornado(torn.ds
+, stringsAsFactors = FALSE))
+plot(torn.ds
              , xlim=c(0,20)
              , xlab="Dollars"
              , main="My first tornado"
@@ -60,3 +62,8 @@ plot.tornado(torn.ds
              , show.base=FALSE
 )
 }
+\seealso{
+Other tornado: \code{\link{as.tornado.data.frame}},
+  \code{\link{as.tornado}}
+}
+\concept{tornado}

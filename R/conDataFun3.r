@@ -12,8 +12,8 @@
 #' 
 conDataFun3 = function(y, nSignif)
 {
-  se = sqrt(var(y))/sqrt(length(y)) 
-  ci = qt(c(0.975, 0.025), length(y)) * se + mean(y)
+  se = sqrt(stats::var(y))/sqrt(length(y)) 
+  ci = stats::qt(c(0.975, 0.025), length(y)) * se + mean(y)
   ci = ci[order(ci)]
   
   return(

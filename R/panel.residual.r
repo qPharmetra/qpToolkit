@@ -6,8 +6,10 @@
 #' @param abline if "identity" (default) the line of identity is drawn. If anything else no abline is drawn.
 #' @param col symbol color (defaults to obs.color)
 #' @param cex symbol size
+#' @param span passed to panel.loess()
 #' @param smooth.col color of smooth line
 #' @param lwd.loess line width of loess smooth
+#' @param \dots passed to panel.xyplot(), panel.abline(), and panel.loess()
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
@@ -15,15 +17,13 @@
 #' @examples
 #' library(lattice)
 #' library(reshape2)
-#' library(Hmisc)
-
 #' trellis.strip.color()
 #' xyplot(CONC ~ value | variable
 #'        , data = subset(
 #'           reshape2::melt(
 #'              get.xpose.tables('example1', getOption('qpExampleDir')
 #'              )
-#'              , measure.vars=Cs(PRED,IPRED)
+#'              , measure.vars=c('PRED','IPRED')
 #'           ), EVID == 0)
 #'        , subset = EVID==0
 #'        , aspect = 1

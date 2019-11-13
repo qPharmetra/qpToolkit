@@ -4,16 +4,16 @@
 \alias{nm.compare.plot}
 \title{Create a runrecord like GOF plot of selected runs}
 \usage{
-nm.compare.plot(runs, path = getOption("nmDir"), keep.cols = Cs(ID, DV,
-  CWRES, PRED, IPRED, TIME, EVID), alias = list(DV = "CONC", TIME =
-  "TAFD"), dot.size = 1, text.size = 1, log = FALSE)
+nm.compare.plot(runs, path = getOption("nmDir"), keep.cols = c("ID",
+  "DV", "CWRES", "PRED", "IPRED", "TIME", "EVID"), alias = list(DV =
+  "CONC", TIME = "TAFD"), dot.size = 1, text.size = 1, log = FALSE)
 }
 \arguments{
 \item{runs}{character vector with rootname runs like \code{c("run1","run2")}}
 
 \item{path}{directory where \code{runs} reside}
 
-\item{keep.cols}{needs at the minimum \code{Cs(ID,DV,CWRES,PRED,IPRED,TIME,EVID)} but can be altere to match other data columns}
+\item{keep.cols}{needs at the minimum \code{c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')} but can be altere to match other data columns}
 
 \item{alias}{a named list to rename DV and TIME variables, in case in \code{$DATA} they have been specified as \code{...=DV} and/or \code{...=TIME}}
 
@@ -30,11 +30,10 @@ A plot
 Create a runrecord like GOF plot of selected runs
 }
 \examples{
-library(Hmisc)
 nm.compare.plot(runs = c("example1","example2")
 , path =getOption("qpExampleDir")
 , alias = list(DV = "CONC",TIME = "TIME")
-, keep.cols = Cs(ID,DV,CWRES,PRED,IPRED,TIME,EVID)
+, keep.cols = c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')
 , text.size = 0.6
 )
 }

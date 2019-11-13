@@ -9,6 +9,7 @@
 #' @param col.line line color (taken from \code{trellis.par.get("reference.line")})
 #' @param col observed data color
 #' @param type same as type in a lattice call (default is "l" for lines)
+#' @param \dots passed to panel.points() and panel.lines()
 #' @param identifier option to join lines (which is default)
 #' @param show.points logical indicating to show observed data dots 
 #' @return Nothing -> internal to a lattice call

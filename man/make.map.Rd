@@ -4,7 +4,7 @@
 \alias{make.map}
 \title{Meta-analysis data tabulation}
 \usage{
-make.map(ds = pf.nm, cNm = "drug.abbr", trNm = "ref.tr")
+make.map(ds, cNm = "drug.abbr", trNm = "ref.tr")
 }
 \arguments{
 \item{ds}{meta-analysis dataset}

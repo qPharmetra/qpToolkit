@@ -7,12 +7,22 @@
 # ROXYGEN Documentation
 #' Lattice function for observed components of an nlme VPCs
 #' @description  Panel function for observed lines / colored polygons of a vpc plot of an nlme object
-#' @param other a collection of parameters are available to modify the layout of the VPC
+# @param other a collection of parameters are available to modify the layout of the VPC
+#' @param x x variable
+#' @param y y variable
+#' @param logY unused
+#' @param showPredAs unused
+#' @param showObsDots whether to show observations as dots
+#' @param showObsLines whether to show observations as lines
+#' @param col.scheme list with elements: [obs: [dot, line]]
+#' @param obscex.dot cex for observations
+#' @param obspch.dot pch for observations
+#' @param \dots passed to panel.xyplot()
 #' @return Nothing -> internal to a lattice call
 #' @note Not to be used as standalone. Will be be called by \code{nlme.vpcplot}
 #' @seealso \code{\link{nlme.vpcplot}}
 #' @import lattice
-#' @importFrom Hmisc summarize
+#' @importFrom Hmisc summarize smedian.hilow
 
 panel.nlme.vpc.obs = function(x, y, logY, showPredAs, showObsDots, showObsLines,  
                               col.scheme, obscex.dot, obspch.dot, ...)

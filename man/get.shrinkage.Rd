@@ -4,7 +4,7 @@
 \alias{get.shrinkage}
 \title{NONMEM shrinkage estimates}
 \usage{
-get.shrinkage(run, path = getOption(nmDir), file.ext = ".lst")
+get.shrinkage(run, path = getOption("nmDir"), file.ext = ".lst")
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

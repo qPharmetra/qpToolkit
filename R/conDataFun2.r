@@ -16,4 +16,4 @@
 #' conDataFun2(x, 3)
 
 conDataFun2 = function(y, nSignif) 
-  paste(signif(median(y),nSignif)," (", signif(min(y),nSignif)," - ",signif(max(y),nSignif), ")",sep="")
+  paste(signif(stats::median(y),nSignif)," (", signif(min(y),nSignif)," - ",signif(max(y),nSignif), ")",sep="")

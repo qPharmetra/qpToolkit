@@ -9,7 +9,6 @@
 #' @return Either a LaTeX preformatted runrecord table (default) or a fully processed runrecord table without LaTeX preformatting (for inclusion into Microsoft products).
 #' @export
 #' @seealso \code{\link{read.runrec}}, \code{\link{process.parTable}}
-#' @importFrom Hmisc Cs
 #' @examples
 #' rr = read.runrec(filename = "AAruninfo.txt", path = file.path(getOption("qpExampleDir")))
 #' process.runrec(rr)
@@ -18,7 +17,7 @@ process.runrec = function(runrec,
                           improvement = list(value = -6.63, color = "blue"),
                           carryAlong = NULL, plain=FALSE)
 {
-  runrec = runrec[, c(Cs(Run,Ref,OFV,dOFV,CondNum,Minimization,Description), carryAlong)]
+  runrec = runrec[, c('Run','Ref','OFV','dOFV','CondNum','Minimization','Description', carryAlong)]
   runrec$CondNum = round(runrec$CondNum)
   runrec$CondNum[runrec$CondNum>10000 & !is.na(runrec$CondNum)] = 
     rep("$>$10,000", sum(runrec$CondNum>10000 & !is.na(runrec$CondNum)))

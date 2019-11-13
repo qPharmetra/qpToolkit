@@ -16,7 +16,7 @@ nls.predict(func, object, newdata = NULL, xrange = 150)
 \item{xrange}{number of equal-spaced x covariate values created from \code{min(x)} to \code{max(x)}}
 }
 \value{
-a graph or a multi-level list with observed and predicted output
+a graph or a multi-level list with observed and predicted output (class \code{c('nlsfit','fit','list')})
 }
 \description{
 Predict partial residuals from an nls object to be plotted with \code{plot.fit}
@@ -29,9 +29,9 @@ fm1DNase1 <- nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 summary(fm1DNase1)
 
 fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
-plot.fit(fm1DNase1.predict)
+plot(fm1DNase1.predict)
 fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
-plot.fit(fm1DNase1.predict, logX = TRUE)
+plot(fm1DNase1.predict, logX = TRUE)
 }
 \seealso{
 \code{\link{plot.fit}}, \code{\link{nlme.predict}}

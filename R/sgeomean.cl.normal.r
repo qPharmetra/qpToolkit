@@ -8,6 +8,7 @@
 #' @param na.rm logical determining if NA values need to be omitted before the operation
 #' @return Vector of three values, representing the geometric mean, and the lower and  upper component of the confidence interval.
 #' @export
+#' @importFrom stats qt
 #' @examples
 #' library(Hmisc)
 #' test.vector = rlnorm(1000,log(100),0.5)

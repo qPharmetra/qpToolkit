@@ -12,7 +12,6 @@
 #' @seealso \code{\link{nlme.run}}
 #' @export nlme.modeltrail
 #' @importFrom nlme anova.lme
-#' @importFrom Hmisc Cs
 #' @examples
 #' library(nlme)
 #' pkpdData = example.pkpdData()
@@ -63,10 +62,9 @@
 #'                           problem = "True Model",
 #'                           reference = 3)
 #' nlme.modeltrail(fit.PD001.nlme,fit.PD002.nlme,fit.PD003.nlme,fit.PD004.nlme)
-
 nlme.modeltrail = function(...)
 {
-  models = as.list(match.call())[-1] #models = as.list(Cs(fit.PD001.nlme,fit.PD002.nlme,fit.PD003.nlme,fit.PD004.nlme))
+  models = as.list(match.call())[-1] #models = as.list(c('fit.PD001.nlme','fit.PD002.nlme','fit.PD003.nlme','fit.PD004.nlme'))
   nams = unlist(lapply(models, as.character))
   
   ## check if the models were run with nlme.run
@@ -97,7 +95,7 @@ nlme.modeltrail = function(...)
   myAnova = eval(anova.call[[1]])
 
   myAnova = as.data.frame(myAnova)
-  myAnova = myAnova[, Cs(Model, df, logLik)]
+  myAnova = myAnova[, c('Model', 'df', 'logLik')]
   myAnova$OFV = -2 * myAnova$logLik
   myAnova$Model.Reference = c("-", as.character(reference.call[-length(reference.call)]))
 

@@ -11,7 +11,6 @@
 #' @param path diretory where the runrecord resides
 #' @return Data.frame with all information extracted from the runrecord.
 #' @export
-#' @importFrom Hmisc Cs
 #' @seealso \code{\link{process.runrec}}
 #' @examples
 #' rr = read.runrec(filename = "AAruninfo.txt"
@@ -25,8 +24,9 @@ read.runrec = function(filename, path = getOption("nmDir"))
    if(missing(filename)) stop("filename must be included.")
   runrec = read.table(file=file.path(path,filename), sep=";", skip=5, header=FALSE)
   runrec = runrec[, 1:18]
-  names(runrec) = Cs(Run,Ref,OFV,dOFV,CondNum,Minimization,CovStep,Label, Description, StructMod, 
-                     something,IIV,IOV, ResMod, Estimation,DataSet,nObs,nID)
+  names(runrec) = c(
+  	'Run','Ref','OFV','dOFV','CondNum','Minimization','CovStep','Label', 
+  	'Description', 'StructMod', 'something','IIV','IOV', 'ResMod', 'Estimation','DataSet','nObs','nID')
   runrec = runrec[!is.na(runrec$Run),]
   return(runrec)
 }

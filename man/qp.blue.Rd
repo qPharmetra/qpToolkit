@@ -79,4 +79,5 @@ text(0.5,0.75, "qPharmetra", col = "white", cex = 5)
 text(0.5,0.25, "qPharmetra", col = "white", cex = 5)
 
 }
+\concept{qpcolors}
 \keyword{datasets}

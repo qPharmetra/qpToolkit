@@ -6,6 +6,9 @@
 #' @param n the column containing the sample ie of each record
 #' @param cols bubble colors 
 #' @param syms bubbles symbol types
+#' @param groups grouping levels
+#' @param subscripts subscripts
+#' @param \dots passed to llines() and lpoints()
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice

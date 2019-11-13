@@ -38,7 +38,9 @@
 #' @import lattice
 #' @importFrom nlme getData getCovariateFormula
 #' @importFrom nlme getResponseFormula getGroupsFormula
-#' @importFrom Hmisc Cs unPaste
+#' @importFrom Hmisc unPaste
+#' @importFrom grDevices rgb
+#' @importFrom stats as.formula
 #' @examples
 #' # library(nlme)
 #' pkpdData = example.pkpdData()

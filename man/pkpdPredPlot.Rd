@@ -18,7 +18,7 @@ pkpdPredPlot(doses, t.doses, t.obs, pk.func, e.func, parms,
 
 \item{e.func}{effect model function to evaluate. See \code{\link{pk.pred}}}
 
-\item{parms}{numeric vector (may be a named vector but is not required) with}
+\item{parms}{numeric vector (may be a named vector but is not required)}
 
 \item{output}{if TRUE the simulation input and outpout is returned as list. If FALSE (default) the plot is created.}
 

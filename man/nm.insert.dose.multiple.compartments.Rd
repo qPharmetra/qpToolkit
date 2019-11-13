@@ -24,7 +24,6 @@ To model drug entry into the system from multiple absorption sites this function
 }
 \examples{
 library(dplyr)
-library(Hmisc)
 ## original data:
 nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
@@ -35,7 +34,7 @@ nmData3 = nm.insert.dose.multiple.compartments(data = nmData
                                                , ID, TIME, -EVID
                                                
 )
-tbl_df(nmData3[, Cs(ID,TIME,EVID,AMT,CMT,DV)])
+tbl_df(nmData3[, c('ID','TIME','EVID','AMT','CMT','DV')])
 }
 \seealso{
 \code{\link{nm.insert.evid2amt0}}

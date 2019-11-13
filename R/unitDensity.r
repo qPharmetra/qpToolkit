@@ -7,6 +7,7 @@
 #' @return list of \code{x} and \code{y} with x and y information to generate a plot
 #' @importFrom metrumrg safe.call
 #' @export
+#' @importFrom stats density.default
 #' @examples
 #' standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length=1000),0,1))
 #' plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l') 

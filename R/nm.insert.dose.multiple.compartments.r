@@ -1,3 +1,4 @@
+globalVariables(c('EVID','.'))
 #' Insert doses in other compartments
 #' @description To model drug entry into the system from multiple absorption sites this function allows to turn a NONMEM datset into one with additional doses in differetn compartments.
 #' @param data NONMEM data.frame, should contain variable 'CMT'
@@ -11,7 +12,6 @@
 #' @seealso \code{\link{nm.insert.evid2amt0}}
 #' @examples
 #' library(dplyr)
-#' library(Hmisc)
 #' ## original data:
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
@@ -22,8 +22,7 @@
 #'                                                , ID, TIME, -EVID
 #'                                                
 #' )
-#' tbl_df(nmData3[, Cs(ID,TIME,EVID,AMT,CMT,DV)])
-
+#' tbl_df(nmData3[, c('ID','TIME','EVID','AMT','CMT','DV')])
 nm.insert.dose.multiple.compartments = function(
   data, 
   dose.in.cmt = c(1,2), 

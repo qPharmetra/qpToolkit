@@ -14,13 +14,12 @@
 #' @param path the report folder where intermediate LaTeX files reside
 #' @return Intermediate LaTeX files are deleted - no visible R result.
 #' @export
-#' @importFrom Hmisc Cs
 
 remove.tex.files = function(name = "qPharmetra", path) 
 {
   #require(Hmisc)
   theFiles = paste(path, 
-                   paste(name, Cs(aux,bbl,blg,toc,log,lot,lof,out),sep="."), sep="/")
+                   paste(name, c('aux','bbl','blg','toc','log','lot','lof','out'),sep="."), sep="/")
   sapply(theFiles, function(x){if(exists(x)) invisible(file.remove(x))})
 }
 

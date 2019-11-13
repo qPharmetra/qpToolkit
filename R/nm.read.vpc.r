@@ -17,7 +17,7 @@
 #' @export
 #' @seealso \code{\link{ggvpc_xpose}},  \code{\link{ggvpc_standard}}, \code{\link{read.vpc}}
 #' @import xpose4
-#' @importFrom Hmisc unPaste Cs
+#' @importFrom Hmisc unPaste
 #' @examples
 #' myVPC = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_strt"))
 #' 
@@ -76,7 +76,7 @@ nm.read.vpc = function(path = getOption("nmDir")
   results.tables = do.call("rbind",sim$result.tables)
   names(results.tables) = sub("X", "", names(results.tables))
   results.tables = results.tables[, c("lower","upper",pred.names, real.names, ci.names, "strata")]
-  results.tables$xCovm = rowMeans(results.tables[, Cs(lower,upper)])
+  results.tables$xCovm = rowMeans(results.tables[, c('lower','upper')])
   names(results.tables)[grep("[.]", names(results.tables))] = 
     paste0("vpc", names(results.tables)[grep("[.]", names(results.tables))])
   

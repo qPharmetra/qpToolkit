@@ -22,13 +22,14 @@
 #' @param uncertainty logical (defaults to F) determining if simulation should be done across uncertainty
 #' @param reference.subset character string to be evaluated over the data in order to subset the predictions and observations in ordeer to create a 'change from' perspective plot (works for method 'prediction' and 'partial residuals')
 #' @param nrep number of replicates to simulate. Defaults to 20.
-#' @return a graph or a multi-level list with observed and predicted output 
+#' @return a graph or a multi-level list with observed and predicted output (class \code{c('nlmefit','fit','list')})
 #' @export nlme.predict
-#' @importFrom Hmisc Cs summarize smean.cl.normal
+#' @importFrom Hmisc summarize smean.cl.normal
 #' @importFrom MASS mvrnorm
 #' @importFrom nlme getData getCovariateFormula fixef ranef 
-#' @importFrom nlme getResponseFormula nlme
+#' @importFrom nlme getResponseFormula nlme getGroups
 #' @importFrom nlme getGroupsFormula random.effects
+#' @importFrom stats coef predict resid approx
 #' @examples   
 #' pkpdData = example.pkpdData()
 #' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
@@ -58,21 +59,20 @@
 #' 
 #' # simple fit vs time
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object)
-#' plot.fit(fit.PD004.pred.nlme)
+#' plot(fit.PD004.pred.nlme)
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object, method = "partial.residuals")
-#' plot.fit(fit.PD004.pred.nlme) ## this is the same: PARTIAL RESIDUALS
+#' plot(fit.PD004.pred.nlme) ## this is the same: PARTIAL RESIDUALS
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object, method = "prediction")
-#' plot.fit(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
+#' plot(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
 #' 
 #' ## note that prediction and partial residual type of model fit plots are very different
 #' 
 #' # fit vs time by dose
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object)
-#' plot.fit(fit.PD004.pred.nlme) 
+#' plot(fit.PD004.pred.nlme) 
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals")
-#' plot.fit(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
-#' plot.fit(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
-
+#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
+#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
 
 nlme.predict = function(
   func,
@@ -88,10 +88,10 @@ nlme.predict = function(
   reference.subset = NULL,
   nrep = 20)
 {
-  if(method %nin% Cs(partial.residuals, prediction, residuals)){
+  if(method %nin% c('partial.residuals', 'prediction', 'residuals')){
     message(" -- argument 'method' needs to be 'partial.residuals', 'prediction', or 'residuals'"); return()
   }
-  if(use.etas %nin% Cs(estimated, sampled, fixed.to.zero)){   # 9/24/2011 FLH
+  if(use.etas %nin% c('estimated', 'sampled', 'fixed.to.zero')){   # 9/24/2011 FLH
     message(" -- argument 'etas' needs to be 'estimated', 'fixed.to.zero', or 'sampled'"); return()
   }
   obsData = getData(object)
@@ -342,7 +342,7 @@ nlme.predict = function(
   }
 
   ## return resulting data frame
-  return(list(  object.name = deparse(substitute(object)), 
+   out <- list(  object.name = deparse(substitute(object)), 
                 level = level, 
                 func = func, 
                 method = method,
@@ -350,7 +350,7 @@ nlme.predict = function(
                 obsData = obsData, ## contains observed data AND partial residuals
                 pred = list(obs = qobs, pred = qypr, partres = qpar, uncPred = uncPred)
               )
-         )
-  
+  class(out) <- c('nlmefit','fit','list')
+  out  
 }
 

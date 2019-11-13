@@ -17,7 +17,7 @@ tabSummarize(formula, data, nSignif = 3, extra.blank.line = TRUE,
 \item{extra.blank.line}{a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility}
 }
 \value{
-Table with summarized data
+Table with summarized data, of class \code{demoTable}
 }
 \description{
 Tabulate a summary
@@ -34,7 +34,7 @@ tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSig
 round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
 # OK
 myFormula =  dose ~ race + wt + bmi + sex
-format.demoTable(
+format(
  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
   , formula = myFormula
 )

@@ -13,11 +13,9 @@
 #' @param nsig number of significant digits in output
 #' @return A data.frame with the bootstrap estimates.
 #' @export bootstrap.ParTab
-#' @importFrom Hmisc Cs
 #' @examples
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
-
 bootstrap.ParTab = function(bootstrap
                             , idx = list(theta=1,omega=1,sigma=1)
                             , probs = 0.95
@@ -27,7 +25,7 @@ bootstrap.ParTab = function(bootstrap
   #require(metrumrg)
   ci = c((1-probs)/2,(probs+1)/2)
   out = data.frame(t(apply(bootstrap$bootstrap[-1,], 2, quantile, probs=ci)))
-  names(out) = Cs(Lower, Upper)
+  names(out) = c('Lower', 'Upper')
   out$Estimate = signif(apply(bootstrap$bootstrap[-1,], 2, central), nsig)
   out$Orig.Estimate = signif(unlist(bootstrap$bootstrap[1,]), nsig)
   out = out[7:nrow(out), ]

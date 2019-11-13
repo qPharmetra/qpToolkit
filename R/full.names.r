@@ -9,13 +9,12 @@
 #' @param x Shorthand / Abbreviate column names
 #' @return Column names written out in full
 #' @export
-#' @importFrom Hmisc Cs
 #' @examples
 #' full.names(c("wt","race","age"))
 full.names = function(x)
 {
   swap(x, 
-                  Cs(wt,ht,bmi,age,sex,crcl,race),
+                  c('wt','ht','bmi','age','sex','crcl','race'),
                   c("Weight (kg)","Height (cm)","BMI (kg/m2)","Age (yr)","Gender","Creatinine Clearance (L/min)","Race")
   )      
 }

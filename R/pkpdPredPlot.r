@@ -8,11 +8,10 @@
 #' @param t.obs time opf observations
 #' @param pk.func pharmacokinetic function to evaluate. See \code{\link{pk.pred}}
 #' @param e.func effect model function to evaluate. See \code{\link{pk.pred}}
-#' @param parms numeric vector (may be a named vector but is not required) with 
-#' @param log logical indicating to log the Y axis
+#' @param parms numeric vector (may be a named vector but is not required)  
+# @param log logical indicating to log the Y axis
 #' @param output if TRUE the simulation input and outpout is returned as list. If FALSE (default) the plot is created.
-#
-#'
+#' @importFrom graphics plot lines segments text
 #' @return A plot or a list with output
 #' @export pkpdPredPlot
 #'
@@ -30,6 +29,8 @@ pkpdPredPlot = function(doses, t.doses, t.obs, pk.func, e.func, parms, output = 
    ypr.sd.c = pk.pred(doses[1], t.doses[1], t.obs, pk.func, parms) 
    ypr.e = pk.pred(doses, t.doses, t.obs, e.func, parms) 
    ypr.sd.e = pk.pred(doses[1], t.doses[1], t.obs, e.func, parms) 
+
+   ## CHECK ypr, ypr.sd not defined, but used below
    
    if(!output){
    plot(rep(t.obs,4), c(ypr.c, ypr.sd.c, ypr.e, ypr.sd.e), type = "n", xlab = "Time (unit)"
@@ -52,6 +53,6 @@ pkpdPredPlot = function(doses, t.doses, t.obs, pk.func, e.func, parms, output = 
    ## depict which function was used
    text(x = 0.075 * max(t.obs), y = 1.075* max(ypr.c), 
         substring(deparse(substitute(pk.func)),4), col = "blue", xpd = TRUE)
-   } else list(t.obs=t.obs, ypr=ypr, ypr.sd = ypr.sd
-                    , doses = doses, t.doses=t.doses, pk.func = pk.func, e.func = e.func)
+   } else list(t.obs=t.obs, ypr.c=ypr.c, ypr.sd.c = ypr.sd.c, ypr.e = ypr.e, ypr.sd.e = ypr.sd.e,
+                    doses = doses, t.doses=t.doses, pk.func = pk.func, e.func = e.func)
 } ## pkpdPredPlot

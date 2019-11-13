@@ -5,7 +5,6 @@
 #' @return a list with the nlme object and the assocated proble statement and reference number
 #' @export nlme.run
 #' @importFrom nlme nlme
-#' @importFrom Hmisc Cs
 #' @seealso \code{\link{nlme.modeltrail}}, \code{\link{nlme.vpc}}
 #' @examples
 #' library(nlme)
@@ -49,7 +48,7 @@
 nlme.run = function(...)
 {
   nlme.arguments = as.list(match.call())
-  if(any(Cs(problem, reference) %nin% names(nlme.arguments))) stop("need problem and reference input")
+  if(any(c('problem', 'reference') %nin% names(nlme.arguments))) stop("need problem and reference input")
   problem = nlme.arguments$problem
   reference = nlme.arguments$reference
   nlme.arguments$problem = nlme.arguments$reference = NULL

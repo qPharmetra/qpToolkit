@@ -7,20 +7,34 @@
 # ROXYGEN Documentation
 #' Lattice function for predicted components of a NONMEM VPC
 #' @description  Panel function for predicted and observed lines / colored polygons of a vpc plot of an NONMEM / PsN VPC object
-#' @param other a collection of parameters are available to modify the layout of the VPC
+# @param other a collection of parameters are available to modify the layout of the VPC
+#' @param x x variable
+#' @param y y variable
+#' @param OBS list with element: strata_no
+#' @param vpc list with element: strata_no
+#' @param subscripts subscripts for vpc
 #' @param logY logical for logging Y coordinate
 #' @param logX logical for logging X coordinate
+#' @param showPredAs choice of 'lines', 'area', or 'xpose'
+#' @param showObsDots whether to show observations as dots
+#' @param showObsLines whether to show observations as lines
+#' @param xCov covariates of interest from vpc
+#' @param col.scheme list with elements: [pred: [outer, central, area], obs: [dot, line]]
+#' @param obscex.dot cex for observations
+#' @param obspch.dot pch for observations
+#' @param lineType line type for observations and predictions
+#' @param central.lwd line width for predicted central tendency
+#' @param \dots
 #' @return Lattice panel output (invisible)
 #' @note Not to be used as standalone. Will be be called by \code{nm.vpcplot}. Furthermore, the \code{nm.vpcplot} routine will go deprecated soon, thus it is not adviced to use this function going forward. Instead use xpose.VPC.
 #' @seealso \code{\link{nm.vpcplot}}
 #' @import lattice
 
-
-
-panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs, 
-                            showObsDots, showObsLines, xCov, 
-                            col.scheme, obscex.dot, obspch.dot, lineType, central.lwd, ...)
-{
+panel.nonmem.vpc = function(
+  x, y, OBS, vpc, subscripts, logY, logX, showPredAs, 
+  showObsDots, showObsLines, xCov, 
+ col.scheme, obscex.dot, obspch.dot, lineType, central.lwd, ...
+ ){
   info = data.frame(attr(y, "other"))
   
   if(showPredAs == "lines")
@@ -77,8 +91,8 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   if(showObsDots) panel.xyplot(OBS[mysubs, 3], OBS[mysubs, 2], ..., cex = obscex.dot,
                                pch = obspch.dot, col = col.scheme$obs$dot, type = 'p')
   if(showObsLines){
-    if(logY) {vpc[, Cs(yobs.lo,yobs.cen, yobs.hi)] = 
-                   log10(vpc[, Cs(yobs.lo,yobs.cen, yobs.hi)])}
+    if(logY) {vpc[, c('yobs.lo','yobs.cen', 'yobs.hi')] = 
+                   log10(vpc[, c('yobs.lo','yobs.cen', 'yobs.hi')])}
     if(logX) {vpc[, xCov] = log10(vpc[, xCov])}
     
     panel.xyplot(vpc[subscripts,xCov], vpc$yobs.lo[subscripts], ...,  
@@ -90,9 +104,9 @@ panel.nonmem.vpc = function(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   }
 }
 
-if(F)
-{
-  nm.vpcplot(file.path(nmDir, "vpc2169_all"), logY = TRUE)
-  ## note the plotting is done using panel.nonmem.vpc inside the function
-}
+# if(F)
+# {
+#   nm.vpcplot(file.path(nmDir, "vpc2169_all"), logY = TRUE)
+#   ## note the plotting is done using panel.nonmem.vpc inside the function
+# }
 

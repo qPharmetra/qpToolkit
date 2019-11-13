@@ -2,7 +2,7 @@
 #' Create a runrecord like GOF plot of selected runs
 #' @param runs character vector with rootname runs like \code{c("run1","run2")}
 #' @param path directory where \code{runs} reside
-#' @param keep.cols needs at the minimum \code{Cs(ID,DV,CWRES,PRED,IPRED,TIME,EVID)} but can be altere to match other data columns
+#' @param keep.cols needs at the minimum \code{c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')} but can be altere to match other data columns
 #' @param alias a named list to rename DV and TIME variables, in case in \code{$DATA} they have been specified as \code{...=DV} and/or \code{...=TIME}
 #' @param dot.size scalar for GOF plot dots
 #' @param text.size scalar for text size in strip labels
@@ -12,18 +12,16 @@
 #' @importFrom latticeExtra useOuterStrips ggplot2like
 #' @importFrom reshape2 melt
 #' @examples
-#' library(Hmisc)
 #' nm.compare.plot(runs = c("example1","example2")
 #' , path =getOption("qpExampleDir")
 #' , alias = list(DV = "CONC",TIME = "TIME")
-#' , keep.cols = Cs(ID,DV,CWRES,PRED,IPRED,TIME,EVID)
+#' , keep.cols = c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')
 #' , text.size = 0.6
 #' )
 
-
 nm.compare.plot = function(runs
                            , path = getOption("nmDir")
-                           , keep.cols = Cs(ID,DV,CWRES,PRED,IPRED,TIME,EVID)
+                           , keep.cols = c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')
                            , alias = list(DV = "CONC", TIME = "TAFD") ## in case of $INPUT CONC=DV TAFD=TIME etc...
                            , dot.size = 1 ## relative dot size
                            , text.size = 1 ## relative fontsize
@@ -61,9 +59,9 @@ nm.compare.plot = function(runs
   }
   
   ## melt elements
-  molten = reshape2::melt(out, measure.vars = Cs(TIME,PRED,IPRED))
-  names(molten)[names(molten) %in% Cs(variable,value)] = Cs(xVariable, xValue)
-  molten = reshape2::melt(molten, measure.vars = Cs(DV,CWRES))
+  molten = reshape2::melt(out, measure.vars = c('TIME','PRED','IPRED'))
+  names(molten)[names(molten) %in% c('variable','value')] = c('xVariable', 'xValue')
+  molten = reshape2::melt(molten, measure.vars = c('DV','CWRES'))
   molten$group = paste(molten$variable,molten$xVariable,sep="~")
   molten = molten[molten$group %nin% c("DV~TIME","CWRES~IPRED"), ]
   molten$variable = as.character(molten$variable )

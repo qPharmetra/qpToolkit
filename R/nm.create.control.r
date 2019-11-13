@@ -9,6 +9,7 @@
 #' @seealso \code{\link{nm.create.control}}
 #' @export
 #' @importFrom Hmisc unPaste
+#' @importFrom gdata trim
 
 makeRandom = function(sw="omega", ctl, ranEf){
   # sw   = either "omega" or "sigma" for IIV or residual random effects
@@ -37,7 +38,7 @@ makeRandom = function(sw="omega", ctl, ranEf){
     endS = ifelse(secs$nextS[thisSec]==length(ctl), length(ctl),
                   secs$nextS[thisSec]-1)
     tmp = unlist(unPaste(ctl[startS:endS]))
-    tmp = trim(sub("FIX", "", tmp))
+    tmp = gdata::trim(sub("FIX", "", tmp))
     tmp = ifelse(regexpr("\\;", tmp) > 1, trim(substring(tmp, 1, regexpr("\\;", tmp)-1)), tmp)  # remove comments
     tmp = paste(tmp, collapse=" ")
      
@@ -113,7 +114,7 @@ uncertainParams = function(out){
 #' @return A control stream ready for execution written to file
 #' #' @note THIS FUNCTION HAS NOT BEEN THOROUGHLY TESTED. USE WITH CAUTION AND ADAPT AS NEEDED ON THE PROJECT LEVEL.
 #' @export
-#' @importFrom Hmisc Cs
+#' @importFrom gdata trim
 
 nm.create.control = function(run,
   path = getOption("nmDir"),
@@ -145,8 +146,8 @@ nm.create.control = function(run,
   
   # Remove sections that are either unnecessary or 
   # will be replaced with new code
-  remSections=Cs(COV, EST, THETA, OMEGA, SIGMA)
-  ctl = removeSection(remSections, ctl)[[1]]
+  remSections=c('COV', 'EST', 'THETA', 'OMEGA', 'SIGMA')
+  ctl = nm.remove.section(remSections, ctl)[[1]]
   
   ## create the control stream
   ctl = c(ctl, fix, omega, sigma)
@@ -157,12 +158,12 @@ nm.create.control = function(run,
 
   # Change the table reference or add table statment
   if(!is.null(table)){
-    ctl = removeSection("TABLE",ctl)[[1]]
+    ctl = nm.remove.section("TABLE",ctl)[[1]]
     ctl = c(ctl, table)
   } else {
     # if no change to the table statement, simply change the table references to add sim
     # to the output file names
-    tmp = removeSection("TABLE", ctl)
+    tmp = nm.remove.section("TABLE", ctl)
     ctl = tmp[[1]]
     table = unlist(tmp[[2]])
     table = sub("\\.tab", "sim.tab", table, ignore.case=TRUE)

@@ -1,3 +1,4 @@
+globalVariables('EVID')
 #' Insert doses in other compartments
 #' @description To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID=2 & AMT=0 records before each dose given.
 #' @param data NONMEM data.frame, should contain variables
@@ -10,11 +11,10 @@
 #' @importFrom dplyr filter mutate arrange bind_rows
 #' @seealso \code{\link{nm.insert.dose.multiple.compartments}}
 #' @examples
-#' library(Hmisc)
 #' library(dplyr)
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)
-#' tbl_df(nmData2[, Cs(ID,TIME,EVID,AMT,DV)])
+#' tbl_df(nmData2[, c('ID','TIME','EVID','AMT','DV')])
 nm.insert.evid2amt0 = function(data, ..., quiet = TRUE)
 {
   my.dots = paste(

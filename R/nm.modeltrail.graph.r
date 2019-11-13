@@ -9,7 +9,7 @@
 #' @description Create graphical presentation of Bayesian model building trail. The function reads the iterations from the run.ext file and displays them as densities in a lattice graph
 #' @param runs charater vector with run rootname (e.g. \code{c("run1","run2","run3")})
 #' @param path directory where \code{runs} reside
-#' @param extension file extension of the run.ext file. Defaults to ".ext"
+#' @param file.ext file extension of the run.ext file. Defaults to ".ext"
 #' @param col.area polygon color of the density plot
 #' @param col.mean color of the mean line
 #' @param col.percentiles color of the percentile lines
@@ -21,6 +21,7 @@
 #' @return Lattice graph with the distributions of the MCMC Bayesian OFV, supplied with mean line and 2.5th and 97.5th percentiles 
 #' @export
 #' @import lattice
+#' @importFrom stats quantile
 #' @examples 
 #' ## when there is no Bayesian estimation
 #' nm.modeltrail.graph(runs = c("example1","example2")
@@ -46,7 +47,7 @@ function(runs,                                                          ## runs 
     return()
   }
   
-  #runs = Cs(run116,run118); x = runs[[1]]
+  #runs = c('run116','run118'); x = runs[[1]]
   name.runs = runs ;# runs = name.runs
   runs = lapply(runs, function(run, path, file.ext) 
      read.ext(run, path = path, file.ext = file.ext)

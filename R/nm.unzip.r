@@ -9,11 +9,12 @@
 #'   option unzip.call.
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
-#' @param extension file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped
+anything else that has been zipped
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
-#' @param zip.program full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"
+#' @param extension file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or #' @param zip.call full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"
 #' @param filename file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults
 #' @param zip.filename filename of the zip file to extract. Is automatically populated with qP workflow defaults
+#' @param quiet whether to suppress process messages
 #' @return The zipped file is extracted to disk in the same location. Nothing is returned to R.
 #' @export
 #' @examples 

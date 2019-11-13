@@ -1,3 +1,7 @@
+globalVariables(c(
+'xCov','piLowerDown','piLowerUp','piUpperDown','piUpperUp','piCentralDown','piCentralUp'
+,'xCovm','obsLower','vpc50.real','obsUpper','vpc50.sim','IVAR','DVVAR'
+))
 
 # ROXYGEN Documentation
 #' VPC plot using ggplot2 (Xpose-alike version)
@@ -16,6 +20,7 @@
 #' @param point.size scalar of the observed data dot size
 #' @param point.col color of observed data dots
 #' @param yrange.stretch vector of c(min,max) which will proportionally rescale the lower and upper limits of the Y axis
+#' @param quiet whether to suppress process messages
 #' @return A ggplot object to be extended optionally
 #' @export
 #' @note Editing and stratification to be done by adding ggplot layer
@@ -52,11 +57,10 @@
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") +
 #'   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
 #' 
-
 ggvpc_xpose = function(vpc
                        , PI = c(0.025,0.975)
                        , area.col.central = PI.ci.med.arcol
-                       , area.col.outer = gray(0.2)
+                       , area.col.outer = grDevices::gray(0.2)
                        , linecol.pred = "blue"
                        , linesize.pred = 1
                        , linetype.obs = "dashed"

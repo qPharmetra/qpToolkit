@@ -10,6 +10,7 @@
 #' @return A new trellis device is started with gray strip colors
 #' @export
 #' @import lattice
+#' @importFrom grDevices rgb
 
 trellis.strip.color = function(
   strip.colors = c(	rgb(200/230,200/230,230/255), #    		lightgrey

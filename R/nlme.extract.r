@@ -21,7 +21,7 @@
 #' @importFrom nlme getData getCovariateFormula fixef ranef 
 #' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula pdMatrix intervals
-#' @importFrom Hmisc Cs
+#' @importFrom stats coef rnorm predict var
 #' @examples
 #' fm1 <- nlme::nlme(height ~ SSasymp(age, Asym, R0, lrc),
 #' data = Loblolly,
@@ -30,7 +30,6 @@
 #' start = c(Asym = 103, R0 = -8.5, lrc = -3.3))
 #' fm1.out = nlme.extract(fm1)
 #' fm1.out
-
 nlme.extract = function(obj, 
   method = "components", 
   newdata = NULL, 
@@ -175,10 +174,10 @@ nlme.extract = function(obj,
 	fixTab$Std.Error = signif(fixTab$Std.Error, nSignif)
 	fixTab$Value = signif(fixTab$Value, nSignif)
 	fixTab$Est.se = paste(fixTab$Value, " (", fixTab$Std.Error, ")", sep = "")
-	fixTab = cbind(fixTab, data.frame(intervals(obj)$fixed[, Cs(lower,upper)]))
+	fixTab = cbind(fixTab, data.frame(intervals(obj)$fixed[, c('lower','upper')]))
 	fixTab$CI95 = paste("(",signif(fixTab$lower,nSignif), " - ", signif(fixTab$upper, nSignif), ")", sep = "")
   fixTab$CV = paste(round(abs(fixTab$Std.Error/fixTab$Value)*100,nSignif.CV), "%", sep = "")
-  fixTab = fixTab[, Cs(Parameter, Est.se, CV, CI95)]
+  fixTab = fixTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
 	fixTab
 	
 	if(intervals.OK)
@@ -204,11 +203,11 @@ nlme.extract = function(obj,
 
     tmp = rbind(do.call("rbind",intervals(obj)$reStruct), intervals(obj)$sigma)
     row.names(tmp)[nrow(tmp)] = "sigma"
-    ranTab = cbind(ranTab, tmp[, Cs(lower,upper)])
+    ranTab = cbind(ranTab, tmp[, c('lower','upper')])
   	ranTab$Est.se = paste(ranTab$Value, " (", ranTab$Std.Error, ")", sep = "")
     ranTab$CV = paste(round(abs(ranTab$Std.Error/ranTab$Value)*100,nSignif.CV), "%", sep = "")
     ranTab$CI95 = paste("(",signif(ranTab$lower,nSignif), " - ", signif(ranTab$upper, nSignif), ")", sep = "")
-    ranTab = ranTab[, Cs(Parameter, Est.se, CV, CI95)]
+    ranTab = ranTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
     ranTab	
 	}
 

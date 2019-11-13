@@ -4,10 +4,12 @@
 \alias{format.demoTable}
 \title{Format a tabulated summary for LaTeX}
 \usage{
-\method{format}{demoTable}(demoTable, formula)
+\method{format}{demoTable}(x, ..., formula)
 }
 \arguments{
-\item{demoTable}{output from \code{tabSummarize}}
+\item{x}{output from \code{\link{tabSummarize}} of class \code{demoTable}}
+
+\item{\dots}{ignored}
 
 \item{formula}{the same formula as used to create the \code{tabSummarize} output}
 }
@@ -25,7 +27,7 @@ options(width = 150)
 pkpdData = example.pkpdData()
 ok = duplicated(pkpdData$id) == FALSE
 myFormula =  dose ~ race + wt + bmi + sex
-my.formatted.demoTable = format.demoTable(
+my.formatted.demoTable = format(
  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
   , formula = myFormula
 )

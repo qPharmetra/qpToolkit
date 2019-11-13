@@ -15,12 +15,10 @@
 #' @return data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information. 
 #' @export
 #' @seealso \code{\link{process.parTable}}
-#' @importFrom Hmisc Cs
 #' @importFrom metrumrg stableMerge
 #' @examples
 #' nm.params.table(run = "example1", path = getOption("qpExampleDir"))
 #' nm.params.table("example2",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)", return.all = TRUE)
-
 nm.params.table = function(
   run,
   path = getOption("nmDir"),
@@ -67,11 +65,11 @@ nm.params.table = function(
   
   theTab$index = extract.number(theTab$Parameter)
   theTab$level = unlist(lapply(sapply(theTab$Parameter,function(x) extract.character(x)),paste, collapse=""))
-  parTab = theTab[theTab$level %in% Hmisc::Cs(THETA,SIGMA,OMEGA),]
-  parTab$ord = swap(parTab$level,Hmisc::Cs(THETA,OMEGA,SIGMA), 1:3)
+  parTab = theTab[theTab$level %in% c('THETA','SIGMA','OMEGA'),]
+  parTab$ord = swap(parTab$level,c('THETA','OMEGA','SIGMA'), 1:3)
   parTab$ord = paste(parTab$ord,format(parTab$index), sep = "")
   parTab = parTab[order(parTab$ord),]
-  parTab = reorder.names(parTab, "Parameter")
+  parTab = reorder(parTab, "Parameter")
   
   ## merge the fixed / non-fixed information in
   parTab = metrumrg::stableMerge(parTab[, names(parTab)[names(parTab) != "estimated"]], check)

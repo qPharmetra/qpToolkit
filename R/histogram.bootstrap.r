@@ -1,3 +1,6 @@
+globalVariables(c('minimization.successful',  'covariance.step.successful', 
+ 'covariance.step.warnings',  'estimate.near.boundary'
+  ))
 # name:     histogram.bootstrap
 # purpose:  creates histogram of outpout read with read.bootstrap
 # input:    bootstrap object created by calling read.bootstrap
@@ -31,12 +34,12 @@
 #' @param ... Optional arguments passed on to hist
 #' @return Histograms of bootstrapped parameter estimates
 #' @export histogram.bootstrap
+#' @importFrom grDevices dev.cur dev.off
 #' @examples
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir"),filename = "bootstrap/raw_results_bs4011.csv",structure.filename = "bootstrap/raw_results_structure")
 #' temp.dir = tempdir()
 #' cat(temp.dir)
 #' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") ## now take a look there
-
 histogram.bootstrap = function(bootstrap,
                                filename.prefix = "bootstrapPage",
                                path, 
@@ -108,25 +111,25 @@ histogram.bootstrap = function(bootstrap,
     if (mode(p1[[i]]) == "numeric" &&
           sum(p1[[i]],na.rm=TRUE)) {
       sp <- summary(p1[[i]])
-      dp <- density(p1[[i]], na.rm=TRUE)
+      dp <- stats::density(p1[[i]], na.rm=TRUE)
       parmlabel <- names(p1)[i]
       
       if (total == 0) {
         bspage <- bspage + 1
-        png(filename=paste(path,paste(filename.prefix, bspage, ".png", sep=""), 
+        grDevices::png(filename=paste(path,paste(filename.prefix, bspage, ".png", sep=""), 
                            sep = "/"), height=18, width=18, units = "cm",res = 600)
-        par(mfrow = c(3,3))
+        graphics::par(mfrow = c(3,3))
       }
       total <- total + 1
       
-      qu <- quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm=TRUE)
+      qu <- stats::quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm=TRUE)
       
       legend=paste("n = ", nrow(p1), sep="")  
       if (showmean) {legend=paste(legend, "; Mean = ", sp[4], sep="")}
       if (showmedian) {legend=paste(legend, "; Median = ", sp[3], sep="")}
       if (showoriginal) {legend=paste(legend, "; Orig = ", o1[[i]], sep="")}
       
-      hist(p1[[i]], 
+      graphics::hist(p1[[i]], 
            main = parmlabel,
            xlab = "",
            col = histCol,
@@ -136,36 +139,36 @@ histogram.bootstrap = function(bootstrap,
            sub=legend,
            ...)
       
-      lines(dp, lwd=1, lty=3, col=densityCol)
+      graphics::lines(dp, lwd=1, lty=3, col=densityCol)
       
       if (showquart) {
-        abline(v=sp[2], lwd= 1, lty=3, col=outerCol) ## 1st quartile
-        abline(v=sp[5], lwd= 1, lty=3, col=outerCol) ## 3rd quartile
+        graphics::abline(v=sp[2], lwd= 1, lty=3, col=outerCol) ## 1st quartile
+        graphics::abline(v=sp[5], lwd= 1, lty=3, col=outerCol) ## 3rd quartile
       }
       if (showmean) {
-        abline(v=sp[4], lty=1, lwd=2, col=bootCentralCol) ## mean
+        graphics::abline(v=sp[4], lty=1, lwd=2, col=bootCentralCol) ## mean
       }
       if (showmedian) {
-        abline(v=sp[3], lty=1, lwd=2, col=bootCentralCol) ## median
+        graphics::abline(v=sp[3], lty=1, lwd=2, col=bootCentralCol) ## median
       }
       if (showoriginal) {
-        abline(v=o1[[i]], lty=1, lwd=1, col=obsCentralCol) ## original
+        graphics::abline(v=o1[[i]], lty=1, lwd=1, col=obsCentralCol) ## original
       }
       if (show95CI) {
-        abline(v=qu[1], lty=4, lwd=1, col=outerCol) ## 2.5% CL
-        abline(v=qu[2], lty=4, lwd=1, col=outerCol) ## 97.5% CL
-        text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = 3), cex = .8, 
+        graphics::abline(v=qu[1], lty=4, lwd=1, col=outerCol) ## 2.5% CL
+        graphics::abline(v=qu[2], lty=4, lwd=1, col=outerCol) ## 97.5% CL
+        graphics::text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = 3), cex = .8, 
              adj = c(0,0), pos='2')
-        text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = 3), cex = .8, 
+        graphics::text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = 3), cex = .8, 
              adj = c(0,0), pos='4')
       }
       
       if (total == 9) {
         total <- 0
-        dev.off()
+        grDevices::dev.off()
       }
     }
   }
-  if(dev.cur() != 1) dev.off()
+  if(grDevices::dev.cur() != 1) grDevices::dev.off()
 }
 

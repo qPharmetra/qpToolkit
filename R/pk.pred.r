@@ -8,7 +8,7 @@
 #' @param tob vector of time observations  (individual pk.xxx functions)
 #' @param t.obs vector of observation times relative to time of first dose (with pk.pred multiple dose wrapper)
 #' @param pk.func function object predicting concentration as a function of time, given	dose and pk parameters 
-#' @param e.func function object predicting effects
+# @param e.func function object predicting effects
 #' @param parms vector of pk parameter values. This can but is not required to be a named vector.
 #' @return PK predictions, PK plots
 #' @export pk.pred pk.1comp.iv pk.1comp.0abs pk.1comp.1abs pk.1comp.1abs.ss pk.1comp.10abs pk.1comp.lag pk.2comp.iv pk.2comp.0abs pk.2comp.1abs pk.2comp.1abs.m pk.2comp.1abs.ss pk.3comp.iv pk.3comp.iv.ss pk.3comp.1abs pk.3comp.1abs.ss eff.1comp.iv eff.1comp.1abs eff.1comp.1abs.ss eff.2comp.iv eff.2comp.1abs eff.2comp.1abs.ss eff.3comp.1abs
@@ -712,11 +712,12 @@ eff.2comp.iv = function(dose, tob, parms){
   q   = parms[3]  # intercompartmental clearance
   v2  = parms[4]  # peripheral volume
   keo = parms[5]  # effect-site rate constant
+  # ka = ## CHECK
   
   k10 = cl  / v1
   k12 = q   / v1
   k21 = q   / v2
-  beta = 0.5*(k12 + k21 + k10 - sprt((k12+k21+k10)^2 - 4*k10*k21))
+  beta = 0.5*(k12 + k21 + k10 - sqrt((k12+k21+k10)^2 - 4*k10*k21))
   alpha = k21*k10 / beta
   
   # Coefficients
@@ -739,14 +740,14 @@ eff.2comp.1abs = function(dose, tob, parms){
   v1  = parms[2]  # central volume
   q   = parms[3]  # intercompartmental clearance
   v2  = parms[4]  # peripheral volume
-  ka  = parms[5]  # absorption rate constant
-  keo = parms[5]  # effect-site rate constant
+  ka  = parms[5]  # absorption rate constant ## CHECK
+  keo = parms[6]  # effect-site rate constant
   
   # Macro parameters  
   k10 = cl  / v1
   k12 = q   / v1
   k21 = q   / v2
-  beta = 0.5*(k12 + k21 + k10 - sprt((k12+k21+k10)^2 - 4*k10*k21))
+  beta = 0.5*(k12 + k21 + k10 - sqrt((k12+k21+k10)^2 - 4*k10*k21))
   alpha = k21*k10 / beta
   
   # Coefficients
@@ -773,12 +774,13 @@ eff.2comp.1abs.ss = function(dose, tob, parms){
   v2  = parms[4]  # peripheral volume
   keo = parms[5]  # effect-site rate constant
   tau = parms[6]  # inter-dose interval
+  ka  = parms[7]  # first order absorption rate constant ## CHECK
   
   # Macro parameters  
   k10 = cl  / v1
   k12 = q   / v1
   k21 = q   / v2
-  beta = 0.5*(k12 + k21 + k10 - sprt((k12+k21+k10)^2 - 4*k10*k21))
+  beta = 0.5*(k12 + k21 + k10 - sqrt((k12+k21+k10)^2 - 4*k10*k21))
   alpha = k21*k10 / beta
   
   # Permit prediction of more than a single dosing interval

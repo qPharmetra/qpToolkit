@@ -9,7 +9,7 @@
 #' @description Function to read NONMEM control stream and parse it out as named list
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
-#' @param extension file extension of NONMEM control stream (.mod)
+#' @param file.ext file extension of NONMEM control stream (.mod)
 #' @param quiet if TRUE no message will be returned.
 #' @return A named list with all \code{$PK, $ERROR, $THETA} etc... elements of the control stream
 #' @export

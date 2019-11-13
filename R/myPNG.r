@@ -30,7 +30,7 @@ myPNG = function(
   psize = 10, bg="transparent", res=600
   , ...)
 {
-  png(filename = filename, width = w, height = h, 
+  grDevices::png(filename = filename, width = w, height = h, 
     units = units, pointsize = psize, bg = "white", res = res, ...)
 }
 
@@ -38,8 +38,8 @@ myPNG = function(
 if (F) {
   myPNG(filename = paste("output/graphs", "myPNGexample.png", sep="/"))
   
-  plot(x=1:10,y=31:40)  
+  graphics::plot(x=1:10,y=31:40)  
   
-  dev.off()
+  grDevices::dev.off()
 
 }

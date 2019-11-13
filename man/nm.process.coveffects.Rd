@@ -13,7 +13,7 @@ make.eqs(...)
 eval.eqs(.data, ...)
 
 covInfo(cov.name, cov.vals, cov.cat = FALSE,
-  cov.center = median(cov.vals), cov.min = min(cov.vals),
+  cov.center = stats::median(cov.vals), cov.min = min(cov.vals),
   cov.max = max(cov.vals), cov.label = cov.name,
   cov.breaks = pretty(cov.vals))
 

@@ -15,6 +15,7 @@
 #' @return Data.frame with simulated output
 #' @export
 #' @import deSolve
+#' @import snowfall
 
 ## wrapper function to simulate across model parameters and initial conditions (e.g. doses)
 odeSim = function(state, times,  func, parms, simPar, simParValues, method = "lsoda",

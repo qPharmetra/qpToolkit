@@ -7,6 +7,7 @@
 #' @param logX log the x-axis (defaults to F) 
 #' @param logY log the y-axis (defaults to F)
 #' @param type.obs line type for observed data (defaults to 'b' for both lines and points)
+#' @param \dots passed to llines()
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice

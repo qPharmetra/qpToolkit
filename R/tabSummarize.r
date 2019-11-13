@@ -4,7 +4,8 @@
 #' @param data data to summarize
 #' @param nSignif number of significant digits in output
 #' @param extra.blank.line a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility 
-#' @return Table with summarized data
+#' @param ndigits.categorical passed to \code{\link{tabStats}}
+#' @return Table with summarized data, of class \code{demoTable}
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabStats}}
 #' @note This function is primarily used for demographics tables
 #' @export
@@ -18,7 +19,7 @@
 #' round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
 #' # OK
 #' myFormula =  dose ~ race + wt + bmi + sex
-#' format.demoTable(
+#' format(
 #'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
 #'   , formula = myFormula
 #' )
@@ -83,6 +84,7 @@ tabSummarize = function(formula
   NNN = NNN[names.order]
   ndf[1,] = c("", paste("(N=",c(as.numeric(NNN), length(YYY[[1]])), ")", sep = ""))#, length(YYY[[1]]))
   theData = rbind(ndf, theData)
+  class(theData) <- c('demoTable', class(theData))
   return(theData)
 }
 
@@ -95,7 +97,7 @@ if(F)
   round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
   ## OK
   myFormula =  dose ~ race + wt + bmi + sex
-  format.demoTable(
+  format(
     tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
     , formula = myFormula
   )

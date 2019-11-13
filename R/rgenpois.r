@@ -7,6 +7,7 @@
 #' @param scan.size the upper limit of the distribution. This could be set higher but due to exponentation in the likelihood function shgould not exceed 
 #' @return n samples from the Generalized Poisson distribution (numeric non-negative integers)
 #' @export
+#' @importFrom stats runif
 #' @examples 
 #' genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 #' {

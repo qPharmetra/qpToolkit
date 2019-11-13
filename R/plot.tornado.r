@@ -33,7 +33,8 @@
 # ROXYGEN Documentation
 #' Tornado plots
 #' @description Create a tornado plot given a table of sensitivity analysis results
-#' @param torn.ds Dataset containing sensitivity analysis results to be plotted. Column names should include: \code{variable} - names of variable (will be plotted as y axis labels), \code{val.lo} - low value of objective when variable is swung to an extreme, \code{val.base}	base value of objective when all variables are at base, \code{val.hi} - high value of the objective when variable is swung to an extreme, \code{lab.lo} -	label associated with low, \code{lab.base} -	label associated with base, \code{lab.hi}	label associated with high
+#' @param x Dataset containing sensitivity analysis results to be plotted. Column names should include: \code{variable} - names of variable (will be plotted as y axis labels), \code{val.lo} - low value of objective when variable is swung to an extreme, \code{val.base}	base value of objective when all variables are at base, \code{val.hi} - high value of the objective when variable is swung to an extreme, \code{lab.lo} -	label associated with low, \code{lab.base} -	label associated with base, \code{lab.hi}	label associated with high
+#' @param \dots ignored
 #' @param main graphical parameter
 #' @param xlim graphical parameter
 #' @param xlab graphical parameter
@@ -48,12 +49,14 @@
 #' @param show.base graphical parameter
 #' @param adj.ylabs graphical parameter
 #' @return A tornado plot
-#' @export plot.tornado
+#' @family tornado
+#' @export
+#' @importFrom graphics plot par axis polygon text abline
 #' @examples 
-#' torn.ds = read.csv(
+#' torn.ds = as.tornado(read.csv(
 #'   file.path(getOption("qpExampleDir"), "../Excel/tornado.ds.csv")
-#' , stringsAsFactors = FALSE)
-#' plot.tornado(torn.ds
+#' , stringsAsFactors = FALSE))
+#' plot(torn.ds
 #'              , xlim=c(0,20)
 #'              , xlab="Dollars"
 #'              , main="My first tornado"
@@ -63,7 +66,7 @@
 #'              , show.base=FALSE
 #' )
 
-plot.tornado = function(torn.ds, main="", xlim=range(c(torn.ds$val.hi,torn.ds$val.lo)), xlab="Output", bar.width=.75, base.round=0, cex.main=1.5,
+plot.tornado = function(x, ..., main="", xlim=range(c(torn.ds$val.hi,torn.ds$val.lo)), xlab="Output", bar.width=.75, base.round=0, cex.main=1.5,
 					cex.xaxis=cex.main*0.5, cex.yaxis=cex.main*.65, cex.barlab=cex.main*.55,
 					cex.baslab=cex.main*.5, bar.col="#0A41A5", show.base=TRUE, adj.ylabs=0)
 {
@@ -100,5 +103,32 @@ plot.tornado = function(torn.ds, main="", xlim=range(c(torn.ds$val.hi,torn.ds$va
 			col=1, adj=0, cex=cex.baslab)
 	}
 }
+
+#' Coerce to Tornado
+#' @description Coerce something to a tornado object.
+#' @param x object to be coerced
+#' @param \dots ignored
+#' @return object of class \code{tornado}
+#' @family tornado
+#' @export
+as.tornado <- function(x,...)UseMethod('as.tornado')
+
+#' Coerce to Tornado from data.frame
+#' @description Coerce data.frame to a tornado object.
+#' @param x data.frame
+#' @param \dots ignored
+#' @return object of class \code{tornado}
+#' @family tornado
+#' @export
+as.tornado.data.frame <- function(x,...){
+	expected <- c('variable','val.lo','val.base','val.hi', 'lab.lo','lab.base','lab.hi')
+	nms <- names(x)
+	missing <- base::setdiff(expected, nms)
+	msg <- paste(collapse = ', ', missing)
+	if(length(missing)) warning('expecting but not seeing ', msg)
+	class(x) <- c('tornado', class(x))
+	x
+}
+
 
 

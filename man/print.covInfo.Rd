@@ -4,10 +4,12 @@
 \alias{print.covInfo}
 \title{Print a covInfo S3 object}
 \usage{
-\method{print}{covInfo}(x)
+\method{print}{covInfo}(x, ...)
 }
 \arguments{
 \item{x}{A covInfo object}
+
+\item{\dots}{ignored}
 }
 \value{
 A covInfo object

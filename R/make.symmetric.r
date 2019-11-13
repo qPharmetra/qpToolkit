@@ -11,20 +11,18 @@
 #' @param triangle defaulting to 'upper', can also take the value 'lower' 
 #' @return A matrix of dimension ncol x ncol
 #' @seealso \code{\link{xml.Extract.NM.Matrix}}
-#' @importFrom Hmisc Cs
 #' @export
 #' @examples 
 #'   make.symmetric(c(0.12,
 #'                    0.02,1.02,
 #'                    0.23,-0.3,0.23))
-
 make.symmetric <- function(values, triangle = "upper"){
   # Values specify row-wise lower triangle or column-wise upper triangle
   # Note:
   #   if length of values isn't triangular, specifically the nth triangular number,
   #   it will fill completely the largest matrix it can and throw the warning
   #   "number of items to replace is not a multiple of replacement length"
-  if(triangle %nin% Cs(upper,lower)){
+  if(triangle %nin% c('upper','lower')){
     message("triangle must be 'lower' or 'upper'."); return()
   }
   .nth <- floor((sqrt(8*length(values) + 1) - 1) / 2)

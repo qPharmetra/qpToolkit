@@ -29,14 +29,13 @@ Panel function to plot residuals vs any covariate or DV vs (I)PRED
 \examples{
 library(lattice)
 library(reshape2)
-library(Hmisc)
 trellis.strip.color()
 xyplot(CONC ~ value | variable
        , data = subset(
           reshape2::melt(
              get.xpose.tables('example1', getOption('qpExampleDir')
              )
-             , measure.vars=Cs(PRED,IPRED)
+             , measure.vars=c('PRED','IPRED')
           ), EVID == 0)
        , subset = EVID==0
        , aspect = 1

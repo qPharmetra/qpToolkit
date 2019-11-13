@@ -4,7 +4,7 @@
 \alias{get.dOFV}
 \title{Create brief NONMEM run record}
 \usage{
-get.dOFV(runs = Cs(run1, run2), path = getOption("nmDir"),
+get.dOFV(runs = c("run1", "run2"), path = getOption("nmDir"),
   conf.level = 0.95, file.ext = ".lst")
 }
 \arguments{

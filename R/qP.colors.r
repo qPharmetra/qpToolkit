@@ -6,6 +6,7 @@
 #' Colors are named rgb codes
 #' @return qPharmetra logo colors qp.blue, qp.green, and the following low saturated colors: lime,apple,emerald, cobalt, cyan, cobalt, indigo, violet, pink, magenta, crimson, ketchup, orange,amber,yellow,brown,olive,steel,mauve,taupe.
 #' @export qp.colors qp.green qp.blue qp.colors qp.colors.sorted lime apple emerald cobalt cyan cobalt indigo violet pink magenta crimson ketchup orange amber yellow brown olive steel mauve taupe gray blue green red purple teal obs.color loi.color smooth.color smooth.ci.color lin.fit.col abline.color box.plot.color histogram.color abline.color.box ipred.color pred.color PI.ci.med.arcol PI.real.med.col PI.real.down.col PI.real.up.col PI.ci.down.arcol PI.ci.up.arcol pred.lty ipred.lty
+#' @family qpcolors
 #' @examples
 #' ## the greens and the blues
 #' par(mfrow = c(1,1), pty = 's')
@@ -181,6 +182,14 @@ PI.ci.med.arcol = emerald
 PI.real.med.col= "blue"
 PI.real.down.col="darkslategrey"
 PI.real.up.col="darkslategrey"
+
+#' @name PI.ci.down.arcol
+#' @docType data
+#' @keywords data
 PI.ci.down.arcol = gray(0.2)
+
+#' @name PI.ci.up.arcol
+#' @docType data
+#' @keywords data
 PI.ci.up.arcol = gray(0.2)
 

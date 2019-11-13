@@ -29,7 +29,9 @@ Imports:
   reshape2,
   dplyr,
   magrittr,
-  knitr
+  knitr,
+  plyr,
+  snowfall
 Suggests:
   testthat,
   pkgdown,

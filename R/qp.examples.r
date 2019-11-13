@@ -1,3 +1,4 @@
+globalVariables('EVID')
 #' qPharmetra examples for plot, VPC and NONMEM dataset
 #' @description examples for qPharmetra style VPC and GOF plots and a NONMEM data set
 #' @return text (\code{example.xpose.VPC} and \code{example.CWRES.plot}) or a NONMEM data.frame (\code{example.NONMEM.dataset})
@@ -38,7 +39,7 @@ example.CWRES.plot = function()
                            reshape2::melt(
                                  get.xpose.tables('example1', getOption('qpExampleDir')
                                  )
-                        , measure.vars=Cs(PRED,TIME)
+                        , measure.vars=c('PRED','TIME')
                       ), EVID == 0),
              , panel = panel.cwres
              , xlab = list('Time after Dose',cex=1.25),
@@ -76,7 +77,7 @@ example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
    return(nmdata)
 }
 
-example.pkpdData = function()
+  example.pkpdData = function()
 {
    set.seed(1234)
    nsub=32
@@ -108,7 +109,7 @@ example.pkpdData = function()
    pkpdData$type = rep(c("PK", "PD"), ea = nr)
    
    ## simulate a response
-   pkpdData$cl = 3 * ((pkpdData$wt/median(pkpdData$wt))^0.5) * exp(rnorm.by.id(pkpdData$id, 0, 0.25))
+   pkpdData$cl = 3 * ((pkpdData$wt/stats::median(pkpdData$wt))^0.5) * exp(rnorm.by.id(pkpdData$id, 0, 0.25))
    pkpdData$v = 10 * exp(rnorm.by.id(pkpdData$id, 0, 0.25)) + (pkpdData$sex == "F") * 5
    pkpdData$keo = 0.05 * exp(rnorm.by.id(pkpdData$id, 0, 0.5))
    

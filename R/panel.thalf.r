@@ -12,6 +12,7 @@
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
+#' @importFrom stats coef lm
 #' @examples
 #' library(lattice)
 #' pkpdData = example.pkpdData()

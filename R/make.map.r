@@ -8,7 +8,6 @@
 #' @return A dataset summarizing the dimensions of the meta-analysis dataset
 #' @return Placeholder for return description
 #' @seealso \code{\link{meta.map}}
-#' @importFrom Hmisc Cs
 #' @note not intended to be used as standalone. Is called from qP function meta.map()
 #' @examples
 #' test = c("Ref", paste("comp", 1:5, sep=""))
@@ -17,8 +16,7 @@
 #' 
 #' names(test.ds)
 #' meta.map(test.ds, compNm="drg", trialNm="ref.id", refNm="Ref", dist=1.4)
-
-make.map = function(ds=pf.nm, cNm="drug.abbr", trNm="ref.tr"){
+make.map = function(ds, cNm="drug.abbr", trNm="ref.tr"){
   # identify all of the 2-way comparisons among the comparators
   # meta.ds = meta analysis dataset
   # compNm = variable name of the different comparators
@@ -33,7 +31,7 @@ make.map = function(ds=pf.nm, cNm="drug.abbr", trNm="ref.tr"){
   # Identify those studies that have at least one comparator.
   sel = unlist(lapply(combos, function(listel){dim(listel)[2]>1} ))
   combo.m = data.frame(do.call("rbind", combos[sel]))
-  names(combo.m) = Cs(comp1, comp2)
+  names(combo.m) = c('comp1', 'comp2')
   combo.m$comp = paste(combo.m$comp1, combo.m$comp2)
   return(combo.m)
   # combo.m is now a table of all two-way comparisons  

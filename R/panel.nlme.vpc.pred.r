@@ -6,7 +6,21 @@
 
 #' Lattice function for predicted components of an nlme VPCs
 #' @description  Panel function for predicted lines / colored polygons of a vpc plot of an nlme object
-#' @param other a collection of parameters are available to modify the layout of the VPC
+# @param other a collection of parameters are available to modify the layout of the VPC
+#' @param x x variable
+#' @param y y variable
+#' @param OBS unused
+#' @param vpc unused
+#' @param subscripts unused
+#' @param logY whether to log-transform the y axis
+#' @param showPredAs choice of 'lines' or 'area'
+#' @param showObsDots unused
+#' @param showObsLines unused
+#' @param xCov unused
+#' @param col.scheme list with elements: [pred: [outer, area, inner]]
+#' @param obscex.dot unused
+#' @param obspch.dot unused
+#' @param \dots passed to llines()
 #' @return Lattice panel output (invisible)
 #' @note Not to be used as standalone. Will be be called by \code{nlme.vpcplot}
 #' @seealso \code{\link{nlme.vpcplot}}
@@ -28,7 +42,7 @@ panel.nlme.vpc.pred = function(x, y, OBS, vpc, subscripts, logY, showPredAs, sho
     llines(x,yl2, col = col.scheme$pred$outer,  type = "l", lwd = 1.5)
     llines(x,yh2, col = col.scheme$pred$outer,  type = "l", lwd = 1.5)
     
-    llines(x,y, ...,  type = "l", col = col.schem$pred$central, lwd = 3)
+    llines(x,y, ...,  type = "l", col = col.scheme$pred$central, lwd = 3)
   }
   
   if(showPredAs == "area")

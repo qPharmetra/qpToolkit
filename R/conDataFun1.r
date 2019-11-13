@@ -11,5 +11,5 @@
 #' conDataFun1(x, 3)
 
 conDataFun1 = function(y, nSignif) 
-  paste(signif(mean(y),nSignif)," (",signif(sqrt(var(y)),nSignif-1),")", sep="")  
+  paste(signif(mean(y),nSignif)," (",signif(sqrt(stats::var(y)),nSignif-1),")", sep="")  
 

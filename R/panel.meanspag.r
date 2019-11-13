@@ -16,6 +16,7 @@
 #' @param type like the lattice argument type for line type
 #' @param individual.col = color of individual lines (spagghetti elements)
 #' @param show.points logical indicating to show observed data dots 
+#' @param \dots passed to panel.superpose()
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice

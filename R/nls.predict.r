@@ -11,12 +11,13 @@
 #' @param object and nls object
 #' @param newdata optional dataset to simulate across. Needs the elements required to create the prediction
 #' @param xrange number of equal-spaced x covariate values created from \code{min(x)} to \code{max(x)}
-#' @return a graph or a multi-level list with observed and predicted output 
+#' @return a graph or a multi-level list with observed and predicted output (class \code{c('nlsfit','fit','list')})
 #' @export
 #' @importFrom Hmisc summarize smean.cl.normal
 #' @importFrom nlme getData getCovariateFormula fixef ranef 
 #' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula
+#' @importFrom stats coef predict resid approx
 #' @seealso \code{\link{plot.fit}}, \code{\link{nlme.predict}}
 #' @examples
 #' DNase1 <- subset(DNase, Run == 1)
@@ -26,9 +27,9 @@
 #' summary(fm1DNase1)
 #' 
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
-#' plot.fit(fm1DNase1.predict)
+#' plot(fm1DNase1.predict)
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
-#' plot.fit(fm1DNase1.predict, logX = TRUE)
+#' plot(fm1DNase1.predict, logX = TRUE)
 
 nls.predict = function(func,
   object,
@@ -117,7 +118,7 @@ nls.predict = function(func,
   ## summarize partial residuals
   qpar = Hmisc::summarize(obsData$partres, sList.obs, smean.cl.normal, stat.name = "Mean")
   
-  return(list(  object.name = deparse(substitute(object)), 
+  out <- list(  object.name = deparse(substitute(object)), 
                 level = 0, 
                 method = "partial.residuals",
                 func = func, 
@@ -125,6 +126,6 @@ nls.predict = function(func,
                 obsData = obsData, ## contains observed data AND partial residuals
                 pred = list(obs = qobs, pred = qypr, partres = qpar, uncPred = uncPred)
               )
-         )
-
+  class(out) <- c('nlsfit','fit', class(out))
+  out
 }

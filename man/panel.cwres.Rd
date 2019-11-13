@@ -29,11 +29,10 @@ Panel function to plot CWRES vs any covariate
 \examples{
 library(lattice)
 library(reshape2)
-library(Hmisc)
  out = get.xpose.tables("example2", getOption("qpExampleDir"))
  trellis.strip.color()
 xyplot(CWRES ~ value | variable
-   , data = subset(reshape2::melt(out, measure.vars = Cs(PRED,TIME)),EVID==0)
+   , data = subset(reshape2::melt(out, measure.vars = c('PRED','TIME')),EVID==0)
    , aspect = 1
    , scales = list(x = list(relation = "free"))
    , panel = panel.cwres

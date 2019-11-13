@@ -3,6 +3,7 @@
 #' Nice log10 y axes labels
 #' @description Labels 10-logged x axes appropriately in lattice
 #' @param lim internal required argument. 
+#' @param \dots passed to xscale.components.default()
 #' @return Nothing. It's a function to be called inside a lattice call
 #' @export xscale.components.log10 xscale.components.log10.3
 #' @seealso \code{\link{yscale.components.log10}}, \code{\link{yscale.components.log10.3}}
@@ -51,15 +52,15 @@ xscale.components.log10.3 = function(lim, ...){
   ans
 }
 
-if(F)
-{
-  set.seed(1234)
-  datf = data.frame(TIME = exp(rnorm(3000, sd=0.6)), DV = seq(3000))
-  
-  xyplot(DV ~ TIME
-         , data = datf
-         , scales = list(x = list(log = 10))
-         , xscale.components = xscale.components.log10.3
-  )
-  
-}
+# if(F)
+# {
+#   set.seed(1234)
+#   datf = data.frame(TIME = exp(rnorm(3000, sd=0.6)), DV = seq(3000))
+#   
+#   xyplot(DV ~ TIME
+#          , data = datf
+#          , scales = list(x = list(log = 10))
+#          , xscale.components = xscale.components.log10.3
+#   )
+#   
+# }

@@ -1,3 +1,4 @@
+globalVariables('Parameter')
 # ROXYGEN Documentation
 #' Summary: THETA estimates
 #' @description  Subset parameter estimate table by THETAs 
@@ -9,7 +10,6 @@
 #' @seealso \code{\link{nm.params.table}}, \code{\link{get.omega}}, \code{\link{get.sigma}}
 #' @examples
 #' get.theta("example1",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
-
 get.theta=function(run
                    , path=getOption("nmDir")
                    , ...

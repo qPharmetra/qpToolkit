@@ -4,7 +4,7 @@
 #' @description Read and parse the  information embedded in the .ext file from a completed NONMEM run. In case of multiple \code{$EST} calls, these will be parsed one by one and included with their respective \code{$EST} names into the resulting list
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
-#' @param extension file extension of the .ext file
+#' @param file.ext file extension of the .ext file
 #' @param quiet if TRUE no message will be returned.
 #' #' @return A list with data.frames (as many as there where \code{$EST} calls in the NONMEM control stream) containing the .ext output
 #' @seealso \code{\link{read.out}}

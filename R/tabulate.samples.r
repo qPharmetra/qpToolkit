@@ -17,15 +17,13 @@
 #' @return Named vector of numeric and oddCode entries
 #' @export
 #' @seealso \code{\link{whichNumeric}}
-#' @importFrom Hmisc Cs
 #' @examples 
-#' library(Hmisc)
-#' my.df = data.frame( analyte.1=Cs(1,2,3,4,BLOQ,5,6,NS,7,M),
-#'                    analyte.2=Cs(1,2,BLOQ,M,3,BLOQ,5,6,NS,7))
+#' my.df = data.frame( analyte.1=c(1,2,3,4,'BLOQ',5,6,'NS',7,'M'),
+#'                    analyte.2=c(1,2,'BLOQ','M',3,'BLOQ',5,6,'NS',7))
 #' tabulate.samples(data=my.df, analyte="analyte.1")
 #' tabulate.samples(data=my.df, analyte="analyte.2")
 
-tabulate.samples = function(data, analyte = "conc", oddCode = Cs(BLOQ,NS,M))
+tabulate.samples = function(data, analyte = "conc", oddCode = c('BLOQ','NS','M'))
 {
   if(any(is.na(data[, analyte]))) {
     message("column'",analyte,"' contains NA records. Solve this first.")

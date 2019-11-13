@@ -1,3 +1,4 @@
+globalVariables('Parameter')
 # ROXYGEN Documentation
 #' Summary: SIGMA estimates
 #' @description  Subset parameter estimate table by SIGMAs 
@@ -10,7 +11,6 @@
 #' @importFrom metrumrg stableMerge
 #' @examples
 #' get.sigma("example2",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
-
 get.sigma=function(run, path=getOption("nmDir"), ...)
 {
    partab=nm.params.table(run=run, path=path, ...)

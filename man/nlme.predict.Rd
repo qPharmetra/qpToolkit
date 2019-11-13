@@ -35,7 +35,7 @@
 \item{nrep}{number of replicates to simulate. Defaults to 20.}
 }
 \value{
-a graph or a multi-level list with observed and predicted output
+a graph or a multi-level list with observed and predicted output (class \code{c('nlmefit','fit','list')})
 }
 \description{
 Predict residuals, partial residuals or uncertainty predictions for an nlme.object. This function will also take different data set (argument \code{newdata}) to simulate out of the box although the nlme object does require the predictors, independent variable, and the grouping variable to be present.
@@ -70,18 +70,18 @@ nlme.extract(fit.PD004.nlme$object)$table
 
 # simple fit vs time
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object)
-plot.fit(fit.PD004.pred.nlme)
+plot(fit.PD004.pred.nlme)
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object, method = "partial.residuals")
-plot.fit(fit.PD004.pred.nlme) ## this is the same: PARTIAL RESIDUALS
+plot(fit.PD004.pred.nlme) ## this is the same: PARTIAL RESIDUALS
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object, method = "prediction")
-plot.fit(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
+plot(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
 
 ## note that prediction and partial residual type of model fit plots are very different
 
 # fit vs time by dose
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object)
-plot.fit(fit.PD004.pred.nlme) 
+plot(fit.PD004.pred.nlme) 
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals")
-plot.fit(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
-plot.fit(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
+plot(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
+plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
 }

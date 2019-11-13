@@ -3,9 +3,9 @@
 #' @description Panel function to plot CWRES vs any covariate
 #' @param x,y numeric vectors x and y
 #' @param col symbol color (defaults to obs.color)
-#' @param cex symbol size
-#' @param smooth.col color of smooth line
-#' @param lwd.loess line width of loess smooth
+#' @param pch symbol
+#' @param col.loess color of smooth line
+#' @param col.line color of abline
 
 #' @param ... any other arguments to be passed on to the lattice call
 #' @return Lattice panel output (invisible)
@@ -14,11 +14,10 @@
 #' @examples 
 #' library(lattice)
 #' library(reshape2)
-#' library(Hmisc)
 #'  out = get.xpose.tables("example2", getOption("qpExampleDir"))
 #'  trellis.strip.color()
 #' xyplot(CWRES ~ value | variable
-#'    , data = subset(reshape2::melt(out, measure.vars = Cs(PRED,TIME)),EVID==0)
+#'    , data = subset(reshape2::melt(out, measure.vars = c('PRED','TIME')),EVID==0)
 #'    , aspect = 1
 #'    , scales = list(x = list(relation = "free"))
 #'    , panel = panel.cwres

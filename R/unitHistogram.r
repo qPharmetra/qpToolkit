@@ -10,8 +10,10 @@
 #' @param col.hist color of histograms
 #' @param xlim limits of x coordinate
 #' @param ylab label of the frequency (y label)
+#' @param \dots passed to plot()
 #' @return A histogram
 #' @export
+#' @importFrom graphics plot axis segments polygon
 #' @examples
 #' set.seed(1234567)
 #' myvals = rnorm(10000,50,5)

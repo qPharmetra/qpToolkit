@@ -15,7 +15,7 @@
 #' @return Either a LaTeX preformatted parameter estimate table (default) or a fully processed parameter estimate table without LaTeX preformatting (for inclusion into Microsoft products).
 #' @export
 #' @seealso \code{\link{nm.params.table}}, \code{\link{process.runrec}}
-#' @importFrom Hmisc Cs 
+#' @importFrom stats qt 
 #' @examples 
 #' process.parTable(
 #'    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"), runIndex = 1)
@@ -28,7 +28,6 @@
 #'  , plain = TRUE
 #'  , missing.format = "...."
 #' )
-
 process.parTable = function(nm
                             , index = 1
                             , ci = 0.95
@@ -160,7 +159,7 @@ process.parTable = function(nm
       if(length(Descriptor) == nrow(parTab))
       {
         parTab$Descriptor = Descriptor
-        parTab = reorder.names(parTab, Cs(Parameter,Descriptor))
+        parTab = reorder(parTab, c('Parameter','Descriptor'))
       }  
     }
     

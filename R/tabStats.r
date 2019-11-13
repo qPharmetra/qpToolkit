@@ -15,11 +15,13 @@
 #' @param conFunc1  defaults to conDataFun1
 #' @param conFunc2  defaults to conDataFun2
 #' @param catFunc  defaults to catDataFun
+#' @param ndigits.categorical passed to catFunc
 #' @param parName is automatically populated but the parameter name can be specified here by the user.
 #' @return Appropriate statistic for x
 #' @note This function is primarily used for demographics tables
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabSummarize}} 
 #' @export
+#' @importFrom stats aggregate
 #' @examples  
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE

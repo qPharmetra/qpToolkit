@@ -15,7 +15,7 @@
 #' @param return.samp if T returns the non-summarized predictions as well
 #' @return a list with 
 #' @export nlme.vpc
-#' @importFrom Hmisc Cs
+#' @importFrom Hmisc smedian.hilow
 #' @examples
 #' library(nlme)
 #' pkpdData = example.pkpdData()
@@ -69,8 +69,8 @@ nlme.vpc = function(object, nrep = 10, covariates, fun = smedian.hilow, newdata 
 	
 	qsObject = Hmisc::summarize(vpc.object, theList, smedian.hilow, stat.name = 'Central')
 	iqr = Hmisc::summarize(vpc.object, theList, fun, conf.int = 0.75, stat.name = 'Central')
-	names(iqr)[names(iqr)%in% Cs(Lower,Upper)] = Cs(LowerQ, UpperQ)
-	qsObject = cbind(qsObject, iqr[, Cs(LowerQ, UpperQ)])
+	names(iqr)[names(iqr)%in% c('Lower','Upper')] = c('LowerQ', 'UpperQ')
+	qsObject = cbind(qsObject, iqr[, c('LowerQ', 'UpperQ')])
 	                                                                       
 	## sort covariates by default so that time is first
 	if(any(covariates %in% "time")) covariates = c("time", covariates[covariates %nin% "time"])

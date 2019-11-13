@@ -6,8 +6,11 @@
 #' @param ylab y label
 #' @param xlab x label
 #' @param main main title of the plot
+#' @param \dots passed to qqplot
 #' @return character vector with the NONMEM output. Each element i the vector represents a line in the NONMEM output file
 #' @export
+#' @importFrom stats var rgamma qqplot
+#' @importFrom graphics abline
 #' @examples
 #' qqGamma(rgamma(100,shape=0.1,scale = 0.2))
 #' 

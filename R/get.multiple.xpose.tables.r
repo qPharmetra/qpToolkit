@@ -14,9 +14,7 @@
 #' @return data.fame the xpose tables for runs and an additional column 'model' containinng the rootnames of runs for stratification in post-processing
 #' @export
 #' @seealso \code{\link{get.xpose.tables}}
-#' @importFrom Hmisc Cs
 #' @examples
-#' library(Hmisc)
 #' library(lattice)
 #'  test = get.multiple.xpose.tables(runs = c("example1","example2")
 #'  , path = getOption("qpExampleDir"), carryAlong = c("CONC","TIME","EVID"))
@@ -24,18 +22,17 @@
 #' head(subset(test,model == "example1"))
 #' head(subset(test,model == "example2"))
 #' xyplot(CWRES ~ value | variable * model
-#'        , data = reshape2::melt(test, measure.vars = Cs(TIME,PRED))
+#'        , data = reshape2::melt(test, measure.vars = c('TIME','PRED'))
 #'        , panel = panel.cwres
 #'        , scales = list(x = list(relation = "free"))
 #' )
-
 get.multiple.xpose.tables = function(runs, path = getOption("nmDir"), carryAlong = c("DV","DOSE","TIME","EVID"))
 {
   do.call("rbind"
           , lapply(runs, function(i, path){
             data = get.xpose.tables(run = i, path = path)
             data$model = rep(i, nrow(data))
-            data[, unique(c(Cs(model,ID,PRED,IPRED,CWRES),carryAlong))]
+            data[, unique(c('model','ID','PRED','IPRED','CWRES',carryAlong))]
           }, path = path)
   )
 }

@@ -12,6 +12,7 @@
 #' @param ... any additional parameters to be passed on the \code{png()}
 #' @return A graph written to file in .png format that can be included into reports, for example using LaTeX typesetting.
 #' @export
+#' @importFrom grDevices png
 #' @seealso \code{\link{png.slide.semi}}, \code{\link{png.slide.full}}
 #' @examples
 #' png.report(filename="test.png") 

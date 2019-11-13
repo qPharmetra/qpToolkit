@@ -13,6 +13,7 @@
 #' @param ... any additional parameters to be passed on the \code{png()}
 #' @return A graph written to file in .png format that does not have to be edited when pasted into MS PowerPoint(r).
 #' @export
+#' @importFrom grDevices png
 #' @seealso \code{\link{png.slide.semi}}, \code{\link{png.report}}
 #' @examples
 #' png.slide.full(filename=file.path(tempdir(),"/myPNGslidefullexample.png"))

@@ -1,18 +1,19 @@
 #' Format a tabulated summary for LaTeX
-#' @param demoTable output from \code{tabSummarize}
+#' @param x output from \code{\link{tabSummarize}} of class \code{demoTable}
+#' @param \dots ignored
 #' @param formula the same formula as used to create the \code{tabSummarize} output
 #' @return Table with summarized data formatted for inclusion in LaTeX 
 #' @seealso \code{\link{tabStats}}, \code{\link{tabSummarize}}
 #' @note This function is primarily used for demographics tables
-#' @export format.demoTable
+#' @export
 #' @importFrom nlme getCovariateFormula
-#' @importFrom Hmisc Cs
+#' @importFrom Hmisc %nin% label<-
 #' @examples 
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
 #' myFormula =  dose ~ race + wt + bmi + sex
-#' my.formatted.demoTable = format.demoTable(
+#' my.formatted.demoTable = format(
 #'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
 #'   , formula = myFormula
 #' )
@@ -21,18 +22,17 @@
 #'   , booktabs = TRUE
 #' )
 
-
-format.demoTable = function(demoTable, formula)
+format.demoTable = function(x, ..., formula)
 {
-  names(demoTable)[1] = "Parameter"
+  names(x)[1] = "Parameter"
   theParameters = full.names(all.vars(nlme::getCovariateFormula(formula)[[2]]))
-  msel = which(demoTable$Parameter %in% theParameters)
-  msel2 = which(demoTable$Parameter %nin% theParameters)
-  demoTable$Parameter[msel] = paste("\\textbf{", demoTable$Parameter[msel], "}", sep = "")
-  demoTable$Parameter[msel2] = paste("\\hfill ", demoTable$Parameter[msel2], sep = "")
-  demoTable = reorder.names(demoTable, Cs(Parameter))
-  demoTable = apply(demoTable,2, function(x) gsub("\\%","\\\\%",x))
-  dimnames(demoTable)[[2]][1] = "~"
-  return(demoTable)
+  msel = which(x$Parameter %in% theParameters)
+  msel2 = which(x$Parameter %nin% theParameters)
+  x$Parameter[msel] = paste("\\textbf{", x$Parameter[msel], "}", sep = "")
+  x$Parameter[msel2] = paste("\\hfill ", x$Parameter[msel2], sep = "")
+  x = reorder(x, 'Parameter')
+  x = apply(x,2, function(x) gsub("\\%","\\\\%",x))
+  dimnames(x)[[2]][1] = "~"
+  return(x)
 }
 

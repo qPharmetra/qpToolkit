@@ -2,6 +2,8 @@
 #' Forced length significant digits
 #' @param x a vector of values to be processed into significant digits format
 #' @param digits single value specifying the number of significant digits
+#' @param latex whether to convert scientific notation to latex equivalent (e -> *10^)
+#' @param align.dot whether to decimal-align the result
 #' @return A formatted character vector containing \code{x} in with significant \code{digits} format
 #' @seealso \code{\link{signif}}
 #' @export

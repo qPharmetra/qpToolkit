@@ -79,7 +79,7 @@ meta.map = function(meta.ds, compNm, trialNm, refNm,
   }
   
   # make the plot space
-  plot(0,0, 
+  graphics::plot(0,0, 
        xlim=c(-15, 15),
        ylim=c(-15,15),
        type = 'n',
@@ -87,20 +87,20 @@ meta.map = function(meta.ds, compNm, trialNm, refNm,
        ylab = " ",
        axes=FALSE)
   # Draw the segments connecting the nodes
-  segments(x0=comp.map$c1x, y0=comp.map$c1y, x1=comp.map$c2x, y1=comp.map$c2y, lwd=comp.map$lwds, col=gray[5])
+  graphics::segments(x0=comp.map$c1x, y0=comp.map$c1y, x1=comp.map$c2x, y1=comp.map$c2y, lwd=comp.map$lwds, col=gray[5])
 
   # Draw the Reference at 0,0
   ell = ellipse(0, scale=1.2*c(1,0.65),centre = c(0,0))
-  polygon(ell, col=ref.col)
+  graphics::polygon(ell, col=ref.col)
   
   # Draw the comparator nodes
   for(i in 1:nrow(comps)){
     ell = ellipse(0, scale=1.2*sqrt(comps$Freq[i]/ref$Freq)*c(1,.65),centre = c(comps$pos.x[i],comps$pos.y[i]))
-    polygon(ell, col=comp.col)
+    graphics::polygon(ell, col=comp.col)
   }
-  text(0,0, labels=paste(ref$Drug, "\n", ref$Freq, sep=""), offset=-1, pos=3)
+  graphics::text(0,0, labels=paste(ref$Drug, "\n", ref$Freq, sep=""), offset=-1, pos=3)
   # text(comps$pos.x, comps$pos.y, labels=comps$Freq, pos=3, offset=-0.25, cex=0.7)
-  text(dist*comps$pos.x, dist*comps$pos.y, labels=paste(comps$Drug, "\n", comps$Freq, sep=""),
+  graphics::text(dist*comps$pos.x, dist*comps$pos.y, labels=paste(comps$Drug, "\n", comps$Freq, sep=""),
        pos=3, offset=-0.25)
 }  
 

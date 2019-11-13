@@ -5,10 +5,11 @@
 \title{VPC plot using ggplot2 (Xpose-alike version)}
 \usage{
 ggvpc_xpose(vpc, PI = c(0.025, 0.975),
-  area.col.central = PI.ci.med.arcol, area.col.outer = gray(0.2),
-  linecol.pred = "blue", linesize.pred = 1, linetype.obs = "dashed",
-  linecol.obs = "black", linesize.obs = 0.5, alpha = 0.33,
-  point.shape = 1, point.size = 1.25, point.col = "darkslategrey",
+  area.col.central = PI.ci.med.arcol,
+  area.col.outer = grDevices::gray(0.2), linecol.pred = "blue",
+  linesize.pred = 1, linetype.obs = "dashed", linecol.obs = "black",
+  linesize.obs = 0.5, alpha = 0.33, point.shape = 1,
+  point.size = 1.25, point.col = "darkslategrey",
   yrange.stretch = c(0.9, 1.1), quiet = TRUE)
 }
 \arguments{

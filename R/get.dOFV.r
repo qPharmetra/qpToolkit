@@ -13,13 +13,11 @@
 #' @param file.ext file extension of the NONMEM output file (defaults to .lst)
 #' @return Placeholder for return description
 #' @export
-#' @importFrom Hmisc Cs
 #' @seealso \code{\link{get.ofv}} which is called inside \code{get.dOFV}, \code{\link{read.out}}
 #' @examples
 #' get.dOFV(runs = c("example1","example2"), path = getOption("qpExampleDir"))
 #' # note this example is for two non-nested models. It has not other value to to illustrate the tool
-
-get.dOFV =  function(runs = Cs(run1,run2)
+get.dOFV =  function(runs = c('run1','run2')
                      , path = getOption("nmDir")
                      , conf.level = 0.95
                      , file.ext = ".lst"

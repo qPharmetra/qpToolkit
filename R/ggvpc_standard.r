@@ -1,3 +1,4 @@
+globalVariables(c('IVAR','DVVAR','xCov','piLower','piUpper','xCovm','obsLower','vpc50.real','obsUpper','vpc50.sim'))
 # name:     ggvpc_standard
 # purpose:  
 # input:    output from nm.read.vpc
@@ -17,8 +18,10 @@
 #' @param linesize.obs line width of observed data
 #' @param alpha transparancy scalar (between 0 and 1)
 #' @param point.shape numeric value for dot shape 
+#' @param point.size numeric value for dot size 
 #' @param point.col color of observed data dots
 #' @param yrange.stretch vector of c(min,max) which will proportionally rescale the lower and upper limits of the Y axis
+#' @param quiet whether to suppress process messages
 #' @return A ggplot object to be extended optionally
 #' @export
 #' @note Editing and stratification to be done by adding ggplot layer
@@ -50,7 +53,6 @@
 #' p = ggvpc_standard(vpc.all, yrange.stretch = c(1,1)) 
 #' p = p +  labs(x="Time (h)", y="Concentration (ng/ml)")  
 #' p +  facet_wrap(~strata) + scale_y_log10()
-
 
 
 ggvpc_standard = function(vpc

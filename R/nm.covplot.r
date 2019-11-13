@@ -5,6 +5,7 @@
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
 #' @param covlist a list with elements \code{cat} and \code{con} each representing a character vector with categorical and continuous covariates, respectively.
+#' @param catcov.sep max number of unique values for a covariate to be assigned 'categorical'
 #' @param parameters a character vector with parameter names to plot
 #' @param aspect lattice banking aspect for rectangular or square plots. Defaults to 'fill'
 #' @param pcx dot size
@@ -17,10 +18,11 @@
 #' @param shrinkage providing shrinkage values. This is currently ignored
 #' @return A list with plots and properly sorted / molten data.frames for customized plots
 #' @export
-#' @importFrom Hmisc unPaste Cs Cbind
+#' @importFrom Hmisc unPaste Cbind
 #' @importFrom latticeExtra useOuterStrips
 #' @importFrom metrumrg panel.densitystrip panel.stratify
 #' @importFrom reshape2 melt
+#' @importFrom stats lowess qnorm
 #' @import lattice
 #' @examples
 #' args(nm.covplot)
@@ -67,6 +69,8 @@
 #' # xyplot(value ~ as.factor(paste(catValue)) | variable * catVariable
 #' #  , data = catData, panel = panel.bwplot, horizontal = FALSE)
 #' 
+
+
 nm.covplot = function(run = "run1", 
   path = getOption("nmDir"), 
   id.var = "ID",
@@ -94,7 +98,7 @@ nm.covplot = function(run = "run1",
   catData.par = conData.par = catData.eta = conData.par = NULL
   
   default.covlist = list(cat = c("sex","race"), con = c("age", "wt", "bmi", "ht", "crcl" ,"base"))
-  if(!missing(covlist) & any(names(covlist) %nin% Cs(cat,con))) stop("if specified argument covlist must have elements cat and con both as vectors")
+  if(!missing(covlist) & any(names(covlist) %nin% c('cat','con'))) stop("if specified argument covlist must have elements cat and con both as vectors")
   
   ## read NONMEM table output
   nmcov = get.xpose.tables(run = run, path = path) 
@@ -194,7 +198,7 @@ nm.covplot = function(run = "run1",
   om.index = floor(extract.number(data.omega.names))
   data.omega.names = data.omega.names[intersect(om.index,extract.number(eta.list))]
   omegas = reshape2::melt(data, measure.var = data.omega.names)
-  omegas = omegas[, Cs(variable, value)]
+  omegas = omegas[, c('variable', 'value')]
   omegas$est.value = omegas$value
   omegas$variable = omegas$value = NULL
   etas = cbind(etas, omegas)
@@ -268,7 +272,7 @@ nm.covplot = function(run = "run1",
   if(length(con.list)>0)
   {
   conData = reshape2::melt(data, measure.vars = con.list)
-  names(conData)[names(conData) %in% Cs(variable,value)] = Cs(conVariable, conValue)
+  names(conData)[names(conData) %in% c('variable','value')] = c('conVariable', 'conValue')
   conData.eta = reshape2::melt(conData, measure.vars = eta.list)
 
   etaContVarPlot = function()
@@ -297,7 +301,7 @@ nm.covplot = function(run = "run1",
   if(length(cat.list)>0)
   {
   catData = reshape2::melt(data, measure.vars = cat.list)
-  names(catData)[names(catData) %in% Cs(variable,value)] = Cs(catVariable, catValue)
+  names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.eta = reshape2::melt(catData, measure.vars = eta.list)
 
   etaCatVarPlot = function()
@@ -326,7 +330,7 @@ nm.covplot = function(run = "run1",
   if(!is.null(parameters) & length(con.list) > 0)            #  parameters=c("tvlamb","disp")
   {
   conData = reshape2::melt(data, measure.vars = con.list)
-  names(conData)[names(conData) %in% Cs(variable,value)] = Cs(conVariable, conValue)
+  names(conData)[names(conData) %in% c('variable','value')] = c('conVariable', 'conValue')
   conData.par = reshape2::melt(conData, measure.vars = casefold(parameters,upper = FALSE))
 
   parContVarPlot = function()
@@ -355,7 +359,7 @@ nm.covplot = function(run = "run1",
   if(!is.null(parameters) & length(cat.list)>0)
   {
   catData = reshape2::melt(data, measure.vars = cat.list)
-  names(catData)[names(catData) %in% Cs(variable,value)] = Cs(catVariable, catValue)
+  names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
   parCatVarPlot = function()

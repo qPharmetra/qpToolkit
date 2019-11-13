@@ -1,11 +1,15 @@
+globalVariables(c('cov.val', 'pi.lower', 'pi.upper', 'posthoc', 'typical', 'group'))
 # ROXYGEN Documentation
 #' Make a list of equations
-#' @describeIn nm.process.coveffects Makes a list of calls from its named arguments 
+#' 
+#' Makes a list of equations.
+# @describeIn nm.process.coveffects Makes a list of calls from its named arguments 
 #' input formulas.  
-#' @param ... A series of named formulas
-#' @return A list of call objects that can be used to evaluate the input equations 
+#' @param ... a series of named formulas
+#' @return a list of call objects that can be used to evaluate the input equations 
 #' in a given environment. 
 #' @note This function is used with \code{nm.process.coveffects}
+#' @family coveffects
 #' @export make.eqs
 #' @examples
 #' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
@@ -20,13 +24,16 @@ make.eqs <- function(...) {
 }
 
 # ROXYGEN Documentation
-#' Make a list of equations
-#' @describeIn nm.process.coveffects Evaluate a list of calls in an environment, list, 
+#' Evaluate a list of equations
+#' 
+#' Evaluates a list of calls in an environment, list, or data.frame
+# @describeIn nm.process.coveffects Evaluate a list of calls in an environment, list, 
 #' or data.frame.  
-#' @param .data is data.frame, list, or environment
-#' @param ... is a list of calls or expressions
+#' @param .data data.frame, list, or environment
+#' @param ... a list of calls or expressions
 #' @return .data is returned with the evaluated expressions added 
 #' @note This function is used with \code{nm.process.coveffects}
+#' @family coveffects
 #' @export eval.eqs
 #' @examples
 #' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
@@ -53,7 +60,7 @@ eval.eqs=function(.data,  ...)
 
 # ROXYGEN Documentation
 #' Make a covInfo S3 object
-#' @describeIn nm.process.coveffects Make a covInfo S3 object
+# @describeIn nm.process.coveffects Make a covInfo S3 object
 #' @description Constructs a covInfo (covariate information) object from a vector.  
 #' @param cov.name The name of the covariate
 #' @param cov.vals A vector of values
@@ -65,6 +72,7 @@ eval.eqs=function(.data,  ...)
 #' @param cov.breaks The points at which simulations and plots would be assessed
 #' @return A covInfo object 
 #' @seealso \code{\link{print.covInfo}}
+#' @family coveffects
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export covInfo
 #' @examples
@@ -78,7 +86,7 @@ eval.eqs=function(.data,  ...)
 covInfo = function(cov.name
                    ,cov.vals
                    ,cov.cat = FALSE
-                   ,cov.center=median(cov.vals)
+                   ,cov.center=stats::median(cov.vals)
                    ,cov.min=min(cov.vals)
                    ,cov.max=max(cov.vals)
                    ,cov.label=cov.name
@@ -94,20 +102,26 @@ covInfo = function(cov.name
 
 # ROXYGEN Documentation
 #' Print a covInfo S3 object
+#' 
+#' Prints a covInfo object.
 # @describeIn nm.process.coveffects Print a covInfo S3 object
 #' @description Prints a covInfo object.  
 #' @param x A covInfo object
+#' @param \dots ignored
+#' @family coveffects
 #' @return A covInfo object 
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export
 #' @method print covInfo
 #' 
 #print.covInfo
-print.covInfo=function(x) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
+print.covInfo = function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
 
 # ROXYGEN Documentation
-#' Make a list of covInfo objects from a data frame.
-#' @describeIn nm.process.coveffects Make a list of covInfo objects from a data frame
+#' Make a list of covInfo objects from a data frame
+#' 
+#' Makes a list of covInfo objects from a data.frame.  
+# @describeIn nm.process.coveffects Make a list of covInfo objects from a data frame
 #' @description Takes a data frame and creates covInfo objects based on its columns.  
 #' @param df A data frame
 #' @param cnames A vector of column names to create covInfo objects for
@@ -115,9 +129,11 @@ print.covInfo=function(x) cat(x$name, ": (", x$min, x$center, x$max, ")", x$labe
 #' @return A list of covInfo objects
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export 
+#' @importFrom plyr ddply here summarise
+#' @importFrom stats var sd quantile
 #' 
 # make a list of covInfo objects from a dataframe.  User can override elements as desired
-makeCovInfo= function(df, cnames=names(df), cat.covs="")
+makeCovInfo = function(df, cnames=names(df), cat.covs="")
 {
   #df is a data.frame of all the covariates (and maybe other things)
   #cnames, provide list of columns to use otherwise will assume EVERY column is a covariate
@@ -146,7 +162,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
   {
     ncols <- ncol(sigma)
     mu <- rep(mu, each = n) ## not obliged to use a matrix (recycling)
-    mu + matrix(rnorm(n * ncols), ncol = ncols) %*% chol(sigma)
+    mu + matrix(stats::rnorm(n * ncols), ncol = ncols) %*% chol(sigma)
   }
   ran.df=as.data.frame(mvrnormR(N,0,varcov))
   
@@ -161,6 +177,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
 # take an equation and a covInfo object and do covariate plot based on supplied (or defaulted) covariate names
 
 # internal function to build a coveffect grid
+
 .coveffect = function(equ, cov.info, ptab, varcov, Nboot=10000, pi.wid=0.9)
 { #ptab has parameters (THETA, OMEGA, SIGMA) and is either a 1 row data frame or a flat list
   #cov.inf has covariate center, min, max, breaks
@@ -180,7 +197,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
   names(coveff.df)[4:5]=c("cov.val","typical")
   
   # bootsample for mean, var, sd, 95%PI
-  samples.df = ddply(data.frame(ptab),cov,function(x) bootsamp(equ,x,varcov,Nboot))
+  samples.df = plyr::ddply(data.frame(ptab),cov,function(x) bootsamp(equ,x,varcov,Nboot))
   #rename cov and param so we can see them easily in ddply
   names(samples.df)[which(names(samples.df)==param)]="param"
   names(samples.df)[which(names(samples.df)==cov)]="cov.val"
@@ -188,7 +205,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
   #if there is group column, use it for the stats
   grouping="cov.val"
   if("group" %in% names(samples.df)) grouping=c(grouping,"group")
-  summ.df = ddply(samples.df,grouping,here(summarise)
+  summ.df = plyr::ddply(samples.df,grouping,plyr::here(plyr::summarise)
                   ,mean=mean(param)
                   ,var=var(param)
                   ,sd=sd(param)
@@ -204,6 +221,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
 #' @description A list of equations that define the covariate relationships is...  
 #' @param eqs A list of calls
 #' @param covs.info A list of covInfo objects to parameterize the subanalysis
+#' @param pars A list or single-row data.frame of the parameter estimates (THETA, OMEGA)
 #' @param xpose.df A dataframe containing post-hoc parameter values
 #' @param omega The random effect covariance matrix from which to simulate ETA values
 #' @param Nboot The number of bootstrap samples to run for each sample point
@@ -212,8 +230,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
 #' table of post-hoc values -- for each covariate effect; the call list; the list of covInfo
 #' @export nm.process.coveffects
 #' 
-nm.process.coveffects= function(eqs,covs.info,pars, xpose.df, omega, Nboot=10000, 
-                             pi.wid=0.9)
+nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=10000, pi.wid=0.9)
 {
   #eqs is a list of calls for the structural parameter equations (using THETA, ETA, COV)
   #cov is a list of covEffect objects (S3)
@@ -321,7 +338,6 @@ plot.covEffects = function(x, y=names(x$plot), ...)
 {
   for(i in y) print(x$plot[[i]])
 }
-
 coveff.plot=function(xpose.df, ppred.df, box, grouping)
 { 
   #box is T or F and is set T if x axis is categorical covariate

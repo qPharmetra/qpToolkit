@@ -53,7 +53,7 @@ cut3 =
       m <- length(xx)
       y <- as.integer(ifelse(is.na(x), NA, 1))
       labs <- character(g)
-      cuts <- approx(cum, xx, xout = (1:g) * nnm/g, method = "constant", 
+      cuts <- stats::approx(cum, xx, xout = (1:g) * nnm/g, method = "constant", 
                      rule = 2, f = 1)$y
       cuts[length(cuts)] <- max(xx)
       lower <- xx[1]

@@ -16,6 +16,6 @@ ctc = function(x) {
 
 if(F)
 {
-  testdf = data.frame(A=1:3,B=4:6,C=Cs(A,B,C))
+  testdf = data.frame(A=1:3,B=4:6,C=c('A','B','C'))
   ctc(testdf)
 }

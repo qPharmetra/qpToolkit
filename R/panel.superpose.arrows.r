@@ -11,6 +11,9 @@
 #' Panel function for hysteresis plots
 #' @description Panel function for hysteresis plots grouped by individual. The function is basically the arrow analogue of panel.superpose.
 #' @param x,y numeric vectors x and y
+#' @param subcripts unused
+#' @param groups grouping levels
+#' @param \dots unused
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice

@@ -43,7 +43,7 @@
 #' @export
 #' @import lattice
 #' @importFrom nlme getCovariateFormula
-
+#' @importFrom stats as.formula
 nm.vpcplot = function(path, 
          result = "vpc_results.csv", 
          tab = dir(path=path,pattern = "^vpctab")[1],
@@ -109,10 +109,13 @@ nm.vpcplot = function(path,
             length as the number of start in th VPC. VPC plot routine aborted.")
     return()
   }
+
+  ## CHECK exchange.values not defined
   if(!is.null(relabel.strata) & length(relabel.strata$old) == length(vpc$vpc$strata.names))
   {
     vpc$vpc$strata.names = exchange.values(vpc$vpc$strata.names, relabel.strata$old, relabel.strata$new)
   }
+
 
   ## pull out the correct statistics
   msel.ci = grep(".CI.for.", names(sim$result.tables[[1]]))
@@ -142,30 +145,31 @@ nm.vpcplot = function(path,
   SIM = lapply(sim$result.tables
              , function(x){
                 x = x[, c("lower","upper",pred.names, real.names, ci.names)]
-                names(x)= Cs(lower.xcov,upper.xcov, ypred.cen, ypred.lo, ypred.hi, yobs.cen, yobs.lo, yobs.hi
-                             , ypred.cen.dn, ypred.cen.up
-                             , ypred.lo.dn, ypred.lo.up
-                             , ypred.hi.dn, ypred.hi.up)
+                names(x)= c('lower.xcov','upper.xcov', 'ypred.cen', 'ypred.lo',
+                 'ypred.hi', 'yobs.cen', 'yobs.lo', 'yobs.hi'
+                             , 'ypred.cen.dn', 'ypred.cen.up'
+                             , 'ypred.lo.dn', 'ypred.lo.up'
+                             , 'ypred.hi.dn', 'ypred.hi.up')
                 return(x)
              }
   )
 
   SIM = lapply(SIM, function(x) {x$xcov = if(all(is.na(x$lower.xcov))) x$upper.xcov else{
-  apply(x[,Cs(lower.xcov,upper.xcov)],1,mean)};  return(x)})#x = VPCSIM[[2]]
+  apply(x[,c('lower.xcov','upper.xcov')],1,mean)};  return(x)})#x = VPCSIM[[2]]
 
   ## apply check for log
   if(logY)
   SIM = lapply(SIM, function(x){ #x = SIM[[4]]
-    xx = x[, Cs(ypred.lo, ypred.cen, ypred.hi, yobs.lo, yobs.cen, yobs.hi)]
+    xx = x[, c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')]
     msel = which(xx<=0)
     xx = apply(xx, 2, function(y){
       y[y<=0] = rep(min(y[y>0]) * 0.01, sum(y<=0)); return(y)}
     )
-    x[,Cs(ypred.lo, ypred.cen, ypred.hi, yobs.lo, yobs.cen, yobs.hi)] = 
+    x[,c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')] = 
       if(nrow(x) > 1){
-        xx[,Cs(ypred.lo, ypred.cen, ypred.hi, yobs.lo, yobs.cen, yobs.hi)]
+        xx[,c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')]
         } else {
-         matrix(xx[Cs(ypred.lo, ypred.cen, ypred.hi, yobs.lo, yobs.cen, yobs.hi)],nrow=1)
+         matrix(xx[c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')],nrow=1)
        }
        
     return(x)
@@ -225,7 +229,7 @@ xLabel = if(is.null(xLabel)) xCov else xLabel
 yLabel = if(is.null(yLabel)) responseVar else yLabel   
 
 ## define axes limits
-yLim = range(c(VPC[, Cs(ypred.cen, ypred.lo, ypred.hi)], obs$DV))
+yLim = range(c(VPC[, c('ypred.cen', 'ypred.lo', 'ypred.hi')], obs$DV))
 yLim = yLim + c(0, 0.05 * diff(yLim))
 
 # define layout if not specified
@@ -245,13 +249,13 @@ if(is.null(xLimits) & is.null(yLimits)){
     
     if(!is.null(xLimits) & is.null(yLimits)){ # Only xLimits set
       theYs = c(as.vector(as.matrix(VPC[VPC[, xCov]>=xLimits[1]&VPC[, xCov]<=xLimits[2], 
-                                        Cs(ypred.cen, ypred.lo, ypred.hi)])),
+                                        c('ypred.cen', 'ypred.lo', 'ypred.hi')])),
                 obs$DV)
       ylm = range(theYs)
       yLimits = ylm + c(0, 0.05 * diff(ylm))
     } else {    # xLimits and yLimits set
       theYs = c(as.vector(as.matrix(VPC[VPC[, xCov]>=xLimits[1]&VPC[, xCov]<=xLimits[2], 
-                                        Cs(ypred.cen, ypred.lo, ypred.hi)])),
+                                        c('ypred.cen', 'ypred.lo', 'ypred.hi')])),
                 obs$DV)
       theYs = theYs[theYs>=yLimits[1] & theYs<=yLimits[2]]
       ylm = range(theYs)
