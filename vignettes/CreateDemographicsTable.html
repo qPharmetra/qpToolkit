@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Klaas Prins" />
+
+<meta name="date" content="2019-11-13" />
+
+<title>Creating a Demographics Table</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Creating a Demographics Table</h1>
+<h4 class="author">Klaas Prins</h4>
+<h4 class="date">2019-11-13</h4>
+
+
+
+<p>Using the internal playground data frame ‘pkpdData’ we will create a demographics table.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">pkpdData =<span class="st"> </span><span class="kw">example.pkpdData</span>()</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">150</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4">ok =<span class="st"> </span><span class="kw">duplicated</span>(pkpdData<span class="op">$</span>id) <span class="op">==</span><span class="st"> </span>F</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">head</span>(pkpdData[ok, ])</a></code></pre></div>
+<pre><code>##   id dose age wt  ht  bmi sex      race endpoint     trt time type       cl         v        keo value
+## 1  1    0  38 69 188 19.5   F Caucasian   effect Placebo    0   PK 2.982152 15.487535 0.12365598  0.05
+## 2  2    0  53 77 200 19.2   F     Other   effect Placebo    0   PK 3.486867 14.166026 0.04757312  0.05
+## 3  3    0  61 85 167 30.5   M Caucasian   effect Placebo    0   PK 3.698121 12.296282 0.07374709  0.05
+## 4  4    0  27 78 199 19.7   F     Black   effect Placebo    0   PK 2.133078 14.294412 0.02881007  0.05
+## 5  5    0  54 63 175 20.6   F Caucasian   effect Placebo    0   PK 2.045940 10.819699 0.04475489  0.05
+## 6  6    0  55 82 183 24.5   M Caucasian   effect Placebo    0   PK 2.327467  9.762328 0.06635841  0.05</code></pre>
+<p>So now we have a data frame with patient characteristics. Let’s do a summaries on a few of them.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">conDataFun1</span>(pkpdData<span class="op">$</span>wt[ok], <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;76.3 (10)&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">conDataFun2</span>(pkpdData<span class="op">$</span>wt[ok], <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;77 (43 - 105)&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">catDataFun</span>(pkpdData<span class="op">$</span>sex[ok])</a></code></pre></div>
+<pre><code>## [1] &quot;53 (41.4%)&quot; &quot;75 (58.6%)&quot;</code></pre>
+<p>Then there is a wrapper function available called ‘tabStats’ that intelligently determines the data to be continuous or categorical and applies the appropriate summarization function on basis of that. tabStats uses the summarization function catDataFunc, conDataFun1 and conDataFun2. Here are 2 examples:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">tabStats</span>(pkpdData<span class="op">$</span>sex[ok], <span class="kw">list</span>(<span class="dt">dose =</span> pkpdData<span class="op">$</span>dose[ok]))</a></code></pre></div>
+<pre><code>##          parameter          0        100        250        500        All
+## 1 pkpdData$sex[ok]                                                       
+## 2                F 15 (46.9%) 11 (34.4%) 12 (37.5%) 15 (46.9%) 53 (41.4%)
+## 3                M 17 (53.1%) 21 (65.6%) 20 (62.5%) 17 (53.1%) 75 (58.6%)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">tabStats</span>(<span class="dt">x=</span>pkpdData<span class="op">$</span>wt, <span class="dt">BY =</span> <span class="kw">list</span>(<span class="dt">dose =</span> pkpdData<span class="op">$</span>dose))</a></code></pre></div>
+<pre><code>##        parameter            0             100            250           500           All
+## 1    pkpdData$wt                                                                        
+## 2      Mean (SD)   75.3 (8.9)       76.2 (12)       78 (9.8)    75.7 (9.9)     76.3 (10)
+## 3 Median (range) 76 (56 - 92) 74.5 (46 - 105) 79.5 (54 - 98) 78 (43 - 104) 77 (43 - 105)</code></pre>
+<p>Then, the wrapper function ‘tabSummarize’ takes a formula of the form g ~ x1 + x2 + … to create a summary of patient characterics x1, x2, … by grouping variable g. Optionally a blank line is added inbetween each patient characteric summary to improve demographics table legibility. The result is the demographics table.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">tabSummarize</span>(<span class="dt">formula =</span> dose <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data =</span> pkpdData[ok, ], <span class="dt">nSignif =</span> <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##         parameter                0             100              250              500              All
+## 1                           (N=32)          (N=32)           (N=32)           (N=32)          (N=128)
+## 2                                                                                                    
+## 3            Race                                                                                    
+## 4           Asian        6 (18.8%)       6 (18.8%)         3 (9.4%)         3 (9.4%)       18 (14.1%)
+## 5           Black        5 (15.6%)       6 (18.8%)        5 (15.6%)         2 (6.2%)       18 (14.1%)
+## 6       Caucasian       18 (56.2%)      18 (56.2%)       24 (75.0%)       23 (71.9%)       83 (64.8%)
+## 7           Other         3 (9.4%)        2 (6.2%)         0 (0.0%)        4 (12.5%)         9 (7.0%)
+## 8                                                                                                    
+## 9     Weight (kg)                                                                                    
+## 10      Mean (SD)         75.3 (9)       76.2 (13)          78 (10)        75.7 (10)        76.3 (10)
+## 11 Median (range)     76 (56 - 92) 74.5 (46 - 105)   79.5 (54 - 98)    78 (43 - 104)    77 (43 - 105)
+## 12                                                                                                   
+## 13    BMI (kg/m2)                                                                                    
+## 14      Mean (SD)       22.9 (4.1)      23.6 (5.8)       24.6 (4.8)       24.2 (4.3)       23.8 (4.8)
+## 15 Median (range) 23 (16.7 - 35.5)  23 (12 - 36.4) 24.6 (16 - 38.8) 24.2 (12 - 32.8) 23.6 (12 - 38.8)
+## 16                                                                                                   
+## 17         Gender                                                                                    
+## 18              F       15 (46.9%)      11 (34.4%)       12 (37.5%)       15 (46.9%)       53 (41.4%)
+## 19              M       17 (53.1%)      21 (65.6%)       20 (62.5%)       17 (53.1%)       75 (58.6%)</code></pre>
+<p>The grouping variable can be changed ahead of the tabSummarize call to make nicer groupings of course. Automatically, the function full.names is called that swaps shorthand column names into full names (with untis for example). Check full names and expand the function to match the patient characteristics that will be embedded in the demographics table. We will also add an extra blank line to the table.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">pkpdData<span class="op">$</span>trt.o =<span class="st"> </span><span class="kw">ordered</span>(pkpdData<span class="op">$</span>trt, <span class="dt">levels =</span> <span class="kw">unique</span>(pkpdData<span class="op">$</span>trt))</a>
+<a class="sourceLine" id="cb15-2" title="2">demoTable =<span class="st"> </span><span class="kw">tabSummarize</span>(<span class="dt">formula =</span> trt.o  <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data =</span> pkpdData[ok,]</a>
+<a class="sourceLine" id="cb15-3" title="3">                         , <span class="dt">nSignif =</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb15-4" title="4">                         , <span class="dt">extra.blank.line =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="kw">print</span>(demoTable)</a></code></pre></div>
+<pre><code>##         parameter          Placebo      drug 100mg       drug 250mg       drug 500mg              All
+## 1                           (N=32)          (N=32)           (N=32)           (N=32)          (N=128)
+## 2                                                                                                    
+## 3            Race                                                                                    
+## 4           Asian        6 (18.8%)       6 (18.8%)         3 (9.4%)         3 (9.4%)       18 (14.1%)
+## 5           Black        5 (15.6%)       6 (18.8%)        5 (15.6%)         2 (6.2%)       18 (14.1%)
+## 6       Caucasian       18 (56.2%)      18 (56.2%)       24 (75.0%)       23 (71.9%)       83 (64.8%)
+## 7           Other         3 (9.4%)        2 (6.2%)         0 (0.0%)        4 (12.5%)         9 (7.0%)
+## 8                                                                                                    
+## 9     Weight (kg)                                                                                    
+## 10      Mean (SD)         75.3 (9)       76.2 (13)          78 (10)        75.7 (10)        76.3 (10)
+## 11 Median (range)     76 (56 - 92) 74.5 (46 - 105)   79.5 (54 - 98)    78 (43 - 104)    77 (43 - 105)
+## 12                                                                                                   
+## 13    BMI (kg/m2)                                                                                    
+## 14      Mean (SD)       22.9 (4.1)      23.6 (5.8)       24.6 (4.8)       24.2 (4.3)       23.8 (4.8)
+## 15 Median (range) 23 (16.7 - 35.5)  23 (12 - 36.4) 24.6 (16 - 38.8) 24.2 (12 - 32.8) 23.6 (12 - 38.8)
+## 16                                                                                                   
+## 17         Gender                                                                                    
+## 18              F       15 (46.9%)      11 (34.4%)       12 (37.5%)       15 (46.9%)       53 (41.4%)
+## 19              M       17 (53.1%)      21 (65.6%)       20 (62.5%)       17 (53.1%)       75 (58.6%)</code></pre>
+<p>This ‘demoTable’ output can be processed for LaTeX use for example.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">demoTable.formatted =<span class="st"> </span><span class="kw">format</span>(demoTable, <span class="dt">formula =</span> trt.o  <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>sex)</a>
+<a class="sourceLine" id="cb17-2" title="2">demoTable.xtable =<span class="st"> </span><span class="kw">xtable</span>(demoTable.formatted</a>
+<a class="sourceLine" id="cb17-3" title="3">                          , <span class="dt">caption =</span> <span class="st">&quot;Demographics Table&quot;</span></a>
+<a class="sourceLine" id="cb17-4" title="4">)</a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="kw">print</span>(demoTable.xtable</a>
+<a class="sourceLine" id="cb17-6" title="6">      , <span class="dt">sanitize.text.function =</span> identity</a>
+<a class="sourceLine" id="cb17-7" title="7">      , <span class="dt">include.rownames =</span> F</a>
+<a class="sourceLine" id="cb17-8" title="8">      , <span class="dt">type =</span> <span class="st">&quot;html&quot;</span></a>
+<a class="sourceLine" id="cb17-9" title="9">)</a></code></pre></div>
+<!-- html table generated in R 4.0.0 by xtable 1.8-4 package -->
+<!-- Wed Nov 13 23:40:28 2019 -->
+<table border="1">
+<caption align="bottom">
+Demographics Table
+</caption>
+<tr>
+<th>
+~
+</th>
+<th>
+Placebo
+</th>
+<th>
+drug 100mg
+</th>
+<th>
+drug 250mg
+</th>
+<th>
+drug 500mg
+</th>
+<th>
+All
+</th>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+(N=32)
+</td>
+<td>
+(N=32)
+</td>
+<td>
+(N=32)
+</td>
+<td>
+(N=32)
+</td>
+<td>
+(N=128)
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Asian
+</td>
+<td>
+6 (18.8%)
+</td>
+<td>
+6 (18.8%)
+</td>
+<td>
+3 (9.4%)
+</td>
+<td>
+3 (9.4%)
+</td>
+<td>
+18 (14.1%)
+</td>
+</tr>
+<tr>
+<td>
+Black
+</td>
+<td>
+5 (15.6%)
+</td>
+<td>
+6 (18.8%)
+</td>
+<td>
+5 (15.6%)
+</td>
+<td>
+2 (6.2%)
+</td>
+<td>
+18 (14.1%)
+</td>
+</tr>
+<tr>
+<td>
+Caucasian
+</td>
+<td>
+18 (56.2%)
+</td>
+<td>
+18 (56.2%)
+</td>
+<td>
+24 (75.0%)
+</td>
+<td>
+23 (71.9%)
+</td>
+<td>
+83 (64.8%)
+</td>
+</tr>
+<tr>
+<td>
+Other
+</td>
+<td>
+3 (9.4%)
+</td>
+<td>
+2 (6.2%)
+</td>
+<td>
+0 (0.0%)
+</td>
+<td>
+4 (12.5%)
+</td>
+<td>
+9 (7.0%)
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Mean (SD)
+</td>
+<td>
+75.3 (9)
+</td>
+<td>
+76.2 (13)
+</td>
+<td>
+78 (10)
+</td>
+<td>
+75.7 (10)
+</td>
+<td>
+76.3 (10)
+</td>
+</tr>
+<tr>
+<td>
+Median (range)
+</td>
+<td>
+76 (56 - 92)
+</td>
+<td>
+74.5 (46 - 105)
+</td>
+<td>
+79.5 (54 - 98)
+</td>
+<td>
+78 (43 - 104)
+</td>
+<td>
+77 (43 - 105)
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Mean (SD)
+</td>
+<td>
+22.9 (4.1)
+</td>
+<td>
+23.6 (5.8)
+</td>
+<td>
+24.6 (4.8)
+</td>
+<td>
+24.2 (4.3)
+</td>
+<td>
+23.8 (4.8)
+</td>
+</tr>
+<tr>
+<td>
+Median (range)
+</td>
+<td>
+23 (16.7 - 35.5)
+</td>
+<td>
+23 (12 - 36.4)
+</td>
+<td>
+24.6 (16 - 38.8)
+</td>
+<td>
+24.2 (12 - 32.8)
+</td>
+<td>
+23.6 (12 - 38.8)
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+F
+</td>
+<td>
+15 (46.9%)
+</td>
+<td>
+11 (34.4%)
+</td>
+<td>
+12 (37.5%)
+</td>
+<td>
+15 (46.9%)
+</td>
+<td>
+53 (41.4%)
+</td>
+</tr>
+<tr>
+<td>
+M
+</td>
+<td>
+17 (53.1%)
+</td>
+<td>
+21 (65.6%)
+</td>
+<td>
+20 (62.5%)
+</td>
+<td>
+17 (53.1%)
+</td>
+<td>
+75 (58.6%)
+</td>
+</tr>
+</table>
+<p>And if one has different and/or additional covariates to put into a demogrpahics table, modify the function <code>full.names</code> in the same spirit as its default:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">full.names</a></code></pre></div>
+<pre><code>## function(x)
+## {
+##   swap(x, 
+##                   c(&#39;wt&#39;,&#39;ht&#39;,&#39;bmi&#39;,&#39;age&#39;,&#39;sex&#39;,&#39;crcl&#39;,&#39;race&#39;),
+##                   c(&quot;Weight (kg)&quot;,&quot;Height (cm)&quot;,&quot;BMI (kg/m2)&quot;,&quot;Age (yr)&quot;,&quot;Gender&quot;,&quot;Creatinine Clearance (L/min)&quot;,&quot;Race&quot;)
+##   )      
+## }
+## &lt;bytecode: 0x00000000240c1290&gt;
+## &lt;environment: namespace:qpToolkit&gt;</code></pre>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

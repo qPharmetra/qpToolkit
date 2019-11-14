@@ -15,7 +15,6 @@ editor_options:
 ```{r, include=F}
 library(qpToolkit)
 library(plyr)
-library(reshape)
 library(knitr)
 library(ggplot2)
 

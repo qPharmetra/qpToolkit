@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Klaas Prins" />
+
+<meta name="date" content="2019-11-13" />
+
+<title>qpToolkit get_xxx Functions</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">qpToolkit get_xxx Functions</h1>
+<h4 class="author">Klaas Prins</h4>
+<h4 class="date">2019-11-13</h4>
+
+
+
+<div id="the-get.xxx-functions" class="section level2">
+<h2>the get.xxx functions</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.description&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.dsc&gt; get.description(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## [1] &quot;2 compartment model&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.shrinkage&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.shr&gt; get.shrinkage(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $version
+## [1] &quot;7.3.0&quot;
+## 
+## $eta
+## $eta$`ITERATIVE TWO STAGE (NO PRIOR)`
+## [1] &quot;3.2921E+00  1.9372E+01  2.2485E+01  1.4424E+01&quot;
+## 
+## $eta$`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+## [1] &quot;3.6915E+00  2.1278E+01  2.7772E+01  1.5419E+01&quot;
+## 
+## $eta$`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+## [1] &quot;3.4087E+00  2.3225E+01  2.7424E+01  1.7550E+01&quot;
+## 
+## $eta$`MCMC BAYESIAN ANALYSIS`
+## [1] &quot;3.0463E+00  2.0021E+01  2.4030E+01  1.4177E+01&quot;
+## 
+## 
+## $ebv
+## $ebv$`ITERATIVE TWO STAGE (NO PRIOR)`
+## [1] &quot;3.2923E+00  1.9372E+01  2.2486E+01  1.4424E+01&quot;
+## 
+## $ebv$`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+## [1] &quot;3.6925E+00  2.1279E+01  2.7775E+01  1.5414E+01&quot;
+## 
+## $ebv$`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+## [1] &quot;3.6776E+00  2.1445E+01  2.8427E+01  1.5574E+01&quot;
+## 
+## $ebv$`MCMC BAYESIAN ANALYSIS`
+## [1] &quot;3.3162E+00  1.9861E+01  2.4449E+01  1.5063E+01&quot;
+## 
+## 
+## $eps
+## $eps$`ITERATIVE TWO STAGE (NO PRIOR)`
+## [1] &quot;3.1728E+01&quot;
+## 
+## $eps$`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+## [1] &quot;2.9315E+01&quot;
+## 
+## $eps$`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+## [1] &quot;3.0800E+01&quot;
+## 
+## $eps$`MCMC BAYESIAN ANALYSIS`
+## [1] &quot;3.0941E+01&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.eigen&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## get.gn&gt; get.eigen(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`ITERATIVE TWO STAGE (NO PRIOR)`
+##  [1] 0.129 0.252 0.320 0.338 0.449 0.504 0.618 0.773 0.951 1.060 1.370 1.440
+## [13] 1.570 1.760 3.450
+## 
+## $`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+##  [1] 0.147 0.288 0.333 0.395 0.496 0.563 0.701 0.815 0.961 1.130 1.270 1.500
+## [13] 1.560 1.840 2.990
+## 
+## $`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+##  [1] 0.174 0.352 0.423 0.483 0.598 0.711 0.810 0.870 0.904 0.968 1.080 1.220
+## [13] 1.430 2.020 2.970
+## 
+## $`MCMC BAYESIAN ANALYSIS`
+##  [1] 0.273 0.435 0.539 0.572 0.684 0.737 0.874 0.910 0.950 0.993 1.050 1.260
+## [13] 1.410 1.880 2.430
+## 
+## $`FIRST ORDER CONDITIONAL ESTIMATION WITH INTERACTION (NO PRIOR)`
+##  [1] 0.139 0.343 0.400 0.436 0.522 0.652 0.784 0.798 0.856 0.879 1.010 1.210
+## [13] 1.430 1.800 3.730
+## 
+## 
+## get.gn&gt; get.eigen(run = &quot;example2&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`ITERATIVE TWO STAGE (NO PRIOR)`
+##  [1] 0.0176 0.0224 0.0235 0.0430 0.0676 0.1940 0.2500 0.2840 0.4550 0.5570
+## [11] 0.6730 0.6970 1.0400 1.1000 1.2800 1.5300 1.6700 1.7300 2.4000 2.7200
+## [21] 4.2400
+## 
+## $`IMPORTANCE SAMPLING (NO PRIOR)`
+##  [1] 0.0260 0.0279 0.0353 0.0446 0.0533 0.1870 0.2660 0.3050 0.4910 0.5580
+## [11] 0.5880 0.6620 1.1200 1.2300 1.3400 1.5000 1.5500 1.6400 2.3900 2.7300
+## [21] 4.2500
+## 
+## $`STOCHASTIC APPROXIMATION EXPECTATION-MAXIMIZATION (NO PRIOR)`
+##  [1] 0.0170 0.0214 0.0229 0.0437 0.1380 0.2930 0.3710 0.4440 0.5580 0.6620
+## [11] 0.8410 0.9180 1.1300 1.1800 1.2600 1.5600 1.7400 1.9300 2.4100 2.5600
+## [21] 2.9100
+## 
+## $`OBJECTIVE FUNCTION EVALUATION BY IMPORTANCE SAMPLING (NO PRIOR)`
+##  [1] 0.0256 0.0269 0.0336 0.0451 0.0717 0.2440 0.3200 0.3530 0.4620 0.5830
+## [11] 0.6210 0.8340 1.1900 1.2500 1.3300 1.4700 1.4900 1.6200 2.4400 2.7200
+## [21] 3.8800
+## 
+## $`MCMC BAYESIAN ANALYSIS`
+##  [1] 0.0260 0.0292 0.0336 0.0407 0.1660 0.2750 0.3460 0.4820 0.5310 0.5980
+## [11] 0.6720 0.7510 1.1100 1.2200 1.3100 1.4900 1.6300 1.8800 2.4100 2.7600
+## [21] 3.2400
+## 
+## $`FIRST ORDER CONDITIONAL ESTIMATION WITH INTERACTION (NO PRIOR)`
+##  [1] 0.0258 0.0277 0.0352 0.0444 0.0596 0.2050 0.2700 0.2980 0.4990 0.5620
+## [11] 0.6200 0.6790 1.1000 1.3300 1.3600 1.4900 1.5600 1.6000 2.4000 2.7400
+## [21] 4.0900</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.ofv&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## get.fv&gt; get.ofv(&quot;example2&quot;, path = getOption(&quot;qpExampleDir&quot;))
+##    FINAL VALUE OF OBJECTIVE FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -10771.86                            -10783.92 
+##   FINAL VALUE OF LIKELIHOOD FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -19993.88                            -10777.68 
+## AVERAGE VALUE OF LIKELIHOOD FUNCTION  MINIMUM VALUE OF OBJECTIVE FUNCTION 
+##                            -19185.25                            -10772.14 
+## 
+## get.fv&gt; sapply(c(&quot;example1&quot;,&quot;example2&quot;), get.ofv, path = getOption(&quot;qpExampleDir&quot;))
+## $example1
+##    FINAL VALUE OF OBJECTIVE FUNCTION   FINAL VALUE OF LIKELIHOOD FUNCTION 
+##                            -1120.262                            -2477.376 
+##    FINAL VALUE OF OBJECTIVE FUNCTION AVERAGE VALUE OF LIKELIHOOD FUNCTION 
+##                            -1145.027                            -2313.897 
+##  MINIMUM VALUE OF OBJECTIVE FUNCTION 
+##                            -1121.028 
+## 
+## $example2
+##    FINAL VALUE OF OBJECTIVE FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -10771.86                            -10783.92 
+##   FINAL VALUE OF LIKELIHOOD FUNCTION    FINAL VALUE OF OBJECTIVE FUNCTION 
+##                            -19993.88                            -10777.68 
+## AVERAGE VALUE OF LIKELIHOOD FUNCTION  MINIMUM VALUE OF OBJECTIVE FUNCTION 
+##                            -19185.25                            -10772.14</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.dOFV&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.OFV&gt; get.dOFV(runs = c(&quot;example1&quot;,&quot;example2&quot;), path = getOption(&quot;qpExampleDir&quot;))
+##   Run Ref        OFV      dOFV                                  Description
+## 1   1   1  -1121.028        NA                          2 compartment model
+## 2   2   1 -10772.143 -9651.115 Covariate Model CL and V with Gender and Age
+## 
+## gt.OFV&gt; # note this example is for two non-nested models. It has not other value to to illustrate the tool
+## gt.OFV&gt; 
+## gt.OFV&gt; 
+## gt.OFV&gt;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.diag.names&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.dg.&gt; covMatrix = get.covmat(path = getOption(&quot;qpExampleDir&quot;), run = &quot;example2&quot;)
+## 
+## gt.dg.&gt; get.diag.names(names = sub(&quot; +&quot;, &quot;&quot;, trimSpace(names(covMatrix[[1]]))))
+## $OMEGA
+## OMEGA(1,1) OMEGA(2,1) OMEGA(2,2) OMEGA(3,1) OMEGA(3,2) OMEGA(3,3) OMEGA(4,1) 
+##       TRUE      FALSE       TRUE      FALSE      FALSE       TRUE      FALSE 
+## OMEGA(4,2) OMEGA(4,3) OMEGA(4,4) 
+##      FALSE      FALSE       TRUE 
+## 
+## $SIGMA
+## SIGMA(1,1) 
+##       TRUE</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.nm.version&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.nm.&gt; get.nm.version(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## [1] &quot;7.3.0&quot;</code></pre>
+</div>
+<div id="the-get.multiple.xpose.tables-functions" class="section level2">
+<h2>the get.[multiple].xpose.tables functions</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.xpose.tables&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.xp.&gt; out.1 = get.xpose.tables(path = getOption(&quot;qpExampleDir&quot;), run= &quot;example2&quot;)
+## 
+## gt.xp.&gt; head(out.1)
+##   ID   AGE GNDR     CL     V1      Q    V2      ETA1      ETA2      ETA3
+## 1  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 2  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 3  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 4  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 5  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+## 6  1 65.05    0 2.0909 8.0889 1.8929 9.415 -0.013159 -0.048924 -0.056447
+##        ETA4 TIME     CONC    IPRED     PRED       RES     WRES    CPRED
+## 1 -0.059266  0.0  0.00000  0.50655 11.77200  0.000000  0.00000 11.75800
+## 2 -0.059266  0.1 10.81000 11.77100 11.21800 -0.407540 -0.62317 11.20400
+## 3 -0.059266  0.4 10.73000 10.19200  9.73380  0.996170  0.75051  9.72390
+## 4 -0.059266  0.7 10.16400  8.86610  8.48640  1.677600  1.69430  8.47910
+## 5 -0.059266  4.0  3.07600  2.78820  2.72770  0.348280  0.94116  2.72860
+## 6 -0.059266 20.0  0.46933  0.49492  0.50655 -0.037218 -0.92902  0.50687
+##      CWRES    EPRED     ERES    EWRES EVID
+## 1  0.00000 11.81500  0.00000  0.00000    1
+## 2 -0.58736 11.24800 -0.43840 -0.64966    0
+## 3  0.72572  9.73860  0.99141  0.74473    0
+## 4  1.63050  8.47500  1.68900  1.70950    0
+## 5  0.91301  2.71720  0.35880  0.94456    0
+## 6 -0.95120  0.50669 -0.03736 -0.93890    0</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">example</span>(<span class="st">&quot;get.multiple.xpose.tables&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## gt.m..&gt; library(lattice)
+## 
+## gt.m..&gt;  test = get.multiple.xpose.tables(runs = c(&quot;example1&quot;,&quot;example2&quot;)
+## gt.m..+  , path = getOption(&quot;qpExampleDir&quot;), carryAlong = c(&quot;CONC&quot;,&quot;TIME&quot;,&quot;EVID&quot;))
+## 
+## gt.m..&gt; names(test)
+## [1] &quot;model&quot; &quot;ID&quot;    &quot;PRED&quot;  &quot;IPRED&quot; &quot;CWRES&quot; &quot;CONC&quot;  &quot;TIME&quot;  &quot;EVID&quot; 
+## 
+## gt.m..&gt; head(subset(test,model == &quot;example1&quot;))
+##      model ID       PRED      IPRED     CWRES       CONC TIME EVID
+## 1 example1  1 19.9630000 19.5040000  0.000000  0.0000000  0.0    1
+## 2 example1  1 14.7260000 14.3590000  0.049976 14.9710000  0.2    0
+## 3 example1  1  4.6506000  4.4470000 -0.098391  4.3913000  1.0    0
+## 4 example1  1  0.5599100  0.4629000  0.093168  0.5166800  4.0    0
+## 5 example1  1  0.3472700  0.2993000 -0.341580  0.2919100  7.0    0
+## 6 example1  1  0.0034158  0.0054122  0.470610  0.0058076 40.0    0
+## 
+## gt.m..&gt; head(subset(test,model == &quot;example2&quot;))
+##        model ID     PRED    IPRED    CWRES     CONC TIME EVID
+## 601 example2  1 11.77200  0.50655  0.00000  0.00000  0.0    1
+## 602 example2  1 11.21800 11.77100 -0.58736 10.81000  0.1    0
+## 603 example2  1  9.73380 10.19200  0.72572 10.73000  0.4    0
+## 604 example2  1  8.48640  8.86610  1.63050 10.16400  0.7    0
+## 605 example2  1  2.72770  2.78820  0.91301  3.07600  4.0    0
+## 606 example2  1  0.50655  0.49492 -0.95120  0.46933 20.0    0
+## 
+## gt.m..&gt; xyplot(CWRES ~ value | variable * model
+## gt.m..+        , data = reshape2::melt(test, measure.vars = c(&#39;TIME&#39;,&#39;PRED&#39;))
+## gt.m..+        , panel = panel.cwres
+## gt.m..+        , scales = list(x = list(relation = &quot;free&quot;))
+## gt.m..+ )</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="the-read.xxx-functions" class="section level2">
+<h2>the read.xxx functions</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">example</span>(<span class="st">&quot;read.out&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## read.t&gt; head(read.out(path=getOption(&quot;qpExampleDir&quot;), run=&quot;example1&quot;, file.ext = &quot;.lst&quot;))
+## [1] &quot;Wed 10/28/2015 &quot;                                         
+## [2] &quot;09:20 PM&quot;                                                
+## [3] &quot;;Model Desc: Two compartment Model, Using ADVAN3, TRANS4&quot;
+## [4] &quot;;Project Name: nm7examples&quot;                              
+## [5] &quot;;Project ID: NO PROJECT DESCRIPTION&quot;                     
+## [6] &quot;$PROBLEM    RUN# Example 1 (from samp5l)&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">example</span>(<span class="st">&quot;read.ext&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## red.xt&gt; read.ext(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`First Order Conditional Estimation with Interaction (No Prior)`
+##    ITERATION    THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1    0.0e+00  1.633960 1.5576000 0.7458190 2.3478500 0.05798520  0.1770000
+## 2    5.0e+00  1.673980 1.6140900 0.8302580 2.3914000 0.05479820  0.1569080
+## 3    1.0e+01  1.676700 1.6118700 0.8340870 2.3940800 0.05571030  0.1618530
+## 4    1.5e+01  1.686310 1.6111900 0.8139870 2.3904700 0.05665560  0.1651220
+## 5    2.0e+01  1.686540 1.6108000 0.8183850 2.3906900 0.05726200  0.1646560
+## 6    2.5e+01  1.686750 1.6112100 0.8191190 2.3911300 0.05716500  0.1650260
+## 7    3.0e+01  1.686920 1.6112900 0.8196180 2.3916300 0.05716410  0.1650600
+## 8    3.3e+01  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 9   -1.0e+09  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 10  -1.0e+09  0.043180 0.0476109 0.0699832 0.0515872 0.00757063  0.0271869
+## 11  -1.0e+09  0.138801 0.3426480 0.3997250 0.4364790 0.52212300  0.6516330
+## 12  -1.0e+09 26.903000 0.1388010 3.7341600 0.0000000 0.00000000  0.0000000
+## 13  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.23908800  0.4062770
+## 14  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.01583230  0.0334585
+## 15  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##      OMEGA(2,1) OMEGA(2,2) OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3) OMEGA(4,1)
+## 1  -0.000428264  0.1561880  0.0126053 -0.000713190  0.1975260 -0.0179167
+## 2  -0.000403712  0.1359930  0.0122718 -0.000663722  0.1859870 -0.0133695
+## 3  -0.000432699  0.1295100  0.0159343 -0.000517306  0.1960030 -0.0087187
+## 4  -0.000561129  0.1333960  0.0126990  0.000326150  0.1910740 -0.0121500
+## 5  -0.001986370  0.1312260  0.0119768  0.015282300  0.1866400 -0.0131544
+## 6  -0.000778044  0.1314490  0.0123702  0.015890100  0.1873990 -0.0127808
+## 7  -0.000744653  0.1314240  0.0124075  0.015960200  0.1875490 -0.0127377
+## 8  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 9  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 10  0.020798200  0.0313100  0.0299001  0.035725600  0.0719070  0.0235760
+## 11  0.784397000  0.7981560  0.8555510  0.879394000  1.0117600  1.2145000
+## 12  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+## 13 -0.005037600  0.3625310  0.0705401  0.101633000  0.4330680 -0.0809622
+## 14  0.141350000  0.0431825  0.1628810  0.226604000  0.0830204  0.1547840
+## 15  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  0.01452820  0.0267534  0.1655500 -1115.895
+## 2  0.01238560  0.0415674  0.1501960 -1120.035
+## 3  0.00531919  0.0396320  0.1432600 -1120.268
+## 4  0.00921431  0.0358207  0.1510600 -1120.818
+## 5  0.01369540  0.0327462  0.1495190 -1121.025
+## 6  0.01386650  0.0332032  0.1498620 -1121.028
+## 7  0.01390470  0.0332660  0.1499010 -1121.028
+## 8  0.01390610  0.0332702  0.1499060 -1121.028
+## 9  0.01390610  0.0332702  0.1499060 -1121.028
+## 10 0.02407020  0.0425812  0.0382220     0.000
+## 11 1.43382000  1.7968600  3.7341600     0.000
+## 12 0.00000000  0.0000000  0.0000000     0.000
+## 13 0.09907190  0.1984220  0.3871770     0.000
+## 14 0.16592100  0.2081350  0.0493598     0.000
+## 15 0.00000000  0.0000000  0.0000000     0.000
+## 
+## 
+## red.xt&gt; ## now parse an output where multiple $EST calls have been performed
+## red.xt&gt; read.ext(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;), file.ext = &quot;.mext&quot;)
+## $`Iterative Two Stage (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1   0.00e+00  2.0000000 2.0000000 2.0000000 2.0000000 0.60000000  0.1500000
+## 2   5.00e+00  1.7222300 1.6204400 0.9846850 2.4888600 0.06630990  0.1779420
+## 3   1.00e+01  1.6867900 1.5898000 0.8452100 2.3904000 0.05794970  0.1662390
+## 4   1.50e+01  1.6835200 1.5898000 0.8219940 2.3770800 0.05668360  0.1643060
+## 5   2.00e+01  1.6830000 1.5894200 0.8150150 2.3740400 0.05593690  0.1641600
+## 6   2.50e+01  1.6829800 1.5889000 0.8129080 2.3734700 0.05542440  0.1643560
+## 7   3.00e+01  1.6830700 1.5885500 0.8124320 2.3735900 0.05506940  0.1646180
+## 8   3.50e+01  1.6831800 1.5883500 0.8124240 2.3738200 0.05484080  0.1648400
+## 9   4.00e+01  1.6832500 1.5882400 0.8125030 2.3740200 0.05469110  0.1650030
+## 10  4.50e+01  1.6833000 1.5881900 0.8125790 2.3741500 0.05460050  0.1651090
+## 11  5.00e+01  1.6833300 1.5881600 0.8126310 2.3742400 0.05454570  0.1651770
+## 12  5.50e+01  1.6833500 1.5881400 0.8126640 2.3742900 0.05451680  0.1652170
+## 13  6.00e+01  1.6833600 1.5881300 0.8126820 2.3743200 0.05449140  0.1652420
+## 14  6.50e+01  1.6833700 1.5881200 0.8126950 2.3743400 0.05448070  0.1652550
+## 15  7.00e+01  1.6833700 1.5881200 0.8127000 2.3743500 0.05447340  0.1652650
+## 16  7.50e+01  1.6833700 1.5881200 0.8127040 2.3743500 0.05447040  0.1652710
+## 17  8.00e+01  1.6833800 1.5881200 0.8127070 2.3743600 0.05446710  0.1652740
+## 18  8.50e+01  1.6833800 1.5881200 0.8127080 2.3743600 0.05446650  0.1652750
+## 19  9.00e+01  1.6833800 1.5881200 0.8127100 2.3743600 0.05446550  0.1652750
+## 20  9.50e+01  1.6833800 1.5881200 0.8127100 2.3743600 0.05446730  0.1652750
+## 21  1.00e+02  1.6833800 1.5881200 0.8127100 2.3743600 0.05446810  0.1652750
+## 22  1.05e+02  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470  0.1652740
+## 23  1.05e+02  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470  0.1652740
+## 24 -1.00e+09  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470  0.1652740
+## 25 -1.00e+09  0.0461817 0.0490153 0.0652742 0.0539291 0.00761176  0.0289772
+## 26 -1.00e+09  0.1287040 0.2521200 0.3201370 0.3375210 0.44938400  0.5039670
+## 27 -1.00e+09 26.8244000 0.1287040 3.4524200 0.0000000 0.00000000  0.0000000
+## 28 -1.00e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23337700  0.4065390
+## 29 -1.00e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01630790  0.0356388
+## 30 -1.00e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##    OMEGA(2,1) OMEGA(2,2)  OMEGA(3,1) OMEGA(3,2) OMEGA(3,3)  OMEGA(4,1)
+## 1  0.01000000  0.1500000 0.010000000  0.0100000  0.1500000  0.01000000
+## 2  0.01882720  0.1113590 0.008160170  0.0365088  0.1757050 -0.00580553
+## 3  0.00710622  0.1191350 0.000922876  0.0366138  0.1886450 -0.01739400
+## 4  0.00453556  0.1264720 0.001156440  0.0281036  0.1914710 -0.01844750
+## 5  0.00397758  0.1300250 0.002389590  0.0225122  0.1964270 -0.01792900
+## 6  0.00395403  0.1316580 0.003556400  0.0197104  0.2016880 -0.01723500
+## 7  0.00410183  0.1325150 0.004496240  0.0183623  0.2059410 -0.01661550
+## 8  0.00426502  0.1330060 0.005173160  0.0176964  0.2089230 -0.01614910
+## 9  0.00439454  0.1333120 0.005627310  0.0173526  0.2108730 -0.01582890
+## 10 0.00448224  0.1334950 0.005914760  0.0171647  0.2120820 -0.01562420
+## 11 0.00454064  0.1336100 0.006093940  0.0170593  0.2128230 -0.01549540
+## 12 0.00457388  0.1336730 0.006199410  0.0169990  0.2132570 -0.01541990
+## 13 0.00459500  0.1337130 0.006262790  0.0169647  0.2135170 -0.01537440
+## 14 0.00460598  0.1337360 0.006300060  0.0169435  0.2136680 -0.01534740
+## 15 0.00461446  0.1337540 0.006323930  0.0169316  0.2137650 -0.01533050
+## 16 0.00461983  0.1337650 0.006338620  0.0169245  0.2138260 -0.01531910
+## 17 0.00462278  0.1337700 0.006347380  0.0169199  0.2138600 -0.01531320
+## 18 0.00462368  0.1337710 0.006351210  0.0169174  0.2138750 -0.01531070
+## 19 0.00462271  0.1337680 0.006350990  0.0169159  0.2138740 -0.01531110
+## 20 0.00462271  0.1337680 0.006351070  0.0169157  0.2138740 -0.01531100
+## 21 0.00462265  0.1337680 0.006351140  0.0169155  0.2138740 -0.01531090
+## 22 0.00462212  0.1337660 0.006350150  0.0169159  0.2138710 -0.01531180
+## 23 0.00462212  0.1337660 0.006350150  0.0169159  0.2138710 -0.01531180
+## 24 0.00462212  0.1337660 0.006350150  0.0169159  0.2138710 -0.01531180
+## 25 0.02313910  0.0349217 0.032498800  0.0382768  0.0648382  0.02761300
+## 26 0.61759500  0.7734270 0.950563000  1.0629000  1.3721500  1.44483000
+## 27 0.00000000  0.0000000 0.000000000  0.0000000  0.0000000  0.00000000
+## 28 0.03108600  0.3657410 0.033775800  0.1000110  0.4624610 -0.09335600
+## 29 0.15321000  0.0477411 0.170522000  0.2219530  0.0701012  0.17287300
+## 30 0.00000000  0.0000000 0.000000000  0.0000000  0.0000000  0.00000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)        OBJ
+## 1   0.0100000  0.0100000   0.150000  -234.3627
+## 2   0.0201868  0.0161868   0.134416 -1112.9740
+## 3   0.0196290  0.0327745   0.146616 -1119.9428
+## 4   0.0155689  0.0381413   0.151976 -1120.2901
+## 5   0.0135732  0.0422893   0.155309 -1120.3523
+## 6   0.0128063  0.0457926   0.157771 -1120.3406
+## 7   0.0125638  0.0484409   0.159556 -1120.3177
+## 8   0.0125130  0.0502571   0.160763 -1120.2987
+## 9   0.0125220  0.0514364   0.161552 -1120.2845
+## 10  0.0125408  0.0521652   0.162039 -1120.2758
+## 11  0.0125578  0.0526120   0.162339 -1120.2700
+## 12  0.0125677  0.0528749   0.162516 -1120.2668
+## 13  0.0125746  0.0530305   0.162621 -1120.2647
+## 14  0.0125789  0.0531227   0.162683 -1120.2635
+## 15  0.0125825  0.0531815   0.162723 -1120.2626
+## 16  0.0125848  0.0532185   0.162749 -1120.2624
+## 17  0.0125856  0.0532392   0.162763 -1120.2619
+## 18  0.0125858  0.0532486   0.162768 -1120.2619
+## 19  0.0125851  0.0532488   0.162768 -1120.2618
+## 20  0.0125850  0.0532490   0.162768 -1120.2618
+## 21  0.0125849  0.0532490   0.162768 -1120.2619
+## 22  0.0125848  0.0532469   0.162766 -1120.2618
+## 23  0.0125848  0.0532469   0.162766 -1120.2618
+## 24  0.0125848  0.0532469   0.162766 -1120.2618
+## 25  0.0273385  0.0450168   0.040638     0.0000
+## 26  1.5695600  1.7647200   3.452420     0.0000
+## 27  0.0000000  0.0000000   0.000000     0.0000
+## 28  0.0852889  0.2853890   0.403443     0.0000
+## 29  0.1794120  0.1857240   0.050364     0.0000
+## 30  0.0000000  0.0000000   0.000000     0.0000
+## 
+## $`Stochastic Approximation Expectation-Maximization (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1   -3.0e+03  1.6833800 1.5881200 0.8127110 2.3743600 0.05446470  0.2479110
+## 2   -2.9e+03  1.6387100 1.5594500 0.7273210 2.3466100 0.05916100  0.1671730
+## 3   -2.8e+03  1.6236200 1.5591200 0.6730810 2.3293400 0.06180060  0.1641730
+## 4   -2.7e+03  1.6566400 1.6028100 0.7960210 2.3701600 0.06266950  0.1681500
+## 5   -2.6e+03  1.6540300 1.6199800 0.7351480 2.3575400 0.05939270  0.1924640
+## 6   -2.5e+03  1.6522700 1.5792600 0.7774180 2.3589600 0.06290830  0.1614820
+## 7   -2.4e+03  1.6346500 1.5784400 0.7196130 2.3215500 0.06442210  0.1567660
+## 8   -2.3e+03  1.6316000 1.5710800 0.6745370 2.3157300 0.05797910  0.1527460
+## 9   -2.2e+03  1.6367000 1.6305800 0.7052150 2.3317700 0.06687770  0.1730100
+## 10  -2.1e+03  1.6269200 1.5232100 0.6814660 2.3316700 0.05604720  0.1592740
+## 11  -2.0e+03  1.6277900 1.5500200 0.7087390 2.3472100 0.05291590  0.1549110
+## 12  -1.9e+03  1.6303100 1.5236600 0.7424690 2.3505300 0.05405190  0.1735590
+## 13   0.0e+00  1.6211900 1.5317300 0.6996950 2.3331300 0.05405190  0.1707950
+## 14   1.0e+02  1.6279800 1.5363900 0.7349190 2.3418600 0.05270070  0.1702030
+## 15   2.0e+02  1.6329700 1.5437900 0.7417480 2.3475600 0.05366130  0.1710560
+## 16   3.0e+02  1.6327400 1.5470200 0.7378460 2.3435200 0.05333160  0.1689530
+## 17   4.0e+02  1.6328200 1.5504200 0.7360380 2.3429900 0.05370980  0.1687880
+## 18   5.0e+02  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 19  -1.0e+09  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 20  -1.0e+09  0.0473452 0.0549876 0.0678456 0.0533304 0.00709799  0.0283242
+## 21  -1.0e+09  0.1708940 0.3052370 0.3743220 0.3848760 0.50568800  0.5466770
+## 22  -1.0e+09 18.1641000 0.1708940 3.1041400 0.0000000 0.00000000  0.0000000
+## 23  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23187000  0.4105920
+## 24  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01530600  0.0344918
+## 25  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##      OMEGA(2,1) OMEGA(2,2)  OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3)  OMEGA(4,1)
+## 1   6.93318e-03   0.200649  0.00952522  0.025373900  0.3208060 -0.02296770
+## 2  -1.36751e-02   0.155428  0.02032360 -0.045769600  0.1625540 -0.00802073
+## 3  -1.92846e-03   0.141237  0.01136830 -0.033524300  0.1079540 -0.03172900
+## 4   1.12230e-03   0.136433  0.00110022  0.030926100  0.1217670 -0.01915940
+## 5   1.43644e-02   0.128209  0.03877490  0.030195300  0.1595340 -0.00520062
+## 6   2.73592e-03   0.117391 -0.00358101  0.025225200  0.1676190 -0.02270010
+## 7  -1.51455e-02   0.126365 -0.00592758 -0.000679692  0.1117680 -0.02344630
+## 8  -2.78948e-02   0.171447  0.01755620 -0.042057300  0.1414210 -0.02421130
+## 9  -1.86468e-04   0.113197 -0.00186648  0.006326660  0.0958769 -0.01908200
+## 10 -1.49024e-02   0.141980  0.00725141 -0.039506800  0.1369100 -0.01705770
+## 11 -5.46747e-03   0.160058  0.01292830 -0.010360800  0.1729740 -0.01198950
+## 12  1.35594e-02   0.151858  0.01507130 -0.038068100  0.2441320 -0.01098250
+## 13  6.73434e-03   0.154136  0.02555920 -0.028328200  0.2245150 -0.01429500
+## 14 -9.11465e-04   0.164074  0.02195790 -0.020277800  0.2114370 -0.00956001
+## 15 -9.73948e-06   0.157078  0.02157150 -0.017722500  0.2113180 -0.00995849
+## 16 -2.56594e-04   0.155001  0.01756410 -0.014272400  0.2104140 -0.01317660
+## 17  6.16291e-04   0.155044  0.01664730 -0.012715300  0.2079370 -0.01479510
+## 18 -2.43010e-04   0.154364  0.01801720 -0.012497300  0.2116010 -0.01374220
+## 19 -2.43010e-04   0.154364  0.01801720 -0.012497300  0.2116010 -0.01374220
+## 20  2.47905e-02   0.040713  0.03205130  0.046675000  0.0624189  0.02652110
+## 21  6.81905e-01   0.808982  0.92736300  1.165800000  1.2467400  1.33896000
+## 22  0.00000e+00   0.000000  0.00000000  0.000000000  0.0000000  0.00000000
+## 23 -1.50640e-03   0.392891  0.09539330 -0.069148700  0.4600020 -0.08296530
+## 24  1.53762e-01   0.051812  0.16353000  0.260037000  0.0678464  0.16336500
+## 25  0.00000e+00   0.000000  0.00000000  0.000000000  0.0000000  0.00000000
+##      OMEGA(4,2)  OMEGA(4,3) OMEGA(4,4)   SAEMOBJ
+## 1   0.018877300  0.07987040  0.2441490 -2606.162
+## 2   0.008490050  0.01898890  0.1709730 -2430.559
+## 3   0.010777700 -0.02392630  0.1298120 -2449.484
+## 4   0.017809300 -0.00356824  0.1327270 -2432.628
+## 5   0.027842200  0.00657973  0.1406260 -2420.958
+## 6   0.033216400  0.03922240  0.1611090 -2427.960
+## 7  -0.004424840 -0.00544716  0.1445560 -2453.089
+## 8  -0.021294100  0.01019990  0.1393360 -2462.270
+## 9   0.027500400 -0.00391397  0.1437910 -2440.238
+## 10  0.025126600  0.00106890  0.1492130 -2463.403
+## 11  0.016914700  0.04166320  0.2027240 -2447.647
+## 12 -0.000613824  0.04053950  0.1557120 -2412.779
+## 13  0.003246850  0.03480000  0.1663990 -2447.128
+## 14  0.013157700  0.03819020  0.1601710 -2492.637
+## 15  0.012352400  0.03974030  0.1610990 -2491.971
+## 16  0.012753400  0.04010640  0.1619850 -2493.509
+## 17  0.012353600  0.03809500  0.1609590 -2492.725
+## 18  0.012028400  0.04053520  0.1627420 -2492.043
+## 19  0.012028400  0.04053520  0.1627420 -2492.043
+## 20  0.030859700  0.04238850  0.0408370     0.000
+## 21  1.653810000  1.78460000  3.1041400     0.000
+## 22  0.000000000  0.00000000  0.0000000     0.000
+## 23  0.075890500  0.21843600  0.4034120     0.000
+## 24  0.189427000  0.19138600  0.0506145     0.000
+## 25  0.000000000  0.00000000  0.0000000     0.000
+## 
+## $`Objective Function Evaluation by Importance Sampling (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1      0e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 2      1e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 3      2e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 4      3e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 5      4e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 6      5e+00  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 7     -1e+09  1.6332900 1.5487000 0.7415410 2.3457000 0.05376390  0.1685860
+## 8     -1e+09  0.0434084 0.0523151 0.0686892 0.0522198 0.00624247  0.0279757
+## 9     -1e+09  0.2040500 0.3598770 0.4671660 0.5071510 0.65072400  0.7188930
+## 10    -1e+09 13.7435000 0.2040500 2.8043600 0.0000000 0.00000000  0.0000000
+## 11    -1e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23187000  0.4105920
+## 12    -1e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01346110  0.0340675
+## 13    -1e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##     OMEGA(2,1) OMEGA(2,2) OMEGA(3,1) OMEGA(3,2) OMEGA(3,3) OMEGA(4,1)
+## 1  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 2  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 3  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 4  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 5  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 6  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 7  -0.00024301  0.1543640  0.0180172 -0.0124973  0.2116010 -0.0137422
+## 8   0.02356600  0.0372362  0.0298380  0.0383233  0.0606987  0.0236205
+## 9   0.77450500  0.8623790  0.8953540  0.9877420  1.0998800  1.2612100
+## 10  0.00000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000
+## 11 -0.00150640  0.3928910  0.0953933 -0.0691487  0.4600020 -0.0829653
+## 12  0.14611800  0.0473874  0.1513750  0.2104240  0.0659766  0.1460780
+## 13  0.00000000  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1   0.0120284  0.0405352  0.1627420 -1145.140
+## 2   0.0120284  0.0405352  0.1627420 -1145.637
+## 3   0.0120284  0.0405352  0.1627420 -1145.012
+## 4   0.0120284  0.0405352  0.1627420 -1144.855
+## 5   0.0120284  0.0405352  0.1627420 -1144.071
+## 6   0.0120284  0.0405352  0.1627420 -1145.873
+## 7   0.0120284  0.0405352  0.1627420 -1145.873
+## 8   0.0264289  0.0364792  0.0378499     0.000
+## 9   1.4046000  2.0021000  2.8043600     0.000
+## 10  0.0000000  0.0000000  0.0000000     0.000
+## 11  0.0758905  0.2184360  0.4034120     0.000
+## 12  0.1640860  0.1636000  0.0469122     0.000
+## 13  0.0000000  0.0000000  0.0000000     0.000
+## 
+## $`First Order Conditional Estimation with Interaction (No Prior)`
+##    ITERATION     THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1    0.0e+00  1.6301100 1.5484000 0.7391950 2.3420900 0.05848970  0.1733470
+## 2    5.0e+00  1.6757200 1.6109000 0.8346650 2.3893300 0.05447550  0.1546320
+## 3    1.0e+01  1.6756900 1.6080400 0.8330760 2.3887100 0.05654850  0.1602260
+## 4    1.5e+01  1.6854300 1.6133200 0.8220930 2.3912400 0.05691200  0.1643700
+## 5    2.0e+01  1.6867500 1.6112000 0.8191030 2.3911200 0.05716510  0.1650240
+## 6    2.3e+01  1.6869300 1.6112900 0.8196040 2.3916100 0.05716290  0.1650620
+## 7   -1.0e+09  1.6869300 1.6112900 0.8196040 2.3916100 0.05716290  0.1650620
+## 8   -1.0e+09  0.0432046 0.0478577 0.0704887 0.0518067 0.00935508  0.0273185
+## 9   -1.0e+09  0.0994675 0.2875420 0.3602960 0.4093320 0.43926200  0.5374090
+## 10  -1.0e+09 42.5318000 0.0994675 4.2305300 0.0000000 0.00000000  0.0000000
+## 11  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.23908800  0.4062780
+## 12  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.01956410  0.0336205
+## 13  -1.0e+09  0.0000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##      OMEGA(2,1) OMEGA(2,2) OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3) OMEGA(4,1)
+## 1  -0.003258460  0.1559170 0.00585389 -0.003601550   0.201272 -0.0224928
+## 2  -0.003053190  0.1352870 0.00601178 -0.003206850   0.185337 -0.0140070
+## 3  -0.003214570  0.1264060 0.01109770 -0.000427698   0.174209 -0.0116656
+## 4   0.000103787  0.1306050 0.01277070  0.018363300   0.187145 -0.0119951
+## 5  -0.000783667  0.1314490 0.01236840  0.015886000   0.187397 -0.0127829
+## 6  -0.000741584  0.1314290 0.01241200  0.015956400   0.187549 -0.0127355
+## 7  -0.000741584  0.1314290 0.01241200  0.015956400   0.187549 -0.0127355
+## 8   0.022288500  0.0320360 0.02980410  0.035340300   0.088357  0.0239593
+## 9   0.729687000  0.8091900 0.86088700  0.884479000   1.002930  1.1245900
+## 10  0.000000000  0.0000000 0.00000000  0.000000000   0.000000  0.0000000
+## 11 -0.005034900  0.3625320 0.07054430  0.101633000   0.433069 -0.0809617
+## 12  0.151557000  0.0441837 0.16130500  0.226252000   0.102013  0.1580650
+## 13  0.000000000  0.0000000 0.00000000  0.000000000   0.000000  0.0000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  0.01652150  0.0284230  0.1658080 -1115.016
+## 2  0.01204680  0.0429975  0.1498880 -1119.691
+## 3  0.00368172  0.0317690  0.1394510 -1120.068
+## 4  0.01349970  0.0338444  0.1480420 -1121.001
+## 5  0.01386540  0.0332020  0.1498600 -1121.028
+## 6  0.01390540  0.0332715  0.1499080 -1121.028
+## 7  0.01390540  0.0332715  0.1499080 -1121.028
+## 8  0.02376170  0.0499630  0.0410975     0.000
+## 9  1.40287000  1.8215200  4.2305300     0.000
+## 10 0.00000000  0.0000000  0.0000000     0.000
+## 11 0.09906640  0.1984280  0.3871790     0.000
+## 12 0.16371400  0.2394620  0.0530731     0.000
+## 13 0.00000000  0.0000000  0.0000000     0.000
+## 
+## 
+## red.xt&gt; ## a large one
+## red.xt&gt; read.ext(run = &quot;example1&quot;, path = getOption(&quot;qpExampleDir&quot;))
+## $`First Order Conditional Estimation with Interaction (No Prior)`
+##    ITERATION    THETA1    THETA2    THETA3    THETA4 SIGMA(1,1) OMEGA(1,1)
+## 1    0.0e+00  1.633960 1.5576000 0.7458190 2.3478500 0.05798520  0.1770000
+## 2    5.0e+00  1.673980 1.6140900 0.8302580 2.3914000 0.05479820  0.1569080
+## 3    1.0e+01  1.676700 1.6118700 0.8340870 2.3940800 0.05571030  0.1618530
+## 4    1.5e+01  1.686310 1.6111900 0.8139870 2.3904700 0.05665560  0.1651220
+## 5    2.0e+01  1.686540 1.6108000 0.8183850 2.3906900 0.05726200  0.1646560
+## 6    2.5e+01  1.686750 1.6112100 0.8191190 2.3911300 0.05716500  0.1650260
+## 7    3.0e+01  1.686920 1.6112900 0.8196180 2.3916300 0.05716410  0.1650600
+## 8    3.3e+01  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 9   -1.0e+09  1.686930 1.6112900 0.8196050 2.3916100 0.05716320  0.1650610
+## 10  -1.0e+09  0.043180 0.0476109 0.0699832 0.0515872 0.00757063  0.0271869
+## 11  -1.0e+09  0.138801 0.3426480 0.3997250 0.4364790 0.52212300  0.6516330
+## 12  -1.0e+09 26.903000 0.1388010 3.7341600 0.0000000 0.00000000  0.0000000
+## 13  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.23908800  0.4062770
+## 14  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.01583230  0.0334585
+## 15  -1.0e+09  0.000000 0.0000000 0.0000000 0.0000000 0.00000000  0.0000000
+##      OMEGA(2,1) OMEGA(2,2) OMEGA(3,1)   OMEGA(3,2) OMEGA(3,3) OMEGA(4,1)
+## 1  -0.000428264  0.1561880  0.0126053 -0.000713190  0.1975260 -0.0179167
+## 2  -0.000403712  0.1359930  0.0122718 -0.000663722  0.1859870 -0.0133695
+## 3  -0.000432699  0.1295100  0.0159343 -0.000517306  0.1960030 -0.0087187
+## 4  -0.000561129  0.1333960  0.0126990  0.000326150  0.1910740 -0.0121500
+## 5  -0.001986370  0.1312260  0.0119768  0.015282300  0.1866400 -0.0131544
+## 6  -0.000778044  0.1314490  0.0123702  0.015890100  0.1873990 -0.0127808
+## 7  -0.000744653  0.1314240  0.0124075  0.015960200  0.1875490 -0.0127377
+## 8  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 9  -0.000741979  0.1314290  0.0124112  0.015956500  0.1875480 -0.0127355
+## 10  0.020798200  0.0313100  0.0299001  0.035725600  0.0719070  0.0235760
+## 11  0.784397000  0.7981560  0.8555510  0.879394000  1.0117600  1.2145000
+## 12  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+## 13 -0.005037600  0.3625310  0.0705401  0.101633000  0.4330680 -0.0809622
+## 14  0.141350000  0.0431825  0.1628810  0.226604000  0.0830204  0.1547840
+## 15  0.000000000  0.0000000  0.0000000  0.000000000  0.0000000  0.0000000
+##    OMEGA(4,2) OMEGA(4,3) OMEGA(4,4)       OBJ
+## 1  0.01452820  0.0267534  0.1655500 -1115.895
+## 2  0.01238560  0.0415674  0.1501960 -1120.035
+## 3  0.00531919  0.0396320  0.1432600 -1120.268
+## 4  0.00921431  0.0358207  0.1510600 -1120.818
+## 5  0.01369540  0.0327462  0.1495190 -1121.025
+## 6  0.01386650  0.0332032  0.1498620 -1121.028
+## 7  0.01390470  0.0332660  0.1499010 -1121.028
+## 8  0.01390610  0.0332702  0.1499060 -1121.028
+## 9  0.01390610  0.0332702  0.1499060 -1121.028
+## 10 0.02407020  0.0425812  0.0382220     0.000
+## 11 1.43382000  1.7968600  3.7341600     0.000
+## 12 0.00000000  0.0000000  0.0000000     0.000
+## 13 0.09907190  0.1984220  0.3871770     0.000
+## 14 0.16592100  0.2081350  0.0493598     0.000
+## 15 0.00000000  0.0000000  0.0000000     0.000</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">example</span>(<span class="st">&quot;read.mod&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## red.md&gt; head(read.mod(path=getOption(&quot;qpExampleDir&quot;), run=&quot;example1&quot;, file.ext = &quot;.ctl&quot;))
+## [1] &quot;;Model Desc: Two compartment Model, Using ADVAN3, TRANS4&quot;
+## [2] &quot;;Project Name: nm7examples&quot;                              
+## [3] &quot;;Project ID: NO PROJECT DESCRIPTION&quot;                     
+## [4] &quot;$PROB RUN# Example 1 (from samp5l)&quot;                      
+## [5] &quot;;; 1. Based on:0&quot;                                        
+## [6] &quot;;; 2. Description:&quot;</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 #' Format a tabulated summary for LaTeX
+#' 
 #' @param x output from \code{\link{tabSummarize}} of class \code{demoTable}
 #' @param \dots ignored
 #' @param formula the same formula as used to create the \code{tabSummarize} output

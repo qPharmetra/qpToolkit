@@ -59,7 +59,7 @@ print(demoTable)
 This 'demoTable' output can be processed for LaTeX use for example. 
 
 ```{r format the demoTable, echo = T, results="asis"}
-demoTable.formatted = format.demoTable(demoTable, formula = trt.o  ~ race + wt + bmi + sex)
+demoTable.formatted = format(demoTable, formula = trt.o  ~ race + wt + bmi + sex)
 demoTable.xtable = xtable(demoTable.formatted
                           , caption = "Demographics Table"
 )
