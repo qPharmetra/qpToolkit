@@ -4,11 +4,22 @@
 \alias{nm.covplot}
 \title{Create covariate plot and data}
 \usage{
-nm.covplot(run = "run1", path = getOption("nmDir"), id.var = "ID",
-  iov = FALSE, eta.densities = TRUE, eta.skip = NULL,
-  shrinkage = FALSE, covlist = list(cat = c(NULL), con = c(NULL)),
-  catcov.sep = 5, parameters = NULL, aspect = "fill", pcx = 0.5,
-  uniques = FALSE, which.list = 1)
+nm.covplot(
+  run = "run1",
+  path = getOption("nmDir"),
+  id.var = "ID",
+  iov = FALSE,
+  eta.densities = TRUE,
+  eta.skip = NULL,
+  shrinkage = FALSE,
+  covlist = list(cat = c(NULL), con = c(NULL)),
+  catcov.sep = 5,
+  parameters = NULL,
+  aspect = "fill",
+  pcx = 0.5,
+  uniques = FALSE,
+  which.list = 1
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

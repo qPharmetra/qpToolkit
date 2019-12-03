@@ -4,10 +4,21 @@
 \alias{load.data}
 \title{Loading data of various formats}
 \usage{
-load.data(xptFiles, xlsFiles, csvFiles, tabFiles,
-  dir = "../project input/client data/data", xlsNames, xptNames,
-  csvNames, tabNames, perl = "C:/Perl64/bin/perl.exe", xlsSheets,
-  doScan = TRUE, target.env = parent.frame())
+load.data(
+  xptFiles,
+  xlsFiles,
+  csvFiles,
+  tabFiles,
+  dir = "../project input/client data/data",
+  xlsNames,
+  xptNames,
+  csvNames,
+  tabNames,
+  perl = "C:/Perl64/bin/perl.exe",
+  xlsSheets,
+  doScan = TRUE,
+  target.env = parent.frame()
+)
 }
 \arguments{
 \item{xptFiles}{vector of SAS transport (XPT) filenames}

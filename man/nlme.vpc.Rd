@@ -4,8 +4,14 @@
 \alias{nlme.vpc}
 \title{Create VPC output of an nlme object}
 \usage{
-\method{nlme}{vpc}(object, nrep = 10, covariates, fun = smedian.hilow,
-  newdata = NULL, return.samp = FALSE)
+\method{nlme}{vpc}(
+  object,
+  nrep = 10,
+  covariates,
+  fun = smedian.hilow,
+  newdata = NULL,
+  return.samp = FALSE
+)
 }
 \arguments{
 \item{object}{an nlme object}

@@ -4,9 +4,17 @@
 \alias{nm.modeltrail.graph}
 \title{Graphical Bayesian model trail}
 \usage{
-nm.modeltrail.graph(runs, path = getOption("nmDir"), file.ext = ".ext",
-  col.area = gray[5], col.mean = red[7], col.percentiles = gray[5],
-  relabel = NULL, strip.size = NULL, ...)
+nm.modeltrail.graph(
+  runs,
+  path = getOption("nmDir"),
+  file.ext = ".ext",
+  col.area = gray[5],
+  col.mean = red[7],
+  col.percentiles = gray[5],
+  relabel = NULL,
+  strip.size = NULL,
+  ...
+)
 }
 \arguments{
 \item{runs}{charater vector with run rootname (e.g. \code{c("run1","run2","run3")})}

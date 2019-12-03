@@ -4,9 +4,16 @@
 \alias{tabStats}
 \title{Table Statistics}
 \usage{
-tabStats(x, BY, nSignif = 3, conFunc1 = conDataFun1,
-  conFunc2 = conDataFun2, catFunc = catDataFun,
-  ndigits.categorical = 1, parName)
+tabStats(
+  x,
+  BY,
+  nSignif = 3,
+  conFunc1 = conDataFun1,
+  conFunc2 = conDataFun2,
+  catFunc = catDataFun,
+  ndigits.categorical = 1,
+  parName
+)
 }
 \arguments{
 \item{x}{numeric vector to summarize}

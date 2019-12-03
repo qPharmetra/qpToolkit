@@ -4,8 +4,15 @@
 \alias{panel.thalf}
 \title{Panel function for elimination half life}
 \usage{
-panel.thalf(x, y, ..., text.cex = 0.8, line.col = "blue",
-  nSignif = 3, unit = "hr")
+panel.thalf(
+  x,
+  y,
+  ...,
+  text.cex = 0.8,
+  line.col = "blue",
+  nSignif = 3,
+  unit = "hr"
+)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}

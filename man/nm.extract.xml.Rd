@@ -4,13 +4,23 @@
 \alias{nm.extract.xml}
 \title{NONMEM output extraction from XML output}
 \usage{
-nm.extract.xml(run = "run1", path = getOption("nmDir"),
-  filename = paste(path, run, paste(run, xml.extension, sep = ""), sep =
-  "/"), signif = 4, signif.se = signif, signif.cv = signif,
-  signif.est = signif, xml.extension = ".xml", zip.extension = ".7z",
-  zip.program = "c:/progra~1/7-zip/7z", remove.obsolete = FALSE,
-  na.value = "n.d.", control_stream = FALSE, get.xpose.tables = TRUE,
-  quiet = TRUE)
+nm.extract.xml(
+  run = "run1",
+  path = getOption("nmDir"),
+  filename = paste(path, run, paste(run, xml.extension, sep = ""), sep = "/"),
+  signif = 4,
+  signif.se = signif,
+  signif.cv = signif,
+  signif.est = signif,
+  xml.extension = ".xml",
+  zip.extension = ".7z",
+  zip.program = "c:/progra~1/7-zip/7z",
+  remove.obsolete = FALSE,
+  na.value = "n.d.",
+  control_stream = FALSE,
+  get.xpose.tables = TRUE,
+  quiet = TRUE
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

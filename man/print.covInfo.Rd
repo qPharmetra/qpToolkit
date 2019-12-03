@@ -24,7 +24,9 @@ Prints a covInfo object.
 This function is used with \code{nm.process.coveffects}
 }
 \seealso{
-Other coveffects: \code{\link{covInfo}},
-  \code{\link{eval.eqs}}, \code{\link{make.eqs}}
+Other coveffects: 
+\code{\link{covInfo}()},
+\code{\link{eval.eqs}()},
+\code{\link{make.eqs}()}
 }
 \concept{coveffects}

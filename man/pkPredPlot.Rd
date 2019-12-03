@@ -4,8 +4,7 @@
 \alias{pkPredPlot}
 \title{PK superposition of multiple doses}
 \usage{
-pkPredPlot(doses, t.doses, t.obs, pk.func, parms, log = FALSE,
-  output = FALSE)
+pkPredPlot(doses, t.doses, t.obs, pk.func, parms, log = FALSE, output = FALSE)
 }
 \arguments{
 \item{doses}{numeric vector of doses}

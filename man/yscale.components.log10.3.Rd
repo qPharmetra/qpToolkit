@@ -21,8 +21,9 @@ Labels 10-logged y axes appropriately in lattice (ticks at powers of 1 and 3)
 Not to be called by user.
 }
 \seealso{
-Other scale.components: \code{\link{xscale.components.log10.3}},
-  \code{\link{xscale.components.log10}},
-  \code{\link{yscale.components.log10}}
+Other scale.components: 
+\code{\link{xscale.components.log10.3}()},
+\code{\link{xscale.components.log10}()},
+\code{\link{yscale.components.log10}()}
 }
 \concept{scale.components}

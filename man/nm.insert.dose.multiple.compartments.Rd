@@ -4,8 +4,12 @@
 \alias{nm.insert.dose.multiple.compartments}
 \title{Insert doses in other compartments}
 \usage{
-nm.insert.dose.multiple.compartments(data, dose.in.cmt = c(1, 2), ...,
-  quiet = TRUE)
+nm.insert.dose.multiple.compartments(
+  data,
+  dose.in.cmt = c(1, 2),
+  ...,
+  quiet = TRUE
+)
 }
 \arguments{
 \item{data}{NONMEM data.frame, should contain variable 'CMT'}

@@ -12,7 +12,8 @@ loi.color
 loi.color (Autograph)
 }
 \seealso{
-Other qpcolors (Autograph): \code{\link{PI.ci.up.arcol}}
+Other qpcolors (Autograph): 
+\code{\link{PI.ci.up.arcol}}
 }
 \concept{qpcolors (Autograph)}
 \keyword{datasets}

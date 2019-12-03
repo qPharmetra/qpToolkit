@@ -4,13 +4,25 @@
 \alias{ggvpc_xpose}
 \title{VPC plot using ggplot2 (Xpose-alike version)}
 \usage{
-ggvpc_xpose(vpc, PI = c(0.025, 0.975),
+ggvpc_xpose(
+  vpc,
+  PI = c(0.025, 0.975),
   area.col.central = PI.ci.med.arcol,
-  area.col.outer = grDevices::gray(0.2), linecol.pred = "blue",
-  linesize.pred = 1, linetype.obs = "dashed", linecol.obs = "black",
-  linesize.obs = 0.5, alpha = 0.33, point.shape = 1,
-  point.size = 1.25, point.col = "darkslategrey",
-  yrange.stretch = c(0.9, 1.1), quiet = TRUE)
+  area.col.outer = gray(0.2),
+  linecol.pred = PI.real.med.col,
+  linetype.obs.central = "solid",
+  linetype.obs.outer = "dashed",
+  linecol.obs.central = PI.real.med.col,
+  linecol.obs.outer = "darkslategrey",
+  linesize.obs = 0.5,
+  area.alpha = 0.33,
+  point.shape = 1,
+  point.size = 1.25,
+  point.col = "darkslategrey",
+  point.alpha = 0.5,
+  yrange.stretch = c(0.9, 1.1),
+  quiet = TRUE
+)
 }
 \arguments{
 \item{vpc}{output from \code{nm.read.vpc}}
@@ -23,21 +35,25 @@ ggvpc_xpose(vpc, PI = c(0.025, 0.975),
 
 \item{linecol.pred}{color of predicted lines}
 
-\item{linesize.pred}{line width of of predicted lines}
+\item{linetype.obs.central}{line type of central observed lines}
 
-\item{linetype.obs}{line type of predicted lines}
+\item{linetype.obs.outer}{line type of outer observed lines}
 
-\item{linecol.obs}{line color of observed data}
+\item{linecol.obs.central}{line color of central observed lines}
+
+\item{linecol.obs.outer}{line color of outer observed lines}
 
 \item{linesize.obs}{line width of observed data}
 
-\item{alpha}{transparancy scalar (between 0 and 1)}
+\item{area.alpha}{area alpha transparancy scalar (between 0 and 1)}
 
 \item{point.shape}{numeric value for dot shape}
 
 \item{point.size}{scalar of the observed data dot size}
 
 \item{point.col}{color of observed data dots}
+
+\item{point.alpha}{point alpha transparancy scalar (between 0 and 1)}
 
 \item{yrange.stretch}{vector of c(min,max) which will proportionally rescale the lower and upper limits of the Y axis}
 
@@ -69,8 +85,7 @@ ggvpc_xpose(vpc.all
             , area.col.outer = qp.green
             , area.col.central = qp.blue
             , linecol.pred = steel
-            , alpha = 1
-            , linesize.pred=3
+            , area.alpha = 1
             , PI = c(0.05,0.95)) + 
   labs(x="Time (h)", y="Concentration (ng/ml)") +
   scale_y_log10() + scale_x_log10() + facet_grid(~strata)

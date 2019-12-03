@@ -4,10 +4,13 @@
 \alias{nm.read.vpc}
 \title{Read VPC output}
 \usage{
-nm.read.vpc(path = getOption("nmDir"), vpc_results = "vpc_results.csv",
+nm.read.vpc(
+  path = getOption("nmDir"),
+  vpc_results = "vpc_results.csv",
   vpctab = dir(path = path, pattern = "^vpctab")[1],
   PI.limits = c(0.025, 0.05, 0.1, 0.3, 0.7, 0.9, 0.95, 0.975),
-  PI.ci.area.smooth = FALSE)
+  PI.ci.area.smooth = FALSE
+)
 }
 \arguments{
 \item{path}{directory where vpc_results.csv and vpctab files reside}

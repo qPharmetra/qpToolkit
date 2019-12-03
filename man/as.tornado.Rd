@@ -18,7 +18,8 @@ object of class \code{tornado}
 Coerce something to a tornado object.
 }
 \seealso{
-Other tornado: \code{\link{as.tornado.data.frame}},
-  \code{\link{plot.tornado}}
+Other tornado: 
+\code{\link{as.tornado.data.frame}()},
+\code{\link{plot.tornado}()}
 }
 \concept{tornado}

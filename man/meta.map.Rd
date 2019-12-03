@@ -4,8 +4,15 @@
 \alias{meta.map}
 \title{Draw meta-map}
 \usage{
-meta.map(meta.ds, compNm, trialNm, refNm, ref.col = blue[2],
-  comp.col = green[3], dist = 1.35)
+meta.map(
+  meta.ds,
+  compNm,
+  trialNm,
+  refNm,
+  ref.col = blue[2],
+  comp.col = green[3],
+  dist = 1.35
+)
 }
 \arguments{
 \item{meta.ds}{meta analysis dataset}

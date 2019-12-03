@@ -4,8 +4,7 @@
 \alias{get.covmat}
 \title{Get the covariance matrix}
 \usage{
-get.covmat(run, path = paste(getwd(), "NONMEM", sep = "/"),
-  ext = "cov")
+get.covmat(run, path = paste(getwd(), "NONMEM", sep = "/"), ext = "cov")
 }
 \arguments{
 \item{run}{run rootname (e.g. run1)}

@@ -4,8 +4,15 @@
 \alias{nm.process.coveffects}
 \title{Evaluate equations (as a list of calls) over the covariates involved.}
 \usage{
-nm.process.coveffects(eqs, covs.info, pars, xpose.df, omega,
-  Nboot = 10000, pi.wid = 0.9)
+nm.process.coveffects(
+  eqs,
+  covs.info,
+  pars,
+  xpose.df,
+  omega,
+  Nboot = 10000,
+  pi.wid = 0.9
+)
 }
 \arguments{
 \item{eqs}{A list of calls}

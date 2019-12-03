@@ -4,10 +4,12 @@
 \alias{read.bootstrap}
 \title{Documentation stub}
 \usage{
-read.bootstrap(path = getOption("nmDir"),
+read.bootstrap(
+  path = getOption("nmDir"),
   filename = "raw_results1.csv",
-  structure.filename = "raw_results_structure", parlist = c("ofv",
-  "theta", "omega"))
+  structure.filename = "raw_results_structure",
+  parlist = c("ofv", "theta", "omega")
+)
 }
 \arguments{
 \item{path}{Directory where bootstrap summary files reside}

@@ -4,8 +4,17 @@
 \alias{panel.residual}
 \title{Panel function for Residual Variability Plots}
 \usage{
-panel.residual(x, y, abline = "identity", col = obs.color, cex = 1,
-  span = 0.8, lwd.loess = 2, smooth.col = smooth.color, ...)
+panel.residual(
+  x,
+  y,
+  abline = "identity",
+  col = obs.color,
+  cex = 1,
+  span = 0.8,
+  lwd.loess = 2,
+  smooth.col = smooth.color,
+  ...
+)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}

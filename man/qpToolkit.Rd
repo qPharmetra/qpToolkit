@@ -3,7 +3,6 @@
 \docType{package}
 \name{qpToolkit}
 \alias{qpToolkit}
-\alias{qpToolkit-package}
 \title{qpToolkit: Tools for population PK/PD modeling, visualization, and reporting.}
 \description{
 The qpToolkit package provides different categories of important functions:

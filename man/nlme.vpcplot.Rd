@@ -4,15 +4,35 @@
 \alias{nlme.vpcplot}
 \title{Plot a VPC of an nlme object}
 \usage{
-\method{nlme}{vpcplot}(object, vpc, formula, obsData = NULL, xLabel,
-  yLabel, xLimits, yLimits, logY = FALSE, color.style = list(observed =
-  rgb(0.2, 0.2, 0.2), central = blue[10], inner = blue[4], outer =
-  blue[1]), symbol = list(pch = 15, cex = 0.5), aspect = 1,
-  cex.label = 1.5, nx = NULL, showPredAs = "area",
-  showObsDots = TRUE, showObsLines = TRUE, obscol.dot = gray[8],
-  obscex.dot = 0.5, obspch.dot = 1, obscol.line = gray[10],
-  predcol.central = blue[6], predcol.outer = blue[7],
-  predcol.area = blue[1], predcol.inner = blue[3], ...)
+\method{nlme}{vpcplot}(
+  object,
+  vpc,
+  formula,
+  obsData = NULL,
+  xLabel,
+  yLabel,
+  xLimits,
+  yLimits,
+  logY = FALSE,
+  color.style = list(observed = rgb(0.2, 0.2, 0.2), central = blue[10], inner = blue[4],
+    outer = blue[1]),
+  symbol = list(pch = 15, cex = 0.5),
+  aspect = 1,
+  cex.label = 1.5,
+  nx = NULL,
+  showPredAs = "area",
+  showObsDots = TRUE,
+  showObsLines = TRUE,
+  obscol.dot = gray[8],
+  obscex.dot = 0.5,
+  obspch.dot = 1,
+  obscol.line = gray[10],
+  predcol.central = blue[6],
+  predcol.outer = blue[7],
+  predcol.area = blue[1],
+  predcol.inner = blue[3],
+  ...
+)
 }
 \arguments{
 \item{object}{the nlme object (if it's an nlme.run object the input should read \code{object$object})}

@@ -4,8 +4,13 @@
 \alias{orderedNumeric}
 \title{like as.ordered with extended formatting}
 \usage{
-orderedNumeric(x, prefix = "", suffix = "", paste.function = paste,
-  special.x = NULL)
+orderedNumeric(
+  x,
+  prefix = "",
+  suffix = "",
+  paste.function = paste,
+  special.x = NULL
+)
 }
 \arguments{
 \item{x}{a vector of numeric values}

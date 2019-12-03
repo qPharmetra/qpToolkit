@@ -4,8 +4,7 @@
 \alias{read.mod}
 \title{Scan NONMEM output file}
 \usage{
-read.mod(run, path = getOption("nmDir"), file.ext = ".mod",
-  quiet = TRUE)
+read.mod(run, path = getOption("nmDir"), file.ext = ".mod", quiet = TRUE)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

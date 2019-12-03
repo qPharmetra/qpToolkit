@@ -4,9 +4,17 @@
 \alias{unitHistogram}
 \title{Histogram normalized to unity}
 \usage{
-unitHistogram(x, myCuts = NULL, lwd.bar = 4, offset = 0.4,
-  hist.type = "box", col.hist = "#D7D7D7", xlim = NULL,
-  ylab = NULL, ...)
+unitHistogram(
+  x,
+  myCuts = NULL,
+  lwd.bar = 4,
+  offset = 0.4,
+  hist.type = "box",
+  col.hist = "#D7D7D7",
+  xlim = NULL,
+  ylab = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{numeric vector}

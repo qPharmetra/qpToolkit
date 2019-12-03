@@ -4,8 +4,12 @@
 \alias{process.runrec}
 \title{Format runrecord for reports}
 \usage{
-process.runrec(runrec, improvement = list(value = -6.63, color = "blue"),
-  carryAlong = NULL, plain = FALSE)
+process.runrec(
+  runrec,
+  improvement = list(value = -6.63, color = "blue"),
+  carryAlong = NULL,
+  plain = FALSE
+)
 }
 \arguments{
 \item{runrec}{outut from \code{read.runrec}}

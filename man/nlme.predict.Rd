@@ -4,10 +4,20 @@
 \alias{nlme.predict}
 \title{Prediction tool for nlme object}
 \usage{
-\method{nlme}{predict}(func, object, newdata = NULL, subset.modeldata,
-  xrange = 50, nx = NULL, level = 1, method = "partial.residuals",
-  use.etas = "estimated", uncertainty = FALSE,
-  reference.subset = NULL, nrep = 20)
+\method{nlme}{predict}(
+  func,
+  object,
+  newdata = NULL,
+  subset.modeldata,
+  xrange = 50,
+  nx = NULL,
+  level = 1,
+  method = "partial.residuals",
+  use.etas = "estimated",
+  uncertainty = FALSE,
+  reference.subset = NULL,
+  nrep = 20
+)
 }
 \arguments{
 \item{func}{the function to evaluate over the model, e.g. \code{effect ~ time | treatment} the variables in \code{func} need to be evaluable in \code{getData(object)} and  \code{getCovariateFormula(object)}}

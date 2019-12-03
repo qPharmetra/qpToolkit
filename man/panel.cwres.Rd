@@ -4,8 +4,15 @@
 \alias{panel.cwres}
 \title{Lattice panel function for CWRES plots}
 \usage{
-panel.cwres(x, y, ..., col = obs.color, col.line = abline.color,
-  pch = 1, col.loess = smooth.color)
+panel.cwres(
+  x,
+  y,
+  ...,
+  col = obs.color,
+  col.line = abline.color,
+  pch = 1,
+  col.loess = smooth.color
+)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}

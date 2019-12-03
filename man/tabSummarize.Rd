@@ -4,8 +4,13 @@
 \alias{tabSummarize}
 \title{Tabulate a summary}
 \usage{
-tabSummarize(formula, data, nSignif = 3, extra.blank.line = TRUE,
-  ndigits.categorical = 1)
+tabSummarize(
+  formula,
+  data,
+  nSignif = 3,
+  extra.blank.line = TRUE,
+  ndigits.categorical = 1
+)
 }
 \arguments{
 \item{formula}{formula specifying what to summarize by what}

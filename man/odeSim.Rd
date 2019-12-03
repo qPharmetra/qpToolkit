@@ -4,8 +4,17 @@
 \alias{odeSim}
 \title{ODE simulation with Multiprocessor Computation}
 \usage{
-odeSim(state, times, func, parms, simPar, simParValues, method = "lsoda",
-  nodes = 1, keepTimeDT = 0.1)
+odeSim(
+  state,
+  times,
+  func,
+  parms,
+  simPar,
+  simParValues,
+  method = "lsoda",
+  nodes = 1,
+  keepTimeDT = 0.1
+)
 }
 \arguments{
 \item{state}{initial conditions}

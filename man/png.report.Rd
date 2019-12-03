@@ -4,8 +4,16 @@
 \alias{png.report}
 \title{PNG graph for reports generation}
 \usage{
-png.report(filename, w = 6, h = 4, units = "in", psize = 10,
-  bg = "transparent", res = 600, ...)
+png.report(
+  filename,
+  w = 6,
+  h = 4,
+  units = "in",
+  psize = 10,
+  bg = "transparent",
+  res = 600,
+  ...
+)
 }
 \arguments{
 \item{filename}{filename including path. To follow qP workflow standards should read the internal relative reference directory "../WorkAre/output/graphs"}

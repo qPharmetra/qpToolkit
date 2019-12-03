@@ -4,11 +4,29 @@
 \alias{plot.fit}
 \title{Plotting function for nls.predict and nlme.predict}
 \usage{
-\method{plot}{fit}(x, ..., newFunc, yLabel, xLabel, label.cex = 1.25,
-  xLimits, yLimits, title, plot.title = TRUE, layout, aspect,
-  mnplot = TRUE, seplot = TRUE, logX = FALSE, logY = FALSE,
-  pointcol = gray[8], linecol = qp.blue, axis.lim.widener = 0.035,
-  do.plot = TRUE, abline = NULL)
+\method{plot}{fit}(
+  x,
+  ...,
+  newFunc,
+  yLabel,
+  xLabel,
+  label.cex = 1.25,
+  xLimits,
+  yLimits,
+  title,
+  plot.title = TRUE,
+  layout,
+  aspect,
+  mnplot = TRUE,
+  seplot = TRUE,
+  logX = FALSE,
+  logY = FALSE,
+  pointcol = gray[8],
+  linecol = qp.blue,
+  axis.lim.widener = 0.035,
+  do.plot = TRUE,
+  abline = NULL
+)
 }
 \arguments{
 \item{x}{the output from \code{nls.predict} or \code{nlme.predict}, i.e. class \code{'fit'}}

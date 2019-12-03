@@ -4,8 +4,16 @@
 \alias{png.slide.semi}
 \title{PNG graph for PowerPoint generation (semi-full size)}
 \usage{
-png.slide.semi(filename, w = 8, h = 6, units = "in", psize = 10,
-  bg = "transparent", res = 600, ...)
+png.slide.semi(
+  filename,
+  w = 8,
+  h = 6,
+  units = "in",
+  psize = 10,
+  bg = "transparent",
+  res = 600,
+  ...
+)
 }
 \arguments{
 \item{filename}{filename including path. To follow qP workflow standards should read the internal relative reference directory "../WorkAre/output/graphs"}

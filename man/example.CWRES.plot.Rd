@@ -13,8 +13,9 @@ Examples for qPharmetra style CWRES plot
 example.CWRES.plot()
 }
 \seealso{
-Other qpexamples: \code{\link{example.NONMEM.dataset}},
-  \code{\link{example.pkpdData}},
-  \code{\link{example.xpose.VPC}}
+Other qpexamples: 
+\code{\link{example.NONMEM.dataset}()},
+\code{\link{example.pkpdData}()},
+\code{\link{example.xpose.VPC}()}
 }
 \concept{qpexamples}

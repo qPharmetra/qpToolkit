@@ -13,8 +13,9 @@ examples for qPharmetra style VPC
 example.xpose.VPC()
 }
 \seealso{
-Other qpexamples: \code{\link{example.CWRES.plot}},
-  \code{\link{example.NONMEM.dataset}},
-  \code{\link{example.pkpdData}}
+Other qpexamples: 
+\code{\link{example.CWRES.plot}()},
+\code{\link{example.NONMEM.dataset}()},
+\code{\link{example.pkpdData}()}
 }
 \concept{qpexamples}

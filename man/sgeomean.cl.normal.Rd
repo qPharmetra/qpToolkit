@@ -4,8 +4,7 @@
 \alias{sgeomean.cl.normal}
 \title{Summary of geometric mean and 95\% CI}
 \usage{
-sgeomean.cl.normal(x, conf.int = 0.95, log.base = exp(1),
-  na.rm = TRUE)
+sgeomean.cl.normal(x, conf.int = 0.95, log.base = exp(1), na.rm = TRUE)
 }
 \arguments{
 \item{x}{numeric vector}

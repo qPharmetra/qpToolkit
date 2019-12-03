@@ -4,19 +4,43 @@
 \alias{nm.vpcplot}
 \title{Create covariate plot and data}
 \usage{
-nm.vpcplot(path, result = "vpc_results.csv", tab = dir(path = path,
-  pattern = "^vpctab")[1], PI.limits = c(0.025, 0.975), subset = NULL,
-  output = FALSE, relabel.strata = NULL, subtitle = "",
-  logY = FALSE, logX = FALSE, xLabel = NULL, yLabel = NULL,
-  cex.label = 1.25, cex.strip.labels = 1, xLimits = NULL,
-  yLimits = NULL, aspect = 1, scales = NULL,
-  xscale.components = NULL, yscale.components = NULL, layout,
-  showPredAs = "area", showObsDots = TRUE, showObsLines = TRUE,
-  lineType = "l", central.lwd = 1.5, obscol.dot = gray[8],
-  obscex.dot = 0.5, obspch.dot = 1, obscol.line = gray[10],
-  predcol.central = red[6], predcol.outer = blue[7],
-  predcol.area.central = red[2], predcol.area.outer = blue[1],
-  predcol.area = blue[1])
+nm.vpcplot(
+  path,
+  result = "vpc_results.csv",
+  tab = dir(path = path, pattern = "^vpctab")[1],
+  PI.limits = c(0.025, 0.975),
+  subset = NULL,
+  output = FALSE,
+  relabel.strata = NULL,
+  subtitle = "",
+  logY = FALSE,
+  logX = FALSE,
+  xLabel = NULL,
+  yLabel = NULL,
+  cex.label = 1.25,
+  cex.strip.labels = 1,
+  xLimits = NULL,
+  yLimits = NULL,
+  aspect = 1,
+  scales = NULL,
+  xscale.components = NULL,
+  yscale.components = NULL,
+  layout,
+  showPredAs = "area",
+  showObsDots = TRUE,
+  showObsLines = TRUE,
+  lineType = "l",
+  central.lwd = 1.5,
+  obscol.dot = gray[8],
+  obscex.dot = 0.5,
+  obspch.dot = 1,
+  obscol.line = gray[10],
+  predcol.central = red[6],
+  predcol.outer = blue[7],
+  predcol.area.central = red[2],
+  predcol.area.outer = blue[1],
+  predcol.area = blue[1]
+)
 }
 \arguments{
 \item{path}{directory where vpc_results and vpctab files reside}

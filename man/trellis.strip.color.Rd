@@ -4,8 +4,10 @@
 \alias{trellis.strip.color}
 \title{Set strip colors to gray scales}
 \usage{
-trellis.strip.color(strip.colors = c(rgb(200/230, 200/230, 230/255),
-  rgb(243/255, 243/255, 243/255), rgb(249/255, 249/255, 249/255)))
+trellis.strip.color(
+  strip.colors = c(rgb(200/230, 200/230, 230/255), rgb(243/255, 243/255, 243/255),
+    rgb(249/255, 249/255, 249/255))
+)
 }
 \arguments{
 \item{strip.colors}{characte vector of 3 gray scales}

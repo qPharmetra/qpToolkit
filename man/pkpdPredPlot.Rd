@@ -4,8 +4,7 @@
 \alias{pkpdPredPlot}
 \title{Title}
 \usage{
-pkpdPredPlot(doses, t.doses, t.obs, pk.func, e.func, parms,
-  output = FALSE)
+pkpdPredPlot(doses, t.doses, t.obs, pk.func, e.func, parms, output = FALSE)
 }
 \arguments{
 \item{doses}{numeric vector of doses}

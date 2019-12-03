@@ -4,9 +4,15 @@
 \alias{nm.compare.plot}
 \title{Create a runrecord like GOF plot of selected runs}
 \usage{
-nm.compare.plot(runs, path = getOption("nmDir"), keep.cols = c("ID",
-  "DV", "CWRES", "PRED", "IPRED", "TIME", "EVID"), alias = list(DV =
-  "CONC", TIME = "TAFD"), dot.size = 1, text.size = 1, log = FALSE)
+nm.compare.plot(
+  runs,
+  path = getOption("nmDir"),
+  keep.cols = c("ID", "DV", "CWRES", "PRED", "IPRED", "TIME", "EVID"),
+  alias = list(DV = "CONC", TIME = "TAFD"),
+  dot.size = 1,
+  text.size = 1,
+  log = FALSE
+)
 }
 \arguments{
 \item{runs}{character vector with rootname runs like \code{c("run1","run2")}}

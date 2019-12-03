@@ -4,8 +4,16 @@
 \alias{panel.superpose.bubble}
 \title{Panel function for bubble plots}
 \usage{
-panel.superpose.bubble(x, y, n, groups, subscripts, cols = NULL,
-  syms = NULL, ...)
+panel.superpose.bubble(
+  x,
+  y,
+  n,
+  groups,
+  subscripts,
+  cols = NULL,
+  syms = NULL,
+  ...
+)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}

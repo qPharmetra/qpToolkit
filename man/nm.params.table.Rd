@@ -4,8 +4,14 @@
 \alias{nm.params.table}
 \title{Create NONMEM Parameter Estimate Table}
 \usage{
-nm.params.table(run, path = getOption("nmDir"), file.ext = ".ext",
-  runIndex, fixed.text = ".....", return.all = FALSE)
+nm.params.table(
+  run,
+  path = getOption("nmDir"),
+  file.ext = ".ext",
+  runIndex,
+  fixed.text = ".....",
+  return.all = FALSE
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. run1)}

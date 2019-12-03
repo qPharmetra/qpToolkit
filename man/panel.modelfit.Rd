@@ -4,8 +4,18 @@
 \alias{panel.modelfit}
 \title{Panel function for Residual Variability Plots}
 \usage{
-panel.modelfit(x, y, groups, subscripts, logX = FALSE, logY = FALSE,
-  type.obs = "b", pred.lty = "solid", ipred.lty = "solid", ...)
+panel.modelfit(
+  x,
+  y,
+  groups,
+  subscripts,
+  logX = FALSE,
+  logY = FALSE,
+  type.obs = "b",
+  pred.lty = "solid",
+  ipred.lty = "solid",
+  ...
+)
 }
 \arguments{
 \item{x, y}{numeric vectors x and y}

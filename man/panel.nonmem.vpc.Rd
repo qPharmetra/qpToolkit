@@ -4,9 +4,25 @@
 \alias{panel.nonmem.vpc}
 \title{Lattice function for predicted components of a NONMEM VPC}
 \usage{
-panel.nonmem.vpc(x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
-  showObsDots, showObsLines, xCov, col.scheme, obscex.dot, obspch.dot,
-  lineType, central.lwd, ...)
+panel.nonmem.vpc(
+  x,
+  y,
+  OBS,
+  vpc,
+  subscripts,
+  logY,
+  logX,
+  showPredAs,
+  showObsDots,
+  showObsLines,
+  xCov,
+  col.scheme,
+  obscex.dot,
+  obspch.dot,
+  lineType,
+  central.lwd,
+  ...
+)
 }
 \arguments{
 \item{x}{x variable}

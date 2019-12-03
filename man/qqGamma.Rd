@@ -4,9 +4,13 @@
 \alias{qqGamma}
 \title{Plot QQ Gamma distribution}
 \usage{
-qqGamma(x, ylab = deparse(substitute(x)),
-  xlab = "Theoretical Quantiles", main = "Gamma Distribution QQ Plot",
-  ...)
+qqGamma(
+  x,
+  ylab = deparse(substitute(x)),
+  xlab = "Theoretical Quantiles",
+  main = "Gamma Distribution QQ Plot",
+  ...
+)
 }
 \arguments{
 \item{x}{numeric vector suspected to be Gamma distributed}

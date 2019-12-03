@@ -4,10 +4,16 @@
 \alias{nm.unzip}
 \title{Unzip function for zipped PsN output}
 \usage{
-nm.unzip(run, path = file.path(getOption("nmDir"), run),
-  zip.extension = NULL, extension = ".xml",
-  zip.call = getOption("unzip.call"), filename = paste(run, extension,
-  sep = ""), zip.filename = file.path(path, filename), quiet = TRUE)
+nm.unzip(
+  run,
+  path = file.path(getOption("nmDir"), run),
+  zip.extension = NULL,
+  extension = ".xml",
+  zip.call = getOption("unzip.call"),
+  filename = paste(run, extension, sep = ""),
+  zip.filename = file.path(path, filename),
+  quiet = TRUE
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

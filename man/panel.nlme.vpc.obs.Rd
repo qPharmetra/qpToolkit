@@ -4,8 +4,18 @@
 \alias{panel.nlme.vpc.obs}
 \title{Lattice function for observed components of an nlme VPCs}
 \usage{
-panel.nlme.vpc.obs(x, y, logY, showPredAs, showObsDots, showObsLines,
-  col.scheme, obscex.dot, obspch.dot, ...)
+panel.nlme.vpc.obs(
+  x,
+  y,
+  logY,
+  showPredAs,
+  showObsDots,
+  showObsLines,
+  col.scheme,
+  obscex.dot,
+  obspch.dot,
+  ...
+)
 }
 \arguments{
 \item{x}{x variable}

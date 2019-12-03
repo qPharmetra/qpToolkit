@@ -4,8 +4,13 @@
 \alias{bootstrap.ParTab}
 \title{Create parameter table from NONMEM bootsrap}
 \usage{
-bootstrap.ParTab(bootstrap, idx = list(theta = 1, omega = 1, sigma = 1),
-  probs = 0.95, central = median, nsig = 3)
+bootstrap.ParTab(
+  bootstrap,
+  idx = list(theta = 1, omega = 1, sigma = 1),
+  probs = 0.95,
+  central = median,
+  nsig = 3
+)
 }
 \arguments{
 \item{bootstrap}{A bootstrap object (list) created by read.bootstrap.}

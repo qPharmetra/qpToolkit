@@ -15,8 +15,9 @@ pkpdData = example.pkpdData()
 tbl_df(pkpdData)
 }
 \seealso{
-Other qpexamples: \code{\link{example.CWRES.plot}},
-  \code{\link{example.NONMEM.dataset}},
-  \code{\link{example.xpose.VPC}}
+Other qpexamples: 
+\code{\link{example.CWRES.plot}()},
+\code{\link{example.NONMEM.dataset}()},
+\code{\link{example.xpose.VPC}()}
 }
 \concept{qpexamples}

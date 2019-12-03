@@ -4,10 +4,20 @@
 \alias{panel.avg.LP}
 \title{Lattice panel function for average lines}
 \usage{
-panel.avg.LP(x, y, fun = mean, horizontal = TRUE,
-  lwd = reference.line$lwd, lty = reference.line$lty, col,
-  col.line = reference.line$col, type = "l", ...,
-  identifier = "linejoin", show.points = FALSE)
+panel.avg.LP(
+  x,
+  y,
+  fun = mean,
+  horizontal = TRUE,
+  lwd = reference.line$lwd,
+  lty = reference.line$lty,
+  col,
+  col.line = reference.line$col,
+  type = "l",
+  ...,
+  identifier = "linejoin",
+  show.points = FALSE
+)
 }
 \arguments{
 \item{x, y}{The regular x, y input for panel functions}

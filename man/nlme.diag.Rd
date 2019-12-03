@@ -4,9 +4,18 @@
 \alias{nlme.diag}
 \title{Diagnostic plots for nlme}
 \usage{
-\method{nlme}{diag}(obj, subset.modeldata, xvar = "time",
-  xvar.label = NULL, nx = 8, output = FALSE, print.eta.norm = TRUE,
-  print.eta.v.var = TRUE, asp.eta.norm = 1, asp.eta.v.var = 1)
+\method{nlme}{diag}(
+  obj,
+  subset.modeldata,
+  xvar = "time",
+  xvar.label = NULL,
+  nx = 8,
+  output = FALSE,
+  print.eta.norm = TRUE,
+  print.eta.v.var = TRUE,
+  asp.eta.norm = 1,
+  asp.eta.v.var = 1
+)
 }
 \arguments{
 \item{obj}{nlme model object}

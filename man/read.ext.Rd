@@ -4,8 +4,7 @@
 \alias{read.ext}
 \title{Parse the information from the .ext file}
 \usage{
-read.ext(run, path = getOption("nmDir"), file.ext = ".ext",
-  quiet = TRUE)
+read.ext(run, path = getOption("nmDir"), file.ext = ".ext", quiet = TRUE)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

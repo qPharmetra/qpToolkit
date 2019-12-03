@@ -4,9 +4,17 @@
 \alias{process.parTable}
 \title{Format parameter estimate table}
 \usage{
-process.parTable(nm, index = 1, ci = 0.95, sig = 3, transformations,
-  Descriptor, plain = FALSE, missing.format = ".....",
-  remove.fixed.sigma = FALSE)
+process.parTable(
+  nm,
+  index = 1,
+  ci = 0.95,
+  sig = 3,
+  transformations,
+  Descriptor,
+  plain = FALSE,
+  missing.format = ".....",
+  remove.fixed.sigma = FALSE
+)
 }
 \arguments{
 \item{nm}{output from \code{nm.params.table}}

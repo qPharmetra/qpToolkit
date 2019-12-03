@@ -4,8 +4,16 @@
 \alias{myPNG}
 \title{General PNG grpah creator}
 \usage{
-myPNG(filename = "C:/Test/test.png", w = 8, h = 6, units = "in",
-  psize = 10, bg = "transparent", res = 600, ...)
+myPNG(
+  filename = "C:/Test/test.png",
+  w = 8,
+  h = 6,
+  units = "in",
+  psize = 10,
+  bg = "transparent",
+  res = 600,
+  ...
+)
 }
 \arguments{
 \item{filename}{filename including path. To follow qP workflow standards should read the internal relative reference directory "../WorkAre/output/graphs"}

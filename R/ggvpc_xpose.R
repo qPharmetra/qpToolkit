@@ -12,9 +12,9 @@ globalVariables(c(
 #' @param area.col.outer color of prediction polygon for the outer percentiles
 #' @param linecol.pred color of predicted lines
 #' @param linetype.obs.central line type of central observed lines
-#' @param linetype.obs line type of outer observed lines
+#' @param linetype.obs.outer line type of outer observed lines
 #' @param linecol.obs.central line color of central observed lines
-#' @param linecol.obs line color of outer observed lines
+#' @param linecol.obs.outer line color of outer observed lines
 #' @param linesize.obs line width of observed data
 #' @param area.alpha area alpha transparancy scalar (between 0 and 1)
 #' @param point.alpha point alpha transparancy scalar (between 0 and 1)
@@ -46,7 +46,7 @@ globalVariables(c(
 #'             , area.col.outer = qp.green
 #'             , area.col.central = qp.blue
 #'             , linecol.pred = steel
-#'             , alpha = 1
+#'             , area.alpha = 1
 #'             , PI = c(0.05,0.95)) + 
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") +
 #'   scale_y_log10() + scale_x_log10() + facet_grid(~strata)

@@ -30,7 +30,7 @@ nm.unzip(
 )
 covText = scan(
   file = file.path(getOption("qpExampleDir"),"run11","run11.cov"), 
-  what = "character",sep = "\\n", quiet = T
+  what = "character",sep = "\n", quiet = T
 )
 
 ## the heart of the function: parse space delimited text into a matrix

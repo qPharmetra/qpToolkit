@@ -4,12 +4,23 @@
 \alias{plot.tornado}
 \title{Tornado plots}
 \usage{
-\method{plot}{tornado}(x, ..., main = "",
-  xlim = range(c(torn.ds$val.hi, torn.ds$val.lo)), xlab = "Output",
-  bar.width = 0.75, base.round = 0, cex.main = 1.5,
-  cex.xaxis = cex.main * 0.5, cex.yaxis = cex.main * 0.65,
-  cex.barlab = cex.main * 0.55, cex.baslab = cex.main * 0.5,
-  bar.col = "#0A41A5", show.base = TRUE, adj.ylabs = 0)
+\method{plot}{tornado}(
+  x,
+  ...,
+  main = "",
+  xlim = range(c(torn.ds$val.hi, torn.ds$val.lo)),
+  xlab = "Output",
+  bar.width = 0.75,
+  base.round = 0,
+  cex.main = 1.5,
+  cex.xaxis = cex.main * 0.5,
+  cex.yaxis = cex.main * 0.65,
+  cex.barlab = cex.main * 0.55,
+  cex.baslab = cex.main * 0.5,
+  bar.col = "#0A41A5",
+  show.base = TRUE,
+  adj.ylabs = 0
+)
 }
 \arguments{
 \item{x}{Dataset containing sensitivity analysis results to be plotted. Column names should include: \code{variable} - names of variable (will be plotted as y axis labels), \code{val.lo} - low value of objective when variable is swung to an extreme, \code{val.base}    base value of objective when all variables are at base, \code{val.hi} - high value of the objective when variable is swung to an extreme, \code{lab.lo} -    label associated with low, \code{lab.base} -    label associated with base, \code{lab.hi}    label associated with high}
@@ -63,7 +74,8 @@ plot(torn.ds
 )
 }
 \seealso{
-Other tornado: \code{\link{as.tornado.data.frame}},
-  \code{\link{as.tornado}}
+Other tornado: 
+\code{\link{as.tornado.data.frame}()},
+\code{\link{as.tornado}()}
 }
 \concept{tornado}

@@ -4,8 +4,7 @@
 \alias{cfc}
 \title{Create a vector, matrix, or data frame from clipboard object}
 \usage{
-cfc(obj.type = "data.frame", strings.as.factors = FALSE,
-  row.names = NULL)
+cfc(obj.type = "data.frame", strings.as.factors = FALSE, row.names = NULL)
 }
 \arguments{
 \item{obj.type}{either one of 'data.frame' (default), 'vector' or 'matrix'}

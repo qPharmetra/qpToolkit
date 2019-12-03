@@ -4,8 +4,7 @@
 \alias{tabulate.samples}
 \title{Summarize endpoints for numeric/non-numeric}
 \usage{
-tabulate.samples(data, analyte = "conc", oddCode = c("BLOQ", "NS",
-  "M"))
+tabulate.samples(data, analyte = "conc", oddCode = c("BLOQ", "NS", "M"))
 }
 \arguments{
 \item{data}{dataset with endpoints to summarize}

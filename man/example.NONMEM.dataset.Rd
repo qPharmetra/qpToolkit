@@ -4,8 +4,7 @@
 \alias{example.NONMEM.dataset}
 \title{Examples for qPharmetra style NONMEM data set}
 \usage{
-example.NONMEM.dataset(ID = 3, TIME = seq(0, 24, 2), DOSE = c(1, 2.5,
-  10), ...)
+example.NONMEM.dataset(ID = 3, TIME = seq(0, 24, 2), DOSE = c(1, 2.5, 10), ...)
 }
 \arguments{
 \item{ID}{number of subjects}
@@ -28,8 +27,9 @@ pkpdData = example.pkpdData()
 tbl_df(pkpdData)
 }
 \seealso{
-Other qpexamples: \code{\link{example.CWRES.plot}},
-  \code{\link{example.pkpdData}},
-  \code{\link{example.xpose.VPC}}
+Other qpexamples: 
+\code{\link{example.CWRES.plot}()},
+\code{\link{example.pkpdData}()},
+\code{\link{example.xpose.VPC}()}
 }
 \concept{qpexamples}

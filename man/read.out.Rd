@@ -4,8 +4,7 @@
 \alias{read.out}
 \title{Scan NONMEM output file}
 \usage{
-read.out(run, path = getOption("nmDir"), file.ext = ".lst",
-  quiet = TRUE)
+read.out(run, path = getOption("nmDir"), file.ext = ".lst", quiet = TRUE)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

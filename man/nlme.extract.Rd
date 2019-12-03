@@ -4,8 +4,14 @@
 \alias{nlme.extract}
 \title{Extract information from nlme object}
 \usage{
-\method{nlme}{extract}(obj, method = "components", newdata = NULL,
-  sample = FALSE, nSignif = 3, nSignif.CV = 0)
+\method{nlme}{extract}(
+  obj,
+  method = "components",
+  newdata = NULL,
+  sample = FALSE,
+  nSignif = 3,
+  nSignif.CV = 0
+)
 }
 \arguments{
 \item{obj}{an nlme object}

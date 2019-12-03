@@ -4,12 +4,22 @@
 \alias{ggvpc_standard}
 \title{VPC plot using ggplot2 (standard)}
 \usage{
-ggvpc_standard(vpc, PI = c(0.025, 0.975), area.col = PI.ci.med.arcol,
-  linecol.pred = PI.real.med.col, linesize.pred = 1,
-  linetype.obs = "dashed", linecol.obs = "black", linesize.obs = 0.5,
-  alpha = 0.33, point.shape = 1, point.size = 1.5,
-  point.col = "darkslategrey", yrange.stretch = c(0.9, 1.1),
-  quiet = TRUE)
+ggvpc_standard(
+  vpc,
+  PI = c(0.025, 0.975),
+  area.col = PI.ci.med.arcol,
+  linecol.obs.central = PI.real.med.col,
+  linetype.obs.central = "solid",
+  linetype.obs.outer = "dashed",
+  linecol.obs.outer = "darkslategrey",
+  linesize.obs = 0.5,
+  alpha = 0.33,
+  point.shape = 1,
+  point.size = 1.5,
+  point.col = "darkslategrey",
+  yrange.stretch = c(0.9, 1.1),
+  quiet = TRUE
+)
 }
 \arguments{
 \item{vpc}{output from \code{nm.read.vpc}}
@@ -18,13 +28,13 @@ ggvpc_standard(vpc, PI = c(0.025, 0.975), area.col = PI.ci.med.arcol,
 
 \item{area.col}{color of prediction polygon}
 
-\item{linecol.pred}{color of predicted lines}
+\item{linecol.obs.central}{color of observed central lines}
 
-\item{linesize.pred}{line width of of predicted lines}
+\item{linetype.obs.central}{line type of observed central lines}
 
-\item{linetype.obs}{line type of predicted lines}
+\item{linetype.obs.outer}{line type of observed outer lines}
 
-\item{linecol.obs}{line color of observed data}
+\item{linecol.obs.outer}{line color of observed outer lines}
 
 \item{linesize.obs}{line width of observed data}
 
@@ -66,7 +76,7 @@ ggvpc_standard(vpc.all) +
   labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10() + scale_x_log10()
 
 #modify colors and transparency:
-ggvpc_standard(vpc.all, area.col = indigo, linecol.pred = ketchup, alpha = 1, point.shape = 15) + 
+ggvpc_standard(vpc.all, area.col = indigo, alpha = 1, point.shape = 15) + 
   labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10()  
 
 ## dealing with stratification

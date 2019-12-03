@@ -42,8 +42,9 @@ xyplot(DV ~ TIME
 )
 }
 \seealso{
-Other scale.components: \code{\link{xscale.components.log10.3}},
-  \code{\link{xscale.components.log10}},
-  \code{\link{yscale.components.log10.3}}
+Other scale.components: 
+\code{\link{xscale.components.log10.3}()},
+\code{\link{xscale.components.log10}()},
+\code{\link{yscale.components.log10.3}()}
 }
 \concept{scale.components}

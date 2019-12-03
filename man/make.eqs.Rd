@@ -28,7 +28,9 @@ eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
 
 }
 \seealso{
-Other coveffects: \code{\link{covInfo}},
-  \code{\link{eval.eqs}}, \code{\link{print.covInfo}}
+Other coveffects: 
+\code{\link{covInfo}()},
+\code{\link{eval.eqs}()},
+\code{\link{print.covInfo}()}
 }
 \concept{coveffects}

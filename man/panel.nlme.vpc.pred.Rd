@@ -4,8 +4,22 @@
 \alias{panel.nlme.vpc.pred}
 \title{Lattice function for predicted components of an nlme VPCs}
 \usage{
-panel.nlme.vpc.pred(x, y, OBS, vpc, subscripts, logY, showPredAs,
-  showObsDots, showObsLines, xCov, col.scheme, obscex.dot, obspch.dot, ...)
+panel.nlme.vpc.pred(
+  x,
+  y,
+  OBS,
+  vpc,
+  subscripts,
+  logY,
+  showPredAs,
+  showObsDots,
+  showObsLines,
+  xCov,
+  col.scheme,
+  obscex.dot,
+  obspch.dot,
+  ...
+)
 }
 \arguments{
 \item{x}{x variable}

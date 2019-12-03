@@ -4,10 +4,16 @@
 \alias{covInfo}
 \title{Make a covInfo S3 object}
 \usage{
-covInfo(cov.name, cov.vals, cov.cat = FALSE,
-  cov.center = stats::median(cov.vals), cov.min = min(cov.vals),
-  cov.max = max(cov.vals), cov.label = cov.name,
-  cov.breaks = pretty(cov.vals))
+covInfo(
+  cov.name,
+  cov.vals,
+  cov.cat = FALSE,
+  cov.center = stats::median(cov.vals),
+  cov.min = min(cov.vals),
+  cov.max = max(cov.vals),
+  cov.label = cov.name,
+  cov.breaks = pretty(cov.vals)
+)
 }
 \arguments{
 \item{cov.name}{The name of the covariate}
@@ -45,7 +51,9 @@ eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
 \seealso{
 \code{\link{print.covInfo}}
 
-Other coveffects: \code{\link{eval.eqs}},
-  \code{\link{make.eqs}}, \code{\link{print.covInfo}}
+Other coveffects: 
+\code{\link{eval.eqs}()},
+\code{\link{make.eqs}()},
+\code{\link{print.covInfo}()}
 }
 \concept{coveffects}

@@ -4,8 +4,17 @@
 \alias{cut3}
 \title{Divide numeric variable into bins}
 \usage{
-cut3(x, cuts, m = 150, g, levels.mean = FALSE, digits, minmax = TRUE,
-  oneval = TRUE, onlycuts = FALSE)
+cut3(
+  x,
+  cuts,
+  m = 150,
+  g,
+  levels.mean = FALSE,
+  digits,
+  minmax = TRUE,
+  oneval = TRUE,
+  onlycuts = FALSE
+)
 }
 \arguments{
 \item{x}{numeric vector to be binned}

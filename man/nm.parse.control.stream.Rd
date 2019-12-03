@@ -4,8 +4,12 @@
 \alias{nm.parse.control.stream}
 \title{Parse NONMEM control stream}
 \usage{
-nm.parse.control.stream(run, path = getOption("nmDir"),
-  file.ext = ".mod", quiet = TRUE)
+nm.parse.control.stream(
+  run,
+  path = getOption("nmDir"),
+  file.ext = ".mod",
+  quiet = TRUE
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

@@ -5,10 +5,17 @@
 \title{Documentation stub
 Create a control stream for simulation}
 \usage{
-nm.create.control(run, path = getOption("nmDir"),
-  outputFile.extension = ".out", modelFile.extension = ".ctl",
-  seed = 1234567, newDataFile = NULL, uncertainty = FALSE,
-  sim = NULL, table = NULL)
+nm.create.control(
+  run,
+  path = getOption("nmDir"),
+  outputFile.extension = ".out",
+  modelFile.extension = ".ctl",
+  seed = 1234567,
+  newDataFile = NULL,
+  uncertainty = FALSE,
+  sim = NULL,
+  table = NULL
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. \code{run1})}

@@ -4,8 +4,16 @@
 \alias{png.slide.full}
 \title{PNG graph for PowerPoint generation (full size)}
 \usage{
-png.slide.full(filename, w = 10, h = 7.5, units = "in", psize = 10,
-  bg = "transparent", res = 600, ...)
+png.slide.full(
+  filename,
+  w = 10,
+  h = 7.5,
+  units = "in",
+  psize = 10,
+  bg = "transparent",
+  res = 600,
+  ...
+)
 }
 \arguments{
 \item{filename}{filename including path. To follow qP workflow standards should read the internal relative reference directory "../WorkAre/output/graphs"}

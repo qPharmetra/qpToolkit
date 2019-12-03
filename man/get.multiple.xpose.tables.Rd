@@ -4,8 +4,11 @@
 \alias{get.multiple.xpose.tables}
 \title{Get xpose tables of multiple runs}
 \usage{
-get.multiple.xpose.tables(runs, path = getOption("nmDir"),
-  carryAlong = c("DV", "DOSE", "TIME", "EVID"))
+get.multiple.xpose.tables(
+  runs,
+  path = getOption("nmDir"),
+  carryAlong = c("DV", "DOSE", "TIME", "EVID")
+)
 }
 \arguments{
 \item{runs}{character vector of run roon names (e.g. run1)}

@@ -4,11 +4,25 @@
 \alias{panel.meanspag}
 \title{Lattice panel function for spagghetti plots with a mean line}
 \usage{
-panel.meanspag(x, y, subscripts, groups, ..., myFun = mean,
-  sumText = "Mean", individual.col = gray[5], type = "l",
-  average.lwd = 3, average.col = red[8], add.legend = TRUE,
-  legend.panel.row, legend.panel.column, legend.x, legend.y,
-  show.points = FALSE)
+panel.meanspag(
+  x,
+  y,
+  subscripts,
+  groups,
+  ...,
+  myFun = mean,
+  sumText = "Mean",
+  individual.col = gray[5],
+  type = "l",
+  average.lwd = 3,
+  average.col = red[8],
+  add.legend = TRUE,
+  legend.panel.row,
+  legend.panel.column,
+  legend.x,
+  legend.y,
+  show.points = FALSE
+)
 }
 \arguments{
 \item{x, y}{The regular x, y input for panel functions}

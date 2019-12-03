@@ -4,8 +4,12 @@
 \alias{get.dOFV}
 \title{Create brief NONMEM run record}
 \usage{
-get.dOFV(runs = c("run1", "run2"), path = getOption("nmDir"),
-  conf.level = 0.95, file.ext = ".lst")
+get.dOFV(
+  runs = c("run1", "run2"),
+  path = getOption("nmDir"),
+  conf.level = 0.95,
+  file.ext = ".lst"
+)
 }
 \arguments{
 \item{runs}{character vector of existing NONMEM runs}

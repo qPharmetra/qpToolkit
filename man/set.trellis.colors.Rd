@@ -4,8 +4,10 @@
 \alias{set.trellis.colors}
 \title{Set Trellis/Lattice colors}
 \usage{
-set.trellis.colors(symbol = list(fill = gray[2], col = gray[6]),
-  line = list(col = gray[7]))
+set.trellis.colors(
+  symbol = list(fill = gray[2], col = gray[6]),
+  line = list(col = gray[7])
+)
 }
 \arguments{
 \item{symbol}{a list with colors for the strips}
