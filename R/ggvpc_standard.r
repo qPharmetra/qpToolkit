@@ -11,10 +11,10 @@ globalVariables(c('IVAR','DVVAR','xCov','piLower','piUpper','xCovm','obsLower','
 #' @param vpc output from \code{nm.read.vpc} 
 #' @param PI prediction interval (c(0.025,0.975) for 95\% CI)
 #' @param area.col color of prediction polygon
-#' @param linecol.pred color of predicted lines
-#' @param linesize.pred line width of of predicted lines
-#' @param linetype.obs line type of predicted lines
-#' @param linecol.obs line color of observed data
+#' @param linecol.obs.central color of observed central lines
+#' @param linetype.obs.central line type of observed central lines
+#' @param linetype.obs.outer line type of observed outer lines
+#' @param linecol.obs.outer line color of observed outer lines
 #' @param linesize.obs line width of observed data
 #' @param alpha transparancy scalar (between 0 and 1)
 #' @param point.shape numeric value for dot shape 
@@ -44,7 +44,7 @@ globalVariables(c('IVAR','DVVAR','xCov','piLower','piUpper','xCovm','obsLower','
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10() + scale_x_log10()
 #' 
 #' #modify colors and transparency:
-#' ggvpc_standard(vpc.all, area.col = indigo, linecol.pred = ketchup, alpha = 1, point.shape = 15) + 
+#' ggvpc_standard(vpc.all, area.col = indigo, alpha = 1, point.shape = 15) + 
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10()  
 #' 
 #' ## dealing with stratification
@@ -54,47 +54,87 @@ globalVariables(c('IVAR','DVVAR','xCov','piLower','piUpper','xCovm','obsLower','
 #' p = p +  labs(x="Time (h)", y="Concentration (ng/ml)")  
 #' p +  facet_wrap(~strata) + scale_y_log10()
 
-
-ggvpc_standard = function(vpc
-                          , PI = c(0.025,0.975)
-                          , area.col = PI.ci.med.arcol
-                          , linecol.pred = PI.real.med.col
-                          , linesize.pred = 1
-                          , linetype.obs = "dashed"
-                          , linecol.obs = "black"
-                          , linesize.obs = 0.5
-                          , alpha = 0.33
-                          , point.shape = 1
-                          , point.size = 1.5
-                          , point.col = "darkslategrey"
-                          , yrange.stretch = c(0.9,1.1)
-                          , quiet = TRUE
+ggvpc_standard <- function(
+	vpc, 
+	PI = c(0.025, 0.975), 
+	area.col = PI.ci.med.arcol,
+	linecol.obs.central = PI.real.med.col, 
+	linetype.obs.central = "solid", 
+	linetype.obs.outer = "dashed",
+	linecol.obs.outer = "darkslategrey",
+	linesize.obs = 0.5, 
+	alpha = 0.33,
+	point.shape = 1, 
+	point.size = 1.5, 
+	point.col = "darkslategrey", 
+	yrange.stretch = c(0.9, 1.1), 
+	quiet = TRUE
+){
+      if(!quiet) message("preparing plot ...")
+      names(vpc$obs)[names(vpc$obs) == unique(vpc$obs$idv.var)] = "IVAR"
+      names(vpc$obs)[names(vpc$obs) == unique(vpc$obs$dv.var)] = "DVVAR"
+      PI = PI * 100
+      vpc$res$piLower = vpc$res[, paste0("vpc", PI[1], ".sim")]
+      vpc$res$piUpper = vpc$res[, paste0("vpc", PI[2], ".sim")]
+      vpc$vpc$obsLower = vpc$vpc[, paste0("vpc", PI[1], ".real")]
+      vpc$vpc$obsUpper = vpc$vpc[, paste0("vpc", PI[2], ".real")]
+      p = ggplot() + theme_bw() +
+         ## set up the graph device
+         geom_point(
+		data = vpc$obs, 
+		aes(x = IVAR, y = DVVAR), 
+		alpha = alpha,
+		shape = point.shape,
+		col = point.col, 
+		size = point.size
+	) + 
+         ## 95% prediction interval
+         geom_ribbon(
+		data = vpc$res, 
+		aes(x = xCov, ymin = piLower, ymax = piUpper),
+		fill = area.col,
+		alpha = alpha
+	) +
+         ## lower observed line
+         geom_line(
+		data = vpc$vpc, 
+		aes(x = xCovm, y = obsLower),
+		linetype = linetype.obs.outer,
+		size = linesize.obs
+	) +
+         ## median observed line
+         geom_line(
+		data = vpc$vpc, 
+		aes(x = xCovm, y = vpc50.real),
+		col = linecol.obs.central,
+		linetype = linetype.obs.central,
+		size = linesize.obs
+	) + 
+         ## upper observed line
+         geom_line(
+		data = vpc$vpc, 
+		aes(x = xCovm, y = obsUpper),
+		linetype = linetype.obs.outer, 
+		size = linesize.obs
+	) +
+#   geom_line(
+# 		data = vpc$vpc, 
+# 		aes(x=xCovm, y=vpc50.sim), 
+# 		color=linecol.pred, 
+# 		alpha = 0.75,
+# 		size=linesize.pred
+# 	) +
+	coord_cartesian(
+		ylim = yrange.stretch * range(vpc$obs$DV)
+	) + 
+         ## draw the observed data
+         geom_point(
+		data = vpc$obs, 
+		aes(x = IVAR, y = DVVAR), 
+                shape = point.shape, 
+		col = point.col, 
+		size = point.size
 )
-{
-  #PI = c(0.025,0.975); area.col = cobalt;linecol.pred = ketchup;linesize.pred = 1; linetype.obs = "dashed";linecol.obs = "black";linesize.obs = 0.5;alpha = 0.5;point.shape = 15;point.col = "black";yrange.stretch = c(0.9,1.1)
-   if(!quiet) message("preparing plot ...")
-  
-  #require(ggplot2)
-  names(vpc$obs)[names(vpc$obs)==unique(vpc$obs$idv.var)]="IVAR"
-  names(vpc$obs)[names(vpc$obs)==unique(vpc$obs$dv.var)]="DVVAR"
-  
-  PI = PI*100
- 
-  vpc$res$piLower = vpc$res[, paste0("vpc",PI[1],".sim")]
-  vpc$res$piUpper = vpc$res[, paste0("vpc",PI[2],".sim")]
-  vpc$vpc$obsLower = vpc$vpc[, paste0("vpc",PI[1],".real")]
-  vpc$vpc$obsUpper = vpc$vpc[, paste0("vpc",PI[2],".real")]
-  
-  
-  p = ggplot() + theme_bw() +
-    geom_point(data=vpc$obs, aes(x=IVAR,y=DVVAR), alpha = alpha, shape = point.shape, col = point.col, size=point.size) +
-    geom_ribbon(data = vpc$res, aes(x=xCov,ymin=piLower,ymax=piUpper), fill=area.col,alpha=alpha) +    
-    geom_line(data = vpc$vpc, aes(x=xCovm,y=obsLower),linetype=linetype.obs, size=linesize.obs) +
-    geom_line(data = vpc$vpc, aes(x=xCovm,y=vpc50.real),linetype=linetype.obs, size=linesize.obs) +
-    geom_line(data = vpc$vpc, aes(x=xCovm,y=obsUpper),linetype=linetype.obs, size=linesize.obs) +
-    geom_line(data = vpc$vpc, aes(x=xCovm, y=vpc50.sim), color=linecol.pred, alpha = 0.75,size=linesize.pred) +
-    coord_cartesian(ylim = yrange.stretch * range(vpc$obs$DV)) +
-    geom_point(data=vpc$obs, aes(x=IVAR,y=DVVAR), shape = point.shape, col = point.col, size=point.size)
-  p
-}
+      p
+   }
 
