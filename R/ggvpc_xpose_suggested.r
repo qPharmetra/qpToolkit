@@ -1,5 +1,56 @@
+# ROXYGEN Documentation
+#' VPC plot using ggplot2 (Xpose-alike version)
+#' @description Plot basic vpc with 95\% CI of 2.5th, 50th & 97.5th predicted percentile and observed data.  This call is to be extended with for stratification, and axes definition using the layering custom to ggplot2 objects. See the examples below to learn more.
+#' @param vpc output from \code{nm.read.vpc} 
+#' @param PI prediction interval (c(0.025,0.975) for 95\% CI)
+#' @param area.col.central color of prediction polygon for the central tendency
+#' @param area.col.outer color of prediction polygon for the outer percentiles
+#' @param linecol.pred color of predicted lines
+#' @param linesize.pred line width of of predicted lines
+#' @param linetype.obs line type of predicted lines
+#' @param linecol.obs line color of observed data
+#' @param linesize.obs line width of observed data
+#' @param alpha transparancy scalar (between 0 and 1)
+#' @param point.shape numeric value for dot shape
+#' @param point.size scalar of the observed data dot size
+#' @param point.col color of observed data dots
+#' @param yrange.stretch vector of c(min,max) which will proportionally rescale the lower and upper limits of the Y axis
+#' @return A ggplot object to be extended optionally
+#' @export
+#' @note Editing and stratification to be done by adding ggplot layer
+#' @seealso \code{\link{nm.read.vpc}},  \code{\link{ggvpc_standard}} 
+#' @import ggplot2 
+#' @examples
+#' ## example of vpc NOT involving stratification
+#'  nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt")) -> vpc.all
+#' 
+#' ggvpc_xpose(vpc.all) + 
+#'   labs(x="Time (h)", y="Concentration (ng/ml)")
+#' 
+#' ggvpc_xpose(vpc.all) + 
+#'   labs(x="Time (h)", y="Concentration (ng/ml)") +
+#'   scale_y_log10() + scale_x_log10()
+#' 
+#' ## demonstration of changing colors & stratification
+#' ggvpc_xpose(vpc.all
+#'             , area.col.outer = qp.green
+#'             , area.col.central = qp.blue
+#'             , linecol.pred = steel
+#'             , alpha = 1
+#'             , linesize.pred=3
+#'             , PI = c(0.05,0.95)) + 
+#'   labs(x="Time (h)", y="Concentration (ng/ml)") +
+#'   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
+#' 
+#' ## PI smoothed
+#' nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt"),PI.ci.area.smooth=TRUE) -> vpc.all
+#' ggvpc_xpose(vpc.all
+#'             , PI = c(0.05,0.95)) + 
+#'   labs(x="Time (h)", y="Concentration (ng/ml)") +
+#'   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
+#' 
 ggvpc_xpose =
-   function (vpc,
+   function(vpc,
              PI = c(0.025, 0.975),
              area.col.central = PI.ci.med.arcol,
              area.col.outer = gray(0.2),
