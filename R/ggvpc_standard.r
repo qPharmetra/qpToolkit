@@ -10,10 +10,10 @@
 #' @param vpc output from \code{nm.read.vpc} 
 #' @param PI prediction interval (c(0.025,0.975) for 95\% CI)
 #' @param area.col color of prediction polygon
-#' @param linecol.pred color of predicted lines
-#' @param linesize.pred line width of of predicted lines
+# @param linecol.pred color of predicted lines
+# @param linesize.pred line width of of predicted lines
 #' @param linetype.obs line type of predicted lines
-#' @param linecol.obs line color of observed data
+# @param linecol.obs line color of observed data # never used
 #' @param linesize.obs line width of observed data
 #' @param alpha transparancy scalar (between 0 and 1)
 #' @param point.shape numeric value for dot shape 
@@ -56,10 +56,10 @@ ggvpc_standard <- function(
 	vpc, 
 	PI = c(0.025, 0.975), 
 	area.col = PI.ci.med.arcol,
-	linecol.pred = PI.real.med.col, 
-	linesize.pred = 1, 
-	linetype.obs = "dashed", 
-	linecol.obs = "black",
+	# linecol.pred = PI.real.med.col, # only used in line to be commented
+	# linesize.pred = 1, # only used in line to be commented
+	linetype.obs = "dashed", # only used where linetype.obs.outer is used
+	linecol.obs = "black", 
 	linesize.obs = 0.5, 
 	alpha = 0.33,
 	point.shape = 1, 
@@ -114,13 +114,13 @@ ggvpc_standard <- function(
 		linetype = linetype.obs, 
 		size = linesize.obs
 	) +
-        geom_line(
-		data = vpc$vpc, 
-		aes(x=xCovm, y=vpc50.sim), 
-		color=linecol.pred, 
-		alpha = 0.75,
-		size=linesize.pred
-	) +
+#   geom_line(
+# 		data = vpc$vpc, 
+# 		aes(x=xCovm, y=vpc50.sim), 
+# 		color=linecol.pred, 
+# 		alpha = 0.75,
+# 		size=linesize.pred
+# 	) +
 	coord_cartesian(
 		ylim = yrange.stretch * range(vpc$obs$DV)
 	) + 
