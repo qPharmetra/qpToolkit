@@ -56,10 +56,10 @@ ggvpc_standard <- function(
 	vpc, 
 	PI = c(0.025, 0.975), 
 	area.col = PI.ci.med.arcol,
-	linecol.pred = PI.real.med.col, 
-	linesize.pred = 1, 
-	linetype.obs = "dashed", 
-	linecol.obs = "black",
+	linecol.obs.central = PI.real.med.col, 
+	linetype.obs.central = "solid", 
+	linetype.obs.outer = "dashed",
+	linecol.obs.outer = "darkslategrey",
 	linesize.obs = 0.5, 
 	alpha = 0.33,
 	point.shape = 1, 
@@ -97,29 +97,23 @@ ggvpc_standard <- function(
          geom_line(
 		data = vpc$vpc, 
 		aes(x = xCovm, y = obsLower),
-		linetype = linetype.obs, 
+		linetype = linetype.obs.outer,
 		size = linesize.obs
 	) +
          ## median observed line
          geom_line(
 		data = vpc$vpc, 
 		aes(x = xCovm, y = vpc50.real),
-		linetype = linetype.obs,
+		col = linecol.obs.central,
+		linetype = linetype.obs.central,
 		size = linesize.obs
 	) + 
          ## upper observed line
          geom_line(
 		data = vpc$vpc, 
 		aes(x = xCovm, y = obsUpper),
-		linetype = linetype.obs, 
+		linetype = linetype.obs.outer, 
 		size = linesize.obs
-	) +
-        geom_line(
-		data = vpc$vpc, 
-		aes(x=xCovm, y=vpc50.sim), 
-		color=linecol.pred, 
-		alpha = 0.75,
-		size=linesize.pred
 	) +
 	coord_cartesian(
 		ylim = yrange.stretch * range(vpc$obs$DV)
