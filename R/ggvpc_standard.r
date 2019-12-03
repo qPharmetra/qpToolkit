@@ -40,7 +40,7 @@
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10() + scale_x_log10()
 #' 
 #' #modify colors and transparency:
-#' ggvpc_standard(vpc.all, area.col = indigo, linecol.pred = ketchup, alpha = 1, point.shape = 15) + 
+#' ggvpc_standard(vpc.all, area.col = indigo, alpha = 1, point.shape = 15) + 
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10()  
 #' 
 #' ## dealing with stratification
