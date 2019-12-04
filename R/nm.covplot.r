@@ -1,5 +1,3 @@
-
-# ROXYGEN Documentation
 #' Create covariate plot and data
 #' @description Create ETA vs covariates and parameter estimates vs covariates. Programmed with the intention to get between 95-100\% of report Appendices ready plots. If not, the data.frames on basis of which they were created are available as well to enable creating the desired graphs very easily.
 #' @param run run rootname (e.g. \code{run1})
@@ -49,12 +47,14 @@
 #' 
 #' ## ETAs vs. Categorical Covariates
 #' nmcov$etaCatVarPlot()
+#' nmcov$etaCatVarPlot(F)
 #' 
 #' ## parameters vs. Continuous Covariates
 #' nmcov$parContVarPlot()
 #' 
 #' ## parameters vs. Categorical Covariates
 #' nmcov$parCatVarPlot()
+#' nmcov$parCatVarPlot(F)
 #' 
 #' ## data frames required to replot the above are right there for convenience
 #' head(nmcov$covdata) ## merged get.xpose.table and nm.params.table output!
@@ -305,7 +305,7 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.eta = reshape2::melt(catData, measure.vars = eta.list)
 
-  etaCatVarPlot = function()
+  etaCatVarPlot = function(show_means = TRUE)
   { 
   useOuterStrips(
     xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
@@ -316,7 +316,7 @@ nm.covplot = function(run = "run1",
       panel.bwplot(x,y,...)
       panel.abline(h = 0, col = gray[5], lwd = 1)
       yy = tapply(y,x,mean)
-      llines(as.numeric(as.factor(names(yy))), yy, col = red[7])
+      if(show_means)llines(as.numeric(as.factor(names(yy))), yy, col = red[7])
     },
     aspect = aspect,
     xlab = "categorical covariate value",
@@ -363,7 +363,7 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
-  parCatVarPlot = function()
+  parCatVarPlot = function(show_means = TRUE)
   { 
     useOuterStrips(
       xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
@@ -373,7 +373,7 @@ nm.covplot = function(run = "run1",
     {
       panel.bwplot(x,y,...)
       yy = tapply(y,x,mean)
-      llines(as.numeric(as.factor(names(yy))), yy, col = red[7])
+      if(show_means)llines(as.numeric(as.factor(names(yy))), yy, col = red[7])
     },
     scales = list(x = list(relation = "free"), y = list(relation = "free")),
     aspect = aspect,
