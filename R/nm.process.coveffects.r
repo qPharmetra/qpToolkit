@@ -1,4 +1,3 @@
-# ROXYGEN Documentation
 #' Make a list of equations
 #' @describeIn nm.process.coveffects Makes a list of calls from its named arguments 
 #' input formulas.  
@@ -19,7 +18,7 @@ make.eqs <- function(...) {
   eval(substitute(alist(...)))
 }
 
-# ROXYGEN Documentation
+
 #' Make a list of equations
 #' @describeIn nm.process.coveffects Evaluate a list of calls in an environment, list, 
 #' or data.frame.  
@@ -51,7 +50,7 @@ eval.eqs=function(.data,  ...)
   .data
 }
 
-# ROXYGEN Documentation
+
 #' Make a covInfo S3 object
 #' @describeIn nm.process.coveffects
 #' @description Constructs a covInfo (covariate information) object from a vector.  
@@ -91,7 +90,7 @@ covInfo = function(cov.name
                  max=cov.max,label=cov.label,breaks=cov.breaks),class="covInfo")
 }
 
-# ROXYGEN Documentation
+
 #' Print a covInfo S3 object
 #' @describeIn nm.process.coveffects
 #' @description Prints a covInfo object.  
@@ -103,7 +102,7 @@ covInfo = function(cov.name
 #print.covInfo
 print.covInfo=function(x) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
 
-# ROXYGEN Documentation
+
 #' Make a list of covInfo objects from a data frame.
 #' @describeIn nm.process.coveffects
 #' @description Takes a data frame and creates covInfo objects based on its columns.  
@@ -197,7 +196,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
   merge(coveff.df,summ.df,by=grouping)
 }
 
-# ROXYGEN Documentation
+
 #' Evaluate equations (as a list of calls) over the covariates involved.
 #' @description A list of equations that define the covariate relationships is...  
 #' @param eqs A list of calls
@@ -245,7 +244,7 @@ nm.process.coveffects= function(eqs,covs.info,pars, xpose.df, omega, Nboot=10000
     }
     # data.frame of categorical covariate combinations
     if(length(activ.cat>0)){
-      cats.df = expand.grid(sapply(activ.cat,function(x)covs.info[[x]]$breaks))
+      cats.df = expand.grid(lapply(activ.cat,function(x)covs.info[[x]]$breaks))
       names(cats.df)=activ.cat
     }
     

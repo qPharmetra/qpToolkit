@@ -33,7 +33,7 @@ This is an analysis notebook template/example using RMarkdown.  This analysis us
 
 Note that a TOC with two levels is requested, so h2 and h3 headers (with two or three hashes) will be presented.  One suggestions is to start each major analysis step with an h2 header, and place subsequent major sections in h3 headers.
 
-A key feature of this template is the use of a subreport to show model results.  Within a given project, it is assumed that one would like to review model results in a consistent manner (same plots, tables, etc.).  The sub report eliminates repititious coding of these features.
+A key feature of this template is the use of a subreport to show model results.  Within a given project, it is assumed that one would like to review model results in a consistent manner (same plots, tables, etc.).  The sub report eliminates repetitious coding of these features.
 
 IMPORTANT NOTE:  Be sure to place your copy of /utils and drive.r in the project folder.  These are not included in order to save space.
 
@@ -232,6 +232,7 @@ eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
 
 ```
 
+
 Now get the parameter values and pack into a list.  Add the ETA elements (only need two).
 ```{r}
 params.l=as.list(setNames(params.df$Estimate,params.df$Parameter))
@@ -246,7 +247,7 @@ Create covariate object
 xpose.df = get.xpose.tables("example3",nm.path)
 xpose.df = xpose.df[!duplicated(xpose.df$ID),c("GNDR","AGE","CL","V1")]
 covs.info = makeCovInfo(xpose.df[,c("GNDR","AGE")],cat.covs = "GNDR")
-covs.info$GNDR$label = "Gender (kg)"
+covs.info$GNDR$label = "Gender (0: female, 1: male)"
 covs.info$AGE$label = "Age (Y)"
 covs.info$AGE$breaks = c(1:5,(1:8)*10)
 covs.info$AGE$center=33.72
@@ -266,6 +267,41 @@ coveffs.l = nm.process.coveffects(eqs = eqs
 )
 
 plot(coveffs.l)
+```
+
+```{r test, eval = FALSE, include = FALSE}
+eqs=make.eqs(
+  CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1),
+  V1=
+    THETA2*
+    (1 + (GNDR==0)*THETA9)*
+    (1 + (SEX==0)*THETA10)*
+    (1 + (MALE==0)*THETA11)*
+    (AGE/33.72)^THETA8*
+    exp(ETA2)
+)
+eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+
+xpose.df$SEX <- xpose.df$GNDR
+xpose.df$MALE <- xpose.df$GNDR
+params.l$THETA10 <- params.l$THETA9
+params.l$THETA11 <- params.l$THETA9
+covs.info$SEX <- covs.info$GNDR
+covs.info$MALE <- covs.info$GNDR
+covs.info$SEX$name <- 'SEX'
+covs.info$MALE$name <- 'MALE'
+
+coveffs.l = nm.process.coveffects(
+  eqs = eqs,
+  covs.info = covs.info,
+  pars = data.frame(params.l),
+  xpose.df = xpose.df,
+  omega = make.symmetric(
+    unlist(tmp$omega), 
+    triangle = "upper")
+)
+plot(coveffs.l)
+
 ```
 
 * Shaded areas represent 95% prediction intervals around the population values (solid lines).
