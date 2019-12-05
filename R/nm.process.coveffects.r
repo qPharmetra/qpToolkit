@@ -1,5 +1,5 @@
 globalVariables(c('cov.val', 'pi.lower', 'pi.upper', 'posthoc', 'typical', 'group'))
-# ROXYGEN Documentation
+
 #' Make a list of equations
 #' 
 #' Makes a list of equations.
@@ -23,11 +23,11 @@ make.eqs <- function(...) {
   eval(substitute(alist(...)))
 }
 
-# ROXYGEN Documentation
 #' Evaluate a list of equations
 #' 
 #' Evaluates a list of calls in an environment, list, or data.frame
 # @describeIn nm.process.coveffects Evaluate a list of calls in an environment, list, 
+
 #' or data.frame.  
 #' @param .data data.frame, list, or environment
 #' @param ... a list of calls or expressions
@@ -58,7 +58,7 @@ eval.eqs=function(.data,  ...)
   .data
 }
 
-# ROXYGEN Documentation
+
 #' Make a covInfo S3 object
 # @describeIn nm.process.coveffects Make a covInfo S3 object
 #' @description Constructs a covInfo (covariate information) object from a vector.  
@@ -100,7 +100,7 @@ covInfo = function(cov.name
                  max=cov.max,label=cov.label,breaks=cov.breaks),class="covInfo")
 }
 
-# ROXYGEN Documentation
+
 #' Print a covInfo S3 object
 #' 
 #' Prints a covInfo object.
@@ -117,11 +117,12 @@ covInfo = function(cov.name
 #print.covInfo
 print.covInfo = function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
 
-# ROXYGEN Documentation
+
 #' Make a list of covInfo objects from a data frame
 #' 
 #' Makes a list of covInfo objects from a data.frame.  
 # @describeIn nm.process.coveffects Make a list of covInfo objects from a data frame
+
 #' @description Takes a data frame and creates covInfo objects based on its columns.  
 #' @param df A data frame
 #' @param cnames A vector of column names to create covInfo objects for
@@ -216,7 +217,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
   merge(coveff.df,summ.df,by=grouping)
 }
 
-# ROXYGEN Documentation
+
 #' Evaluate equations (as a list of calls) over the covariates involved.
 #' @description A list of equations that define the covariate relationships is...  
 #' @param eqs A list of calls
@@ -264,7 +265,7 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
     }
     # data.frame of categorical covariate combinations
     if(length(activ.cat>0)){
-      cats.df = expand.grid(sapply(activ.cat,function(x)covs.info[[x]]$breaks))
+      cats.df = expand.grid(lapply(activ.cat,function(x)covs.info[[x]]$breaks))
       names(cats.df)=activ.cat
     }
     
