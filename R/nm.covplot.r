@@ -117,11 +117,14 @@ nm.covplot = function(run = "run1",
   eta.list = eta.names[!is.na(extract.number(eta.names))]
   
   ## remove ETAs per instruction
-  if(!is.null(eta.skip))
+  if(length(eta.skip))
   {
-    nok = eta.names %nin% casefold(eta.skip, upper = FALSE)
-    eta.names = eta.names[nok]
-    eta.list = eta.list[nok]
+    # nok = eta.names %nin% casefold(eta.skip, upper = FALSE)
+    # eta.names = eta.names[nok]
+    # eta.list = eta.list[nok]
+    # eta.names and eta.list may not be same length
+     eta.names <- setdiff(eta.names, casefold(eta.skip, upper = FALSE))
+     eta.list <- setdiff(eta.list, casefold(eta.skip, upper = FALSE))
   }
 
   ## remove etas that are all zero (probably fixed)
