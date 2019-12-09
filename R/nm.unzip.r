@@ -5,7 +5,7 @@
 #'  tweaked version of) PsN. To enable the parsing function of the \code{nm.xxx} domain to
 #'   operate well this function unzips these files.  The unzip call is pulled from the system environment
 #'   variable UNZIP_CALL on startup, or defaulted as stated below.  the \%s in the call is replaced with the 
-#'   basename (no extension) of the file to unzip.  The unzip call can be modified by changine the 
+#'   basename (no extension) of the file to unzip.  The unzip call can be modified by changing the 
 #'   option unzip.call.
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
@@ -22,24 +22,25 @@
 #' file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 
-nm.unzip = function(run
-                    , path = file.path(getOption("nmDir"), run)
-                    , zip.extension = NULL
-                    , extension = ".xml"
-                    , zip.call = getOption("unzip.call")
-                    , filename = paste(run, extension,sep="")
-                    , zip.filename = file.path(path,filename)
-                    , quiet = TRUE
+nm.unzip = function(
+   run,
+   path = file.path(getOption("nmDir"), run),
+   zip.extension = NULL,
+   extension = ".xml",
+   zip.call = getOption("unzip.call"),
+   filename = paste(run, extension, sep = ""),
+   zip.filename = file.path(path, filename),
+   quiet = TRUE
 )
 {
-   currentwd = getwd()
-   newwd = path
+   # currentwd = getwd()
+   # newwd = path
    if(!quiet) cat("path:", path, "\n")
    zip.call = sprintf(zip.call, zip.filename)
    if(!quiet) cat("call:",zip.call,"\n")
-   setwd(newwd)
+   # setwd(newwd)
    invisible(system(zip.call, ignore.stdout=quiet, ignore.stderr = quiet))
-   setwd(currentwd)
+   # setwd(currentwd)
    if(!file.exists(zip.filename)){
       stop(sprintf("Unzip failed: %s\nUnzip call:%s", zip.filename, zip.call))
    } 
