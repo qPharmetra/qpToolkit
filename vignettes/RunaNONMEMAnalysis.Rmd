@@ -303,6 +303,42 @@ plot(coveffs.l)
 
 ```
 
+```{r iss03, eval = FALSE, include = FALSE}
+eqs=make.eqs(
+  CL=THETA1*(1 + (RACE==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1),
+  V1=
+    THETA2*
+    (1 + (RACE=='white')*THETA9)*
+    (AGE/33.72)^THETA8*
+    exp(ETA2)
+)
+eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+library(magrittr)
+
+xpose.df$RACE <- rep(c('white','black','asian','indian','mixed','other','unknown','white2','black2','asian2','indian2','mixed2','other2','unknown2'),length.out = 400)
+covs.info = makeCovInfo(xpose.df[,c("GNDR","RACE","AGE")],
+                        cat.covs = c('GNDR',"RACE"))
+covs.info$GNDR$label = "Gender (female, male)"
+covs.info$RACE$label = "Race (various)"
+covs.info$AGE$label = "Age (Y)"
+covs.info$AGE$breaks = c(1:5,(1:8)*10)
+covs.info$AGE$center=33.72
+
+coveffs.l = nm.process.coveffects(
+  eqs = eqs,
+  covs.info = covs.info,
+  pars = data.frame(params.l),
+  xpose.df = xpose.df,
+  omega = make.symmetric(
+    unlist(tmp$omega), 
+    triangle = "upper")
+)
+plot(coveffs.l)
+
+
+```
+
+
 ```{r iss04, eval = FALSE, include = FALSE}
 eqs=make.eqs(
   CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1),
