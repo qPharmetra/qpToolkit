@@ -13,7 +13,8 @@
 #' @param id.var character string denoting grouping variable ("ID")
 #' @param iov inter-occasion variability flag (this argument is ignored currently)
 #' @param eta.densities logical to determine of ETA density plots have to be generated
-#' @param eta.skip character vector of ETAs that will be skipped 
+#' @param eta.skip character vector of ETAs that will be skipped
+#' @param eta.full convert ETnn to ETAnn, e.g. rename ET12 from NONMEM output (and eta.skip) to ETA12
 #' @param shrinkage providing shrinkage values. This is currently ignored
 #' @return A list with plots and properly sorted / molten data.frames for customized plots
 #' @export
@@ -72,6 +73,7 @@ nm.covplot = function(run = "run1",
   iov = FALSE,
   eta.densities = TRUE,
   eta.skip = NULL,
+  eta.full = FALSE,
   shrinkage = FALSE,
   covlist = list(cat = c(NULL), con = c(NULL)),
   catcov.sep = 5, # max number of unique values for a covariate to be assigned 'categorical'
@@ -97,6 +99,11 @@ nm.covplot = function(run = "run1",
   
   ## read NONMEM table output
   nmcov = get.xpose.tables(run = run, path = path) 
+  if(eta.full){
+     names(nmcov) <- sub('^ET([0-9]+)$','ETA\\1',names(nmcov))
+     eta.skip <- sub('^ET([0-9]+)$','ETA\\1',eta.skip)
+  } 
+  
   names(nmcov) = casefold(names(nmcov), upper=FALSE)
   if(length(nmcov[, id.var]) == 0){
     message(paste(id.var, "does not exist in",run,". nm.covplot.procedure stopped"));return()
