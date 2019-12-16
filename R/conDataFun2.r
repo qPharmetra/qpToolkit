@@ -8,6 +8,9 @@
 #' Summary: median (min - max)
 #' @param y numeric vector to summarize
 #' @param nSignif number of significant digits
+#' @param digits number of significant digits in output, alternative specification
+#' @param latex passed to \code{\link{formatted.signif}}
+#' @param align.dot passed to \code{\link{formatted.signif}}
 #' @note This function is primarily used for demographics tables
 #' @seealso \code{\link{conDataFun1}},   \code{\link{conDataFun3}},  \code{\link{catDataFun}}, \code{\link{tabStats}}, \code{\link{tabSummarize}} 
 #' @export
@@ -15,5 +18,28 @@
 #' x=rnorm(1000)
 #' conDataFun2(x, 3)
 
-conDataFun2 = function(y, nSignif) 
-  paste(signif(median(y),nSignif)," (", signif(min(y),nSignif)," - ",signif(max(y),nSignif), ")",sep="")
+conDataFun2 = function(y, nSignif, digits = nSignif, latex = FALSE, align.dot = FALSE) 
+  paste(
+     formatted.signif(
+        median(y),
+        digits = digits,
+        latex = latex,
+        align.dot = align.dot
+     ),
+     " (", 
+     formatted.signif(
+        min(y),
+        digits = digits,
+        latex = latex,
+        align.dot = align.dot 
+     ),
+     " - ",
+     formatted.signif(
+        max(y),
+        digits = digits,
+        latex = latex,
+        align.dot = align.dot
+     ), 
+     ")",
+     sep=""
+   )
