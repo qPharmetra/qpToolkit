@@ -357,26 +357,40 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% Cs(variable,value)] = Cs(catVariable, catValue)
   catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
-  parCatVarPlot = function()
-  { 
+  parCatVarPlot = function(){ 
     useOuterStrips(
-      xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
-    data = catData.par,
-    horizontal = FALSE,
-    panel =  function(x,y,...)
-    {
-      panel.bwplot(x,y,...)
-      yy = tapply(y,x,mean)
-      llines(as.numeric(as.factor(names(yy))), yy, col = red[7])
-    },
-    scales = list(x = list(relation = "free"), y = list(relation = "free")),
-    aspect = aspect,
-    xlab = "categorical covariate value",
-    ylab = "Parameter Value"
-    ) 
+       xyplot(
+          # value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
+          value ~ as.factor(catValue) | toupper(variable) * catVariable,
+          data = catData.par, 
+          horizontal = FALSE, 
+          prepanel = function(x, y, horizontal, ...){
+             have <- if(horizontal) factor(y) else factor(x)
+             out <- list(foo = levels(have), bar = seq_along(levels(have)))
+             if(horizontal) names(out) <- c('ylim','yat')
+             if(!horizontal)names(out) <- c('xlim','xat')
+             out
+          },
+          panel = function(x, y, ...) {
+             panel.bwplot(factor(x), y, ...)
+             yy = tapply(y, x, mean)
+             yy <- yy[levels(factor(x))]
+             #browser()
+             llines(seq_along(yy), yy, col = red[7])
+          }, 
+          scales = list(
+             x = list(relation = "free"), 
+             y = list(relation = "free")
+          ),
+          aspect = aspect,
+          xlab = "categorical covariate value",
+          ylab = "Parameter Value"
+       )
     )
   }
-  }
+  
+}
+  
   cat("processed NONMEM output and covariate data and created covariate plots of"
       , lunique(data[, id.var]), "subjects")
   return(list(  covdata = data, 
