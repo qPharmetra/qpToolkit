@@ -2,7 +2,7 @@
 #' Tabulate a summary
 #' @param formula formula specifying what to summarize by what
 #' @param data data to summarize
-#' @param digits number of significant digits in output
+#' @param nSignif number of significant digits in output
 #' @param extra.blank.line a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility 
 #' @return Table with summarized data
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabStats}}
@@ -13,21 +13,21 @@
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
-#' tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], digits = 3)
+#' tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
 #' # check the categorical summary for race
 #' round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
 #' # OK
 #' myFormula =  dose ~ race + wt + bmi + sex
 #' format.demoTable(
-#'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3)
+#'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
 #'   , formula = myFormula
 #' )
 
 tabSummarize = function(formula
                         , data
-                        , digits = 3
+                        , nSignif = 3
                         , extra.blank.line = TRUE
-                        , digits.categorical = 1)
+                        , ndigits.categorical = 1)
 {
   allX = all.vars(nlme::getResponseFormula(formula)[[2]])
   allY = all.vars(nlme::getCovariateFormula(formula)[[2]])
@@ -47,14 +47,14 @@ tabSummarize = function(formula
                                      , YYY
                                      , BY
                                      , extra.blank.line
-                                     , digits
-                                     , digits.categorical) 
+                                     , nSignif
+                                     , ndigits.categorical) 
                             {                                          
                               stats = tabStats(x = YYY[[z]]
                                                , BY = BY
                                                , parName = names(YYY)[z]
-                                               , digits = digits
-                                               , digits.categorical = digits.categorical
+                                               , nSignif = nSignif
+                                               , ndigits.categorical = ndigits.categorical
                               )
                               if(extra.blank.line == TRUE) 
                               {
@@ -67,8 +67,8 @@ tabSummarize = function(formula
                             , YYY = YYY
                             , BY = BY
                             , extra.blank.line = extra.blank.line
-                            , digits = digits
-                            , digits.categorical = digits.categorical
+                            , nSignif = nSignif
+                            , ndigits.categorical = ndigits.categorical
                     )
   )
   row.names(theData) = 1 : nrow(theData)
@@ -90,13 +90,13 @@ if(F)
 {
   options(width = 150)
   ok = duplicated(pkpdData$id) == FALSE
-  tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], digits = digits)
+  tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
   ## check the categorical summary for race
   round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], pkpdData$dose[ok]), 2, sum) * 100)
   ## OK
   myFormula =  dose ~ race + wt + bmi + sex
   format.demoTable(
-    tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = digits)
+    tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
     , formula = myFormula
   )
 }
