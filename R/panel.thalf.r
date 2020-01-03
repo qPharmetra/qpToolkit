@@ -6,7 +6,7 @@
 #' @param x,y numeric vectors x and y
 #' @param text.cex text font size
 #' @param line.col line color
-#' @param nSignif number of significant digits in output
+#' @param digits number of significant digits in output
 #' @param unit time unit (hr)
 #' @param ... any other arguments passed on to the lattice call
 #' @return Lattice panel output (invisible)
@@ -35,7 +35,7 @@
 panel.thalf = function(x, y, ...,
                        text.cex = 0.8,
                        line.col = "blue",
-                       nSignif = 3,  ## number of significant digits
+                       digits = 3,  ## number of significant digits
                        unit = "hr")
 {
   # Draw a line segment covering the range of x for each panel
@@ -49,7 +49,7 @@ panel.thalf = function(x, y, ...,
     
     ## add half life as text to each panel
     coefs = coef(lm(y ~ x))
-    thalf = signif(log10(2)/abs(coefs[2]), nSignif)
+    thalf = signif(log10(2)/abs(coefs[2]), digits)
     len = nchar(thalf)
     panel.text(x = text.loc[1] * (0.72-0.02*len), y = text.loc[2]*0.95, "t", cex = text.cex)
     panel.xyplot(x = text.loc[1] * (0.76-0.02*len), y = text.loc[2]*0.95, pch = 189, cex = text.cex*1.2, col = 1)
