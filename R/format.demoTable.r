@@ -21,7 +21,7 @@
 #' )
 
 
-format.demoTable = function(demoTable, formula)
+format.demoTable = function (demoTable, formula) 
 {
   names(demoTable)[1] = "Parameter"
   theParameters = full.names(all.vars(nlme::getCovariateFormula(formula)[[2]]))
@@ -30,8 +30,8 @@ format.demoTable = function(demoTable, formula)
   demoTable$Parameter[msel] = paste("\\textbf{", demoTable$Parameter[msel], "}", sep = "")
   demoTable$Parameter[msel2] = paste("\\hfill ", demoTable$Parameter[msel2], sep = "")
   demoTable = reorder.names(demoTable, Cs(Parameter))
-  demoTable = apply(demoTable,2, function(x) gsub("\\%","\\\\%",x))
-  dimnames(demoTable)[[2]][1] = "~"
+  demoTable = apply(demoTable, 2, function(x) gsub("\\%", "\\\\%", x))
+  dimnames(demoTable)[[2]][1] = "Trial"
   return(demoTable)
 }
 
