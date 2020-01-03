@@ -11,7 +11,8 @@
 #' @param path directory where \code{run} resides
 #' @param extension file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
-#' @param zip.program full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"
+#' @param zip.program path to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z"
+#' @param zip.call full OS call to zip utility for unzipping. Defaults to"c:/progra~1/7-zip/7z e \%s.7z"
 #' @param filename file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults
 #' @param zip.filename filename of the zip file to extract. Is automatically populated with qP workflow defaults
 #' @return The zipped file is extracted to disk in the same location. Nothing is returned to R.
@@ -26,7 +27,8 @@ nm.unzip = function(run
                     , path = file.path(getOption("nmDir"), run)
                     , zip.extension = NULL
                     , extension = ".xml"
-                    , zip.call = getOption("unzip.call")
+                    , zip.program = 'c:/progra~1/7-zip/7z'
+                    , zip.call = getOption("unzip.call", default = paste(zip.program, "e %s.7z" ))
                     , filename = paste(run, extension,sep="")
                     , zip.filename = file.path(path,filename)
                     , quiet = TRUE
