@@ -12,7 +12,7 @@
 #' ok = duplicated(pkpdData$id) == FALSE
 #' myFormula =  dose ~ race + wt + bmi + sex
 #' my.formatted.demoTable = format.demoTable(
-#'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
+#'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3)
 #'   , formula = myFormula
 #' )
 #' print(my.formatted.demoTable

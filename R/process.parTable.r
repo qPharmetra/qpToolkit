@@ -6,7 +6,7 @@
 #' @param nm output from \code{nm.params.table}
 #' @param index which estimation (only relevant in case of multiple \code{$EST})
 #' @param ci confidence interval for 95\% CI
-#' @param sig number of significant digits in output
+#' @param digits number of significant digits in output
 #' @param transformations a list with elements log or logit, that, in turn, are numeric vectors representating the THETA numbers that are logged or logit-transformed, respectively.
 #' @param Descriptor vector of descriptor (alias) names for numbered parameter estimates. For example c("CL","V1","SD(CL)","cor(CL,V1)","SD(V1)","prop. residual var.")
 #' @param plain logical (defaults to F) indicating if LaTeX formatting of the table should be skipped, allowing the result to be easily available for Microsoft products. 
@@ -32,7 +32,7 @@
 process.parTable = function(nm
                             , index = 1
                             , ci = 0.95
-                            , sig = 3
+                            , digits = 3
                             , transformations
                             , Descriptor
                             , plain=FALSE
@@ -66,7 +66,7 @@ process.parTable = function(nm
       ciup = parTab$Estimate[okEst] + qt(p=(1-((1-ci)/2)), df = 1e5) * asNumeric(parTab$SE[okEst])
       parTab$CI95 = rep("NC", nrow(parTab))
       parTab$CI95[okEst] = paste("(",
-                                 as.character(signif(cilo,sig))," - ", signif(ciup,sig), 
+                                 as.character(signif(cilo,digits))," - ", signif(ciup,digits), 
                                  ")", sep = "")
     } else {
       skipTrans = TRUE  ## toggle to later skip tranforming SE, 95%CI etc..
@@ -105,8 +105,8 @@ process.parTable = function(nm
                              asNumeric(parTab$SE[ok]), nms)
             ciupth = myFun(parTab$Estimate[ok] + qt(p=(1-(1-ci)/2), df = 1e5) * 
                              asNumeric(parTab$SE[ok]), nms)
-            parTab$CI95[ok] = paste("(",as.character(signif(ciloth,sig))," - ", 
-                                    signif(ciupth,sig), ")", sep = "")
+            parTab$CI95[ok] = paste("(",as.character(signif(ciloth,digits))," - ", 
+                                    signif(ciupth,digits), ")", sep = "")
             parTab$CV.perc[ok] = cvFun(asNumeric(parTab$SE[ok]), nms)
             #parTab$SE[ok] = 1e+10
           }
@@ -117,9 +117,9 @@ process.parTable = function(nm
     ## format some layout things
     missSE = !okEst | parTab$transformed != "no"
     parTab$CV.perc[missSE] = missing.format
-    parTab$Estimate = sprintf("%#.3g",signif(parTab$Estimate, sig))
+    parTab$Estimate = sprintf("%#.3g",signif(parTab$Estimate, digits))
     
-    if(!skipTrans) parTab$SE[okEst] = as.character(signif(asNumeric(parTab$SE[okEst]), sig))
+    if(!skipTrans) parTab$SE[okEst] = as.character(signif(asNumeric(parTab$SE[okEst]), digits))
     parTab$SE[missSE] = missing.format 
     #parTab$CV.perc = ifelse(is.na(parTab$CV.perc), "NC", parTab$CV.perc)
     
