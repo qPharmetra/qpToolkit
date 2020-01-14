@@ -22,9 +22,7 @@
 #'   , sanitize.text.function = identity
 #'   , booktabs = TRUE
 #' )
-
-format.demoTable = function(x, ..., formula)
-{
+format.demoTable = function(x, ..., formula){
   names(x)[1] = "Parameter"
   theParameters = full.names(all.vars(nlme::getCovariateFormula(formula)[[2]]))
   msel = which(x$Parameter %in% theParameters)

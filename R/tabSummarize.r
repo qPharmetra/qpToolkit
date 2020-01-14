@@ -4,7 +4,7 @@
 #' @param data data to summarize
 #' @param digits number of significant digits in output
 #' @param extra.blank.line a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility 
-#' @param ndigits.categorical passed to \code{\link{tabStats}}
+#' @param digits.categorical passed to \code{\link{tabStats}}
 #' @return Table with summarized data, of class \code{demoTable}
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabStats}}
 #' @note This function is primarily used for demographics tables
@@ -24,7 +24,6 @@
 #'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3)
 #'   , formula = myFormula
 #' )
-
 tabSummarize = function(  formula
                         , data
                         , digits = 3
@@ -88,4 +87,3 @@ tabSummarize = function(  formula
   class(theData) <- c('demoTable', class(theData))
   return(theData)
 }
-
