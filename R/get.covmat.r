@@ -14,17 +14,23 @@
 #' @param run run rootname (e.g. run1)
 #' @param path directory where run output resides
 #' @param ext extension of the covariance 
+#' @param zip.extension extension of the zip program. Defaults to "7z"
 #' @return list with covariance matrices for each estimation method
 #' @export
 #' @seealso \code{\link{nm.covmat.extract}}, \code{\link{extract.varcov}}
 #' @examples
 #' get.covmat("example2", path = getOption("qpExampleDir"))
 
-get.covmat = function(run, path = paste(getwd(),"NONMEM", sep="/"), ext = "cov")
+get.covmat = function(
+  run, 
+  path = paste(getwd(),"NONMEM", sep="/"), 
+  ext = "cov",
+  zip.extension = "7z",
+)
 {
   check.unzipped = FALSE
   covFileName = paste(path,run,paste(run,ext,sep="."),sep="/")
-  zipFileName = paste(path,run,paste(run,ext,"7z",sep="."),sep="/")
+  zipFileName = paste(path,run,paste(run,ext,zip.extension,sep="."),sep="/")
   if(!file.exists(covFileName))
   {
     if(file.exists(zipFileName))
