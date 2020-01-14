@@ -23,6 +23,9 @@
 #' path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
 #' file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
+#' file.exists('c:/progra~1/7-zip/7z.exe')
+#' # If the above does not exist, consider:
+#' # options(unzip.call = 'C:/my-zip-path/7z e %s.7z') # or similar
 
 nm.unzip = function(
    run,

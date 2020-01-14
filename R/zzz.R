@@ -7,6 +7,11 @@
   if(getOption("stringsAsFactors")) {
     options(stringsAsFactors = FALSE) 
   }
+   if(Sys.getenv("UNZIP_CALL")=="" |Sys.getenv("ZIP_CALL")=="" ){
+     if(!file.exists('c:/progra~1/7-zip/7z.exe')){
+       warning('cannot find zip program c:/progra~1/7-zip/7z.exe; see ?nm.unzip')
+     }
+   }
    if(Sys.getenv("UNZIP_CALL")==""){
       options(unzip.call = "c:/progra~1/7-zip/7z e %s.7z")
    } else{
