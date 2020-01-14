@@ -31,6 +31,7 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' @param densityCol  Color of polygon
 #' @param excl.id  Exclude samples that have this individual
 #' @param excl.columns What elements should not be shown? 
+#' @param digits number of significant digits
 #' @param ... Optional arguments passed on to hist
 #' @return Histograms of bootstrapped parameter estimates
 #' @export histogram.bootstrap
@@ -43,28 +44,30 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' cat(temp.dir)
 #' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") 
 #' ## now take a look there
-histogram.bootstrap = function(bootstrap,
-                               filename.prefix = "bootstrapPage",
-                               path, 
-                               incl.ids        = NULL,
-                               min.failed      = FALSE,      # do we want to omit minimization failed runs?
-                               cov.failed      = FALSE,      # do we want to omit covariance failed runs?
-                               cov.warnings    = FALSE,      # do we want to omit covariance failed runs?
-                               boundary        = FALSE,      # do we want to omit boundary runs?
-                               showoriginal    = TRUE,       # show line for original estimate
-                               showmean        = TRUE,       # show line for mean
-                               obsCentralCol   = "blue",
-                               bootCentralCol  = "red", 
-                               outerCol        = "darkslategray",
-                               showmedian      = FALSE,      # show line for median
-                               show95CI        = TRUE,       # show line for 95 % confidence interval (percentile)
-                               conf.int        = 0.95,       # confidence level for bootstrap sample outer bands
-                               showquart       = FALSE,      # show line for quartiles
-                               histCol         = "#F2F2F2",  # default color is very light gray
-                               densityCol      = "red",
-                               excl.id         = c(),        # exclude samples that have this individual
-                               excl.columns    = c("model", "minimization.successful","covariance.step.successful","covariance.step.warnings","estimate.near.boundary"),
-                               ...                           # arguments passed on to hist
+histogram.bootstrap = function(
+  bootstrap,
+  filename.prefix = "bootstrapPage",
+  path, 
+  incl.ids        = NULL,
+  min.failed      = FALSE,      # do we want to omit minimization failed runs?
+  cov.failed      = FALSE,      # do we want to omit covariance failed runs?
+  cov.warnings    = FALSE,      # do we want to omit covariance failed runs?
+  boundary        = FALSE,      # do we want to omit boundary runs?
+  showoriginal    = TRUE,       # show line for original estimate
+  showmean        = TRUE,       # show line for mean
+  obsCentralCol   = "blue",
+  bootCentralCol  = "red", 
+  outerCol        = "darkslategray",
+  showmedian      = FALSE,      # show line for median
+  show95CI        = TRUE,       # show line for 95 % confidence interval (percentile)
+  conf.int        = 0.95,       # confidence level for bootstrap sample outer bands
+  showquart       = FALSE,      # show line for quartiles
+  histCol         = "#F2F2F2",  # default color is very light gray
+  densityCol      = "red",
+  excl.id         = c(),        # exclude samples that have this individual
+  excl.columns    = c("model", "minimization.successful","covariance.step.successful","covariance.step.warnings","estimate.near.boundary"),
+  digits           = 3,
+  ...                           # arguments passed on to hist
 )
 { 
   if(missing(path)) path = bootstrap$path
@@ -160,9 +163,9 @@ histogram.bootstrap = function(bootstrap,
       if (show95CI) {
         graphics::abline(v=qu[1], lty=4, lwd=1, col=outerCol) ## 2.5% CL
         graphics::abline(v=qu[2], lty=4, lwd=1, col=outerCol) ## 97.5% CL
-        graphics::text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = 3), cex = .8, 
+        graphics::text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = digits), cex = .8, 
              adj = c(0,0), pos='2')
-        graphics::text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = 3), cex = .8, 
+        graphics::text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = digits), cex = .8, 
              adj = c(0,0), pos='4')
       }
       

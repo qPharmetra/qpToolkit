@@ -8,6 +8,7 @@
 #' Parsing SCM output
 #' @description Read and process SCM output file such that the output can be directly copied into Microsoft products and LaTeX typesetting.
 #' @param path full directory path where scmlog files reside
+#' @param digits number of significant digits
 #' @return A character vector with processed SCM output, ready for inclusion into a (LaTeX) report
 #' @export
 #' @examples
@@ -36,7 +37,7 @@
 #'       #  , only.contents = TRUE
 #' )
 
-nm.process.scm = function(path) 
+nm.process.scm = function(path,digits = 3) 
    #path = paste(getOption("qpExampleDir"), "scm files","Klas", sep="/")
 {
   scmpath = paste(path, "scmlog.txt", sep="/")
@@ -189,12 +190,12 @@ nm.process.scm = function(path)
   fullSCM.latex$SIGNIFICANT[fullSCM.latex$SIGNIFICANT == "NO"] = "~"
   fullSCM.latex$OFV.DROP = paste("$",fullSCM.latex$OFV.DROP,"$", sep = "")
   ok = isNumeric(fullSCM.latex$GOAL)
-  fullSCM.latex$GOAL[ok] = signif(asNumeric(fullSCM.latex$GOAL[ok]),4)
+  fullSCM.latex$GOAL[ok] = signif(asNumeric(fullSCM.latex$GOAL[ok]),digits)
   fullSCM.latex$GOAL = paste(fullSCM.latex$OFV.DROP,fullSCM.latex$GOAL)
   fullSCM.latex$OFV.DROP = NULL
   
   ok = isNumeric(fullSCM.latex$PVAL)
-  fullSCM.latex$PVAL[ok] = substring(sprintf("%4f",signif(asNumeric(fullSCM.latex$PVAL[ok]),4)),1,6)
+  fullSCM.latex$PVAL[ok] = substring(sprintf("%4f",signif(asNumeric(fullSCM.latex$PVAL[ok]),digits)),1,6)
   fullSCM.latex$PVAL[fullSCM.latex$PVAL == "0.0000"] = "$<$0.0001"
   fullSCM.latex$PVAL[fullSCM.latex$PVAL == "9999.0"] = "$>$0.9999"
   

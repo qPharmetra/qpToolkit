@@ -10,8 +10,7 @@
 #' @param idx list of which parameters to include.
 #' @param probs The confidence interval coverage.
 #' @param central function for central tendency of distribution
-#' @param nsig number of significant digits in output
-#' @param digits number of significant digits in output, alternative specification
+#' @param digits number of significant digits in output
 #' @param latex passed to \code{\link{formatted.signif}}
 #' @param align.dot passed to \code{\link{formatted.signif}}
 #' @param transformations a list with elements log or logit, that, in turn, are numeric vectors representating the THETA numbers that are logged or logit-transformed, respectively.
@@ -27,17 +26,16 @@
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))[c(13,14,15),]
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1),
 #' transformations = list(log = 13:14, logit = 15))[c(13,14,15),] # partly fictional
-bootstrap.ParTab = function(bootstrap
-  , idx = list(theta=1,omega=1,sigma=1)
-  , probs = 0.95
-  , central = median
-  , nsig = 3
-  , digits = nsig
-  , latex = FALSE
-  , align.dot = FALSE
-    transformations
-)
-{
+bootstrap.ParTab = function(
+  bootstrap,
+  idx = list(theta=1,omega=1,sigma=1),
+  probs = 0.95,
+  central = median,
+  digits = 3,
+  latex = FALSE,
+  align.dot = FALSE,
+  transformations
+){
   myFun = function(x, type)
   {
     switch(type,
@@ -49,6 +47,7 @@ bootstrap.ParTab = function(bootstrap
   stopifnot(length(probs) == 1)
   ci = c((1-probs)/2,(probs+1)/2)
   out = data.frame(t(apply(bootstrap$bootstrap[-1,], 2, quantile, probs=ci)))
+<<<<<<< HEAD
   names(out) = c('Lower', 'Upper')
   out$Estimate = formatted.signif(
     apply(bootstrap$bootstrap[-1,], 2, central), 
@@ -66,7 +65,6 @@ bootstrap.ParTab = function(bootstrap
   if(length(parries) != nrow(out)) parries = paste("THETA", 1:nrow(out),sep="")
   out$Parameter = parries
   out$Descriptor = row.names(out)
-
   ## perform transformations if needed
   out$transformed = rep("no",nrow(out))
   if(!missing(transformations))
@@ -87,7 +85,6 @@ bootstrap.ParTab = function(bootstrap
     }
   out$CI95 = paste(formatted.signif(out$Lower,digits = digits, latex = latex, align.dot = align.dot), "-", formatted.signif(out$Upper,digits = digits, latex = latex, align.dot = align.dot))
   out = out[, c("Parameter","Descriptor","Orig.Estimate","Estimate","CI95","transformed")]
-
   row.names(out) = 1:nrow(out)
   return(out)
 }

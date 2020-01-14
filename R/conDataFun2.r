@@ -7,8 +7,7 @@
 # ROXYGEN Documentation
 #' Summary: median (min - max)
 #' @param y numeric vector to summarize
-#' @param nSignif number of significant digits
-#' @param digits number of significant digits in output, alternative specification
+#' @param digits number of significant digits
 #' @param latex passed to \code{\link{formatted.signif}}
 #' @param align.dot passed to \code{\link{formatted.signif}}
 #' @note This function is primarily used for demographics tables
@@ -18,7 +17,7 @@
 #' x=rnorm(1000)
 #' conDataFun2(x, 3)
 
-conDataFun2 = function(y, nSignif, digits = nSignif, latex = FALSE, align.dot = FALSE) 
+conDataFun2 = function(y, digits = 3, latex = FALSE, align.dot = FALSE) 
   paste(
      formatted.signif(
         median(y),
@@ -43,4 +42,3 @@ conDataFun2 = function(y, nSignif, digits = nSignif, latex = FALSE, align.dot = 
      ")",
      sep=""
    )
-

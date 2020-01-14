@@ -13,8 +13,8 @@
 #' @param method can be either components (extracting function) or samples (for VPC)
 #' @param newdata a new data set with at the minimum the data items (independent, dependent variables, covariates, and grouping variables) required to build the nlme object.
 #' @param sample logical (default is FALSE) indicating whether to sample or not
-#' @param nSignif number of significant digits for parameter estimate table
-#' @param nSignif.CV number of significant digits for coefficient of variation in the parameter estimate table
+#' @param digits number of significant digits for parameter estimate table
+#' @param digits.CV number of significant digits for coefficient of variation in the parameter estimate table
 #' @return list with extracted nlme object information, model summary, model parameter table, or, when method = "samples", a matrix with predictions for data.frame \code{getData(obj)} or \code{newdata}.
 #' @export nlme.extract
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.diag}}, \code{\link{nlme.vpc}},  \code{\link{nlme.simPars}}, \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}
@@ -34,8 +34,8 @@ nlme.extract = function(obj,
   method = "components", 
   newdata = NULL, 
   sample = FALSE, 
-  nSignif = 3,    ## number of significant digits for output tables using signif()
-  nSignif.CV = 0  ## number of decimals reported for CV% values using round()
+  digits = 3,    ## number of significant digits for output tables using signif()
+  digits.CV = 0  ## number of decimals reported for CV% values using round()
   )
 {
   #require(MASS)
@@ -171,13 +171,13 @@ nlme.extract = function(obj,
 	fixTab = as.data.frame(summary(obj)$tTable)
 	fixTab$Parameter = row.names(fixTab)
 	fixTab = fixTab[, c("Parameter", "Value","Std.Error")]
-	fixTab$Std.Error = signif(fixTab$Std.Error, nSignif)
-	fixTab$Value = signif(fixTab$Value, nSignif)
+	fixTab$Std.Error = signif(fixTab$Std.Error, digits)
+	fixTab$Value = signif(fixTab$Value, digits)
 	fixTab$Est.se = paste(fixTab$Value, " (", fixTab$Std.Error, ")", sep = "")
 	fixTab = cbind(fixTab, data.frame(intervals(obj)$fixed[, c('lower','upper')]))
-	fixTab$CI95 = paste("(",signif(fixTab$lower,nSignif), " - ", signif(fixTab$upper, nSignif), ")", sep = "")
-  fixTab$CV = paste(round(abs(fixTab$Std.Error/fixTab$Value)*100,nSignif.CV), "%", sep = "")
-  fixTab = fixTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
+	fixTab$CI95 = paste("(",signif(fixTab$lower,digits), " - ", signif(fixTab$upper, digits), ")", sep = "")
+   fixTab$CV = paste(round(abs(fixTab$Std.Error/fixTab$Value)*100,digits.CV), "%", sep = "")
+   fixTab = fixTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
 	fixTab
 	
 	if(intervals.OK)
@@ -197,17 +197,17 @@ nlme.extract = function(obj,
 		}
 		SDs = apply(simRE, 2, function(x) sqrt(var(x)))
 	 	ranTab = data.frame(Parameter = names(attr(obj$apVar, "Pars")), 
-  		  Value = signif(ranEst, nSignif),
-        Std.Error = signif(SDs, nSignif)
+  		  Value = signif(ranEst, digits),
+        Std.Error = signif(SDs, digits)
        )
 
     tmp = rbind(do.call("rbind",intervals(obj)$reStruct), intervals(obj)$sigma)
     row.names(tmp)[nrow(tmp)] = "sigma"
     ranTab = cbind(ranTab, tmp[, c('lower','upper')])
-  	ranTab$Est.se = paste(ranTab$Value, " (", ranTab$Std.Error, ")", sep = "")
-    ranTab$CV = paste(round(abs(ranTab$Std.Error/ranTab$Value)*100,nSignif.CV), "%", sep = "")
-    ranTab$CI95 = paste("(",signif(ranTab$lower,nSignif), " - ", signif(ranTab$upper, nSignif), ")", sep = "")
-    ranTab = ranTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
+  	 ranTab$Est.se = paste(ranTab$Value, " (", ranTab$Std.Error, ")", sep = "")
+  	 ranTab$CV = paste(round(abs(ranTab$Std.Error/ranTab$Value)*100,digits.CV), "%", sep = "")
+  	 ranTab$CI95 = paste("(",signif(ranTab$lower,digits), " - ", signif(ranTab$upper, digits), ")", sep = "")
+  	 ranTab = ranTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
     ranTab	
 	}
 

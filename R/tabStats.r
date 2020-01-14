@@ -11,11 +11,11 @@
 #' @description Determines if variable is continuous or categorical and returns the appropriate summary statistics.
 #' @param x numeric vector to summarize
 #' @param BY stratification argument
-#' @param nSignif number of significant digits in continuous data summaries
+#' @param digits number of significant digits in continuous data summaries
 #' @param conFunc1  defaults to conDataFun1
 #' @param conFunc2  defaults to conDataFun2
 #' @param catFunc  defaults to catDataFun
-#' @param ndigits.categorical passed to catFunc
+#' @param digits.categorical passed to catFunc
 #' @param parName is automatically populated but the parameter name can be specified here by the user.
 #' @return Appropriate statistic for x
 #' @note This function is primarily used for demographics tables
@@ -26,19 +26,18 @@
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
 #' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]))
-#' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), parName = "Race", 
-#' ndigits.categorical=0)
+#' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), parName = "Race", digits.categorical=0)
 #' tabStats(pkpdData$sex[ok], list(dose = pkpdData$dose[ok]))
 #' tabStats(x=pkpdData$wt, BY = list(dose = pkpdData$dose))
 #' tabStats(x=pkpdData$bmi, BY = list(dose = pkpdData$dose))
 
 tabStats = function(x
                     , BY
-                    , nSignif = 3
+                    , digits = 3
                     , conFunc1 = conDataFun1
                     , conFunc2 = conDataFun2
                     , catFunc = catDataFun
-                    , ndigits.categorical = 1
+                    , digits.categorical = 1
                     , parName
 )
 {
@@ -58,7 +57,7 @@ tabStats = function(x
         aggregate(x
                   , by = BY
                   , FUN = catFunc
-                  , ndigits.categorical = ndigits.categorical)
+                  , digits.categorical = digits.categorical)
       )
     )
     row.names(tmp)[(length(names(BY))+1) : nrow(tmp)] = levels(x)
@@ -66,10 +65,10 @@ tabStats = function(x
   if(is.numeric(x))
   {
     x = c(x, x)
-    tmp1 = data.frame(t(aggregate(x, by = BY, FUN = function(y, nSignif) 
-      conFunc1(y, nSignif = nSignif), nSignif = nSignif)))
-    tmp2 = data.frame(t(aggregate(x, by = BY, FUN = function(y, nSignif) 
-      conFunc2(y, nSignif = nSignif), nSignif = nSignif)))
+    tmp1 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits) 
+      conFunc1(y, digits = digits), digits = digits)))
+    tmp2 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits) 
+      conFunc2(y, digits = digits), digits = digits)))
     tmp = rbind(tmp1, tmp2[2,])
   }
   names(tmp) = levels(as.factor(unlist(BY)))

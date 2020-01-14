@@ -2,8 +2,7 @@
 # ROXYGEN Documentation
 #' Summary: mean (SD)
 #' @param y numeric vector to summarize
-#' @param nSignif number of significant digits
-#' @param digits number of significant digits in output, alternative specification
+#' @param digits number of significant digits
 #' @param latex passed to \code{\link{formatted.signif}}
 #' @param align.dot passed to \code{\link{formatted.signif}}
 #' @note This function is primarily used for demographics tables
@@ -12,8 +11,7 @@
 #' @examples
 #' x=rnorm(1000)
 #' conDataFun1(x, 3)
-
-conDataFun1 = function(y, nSignif, digits = nSignif, formatted = TRUE, latex = FALSE, align.dot = FALSE ) 
+conDataFun1 = function(y, digits = 3, formatted = TRUE, latex = FALSE, align.dot = FALSE ) 
   paste(
      formatted.signif(
         mean(y),

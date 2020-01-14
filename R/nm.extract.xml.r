@@ -10,10 +10,10 @@
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
 #' @param filename with full path of the XML file to be parsed. This is automatically created using qP workflow standards but can be specified as well
-#' @param signif number of significant digits
-#' @param signif.se number of significant digits in SE (when point estimates = T)
-#' @param signif.cv number of significant digits in CV\% (when point.estimates = T)
-#' @param signif.est number of significant digits in parameter estimates (when point.estimates = T)
+#' @param digits number of significant digits
+#' @param digits.se number of significant digits in SE (when point estimates = T)
+#' @param digits.cv number of significant digits in CV\% (when point.estimates = T)
+#' @param digits.est number of significant digits in parameter estimates (when point.estimates = T)
 #' @param xml.extension extension of the xml file. Defaults to ".xml"
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
 #' @param zip.program full path to the executable of the zip program (7zip or winzip). Defauls to "c:/progra~1/7-zip/7z"
@@ -39,10 +39,10 @@ nm.extract.xml = function(
   run = "run1",
   path = getOption("nmDir"),
   filename = paste(path, run, paste(run, xml.extension,sep=""),sep="/"),
-  signif = 4,
-  signif.se = signif,
-  signif.cv = signif,
-  signif.est = signif,
+  digits = 3,
+  digits.se = digits,
+  digits.cv = digits,
+  digits.est = digits,
   xml.extension = ".xml",
   zip.extension = ".7z",
   zip.program = "c:/progra~1/7-zip/7z",
@@ -53,7 +53,7 @@ nm.extract.xml = function(
   quiet = TRUE)
 {
   #xml.extension = ".xml";zip.extension = ".7z";remove.obsolete = F;na.value = "n.d.";control_stream = F;  path = paste(getwd(),"NONMEM", run, sep = "/")
-  #signif = 4;signif.se = signif;signif.cv = signif;signif.est = signif;filename = paste(path,run,paste(run, xml.extension,sep=""),sep="/")
+  #digits = 4;digits.se = digits;digits.cv = digits;digits.est = digits;filename = paste(path,run,paste(run, xml.extension,sep=""),sep="/")
   #require(XML)              
   
   fz = paste(filename, zip.extension, sep = "")
@@ -80,9 +80,9 @@ nm.extract.xml = function(
   
   nmext = lapply(TMP, function(tmp, 
                                remove.obsolete
-                               , signif.est
-                               , signif.cv
-                               , signif.se
+                               , digits.est
+                               , digits.cv
+                               , digits.se
                                , na.value
                                , quiet) #tmp=TMP[[1]]
   {
@@ -170,7 +170,7 @@ nm.extract.xml = function(
     se.estimates = c(unlist(fixedse),unlist(omegase),unlist(sigmase))
     if(is.null(se.estimates)) se.estimates = rep(NA, length(point.estimates))
     cvperc = as.numeric(100*se.estimates / point.estimates)
-    cvperc = signif(cvperc, signif.cv)
+    cvperc = signif(cvperc, digits.cv)
     msel = is.nan(cvperc)
     cvperc[msel] = rep(na.value, sum(is.nan(cvperc)))
     
@@ -199,9 +199,9 @@ nm.extract.xml = function(
   }## end lapply(TMP)
   , remove.obsolete = remove.obsolete
   , na.value = na.value
-  , signif.est = signif.est
-  , signif.cv = signif.cv
-  , signif.se = signif.se
+  , digits.est = digits.est
+  , digits.cv = digits.cv
+  , digits.se = digits.se
   , quiet = quiet
   )
   ## re-order the list obtained by item instead of by estimation method
