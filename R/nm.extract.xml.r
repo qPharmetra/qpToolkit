@@ -32,6 +32,7 @@
 #' tmp$final_objective_function
 #' tmp$table
 #' tmp$monitor
+#' tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))
 
 
 nm.extract.xml = function(
@@ -62,6 +63,7 @@ nm.extract.xml = function(
              , path = file.path(path,run)
              , zip.extension = zip.extension
              , extension = xml.extension
+             , zip.program = zip.program
              , quiet = quiet
     )
 
