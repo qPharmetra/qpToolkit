@@ -351,10 +351,10 @@ nm.covplot = function(run = "run1",
     aspect = aspect,
     xlab = "continuous covariate value",
     ylab = "Parameter Value",
-    )
-    )
-  }
-  }
+   )
+  )
+ }
+}
   
   ## prepare categorical parameters
   if(!is.null(parameters) & length(cat.list)>0)
@@ -363,26 +363,39 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
-  parCatVarPlot = function(show_means = TRUE)
-  { 
+  parCatVarPlot = function(){ 
     useOuterStrips(
-      xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
-    data = catData.par,
-    horizontal = FALSE,
-    panel =  function(x,y,...)
-    {
-      panel.bwplot(x,y,...)
-      yy = tapply(y,x,mean)
-      if(show_means)llines(as.numeric(as.factor(names(yy))), yy, col = red[7])
-    },
-    scales = list(x = list(relation = "free"), y = list(relation = "free")),
-    aspect = aspect,
-    xlab = "categorical covariate value",
-    ylab = "Parameter Value"
-    ) 
+       xyplot(
+          # value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
+          value ~ as.factor(catValue) | toupper(variable) * catVariable,
+          data = catData.par, 
+          horizontal = FALSE, 
+          prepanel = function(x, y, horizontal, ...){
+             have <- if(horizontal) factor(y) else factor(x)
+             out <- list(foo = levels(have), bar = seq_along(levels(have)))
+             if(horizontal) names(out) <- c('ylim','yat')
+             if(!horizontal)names(out) <- c('xlim','xat')
+             out
+          },
+          panel = function(x, y, ...) {
+             panel.bwplot(factor(x), y, ...)
+             yy = tapply(y, x, mean)
+             yy <- yy[levels(factor(x))]
+             #browser()
+             llines(seq_along(yy), yy, col = red[7])
+          }, 
+          scales = list(
+             x = list(relation = "free"), 
+             y = list(relation = "free")
+          ),
+          aspect = aspect,
+          xlab = "categorical covariate value",
+          ylab = "Parameter Value"
+       )
     )
   }
-  }
+}
+  
   cat("processed NONMEM output and covariate data and created covariate plots of"
       , lunique(data[, id.var]), "subjects")
   return(list(  covdata = data, 
