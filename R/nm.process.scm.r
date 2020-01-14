@@ -17,6 +17,9 @@
 #' scm = nm.process.scm(myPath)
 #' names(scm)
 #' 
+#' # Fail if scm file not found
+#' foo <- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
+#' 
 #' scm$summary
 #' 
 #' # populate an appendix with scm output
@@ -36,9 +39,12 @@
 nm.process.scm = function(path) 
    #path = paste(getOption("qpExampleDir"), "scm files","Klas", sep="/")
 {
-  
-  scm = readLines(paste(path, "scmlog.txt", sep="/"))
-  scmshort = readLines(paste(path, "short_scmlog.txt", sep="/"))
+  scmpath = paste(path, "scmlog.txt", sep="/")
+  if(!file.exists(scmpath))stop('cannot find ', scmpath)
+  scm = readLines(scmpath)
+  scmshortpath = paste(path, "short_scmlog.txt", sep="/")
+  if(!file.exists(scmshortpath))stop('cannot find ', scmshortpath)
+  scmshort = readLines(scmshortpath)
   model = which(substring(scm,1,5) == "MODEL")
   nothing = which(scm == "")
   nothing = sapply(model, function(x,y) y[y>x][1], y = nothing)
