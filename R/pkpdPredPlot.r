@@ -30,8 +30,6 @@ pkpdPredPlot = function(doses, t.doses, t.obs, pk.func, e.func, parms, output = 
    ypr.e = pk.pred(doses, t.doses, t.obs, e.func, parms) 
    ypr.sd.e = pk.pred(doses[1], t.doses[1], t.obs, e.func, parms) 
 
-   ## CHECK ypr, ypr.sd not defined, but used below
-   
    if(!output){
    plot(rep(t.obs,4), c(ypr.c, ypr.sd.c, ypr.e, ypr.sd.e), type = "n", xlab = "Time (unit)"
         ,ylab = c("Concentration & Effect"))

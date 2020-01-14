@@ -276,7 +276,7 @@ nlme.predict = function(
       return(ypr)      
     },  form = objectForm, 
         data = mpData, 
-        fxpars = uncPars,                     
+        fxpars = uncPars,
         nms.fix = names(fixpars), 
         theETAS = etas[, names(etas) %nin% gpNames], 
         nms.eta = names(etas)[names(etas) %nin% gpNames],
