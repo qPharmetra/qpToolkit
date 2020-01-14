@@ -4,7 +4,7 @@
 # output:   character vector
 # note:     is used for demographics tables
 
-## tabStats 
+## tabStats
 
 # ROXYGEN Documentation
 #' Table Statistics
@@ -19,10 +19,10 @@
 #' @param parName is automatically populated but the parameter name can be specified here by the user.
 #' @return Appropriate statistic for x
 #' @note This function is primarily used for demographics tables
-#' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabSummarize}} 
+#' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabSummarize}}
 #' @export
 #' @importFrom stats aggregate
-#' @examples  
+#' @examples
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
 #' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]))
@@ -46,7 +46,7 @@ tabStats = function(x
   BY = lapply(BY, function(by) c(as.character(by), rep("All", length(by))))
   if(is.factor(x) | is.character(x))
   {
-    x = unlist(list(x,x)) 
+    x = unlist(list(x,x))
     if(is.character(x)) x = as.factor(x)
     tmp = data.frame(
       t(
@@ -60,9 +60,9 @@ tabStats = function(x
  }
   if (is.numeric(x)) {
     x = c(x, x)
-    tmp1 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits) 
+    tmp1 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits)
       conFunc1(y, digits = digits), digits = digits)))
-    tmp2 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits) 
+    tmp2 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits)
       conFunc2(y, digits = digits), digits = digits)))
     tmp = rbind(tmp1, tmp2[2,])
   }
@@ -71,7 +71,7 @@ tabStats = function(x
   names(tmp2) = "parameter"
   tmp2$parameter = row.names(tmp)
   tmp2$parameter[1] = parName
-  if (is.numeric(x)) 
+  if (is.numeric(x))
     tmp2$parameter = c(parName, "Mean (SD)", "Median (range)")
   tmp = cbind(tmp2, tmp)
   row.names(tmp) = 1:nrow(tmp)

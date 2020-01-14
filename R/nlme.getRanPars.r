@@ -8,7 +8,7 @@
 #' NLME random effects and covariance matrix
 #' @description Extracts random effect point estimate and variance-covariance matrix of an nlme object
 #' @param object an nlme object
-#' @return list with fixed effect point estimates and variance-covariance matrix 
+#' @return list with fixed effect point estimates and variance-covariance matrix
 #' @export nlme.getRanPars
 #' @seealso \code{\link{nlme.getFixPars}}, \code{\link{nlme.simPars}}, \code{\link{nlme.extract}}
 #' @examples

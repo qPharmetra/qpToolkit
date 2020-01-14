@@ -12,26 +12,26 @@
 #' @examples
 #' ## simplest form
 #' repeat.nth(c(1,1,1,1,2,2,2))
-#'            
+#'
 #' ## adding a prefix
 #' repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=1)
 #' repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=2)
 #' repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=3)
-#'            
+#'
 #' ## addding a suffix
 #' repeat.nth(c(1,1,1,1,2,2,2), after="CYCLE", pos=1)
 #' repeat.nth(c(1,1,1,1,2,2,2), after="CYCLE", pos=2)
 #' repeat.nth(c(1,1,1,1,2,2,2), after="CYCLE", pos=3)
-#'  
+#'
 #' ## both
-#' repeat.nth(c(1,1,1,1,2,2,2), before="BI", after="CYCLE", pos=1)      
-           
-repeat.nth = 
+#' repeat.nth(c(1,1,1,1,2,2,2), before="BI", after="CYCLE", pos=1)
+
+repeat.nth =
   function(x, replacement = "", before = "", after = "", pos = 1)
   {
     ## before and after agruments allow to expand on the result, forexample:
     ## repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=1) become:
-    ## [1] "CYCLE1" ""       ""       ""       "CYCLE2" ""       ""      
+    ## [1] "CYCLE1" ""       ""       ""       "CYCLE2" ""       ""
     dups = duplicated(x)
     if(pos<1 | pos>length(x)) pos = 1
     nvec = ifelse(dups,replacement, paste(before,x,after, sep=""))

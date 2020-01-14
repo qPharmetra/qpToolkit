@@ -11,7 +11,7 @@
 #' @examples
 #' library(xtable)
 #' formatted.signif(c(5,4.99, 4.99999,5.0000001,5001),4)
-#' 
+#'
 #' numvec = c(5,4.99, 4.99999,5.0000001,5001, 0.00005,101,39.9)
 #' print(
 #'    xtable(

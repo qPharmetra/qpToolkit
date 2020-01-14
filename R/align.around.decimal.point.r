@@ -2,7 +2,7 @@
 # purpose:  takes numeric vector and returns (LATEX format) character vector enabling tabulation in LATEX with the values centered around the decimal point
 # input:    numeric vector
 # output:   character vector
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Padding numeric vector around decimal point
@@ -19,10 +19,10 @@
 
 align.around.decimal.point  =
 function(x, sep = "\\.", len)
-{ 
+{
   xx = unlist(lapply(lapply(paste(x), unPaste, sep = sep), function(x) x[[1]]))
   if(missing(len)) len = max(nchar(xx))
-  sapply(seq(along=x), function(y, x, yy, len) paste(paste("$\\phantom{",      
+  sapply(seq(along=x), function(y, x, yy, len) paste(paste("$\\phantom{",
     paste(rep("0",(len-nchar(yy[y]))), collapse = ""), "}$", sep = ""),
     x[y], sep = ""), yy = xx, x = x, len = len)
 }

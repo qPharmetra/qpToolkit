@@ -1,15 +1,15 @@
 #' Format a tabulated summary for LaTeX
-#' 
+#'
 #' @param x output from \code{\link{tabSummarize}} of class \code{demoTable}
 #' @param \dots ignored
 #' @param formula the same formula as used to create the \code{tabSummarize} output
-#' @return Table with summarized data formatted for inclusion in LaTeX 
+#' @return Table with summarized data formatted for inclusion in LaTeX
 #' @seealso \code{\link{tabStats}}, \code{\link{tabSummarize}}
 #' @note This function is primarily used for demographics tables
 #' @export
 #' @importFrom nlme getCovariateFormula
 #' @importFrom Hmisc %nin% label<-
-#' @examples 
+#' @examples
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE

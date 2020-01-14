@@ -1,10 +1,10 @@
 
 # ROXYGEN Documentation
-#' Panel function for bubble plots 
+#' Panel function for bubble plots
 #' @description  Panel function to create bubble plots where the symbol size varyies in proportion to a variable
 #' @param x,y numeric vectors x and y
 #' @param n the column containing the sample ie of each record
-#' @param cols bubble colors 
+#' @param cols bubble colors
 #' @param syms bubbles symbol types
 #' @param groups grouping levels
 #' @param subscripts subscripts
@@ -44,7 +44,7 @@ panel.superpose.bubble = function(x, y, n, groups, subscripts, cols=NULL, syms=N
     ds = ds[order(ds$cols),]  # Put strongest colors on top
     ugrps = unique(ds$groups)
   }
-  
+
   for(i in seq_along(ugrps))  ## for each group level do the following
   {
     xx = ds$x[ds$groups == ugrps[i]]
@@ -56,10 +56,10 @@ panel.superpose.bubble = function(x, y, n, groups, subscripts, cols=NULL, syms=N
     } else{
       mycol = unique(ds$cols[ds$groups==ugrps[i]])
       sym = unique(ds$syms[ds$groups==ugrps[i]])
-    }   
+    }
     llines(xx[order(xx)], yy[order(xx)], col = mycol, type = "l", ...)
     for(dot in 1:length(xx))  ## for each data point in the group do:
       lpoints(xx[dot], yy[dot], cex = ifelse(is.na(nn[dot]),1,nn[dot]), col = mycol, pch=sym, ...)
   } ## close groups loop
-}       
+}
 

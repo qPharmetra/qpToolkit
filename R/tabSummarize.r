@@ -3,20 +3,20 @@
 #' @param formula formula specifying what to summarize by what
 #' @param data data to summarize
 #' @param digits number of significant digits in output
-#' @param extra.blank.line a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility 
+#' @param extra.blank.line a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility
 #' @param digits.categorical passed to \code{\link{tabStats}}
 #' @return Table with summarized data, of class \code{demoTable}
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabStats}}
 #' @note This function is primarily used for demographics tables
 #' @export
 #' @importFrom nlme nlme getResponseFormula getCovariateFormula
-#' @examples 
+#' @examples
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
 #' tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], digits = 3)
 #' # check the categorical summary for race
-#' round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], 
+#' round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok],
 #' pkpdData$dose[ok]), 2, sum) * 100)
 #' # OK
 #' myFormula =  dose ~ race + wt + bmi + sex
@@ -39,25 +39,25 @@ tabSummarize = function(  formula
               , allX = allX
   )
   names(BY) = allX
-  
+
   YYY = lapply(allY, function(yyy, data) eval(as.name(yyy), data), data = data)
   names(YYY) = allY
   theData = do.call("rbind"
-                    , lapply(1:length(YYY), 
+                    , lapply(1:length(YYY),
                             function(z
                                      , YYY
                                      , BY
                                      , extra.blank.line
                                      , digits
-                                     , digits.categorical) 
-                            {                                          
+                                     , digits.categorical)
+                            {
                               stats = tabStats(x = YYY[[z]]
                                                , BY = BY
                                                , parName = names(YYY)[z]
                                                , digits = digits
                                                , digits.categorical = digits.categorical
                               )
-                              if(extra.blank.line == TRUE) 
+                              if(extra.blank.line == TRUE)
                               {
                                 EBL = stats[1,]
                                 EBL[1,] = rep("", ncol(stats))
@@ -73,11 +73,11 @@ tabSummarize = function(  formula
                     )
   )
   row.names(theData) = 1 : nrow(theData)
-  
+
   theData$parameter = full.names(theData$parameter)
-  names.order = as.character(unique(eval(as.name(allX[1]), data))) ## sorting properly 
+  names.order = as.character(unique(eval(as.name(allX[1]), data))) ## sorting properly
   theData = theData[, c("parameter", names.order, "All")]
-  
+
   ## insert (N=xxx)
   ndf = theData[1,]
   NNN = tapply(YYY[[1]], BY, length)

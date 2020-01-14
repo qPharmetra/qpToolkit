@@ -31,12 +31,12 @@
 #' @import lattice
 
 panel.nonmem.vpc = function(
-  x, y, OBS, vpc, subscripts, logY, logX, showPredAs, 
-  showObsDots, showObsLines, xCov, 
+  x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
+  showObsDots, showObsLines, xCov,
  col.scheme, obscex.dot, obspch.dot, lineType, central.lwd, ...
  ){
   info = data.frame(attr(y, "other"))
-  
+
   if(showPredAs == "lines")
   {
     yl = info$ypred.lo
@@ -47,7 +47,7 @@ panel.nonmem.vpc = function(
     llines(x,yh, col = col.scheme$pred$outer,  type = lineType, lwd = 1.5)
     llines(x,y, ...,  type = lineType, col = col.scheme$pred$central, lwd = 1.5)
   }
-  
+
   if(showPredAs == "area")
   {
     yl = info$ypred.lo
@@ -56,7 +56,7 @@ panel.nonmem.vpc = function(
     #if(logX==T) { x = log10(x)}
     lpolygon(c(x,rev(x)), c(yl,rev(yh)), col = col.scheme$pred$area, border = FALSE)
   }
-  
+
   if(showPredAs == "xpose")
   {
     yl = info$ypred.lo
@@ -66,7 +66,7 @@ panel.nonmem.vpc = function(
     yhd = info$ypred.hi.dn
     yhu = info$ypred.hi.up
     ycd = info$ypred.cen.dn
-    ycu = info$ypred.cen.up    
+    ycu = info$ypred.cen.up
     if(logY) {
       yh = log10(yh); yl = log10(yl);yld = log10(yld)
       ylu = log10(ylu);yhd = log10(yhd); yhu = log10(yhu);ycd = log10(ycd); ycu = log10(ycu)
@@ -78,12 +78,12 @@ panel.nonmem.vpc = function(
     llines(x, yl,  type = lineType, col = col.scheme$pred$outer, lwd = 1.5)
     llines(x, yh,  type = lineType, col = col.scheme$pred$outer, lwd = 1.5)
   }
-  
+
   ## central predicted tendency
   llines(x,y, ...,  type = "l", col = col.scheme$pred$central, lwd = central.lwd)
-  
-  ## plot observations 
-  mysubs = OBS$strata_no == unique(vpc$strata_no[subscripts]) 
+
+  ## plot observations
+  mysubs = OBS$strata_no == unique(vpc$strata_no[subscripts])
   #subscripts = vpc$strata_no == 1
   head(OBS)
   if(logY) OBS[mysubs, 2] = log10(OBS[mysubs, 2])
@@ -91,15 +91,15 @@ panel.nonmem.vpc = function(
   if(showObsDots) panel.xyplot(OBS[mysubs, 3], OBS[mysubs, 2], ..., cex = obscex.dot,
                                pch = obspch.dot, col = col.scheme$obs$dot, type = 'p')
   if(showObsLines){
-    if(logY) {vpc[, c('yobs.lo','yobs.cen', 'yobs.hi')] = 
+    if(logY) {vpc[, c('yobs.lo','yobs.cen', 'yobs.hi')] =
                    log10(vpc[, c('yobs.lo','yobs.cen', 'yobs.hi')])}
     if(logX) {vpc[, xCov] = log10(vpc[, xCov])}
-    
-    panel.xyplot(vpc[subscripts,xCov], vpc$yobs.lo[subscripts], ...,  
+
+    panel.xyplot(vpc[subscripts,xCov], vpc$yobs.lo[subscripts], ...,
                  col =  col.scheme$obs$line, type = lineType, lty = 2)
-    panel.xyplot(vpc[subscripts,xCov], vpc$yobs.cen[subscripts], ..., 
+    panel.xyplot(vpc[subscripts,xCov], vpc$yobs.cen[subscripts], ...,
                  col =  col.scheme$obs$line, type = lineType)
-    panel.xyplot(vpc[subscripts,xCov], vpc$yobs.hi[subscripts], ...,  
+    panel.xyplot(vpc[subscripts,xCov], vpc$yobs.hi[subscripts], ...,
                  col =  col.scheme$obs$line, type = lineType, lty = 2)
   }
 }

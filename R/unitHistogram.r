@@ -20,7 +20,7 @@
 #' unitHistogram(myvals, xlab = "My Values", cex.lab = 1.25)
 
 
-unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type = "box", 
+unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type = "box",
   col.hist = "#D7D7D7", xlim = NULL, ylab = NULL, ...)
 {
   ## create a histogram
@@ -31,7 +31,7 @@ unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type 
   if(is.null(xlim)) xLimits = c((min(x) - offset), max(x))  else xLimits = xlim
   yLabel = if(is.null(ylab)) "normalized frequency"  else ylab
 
-  plot(as.numeric(names(bar.lengths)), bar.lengths, type = 'n',  ylab = yLabel, 
+  plot(as.numeric(names(bar.lengths)), bar.lengths, type = 'n',  ylab = yLabel,
     ylim = c(0,1), xlim = xLimits, lwd = lwd.bar, ...)
   axis(2)
   xx = as.numeric(names(bar.lengths))
@@ -44,11 +44,11 @@ unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type 
       segments(x0 = xx[i]-offset, x1 = xx[i]+offset, y0 = bar.lengths[i], y1 = bar.lengths[i], col = col.hist)
       segments(x0 = xx[i]-offset, x1 = xx[i]+offset, y0 = 0, y1 = 0, col = col.hist)
     } else {
-      polygon(x = c(xx[i]+offset, xx[i]-offset, xx[i]-offset, xx[i]+offset), 
+      polygon(x = c(xx[i]+offset, xx[i]-offset, xx[i]-offset, xx[i]+offset),
               y = c(0,0, bar.lengths[i], bar.lengths[i]),
               col = col.hist, border = TRUE, angle = -1, density = -1)
     }
-    
+
   }
 }
 

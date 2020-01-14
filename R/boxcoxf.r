@@ -1,8 +1,8 @@
 # name:     boxcoxf
 # purpose:  transforms vector to Box-Cox transformation
-# input:    numeric vector, 
+# input:    numeric vector,
 # output:   numeric vector - boxcox tranformed input
-# note:     
+# note:
 
 
 

@@ -2,7 +2,7 @@
 # purpose:  computes geometic mean on inout
 # input:    numeric vector
 # output:   numeric vector
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Geometric Mean

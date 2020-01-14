@@ -1,7 +1,7 @@
 #' qPharmetra Colors
-#' 
+#'
 #' A set of qPharmetra colors to be used for plotting
-#' 
+#'
 #' @family qpcolors
 #' @examples
 #' ## the greens and the blues
@@ -29,7 +29,7 @@
 #'           col = gray[i], angle = -1, density = -1, border=0)
 #'   text(i,-0.375,paste("gray[",i,"]", sep = ""), cex = 0.6, col = gray[cols][i])
 #' }
-#' 
+#'
 #' library(lattice)
 #' lapply(list(qp.colors,qp.colors.sorted), function(my.colors)
 #' xyplot(yval ~ xval | color
@@ -65,12 +65,12 @@
 'qp.colors'
 
 #' qP Colors Sorted
-#' 
+#'
 #' A sorted version of qP colors
 'qp.colors.sorted'
 
 #' qp.blue
-#' 
+#'
 #' @family qpcolors
 'qp.blue'
 # foo <- Hmisc::Cs(
@@ -331,7 +331,7 @@
 #' abline.color.box (Autograph)
 #'
 #' @family qpcolors
-"abline.color.box" 
+"abline.color.box"
 
 #' pred.color (Autograph)
 #'

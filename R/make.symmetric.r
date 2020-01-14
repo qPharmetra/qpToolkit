@@ -1,18 +1,18 @@
 # name:     make.symmetric
 # purpose:  create symmetircal matrix of lower or upper traingle of a matrix
-# input:    vector of cumsum(ncol(matrix)), optional "upper" or "lower" 
-# output:   symmetrical matrix 
-# note:          
+# input:    vector of cumsum(ncol(matrix)), optional "upper" or "lower"
+# output:   symmetrical matrix
+# note:
 
 # ROXYGEN Documentation
 #' Creat symmetrical matrix
 #' @description Create symmetrical matrix of lower or upper traingle of a matrix
 #' @param values vector of length cumsum(ncol(matrix))
-#' @param triangle defaulting to 'upper', can also take the value 'lower' 
+#' @param triangle defaulting to 'upper', can also take the value 'lower'
 #' @return A matrix of dimension ncol x ncol
 #' @seealso \code{\link{xml.Extract.NM.Matrix}}
 #' @export
-#' @examples 
+#' @examples
 #'   make.symmetric(c(0.12,
 #'                    0.02,1.02,
 #'                    0.23,-0.3,0.23))

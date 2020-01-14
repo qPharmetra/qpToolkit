@@ -2,7 +2,7 @@
 # purpose:  set the trellis strip color scheme to different shades of grey
 # input:    none
 # output:   lattice panel settings (invisible)
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Set strip colors to gray scales

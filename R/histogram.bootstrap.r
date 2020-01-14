@@ -1,4 +1,4 @@
-globalVariables(c('minimization.successful',  'covariance.step.successful', 
+globalVariables(c('minimization.successful',  'covariance.step.successful',
  'covariance.step.warnings',  'estimate.near.boundary'
   ))
 # name:     histogram.bootstrap
@@ -30,7 +30,7 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' @param histCol   Histogram bar color
 #' @param densityCol  Color of polygon
 #' @param excl.id  Exclude samples that have this individual
-#' @param excl.columns What elements should not be shown? 
+#' @param excl.columns What elements should not be shown?
 #' @param digits number of significant digits
 #' @param ... Optional arguments passed on to hist
 #' @return Histograms of bootstrapped parameter estimates
@@ -42,12 +42,12 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' structure.filename = "bootstrap/raw_results_structure")
 #' temp.dir = tempdir()
 #' cat(temp.dir)
-#' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") 
+#' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test")
 #' ## now take a look there
 histogram.bootstrap = function(
   bootstrap,
   filename.prefix = "bootstrapPage",
-  path, 
+  path,
   incl.ids        = NULL,
   min.failed      = FALSE,      # do we want to omit minimization failed runs?
   cov.failed      = FALSE,      # do we want to omit covariance failed runs?
@@ -56,7 +56,7 @@ histogram.bootstrap = function(
   showoriginal    = TRUE,       # show line for original estimate
   showmean        = TRUE,       # show line for mean
   obsCentralCol   = "blue",
-  bootCentralCol  = "red", 
+  bootCentralCol  = "red",
   outerCol        = "darkslategray",
   showmedian      = FALSE,      # show line for median
   show95CI        = TRUE,       # show line for 95 % confidence interval (percentile)
@@ -69,14 +69,14 @@ histogram.bootstrap = function(
   digits           = 3,
   ...                           # arguments passed on to hist
 )
-{ 
+{
   if(missing(path)) path = bootstrap$path
-  
+
   p1 = bootstrap$bootstrap
   ## find ofv column index
   index <- 0
   seen  <- FALSE
-  
+
   for (i in names(p1)) {
     if (!seen) {
       index <- index + 1
@@ -85,57 +85,57 @@ histogram.bootstrap = function(
       seen <- TRUE
     }
   }
-  
+
   ## get number of parameters
   n       <- length(colnames(p1)) - index
   nparams <- length(colnames(p1))
-  
+
   incl.flag <- rep(0,length(rownames(p1)))
   for( i in excl.id ) {
     incl.flag <- incl.flag + rowSums( incl.ids == i )
   }
   p1 <- p1[(incl.flag==0),]
-  
+
   ## subset bootstrap based on certain convergence criteria
-  if (min.failed) {p1 <- subset(p1, minimization.successful == 1)} 
+  if (min.failed) {p1 <- subset(p1, minimization.successful == 1)}
   if (cov.failed) {p1 <- subset(p1, covariance.step.successful == 1)}
   if (cov.warnings) {p1 <- subset(p1, covariance.step.warnings == 0)}
   if (boundary) {p1 <- subset(p1, estimate.near.boundary == 0)}
-  
+
   ## separate out original model fit
   o1 <- subset(p1, p1$model == 0)
   p1 <- subset(p1, p1$model != 0)
-  
+
   ## exclude columns that do not need to be 'histogrammed'
   p1 = p1[, names(p1) %nin% excl.columns]
   o1 = o1[, names(o1) %nin% excl.columns]
-  
+
   total  <- 0
   bspage <- 0
-  
+
   for (i in 1:ncol(p1)) {
     if (mode(p1[[i]]) == "numeric" &&
           sum(p1[[i]],na.rm=TRUE)) {
       sp <- summary(p1[[i]])
       dp <- stats::density(p1[[i]], na.rm=TRUE)
       parmlabel <- names(p1)[i]
-      
+
       if (total == 0) {
         bspage <- bspage + 1
-        grDevices::png(filename=paste(path,paste(filename.prefix, bspage, ".png", sep=""), 
+        grDevices::png(filename=paste(path,paste(filename.prefix, bspage, ".png", sep=""),
                            sep = "/"), height=18, width=18, units = "cm",res = 600)
         graphics::par(mfrow = c(3,3))
       }
       total <- total + 1
-      
+
       qu <- stats::quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm=TRUE)
-      
-      legend=paste("n = ", nrow(p1), sep="")  
+
+      legend=paste("n = ", nrow(p1), sep="")
       if (showmean) {legend=paste(legend, "; Mean = ", sp[4], sep="")}
       if (showmedian) {legend=paste(legend, "; Median = ", sp[3], sep="")}
       if (showoriginal) {legend=paste(legend, "; Orig = ", o1[[i]], sep="")}
-      
-      graphics::hist(p1[[i]], 
+
+      graphics::hist(p1[[i]],
            main = parmlabel,
            xlab = "",
            col = histCol,
@@ -144,9 +144,9 @@ histogram.bootstrap = function(
            probability = TRUE,
            sub=legend,
            ...)
-      
+
       graphics::lines(dp, lwd=1, lty=3, col=densityCol)
-      
+
       if (showquart) {
         graphics::abline(v=sp[2], lwd= 1, lty=3, col=outerCol) ## 1st quartile
         graphics::abline(v=sp[5], lwd= 1, lty=3, col=outerCol) ## 3rd quartile
@@ -163,12 +163,12 @@ histogram.bootstrap = function(
       if (show95CI) {
         graphics::abline(v=qu[1], lty=4, lwd=1, col=outerCol) ## 2.5% CL
         graphics::abline(v=qu[2], lty=4, lwd=1, col=outerCol) ## 97.5% CL
-        graphics::text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = digits), cex = .8, 
+        graphics::text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = digits), cex = .8,
              adj = c(0,0), pos='2')
-        graphics::text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = digits), cex = .8, 
+        graphics::text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = digits), cex = .8,
              adj = c(0,0), pos='4')
       }
-      
+
       if (total == 9) {
         total <- 0
         grDevices::dev.off()

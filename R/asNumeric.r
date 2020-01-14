@@ -1,8 +1,8 @@
 # name:     asNumeric
-# purpose:  as.numeric on numeric elements not in missing.code argument to prevent warnings 
+# purpose:  as.numeric on numeric elements not in missing.code argument to prevent warnings
 # input:    numeric or character vector
 # output:   numeric vector, missing code entries are returned as numeric NA
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Convert character to numeric, with NA substitution

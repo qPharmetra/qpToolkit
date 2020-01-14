@@ -6,7 +6,7 @@
 #' \item{NONMEM post-processing}
 #' \item{Data tables}
 #' \item{R qualification}}
-#' 
+#'
 #' @section qpToolkit functions:
 #' Watch here for forthcoming summaries of the qpToolkit functions.
 #'

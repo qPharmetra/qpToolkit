@@ -2,7 +2,7 @@
 # purpose:  predict partial residuals  of an nls object
 # input:    funcion to create and summarize partial residuals across and the nls object
 # output:   list with object, partial residuals and predicted output
-# note:     plot.fit is the associated plotting routine for the output of this function 
+# note:     plot.fit is the associated plotting routine for the output of this function
 
 # ROXYGEN Documentation
 #' Predict partial residuals from an nls object
@@ -14,18 +14,18 @@
 #' @return a graph or a multi-level list with observed and predicted output (class \code{c('nlsfit','fit','list')})
 #' @export
 #' @importFrom Hmisc summarize smean.cl.normal
-#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getData getCovariateFormula fixef ranef
 #' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula
 #' @importFrom stats coef predict resid approx
 #' @seealso \code{\link{plot.fit}}, \code{\link{nlme.predict}}
 #' @examples
 #' DNase1 <- subset(DNase, Run == 1)
-#' 
+#'
 #' ## using a selfStart model
 #' fm1DNase1 <- nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 #' summary(fm1DNase1)
-#' 
+#'
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
 #' plot(fm1DNase1.predict)
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
@@ -71,7 +71,7 @@ nls.predict = function(func,
   newdata = as.data.frame(newdata[idx, ])
   newdata[, names(newdata) %in% xfVarNames] = c(xnew)
   names(newdata)
-  
+
   ## predictions
   newdata$ypr = predict(object, newdata)
 
@@ -103,7 +103,7 @@ nls.predict = function(func,
   ## uncertainty predictions??
   ## to be merged in from predictNLS2
   uncPred = NULL
-    
+
   if(length(gfVarNames)==0){
     obsData$partres = approx(qYPred[, xfVarNames], qYPred$yPrd, xObs)$y + theResiduals
     } else {
@@ -117,12 +117,12 @@ nls.predict = function(func,
 
   ## summarize partial residuals
   qpar = Hmisc::summarize(obsData$partres, sList.obs, smean.cl.normal, stat.name = "Mean")
-  
-  out <- list(  object.name = deparse(substitute(object)), 
-                level = 0, 
+
+  out <- list(  object.name = deparse(substitute(object)),
+                level = 0,
                 method = "partial.residuals",
-                func = func, 
-                object = object, 
+                func = func,
+                object = object,
                 obsData = obsData, ## contains observed data AND partial residuals
                 pred = list(obs = qobs, pred = qypr, partres = qpar, uncPred = uncPred)
               )

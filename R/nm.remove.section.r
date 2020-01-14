@@ -11,7 +11,7 @@
 #' nm.remove.section("EST"
 #'    , read.mod("example1", path = getOption("qpExampleDir"), file.ext=".ctl")
 #'    )[[2]]
-#' 
+#'
 nm.remove.section = function(secNames, ctl){
     # remove a section of a control stream
     # secNames = character vector containing the names of the sections to remove
@@ -19,7 +19,7 @@ nm.remove.section = function(secNames, ctl){
     #
     # output is a list -- ctl is the edited control stream
     # savSecs is a list containing the sections that were removed
-    
+
     ## check if they are there
     check.if.they.are.there = sapply(1:length(secNames), function(i, secNames,ctl){
       str = paste("\\$", secNames[i], sep="")
@@ -27,7 +27,7 @@ nm.remove.section = function(secNames, ctl){
     }, secNames = secNames, ctl = ctl)
     secNames = secNames[check.if.they.are.there]
     saveSecs = vector("list", length(secNames))
-    
+
     LEN = length(secNames)
     for(i in 1:LEN){ #i=9 ;LEN=7
       str = paste("\\$", secNames[i], sep="")
@@ -50,4 +50,4 @@ nm.remove.section = function(secNames, ctl){
       }
     }
     return(list(ctl=ctl, saveSecs=saveSecs))
-  } 
+  }

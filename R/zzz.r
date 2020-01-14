@@ -2,10 +2,10 @@
 
 .onLoad <- function(libname, pkgname){
   #check and set default options
-  
+
   if(is.null(getOption("nmDir"))) options(nmDir=file.path(getwd(),"NONMEM"))
   if(getOption("stringsAsFactors")) {
-    options(stringsAsFactors = FALSE) 
+    options(stringsAsFactors = FALSE)
   }
    if(Sys.getenv("UNZIP_CALL")=="" |Sys.getenv("ZIP_CALL")=="" ){
      if(!file.exists('c:/progra~1/7-zip/7z.exe')){
@@ -22,7 +22,7 @@
    } else{
       options(zip.call = Sys.getenv("ZIP_CALL"))
    }
-  
+
 }
 
 .onAttach <- function(libname, pkgname){
@@ -32,7 +32,7 @@
   packageStartupMessage("Installation Qualification disabled.  Unvalidated System.")
   packageStartupMessage("setting stringsAsFactors to FALSE as qPharmetra default.")
   if(getOption("stringsAsFactors")) {
-     options(stringsAsFactors = FALSE) 
+     options(stringsAsFactors = FALSE)
   }
   if(is.null(getOption("qpExampleDir"))) options(qpExampleDir=file.path(path.package("qpToolkit"),"NONMEM"))
 }

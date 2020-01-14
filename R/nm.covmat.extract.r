@@ -20,14 +20,14 @@
 #' names(run1.covmat[[1]])
 #' lapply(run1.covmat, dim)
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
-#' 
+#'
 
 nm.covmat.extract = function(run, path = getOption("nmDir"))
 {
   internalDir = paste(path, run,run,sep = "/")
-  covText   = scan(file = paste(internalDir,".cov", sep = ""), 
+  covText   = scan(file = paste(internalDir,".cov", sep = ""),
     what = "character",sep = "\n", quiet = TRUE)
-  locs = grep("TABLE", substring(covText, 1,6))   
+  locs = grep("TABLE", substring(covText, 1,6))
     ## define locations for each varcov table in the text
   covNames = substring(unlist(unPaste(covText[locs], ":")[[2]]),2)
   int = unPaste(covText[locs], sep = ":")[[1]]
@@ -37,7 +37,7 @@ nm.covmat.extract = function(run, path = getOption("nmDir"))
   locs = c(locs, length(covText)); locations = list(NULL)
   for(i in 1:length(locs[-length(locs)])){
     locations[[i]] = covText[seq((locs[i]+1),(locs[i+1]))]}
-  covText = lapply(locations,function(x) if(length(grep("TABLE", x))>0) 
+  covText = lapply(locations,function(x) if(length(grep("TABLE", x))>0)
     x[-grep("TABLE", x)] else x)
   names(covText) = tabnums
   covmat = lapply(covText, extract.varcov)
@@ -45,4 +45,4 @@ nm.covmat.extract = function(run, path = getOption("nmDir"))
   return(covmat)
 }
 
- 
+

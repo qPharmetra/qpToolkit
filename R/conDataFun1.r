@@ -11,12 +11,12 @@
 #' @examples
 #' x=rnorm(1000)
 #' conDataFun1(x, 3)
-conDataFun1 = function(y, digits = 3, formatted = TRUE, latex = FALSE, align.dot = FALSE ) 
+conDataFun1 = function(y, digits = 3, formatted = TRUE, latex = FALSE, align.dot = FALSE )
   paste(
      formatted.signif(
         mean(y),
-        digits = digits, 
-        latex = latex, 
+        digits = digits,
+        latex = latex,
         align.dot = align.dot
        ),
      " (",
@@ -26,7 +26,7 @@ conDataFun1 = function(y, digits = 3, formatted = TRUE, latex = FALSE, align.dot
         latex = latex,
         align.dot = align.dot
       ),
-     ")", 
+     ")",
      sep=""
     )
 

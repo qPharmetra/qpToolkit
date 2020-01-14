@@ -25,7 +25,7 @@
 #' , panel = function(x,y, ...)
 #' {
 #'   panel.xyplot(x,y,..., col = "gray", pch = 18, type = "b", cex = 1)
-#'   sel = length(x) 
+#'   sel = length(x)
 #'   sel = seq(sel-3,sel)
 #'   panel.thalf(x[sel],y[sel],...,lwd = 2)
 #'   lpoints(x,y, col = steel)
@@ -48,7 +48,7 @@ panel.thalf = function(x, y, ...,
     xx=range(x)
     yy=coefs[1] + coefs[2]*xx
     panel.xyplot(xx, yy, type="l", ..., col = line.col)
-    
+
     ## add half life as text to each panel
     coefs = coef(lm(y ~ x))
     thalf = signif(log10(2)/abs(coefs[2]), digits)

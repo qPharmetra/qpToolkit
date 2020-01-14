@@ -13,7 +13,7 @@
 #' @description Get the covariance matrix from a completed NONMEM run. If the the run has been zipped, the file will be extracted, then parsed and thereafter the file (not the zipped file) will be discarded.
 #' @param run run rootname (e.g. run1)
 #' @param path directory where run output resides
-#' @param ext extension of the covariance 
+#' @param ext extension of the covariance
 #' @param zip.extension extension of the zip program. Defaults to "7z"
 #' @return list with covariance matrices for each estimation method
 #' @export
@@ -22,8 +22,8 @@
 #' get.covmat("example2", path = getOption("qpExampleDir"))
 
 get.covmat = function(
-  run, 
-  path = paste(getwd(),"NONMEM", sep="/"), 
+  run,
+  path = paste(getwd(),"NONMEM", sep="/"),
   ext = "cov",
   zip.extension = "7z",
 )
@@ -78,7 +78,7 @@ if (F) {
   #THETA1        0.063226400    5.6722100  8.40495e-04 -4.34006e-04            0  3.39546e-04  0.013611800 -3.75462e-03 -2.00030e-03            0 -1.47336e-04            0
   #...
   #OMEGA(2,2)    0.011386500
-  
+
   # NOTE the following produces JUST the matrix, not the
   x = get.covmat("run118")
   names(x)
@@ -90,7 +90,7 @@ if (F) {
   #             THETA1       THETA2       THETA3       THETA4       THETA5       THETA6       THETA7       THETA8       THETA9       SIGMA(1,1)   OMEGA(1,1)   OMEGA(2,1)
   #THETA1        0.063226400    5.6722100  8.40495e-04 -4.34006e-04            0  3.39546e-04  0.013611800 -3.75462e-03 -2.00030e-03            0 -1.47336e-04            0
   #THETA2        5.672210000 3392.1800000  1.13212e+00 -1.22182e-01            0 -1.43966e-01  3.469120000 -8.74302e-02 -2.61601e-01            0  3.28763e-01
-  
+
   class(x$`First Order Conditional Estimation with Interaction`)
   #data.frame
 }

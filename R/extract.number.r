@@ -10,7 +10,7 @@
 #' If multiple blocks of numeric input exist wthin the input, only the first is parsed
 #' @param x A character or numeric string.
 #' @return A numeric vector if the input has multiple character blocks.
-#' @export 
+#' @export
 #' @seealso \code{\link{extract.character}}
 #' @examples
 #' extract.number("c76")

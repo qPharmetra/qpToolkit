@@ -6,9 +6,9 @@
 
 # ROXYGEN Documentation
 #' Model trail / Runrecord for series of nested nlme models
-#' @description create a model trial (or runrecord) for a series of nested models. This requires A problem statement as well as a reference model to be added to the nlme object. This is ensure by using qPharmetra's nlme.run instead of nlme. 
+#' @description create a model trial (or runrecord) for a series of nested models. This requires A problem statement as well as a reference model to be added to the nlme object. This is ensure by using qPharmetra's nlme.run instead of nlme.
 #' @param ... nlme object names separated by a comma
-#' @return data.frame containing the nlme model trail 
+#' @return data.frame containing the nlme model trail
 #' @seealso \code{\link{nlme.run}}
 #' @export nlme.modeltrail
 #' @importFrom nlme anova.lme
@@ -18,51 +18,51 @@
 #' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
 #' {
 #'   # Effect-site concentration for 1-compartment model, 1st-order absorption
-#'   
+#'
 #'   kel = cl / v
-#'   
+#'
 #'   # Define coefficients
 #'   A = 1/(kel-ka) / (keo-ka)
 #'   B = 1/(ka-kel) / (keo-kel)
 #'   C = 1/(ka-keo) / (kel-keo)
-#'   
+#'
 #'   # Return effect-site concentration
 #'   dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 #' }
 #' fit.PD001.nlme = nlme.run(
-#'    model = value ~ base * exp(base.eta) , 
-#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-#'    fixed = base ~ 1, 
-#'    random = base.eta  ~ 1, 
-#'    groups = ~ id, 
+#'    model = value ~ base * exp(base.eta) ,
+#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5),
+#'    fixed = base ~ 1,
+#'    random = base.eta  ~ 1,
+#'    groups = ~ id,
 #'    start = c(base = 1),
 #'    problem = "Baseline Only Model",
 #'    reference = 0
 #' )
 #' fit.PD002.nlme = nlme.run(
-#'    model = value ~ base * exp(base.eta) + tSlope*time, 
-#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-#'    fixed = base + tSlope ~ 1, 
-#'    random = base.eta  ~ 1, 
-#'    groups = ~ id, 
+#'    model = value ~ base * exp(base.eta) + tSlope*time,
+#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5),
+#'    fixed = base + tSlope ~ 1,
+#'    random = base.eta  ~ 1,
+#'    groups = ~ id,
 #'    start = c(base = 1, tSlope = 0.01),
 #'    problem = "Linear Time-Slope Model",
 #'    reference = 1)
 #' fit.PD003.nlme = nlme.run(
-#'    model = value ~ base * exp(base.eta) + tSlope*time + dSlope * dose, 
-#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-#'    fixed = base + tSlope + dSlope ~ 1, 
-#'    random = base.eta  ~ 1, 
-#'    groups = ~ id, 
+#'    model = value ~ base * exp(base.eta) + tSlope*time + dSlope * dose,
+#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5),
+#'    fixed = base + tSlope + dSlope ~ 1,
+#'    random = base.eta  ~ 1,
+#'    groups = ~ id,
 #'    start = c(base = 1, tSlope = 0.01, dSlope = 0.01),
 #'    problem = "Linear Time-Slope+Dose-Slope Model",
 #'    reference = 2)
 #' fit.PD004.nlme = nlme.run(
-#'    model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-#'    fixed = base + cl + v + ka + keo ~ 1, 
-#'    random = cl.eta ~ 1, 
-#'    groups = ~ id, 
+#'    model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo),
+#'    data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5),
+#'    fixed = base + cl + v + ka + keo ~ 1,
+#'    random = cl.eta ~ 1,
+#'    groups = ~ id,
 #'    start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
 #'    problem = "True Model",
 #'    reference = 3)
@@ -71,14 +71,14 @@ nlme.modeltrail = function(...)
 {
   models = as.list(match.call())[-1] #models = as.list(c('fit.PD001.nlme','fit.PD002.nlme','fit.PD003.nlme','fit.PD004.nlme'))
   nams = unlist(lapply(models, as.character))
-  
+
   ## check if the models were run with nlme.run
   test = lapply(models, function(x)
   {
     X = eval(parse(text = paste(x, "$object", sep = "")))
     is.list(eval(parse(text = x))) & all(names(eval(parse(text = x))) %in% c("object", "problem", "reference"))
   })
-  if(any(unlist(test)==FALSE)) 
+  if(any(unlist(test)==FALSE))
   {
     cat(paste(nams[unlist(test == FALSE)], collapse = "\n"))
     cat("... do(es) not have elements 'object', 'model', 'reference'")

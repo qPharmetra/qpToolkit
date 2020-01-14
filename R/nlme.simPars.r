@@ -4,7 +4,7 @@
 #' @description Draw samples from multivariate normal parameter distribution from an nlme object
 #' @param paramList output from nlme.FixPars or nlme.RanPars
 #' @param N sample size of the requested predictions
-#' @return Matrix with parameter prediction 
+#' @return Matrix with parameter prediction
 #' @export nlme.simPars
 #' @importFrom MASS mvrnorm
 #' @seealso \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}, \code{\link{nlme.extract}}

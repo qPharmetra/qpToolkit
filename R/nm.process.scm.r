@@ -1,8 +1,8 @@
-# name:     nm.process.scm 
+# name:     nm.process.scm
 # purpose:  read and process SCM output file
 # input:    path where the completed SCM output resides
 # output:   table in latex format
-# note:     function only produces the table latex output is supported      
+# note:     function only produces the table latex output is supported
 
 # ROXYGEN Documentation
 #' Parsing SCM output
@@ -17,12 +17,12 @@
 #' myPath = file.path(getOption("qpExampleDir"),"scm_example2")
 #' scm = nm.process.scm(myPath)
 #' names(scm)
-#' 
+#'
 #' # Fail if scm file not found
 #' foo <- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
-#' 
+#'
 #' scm$summary
-#' 
+#'
 #' # populate an appendix with scm output
 #' print(xtable(scm$scm.latex
 #'    , caption = "Full Stepwise Covariate Building output"
@@ -37,7 +37,7 @@
 #'       #  , only.contents = TRUE
 #' )
 
-nm.process.scm = function(path,digits = 3) 
+nm.process.scm = function(path,digits = 3)
    #path = paste(getOption("qpExampleDir"), "scm files","Klas", sep="/")
 {
   scmpath = paste(path, "scmlog.txt", sep="/")
@@ -49,9 +49,9 @@ nm.process.scm = function(path,digits = 3)
   model = which(substring(scm,1,5) == "MODEL")
   nothing = which(scm == "")
   nothing = sapply(model, function(x,y) y[y>x][1], y = nothing)
-  
+
   scmTITLE = scm[model[1]]
-  
+
   fullSCM = lapply(seq(along=model), function(x,start, end, scm){
     as.character(scm[(start[x]+1):(end[x]-1)])
   }
@@ -59,8 +59,8 @@ nm.process.scm = function(path,digits = 3)
   , end = nothing
   , scm = scm
   )
-  
-  # unravel the elements of each row and make them have fixed length 
+
+  # unravel the elements of each row and make them have fixed length
   unravel.scm = function(x)
   {
      c(substring(x,1,17),substring(x,18,21),substring(x,22,34),substring(x,35,47)
@@ -85,20 +85,20 @@ nm.process.scm = function(path,digits = 3)
 #     fullSCM[,10][fullSCM[,10] == "9999.0"] = "$>$0.9999"
 #     fullSCM = fullSCM[,-7]
 #     fullSCM = rbind(fullSCM, data.frame(matrix(c("$\\textbf{NOTHING ADDED}$",rep("",9)), nrow=1))[,-7])
-#     
+#
 #     names(fullSCM)=c("MODEL", "TEST", "OFV$_{base}$","OFV$_{test}$","$\\Delta$OFV","GOAL","$\\Delta$DF","SIGNIFICANT", "P value")
 #     return(fullSCM)
 #     } else fullSCM = lapply(fullSCM, function(x) data.frame(do.call("rbind", x)))
-  
+
   nFwd = grep("Parameter-covariate relation chosen in this forward step:", scm)
   nBwd = grep("Parameter-covariate relation chosen in this backward step:", scm)
-  
+
   length(fullSCM)
   names(fullSCM) = c(
     paste("START FORWARD STEP",(1:length(nFwd)))
     , paste("START BACKWARD STEP",(1:length(nBwd)))
   )
-  
+
   ## apply round(x,1) to OBJV values
   fullSCM = lapply(fullSCM, function(x)
   {
@@ -108,14 +108,14 @@ nm.process.scm = function(path,digits = 3)
     x$X7 = sprintf("%.2f",as.numeric(x$X7))
     return(x)
   })
-  
+
   ## provide data frame names
   scmNames = c("MODEL", "TEST", "BASE.OFV", "NEW.OFV", "TEST","OFV.DROP", "GOAL", "dDF", "SIGNIFICANT", "PVAL")
   fullSCM = lapply(fullSCM, function(x, nams) {names(x) = nams; return(x)}
          , nams =  scmNames)
-  
-  ### ---- Summary and model from SCM short ---- 
-  
+
+  ### ---- Summary and model from SCM short ----
+
   relations =  which(substring(scmshort,1,5) == "Relat")
   scm.summary = scmshort[1:(relations[1]-1)]
   scm.summary = sapply(scm.summary, function(x) unravel.scm(x))
@@ -130,7 +130,7 @@ nm.process.scm = function(path,digits = 3)
   })
   final.model = do.call("rbind",final.model)
   row.names(final.model)=NULL
-  
+
   ## find what relations were kept
   steps = grep("Relations included after final step:", scmshort)
   seltxt = "Parameter-covariate relation chosen in this forward step: "
@@ -140,13 +140,13 @@ nm.process.scm = function(path,digits = 3)
   allSteps = c(paste("ADDED",forwardSteps), paste("REMOVED",backwardSteps))
   allSteps[allSteps == "ADDED --"] = "NOTHING ADDED"
   allSteps[allSteps == "REMOVED --"] = "NOTHING REMOVED"
-  
+
   step.n=length(nFwd)+length(nBwd)
   step.labels = character(step.n)
   step.action = allSteps
   for(i in 1:step.n){
-     step.labels[i]=ifelse(i<=length(nFwd), 
-                           paste("START FORWARD STEP",i), 
+     step.labels[i]=ifelse(i<=length(nFwd),
+                           paste("START FORWARD STEP",i),
                            paste("START BACKWARD STEP",i-length(nFwd)))
   }
   steps=list()
@@ -154,13 +154,13 @@ nm.process.scm = function(path,digits = 3)
      steps[[i]]=list(label=step.labels[i], runs=fullSCM[i], action=step.action[i])
   }
 
-  ### ---- Perform LaTeX work on fullSCM ---- 
-  
+  ### ---- Perform LaTeX work on fullSCM ----
+
   ## define an empty row
   empty.row = fullSCM[[1]][1,]
   empty.row[1,] = rep("~", ncol(empty.row))
-  
-  ## insert the emtpy row and label it FORWARD or BACKWARD 
+
+  ## insert the emtpy row and label it FORWARD or BACKWARD
   fullSCM.latex = lapply(1:length(fullSCM), function(x,er,allSteps,fullSCM)
   {
     ER = rbind(er, er, er)
@@ -173,11 +173,11 @@ nm.process.scm = function(path,digits = 3)
   }, er = empty.row, fullSCM = fullSCM, allSteps = allSteps
   )
   fullSCM.latex = data.frame(do.call("rbind", fullSCM.latex))
-  
+
   names(fullSCM.latex) = c("MODEL","TEST","BASE.OFV", "NEW.OFV","DIFF","OFV.DROP","GOAL","dDF",
                      "SIGNIFICANT","PVAL")
   head(fullSCM.latex)
-  
+
   ## make fwd/bckwd italics
   msel.fwd = grep("FORWARD", fullSCM.latex$MODEL)
   msel.bwd = grep("BACKWARD", fullSCM.latex$MODEL)
@@ -185,7 +185,7 @@ nm.process.scm = function(path,digits = 3)
   msel.rem = grep("REMOVED", fullSCM.latex$MODEL)
   msel = c(msel.fwd,msel.bwd,msel.add,msel.rem)
   fullSCM.latex$MODEL[msel] = paste("$\\textit{",fullSCM.latex$MODEL[msel],"}$", sep = "")
-  
+
   ## remove 'NO'
   fullSCM.latex$SIGNIFICANT[fullSCM.latex$SIGNIFICANT == "NO"] = "~"
   fullSCM.latex$OFV.DROP = paste("$",fullSCM.latex$OFV.DROP,"$", sep = "")
@@ -193,22 +193,22 @@ nm.process.scm = function(path,digits = 3)
   fullSCM.latex$GOAL[ok] = signif(asNumeric(fullSCM.latex$GOAL[ok]),digits)
   fullSCM.latex$GOAL = paste(fullSCM.latex$OFV.DROP,fullSCM.latex$GOAL)
   fullSCM.latex$OFV.DROP = NULL
-  
+
   ok = isNumeric(fullSCM.latex$PVAL)
   fullSCM.latex$PVAL[ok] = substring(sprintf("%4f",signif(asNumeric(fullSCM.latex$PVAL[ok]),digits)),1,6)
   fullSCM.latex$PVAL[fullSCM.latex$PVAL == "0.0000"] = "$<$0.0001"
   fullSCM.latex$PVAL[fullSCM.latex$PVAL == "9999.0"] = "$>$0.9999"
-  
+
   aadp = align.around.decimal.point
   fullSCM.latex$BASE.OFV[ok] = aadp(round(asNumeric(fullSCM.latex$BASE.OFV[ok]), 1), len=max(5,max(nchar(fullSCM.latex$BASE.OFV[ok]))-2))
   fullSCM.latex$NEW.OFV[ok] = aadp(round(asNumeric(fullSCM.latex$NEW.OFV[ok]), 1), len=max(5,max(nchar(fullSCM.latex$NEW.OFV[ok]))-2))
   fullSCM.latex$DIFF[ok] = aadp(round(asNumeric(fullSCM.latex$DIFF[ok]), 2)
                           , len=max(nchar(round(extract.number(fullSCM.latex$DIFF[ok])))))
   fullSCM.latex$TEST[fullSCM.latex$TEST =="PVAL"] = "~"
-  
+
   names(fullSCM.latex) = c("MODEL", "TEST", "OFV$_{base}$","OFV$_{test}$","$\\Delta$OFV","GOAL","$\\Delta$DF","SIGNIFICANT", "P value")
   fullSCM.latex$TEST = NULL
-  
+
   SCM = structure(list(  full.scm = fullSCM
              , summary=scm.summary
              , model = final.model

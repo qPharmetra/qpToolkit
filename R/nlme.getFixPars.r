@@ -8,10 +8,10 @@
 #' NLME fixed effects and covariance matrix
 #' @description extracts fixed effect point estimates and variance-covariance matrix of an nlme object
 #' @param obj an nlme object
-#' @return list with fixed effect point estimates and variance-covariance matrix 
+#' @return list with fixed effect point estimates and variance-covariance matrix
 #' @export nlme.getFixPars
 #' @seealso \code{\link{nlme.getRanPars}}, \code{\link{nlme.simPars}}, \code{\link{nlme.extract}}
-#' @importFrom nlme fixef 
+#' @importFrom nlme fixef
 #' @examples
 #' library(nlme)
 #' fm1 <- nlme(height ~ SSasymp(age, Asym, R0, lrc),

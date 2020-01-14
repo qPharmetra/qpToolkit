@@ -2,7 +2,7 @@
 # purpose:  read the run record into readable table
 # input:    runrecord txt file and path where the file resides
 # output:   data frame
-# note:        
+# note:
 
 # ROXYGEN Documentation
 #' Read the runrecord
@@ -25,7 +25,7 @@ read.runrec = function(filename, path = getOption("nmDir"))
   runrec = read.table(file=file.path(path,filename), sep=";", skip=5, header=FALSE)
   runrec = runrec[, 1:18]
   names(runrec) = c(
-  	'Run','Ref','OFV','dOFV','CondNum','Minimization','CovStep','Label', 
+  	'Run','Ref','OFV','dOFV','CondNum','Minimization','CovStep','Label',
   	'Description', 'StructMod', 'something','IIV','IOV', 'ResMod', 'Estimation','DataSet','nObs','nID')
   runrec = runrec[!is.na(runrec$Run),]
   return(runrec)

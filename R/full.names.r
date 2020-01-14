@@ -13,10 +13,10 @@
 #' full.names(c("wt","race","age"))
 full.names = function(x)
 {
-  swap(x, 
+  swap(x,
                   c('wt','ht','bmi','age','sex','crcl','race'),
                   c("Weight (kg)","Height (cm)","BMI (kg/m2)","Age (yr)","Gender","Creatinine Clearance (mL/min)","Race")
-  )      
+  )
 }
 
 if(F)

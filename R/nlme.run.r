@@ -16,7 +16,7 @@
 #' summary(fm1)
 #' fm2 = update(fm1, random = pdDiag(Asym + lrc ~ 1))
 #' summary(fm2)
-#' 
+#'
 #' # Now the same thing but using nlme.run()
 #' fm1 = nlme.run(height ~ SSasymp(age, Asym, R0, lrc),
 #'                data = Loblolly,

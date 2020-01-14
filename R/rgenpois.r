@@ -4,16 +4,16 @@
 #' @param lambda lambda of the Generalized Poisson distribution
 #' @param disp dispersion of the Generalized Poisson distribution. Takes the value of 0 for a Poisson distribution, and becomes negative for under, and positive for over dispersed data.
 #' @param n sample size
-#' @param scan.size the upper limit of the distribution. This could be set higher but due to exponentation in the likelihood function shgould not exceed 
+#' @param scan.size the upper limit of the distribution. This could be set higher but due to exponentation in the likelihood function shgould not exceed
 #' @return n samples from the Generalized Poisson distribution (numeric non-negative integers)
 #' @export
 #' @importFrom stats runif
-#' @examples 
+#' @examples
 #' genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 #' {
 #'   rgenpois(n=10000, lambda=22, disp = DISP)
 #' })
-#' 
+#'
 #' # plot across dispersion
 #' plot(range(genPois.samples), c(0,.25), type = "n", xlim = c(0,100), ylab = "Frequency")
 #' for(i in 1 : ncol(genPois.samples)){
@@ -31,18 +31,18 @@
 
 rgenpois = function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
 {
-  if(n<1){message("n must be a non-zero positive integer") ;return()} 
+  if(n<1){message("n must be a non-zero positive integer") ;return()}
   if(n>1 & {length(lambda)>1 | length(disp)>1}) {message("if multiple lambda and/or disp values are specified n can be only 1");return()}
-  
+
   if(length(lambda) != length(disp))
   {
     if(min(c(length(lambda),length(disp)))>1) {message("if different lengths, either lambda or disp must have length 1"); return()}
     if(length(lambda) < length(disp)) lambda = rep(lambda, length(disp)) else disp = rep(disp, length(lambda))
   }
   if(n>1) {lambda=rep(lambda, n); disp=rep(disp,n)}
-  
+
   ## scan.size should be 2-fold lambda
-    
+
   ## start fresh
   #T = N = rep(0, length(lambda)) <jtc removed, don't redefine T, not used anyway>
   R = runif(length(lambda))

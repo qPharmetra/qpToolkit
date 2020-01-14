@@ -12,7 +12,7 @@
 #' @param id.var character string denoting grouping variable ("ID")
 #' @param iov inter-occasion variability flag (this argument is ignored currently)
 #' @param eta.densities logical to determine of ETA density plots have to be generated
-#' @param eta.skip character vector of ETAs that will be skipped 
+#' @param eta.skip character vector of ETAs that will be skipped
 #' @param shrinkage providing shrinkage values. This is currently ignored
 #' @return A list with plots and properly sorted / molten data.frames for customized plots
 #' @export
@@ -27,53 +27,53 @@
 #' nmcov = nm.covplot(path = getOption("qpExampleDir")
 #' , run = "example2", parameters = c("CL","V1","Q","V2")
 #' , covlist = list(con = "AGE", cat = "GNDR"))
-#' 
+#'
 #' #contents of the list
 #' names(nmcov)
-#' #[1] "covdata"        "eta.splom"      "eta.dens"       
-#' # "conData.eta"    "catData.eta"    "conData.par"    "catData.par"   
-#' #[8] "etaContVarPlot" "etaCatVarPlot"  "parContVarPlot" "parCatVarPlot" 
-#' 
+#' #[1] "covdata"        "eta.splom"      "eta.dens"
+#' # "conData.eta"    "catData.eta"    "conData.par"    "catData.par"
+#' #[8] "etaContVarPlot" "etaCatVarPlot"  "parContVarPlot" "parCatVarPlot"
+#'
 #' # let's look at the plots
 #' nmcov$eta.dens()
 #' # red line is the distribution predicted obo OMEGA estimate
 #' # the grey polygon is the actual ETA distribution
-#' 
+#'
 #' ## elegant pairs plot
 #' nmcov$eta.splom()
-#' 
+#'
 #' ## ETAs vs. Continuous Covariates
 #' nmcov$etaContVarPlot()
-#' 
+#'
 #' ## ETAs vs. Categorical Covariates
 #' nmcov$etaCatVarPlot()
 #' nmcov$etaCatVarPlot(F)
-#' 
+#'
 #' ## parameters vs. Continuous Covariates
 #' nmcov$parContVarPlot()
-#' 
+#'
 #' ## parameters vs. Categorical Covariates
 #' nmcov$parCatVarPlot()
 #' nmcov$parCatVarPlot(F)
-#' 
+#'
 #' ## data frames required to replot the above are right there for convenience
 #' head(nmcov$covdata) ## merged get.xpose.table and nm.params.table output!
 #' head(nmcov$conData.eta)# essential: conVariable conValue variable value
 #' head(nmcov$catData.eta)# essential: catVariable catValue variable value
 #' head(nmcov$conData.par)# essential: conVariable conValue variable value
 #' head(nmcov$catData.par)# essential: catVariable catValue variable value
-#' 
+#'
 #' #for continuous plots get kickstarted with:
 #' # xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable
 #' #  , data = conData, panel = panel.xyplot)
 #' #for categorical plots:
 #' # xyplot(value ~ as.factor(paste(catValue)) | variable * catVariable
 #' #  , data = catData, panel = panel.bwplot, horizontal = FALSE)
-#' 
+#'
 
 
-nm.covplot = function(run = "run1", 
-  path = getOption("nmDir"), 
+nm.covplot = function(run = "run1",
+  path = getOption("nmDir"),
   id.var = "ID",
   iov = FALSE,
   eta.densities = TRUE,
@@ -91,18 +91,18 @@ nm.covplot = function(run = "run1",
 #   require(Hmisc)
 #   require(latticeExtra)
 #   require(reshape)
-#   
+#
   id.var = casefold(id.var, upper = FALSE)
-  
+
   ## reset everything
   parContVarPlot = parCatVarPlot = etaContVarPlot = etaCatVarPlot = eta.dens = eta.splom = NULL
   catData.par = conData.par = catData.eta = conData.par = NULL
-  
+
   default.covlist = list(cat = c("sex","race"), con = c("age", "wt", "bmi", "ht", "crcl" ,"base"))
   if(!missing(covlist) & any(names(covlist) %nin% c('cat','con'))) stop("if specified argument covlist must have elements cat and con both as vectors")
-  
+
   ## read NONMEM table output
-  nmcov = get.xpose.tables(run = run, path = path) 
+  nmcov = get.xpose.tables(run = run, path = path)
   names(nmcov) = casefold(names(nmcov), upper=FALSE)
   if(length(nmcov[, id.var]) == 0){
     message(paste(id.var, "does not exist in",run,". nm.covplot.procedure stopped"));return()
@@ -110,11 +110,11 @@ nm.covplot = function(run = "run1",
 
   ## need to add a workaround for IOV in which case we do not want to drop OCCs within individual
   nmcov = nmcov[duplicated(nmcov[, id.var]) == FALSE, ]
-  
+
   ## pull the ETAs from the NONMEM output table
   eta.names = names(nmcov)[grep("et", names(nmcov))]
   eta.list = eta.names[!is.na(extract.number(eta.names))]
-  
+
   ## remove ETAs per instruction
   if(!is.null(eta.skip))
   {
@@ -125,7 +125,7 @@ nm.covplot = function(run = "run1",
 
   ## remove etas that are all zero (probably fixed)
   all.zero.etas = apply(nmcov, 2, function(x) all(x == 0))
-  msel = substring(names(nmcov), 1, 2) == "et" 
+  msel = substring(names(nmcov), 1, 2) == "et"
   #if(length(which(msel==T))>0) nmcov = nmcov[,-which(msel)]
 
   # assing categorical in case of less than catcov.sep categories
@@ -147,13 +147,13 @@ nm.covplot = function(run = "run1",
     rp = ranPars
   names(ranPars) = gsub("ETA","OMEGA", names(ranPars))
   ranPars = vec2df(ranPars,nrow(nmcov))
-  
+
   data = cbind(nmcov, fixPars, ranPars)
   #return(data)}
 
   ## find out which parameter in the data set is continuous
   ## and which is categorical
-  
+
   if(FALSE)
   {
     data=nmcov
@@ -163,25 +163,25 @@ nm.covplot = function(run = "run1",
     data$wt = sample.by.id(data$id, rpois(n=1000,lambda = 75))
     data$cl = data$cl * (1 + 0.02 * data$wt)
   }
-  
+
   ## only keep the covariates that actually exist in the NONMEM output tables
   if(is.null(covlist$cat)) {
-    cat.list = intersect(default.covlist$cat, names(data)) 
+    cat.list = intersect(default.covlist$cat, names(data))
     } else {
-      covlist$cat = casefold(covlist$cat, upper = FALSE) 
+      covlist$cat = casefold(covlist$cat, upper = FALSE)
       cat.list = intersect(covlist$cat, names(data))
     }
   if(is.null(covlist$con)) {
     con.list = intersect(default.covlist$con, names(data))
     } else {
-      covlist$con = casefold(covlist$con, upper = FALSE) 
+      covlist$con = casefold(covlist$con, upper = FALSE)
       con.list = intersect(covlist$con, names(data))
     }
   #intersect(eta.list, names(data))
-   
+
   eta.splom = function()
   {
-    splom(data[, eta.list], 
+    splom(data[, eta.list],
      panel = function(x, y){
        	panel.splom(x, y, col = gray[7])
        	panel.lines(lowess(x,y), col = red[7], lwd = 2)
@@ -192,7 +192,7 @@ nm.covplot = function(run = "run1",
      xlab="", ylab = "")
   }
 
- 
+
   etas = reshape2::melt(data, measure.var = eta.list)
   data.omega.names = names(data)[grep("OMEGA", names(data))]
   data.omega.names = data.omega.names[apply(do.call("rbind", lapply(unPaste(data.omega.names, sep = "[.]"), extract.number)), 2, diff) == 0]
@@ -205,7 +205,7 @@ nm.covplot = function(run = "run1",
   etas = cbind(etas, omegas)
   etas$index = extract.number(etas$variable)
   ## head(etas)
-  
+
   ## get shrinkage
   if(shrinkage)
   {
@@ -218,13 +218,13 @@ nm.covplot = function(run = "run1",
       ))
       shrink = unique(shrink) * 100
       names(shrink) = eta.list
-    } 
+    }
     names(shrink) = casefold(names(shrink), upper = FALSE)
     shrink = round(shrink[eta.names], 2)
     shrink = data.frame(variable = names(shrink), etashrink = shrink)
     etas = stableMerge(etas, shrink)
   }
-  
+
   eta.dens = function()
   {
     xyplot(variable ~ value, #x=etas$value; y = etas$variable
@@ -235,14 +235,14 @@ nm.covplot = function(run = "run1",
       xlim = max(abs(etas$value)) * c(-1.02,1.02),
       ed = eta.densities,
       panel = function(x, y, tmp, ed, ...)
-      {                                             
+      {
         x = as.numeric(x)
         y = as.numeric(y)
-        
+
         ## get the estimated eta values
         z = tapply(tmp$est.value, tmp$index, unique)
         zx = sapply(z, function(ooo)qnorm(seq(0.001,0.999, length = 512), 0, sqrt(ooo)))
-        zz = zy = rep(seq(length(names(z))), ea = 512) 
+        zz = zy = rep(seq(length(names(z))), ea = 512)
         zy = zy + c(apply(zx, 2, function(ooo)unitDensity(ooo)$y)) * 0.5
         zx = c(zx)
 
@@ -250,14 +250,14 @@ nm.covplot = function(run = "run1",
 
        xtpos = current.panel.limits()$xlim[1] + diff(current.panel.limits()$xlim)*0.1
        ytpos = current.panel.limits()$ylim[1] + diff(current.panel.limits()$ylim)*0.95
-       
+
        if(F)
        {
          shrinkText = tapply(tmp$etashrink, tmp$index, mean)
          ltext(x = rep(xtpos,6), y = seq(length(names(z)))+length(names(z))/30, shrinkText, cex = 0.75)
          ltext(xtpos, ytpos, expression(paste(eta[sh]," (%)")), cex = 1)
        }
-       
+
        panel.superpose(x=zx, y = zy, groups = zz, subscripts = TRUE,..., col = red[3], type = "l")
        panel.segments(x1=0, x2=0, y1=1, y2=max(etas$index)+1.2, col = gray[3])
       },
@@ -277,7 +277,7 @@ nm.covplot = function(run = "run1",
   conData.eta = reshape2::melt(conData, measure.vars = eta.list)
 
   etaContVarPlot = function()
-  { 
+  {
     useOuterStrips(
       xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
      data = conData.eta,
@@ -297,7 +297,7 @@ nm.covplot = function(run = "run1",
     ))
   }
   }
-  
+
   ## prepare categorical covariates
   if(length(cat.list)>0)
   {
@@ -306,7 +306,7 @@ nm.covplot = function(run = "run1",
   catData.eta = reshape2::melt(catData, measure.vars = eta.list)
 
   etaCatVarPlot = function(show_means = TRUE)
-  { 
+  {
   useOuterStrips(
     xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
     data = catData.eta,
@@ -322,11 +322,11 @@ nm.covplot = function(run = "run1",
     xlab = "categorical covariate value",
      ylab = "deviation by ID",
     scales = list(relation = "free")
-    ) 
+    )
   )
   }
   }
-  
+
   ## prepare continuous parameters
   if(!is.null(parameters) & length(con.list) > 0)            #  parameters=c("tvlamb","disp")
   {
@@ -335,7 +335,7 @@ nm.covplot = function(run = "run1",
   conData.par = reshape2::melt(conData, measure.vars = casefold(parameters,upper = FALSE))
 
   parContVarPlot = function()
-  { 
+  {
     useOuterStrips(
       xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
     data = conData.par,
@@ -355,7 +355,7 @@ nm.covplot = function(run = "run1",
   )
  }
 }
-  
+
   ## prepare categorical parameters
   if(!is.null(parameters) & length(cat.list)>0)
   {
@@ -363,13 +363,13 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
-  parCatVarPlot = function(){ 
+  parCatVarPlot = function(){
     useOuterStrips(
        xyplot(
           # value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
           value ~ as.factor(catValue) | toupper(variable) * catVariable,
-          data = catData.par, 
-          horizontal = FALSE, 
+          data = catData.par,
+          horizontal = FALSE,
           prepanel = function(x, y, horizontal, ...){
              have <- if(horizontal) factor(y) else factor(x)
              out <- list(foo = levels(have), bar = seq_along(levels(have)))
@@ -383,9 +383,9 @@ nm.covplot = function(run = "run1",
              yy <- yy[levels(factor(x))]
              #browser()
              llines(seq_along(yy), yy, col = red[7])
-          }, 
+          },
           scales = list(
-             x = list(relation = "free"), 
+             x = list(relation = "free"),
              y = list(relation = "free")
           ),
           aspect = aspect,
@@ -395,18 +395,18 @@ nm.covplot = function(run = "run1",
     )
   }
 }
-  
+
   cat("processed NONMEM output and covariate data and created covariate plots of"
       , lunique(data[, id.var]), "subjects")
-  return(list(  covdata = data, 
-                eta.splom = eta.splom, 
-                eta.dens = eta.dens, 
+  return(list(  covdata = data,
+                eta.splom = eta.splom,
+                eta.dens = eta.dens,
                 conData.eta = conData.eta,
                 catData.eta = catData.eta,
                 conData.par = conData.par,
                 catData.par = catData.par,
                 etaContVarPlot = etaContVarPlot,
-                etaCatVarPlot = etaCatVarPlot, 
+                etaCatVarPlot = etaCatVarPlot,
                 parContVarPlot = parContVarPlot,
                 parCatVarPlot = parCatVarPlot,
                 etas = etas)

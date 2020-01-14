@@ -11,49 +11,49 @@
 #' @examples
 #' get.shrinkage(run = "example1", path = getOption("qpExampleDir"))
 get.shrinkage = function(run, path = getOption('nmDir'), file.ext = ".lst")
-  
-{ 
+
+{
   out = read.out(path=path, run=run, file.ext = file.ext)
   version = get.nm.version(path=path, run=run, file.ext = file.ext)
-  
+
   # Here we are going to retrograde the list file to look/act like pre 7.4 list file
   # find all the lines of code containing SHRINKVR
-  
+
   shrinkvr <- grep('SHRINKVR', out)
-  
+
   # find all the lines of code containing SHRINKSD or TOTAL DATA POINTS
-  
+
   shrinksd <- grep('SHRINKSD|TOTAL DATA POINTS', out)
-  
+
   # for each shrinkvr, what is the smallest greater shrinksd?
-  
+
   smallestGreater <- function(x, pool){
     stopifnot(length(x) == 1)
     candidates <- pool[pool > x]
     min(candidates)
   }
-  
+
   stop_at <- sapply(shrinkvr, smallestGreater, pool = shrinksd)
-  
+
   sequences <- lapply(
-    seq_along(shrinkvr), 
+    seq_along(shrinkvr),
     function(i)seq(
-      from = shrinkvr[[i]], 
+      from = shrinkvr[[i]],
       to = stop_at[[i]] - 1
     )
   )
-  
+
   bad <- unlist(sequences)
   if(length(bad))out <- out[-1 * bad]
-  
+
   out <- sub('SHRINKSD','shrink',out)
-  
+
   ### and carry on as usual
-  
+
   txtETAStart = grep("ETAshrink", out)
   txtEBVStart = grep("EBVshrink", out)
   txtEPSStart = grep("EPSshrink", out)
-  
+
   ## parsing text
   txtETAParse = as.list(seq(length(txtETAStart)))
   txtEPSParse = txtEBVParse = txtETAParse
@@ -61,15 +61,15 @@ get.shrinkage = function(run, path = getOption('nmDir'), file.ext = ".lst")
   {
     txtETAParse[[i]] = txtETAStart[i]  : (txtEBVStart[i]-1)
     txtEBVParse[[i]] = txtEBVStart[i]  : (txtEPSStart[i]-1)
-    txtEPSParse[[i]] = txtEPSStart[i] 
+    txtEPSParse[[i]] = txtEPSStart[i]
   }
-  etaShrink = lapply(txtETAParse, function(x, out) 
+  etaShrink = lapply(txtETAParse, function(x, out)
     trimSpace(substring(paste(out[x], collapse = ""),16)), out = out)
-  ebvShrink = lapply(txtEBVParse, function(x, out) 
+  ebvShrink = lapply(txtEBVParse, function(x, out)
      trimSpace(substring(paste(out[x], collapse = ""),16)), out = out)
-  epsShrink = lapply(txtEPSParse, function(x, out) 
+  epsShrink = lapply(txtEPSParse, function(x, out)
      trimSpace(substring(paste(out[x], collapse = ""),16)), out = out)
-  
+
   ## text to parse for the estimation method
   nameParse = as.list(seq(length(etaShrink)))
   txtOBJParse = grep("FINAL PARAMETER ESTIMATE",out)
@@ -82,7 +82,7 @@ get.shrinkage = function(run, path = getOption('nmDir'), file.ext = ".lst")
   names(epsShrink) = nameParse
 
   return(list(version=version, eta = etaShrink, ebv = ebvShrink, eps = epsShrink))
-  
+
 }
 
 

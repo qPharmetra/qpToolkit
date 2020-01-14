@@ -2,7 +2,7 @@
 # ROXYGEN Documentation
 #' Check for numeric values
 #' @description Take a vector and return a vector of boolean values indicating which input
-#       vector values would return a numeric result when evaluated with \code{as.numeric()} 
+#       vector values would return a numeric result when evaluated with \code{as.numeric()}
 #' @param x Placehoder for parameter description
 #' @return Placeholder for return description
 #' @export

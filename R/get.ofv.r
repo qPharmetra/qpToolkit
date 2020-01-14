@@ -2,7 +2,7 @@
 # purpose:  parse objective function value from NONMEM output file
 # input:    run number, file.path and file extension of NONMEM output file
 # output:   numeric double with OFV value
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Objective Function Value parser
@@ -10,7 +10,7 @@
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
 #' @param file.ext file extension of the NONMEM output file (defaults to .lst)
-#' @return named numeric value representing the OFV. The name is NONMEM's estimated-method-specific name for the OFV 
+#' @return named numeric value representing the OFV. The name is NONMEM's estimated-method-specific name for the OFV
 #' @export
 #' @seealso \code{\link{get.dOFV}} which calls \code{get.ofv} over multiple runs for a brief runrecord, \code{\link{read.out}}
 #' @examples

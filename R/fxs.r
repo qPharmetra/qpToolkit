@@ -2,7 +2,7 @@
 # purpose:  formats input to a specified format
 # input:    numeric vector
 # output:   character vector
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Fixed character length of a String
@@ -19,16 +19,16 @@ fxs = function(x, pattern = "0000")
 {
   newString = rep("NA", length(x))
   pattern = rep(pattern, length(x))
-  
+
   ## check if pattern and input length are OK
   for(idx in 1:length(x))
   {
     if(nchar(x[idx]) > nchar(pattern[idx]))
       pattern[idx] = paste(substring(pattern[idx], 1, 1), nchar(x[idx]), collapse = "")
-    
+
     ##create the new string
     newString[idx] = paste(substring(pattern[idx],1,(nchar(pattern[idx])-nchar(x[idx]))), as.character(x[idx]), sep = "")
   }
   return(newString)
-}                         
+}
 

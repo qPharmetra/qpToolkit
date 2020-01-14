@@ -14,13 +14,13 @@
 #' names(run1.cormat[[1]])
 #' lapply(run1.cormat, dim)
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cor"))
-#' 
+#'
 nm.cormat.extract = function(run, path = getOption("nmDir"))
 {
   internalDir = paste(path, run, run, sep = "/")
-  corText   = scan(file = paste(internalDir,".cor", sep = ""), 
+  corText   = scan(file = paste(internalDir,".cor", sep = ""),
                    what = "character",sep = "\n", quiet = TRUE)
-  locs = grep("TABLE", substring(corText, 1,6))   
+  locs = grep("TABLE", substring(corText, 1,6))
   ## define locations for each varcov table in the text
   corNames = substring(unlist(unPaste(corText[locs], ":")[[2]]),2)
   int = unPaste(corText[locs], sep = ":")[[1]]
@@ -30,7 +30,7 @@ nm.cormat.extract = function(run, path = getOption("nmDir"))
   locs = c(locs, length(corText)); locations = list(NULL)
   for(i in 1:length(locs[-length(locs)])){
     locations[[i]] = corText[seq((locs[i]+1),(locs[i+1]))]}
-  corText = lapply(locations,function(x) if(length(grep("TABLE", x))>0) 
+  corText = lapply(locations,function(x) if(length(grep("TABLE", x))>0)
     x[-grep("TABLE", x)] else x)
   names(corText) = tabnums
   cormat = lapply(corText, extract.varcov)

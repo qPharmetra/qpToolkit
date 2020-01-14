@@ -1,7 +1,7 @@
 
 # ROXYGEN Documentation
-#' PNG graph for reports generation 
-#' @description Writes graph to file for inclusion in report. The function opens a graphics device, after which the plot call(s) should follow. To be executed, the graphics device needs to be closed with \code{dev.off()}. 
+#' PNG graph for reports generation
+#' @description Writes graph to file for inclusion in report. The function opens a graphics device, after which the plot call(s) should follow. To be executed, the graphics device needs to be closed with \code{dev.off()}.
 #' @param filename filename including path. To follow qP workflow standards should read the internal relative reference directory "../WorkAre/output/graphs"
 #' @param w width in \code{units}
 #' @param h height in \code{units}
@@ -21,11 +21,11 @@
 #' dev.off()
 
 png.report = function(
-  filename, 
-  w = 6, h = 4, units="in", 
+  filename,
+  w = 6, h = 4, units="in",
   psize = 10, bg="transparent", res=600, ...)
 {
    if(missing(filename)) stop("filename must be provided.")
-  png(filename = filename, width = w, height = h, 
+  png(filename = filename, width = w, height = h,
       units = units, pointsize = psize, bg = bg, res = res, ...)
 }

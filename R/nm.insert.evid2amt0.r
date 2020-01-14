@@ -25,23 +25,23 @@ nm.insert.evid2amt0 = function(data, ..., quiet = TRUE)
     )
     ,collapse=", "
   )
-  
+
   data.d2 = data %>%
     filter(EVID %in% c(1,3,4)) %>%
     mutate(AMT = 0, EVID = 2)
-  
+
   # gather data,  sort and drop the additional sorting index
   data = bind_rows(data, data.d2) %>%
     arrange(...)
-  
-  if(!quiet) message("EVID=2 and AMT=0 records added for each dosing record.")  
-  
+
+  if(!quiet) message("EVID=2 and AMT=0 records added for each dosing record.")
+
   if(nchar(my.dots)==0) {
      if(!quiet) message("No sorting was performed as no sorting variables were provided.")
   } else {
     if(!quiet) message(paste("Data sorted by", my.dots))
   }
-  
+
   return(data)
 }
 

@@ -1,24 +1,24 @@
 # name:     nm.params.table
-# purpose:  creates a parameter table 
-# input:    run number, optional: path if that's any different from "../WorkArea/NONMEM" 
-# output:   data frame 
-# note:     
+# purpose:  creates a parameter table
+# input:    run number, optional: path if that's any different from "../WorkArea/NONMEM"
+# output:   data frame
+# note:
 
 # ROXYGEN Documentation
-#' Create NONMEM Parameter Estimate Table 
+#' Create NONMEM Parameter Estimate Table
 #' @param run run rootname (e.g. run1)
 #' @param path directory where rootname.ext resides
 #' @param file.ext file extentions of the .ext file. Defaults to .ext
 #' @param runIndex which (numeric) estimation method needs to be tabulated? Defaults to the last estimation method outputted to the .ext file
-#' @param fixed.text character string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream 
+#' @param fixed.text character string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream
 #' @param return.all logical indicator to return the standard data set for inclusion in reports (default) or if TRUE the data set with everything.
-#' @return data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information. 
+#' @return data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information.
 #' @export
 #' @seealso \code{\link{process.parTable}}
 #' @importFrom metrumrg stableMerge
 #' @examples
 #' nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-#' nm.params.table("example2",  path = getOption("qpExampleDir"), 
+#' nm.params.table("example2",  path = getOption("qpExampleDir"),
 #' fixed.text = "(fixed to 0)", return.all = TRUE)
 nm.params.table = function(
   run,
@@ -30,7 +30,7 @@ nm.params.table = function(
 )
 {
   flag = 0
-  
+
   ## in this part the 6th summary row is extracted
   theExt = read.ext(run = run, path = path, file.ext = file.ext)
   theExt = lapply(theExt, function(x) x[x$ITERATION< -100000000,])
@@ -50,7 +50,7 @@ nm.params.table = function(
   )
   runIndex = if(missing(runIndex)) length(theTab) else runIndex
   theTab = theTab[[runIndex]]
-  
+
   check = lapply(theExt, function(x) x[x$ITERATION == "-1000000006",])[[runIndex]]
   if(nrow(check)==0){
     flag = 1
@@ -63,7 +63,7 @@ nm.params.table = function(
   check = data.frame(t(check))
   check$Parameter = sub("[,]",".",sub("[)]","",(sub("[(]","",row.names(check)))))
   names(check)[1] = "estimated"
-  
+
   theTab$index = extract.number(theTab$Parameter)
   theTab$level = unlist(lapply(sapply(theTab$Parameter,function(x) extract.character(x)),paste, collapse=""))
   parTab = theTab[theTab$level %in% c('THETA','SIGMA','OMEGA'),]
@@ -71,7 +71,7 @@ nm.params.table = function(
   parTab$ord = paste(parTab$ord,format(parTab$index), sep = "")
   parTab = parTab[order(parTab$ord),]
   parTab = reorder(parTab, "Parameter")
-  
+
   ## merge the fixed / non-fixed information in
   parTab = metrumrg::stableMerge(parTab[, names(parTab)[names(parTab) != "estimated"]], check)
   estimated = parTab$estimated == 0
@@ -84,10 +84,10 @@ nm.params.table = function(
   parTab$estimated = ifelse(estimated,"estimated","fixed")
   parTab$Run = rep(run, nrow(parTab))
   # don't use %in%, it is order dependent and we may name things out of order
-  names(parTab)[match(c("Parameter", "estimate",  "se", "estimated", "prse"), names(parTab))] = 
+  names(parTab)[match(c("Parameter", "estimate",  "se", "estimated", "prse"), names(parTab))] =
     c("Parameter","Estimate","SE","estimated","CV.perc")
   row.names(parTab) = 1 : nrow(parTab)
-  
+
   parTab = if(!return.all){
     parTab = parTab[, c("Parameter","Estimate","CV.perc","SE","estimated")]
   } else {

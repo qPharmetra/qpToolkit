@@ -4,7 +4,7 @@
 #' @param x A character or numeric string.
 #' @param collapse A boolean, should the character vector returned by collapsed (see \code{\link[base]{paste}}).
 #' @return A character string or vector if the input has multiple character blocks.
-#' @export 
+#' @export
 #' @seealso \code{\link{extract.number}}
 #' @examples
 #' extract.character(x="df12Lee31df")

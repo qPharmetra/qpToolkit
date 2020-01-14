@@ -1,8 +1,8 @@
 # name:     nm.extract.xml
 # purpose:  extracts all output embedded in the XML file of a NONMEM run
-# input:    run and number (character) 
+# input:    run and number (character)
 # output:   list with all NONMEM output
-# 
+#
 
 # ROXYGEN Documentation
 #' NONMEM output extraction from XML output
@@ -17,9 +17,9 @@
 #' @param xml.extension extension of the xml file. Defaults to ".xml"
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
 #' @param zip.program full path to the executable of the zip program (7zip or winzip). Defauls to "c:/progra~1/7-zip/7z"
-#' @param remove.obsolete  logical (F) defining if non-estimated parameters should be dropped for the parameter table. 
+#' @param remove.obsolete  logical (F) defining if non-estimated parameters should be dropped for the parameter table.
 #' @param na.value what to do with an NA value in the parameter table. Defaults to "n.d."
-#' @param control_stream logical (F) defining if the control stream should be included as well. 
+#' @param control_stream logical (F) defining if the control stream should be included as well.
 #' @param get.xpose.tables logical (T) defining if the xpose tables should be integrated in the result as a single data frame using the function \code{get.xpose.tables}
 #' @param quiet if TRUE (default) silences any message returned by the function and subfunctions.
 #' @return An extensive list with all elements extracted from the XML output
@@ -54,8 +54,8 @@ nm.extract.xml = function(
 {
   #xml.extension = ".xml";zip.extension = ".7z";remove.obsolete = F;na.value = "n.d.";control_stream = F;  path = paste(getwd(),"NONMEM", run, sep = "/")
   #digits = 4;digits.se = digits;digits.cv = digits;digits.est = digits;filename = paste(path,run,paste(run, xml.extension,sep=""),sep="/")
-  #require(XML)              
-  
+  #require(XML)
+
   fz = paste(filename, zip.extension, sep = "")
   ## unzip the xml file in case it is required
   if(file.exists(fz)&file.exists(filename)) file.remove(filename)
@@ -75,10 +75,10 @@ nm.extract.xml = function(
   est.methods = sapply(1:length(TMP), function(x,TMP)
     xmlValue(TMP[x][["estimation"]][["estimation_title"]]), TMP = TMP)
   names(TMP) = est.methods
-  
+
   if(control_stream) return(control_stream = xmlValue(top[["control_stream"]]))
-  
-  nmext = lapply(TMP, function(tmp, 
+
+  nmext = lapply(TMP, function(tmp,
                                remove.obsolete
                                , digits.est
                                , digits.cv
@@ -88,7 +88,7 @@ nm.extract.xml = function(
   {
     estimation.method = xmlValue(tmp[["estimation_method"]])
     if(!quiet) cat("extracting:", estimation.method,"\n")
-    
+
     names(tmp)
     covInfo = lapply(asXMLNode(tmp[["covariance"]])$children, xml.Extract.NM.Matrix)
     corInfo = lapply(asXMLNode(tmp[["correlation"]])$children, xml.Extract.NM.Matrix)
@@ -132,11 +132,11 @@ nm.extract.xml = function(
       names(sigmase) = sigmaNames
       sigmase = convert.sigma(sigmase)
     }
-    
+
     names(tmp)
-    
+
     if(any(names(tmp) %in% "etabar")){ ## test if etabar is there (not for MCMC)
-      popNames = as.character(unlist(lapply(asXMLNode(tmp[["etabar"]])$children, 
+      popNames = as.character(unlist(lapply(asXMLNode(tmp[["etabar"]])$children,
                                             function(x) xmlAttrs(x))))
       etabar = lapply(asXMLNode(tmp[["etabar"]])$children, xml.Extract.NM.Value, what="")
       etabarse = lapply(asXMLNode(tmp[["etabarse"]])$children, xml.Extract.NM.Value, what="")
@@ -149,10 +149,10 @@ nm.extract.xml = function(
       if(!is.null(etabarpval)) names(etabarpval) = popNames
     } else
       etabar = etabarse = etabarpval = etashrink = epsshrink = NULL
-    
+
     eigenvalues = as.vector(unlist(lapply(asXMLNode(tmp[["eigenvalues"]])$children,
                                           xml.Extract.NM.Value, what="")), "numeric")
-    
+
     parallel_est = if(!is.null(tmp[["parallel_est"]])) xmlAttrs(tmp[["parallel_est"]]) else NULL
     monitor = unlist(lapply(tmp[["monitor"]]$children, xml.Extract.NM.Value))
     names(monitor) = unlist(lapply(tmp[["monitor"]]$children, function(x) xmlGetAttr(x, "iteration")))
@@ -164,7 +164,7 @@ nm.extract.xml = function(
     final_objective_function_text = xmlValue(tmp[["final_objective_function_text"]])
     final_objective_function_std = if(estimation.method == "mcmc")
       as.numeric(xmlValue(tmp[["final_objective_function_std"]])) else NULL
-    
+
     ## make parameter table
     point.estimates = c(unlist(fixed),unlist(omega),unlist(sigma))
     se.estimates = c(unlist(fixedse),unlist(omegase),unlist(sigmase))
@@ -173,17 +173,17 @@ nm.extract.xml = function(
     cvperc = signif(cvperc, digits.cv)
     msel = is.nan(cvperc)
     cvperc[msel] = rep(na.value, sum(is.nan(cvperc)))
-    
-    table = if(!is.null(point.estimates)) 
+
+    table = if(!is.null(point.estimates))
     {
       nm.params.table(run = run, path = path)
-    } else 
+    } else
       NULL
-    
-    
+
+
     if(remove.obsolete & !is.null(table)) table = table[!msel, ]
     if(!is.null(table)) row.names(table) = 1:nrow(table)
-    
+
     return(
       list(fixed=fixed,fixedse=fixedse,omega=omega,omegase=omegase,sigma=sigma,sigmase=sigmase,
            covariance=covariance,correlation=correlation, table=table,
@@ -206,18 +206,18 @@ nm.extract.xml = function(
   )
   ## re-order the list obtained by item instead of by estimation method
   nmext = shuffle.list(nmext)
-  
+
   nmTab = NULL
-  xposeTablesExist = length( 
-    dir(path)[grepl("(sd|pa|ca|co)tab[0-9]+",dir(path))] 
+  xposeTablesExist = length(
+    dir(path)[grepl("(sd|pa|ca|co)tab[0-9]+",dir(path))]
   ) > 0
-  if(get.xpose.tables & xposeTablesExist) 
+  if(get.xpose.tables & xposeTablesExist)
     nmTab = get.xpose.tables(run = run, path=path)
   nmext$XPtable =  nmTab
-  
+
   ## remove XML file that was unzipped
   if(file.exists(fz)) file.remove(filename)
-  
+
   cat("extraction of",paste(run,xml.extension,sep = ""),"complete.\n")
   return(nmext)
 } ## end nm.extract.xml

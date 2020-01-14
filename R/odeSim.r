@@ -73,7 +73,7 @@ odeSim = function(state, times,  func, parms, simPar, simParValues, method = "ls
 
   ## Stop parallel execution
   sfStop()
-  
+
   ## put list result into indexed data frame
   out = data.frame(do.call("rbind",sim))
 

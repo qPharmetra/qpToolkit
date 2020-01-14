@@ -15,12 +15,12 @@
 #' @param myFun the summarization function (mean)
 #' @param type like the lattice argument type for line type
 #' @param individual.col = color of individual lines (spagghetti elements)
-#' @param show.points logical indicating to show observed data dots 
+#' @param show.points logical indicating to show observed data dots
 #' @param \dots passed to panel.superpose()
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
-#' @examples 
+#' @examples
 #' \dontrun{
 #' library(lattice)
 #' library(metrumrg)
@@ -32,10 +32,10 @@
 #'        , aspect = 1
 #'        , panel = panel.meanspag
 #' )
-#' 
+#'
 #' out = get.xpose.tables(file.path(getOption("qpExampleDir"),"example2"))
 #' trellis.strip.color()
-#' xyplot(CONC ~ TIME 
+#' xyplot(CONC ~ TIME
 #'        , data = out
 #'        , groups = ID
 #'        , subset = EVID==0
@@ -47,7 +47,7 @@
 #'
 #'# in case there are too many times to average by then the following might be #'#better interpretable
 #'ptimes = seq(min(out$TIME),max(out$TIME), length = 14)
-#'xyplot(CONC ~ Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))  
+#'xyplot(CONC ~ Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))
 #'       , data = out
 #'       , groups = ID
 #'       , subset = EVID==0
@@ -62,18 +62,18 @@
 #'       , yscale.components = yscale.components.log10.3
 #')
 #'}
-panel.meanspag = 
-  function(x, y, subscripts, groups, ..., 
-           myFun = mean, 
-           sumText = "Mean", 
-           individual.col = gray[5], type = "l", 
+panel.meanspag =
+  function(x, y, subscripts, groups, ...,
+           myFun = mean,
+           sumText = "Mean",
+           individual.col = gray[5], type = "l",
            average.lwd = 3, average.col = red[8],
            add.legend = TRUE, legend.panel.row, legend.panel.column, legend.x, legend.y,
            show.points=FALSE
   )
   {
     panel.superpose(x,y, subscripts, groups, ..., col = individual.col, type = type)
-    
+
     panel.avg.LP(x,y, fun = myFun, col = average.col, lwd = average.lwd, horizontal = FALSE
                  , type="b", show.points=show.points, pch=16)
     if(add.legend) {

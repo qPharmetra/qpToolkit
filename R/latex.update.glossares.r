@@ -1,8 +1,8 @@
 #' Update Glossaries
-#' 
+#'
 #' Updates glossaries in latex-based report. Changes to the specified directory,
 #' and should change back even if an error occurs.
-#' 
+#'
 #' @param dir path to directory containing the report
 #' @param base basename for the report
 #' @param command defaults to 'makeindex'

@@ -1,5 +1,5 @@
 #' Print a welcome message
-#' 
+#'
 #' @param name length one character: who is being addressed
 #' @return A welcoming message
 #' @keywords internal

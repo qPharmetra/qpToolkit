@@ -14,7 +14,7 @@ nm.runtime = function(run, path = getOption("nmDir"))
    meth = gsub(" #METH: ","",out[grep("#METH",out)])
    est = extract.number(out[grep("estimation time",out)])
    covt =  extract.number(out[grep("covariance time",out)])
-   
+
    runtime = shuffle.list(list(paste0("Estimation: ", round(est/3600,2),"h")
      , paste0("Covariance Step: ",round(covt/3600,2),"h")
      , paste0("Total: ",round((est+covt)/3600,2),"h")

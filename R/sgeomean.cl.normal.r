@@ -1,6 +1,6 @@
 
 # ROXYGEN Documentation
-#' Summary of geometric mean and 95\% CI 
+#' Summary of geometric mean and 95\% CI
 #' @description Make a summary of the geometric mean and 95\% CI of the input
 #' @param x numeric vector
 #' @param conf.int confidence interval, default is 0.95, for 95\%)
@@ -19,13 +19,13 @@
 sgeomean.cl.normal = function(x, conf.int = 0.95, log.base=exp(1),
                               na.rm = TRUE)
 {
-  if (na.rm) 
+  if (na.rm)
     x <- log(x[!is.na(x)], base = log.base)
   n <- length(x)
   if(n > 1){
     xbar <- sum(x)/n
     se <- sqrt(sum((x - xbar)^2)/n/(n - 1))
-    mult = qt((1 + conf.int)/2, n - 1) 
+    mult = qt((1 + conf.int)/2, n - 1)
   } else{
     xbar = xbar = sum(x)/2
     se = 0

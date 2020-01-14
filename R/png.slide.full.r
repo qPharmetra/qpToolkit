@@ -22,12 +22,12 @@
 #' dev.off()
 
 png.slide.full = function(
-  filename, 
-  w = 10, h = 7.5, units="in", 
+  filename,
+  w = 10, h = 7.5, units="in",
   psize = 10, bg="transparent", res=600, ...)
 {
    if(missing(filename)) stop("filename must be provided.")
-  png(filename = filename, width = w, height = h, 
+  png(filename = filename, width = w, height = h,
       units = units, pointsize = psize, bg = bg, res = res, ...)
 }
 

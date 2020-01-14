@@ -1,13 +1,13 @@
 globalVariables(c('cov.val', 'pi.lower', 'pi.upper', 'posthoc', 'typical', 'group'))
 
 #' Make a list of equations
-#' 
+#'
 #' Makes a list of equations.
-# @describeIn nm.process.coveffects Makes a list of calls from its named arguments 
-#' input formulas.  
+# @describeIn nm.process.coveffects Makes a list of calls from its named arguments
+#' input formulas.
 #' @param ... a series of named formulas
-#' @return a list of call objects that can be used to evaluate the input equations 
-#' in a given environment. 
+#' @return a list of call objects that can be used to evaluate the input equations
+#' in a given environment.
 #' @note This function is used with \code{nm.process.coveffects}
 #' @family coveffects
 #' @export make.eqs
@@ -15,8 +15,8 @@ globalVariables(c('cov.val', 'pi.lower', 'pi.upper', 'posthoc', 'typical', 'grou
 #' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
 #'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")            
-#' 
+#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#'
 
 # Make a list of named functions (as call objects)
 make.eqs <- function(...) {
@@ -24,14 +24,14 @@ make.eqs <- function(...) {
 }
 
 #' Evaluate a list of equations
-#' 
+#'
 #' Evaluates a list of calls in an environment, list, or data.frame
-# @describeIn nm.process.coveffects Evaluate a list of calls in an environment, list, 
+# @describeIn nm.process.coveffects Evaluate a list of calls in an environment, list,
 
-#' or data.frame.  
+#' or data.frame.
 #' @param .data data.frame, list, or environment
 #' @param ... a list of calls or expressions
-#' @return .data is returned with the evaluated expressions added 
+#' @return .data is returned with the evaluated expressions added
 #' @note This function is used with \code{nm.process.coveffects}
 #' @family coveffects
 #' @export eval.eqs
@@ -39,12 +39,12 @@ make.eqs <- function(...) {
 #' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
 #'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")            
-#' 
+#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#'
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
 
-eval.eqs=function(.data,  ...) 
+eval.eqs=function(.data,  ...)
 {
   #.data is data.frame, list, or environment
   # env.aux is alternative environment (only) where we can find variables not in .data
@@ -61,7 +61,7 @@ eval.eqs=function(.data,  ...)
 
 #' Make a covInfo S3 object
 # @describeIn nm.process.coveffects Make a covInfo S3 object
-#' @description Constructs a covInfo (covariate information) object from a vector.  
+#' @description Constructs a covInfo (covariate information) object from a vector.
 #' @param cov.name The name of the covariate
 #' @param cov.vals A vector of values
 #' @param cov.cat A boolean indicating if the covariate is categorical
@@ -70,7 +70,7 @@ eval.eqs=function(.data,  ...)
 #' @param cov.max The maximum value of the covariate
 #' @param cov.label The printed name of the covariate (e.g. seen on plot axes)
 #' @param cov.breaks The points at which simulations and plots would be assessed
-#' @return A covInfo object 
+#' @return A covInfo object
 #' @seealso \code{\link{print.covInfo}}
 #' @family coveffects
 #' @note This function is used with \code{nm.process.coveffects}
@@ -79,8 +79,8 @@ eval.eqs=function(.data,  ...)
 #' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
 #'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")            
-#' 
+#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#'
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
 covInfo = function(cov.name
@@ -102,37 +102,37 @@ covInfo = function(cov.name
 
 
 #' Print a covInfo S3 object
-#' 
+#'
 #' Prints a covInfo object.
 # @describeIn nm.process.coveffects Print a covInfo S3 object
-#' @description Prints a covInfo object.  
+#' @description Prints a covInfo object.
 #' @param x A covInfo object
 #' @param \dots ignored
 #' @family coveffects
-#' @return A covInfo object 
+#' @return A covInfo object
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export
 #' @method print covInfo
-#' 
+#'
 #print.covInfo
 print.covInfo = function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
 
 
 #' Make a list of covInfo objects from a data frame
-#' 
-#' Makes a list of covInfo objects from a data.frame.  
+#'
+#' Makes a list of covInfo objects from a data.frame.
 # @describeIn nm.process.coveffects Make a list of covInfo objects from a data frame
 
-#' @description Takes a data frame and creates covInfo objects based on its columns.  
+#' @description Takes a data frame and creates covInfo objects based on its columns.
 #' @param df A data frame
 #' @param cnames A vector of column names to create covInfo objects for
 #' @param cat.covs A vector of categorical column names.  Must be a subset of cnames
 #' @return A list of covInfo objects
 #' @note This function is used with \code{nm.process.coveffects}
-#' @export 
+#' @export
 #' @importFrom plyr ddply here summarise
 #' @importFrom stats var sd quantile
-#' 
+#'
 # make a list of covInfo objects from a dataframe.  User can override elements as desired
 makeCovInfo = function(df, cnames=names(df), cat.covs="")
 {
@@ -155,10 +155,10 @@ bootsamp = function(equ, .data, varcov, N=10000)
   # take names from varcov out of .data
   rand.vars = colnames(varcov)
   fixed.vars = names(.data)[!names(.data) %in% rand.vars]
-  
+
   fix.df = .data[fixed.vars] #works for data.frame or list
-  
-  # sample MVN, centered at 
+
+  # sample MVN, centered at
   mvrnormR <- function(n, mu, sigma)
   {
     ncols <- ncol(sigma)
@@ -166,7 +166,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
     mu + matrix(stats::rnorm(n * ncols), ncol = ncols) %*% chol(sigma)
   }
   ran.df=as.data.frame(mvrnormR(N,0,varcov))
-  
+
   # merge fix and ran and eval the eq
   df=merge(fix.df,ran.df)
   df=eval.eqs(df,equ)
@@ -186,7 +186,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
   param = names(equ)
   cov = cov.info$name
   stopifnot(cov %in% all.vars(equ[[1]]))
-  
+
   #get typical value (ETAs = 0)
   coveff.df = data.frame(eval.eqs(ptab,equ), stringsAsFactors=FALSE)
   #get cov,param,group columns if they exist
@@ -196,7 +196,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
                     Parameter=paste(param,cov,sep="."),coveff.df[,cols],
                     stringsAsFactors=FALSE)
   names(coveff.df)[4:5]=c("cov.val","typical")
-  
+
   # bootsample for mean, var, sd, 95%PI
   samples.df = plyr::ddply(data.frame(ptab),cov,function(x) bootsamp(equ,x,varcov,Nboot))
   #rename cov and param so we can see them easily in ddply
@@ -213,13 +213,13 @@ bootsamp = function(equ, .data, varcov, N=10000)
                   ,pi.lower=quantile(param,p=(1-pi.wid)/2)
                   ,pi.upper=quantile(param,p=1-(1-pi.wid)/2)
   )
-  
+
   merge(coveff.df,summ.df,by=grouping)
 }
 
 
 #' Evaluate equations (as a list of calls) over the covariates involved.
-#' @description A list of equations that define the covariate relationships is...  
+#' @description A list of equations that define the covariate relationships is...
 #' @param eqs A list of calls
 #' @param covs.info A list of covInfo objects to parameterize the subanalysis
 #' @param pars A list or single-row data.frame of the parameter estimates (THETA, OMEGA)
@@ -230,7 +230,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
 #' @return A list including lists of: covariate effect plots, table of covariate effects,
 #' table of post-hoc values -- for each covariate effect; the call list; the list of covInfo
 #' @export nm.process.coveffects
-#' 
+#'
 nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=10000, pi.wid=0.9)
 {
   #eqs is a list of calls for the structural parameter equations (using THETA, ETA, COV)
@@ -238,26 +238,26 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
   #pars is the list or single-row data.frame of the parameter estimates (THETA, OMEGA)
   #xpose.df has the posthocs and covariates
   #omega is covariance matrix for random effects
-  
+
   #reset names in omega
   n.eta = dim(omega)[1] #symetric matrix, so which dim doesn't matter
   rownames(omega)<-colnames(omega)<-paste0("ETA",1:n.eta)
-  
+
   #return a list with list of data.frames and list of ggplots
   coveffs.l=list()
   plot.l=list()
   x.l=list()
   cov.names = names(covs.info)
-  
+
   #add covariate center values into pars
   pars[cov.names]=lapply(covs.info,function(x) x$center)
-  
+
   for(par in names(eqs)){
     #which covs are in the equations
     equ=eqs[par]
     vars=all.vars(equ[[1]])
     activ.covs = cov.names[cov.names %in% vars]
-    
+
     # Which covs are categorical?
     activ.cat=character(0)
     if(length(activ.covs)>0){
@@ -268,9 +268,9 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
       cats.df = expand.grid(lapply(activ.cat,function(x)covs.info[[x]]$breaks))
       names(cats.df)=activ.cat
     }
-    
+
     for(i in activ.covs){
-      
+
       ptab=as.list(pars) #should still be flat/one-row
       # add coveff breaks into ptab as coveff, only if not categorical
       # categorical breaks should be part of ptab
@@ -284,16 +284,16 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
         # add in the categorical breaks and compute groups
         # have to remove activ.cat first
         ptab=merge(ptab[,names(ptab)[!names(ptab) %in% activ.cat]],cats.df)
-        # create grouping column for 
+        # create grouping column for
         # any cats not the current covariate?
         cats.group = activ.cat[activ.cat!=i]
         if(length(cats.group)>0){
           ptab$group = interaction(ptab[,cats.group])
           xpose.df$group = interaction(xpose.df[,cats.group])
-          group.df = unique(ptab[,c("group",cats.group)]) 
-        } 
+          group.df = unique(ptab[,c("group",cats.group)])
+        }
       }
-      
+
       eff.name=paste0(par,".",i)
       #get the covariate effects on this parameter
       ce.df=.coveffect(equ,covs.info[[i]],ptab,omega,Nboot,pi.wid)
@@ -311,7 +311,7 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
       }
 
       #plot the effect
-      p = coveff.plot(x.df,ce.df, covs.info[[i]]$categorical, cats.group) + 
+      p = coveff.plot(x.df,ce.df, covs.info[[i]]$categorical, cats.group) +
         labs(x=covs.info[[i]]$label,y=eqs$label[[par]])
 
       #save stuff
@@ -322,12 +322,12 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
   }
   structure(list(plot=plot.l, table=coveffs.l, posthoc=x.l,
                  eq.cov=eqs, covs.info=covs.info), class="covEffects")
-  
+
 }
 
 #' Plot a covariate effects object
 #'
-#' @param x a covEffects object from nm.process.coveffects 
+#' @param x a covEffects object from nm.process.coveffects
 #' @param y names of the plots to print (defaults to all)
 #' @param \dots ignored
 #' @import ggplot2
@@ -340,7 +340,7 @@ plot.covEffects = function(x, y=names(x$plot), ...)
   for(i in y) print(x$plot[[i]])
 }
 coveff.plot=function(xpose.df, ppred.df, box, grouping)
-{ 
+{
   #box is T or F and is set T if x axis is categorical covariate
   cov=as.character(ppred.df$Cov[1])
   par=as.character(ppred.df$Par[1])
@@ -350,29 +350,29 @@ coveff.plot=function(xpose.df, ppred.df, box, grouping)
       p=p+geom_ribbon(data=ppred.df,aes(x=cov.val,ymin=pi.lower,ymax=pi.upper),
                       alpha=.2, fill="steelblue") +
         geom_point(data=xpose.df, aes(x=cov.val,y=posthoc)) +
-        geom_line(data=ppred.df,aes(x=cov.val,y=typical), 
-                  color="blue",size=1) 
+        geom_line(data=ppred.df,aes(x=cov.val,y=typical),
+                  color="blue",size=1)
     }else{
       p=p+geom_crossbar(data=ppred.df,aes(x=factor(cov.val),ymin=pi.lower, y=typical,
                                           ymax=pi.upper), alpha=.2
                         , fill="steelblue",color="steelblue") +
-        geom_jitter(data=xpose.df, aes(x=factor(cov.val),y=posthoc)) 
-      
+        geom_jitter(data=xpose.df, aes(x=factor(cov.val),y=posthoc))
+
     }
   }
   if(length(grouping)>0){
     if(!box){
-      p=p+geom_ribbon(data=ppred.df,aes(x=cov.val,ymin=pi.lower, 
+      p=p+geom_ribbon(data=ppred.df,aes(x=cov.val,ymin=pi.lower,
                                         ymax=pi.upper, fill=group), alpha=.2) +
         geom_point(data=xpose.df, aes(x=cov.val,y=posthoc,color=group)) +
-        geom_line(data=ppred.df,aes(x=cov.val,y=typical, color=group),size=1) 
-      
+        geom_line(data=ppred.df,aes(x=cov.val,y=typical, color=group),size=1)
+
     }else{
       p=p+geom_crossbar(data=ppred.df,aes(x=factor(cov.val),ymin=pi.lower, y=typical,
                                           ymax=pi.upper, fill=group, color=group)
                         , alpha=.2, position="dodge") +
         geom_point(data=xpose.df, aes(x=factor(cov.val),y=posthoc,color=group, fill=group),
-                   position=position_jitterdodge()) 
+                   position=position_jitterdodge())
     }
     p=p+labs(color=paste(grouping,collapse="."),fill=paste(grouping,collapse="."))
   }

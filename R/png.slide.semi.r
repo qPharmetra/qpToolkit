@@ -20,12 +20,12 @@
 #' plot(x=1:25,y=rnorm(25,50,5))
 #' dev.off()
 png.slide.semi = function(
-  filename, 
-  w = 8, h = 6, units="in", 
+  filename,
+  w = 8, h = 6, units="in",
   psize = 10, bg="transparent", res=600, ...)
 {
    if(missing(filename)) stop("filename must be provided.")
-  png(filename = filename, width = w, height = h, 
+  png(filename = filename, width = w, height = h,
       units = units, pointsize = psize, bg = bg, res = res, ...)
 }
 

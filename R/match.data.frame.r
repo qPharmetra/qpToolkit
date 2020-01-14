@@ -39,12 +39,12 @@
 #' temp1 = list(x = cars[,1], y = cars[,2])
 #' temp2 = list(x = cars[,1], y = cars[,2])
 #' match.data.frame(x=temp1, table=temp2)
-#' #[1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 17 19 20 21 22 23 24 
+#' #[1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 17 19 20 21 22 23 24
 #' #25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
 #'
 #' temp1 = data.frame(a=11:13,b=21:23)
 #' temp2 = data.frame(a=11:14,b=21:24)# dataframes with different numbers of rows
-#' 
+#'
 #' match.data.frame(x=temp1, table=temp2)
 #' #[1] 1 2 3
 #'
@@ -62,12 +62,12 @@ match.data.frame = function(x, table, nomatch = NA, incomparables = FALSE)
     warning("lengths of keys (variables in x) differ")
   if(length(unique(unlist(lapply(table, length)))) > 1)
     warning("lengths of keys (variables in table) differ")
-  
+
   uniqueTable <- lapply(table, unique)
   f <- function(i, x, u)  match(x[[i]], u[[i]])
   x <- lapply(seq(p), f, x = x, u = uniqueTable)
   table <- lapply(seq(p), f, x = table, u = uniqueTable)
-  
+
   # Convert each row of x and of table into a character string (sep=" ")
   match(do.call("paste", x), do.call("paste", table), nomatch = nomatch)
 }

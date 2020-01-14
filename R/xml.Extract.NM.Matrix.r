@@ -12,7 +12,7 @@
 #' @return A matrix
 #' @export xml.Extract.NM.Matrix
 #' @importFrom XML  xmlAttrs xmlValue
-#' @examples 
+#' @examples
 #' \dontrun{
 #' library(XML)
 #' run = "example1"
@@ -26,7 +26,7 @@
 #'   xmlValue(TMP[x][["estimation"]][["estimation_title"]]), TMP = TMP)
 #' names(TMP) = est.methods
 #' tmp = TMP[[1]]
-#' 
+#'
 #' xml.Extract.NM.Value(asXMLNode(tmp[["theta"]]), what = "theta")
 #' xml.Extract.NM.Value(asXMLNode(tmp[["thetase"]]), what = "theta")
 #' names(tmp)
@@ -53,9 +53,9 @@ if(F)
   fz = file.path(nmDir,"run31",paste("run31.xml", ".7z", sep = ""))
   ## unzip the xml file in case it is required
   if(file.exists(fz)&file.exists(filename)) file.remove(filename)
-  if(file.exists(fz)) 
+  if(file.exists(fz))
     nm.unzip(run = run, path = file.path(path,run), zip.extension = zip.extension, extension = xml.extension)
-  
+
   top = xmlRoot(xmlTreeParse(filename))# names(top)
   TMP = top[["nonmem"]][["problem"]]
   TMP = TMP[grepl("estimation", names(TMP))]
@@ -65,10 +65,10 @@ if(F)
     xmlValue(TMP[x][["estimation"]][["estimation_title"]]), TMP = TMP)
   names(TMP) = est.methods
   tmp = TMP[[1]]
-  
+
   names(tmp)
   omega = lapply(asXMLNode(tmp[["omega"]])$children, xml.Extract.NM.Matrix)
-  
+
   make.symmetric(unlist(omega))
 #   [1,] 0.06322009 0.00000000    0    0 0.0000000 0.0000000 0.0000000
 #   [2,] 0.00000000 0.09022483    0    0 0.0000000 0.0000000 0.0000000

@@ -13,7 +13,7 @@
 #' @seealso \code{\link{convert.sigma}}
 #' @importFrom Hmisc unPaste
 
-convert.omega = function (x) 
+convert.omega = function (x)
 {
   ## cov and cor matrix have upper triangle
   ## omega and omegase have lower triangle
@@ -21,7 +21,7 @@ convert.omega = function (x)
   X = names(x)
   X = Hmisc::unPaste(gsub(")", "", substring(X, 7)), ",")
   neworder = data.frame(value = x, names = names(x),x1=as.numeric(X[[1]]),x2=as.numeric(X[[2]]))
-  #neworder$names[order(neworder$x2,neworder$x1), ] 
+  #neworder$names[order(neworder$x2,neworder$x1), ]
   result = neworder$value[order(neworder$x1,neworder$x2)]
   names(result) = neworder$names[order(neworder$x1,neworder$x2)]
   return(result)

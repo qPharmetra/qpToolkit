@@ -33,9 +33,9 @@ read.ext = function(run
   if(length(loc) == 1) idx = 1
   loc = matrix(c(loc,c(loc[-1]-1,length(x))), nrow = 2, byrow = TRUE)
   loc
-  
+
   ## turn this into a list
-  
+
   x = apply(loc, 2, function(loc, x) x[loc[1]:loc[2]], x = x)
   if(idx == 1) ## special case for a single table
   {
@@ -43,25 +43,25 @@ read.ext = function(run
   }
   xnam = lapply(x, function(y) unPaste(y[1], sep = ":"))
   names(x) = lapply(xnam, function(x) substring(x[2], 2))
-  
+
   ## turn each list into a data frame
   parse.table = function(y)
   {
     y = y[-1]
-    
+
     ## take the names of the data frame and remove them from the 'numeric' grid
     dfnames = unlist(unPaste(substring(y[1],2), sep = "\\s+"))
     y = y[-1]
-    
+
     yy = lapply(y, function(z) as.numeric(unPaste(substring(z,2), sep = "\\s+")))
     yy = do.call("rbind", yy)
     yy = data.frame(yy[, -1])
     names(yy) = dfnames
     return(yy)
   }
-  
+
   ## return the tables
-  return(lapply(x, parse.table)) 
+  return(lapply(x, parse.table))
 }
 
 

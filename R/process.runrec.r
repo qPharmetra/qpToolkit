@@ -10,26 +10,26 @@
 #' @seealso \code{\link{read.runrec}}, \code{\link{process.parTable}}
 #' @examples
 #' rr = read.runrec(
-#'  filename = "AAruninfo.txt", 
+#'  filename = "AAruninfo.txt",
 #'  path = system.file(package = 'qpToolkit','NONMEM')
 #' )
 #' process.runrec(rr)
 #' process.runrec(rr, plain = TRUE)
 process.runrec = function(
-  runrec, 
+  runrec,
   improvement = list(value = -6.63, color = "blue"),
   carryAlong = NULL, plain=FALSE)
 {
   runrec = runrec[, c('Run','Ref','OFV','dOFV','CondNum','Minimization','Description', carryAlong)]
   runrec$CondNum = round(runrec$CondNum)
-  runrec$CondNum[runrec$CondNum>10000 & !is.na(runrec$CondNum)] = 
+  runrec$CondNum[runrec$CondNum>10000 & !is.na(runrec$CondNum)] =
     rep("$>$10,000", sum(runrec$CondNum>10000 & !is.na(runrec$CondNum)))
   runrec$Ref[is.na(runrec$Ref)] = "-"
   runrec$CondNum[is.na(runrec$CondNum)] = rep("-", sum(is.na(runrec$CondNum)))
   runrec = runrec[order(runrec$Run), ]
   runrec$Description = as.character(runrec$Description)
   runrec$Description = sub("~","vs.", runrec$Description)
-  
+
   improved = !is.na(runrec$dOFV) & asNumeric(runrec$dOFV, "NA") < improvement$value
   runrec$OFV = round(runrec$OFV,1)
   runrec$dOFV = round(runrec$dOFV,1)

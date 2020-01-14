@@ -1,12 +1,12 @@
 ### _____________________________________________________________________________________________
-### CLIENT:		qPharmetra 
+### CLIENT:		qPharmetra
 ### PROJECT:	qP PROJECT
 ###
 # name:     plot.tornado
 # purpose:  plots 'tornado' horizontal bar chart with distributions ordered by width
 # input:    specific data set 'torn.ds' with specifications detailed below
 # output:   plot window
-# note: 
+# note:
 
 ## Further explanation to the tool:
 ## plot.tornado
@@ -26,7 +26,7 @@
 ## Note:
 ##	the code ignores all but the FIRST value in the val.base
 ##
-## Tornado algorithm from R.T. Clemen. Making Hard Decision: An Introduction to Decision Analysis, 1st Edn, 
+## Tornado algorithm from R.T. Clemen. Making Hard Decision: An Introduction to Decision Analysis, 1st Edn,
 ##		Duxbury Press, Bellmont, CA, 1991.  Chapter 5, page 116
 
 
@@ -52,7 +52,7 @@
 #' @family tornado
 #' @export
 #' @importFrom graphics plot par axis polygon text abline
-#' @examples 
+#' @examples
 #' torn.ds = as.tornado(read.csv(
 #'   file.path(getOption("qpExampleDir"), "../Excel/tornado.ds.csv")
 #' , stringsAsFactors = FALSE))

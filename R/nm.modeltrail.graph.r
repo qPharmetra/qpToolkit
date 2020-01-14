@@ -2,7 +2,7 @@
 # purpose:  create graphical presentation of Bayesian model building trail
 # input:    runs (character vector), path (character), and optional color items
 # output:   plot with 1 column and length(runs) rows
-# note:     depends on qP function read.ext.r     
+# note:     depends on qP function read.ext.r
 
 # ROXYGEN Documentation
 #' Graphical Bayesian model trail
@@ -18,11 +18,11 @@
 #' @param ... graphical arguments passed on to the lattice plots
 
 #' @seealso \code{\link{read.ext}}
-#' @return Lattice graph with the distributions of the MCMC Bayesian OFV, supplied with mean line and 2.5th and 97.5th percentiles 
+#' @return Lattice graph with the distributions of the MCMC Bayesian OFV, supplied with mean line and 2.5th and 97.5th percentiles
 #' @export
 #' @import lattice
 #' @importFrom stats quantile
-#' @examples 
+#' @examples
 #' ## when there is no Bayesian estimation
 #' nm.modeltrail.graph(runs = c("example1","example2")
 #'                     , relabel = c("structural model", "final covariate model")
@@ -41,15 +41,15 @@ function(runs,                                                          ## runs 
   ...
   )
 {
-  if(!is.null(relabel) & length(relabel) != length(runs)) 
+  if(!is.null(relabel) & length(relabel) != length(runs))
   {
     message("length of relabel argument must be the same as length of runs argument")
     return()
   }
-  
+
   #runs = c('run116','run118'); x = runs[[1]]
   name.runs = runs ;# runs = name.runs
-  runs = lapply(runs, function(run, path, file.ext) 
+  runs = lapply(runs, function(run, path, file.ext)
      read.ext(run, path = path, file.ext = file.ext)
      , path = path, file.ext = file.ext
      )
@@ -58,9 +58,9 @@ function(runs,                                                          ## runs 
   name.objv = lapply(runs, function(x) unlist(lapply(x, function(y) names(y)[length(names(y))])))
   names(name.objv) = name.runs
   test.objv = lapply(name.objv, function(x) lapply(x, function(y) any(y == "MCMCOBJ")))
-  
+
   checked = rep(TRUE, length(runs))
-  
+
   if(any(unlist(test.objv) == FALSE) )
      {
     cat(paste(names(unlist(test.objv)[!unlist(test.objv)]), collapse = "\n"),
@@ -77,19 +77,19 @@ function(runs,                                                          ## runs 
   ## OK now we've filtered out the runs that do not contain ANY MCMCOBJ
   ## filter out any other estimation jobs
   runs = lapply(runs, function(x) x[names(x) == "MCMC Bayesian Analysis"])
-  runs = lapply(runs, function(x) x[[1]]) 
-  
+  runs = lapply(runs, function(x) x[[1]])
+
   ## note keep order of relabel and runs in sync
   if(is.null(relabel)) relabel = name.runs[checked] else relabel = relabel[checked]
-  
+
   ## proceed to plotting
   dfr = data.frame(objv = unlist(lapply(runs, function(x) x$MCMCOBJ[x$ITERATION>0])))
   dfr$model = rep(relabel, unlist(lapply(runs, function(x) length(x$MCMCOBJ[x$ITERATION>0]))))
   dfr$model = ordered(dfr$model, levels = relabel)
 
   if(is.null(strip.size)) strip.size = 3/(1+sqrt(lunique(dfr$model)))
-  
-  densPlot = densityplot(~ objv | model, 
+
+  densPlot = densityplot(~ objv | model,
       data = dfr,
       layout = c(1,lunique(dfr$model)),
       panel = function(x,...)
@@ -103,6 +103,6 @@ function(runs,                                                          ## runs 
       xlab = "MCMC Bayesian Objective Function Value",
       ...
     )
-  
+
   densPlot
 }

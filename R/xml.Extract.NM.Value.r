@@ -13,7 +13,7 @@
 #' @seealso \code{\link{nm.extract.xml}}
 #' @import XML
 #' @export xml.Extract.NM.Value
-#' @examples 
+#' @examples
 #' \dontrun{
 #' library(XML)
 #' run = "example1"
@@ -27,7 +27,7 @@
 #'   xmlValue(TMP[x][["estimation"]][["estimation_title"]]), TMP = TMP)
 #' names(TMP) = est.methods
 #' tmp = TMP[[1]]
-#' 
+#'
 #' xml.Extract.NM.Value(asXMLNode(tmp[["theta"]]), what = "theta")
 #' xml.Extract.NM.Value(asXMLNode(tmp[["thetase"]]), what = "theta")
 #' }

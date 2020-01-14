@@ -1,5 +1,5 @@
 # name: cfc
-# purpose: read data elements off of the Windows clipboard and put into an R vector, matrix, 
+# purpose: read data elements off of the Windows clipboard and put into an R vector, matrix,
 #       or data frame.
 # input: an appropriate selection of data elements must have been copied to the Windows clipboard
 #       (e.g., using ctrl+c), the type of object to create (vector, matrix, data frame), whether
@@ -10,13 +10,13 @@
 # ROXYGEN Documentation
 #' Create a vector, matrix, or data frame from clipboard object
 #' @param obj.type either one of 'data.frame' (default), 'vector' or 'matrix'
-#' @param strings.as.factors logical to treat strings as factors 
+#' @param strings.as.factors logical to treat strings as factors
 #' @param row.names determining row.names
 #' @export
 
 
 cfc = function(obj.type="data.frame",strings.as.factors=FALSE,row.names=NULL) {
-  #copy from clipboard to R 
+  #copy from clipboard to R
   if (obj.type == "vector")  result = scan("clipboard", sep="\t")
   if (obj.type == "matrix")	result = as.matrix(read.table(file="clipboard",header=FALSE,sep="\t"))
   if (obj.type == "data.frame")	result = read.table(	file="clipboard",
@@ -29,17 +29,17 @@ cfc = function(obj.type="data.frame",strings.as.factors=FALSE,row.names=NULL) {
 
 # Examples
 if(F) {
-  # to execute these examples, one must open the "cfc example data.xlsx" Excel file 
+  # to execute these examples, one must open the "cfc example data.xlsx" Excel file
   # in the following folder, and select the ranges below prior to execution of each step.
   # "Software\R-utils\trunk\Example Project\Main Development\WorkArea"
-  
+
   # select range B3:B13 and press ctrl+c prior to executing the next line
   my.vector = cfc("vector")
   class(my.vector)
   #numeric
   my.vector
   #[1]  5 28 24 16 40 28 29  5  3 24 19
-  
+
   # select range D3:H16
   my.matrix = cfc("matrix")
   class(my.matrix)
@@ -60,7 +60,7 @@ if(F) {
   #   [12,]  4 10  2  5  8
   #   [13,]  9 10  1 10  4
   #   [14,]  1  3  8  6 10
-  
+
   # select range J3:N16
   my.df = cfc() # note data.frame s the default
   class(my.df)
@@ -80,10 +80,10 @@ if(F) {
   #   11   eleven  5.123461  6 11 3.3
   #   12   twelve  4.615106  6 11 3.3
   #   13 thirteen  3.409077  2  7 2.1
-  
-  
+
+
   # select range J3:N16
-  my.df = cfc(row.names=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan2")) 
+  my.df = cfc(row.names=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan2"))
   class(my.df)
   my.df
   #               a         b  c  d   e

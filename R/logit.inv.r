@@ -2,7 +2,7 @@
 # ROXYGEN Documentation
 #' Logit Back-transformation
 #' @description Backtransforms logit transformed data to the <0,1> scale
-#' @param x any value 
+#' @param x any value
 #' @param min lower boundary of backtransformed value
 #' @param max upper boundary of backtransformed value
 #' @return logit(x) backtransformed to <0,1>

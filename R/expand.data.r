@@ -2,7 +2,7 @@
 # purpose:  multiply data length(values) times and left join the values as a column
 # input:    data.frame, character or numeric vector (values), and name (column name)
 # output:   data.frame
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Multiply data.frames

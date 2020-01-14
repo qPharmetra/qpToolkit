@@ -2,7 +2,7 @@
 # purpose:  Create parameter table from NONMEM bootsrap
 # input:    path of bootstrap file location, the filenames for the raw_results and the results.csv files
 # output:   list of bootstrap results
-# note:  
+# note:
 
 # ROXYGEN Documentation
 #' Create parameter table from NONMEM bootsrap
@@ -43,18 +43,18 @@ bootstrap.ParTab = function(
            log10 = 10^x,
            logit = logit.inv(x))
   }
-  
+
   stopifnot(length(probs) == 1)
   ci = c((1-probs)/2,(probs+1)/2)
   out = data.frame(t(apply(bootstrap$bootstrap[-1,], 2, quantile, probs=ci)))
 <<<<<<< HEAD
   names(out) = c('Lower', 'Upper')
   out$Estimate = formatted.signif(
-    apply(bootstrap$bootstrap[-1,], 2, central), 
+    apply(bootstrap$bootstrap[-1,], 2, central),
     digits = digits, latex = latex, align.dot = align.dot
   )
   out$Orig.Estimate = formatted.signif(
-    unlist(bootstrap$bootstrap[1,]), 
+    unlist(bootstrap$bootstrap[1,]),
     digits = digits, latex = latex, align.dot = align.dot
   )
   out = out[7:nrow(out), ]
@@ -71,17 +71,17 @@ bootstrap.ParTab = function(
     if(is.list(transformations))
     {
       len = length(transformations)
-      for(x in seq(len))                        
+      for(x in seq(len))
       {
         ok = transformations[[x]]
         nms = names(transformations)[x]
         out$transformed[ok] = rep(nms, length(ok))
-        
+
         out$Estimate[ok] = myFun(out$Estimate[ok],nms)
         out$Orig.Estimate[ok] = myFun(out$Orig.Estimate[ok],nms)
         out$Lower[ok] = myFun(out$Lower[ok],nms)
         out$Upper[ok] = myFun(out$Upper[ok],nms)
-      }       
+      }
     }
   out$CI95 = paste(formatted.signif(out$Lower,digits = digits, latex = latex, align.dot = align.dot), "-", formatted.signif(out$Upper,digits = digits, latex = latex, align.dot = align.dot))
   out = out[, c("Parameter","Descriptor","Orig.Estimate","Estimate","CI95","transformed")]

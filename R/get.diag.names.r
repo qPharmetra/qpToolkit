@@ -2,7 +2,7 @@
 # purpose:  pulls the names of the THETA/OMEGA/SIGMA as they appear in the NONMEM output and covariance matri(x)(ces)
 # input:    names
 # output:   character vector
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Find diagonal OMEGA names
@@ -12,14 +12,14 @@
 #' @return named vector of logicals; TRUE for giagonal, FALSE for off-diagonal elements
 #' @export
 #' @importFrom Hmisc unPaste
-#' @examples    
+#' @examples
 #' covMatrix = get.covmat(path = getOption("qpExampleDir"), run = "example2")
 #' get.diag.names(names = sub(" +", "", trimSpace(names(covMatrix[[1]]))))
 get.diag.names = function(names, sep = ",")
 {
   isOMEGA = grep("OMEGA",names)
   isSIGMA = grep("SIGMA",names)
-  
+
   myOMEGANames = names[isOMEGA]
   myOMEGANames = gsub("[)]","", myOMEGANames)
   myOMEGANames = gsub("[(]","", myOMEGANames)
@@ -36,7 +36,7 @@ get.diag.names = function(names, sep = ",")
     diagonal.omega = offDiag == 0
   }
   names(diagonal.omega) = nams
-  
+
   mySIGMANames = names[isSIGMA]
   mySIGMANames = gsub("[)]","", mySIGMANames)
   mySIGMANames = gsub("[(]","", mySIGMANames)
@@ -47,7 +47,7 @@ get.diag.names = function(names, sep = ",")
     diagonal.sigma = offDiag == 0
   }
   names(diagonal.sigma) = nams
-  
+
   return(list(OMEGA = diagonal.omega, SIGMA = diagonal.sigma))
 }
 

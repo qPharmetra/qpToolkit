@@ -41,17 +41,17 @@ makeRandom = function(sw="omega", ctl, ranEf){
     tmp = gdata::trim(sub("FIX", "", tmp))
     tmp = ifelse(regexpr("\\;", tmp) > 1, trim(substring(tmp, 1, regexpr("\\;", tmp)-1)), tmp)  # remove comments
     tmp = paste(tmp, collapse=" ")
-     
+
     # How many values in the current line
     if(regexpr("BLOCK", tmp)>0) {
      dimen = as.numeric(substring(tmp,first=regexpr("\\(", tmp)+1, last=regexpr("\\)",tmp)-1))
      ival = sum(1:dimen)
      ivals[i] = ifelse(i==1, ival, ivals[i-1]+ival)
-     ran[i] = ifelse(i==1, paste(repl, " BLOCK(", as.character(dimen), ") ", 
+     ran[i] = ifelse(i==1, paste(repl, " BLOCK(", as.character(dimen), ") ",
                                  paste(as.character(ranEf[1:ival]), collapse=" "),
                                  " FIX",
                                  sep=""),
-                           paste(repl, " BLOCK(", as.character(dimen), ") ", 
+                           paste(repl, " BLOCK(", as.character(dimen), ") ",
                                  paste(as.character(ranEf[(ivals[i-1]+1):ivals[i]]), collapse=" "),
                                  " FIX",
                                  sep="")
@@ -60,11 +60,11 @@ makeRandom = function(sw="omega", ctl, ranEf){
       tmp1 = trim(substring(tmp, first=regexpr(str, tmp)+6))
       ival = length(unlist(strsplit(tmp1, " +")))
       ivals[i] = ifelse(i==1, ival, ivals[i-1]+ival)
-      ran[i] = ifelse(i==1, paste(repl, 
+      ran[i] = ifelse(i==1, paste(repl,
                                   paste(as.character(ranEf[1:ival]), collapse=" "),
                                   "FIX",
                                   sep=" "),
-                            paste(repl, 
+                            paste(repl,
                                   paste(as.character(ranEf[(ivals[i-1]+1):ivals[i]]), collapse=" "),
                                   "FIX",
                                   sep=" ")
@@ -72,7 +72,7 @@ makeRandom = function(sw="omega", ctl, ranEf){
     } # else
   } # for
   return(ran)
-} # makeRandom   
+} # makeRandom
 
 # ROXYGEN Documentation
 #' Sample parameters across uncertainty
@@ -82,7 +82,7 @@ makeRandom = function(sw="omega", ctl, ranEf){
 #' @importFrom MASS mvrnorm
 
 uncertainParams = function(out){
-  ## Take output from nm.extract and return sampled fixed and random effects 
+  ## Take output from nm.extract and return sampled fixed and random effects
   ## vectors based on the uncertainty matrix
   len = length(out$fixef)
   fixLen = length(out$fixef[[len]])
@@ -101,7 +101,7 @@ uncertainParams = function(out){
 # ROXYGEN Documentation
 #' Documentation stub
 #' Create a control stream for simulation
-#' @description Create a control stream for simulation with sampled TH/OM/SG estimates 
+#' @description Create a control stream for simulation with sampled TH/OM/SG estimates
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
 #' @param outputFile.extension file extension of the NONMEM output file. Defaults to ".lst"
@@ -131,24 +131,24 @@ nm.create.control = function(run,
   out = nm.extract.xml(run = run, path = path)
   ctl = out$control.stream
   ctl = trim(ctl)
-  
+
   # Create replacement sections
   if(uncertainty){
     parms = uncertainParams(out)
     fix = paste("$THETA", parms$fixed, "FIX")       # fixed effects
     omega = makeRandom("omega", ctl, parms$omega)   # Omega
     sigma = makeRandom("sigma", ctl, parms$sigma)   # Sigma
-  } else{  
+  } else{
     fix = paste("$THETA", out$fixef[[length(out$fixef)]], "FIX")
     omega = makeRandom("omega", ctl, out$ranef[[length(out$ranef)]])
     sigma = makeRandom("sigma", ctl, out$sigef[[length(out$sigef)]])
   }
-  
-  # Remove sections that are either unnecessary or 
+
+  # Remove sections that are either unnecessary or
   # will be replaced with new code
   remSections=c('COV', 'EST', 'THETA', 'OMEGA', 'SIGMA')
   ctl = nm.remove.section(remSections, ctl)[[1]]
-  
+
   ## create the control stream
   ctl = c(ctl, fix, omega, sigma)
 
@@ -168,17 +168,17 @@ nm.create.control = function(run,
     table = unlist(tmp[[2]])
     table = sub("\\.tab", "sim.tab", table, ignore.case=TRUE)
     table = sub("\\.par", "sim.par", table, ignore.case=TRUE)
-    ctl = c(ctl, table)   
+    ctl = c(ctl, table)
   }
-  
+
   ## Insert reference to new dataset if needed
   if(!is.null(newDataFile)){
      dataInd = grep("\\$DATA", ctl)
      ignore = substring(ctl[dataInd], regexpr("IGNORE=", ctl[dataInd])+7)
      dataLn = paste("$DATA ", newDataFile, " IGNORE=", ignore, sep="")
-     ctl[dataInd] = dataLn  
+     ctl[dataInd] = dataLn
   }
-  
+
   write(ctl, paste(path, paste(run, "sim", modelFile.extension, sep = ""), sep = "/"))
 }
 

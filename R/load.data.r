@@ -5,8 +5,8 @@
 #       in wihch these are found. NOTE the function an also be used to do a "scan" for ANY files
 #       in this folder and load them without being specified. Filetypes supported include SAS xpt,
 #       Microsoft Excel (xls and xlsx), Comma Separated Values (csv), and tab files (tab).
-# output: R objects 
-# note: 
+# output: R objects
+# note:
 
 # ROXYGEN Documentation
 #' Loading data of various formats
@@ -23,7 +23,7 @@
 #' @param tabNames vector of object names for each tab-delimited (ASCII) file, in the same order
 #' @param perl directory where the perl executable resides
 #' @param xlsSheets a numeric vector of \code{length(xlsFiles)} defining which sheet in the workbook needs to be read. If you do not specify this, by default the first sheet of each workbook will be read.
-#' @param doScan logical 
+#' @param doScan logical
 #' @param target.env environment The environment into which the data files will be loaded
 #' and attached.
 #' @return Placeholder for return description
@@ -33,12 +33,12 @@
 #' @examples
 #' \dontrun{
 #' load.data(xlsFiles="ExampleInput.xlsx",
-#' xlsNames="XLinput1", 
+#' xlsNames="XLinput1",
 #' xlsSheets=1, doScan=FALSE)
 #' head(XLinput1)
 #' head(iXLinput1)
 #' load.data(xlsFiles="ExampleInput.xlsx",
-#'           xlsNames="XLinput2", 
+#'           xlsNames="XLinput2",
 #'           xlsSheets=2,            # NOTE We can specify which worksheet (tab) of the Excel file
 #'           doScan=FALSE)
 #' head(iXLinput2)
@@ -73,8 +73,8 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
     else {
       xlsSheets = rep(1,length(xlsFiles))
     }
-  } 
-  
+  }
+
   if(!missing(csvNames)) {
     if(missing(csvFiles)|length(csvNames)!=length(csvFiles)) {
       stop(paste("csvNames cannot be defined unless a list of csvFiles of equal length",
@@ -88,7 +88,7 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
                  "is also specified"))
     }
   }
-  
+
   if (doScan) {   # do scan
     ## Scan directory if no file list was provided
     if(missing(xptFiles)) {
@@ -110,7 +110,7 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
       tabFiles = list.files(dir)
       tabFiles = tabFiles[grep(".tab", tabFiles)]
     }
-  
+
     if(missing(xptNames)) {
       xptNames = sub("(.*).xpt","\\1",xptFiles)
     }
@@ -124,7 +124,7 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
       tabNames = sub("(.*).tab","\\1",tabFiles)
     }
   }
-  else {  # do not do scan, 
+  else {  # do not do scan,
           # but must establish variables if missing, for use below
     if (missing(xptFiles)) xptFiles = NULL
     if (missing(xlsFiles)) xlsFiles = NULL
@@ -187,10 +187,10 @@ load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
 
 if (F) {
   load.data(xlsFiles="ExampleInput.xlsx",
-            xlsNames="XLinput1", 
+            xlsNames="XLinput1",
             xlsSheets=1, doScan=FALSE)
   #[1] "Created data frame XLinput1"
-  
+
   head(XLinput1)
   #a         b c          d rec.id
   #1 29 10.779126 a  -9.962622      1
@@ -199,7 +199,7 @@ if (F) {
   #4 28  2.927655 c -33.517035      4
   #5 28 33.271880 c  57.515641      5
   #6 21 22.987656 c  26.662967      6
-  
+
   head(iXLinput1)
   #a         b c          d rec.id
   #1 29 10.779126 a  -9.962622      1
@@ -210,10 +210,10 @@ if (F) {
   #6 21 22.987656 c  26.662967      6
 
   load.data(xlsFiles="ExampleInput.xlsx",
-            xlsNames="XLinput2", 
+            xlsNames="XLinput2",
             xlsSheets=2,            # NOTE WE can specify which worksheet (tab) of the Excel file
             doScan=FALSE)
-  
+
   head(iXLinput2)
   #   e        f g        h rec.id
   #   1 130 43.64459 a 83.24640      1
@@ -222,14 +222,14 @@ if (F) {
   #   4 101 44.77443 c 84.62481      4
   #   5 105 54.66527 c 96.69163      5
   #   6 117 52.22399 c 93.71326      6
-  
+
   # Exammple of providing a LIST of files to import
   load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),
             csvNames=c("CSVinput1", "CSVinput2"),
             doScan=FALSE)
   #[1] "Created data frame CSVinput1"
   #[1] "Created data frame CSVinput2"
-  
+
   head(CSVinput1)
   #   i          j k         l rec.id
   #   1 12  1.4278484 a  21.17344      1

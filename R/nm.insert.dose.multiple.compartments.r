@@ -15,18 +15,18 @@ globalVariables(c('EVID','.'))
 #' ## original data:
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
-#' 
+#'
 #' ## adding doses to compartments 3, 4 and 5
 #' nmData3 = nm.insert.dose.multiple.compartments(data = nmData
 #'                                                , dose.in.cmt=c(3,4,5)
 #'                                                , ID, TIME, -EVID
-#'                                                
+#'
 #' )
 #' tbl_df(nmData3[, c('ID','TIME','EVID','AMT','CMT','DV')])
 nm.insert.dose.multiple.compartments = function(
-  data, 
-  dose.in.cmt = c(1,2), 
-  ..., 
+  data,
+  dose.in.cmt = c(1,2),
+  ...,
   quiet = TRUE
 ){
   my.dots = paste(
@@ -37,24 +37,24 @@ nm.insert.dose.multiple.compartments = function(
     )
     ,collapse=", "
   )
-  
+
   data.d2 = subset(data, EVID %in% c(1,3,4))
   data.d2 = data.d2[rep(seq(nrow(data.d2)), ea = length(dose.in.cmt)),] %>%
     mutate(CMT = rep(dose.in.cmt, times = nrow(.)/length(dose.in.cmt)))
-  
+
   # gather data,  sort and drop the additional sorting index
   nmData = bind_rows(data, data.d2) %>%
     arrange(...)
-  
+
   if(!quiet)
-     message(paste("Doses placed in Compartments (CMT)",paste(dose.in.cmt, collapse=", ")))  
-  
+     message(paste("Doses placed in Compartments (CMT)",paste(dose.in.cmt, collapse=", ")))
+
   if(nchar(my.dots)==0) {
      if(!quiet) message("No sorting was performed as no sorting variables were provided.")
   } else {
      if(!quiet) message(paste("Data sorted by", my.dots))
   }
-  
+
   return(nmData)
 }
 

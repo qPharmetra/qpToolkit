@@ -29,20 +29,20 @@ nm.compare.plot = function(runs
                            )
 {
   myOrder = runs
-  
+
   out = lapply(as.list(runs), function(x, mypath) get.xpose.tables(run = x, path = mypath), mypath = path)
   names(out) = runs
   ## check for aliases
   if(any(unlist(lapply(out, function(x, keep.cols) length(setdiff(keep.cols, names(x)))>0, keep.cols = keep.cols))))
   {
-    out = lapply(out, function(x, alias) 
+    out = lapply(out, function(x, alias)
     {
       if(length(x[, alias$DV])>0) x$DV = x[, alias$DV]
       if(length(x[, alias$TIME])>0&length(x$TIME)==0) x$TIME = x[, alias$TIME]
       return(x)
     }, alias = alias)
   }
-    
+
   out = lapply(seq(length(runs)), function(x, out, keep.cols){
     X = out[[x]][, keep.cols]
     X$run = names(out)[x]
@@ -50,14 +50,14 @@ nm.compare.plot = function(runs
     }, out = out, keep.cols = keep.cols)
   out = do.call("rbind", out)
   out = out[out$EVID == 0, ]
-  
+
   if(log){
     out$PRED = log10(out$PRED)
     out$TIME = log10(out$TIME)
     out$IPRED = log10(out$IPRED)
     out$DV = log10(out$DV)
   }
-  
+
   ## melt elements
   molten = reshape2::melt(out, measure.vars = c('TIME','PRED','IPRED'))
   names(molten)[names(molten) %in% c('variable','value')] = c('xVariable', 'xValue')
@@ -66,7 +66,7 @@ nm.compare.plot = function(runs
   molten = molten[molten$group %nin% c("DV~TIME","CWRES~IPRED"), ]
   molten$variable = as.character(molten$variable )
   tail(molten)
-  
+
   ## add model info
   ofv = as.vector(sapply(runs, function(x, mypath) get.ofv(x,path = mypath)[1], mypath = path))
   cat(ofv)
@@ -77,15 +77,15 @@ nm.compare.plot = function(runs
   tmp$group = "run.info"
   tmp$variable = ofv
   class(molten$xValue)
-  
+
   molten = rbind(molten, tmp)
   molten$variable[molten$group == "main.info"]
   molten$run = factor(molten$run, levels = myOrder)
-  
-  size = length(runs) 
+
+  size = length(runs)
   myXscale = if(log) xscale.components.log10 else xscale.components.default
   #myYscale = if(log) yscale.components.log10 else yscale.components.default
-  
+
   latticeExtra::useOuterStrips(
     xyplot(value ~ xValue | group * run
     , data = molten
@@ -93,8 +93,8 @@ nm.compare.plot = function(runs
     , DATA = molten
     , scales = list(relation = "free", cex = 1/sqrt(size))
     , par.strip.text = list(cex = 2/sqrt(size))
-    , dotSize = dot.size/sqrt(size) 
-    , textSize = 2*text.size/sqrt(size) 
+    , dotSize = dot.size/sqrt(size)
+    , textSize = 2*text.size/sqrt(size)
     , panel = function(x,y, subscripts, DATA, dotSize, textSize, ...)
     {
       func = unique(DATA$group[subscripts])

@@ -5,7 +5,7 @@
 #' @param x Vector to apply the exchange over
 #' @param uniques (Sorted) vector of unique OLD values
 #' @param newUniques (Sorted) vector of unique NEW values
-#' @return Swapped vector of x 
+#' @return Swapped vector of x
 #' @export
 #' @examples
 #' my.vect = c(1,2,2,2,4,4,4,3,3,3,3)

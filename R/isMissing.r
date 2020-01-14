@@ -2,7 +2,7 @@
 # purpose: take a vector and return a vector of boolean values indicating which input
 #       vector values are missing (NA).
 # input: vector of numbers
-# output: vector of boolean values indication which ones are missing (TRUE) or not 
+# output: vector of boolean values indication which ones are missing (TRUE) or not
 #       missing (FALSE)
 
 # ROXYGEN Documentation

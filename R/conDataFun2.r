@@ -1,8 +1,8 @@
 # name:     conDataFun2
-# purpose:  creates a summary of median (min -max) of input 
+# purpose:  creates a summary of median (min -max) of input
 # input:    numeric vector
 # output:   character vector
-# note:  
+# note:
 
 # ROXYGEN Documentation
 #' Summary: median (min - max)
@@ -11,13 +11,13 @@
 #' @param latex passed to \code{\link{formatted.signif}}
 #' @param align.dot passed to \code{\link{formatted.signif}}
 #' @note This function is primarily used for demographics tables
-#' @seealso \code{\link{conDataFun1}},   \code{\link{conDataFun3}},  \code{\link{catDataFun}}, \code{\link{tabStats}}, \code{\link{tabSummarize}} 
+#' @seealso \code{\link{conDataFun1}},   \code{\link{conDataFun3}},  \code{\link{catDataFun}}, \code{\link{tabStats}}, \code{\link{tabSummarize}}
 #' @export
-#' @examples 
+#' @examples
 #' x=rnorm(1000)
 #' conDataFun2(x, 3)
 
-conDataFun2 = function(y, digits = 3, latex = FALSE, align.dot = FALSE) 
+conDataFun2 = function(y, digits = 3, latex = FALSE, align.dot = FALSE)
   paste(
      formatted.signif(
         median(y),
@@ -25,12 +25,12 @@ conDataFun2 = function(y, digits = 3, latex = FALSE, align.dot = FALSE)
         latex = latex,
         align.dot = align.dot
      ),
-     " (", 
+     " (",
      formatted.signif(
         min(y),
         digits = digits,
         latex = latex,
-        align.dot = align.dot 
+        align.dot = align.dot
      ),
      " - ",
      formatted.signif(
@@ -38,7 +38,7 @@ conDataFun2 = function(y, digits = 3, latex = FALSE, align.dot = FALSE)
         digits = digits,
         latex = latex,
         align.dot = align.dot
-     ), 
+     ),
      ")",
      sep=""
    )

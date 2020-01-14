@@ -2,9 +2,9 @@
 # purpose:  extracts all relevant nlme attributes as a list
 # input:    nlme object
 # output:   list with relevant nlme output
-# note:     
+# note:
 
-##  optional: method = "samples" will create a simulated data set which will 
+##  optional: method = "samples" will create a simulated data set which will
 
 # ROXYGEN Documentation
 #' Extract information from nlme object
@@ -18,7 +18,7 @@
 #' @return list with extracted nlme object information, model summary, model parameter table, or, when method = "samples", a matrix with predictions for data.frame \code{getData(obj)} or \code{newdata}.
 #' @export nlme.extract
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.diag}}, \code{\link{nlme.vpc}},  \code{\link{nlme.simPars}}, \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}
-#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getData getCovariateFormula fixef ranef
 #' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula pdMatrix intervals
 #' @importFrom stats coef rnorm predict var
@@ -30,17 +30,17 @@
 #' start = c(Asym = 103, R0 = -8.5, lrc = -3.3))
 #' fm1.out = nlme.extract(fm1)
 #' fm1.out
-nlme.extract = function(obj, 
-  method = "components", 
-  newdata = NULL, 
-  sample = FALSE, 
+nlme.extract = function(obj,
+  method = "components",
+  newdata = NULL,
+  sample = FALSE,
   digits = 3,    ## number of significant digits for output tables using signif()
   digits.CV = 0  ## number of decimals reported for CV% values using round()
   )
 {
   #require(MASS)
   #require(nlme)
-  
+
   CLASS = class(obj)[1]
 	## test if object is indeed nlme
 	if(!CLASS %in% c("nlme", "glme"))
@@ -58,9 +58,9 @@ nlme.extract = function(obj,
 	}
 
 	## perform further checks on input
-	if(!method %in% c("components", "samples")) 
+	if(!method %in% c("components", "samples"))
 		stop("method must be either components or samples")
-	if(!is.logical(sample)) 
+	if(!is.logical(sample))
 		stop("sample must be logical (T or F)")
 	if(is.null(newdata)) newdata = getData(obj)
 	nr = nrow(newdata)
@@ -68,7 +68,7 @@ nlme.extract = function(obj,
 	form = nlme::getCovariateFormula(obj)[[2]]
 	response = nlme::getResponseFormula(obj)[[2]]
 	groups = nlme::getGroupsFormula(obj)[[2]]
-	
+
 	## we start with fixed effects
 	fixef = list(fixef = nlme.getFixPars(obj))
 
@@ -89,12 +89,12 @@ nlme.extract = function(obj,
 		val[[i]] = sig2 * val[[i]]
 	val = lapply(val, function(x) sqrt(diag(x)))
 	ranNames = unlist(lapply(val, names))
-	
-	## draw samples by inherent grouping classes  
+
+	## draw samples by inherent grouping classes
 	tmp = val
-	
+
 	## note: could also do a draw from the uncertainy matrix apVar here
-	## this is an in beta testing as correlation, block omega structures 
+	## this is an in beta testing as correlation, block omega structures
 	## can make things very complex and give potentially erroneous results
 
 	## should use the work done in ranTab creation! to be done later
@@ -107,16 +107,16 @@ nlme.extract = function(obj,
 		}, object = object, tmp = tmp, newdata = newdata, x = x)
 		return(samples)
 	}, object = obj, tmp = tmp, newdata = newdata)
-	
+
 	ss2 = as.data.frame(do.call("cbind", ss1))
 	names(ss2) = unlist(lapply(tmp, names))
-	if(intervals.OK == TRUE) rvar = nlme.getRanPars(obj)$var 
-	if(intervals.OK == FALSE) rvar = NULL 
+	if(intervals.OK == TRUE) rvar = nlme.getRanPars(obj)$var
+	if(intervals.OK == FALSE) rvar = NULL
 	ranef = list(ranef = c(val, list(var=rvar)))
 
 	## create sampling grid of fixed effects
 	myfix = nlme.getFixPars(obj)$coef
-	if(sample) myfix = nlme.simPars(nlme.getFixPars(obj), N = 1) 
+	if(sample) myfix = nlme.simPars(nlme.getFixPars(obj), N = 1)
 	fixDF = data.frame(matrix(rep(myfix, nr), ncol = length(fixef(obj)), byrow = TRUE))
 	names(fixDF) = names(fixef(obj))
 	ss2 = cbind(ss2, fixDF)
@@ -124,9 +124,9 @@ nlme.extract = function(obj,
 	## add explanatory covariates to data set
 	dataVars = all.vars(form)
 	dataVars = dataVars[!dataVars %in% c(names(fixef(obj)), ranNames)]
-	ss2 = cbind(ss2, newdata[, dataVars])	
+	ss2 = cbind(ss2, newdata[, dataVars])
   if(length(dataVars)==1) names(ss2)[length(names(ss2))] = dataVars
-  
+
 	## work on varStruct component
 	pV <- obj$modelStruct$varStruct
 	matchVar = match(class(pV)[1], c("NULL", "varPower", "varConstPower", "varFixed"), 0)
@@ -141,11 +141,11 @@ nlme.extract = function(obj,
 		ss2 = cbind(ss2, data.frame(residual = rnorm(nr, 0, obj$sigma)))
 	}
 	if(matchVar == 2) {
-		ss2 = cbind(ss2, 
+		ss2 = cbind(ss2,
 			data.frame(residual = rnorm(nr, 0, obj$sigma * predict(obj,newdata)^varCoef)))
 	}
 	if(matchVar == 3) {
-		ss2 = cbind(ss2, 
+		ss2 = cbind(ss2,
 			data.frame(residual = rnorm(nr, 0, varCoef[1] + obj$sigma * predict(obj,newdata)^varCoef[2])))
 	}
 	if(matchVar == 4) {
@@ -153,7 +153,7 @@ nlme.extract = function(obj,
 	## evaluate varFixed formula across newdata
 		WARNINGS = c(WARNINGS, "\nthe sampling routine was not yet validated for the variance function of varFixed class")
 		varCovariate = eval(varForm[[2]], newdata)
-		ss2 = cbind(ss2, 
+		ss2 = cbind(ss2,
 			data.frame(residual = rnorm(nr, 0, varCovariate * obj$sigma)))
 	}
 	## also need to work on varIdent!!
@@ -179,7 +179,7 @@ nlme.extract = function(obj,
    fixTab$CV = paste(round(abs(fixTab$Std.Error/fixTab$Value)*100,digits.CV), "%", sep = "")
    fixTab = fixTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
 	fixTab
-	
+
 	if(intervals.OK)
 	{
 		simRE = nlme.simPars(nlme.getRanPars(obj), N = 1000)
@@ -196,7 +196,7 @@ nlme.extract = function(obj,
 		 ranEst[-msel] = exp(ranEst[-msel])
 		}
 		SDs = apply(simRE, 2, function(x) sqrt(var(x)))
-	 	ranTab = data.frame(Parameter = names(attr(obj$apVar, "Pars")), 
+	 	ranTab = data.frame(Parameter = names(attr(obj$apVar, "Pars")),
   		  Value = signif(ranEst, digits),
         Std.Error = signif(SDs, digits)
        )
@@ -208,12 +208,12 @@ nlme.extract = function(obj,
   	 ranTab$CV = paste(round(abs(ranTab$Std.Error/ranTab$Value)*100,digits.CV), "%", sep = "")
   	 ranTab$CI95 = paste("(",signif(ranTab$lower,digits), " - ", signif(ranTab$upper, digits), ")", sep = "")
   	 ranTab = ranTab[, c('Parameter', 'Est.se', 'CV', 'CI95')]
-    ranTab	
+    ranTab
 	}
 
 	if(intervals.OK == FALSE)
 	{
-		ranTab = data.frame(Parameter = names(unlist(val)), 
+		ranTab = data.frame(Parameter = names(unlist(val)),
 			Est.se = unlist(val),
 			Std.Error = "n.a.",
       CV = "n.a.",

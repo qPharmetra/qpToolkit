@@ -2,7 +2,7 @@
 # purpose: given an R nlme model object, create two diagnostic plots of the eta(s) in the model
 # input: an R nlme model object, and various arguments to tailor the graphic.
 # output: a standard normal Q-Q plot of the eta estimates, and a graphic showing the distribution of
-#       etas by binned values of an independent variable. 
+#       etas by binned values of an independent variable.
 
 # ROXYGEN Documentation
 #' Diagnostic plots for nlme
@@ -20,7 +20,7 @@
 #' @return Diagnostic plots
 #' @export nlme.diag
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.predict}}
-#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getData getCovariateFormula fixef ranef
 #' @importFrom nlme getResponseFormula nlme
 #' @importFrom nlme getGroupsFormula
 #' @import lattice
@@ -37,7 +37,7 @@
 #'   kel = cl / v
 #'   dose * ka/v/(ka-kel) * (exp(-kel*tob) - exp(-ka*tob))
 #' }
-#' 
+#'
 #' ## fit 1 comp PK with 1st order absorption
 #' fit.nlme.1 = nlme.run(value ~ PK.1comp.1abs(dose, time, cl*exp(cl.eta), v*exp(v.eta), ka),
 #'                      data = subset(pkpdData, type == "PK" & dose> 0 & value > 0.1),
@@ -48,7 +48,7 @@
 #'                      reference = 3,
 #'                      problem = "1comp.1abs eta(CL)"
 #' )
-#' 
+#'
 #' summary(fit.nlme.1$object)
 #' nlme.diag(fit.nlme.1$object)
 #' # note here we refer to the $object, given the model was created with nlme.run()

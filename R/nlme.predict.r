@@ -12,7 +12,7 @@
 #' @description Predict residuals, partial residuals or uncertainty predictions for an nlme.object. This function will also take different data set (argument \code{newdata}) to simulate out of the box although the nlme object does require the predictors, independent variable, and the grouping variable to be present.
 #' @param func the function to evaluate over the model, e.g. \code{effect ~ time | treatment} the variables in \code{func} need to be evaluable in \code{getData(object)} and  \code{getCovariateFormula(object)}
 #' @param object nlme object
-#' @param newdata a new data set, requiring the predictors, independent variable, and the grouping variable to be present. 
+#' @param newdata a new data set, requiring the predictors, independent variable, and the grouping variable to be present.
 #' @param subset.modeldata character string to be evaluated over the data in order to subset the predictions and observations (e.g. "DOSE == 100")
 #' @param xrange number of equal-space independent varaible (x) default value = 50,
 #' @param nx number of bins of independenet ,
@@ -26,38 +26,38 @@
 #' @export nlme.predict
 #' @importFrom Hmisc summarize smean.cl.normal
 #' @importFrom MASS mvrnorm
-#' @importFrom nlme getData getCovariateFormula fixef ranef 
+#' @importFrom nlme getData getCovariateFormula fixef ranef
 #' @importFrom nlme getResponseFormula nlme getGroups
 #' @importFrom nlme getGroupsFormula random.effects
 #' @importFrom stats coef predict resid approx
-#' @examples   
+#' @examples
 #' pkpdData = example.pkpdData()
 #' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
 #' {
 #'   # Effect-site concentration for 1-compartment model, 1st-order absorption
-#'   
+#'
 #'   kel = cl / v
-#'   
+#'
 #'   # Define coefficients
 #'   A = 1/(kel-ka) / (keo-ka)
 #'   B = 1/(ka-kel) / (keo-kel)
 #'   C = 1/(ka-keo) / (kel-keo)
-#'   
+#'
 #'   # Return effect-site concentration
 #'   dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 #' }
 #' fit.PD004.nlme = nlme.run(
-#'   model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-#'   data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
-#'   fixed = base + cl + v + ka + keo ~ 1, 
-#'   random = cl.eta ~ 1, 
-#'   groups = ~ id, 
+#'   model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo),
+#'   data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ],
+#'   fixed = base + cl + v + ka + keo ~ 1,
+#'   random = cl.eta ~ 1,
+#'   groups = ~ id,
 #'   start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
 #'   problem = "True Model",
 #'   reference = 4)
 #' summary(fit.PD004.nlme$object)
 #' nlme.extract(fit.PD004.nlme$object)$table
-#' 
+#'
 #' # simple fit vs time
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time , fit.PD004.nlme$object)
 #' plot(fit.PD004.pred.nlme)
@@ -69,17 +69,17 @@
 #'   func = value ~ time , fit.PD004.nlme$object, method = "prediction"
 #' )
 #' plot(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
-#' 
+#'
 #' ## note that prediction and partial residual type of model fit plots are very different
-#' 
+#'
 #' # fit vs time by dose
 #' fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object)
-#' plot(fit.PD004.pred.nlme) 
+#' plot(fit.PD004.pred.nlme)
 #' fit.PD004.pred.nlme = nlme.predict(
 #'   func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals"
 #' )
-#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
-#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
+#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
+#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2))
 
 nlme.predict = function(
   func,
@@ -102,7 +102,7 @@ nlme.predict = function(
     message(" -- argument 'etas' needs to be 'estimated', 'fixed.to.zero', or 'sampled'"); return()
   }
   obsData = getData(object)
-  
+
   ## deal with subsetting
   filter.seq = rep(TRUE, nrow(obsData))
 	if(!missing(subset.modeldata))
@@ -112,7 +112,7 @@ nlme.predict = function(
     filter.seq = eval(parse(text = subset.modeldata), obsData)
     obsData = obsData[filter.seq, ]
   }
-  
+
   if(is.null(newdata)){
     newdata = obsData
   }
@@ -128,7 +128,7 @@ nlme.predict = function(
   gpNames = all.vars(gpLevel)
   rmLevel = getResponseFormula(object)[[2]]
   rmNames = all.vars(rmLevel)
-  
+
   ## binning by X if requested
   if(!is.null(nx) & is.numeric(nx))
   {
@@ -141,7 +141,7 @@ nlme.predict = function(
       obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), cuts=nx, levels.mean = TRUE)
     }
   }
-  
+
   ## check for 1 grouping level
   if(length(gpNames) > 1) {message(" -- WARNING --- predictNLME supports one grouping level only!")}
 
@@ -155,28 +155,28 @@ nlme.predict = function(
   fixPars = data.frame(matrix(fixpars, nrow=1))
   names(fixPars) = names(uncPars) = names(fixpars)
 
-  covFormVars = unique(c(allX[allX %nin% names(objPars)],  gfVarNames, allX.func))  
+  covFormVars = unique(c(allX[allX %nin% names(objPars)],  gfVarNames, allX.func))
     ## from the covariate formula
-  keyPredictionVariables = c(covFormVars, gpNames)                       
+  keyPredictionVariables = c(covFormVars, gpNames)
     ## from the covariate formula + grouping level
-  
+
   if(any(rmNames %nin% keyPredictionVariables))
   {
     for(i in lunique(rmNames[rmNames %nin% keyPredictionVariables]))
     {
       newdata$dummy = rep(1,nrow(newdata))
-      names(newdata)[names(newdata) == "dummy"] = 
+      names(newdata)[names(newdata) == "dummy"] =
         rmNames[rmNames %nin% keyPredictionVariables][i]
     }
-    keyPredictionVariables = c(keyPredictionVariables, 
+    keyPredictionVariables = c(keyPredictionVariables,
       rmNames[rmNames %nin% keyPredictionVariables])
   }
     ## in case of multiple model response variables
-  
+
   ## check presence of key prediction variables and stop gracefully with infomrion if any is missing
   if(any(covFormVars %nin% names(newdata)))
   {
-    message(" -- columns (", paste(covFormVars, collapse = ", "), ") required but argument 'newdata' features (", 
+    message(" -- columns (", paste(covFormVars, collapse = ", "), ") required but argument 'newdata' features (",
       paste(names(newdata), collapse = ", "), ")")
       message(" -- predictNLME procedure stopped.")
     return()
@@ -212,7 +212,7 @@ nlme.predict = function(
     simData[, names(simData) %in% xfVarNames] = c(xnew)
     #names(simData)
   } else simData = mpData
-  
+
   ## merge group levels in
   dim(simData)
   etas = random.effects(object)
@@ -253,10 +253,10 @@ nlme.predict = function(
       simData$ypr = simData$ypr - refData$ypr
     }
   }
-  
+
   uncPred = NULL
-  
-  if(method != "partial.residuals" & uncertainty == TRUE){ 
+
+  if(method != "partial.residuals" & uncertainty == TRUE){
   uncPred = sapply(1:nrep, function(x, fxpars, data, form, nms.fix, theETAS, nms.eta, reference.subset, group.var)  #FLH 9/24/2011
     {
       #sampled.etas = apply(as.matrix(theETAS), 2, function(y, ids) sample.by.id(ids, y), ids = mpData$id)
@@ -273,12 +273,12 @@ nlme.predict = function(
         ypr.reference = eval(form, refData)
         ypr = ypr - ypr.reference
       }
-      return(ypr)      
-    },  form = objectForm, 
-        data = mpData, 
+      return(ypr)
+    },  form = objectForm,
+        data = mpData,
         fxpars = uncPars,
-        nms.fix = names(fixpars), 
-        theETAS = etas[, names(etas) %nin% gpNames], 
+        nms.fix = names(fixpars),
+        theETAS = etas[, names(etas) %nin% gpNames],
         nms.eta = names(etas)[names(etas) %nin% gpNames],
         reference.subset = reference.subset,
         group.var = gpNames)              # FLH 9/24/2011
@@ -294,7 +294,7 @@ nlme.predict = function(
   }
   sList.sim = if(length(gfVarNames)==0) create.list(simData, xfVarNames) else create.list(simData, c(xfVarNames, gfVarNames))
   sList.obs = if(length(gfVarNames)==0) create.list(obsData, xfVarNames) else create.list(obsData, c(xfVarNames, gfVarNames))
-  
+
   ## summarize predicted and observed on the model.dataset
   qypr = Hmisc::summarize(simData$ypr,            sList.sim, smean.cl.normal, stat.name = "Mean")
   qobs = Hmisc::summarize(eval(yfLevel, obsData), sList.obs, smean.cl.normal, stat.name = "Mean")
@@ -313,11 +313,11 @@ nlme.predict = function(
   qYPred = Hmisc::summarize(yPrd, sList.obs, mean) # predicted mean predict(model.dataset) by X | Z
 
   ## create partial residuals
-  ##  approximate the predicted relationship for simulation data 
+  ##  approximate the predicted relationship for simulation data
   ##  by adding residuals to arrive at partial residuals (RES=DV+PRED)
   obsData$partres = rep(NA, nrow(obsData))
   qpar = NULL
-  
+
   if(method == "partial.residuals")
   {
   if(length(gfVarNames)==0){
@@ -333,15 +333,15 @@ nlme.predict = function(
 
   ## summarize partial residuals
   qpar = Hmisc::summarize(obsData$partres, sList.obs, smean.cl.normal, stat.name = "Mean")
-  } ## end if(method 
-  
+  } ## end if(method
+
   if(method == "residuals")
   {
     obsData$partres = resid(object)
     qpar = Hmisc::summarize(obsData$partres, sList.obs, smean.cl.normal, stat.name = "Mean")
     qypr$Mean = qpar$Mean
   }
-  
+
   if(method == "prediction")
   {
     obsData$partres = eval(yfLevel, obsData)
@@ -349,15 +349,15 @@ nlme.predict = function(
   }
 
   ## return resulting data frame
-   out <- list(  object.name = deparse(substitute(object)), 
-                level = level, 
-                func = func, 
+   out <- list(  object.name = deparse(substitute(object)),
+                level = level,
+                func = func,
                 method = method,
-                object = object, 
+                object = object,
                 obsData = obsData, ## contains observed data AND partial residuals
                 pred = list(obs = qobs, pred = qypr, partres = qpar, uncPred = uncPred)
               )
   class(out) <- c('nlmefit','fit','list')
-  out  
+  out
 }
 

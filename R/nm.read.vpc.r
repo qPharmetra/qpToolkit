@@ -1,8 +1,8 @@
 # name:     nm.read.vpc
-# purpose:  parses the output from PsN's vpc and prepares it for plotting 
+# purpose:  parses the output from PsN's vpc and prepares it for plotting
 # input:    path and filenames of the vpc output
 # output:   list of data frames 'obs', 'vpc, and 'res'
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Read VPC output
@@ -20,12 +20,12 @@
 #' @importFrom Hmisc unPaste
 #' @examples
 #' myVPC = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_strt"))
-#' 
+#'
 #' unique(myVPC$vpc$strata)
 #' unique(myVPC$obs$strata)
 #' # they match nicely
 
-nm.read.vpc = function(path = getOption("nmDir") 
+nm.read.vpc = function(path = getOption("nmDir")
                        , vpc_results = "vpc_results.csv"
                        , vpctab = dir(path=path,pattern = "^vpctab")[1]
                        , PI.limits = c(0.025,0.05,0.1,0.30,0.70,0.9,0.95,0.975)
@@ -33,21 +33,21 @@ nm.read.vpc = function(path = getOption("nmDir")
 )
 {
   rootName = unlist(unPaste(path)[(length(unPaste(path)))])
-  
+
   ## parse out the vpc results into predicted (sim) and observed (obs)
   vpc = read.vpc(path = path, result = vpc_results, tab=vpctab)
-  
+
   sim = vpc$vpc
   obs = vpc$tab
-  
+
   names(obs)
-  
+
   responseVar = vpc$vpc$dv.var
   xCov = vpc$vpc$idv.var
-  
+
   ## pull out the correct statistics
   msel.ci = grep(".CI.for.", names(sim$result.tables[[1]]))
-  suffix =  unique(sub("([0-9]+).CI.for(.*)","\\1",names(sim$result.tables[[1]])[msel.ci]))               
+  suffix =  unique(sub("([0-9]+).CI.for(.*)","\\1",names(sim$result.tables[[1]])[msel.ci]))
   msel.ci = grep(paste(suffix,".CI.for.",sep=""), names(sim$result.tables[[1]]))
   msel.pi = sub("([0-9]+).CI.for(.*)","\\2",names(sim$result.tables[[1]]))
   msel.pi = sub("to", "", msel.pi)
@@ -55,20 +55,20 @@ nm.read.vpc = function(path = getOption("nmDir")
   msel.pi = substring(msel.pi, 2, (nchar(msel.pi)-1))
   msel.pi = which(msel.pi %in% as.character(c(PI.limits*100,50)))
   ci.names = names(sim$result.tables[[1]])[intersect(msel.ci,msel.pi)]
-  
+
   real.names = names(sim$result.tables[[1]])[grep("real", names(sim$result.tables[[1]]))]
   real.names2 = sub("([0-9]+).real","\\1",real.names)
   real.names2 = real.names[real.names2 %in% as.character(c(PI.limits*100,50))]
   real.names = names(sim$result.tables[[1]])[names(sim$result.tables[[1]]) %in% real.names2]
-  
+
   sim.names = names(sim$result.tables[[1]])[grep("sim", names(sim$result.tables[[1]]))]
   sim.names2 = sub("([0-9]+).sim","\\1",sim.names)
   sim.names2 = sim.names[sim.names2 %in% as.character(c(PI.limits*100,50))]
   pred.names = names(sim$result.tables[[1]])[names(sim$result.tables[[1]]) %in% sim.names2]
-  
+
   ## organize predicted results
   names(sim$result.tables[[1]])
-  sim$result.tables = sim$result.tables[unlist(lapply(sim$result.tables, function(x) 
+  sim$result.tables = sim$result.tables[unlist(lapply(sim$result.tables, function(x)
     class(x)  == "data.frame"))]
   sim$result.tables = lapply(seq(along = sim$result.tables), function(x, res, nams){
     out = data.frame(res[[x]]); out$strata = nams[x]; return(out)
@@ -77,20 +77,20 @@ nm.read.vpc = function(path = getOption("nmDir")
   names(results.tables) = sub("X", "", names(results.tables))
   results.tables = results.tables[, c("lower","upper",pred.names, real.names, ci.names, "strata")]
   results.tables$xCovm = rowMeans(results.tables[, c('lower','upper')])
-  names(results.tables)[grep("[.]", names(results.tables))] = 
+  names(results.tables)[grep("[.]", names(results.tables))] =
     paste0("vpc", names(results.tables)[grep("[.]", names(results.tables))])
-  
+
   #vpc$vpc$strata.names;   obs$strata_no
   obs$strata = swap(obs$strata_no, sunique(obs$strata_no), vpc$vpc$strata.names)
   obs$dv.var = vpc$vpc$dv.var
   obs$idv.var = vpc$vpc$idv.var
-  
+
   ## reshape the vpc element for plotting
   res = results.tables[rep(seq(nrow(results.tables)), ea = 2),]
   res$idx = 1:2
   res$xCov = res$lower * (res$idx == 1) + res$upper * (res$idx == 2)
   if(PI.ci.area.smooth) res$xCov = res$xCovm
-  
+
   return(list(obs = obs, vpc = results.tables, res= res))
 }
 

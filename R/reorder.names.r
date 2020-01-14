@@ -13,22 +13,22 @@
 #' testData = expand.grid(start=1,middle=LETTERS[1:3], end=c("K","L"))
 #' reorder(testData, who = "start", after = "end")
 
-reorder.data.frame <- function (x, ..., who, after = NA) 
+reorder.data.frame <- function (x, ..., who, after = NA)
 {
   names(x) <- make.unique(names(x))
   who <- names(x[, who, drop = FALSE])
   nms <- names(x)[!names(x) %in% who]
-  if (is.null(after)) 
+  if (is.null(after))
     after <- length(nms)
-  if (is.na(after)) 
+  if (is.na(after))
     after <- 0
-  if (length(after) == 0) 
+  if (length(after) == 0)
     after <- length(nms)
-  if (is.character(after)) 
+  if (is.character(after))
     after <- match(after, nms, nomatch = 0)
-  if (after < 0) 
+  if (after < 0)
     after <- length(nms)
-  if (after > length(nms)) 
+  if (after > length(nms))
     after <- length(nms)
   nms <- append(nms, who, after = after)
   x[nms]

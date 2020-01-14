@@ -30,8 +30,8 @@
 #'        , scales = list(x = list(relation = 'free'))
 #'        , panel = panel.residual
 #'        )
-#' 
-#' 
+#'
+#'
 panel.residual = function(x, y
                           , abline="identity"
                           , col = obs.color

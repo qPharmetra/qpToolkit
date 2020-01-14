@@ -7,7 +7,7 @@
 #' @return A list with the NONMEM version, OFV, the xpose tables and the parameter table
 #' @export
 #' @seealso \code{\link{nm.extract.xml}}, \code{\link{nm.params.table}}, \code{\link{get.nm.version}}, \code{\link{get.ofv}}, \code{\link{get.xpose.tables}}
-#' @examples 
+#' @examples
 #' run2.ext = nm.extract.ext("example2", path = getOption("qpExampleDir"))
 #' run2.ext$version; run2.ext$final_objective_function
 

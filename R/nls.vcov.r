@@ -1,8 +1,8 @@
 # name:     nls.vcov
 # purpose:  extracts the variance covariance matrix from an nls object
-# input:    nls object 
+# input:    nls object
 # output:   (variance-covariance) matrix
-# note: 
+# note:
 
 ## extracts the variance covariance matrix from an nls object
 

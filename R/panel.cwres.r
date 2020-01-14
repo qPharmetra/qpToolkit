@@ -10,7 +10,7 @@
 #' @return Lattice panel output (invisible)
 #' @export
 #' @import lattice
-#' @examples 
+#' @examples
 #' library(lattice)
 #' library(reshape2)
 #'  out = get.xpose.tables("example2", getOption("qpExampleDir"))

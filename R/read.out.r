@@ -2,7 +2,7 @@
 # purpose:  parse the NONMEM output (lst file) as scanned lines
 # input:    run number, file.path and file extension of NONMEM output file
 # output:   character vector with 1 entry per line of the NONMEM output file
-# note:     
+# note:
 
 # ROXYGEN Documentation
 #' Scan NONMEM output file

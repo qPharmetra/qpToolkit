@@ -1,6 +1,6 @@
 globalVariables('EVID')
 #' qPharmetra examples for plot, VPC and NONMEM dataset
-#' @description examples for qPharmetra style VPC 
+#' @description examples for qPharmetra style VPC
 #and GOF plots and a NONMEM data set
 #' @family qpexamples
 #' @export
@@ -11,7 +11,7 @@ example.xpose.VPC = function()
 {
    cat("xpose.VPC(file.path(getOption('nmDir'),'vpc1/vpc_results.csv')
        , file.path(getOption('nmDir'),'vpc1/vpctab1')
-       , logy=TRUE 
+       , logy=TRUE
        , by='STRT'
        , col=grey(0.4),  cex = 1
        , PI.ci.area.smooth = TRUE
@@ -22,7 +22,7 @@ example.xpose.VPC = function()
        , PI.ci.up.arcol = PI.ci.up.arcol
    )")
 }
-#' 
+#'
 #' Examples for qPharmetra style CWRES plot
 #and a NONMEM data set
 #' @family qpexamples
@@ -72,11 +72,11 @@ example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
              , EVID = 0
              , DV = 0
    ) %>%
-      arrange(ID,TIME) 
+      arrange(ID,TIME)
    nmobs$DOSE = rep(DOSE, ea = ID*length(TIME))
-   
+
    ## doses
-   nmdose = subset(nmobs, TIME == TIME[1], select = c(ID,DOSE)) %>% 
+   nmdose = subset(nmobs, TIME == TIME[1], select = c(ID,DOSE)) %>%
       mutate(AMT = DOSE
           , TIME = 0
           , EVID = 1
@@ -86,12 +86,12 @@ example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
    ## bind NONMEM dataset and sort
    nmdata = bind_rows(nmobs, nmdose)%>%
       arrange(ID,DOSE,TIME,-EVID)
-   
+
    return(nmdata)
 }
 
 #' Examples for qPharmetra style PKPD data set
-#' 
+#'
 #' @family qpexamples
 #' @export
 #' @examples
@@ -115,47 +115,47 @@ example.pkpdData = function(){
    pkpdData$ht = sample.by.id(pkpdData$id, 158:200, TRUE)
    pkpdData$bmi = round(pkpdData$wt / (pkpdData$ht/100) ^2, 1)
    pkpdData$sex = sample.by.id(pkpdData$id, c("M","F"), TRUE)
-   pkpdData$race = sample.by.id(pkpdData$id, 
+   pkpdData$race = sample.by.id(pkpdData$id,
                                 rep(c("Caucasian","Asian","Black","Other"), c(10,3,3,1)), TRUE)
    pkpdData$endpoint = rep("effect", nrow(pkpdData))
    pkpdData$trt = ifelse(pkpdData$dose == 0, "Placebo", paste("drug ",pkpdData$dose, "mg", sep = ""))
-   
-   xTime = c(0,1,2,3,4,5,6,7, 10, 14, 21, 28, 35, 42) 
+
+   xTime = c(0,1,2,3,4,5,6,7, 10, 14, 21, 28, 35, 42)
    nr = nrow(pkpdData)
    pkpdData = pkpdData[rep((1:nrow(pkpdData)), ea = length(xTime)), ]
    pkpdData$time = rep(xTime, nr)
-   
+
    nr = nrow(pkpdData)
    pkpdData = rbind(pkpdData, pkpdData)
    pkpdData$type = rep(c("PK", "PD"), ea = nr)
-   
+
    ## simulate a response
    pkpdData$cl = 3 * ((pkpdData$wt/stats::median(pkpdData$wt))^0.5) * exp(rnorm.by.id(pkpdData$id, 0, 0.25))
    pkpdData$v = 10 * exp(rnorm.by.id(pkpdData$id, 0, 0.25)) + (pkpdData$sex == "F") * 5
    pkpdData$keo = 0.05 * exp(rnorm.by.id(pkpdData$id, 0, 0.5))
-   
+
    ok = pkpdData$type == "PK"
    pkpdData$value[ok] = unlist(
       lapply(split(pkpdData[ok, ], pkpdData$id[ok]), function(x)
          pk.1comp.1abs(x$dose, x$time,
-                       parms = c(cl = x$cl[1], 
-                                 v = x$v[1], 
+                       parms = c(cl = x$cl[1],
+                                 v = x$v[1],
                                  ka = 1)
          ))
    )
    ## add error
-   pkpdData$value[pkpdData$type == "PK"] = 
+   pkpdData$value[pkpdData$type == "PK"] =
       pkpdData$value[pkpdData$type == "PK"]*(1+rnorm(sum(pkpdData$type == "PK"), 0, 0.05)) +
       rnorm(sum(pkpdData$type == "PK"), 0, 0.02)
    pkpdData$value[pkpdData$type == "PK" & pkpdData$value<0.05] = 0.05
-   
+
    ok = pkpdData$type == "PD"
    pkpdData$value[ok] = unlist(
       lapply(split(pkpdData[ok, ], pkpdData$id[ok]), function(x)
          1 + eff.1comp.1abs(x$dose, x$time,
-                            parms = c(cl = x$cl[1], 
-                                      v = x$v[1], 
-                                      ka = 1, 
+                            parms = c(cl = x$cl[1],
+                                      v = x$v[1],
+                                      ka = 1,
                                       keo = x$keo[1])
          ))
    )

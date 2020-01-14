@@ -1,8 +1,8 @@
-# name:     nm.parse.control.stream 
+# name:     nm.parse.control.stream
 # purpose:  function to read NONMEM control stream and parse it out as named list
 # input:    run number (character), optionally the path where the NM run resides
 # output:   list with as many (named) element as there are $.... elements in the cotnrol stream,
-# note:     depends on qP function nm.remove.section     
+# note:     depends on qP function nm.remove.section
 
 # ROXYGEN Documentation
 #' Parse NONMEM control stream
@@ -14,9 +14,9 @@
 #' @return A named list with all \code{$PK, $ERROR, $THETA} etc... elements of the control stream
 #' @export
 #' @importFrom Hmisc unPaste
-#' @examples 
+#' @examples
 #' nm.parse.control.stream("example1", path = getOption("qpExampleDir"), file.ext = ".ctl")
-#' 
+#'
 nm.parse.control.stream = function(run
                                    , path = getOption("nmDir")
                                    , file.ext = ".mod"
@@ -24,14 +24,14 @@ nm.parse.control.stream = function(run
 )
 {
    ctl = read.mod(run=run, path=path, file.ext=file.ext, quiet=quiet)
-   
+
    ctlSections = ctl[grep("\\$", ctl)]
    ctlSections = ctlSections[substring(gsub(" ","",ctlSections),1,1)!=";"]
    ctlSections = unlist(lapply(ctlSections, function(x) unPaste(x,sep = " ")[[1]]))
    ctlSections = substring(unique(ctlSections), 2)
    ctlSections = ctlSections[ctlSections!=""]
    nams = ctlSections
-   
+
    ctlSections = lapply(ctlSections
                        , function(x, ctl) {
                           as.vector(
@@ -46,4 +46,4 @@ nm.parse.control.stream = function(run
 }
 
 
-  
+

@@ -2,15 +2,15 @@
 # purpose:  imports output tables of multiple runs and merges them into one dataframe
 # input:    runs (vector) and path where NM run folders reside
 # output:   data frame with NONMEM table output and colum 'model' to distinguish NONMEM runs
-# note:     use argument 'carryAlong' to ask for more data items to be included in the result       
+# note:     use argument 'carryAlong' to ask for more data items to be included in the result
 
 # ROXYGEN Documentation
-#' Get xpose tables of multiple runs 
+#' Get xpose tables of multiple runs
 #' @description Imports output tables of multiple runs and merges them into one data.frame
-#' @param runs character vector of run roon names (e.g. run1) 
+#' @param runs character vector of run roon names (e.g. run1)
 #' @param path directory where run directories of runs reside
 #' @param carryAlong character vector of variables to get in addition to ID, PRED, IPRED, CWRES, DV. Argument carryAlong defaults to DOSE TIME and EVID. Use in case output tables are not consistent across runs being imported
-#' @note     use argument 'carryAlong' to ask for more data items to be included in the result       
+#' @note     use argument 'carryAlong' to ask for more data items to be included in the result
 #' @return data.fame the xpose tables for runs and an additional column 'model' containinng the rootnames of runs for stratification in post-processing
 #' @export
 #' @seealso \code{\link{get.xpose.tables}}

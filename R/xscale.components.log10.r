@@ -1,16 +1,16 @@
 #' Labels 10-logged x axes appropriately in lattice
-#' @param lim internal required argument. 
+#' @param lim internal required argument.
 #' @param \dots passed to xscale.components.default()
 #' @return Nothing. It's a function to be called inside a lattice call
 #' @export
 #' @family scale.components
-#' @note Not to be called by user. 
+#' @note Not to be called by user.
 #' @import lattice
 #' @examples
 #' library(lattice)
 #' set.seed(1234)
 #' datf = data.frame(DV = exp(rlnorm(1000, sdlog=0.5)), TIME = seq(1000))
-#' 
+#'
 #' # labels at one log10 unit intervals
 #' xyplot(DV ~ TIME
 #'        , data = datf
@@ -18,7 +18,7 @@
 #'        , yscale.components = yscale.components.log10
 #'        , xscale.components = xscale.components.log10
 #' )
-#' 
+#'
 #' # labels at half log10 unit intervals
 #' xyplot(DV ~ TIME
 #'        , data = datf
@@ -38,12 +38,12 @@ xscale.components.log10 = function(lim, ...){
   ans
 }
 #' Labels 10-logged x axes appropriately in lattice (ticks at powers of 1 and 3)
-#' @param lim internal required argument. 
+#' @param lim internal required argument.
 #' @param \dots passed to xscale.components.default()
 #' @return Nothing. It's a function to be called inside a lattice call
 #' @export
 #' @family scale.components
-#' @note Not to be called by user. 
+#' @note Not to be called by user.
 #' @import lattice
 #' @examples
 #' library(lattice)
