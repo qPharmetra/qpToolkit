@@ -10,7 +10,7 @@
 #' @param path directory where rootname.ext resides
 #' @param file.ext file extentions of the .ext file. Defaults to .ext
 #' @param runIndex which (numeric) estimation method needs to be tabulated? Defaults to the last estimation method outputted to the .ext file
-#' @param fixed.text charactre string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream 
+#' @param fixed.text character string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream 
 #' @param return.all logical indicator to return the standard data set for inclusion in reports (default) or if TRUE the data set with everything.
 #' @return data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information. 
 #' @export
