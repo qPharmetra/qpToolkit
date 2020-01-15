@@ -88,7 +88,6 @@ nmcov$parContVarPlot()
 
 ## parameters vs. Categorical Covariates
 nmcov$parCatVarPlot()
-nmcov$parCatVarPlot(F)
 
 ## data frames required to replot the above are right there for convenience
 head(nmcov$covdata) ## merged get.xpose.table and nm.params.table output!
