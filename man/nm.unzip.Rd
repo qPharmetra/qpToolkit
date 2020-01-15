@@ -24,7 +24,7 @@ nm.unzip(
 
 \item{extension}{file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped}
 
-\item{zip.call}{full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"}
+\item{zip.call}{full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e \%s.7z" on windows}
 
 \item{filename}{file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults}
 
@@ -39,14 +39,17 @@ The zipped file is extracted to disk in the same location. Nothing is returned t
 Many large filews like XML outpout and covariance matrices are zipped by (qPharmetra's
  tweaked version of) PsN. To enable the parsing function of the \code{nm.xxx} domain to
   operate well this function unzips these files.  The unzip call is pulled from the system environment
-  variable UNZIP_CALL on startup, or defaulted as stated below.  the \%s in the call is replaced with the 
-  basename (no extension) of the file to unzip.  The unzip call can be modified by changine the 
+  variable UNZIP_CALL on startup, or defaulted as stated below.  the \%s in the call is replaced with the
+  basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
   option unzip.call.
 }
 \examples{
 file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
-nm.unzip(run="example1", extension=".cov", 
+nm.unzip(run="example1", extension=".cov",
 path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
 file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
+file.exists('c:/progra~1/7-zip/7z.exe')
+# If the above does not exist, consider:
+# options(unzip.call = 'C:/my-zip-path/7z e \%s.7z') # or similar
 }

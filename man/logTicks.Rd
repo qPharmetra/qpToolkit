@@ -23,8 +23,8 @@ This function is called by the scale functions for lo10 axes and is not to be us
 \examples{
 logTicks(lim = c(10,100), loc = 1)
 logTicks(lim = c(100,10), loc = 1)
-logTicks(lim = c(4,109,1000), loc = 1)  
-logTicks(lim = c(4,109,999), loc = 1)  
+logTicks(lim = c(4,109,1000), loc = 1)
+logTicks(lim = c(4,109,999), loc = 1)
 logTicks(lim = c(109,109,1000,4), loc = 7)
 logTicks(lim = c(109,109,1000,4), loc = 4)
 logTicks(lim = c(109,109,1000,4), loc = 2)

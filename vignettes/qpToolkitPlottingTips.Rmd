@@ -73,7 +73,7 @@ ggvpc_standard(vpc, point.size = 2) +
 
 ## ggvpc functions can plot by multiple gropuping levels in 'facet_grid' mode
 
-Since we do not have data availabel, we quickly scramble some data, dupliacte and tweak it
+Since we do not have data available, we quickly scramble some data, duplicate and tweak it
 ```{r}
 vpc = nm.read.vpc(system.file(package = 'qpToolkit','/NONMEM/vpc_final_strt'), PI.ci.area.smooth=T)
 vpc = lapply(vpc, function(x) expand.data(x, values=1:2,name = "pat.class"))

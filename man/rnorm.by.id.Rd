@@ -22,7 +22,7 @@ Populates 1 sample from normal distribution for each group (id or subject, or tr
 \examples{
 df = example.pkpdData()
 sam = rnorm.by.id(df$id, mean = 0, sd = 1)
-tapply(sam,df$id, unique) 
+tapply(sam,df$id, unique)
 }
 \seealso{
 \code{\link{sample.by.id}}

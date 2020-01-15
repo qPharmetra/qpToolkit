@@ -9,8 +9,8 @@
   method = "components",
   newdata = NULL,
   sample = FALSE,
-  nSignif = 3,
-  nSignif.CV = 0
+  digits = 3,
+  digits.CV = 0
 )
 }
 \arguments{
@@ -22,9 +22,9 @@
 
 \item{sample}{logical (default is FALSE) indicating whether to sample or not}
 
-\item{nSignif}{number of significant digits for parameter estimate table}
+\item{digits}{number of significant digits for parameter estimate table}
 
-\item{nSignif.CV}{number of significant digits for coefficient of variation in the parameter estimate table}
+\item{digits.CV}{number of significant digits for coefficient of variation in the parameter estimate table}
 }
 \value{
 list with extracted nlme object information, model summary, model parameter table, or, when method = "samples", a matrix with predictions for data.frame \code{getData(obj)} or \code{newdata}.

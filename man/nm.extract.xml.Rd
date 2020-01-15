@@ -8,13 +8,13 @@ nm.extract.xml(
   run = "run1",
   path = getOption("nmDir"),
   filename = paste(path, run, paste(run, xml.extension, sep = ""), sep = "/"),
-  signif = 4,
-  signif.se = signif,
-  signif.cv = signif,
-  signif.est = signif,
+  digits = 3,
+  digits.se = digits,
+  digits.cv = digits,
+  digits.est = digits,
   xml.extension = ".xml",
   zip.extension = ".7z",
-  zip.program = "c:/progra~1/7-zip/7z",
+  zip.call = getOption("unzip.call"),
   remove.obsolete = FALSE,
   na.value = "n.d.",
   control_stream = FALSE,
@@ -29,19 +29,19 @@ nm.extract.xml(
 
 \item{filename}{with full path of the XML file to be parsed. This is automatically created using qP workflow standards but can be specified as well}
 
-\item{signif}{number of significant digits}
+\item{digits}{number of significant digits}
 
-\item{signif.se}{number of significant digits in SE (when point estimates = T)}
+\item{digits.se}{number of significant digits in SE (when point estimates = T)}
 
-\item{signif.cv}{number of significant digits in CV\% (when point.estimates = T)}
+\item{digits.cv}{number of significant digits in CV\% (when point.estimates = T)}
 
-\item{signif.est}{number of significant digits in parameter estimates (when point.estimates = T)}
+\item{digits.est}{number of significant digits in parameter estimates (when point.estimates = T)}
 
 \item{xml.extension}{extension of the xml file. Defaults to ".xml"}
 
 \item{zip.extension}{extension of the zip program. Defaults to ".7z"}
 
-\item{zip.program}{full path to the executable of the zip program (7zip or winzip). Defauls to "c:/progra~1/7-zip/7z"}
+\item{zip.call}{full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e \%s.7z" on windows}
 
 \item{remove.obsolete}{logical (F) defining if non-estimated parameters should be dropped for the parameter table.}
 
@@ -68,4 +68,5 @@ names(tmp)
 tmp$final_objective_function
 tmp$table
 tmp$monitor
+tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))
 }

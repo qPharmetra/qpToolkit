@@ -9,7 +9,10 @@ bootstrap.ParTab(
   idx = list(theta = 1, omega = 1, sigma = 1),
   probs = 0.95,
   central = median,
-  nsig = 3
+  digits = 3,
+  latex = FALSE,
+  align.dot = FALSE,
+  transformations
 )
 }
 \arguments{
@@ -21,7 +24,13 @@ bootstrap.ParTab(
 
 \item{central}{function for central tendency of distribution}
 
-\item{nsig}{number of significant digits in output}
+\item{digits}{number of significant digits in output}
+
+\item{latex}{passed to \code{\link{formatted.signif}}}
+
+\item{align.dot}{passed to \code{\link{formatted.signif}}}
+
+\item{transformations}{a list with elements log or logit, that, in turn, are numeric vectors representating the THETA numbers that are logged or logit-transformed, respectively.}
 }
 \value{
 A data.frame with the bootstrap estimates.
@@ -36,4 +45,7 @@ myBoot = read.bootstrap(
  structure.filename = "bootstrap/raw_results_structure"
 )
 bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
+bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))[c(13,14,15),]
+bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1),
+transformations = list(log = 13:14, logit = 15))[c(13,14,15),] # partly fictional
 }

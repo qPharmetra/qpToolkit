@@ -20,7 +20,7 @@ Summarized meta-analysis dataset
 Creates a summary of a meta-analysis dataset. The dataset needs specific column names (see Notes).
 }
 \note{
-Standard column names are 
+Standard column names are
 reference	reference number or label to uniquely identify each public literature article/source
 	study		study identifier or label
 	drug		drug name in a given arm
@@ -28,7 +28,7 @@ reference	reference number or label to uniquely identify each public literature 
 	time		observation time
 	n		sample size at each observation time
 	Each unique study+drug+dose = one arm
- 	
+
 	If there are multiple doses of a drug in a study, computes the AVERAGE starting size
 Covariate columns (both continous and categorical) can be specified in the "cov.cols" argument (a vector).
 Whether each covariate is continous or categorical is specified in the "cov.cat" argument.

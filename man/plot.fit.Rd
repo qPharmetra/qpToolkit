@@ -94,23 +94,23 @@ plot(fm1DNase1.predict, logX = TRUE)
 EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
 {
   # Effect-site concentration for 1-compartment model, 1st-order absorption
-  
+
   kel = cl / v
-  
+
   # Define coefficients
   A = 1/(kel-ka) / (keo-ka)
   B = 1/(ka-kel) / (keo-kel)
   C = 1/(ka-keo) / (kel-keo)
-  
+
   # Return effect-site concentration
   dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 }
-fit.PD004.nlme = nlme.run(model = value ~ base + 
+fit.PD004.nlme = nlme.run(model = value ~ base +
  EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo)
- , data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5), 
-                          fixed = base + cl + v + ka + keo ~ 1, 
-                          random = cl.eta ~ 1, 
-                          groups = ~ id, 
+ , data = subset(pkpdData,type == "PD" & dose > 0 & value > 0.5),
+                          fixed = base + cl + v + ka + keo ~ 1,
+                          random = cl.eta ~ 1,
+                          groups = ~ id,
                           start = c(base = 1, cl = 1, v = 10
                           , ka = 1, keo = 0.01),
                           problem = "True Model",
@@ -129,16 +129,16 @@ fit.PD004.pred.nlme = nlme.predict(func = value ~ time
    , fit.PD004.nlme$object, method = "prediction")
 plot(fit.PD004.pred.nlme) ## 'simple' prediction for all xCovariate
 
-## note that prediction and partial residual type of model fit 
+## note that prediction and partial residual type of model fit
 ## plots are very different
 
 # fit vs time by dose
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose
    , fit.PD004.nlme$object)
-plot(fit.PD004.pred.nlme) 
+plot(fit.PD004.pred.nlme)
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose
    , fit.PD004.nlme$object, method = "residuals")
-plot(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
+plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
 plot(fit.PD004.pred.nlme, yLimits = c(-1,1)
-   , abline = list(h = 0, lty=2)) 
+   , abline = list(h = 0, lty=2))
 }

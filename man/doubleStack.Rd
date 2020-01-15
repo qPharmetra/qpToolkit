@@ -32,8 +32,8 @@ stacked.df = doubleStack(myDF, vars1 = c("CL","V"), vars2 = c("wt","age","sex"))
 head(myDF)
 head(stacked.df)
 library(ggplot2)
-ggplot(subset(stacked.df, variable != "sex"), aes(x=as.numeric(value), y = value1)) + 
-   geom_point() + 
+ggplot(subset(stacked.df, variable != "sex"), aes(x=as.numeric(value), y = value1)) +
+   geom_point() +
    stat_smooth(method="lm", col = lin.fit.col) +
    facet_grid(variable1 ~ variable,scales="free_y")
 }

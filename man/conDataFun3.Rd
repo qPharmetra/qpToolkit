@@ -4,12 +4,16 @@
 \alias{conDataFun3}
 \title{Summary: (95\%.lower - 95\%.upper)}
 \usage{
-conDataFun3(y, nSignif)
+conDataFun3(y, digits = 3, latex = FALSE, align.dot = FALSE)
 }
 \arguments{
 \item{y}{numeric vector to summarize}
 
-\item{nSignif}{number of significant digits}
+\item{digits}{number of significant digits}
+
+\item{latex}{passed to \code{\link{formatted.signif}}}
+
+\item{align.dot}{passed to \code{\link{formatted.signif}}}
 }
 \description{
 Summary: (95\%.lower - 95\%.upper)

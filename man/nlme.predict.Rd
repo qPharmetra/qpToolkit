@@ -51,28 +51,27 @@ a graph or a multi-level list with observed and predicted output (class \code{c(
 Predict residuals, partial residuals or uncertainty predictions for an nlme.object. This function will also take different data set (argument \code{newdata}) to simulate out of the box although the nlme object does require the predictors, independent variable, and the grouping variable to be present.
 }
 \examples{
-  
 pkpdData = example.pkpdData()
 EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
 {
   # Effect-site concentration for 1-compartment model, 1st-order absorption
-  
+
   kel = cl / v
-  
+
   # Define coefficients
   A = 1/(kel-ka) / (keo-ka)
   B = 1/(ka-kel) / (keo-kel)
   C = 1/(ka-keo) / (kel-keo)
-  
+
   # Return effect-site concentration
   dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
 }
 fit.PD004.nlme = nlme.run(
-  model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo), 
-  data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ], 
-  fixed = base + cl + v + ka + keo ~ 1, 
-  random = cl.eta ~ 1, 
-  groups = ~ id, 
+  model = value ~ base + EFF.1comp.1abs(dose, time, cl * exp(cl.eta), v, ka, keo),
+  data = pkpdData[pkpdData$type == "PD" & pkpdData$dose > 0 & pkpdData$value > 0.5, ],
+  fixed = base + cl + v + ka + keo ~ 1,
+  random = cl.eta ~ 1,
+  groups = ~ id,
   start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01),
   problem = "True Model",
   reference = 4)
@@ -95,10 +94,10 @@ plot(fit.PD004.pred.nlme) ## now we get simply the prediction for all xCovariate
 
 # fit vs time by dose
 fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object)
-plot(fit.PD004.pred.nlme) 
+plot(fit.PD004.pred.nlme)
 fit.PD004.pred.nlme = nlme.predict(
   func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals"
 )
-plot(fit.PD004.pred.nlme, yLimits = c(-1,1)) 
-plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2)) 
+plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
+plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2))
 }

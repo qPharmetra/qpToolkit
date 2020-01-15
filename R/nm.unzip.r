@@ -11,7 +11,7 @@
 #' @param path directory where \code{run} resides
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
 #' @param extension file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped
-#' @param zip.call full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e \%s.7z"
+#' @param zip.call full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e \%s.7z" on windows
 #' @param filename file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults
 #' @param zip.filename filename of the zip file to extract. Is automatically populated with qP workflow defaults
 #' @param quiet whether to suppress process messages
@@ -38,14 +38,14 @@ nm.unzip = function(
    quiet = TRUE
 )
 {
-   # currentwd = getwd()
-   # newwd = path
+   currentwd = getwd()
+   newwd = path
    if(!quiet) cat("path:", path, "\n")
    zip.call = sprintf(zip.call, zip.filename)
    if(!quiet) cat("call:",zip.call,"\n")
-   # setwd(newwd)
+   setwd(newwd)
    invisible(system(zip.call, ignore.stdout=quiet, ignore.stderr = quiet))
-   # setwd(currentwd)
+   setwd(currentwd)
    if(!file.exists(zip.filename)){
       stop(sprintf("Unzip failed: %s\nUnzip call:%s", zip.filename, zip.call))
    }

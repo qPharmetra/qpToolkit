@@ -22,7 +22,7 @@ nm.params.table(
 
 \item{runIndex}{which (numeric) estimation method needs to be tabulated? Defaults to the last estimation method outputted to the .ext file}
 
-\item{fixed.text}{charactre string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream}
+\item{fixed.text}{character string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream}
 
 \item{return.all}{logical indicator to return the standard data set for inclusion in reports (default) or if TRUE the data set with everything.}
 }
@@ -34,7 +34,7 @@ Create NONMEM Parameter Estimate Table
 }
 \examples{
 nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-nm.params.table("example2",  path = getOption("qpExampleDir"), 
+nm.params.table("example2",  path = getOption("qpExampleDir"),
 fixed.text = "(fixed to 0)", return.all = TRUE)
 }
 \seealso{

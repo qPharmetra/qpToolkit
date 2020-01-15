@@ -53,7 +53,7 @@ example("nm.parse.control.stream")
 ## nm.modeltrail.graph
 
 ```{r}
-#example("nm.modeltrail.graph")
+example("nm.modeltrail.graph")
 ```
 
 ## nm.compare.plot

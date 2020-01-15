@@ -32,7 +32,7 @@ sample.by.id(my.ids, samples=rgamma(1000,1))
 
 #one unique value per id
 sample.by.id(unique(my.ids), samples=rgamma(1000,1))
-tapply(sample.by.id(my.ids, samples = rgamma(1000,1)),my.ids, unique) 
+tapply(sample.by.id(my.ids, samples = rgamma(1000,1)),my.ids, unique)
 }
 \seealso{
 \code{\link{rnorm.by.id}}

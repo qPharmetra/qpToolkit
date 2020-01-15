@@ -36,7 +36,7 @@ nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
 nmData3 = nm.insert.dose.multiple.compartments(data = nmData
                                                , dose.in.cmt=c(3,4,5)
                                                , ID, TIME, -EVID
-                                               
+
 )
 tbl_df(nmData3[, c('ID','TIME','EVID','AMT','CMT','DV')])
 }

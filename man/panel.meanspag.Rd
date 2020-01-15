@@ -78,7 +78,7 @@ xyplot(value ~ time | dose *  type
 
 out = get.xpose.tables(file.path(getOption("qpExampleDir"),"example2"))
 trellis.strip.color()
-xyplot(CONC ~ TIME 
+xyplot(CONC ~ TIME
        , data = out
        , groups = ID
        , subset = EVID==0
@@ -90,7 +90,7 @@ xyplot(CONC ~ TIME
 
 # in case there are too many times to average by then the following might be #'#better interpretable
 ptimes = seq(min(out$TIME),max(out$TIME), length = 14)
-xyplot(CONC ~ Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))  
+xyplot(CONC ~ Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))
       , data = out
       , groups = ID
       , subset = EVID==0

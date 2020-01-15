@@ -4,10 +4,12 @@
 \alias{nm.process.scm}
 \title{Parsing SCM output}
 \usage{
-nm.process.scm(path)
+nm.process.scm(path, digits = 3)
 }
 \arguments{
 \item{path}{full directory path where scmlog files reside}
+
+\item{digits}{number of significant digits}
 }
 \value{
 A character vector with processed SCM output, ready for inclusion into a (LaTeX) report
@@ -21,6 +23,9 @@ library(xtable)
 myPath = file.path(getOption("qpExampleDir"),"scm_example2")
 scm = nm.process.scm(myPath)
 names(scm)
+
+# Fail if scm file not found
+foo <- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
 
 scm$summary
 

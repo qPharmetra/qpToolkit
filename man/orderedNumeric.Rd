@@ -21,11 +21,11 @@ orderedNumeric(
 
 \item{paste.function}{function to use when glueing together prefix, x, and suffix}
 
-\item{special.x}{list of length 2, with first (numeric) element being the number that will be exchanged 
+\item{special.x}{list of length 2, with first (numeric) element being the number that will be exchanged
 for the 2nd element which should be a text string.}
 }
 \value{
-A formatted character vector containing count and percentage of 
+A formatted character vector containing count and percentage of
 unique values in \code{x}.
 }
 \description{
@@ -38,10 +38,10 @@ factor(out$DOSE)
 orderedNumeric(out$DOSE)
 #Levels:  0   100   500   4000    #that's better, similar to ordered(out$DOSE)
 orderedNumeric(out$DOSE, special.x = list(0, "Placebo"))
-#Levels: Placebo  100   500   4000 
+#Levels: Placebo  100   500   4000
 orderedNumeric(out$DOSE, prefix = "DrugName ")
 orderedNumeric(out$DOSE, prefix = "DrugName", suffix = "mcg")
 orderedNumeric(out$DOSE, prefix = "DrugName", suffix = "mcg", special.x = list(0, "Placebo"))
-orderedNumeric(out$DOSE, prefix = "DrugName ", suffix = "mcg", special.x = list(0, "Vehicle"), 
+orderedNumeric(out$DOSE, prefix = "DrugName ", suffix = "mcg", special.x = list(0, "Vehicle"),
 paste.function = paste0)
 }

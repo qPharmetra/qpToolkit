@@ -16,7 +16,7 @@
 #' @param digits.est number of significant digits in parameter estimates (when point.estimates = T)
 #' @param xml.extension extension of the xml file. Defaults to ".xml"
 #' @param zip.extension extension of the zip program. Defaults to ".7z"
-#' @param zip.program full path to the executable of the zip program (7zip or winzip). Defauls to "c:/progra~1/7-zip/7z"
+#' @param zip.call full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e \%s.7z" on windows
 #' @param remove.obsolete  logical (F) defining if non-estimated parameters should be dropped for the parameter table.
 #' @param na.value what to do with an NA value in the parameter table. Defaults to "n.d."
 #' @param control_stream logical (F) defining if the control stream should be included as well.
@@ -45,7 +45,7 @@ nm.extract.xml = function(
   digits.est = digits,
   xml.extension = ".xml",
   zip.extension = ".7z",
-  zip.program = "c:/progra~1/7-zip/7z",
+  zip.call = getOption("unzip.call"),
   remove.obsolete = FALSE,
   na.value = "n.d.",
   control_stream = FALSE,
@@ -63,7 +63,7 @@ nm.extract.xml = function(
              , path = file.path(path,run)
              , zip.extension = zip.extension
              , extension = xml.extension
-             , zip.program = zip.program
+             , zip.call = zip.call
              , quiet = quiet
     )
 

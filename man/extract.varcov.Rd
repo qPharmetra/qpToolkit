@@ -10,8 +10,8 @@ extract.varcov(text)
 \item{text}{A character or numeric string containing the .cov output.}
 }
 \value{
-A named list. The sole item in the list should have a name that is the estimation method 
-used (e.g. "First Order Conditional Estimation with Interaction").  That named item will be a 
+A named list. The sole item in the list should have a name that is the estimation method
+used (e.g. "First Order Conditional Estimation with Interaction").  That named item will be a
 data frame containing the covariance matrix.
 }
 \description{
@@ -29,7 +29,7 @@ nm.unzip(
   run = "run11",extension = ".cov"
 )
 covText = scan(
-  file = file.path(getOption("qpExampleDir"),"run11","run11.cov"), 
+  file = file.path(getOption("qpExampleDir"),"run11","run11.cov"),
   what = "character",sep = "\n", quiet = T
 )
 

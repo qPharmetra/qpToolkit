@@ -27,6 +27,7 @@
   excl.id = c(),
   excl.columns = c("model", "minimization.successful", "covariance.step.successful",
     "covariance.step.warnings", "estimate.near.boundary"),
+  digits = 3,
   ...
 )
 }
@@ -73,6 +74,8 @@
 
 \item{excl.columns}{What elements should not be shown?}
 
+\item{digits}{number of significant digits}
+
 \item{...}{Optional arguments passed on to hist}
 }
 \value{
@@ -87,6 +90,6 @@ filename = "bootstrap/raw_results_bs4011.csv",
 structure.filename = "bootstrap/raw_results_structure")
 temp.dir = tempdir()
 cat(temp.dir)
-histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test") 
+histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test")
 ## now take a look there
 }

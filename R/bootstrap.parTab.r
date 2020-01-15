@@ -47,16 +47,9 @@ bootstrap.ParTab = function(
   stopifnot(length(probs) == 1)
   ci = c((1-probs)/2,(probs+1)/2)
   out = data.frame(t(apply(bootstrap$bootstrap[-1,], 2, quantile, probs=ci)))
-<<<<<<< HEAD
   names(out) = c('Lower', 'Upper')
-  out$Estimate = formatted.signif(
-    apply(bootstrap$bootstrap[-1,], 2, central),
-    digits = digits, latex = latex, align.dot = align.dot
-  )
-  out$Orig.Estimate = formatted.signif(
-    unlist(bootstrap$bootstrap[1,]),
-    digits = digits, latex = latex, align.dot = align.dot
-  )
+  out$Estimate = apply(bootstrap$bootstrap[-1,], 2, central)
+  out$Orig.Estimate = unlist(bootstrap$bootstrap[1,])
   out = out[7:nrow(out), ]
   thn = paste("THETA", idx$theta,sep="")
   omn = if(!is.null(idx$omega)) paste("OMEGA", idx$omega,sep="") else character(0)
@@ -83,7 +76,32 @@ bootstrap.ParTab = function(
         out$Upper[ok] = myFun(out$Upper[ok],nms)
       }
     }
-  out$CI95 = paste(formatted.signif(out$Lower,digits = digits, latex = latex, align.dot = align.dot), "-", formatted.signif(out$Upper,digits = digits, latex = latex, align.dot = align.dot))
+  out$Estimate = formatted.signif(
+    out$Estimate,
+    digits = digits,
+    latex = latex,
+    align.dot = align.dot
+  )
+  out$Orig.Estimate = formatted.signif(
+    out$Orig.Estimate,
+    digits = digits,
+    latex = latex,
+    align.dot = align.dot
+  )
+  out$CI95 = paste(
+    formatted.signif(
+      out$Lower,
+      digits = digits,
+      latex = latex,
+      align.dot = align.dot
+      ), "-",
+    formatted.signif(
+      out$Upper,
+      digits = digits,
+      latex = latex,
+      align.dot = align.dot
+    )
+  )
   out = out[, c("Parameter","Descriptor","Orig.Estimate","Estimate","CI95","transformed")]
   row.names(out) = 1:nrow(out)
   return(out)

@@ -4,12 +4,16 @@
 \alias{conDataFun2}
 \title{Summary: median (min - max)}
 \usage{
-conDataFun2(y, nSignif)
+conDataFun2(y, digits = 3, latex = FALSE, align.dot = FALSE)
 }
 \arguments{
 \item{y}{numeric vector to summarize}
 
-\item{nSignif}{number of significant digits}
+\item{digits}{number of significant digits}
+
+\item{latex}{passed to \code{\link{formatted.signif}}}
+
+\item{align.dot}{passed to \code{\link{formatted.signif}}}
 }
 \description{
 Summary: median (min - max)

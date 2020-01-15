@@ -4,12 +4,16 @@
 \alias{conDataFun1}
 \title{Summary: mean (SD)}
 \usage{
-conDataFun1(y, nSignif)
+conDataFun1(y, digits = 3, latex = FALSE, align.dot = FALSE)
 }
 \arguments{
 \item{y}{numeric vector to summarize}
 
-\item{nSignif}{number of significant digits}
+\item{digits}{number of significant digits}
+
+\item{latex}{passed to \code{\link{formatted.signif}}}
+
+\item{align.dot}{passed to \code{\link{formatted.signif}}}
 }
 \description{
 Summary: mean (SD)

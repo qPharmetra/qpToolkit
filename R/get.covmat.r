@@ -25,7 +25,7 @@ get.covmat = function(
   run,
   path = paste(getwd(),"NONMEM", sep="/"),
   ext = "cov",
-  zip.extension = "7z",
+  zip.extension = "7z"
 )
 {
   check.unzipped = FALSE

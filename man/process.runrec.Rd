@@ -28,7 +28,7 @@ Process the run record into a data frame ready for integration into LaTeX report
 }
 \examples{
 rr = read.runrec(
- filename = "AAruninfo.txt", 
+ filename = "AAruninfo.txt",
  path = system.file(package = 'qpToolkit','NONMEM')
 )
 process.runrec(rr)

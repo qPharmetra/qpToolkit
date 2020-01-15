@@ -18,7 +18,6 @@ named vector of logicals; TRUE for giagonal, FALSE for off-diagonal elements
 Retrieve which names in a vector of NONMEM parameter names are the diagonal ones. Thus, slect which ones are (1,1),, (2,2), etc... instead of (1,2), (3,4), etc...  The function is used internally by functions post-processing NONMEM output
 }
 \examples{
-   
 covMatrix = get.covmat(path = getOption("qpExampleDir"), run = "example2")
 get.diag.names(names = sub(" +", "", trimSpace(names(covMatrix[[1]]))))
 }

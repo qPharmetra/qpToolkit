@@ -24,7 +24,7 @@ Mutate rows that match a specified condition, when using dplyr.
 \examples{
 library(magrittr)
 library(dplyr)
-nmData = example.NONMEM.dataset() \%>\% 
+nmData = example.NONMEM.dataset() \%>\%
    mutate(CMT = swap(EVID, 0:1, 2:1)) \%>\%
    mutate_cond(condition = CMT>1
                , CMT = 99

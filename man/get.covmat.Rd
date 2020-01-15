@@ -4,7 +4,12 @@
 \alias{get.covmat}
 \title{Get the covariance matrix}
 \usage{
-get.covmat(run, path = paste(getwd(), "NONMEM", sep = "/"), ext = "cov")
+get.covmat(
+  run,
+  path = paste(getwd(), "NONMEM", sep = "/"),
+  ext = "cov",
+  zip.extension = "7z"
+)
 }
 \arguments{
 \item{run}{run rootname (e.g. run1)}
@@ -12,6 +17,8 @@ get.covmat(run, path = paste(getwd(), "NONMEM", sep = "/"), ext = "cov")
 \item{path}{directory where run output resides}
 
 \item{ext}{extension of the covariance}
+
+\item{zip.extension}{extension of the zip program. Defaults to "7z"}
 }
 \value{
 list with covariance matrices for each estimation method

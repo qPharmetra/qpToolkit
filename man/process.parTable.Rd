@@ -8,7 +8,10 @@ process.parTable(
   nm,
   index = 1,
   ci = 0.95,
-  sig = 3,
+  digits = 3,
+  formatted = TRUE,
+  latex = FALSE,
+  align.dot = FALSE,
   transformations,
   Descriptor,
   plain = FALSE,
@@ -23,7 +26,13 @@ process.parTable(
 
 \item{ci}{confidence interval for 95\% CI}
 
-\item{sig}{number of significant digits in output}
+\item{digits}{number of significant digits in output}
+
+\item{formatted}{whether to enforce length of significant digits, see \code{\link{formatted.signif}}}
+
+\item{latex}{passed to \code{\link{formatted.signif}}}
+
+\item{align.dot}{passed to \code{\link{formatted.signif}}}
 
 \item{transformations}{a list with elements log or logit, that, in turn, are numeric vectors representating the THETA numbers that are logged or logit-transformed, respectively.}
 
@@ -51,6 +60,13 @@ process.parTable(
    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
  , transformations = list(logit=c(7,9))
  , plain = TRUE
+ , missing.format = "...."
+)
+process.parTable(
+   nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
+ , transformations = list(logit=c(7,9))
+ , plain = TRUE
+ , formatted = FALSE
  , missing.format = "...."
 )
 }

@@ -10,7 +10,6 @@ globalVariables(c(
 #' @param PI prediction interval (c(0.025,0.975) for 95\% CI)
 #' @param area.col.central color of prediction polygon for the central tendency
 #' @param area.col.outer color of prediction polygon for the outer percentiles
-#' @param linecol.pred color of predicted lines
 #' @param linetype.obs.central line type of central observed lines
 #' @param linetype.obs.outer line type of outer observed lines
 #' @param linecol.obs.central line color of central observed lines
@@ -45,7 +44,6 @@ globalVariables(c(
 #' ggvpc_xpose(vpc.all
 #'             , area.col.outer = qp.green
 #'             , area.col.central = qp.blue
-#'             , linecol.pred = steel
 #'             , area.alpha = 1
 #'             , PI = c(0.05,0.95)) +
 #'   labs(x="Time (h)", y="Concentration (ng/ml)") +
@@ -65,7 +63,6 @@ ggvpc_xpose =
              PI = c(0.025, 0.975),
              area.col.central = PI.ci.med.arcol,
              area.col.outer = gray(0.2),
-             linecol.pred = PI.real.med.col,
              linetype.obs.central = 'solid',
              linetype.obs.outer = 'dashed',
              linecol.obs.central = PI.real.med.col,

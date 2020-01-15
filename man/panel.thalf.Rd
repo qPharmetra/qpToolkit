@@ -10,7 +10,7 @@ panel.thalf(
   ...,
   text.cex = 0.8,
   line.col = "blue",
-  nSignif = 3,
+  digits = 3,
   unit = "hr"
 )
 }
@@ -23,7 +23,7 @@ panel.thalf(
 
 \item{line.col}{line color}
 
-\item{nSignif}{number of significant digits in output}
+\item{digits}{number of significant digits in output}
 
 \item{unit}{time unit (hr)}
 }
@@ -45,7 +45,7 @@ xyplot(value ~ time | id
 , panel = function(x,y, ...)
 {
   panel.xyplot(x,y,..., col = "gray", pch = 18, type = "b", cex = 1)
-  sel = length(x) 
+  sel = length(x)
   sel = seq(sel-3,sel)
   panel.thalf(x[sel],y[sel],...,lwd = 2)
   lpoints(x,y, col = steel)

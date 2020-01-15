@@ -4,15 +4,15 @@
 \alias{catDataFun}
 \title{Summary: length (\%)}
 \usage{
-catDataFun(y, ndigits.categorical = 1)
+catDataFun(y, digits.categorical = 1)
 }
 \arguments{
 \item{y}{a vector of values to be summarised.}
 
-\item{ndigits.categorical}{number of digits to round to}
+\item{digits.categorical}{number of digits to round to}
 }
 \value{
-A formatted character vector containing count and percentage of 
+A formatted character vector containing count and percentage of
 unique values in \code{y}.
 }
 \description{

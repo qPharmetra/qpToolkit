@@ -7,9 +7,9 @@
 tabSummarize(
   formula,
   data,
-  nSignif = 3,
+  digits = 3,
   extra.blank.line = TRUE,
-  ndigits.categorical = 1
+  digits.categorical = 1
 )
 }
 \arguments{
@@ -17,11 +17,11 @@ tabSummarize(
 
 \item{data}{data to summarize}
 
-\item{nSignif}{number of significant digits in output}
+\item{digits}{number of significant digits in output}
 
 \item{extra.blank.line}{a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility}
 
-\item{ndigits.categorical}{passed to \code{\link{tabStats}}}
+\item{digits.categorical}{passed to \code{\link{tabStats}}}
 }
 \value{
 Table with summarized data, of class \code{demoTable}
@@ -36,14 +36,14 @@ This function is primarily used for demographics tables
 options(width = 150)
 pkpdData = example.pkpdData()
 ok = duplicated(pkpdData$id) == FALSE
-tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
+tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], digits = 3)
 # check the categorical summary for race
-round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok], 
+round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok],
 pkpdData$dose[ok]), 2, sum) * 100)
 # OK
 myFormula =  dose ~ race + wt + bmi + sex
 format(
- tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
+ tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3)
   , formula = myFormula
 )
 }

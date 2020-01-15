@@ -28,8 +28,8 @@ pat.1.avg.cp.ipred=c(1,2,3,4,5,4.5,3.5,2.5,1.5,1)
 pat.2.avg.cdin=c(.1,.3,.45,.6,.7,.7,.6,.45,.3,.1) + .2
 pat.2.avg.cp.ipred=c(1,2,3,4,5,4.5,3.5,2.5,1.5,1)
 plot.ds = data.frame(
-  id = rep(c(1,2),each=10), 
-  avg.cdin = c(pat.1.avg.cdin,pat.2.avg.cdin), 
+  id = rep(c(1,2),each=10),
+  avg.cdin = c(pat.1.avg.cdin,pat.2.avg.cdin),
   avg.cp.ipred = c(pat.1.avg.cp.ipred,pat.2.avg.cp.ipred)
 )
 trellis.strip.color()

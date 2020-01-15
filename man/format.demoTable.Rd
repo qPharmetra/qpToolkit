@@ -28,8 +28,8 @@ pkpdData = example.pkpdData()
 ok = duplicated(pkpdData$id) == FALSE
 myFormula =  dose ~ race + wt + bmi + sex
 my.formatted.demoTable = format(
- tabSummarize(formula = myFormula, data = pkpdData[ok, ], nSignif = 3)
-  , formula = myFormula
+ tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3),
+  formula = myFormula
 )
 print(my.formatted.demoTable
   , sanitize.text.function = identity

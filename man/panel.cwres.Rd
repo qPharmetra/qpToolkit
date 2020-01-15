@@ -11,7 +11,8 @@ panel.cwres(
   col = obs.color,
   col.line = abline.color,
   pch = 1,
-  col.loess = smooth.color
+  col.loess = smooth.color,
+  family = "gaussian"
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ panel.cwres(
 \item{pch}{symbol}
 
 \item{col.loess}{color of smooth line}
+
+\item{family}{passed to \code{\link[lattice]{loess.smooth}}}
 }
 \value{
 Lattice panel output (invisible)
@@ -42,6 +45,7 @@ xyplot(CWRES ~ value | variable
    , data = subset(reshape2::melt(out, measure.vars = c('PRED','TIME')),EVID==0)
    , aspect = 1
    , scales = list(x = list(relation = "free"))
-   , panel = panel.cwres
+   , panel = panel.cwres,
+   family = 'symmetric'
    )
 }

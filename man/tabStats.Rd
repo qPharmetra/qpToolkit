@@ -7,11 +7,11 @@
 tabStats(
   x,
   BY,
-  nSignif = 3,
+  digits = 3,
   conFunc1 = conDataFun1,
   conFunc2 = conDataFun2,
   catFunc = catDataFun,
-  ndigits.categorical = 1,
+  digits.categorical = 1,
   parName
 )
 }
@@ -20,7 +20,7 @@ tabStats(
 
 \item{BY}{stratification argument}
 
-\item{nSignif}{number of significant digits in continuous data summaries}
+\item{digits}{number of significant digits in continuous data summaries}
 
 \item{conFunc1}{defaults to conDataFun1}
 
@@ -28,7 +28,7 @@ tabStats(
 
 \item{catFunc}{defaults to catDataFun}
 
-\item{ndigits.categorical}{passed to catFunc}
+\item{digits.categorical}{passed to catFunc}
 
 \item{parName}{is automatically populated but the parameter name can be specified here by the user.}
 }
@@ -42,12 +42,11 @@ Determines if variable is continuous or categorical and returns the appropriate 
 This function is primarily used for demographics tables
 }
 \examples{
- 
 pkpdData = example.pkpdData()
 ok = duplicated(pkpdData$id) == FALSE
 tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]))
-tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), parName = "Race", 
-ndigits.categorical=0)
+tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), 
+parName = "Race", digits.categorical=0)
 tabStats(pkpdData$sex[ok], list(dose = pkpdData$dose[ok]))
 tabStats(x=pkpdData$wt, BY = list(dose = pkpdData$dose))
 tabStats(x=pkpdData$bmi, BY = list(dose = pkpdData$dose))
