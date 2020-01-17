@@ -11,7 +11,8 @@
 #' @seealso \code{\link{nm.extract.xml}}, \code{\link{make.symmetric}}
 #' @return A matrix
 #' @export xml.Extract.NM.Matrix
-#' @importFrom XML  xmlAttrs xmlValue
+#' @importFrom XML xmlAttrs
+#' @importFrom XML xmlValue
 #' @examples
 #' \dontrun{
 #' library(XML)

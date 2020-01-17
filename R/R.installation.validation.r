@@ -1,8 +1,8 @@
 globalVariables(c('Package','Priority'))
 #' R Installation Validation
 #'
+#'@importFrom utils read.csv
 #' @return Information
-#' @import utils
 R.installation.validation = function()
 {
    find.in.path = function(path,fname){

@@ -29,6 +29,7 @@
 #' @note Not to be used as standalone. Will be be called by \code{nm.vpcplot}. Furthermore, the \code{nm.vpcplot} routine will go deprecated soon, thus it is not adviced to use this function going forward. Instead use xpose.VPC.
 #' @seealso \code{\link{nm.vpcplot}}
 #' @import lattice
+#' @importFrom utils head
 
 panel.nonmem.vpc = function(
   x, y, OBS, vpc, subscripts, logY, logX, showPredAs,

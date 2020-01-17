@@ -36,8 +36,10 @@
 #' @export nlme.vpcplot
 #' @seealso \code{\link{nlme.vpc}}, \code{\link{nlme.extract}}
 #' @import lattice
-#' @importFrom nlme getData getCovariateFormula
-#' @importFrom nlme getResponseFormula getGroupsFormula
+#' @importFrom nlme getCovariateFormula
+#' @importFrom nlme getData
+#' @importFrom nlme getResponseFormula
+#' @importFrom nlme getGroupsFormula
 #' @importFrom Hmisc unPaste
 #' @importFrom grDevices rgb
 #' @importFrom stats as.formula

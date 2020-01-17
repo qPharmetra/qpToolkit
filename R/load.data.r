@@ -30,6 +30,8 @@
 #' @export
 #' @importFrom gdata read.xls
 #' @importFrom foreign read.xport
+#' @importFrom utils read.csv
+#' @importFrom utils read.delim
 #' @examples
 #' \dontrun{
 #' load.data(xlsFiles="ExampleInput.xlsx",

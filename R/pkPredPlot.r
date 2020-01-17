@@ -17,7 +17,10 @@
 #' @return PK plot
 #' @seealso \code{\link{pk.pred}}, \code{\link{pk.1comp.iv}}, \code{\link{pk.1comp.0abs}}, \code{\link{pk.1comp.1abs}}, \code{\link{pk.1comp.1abs.ss}}, \code{\link{pk.1comp.10abs}}, \code{\link{pk.1comp.lag}}, \code{\link{pk.2comp.iv}}, \code{\link{pk.2comp.0abs}}, \code{\link{pk.2comp.1abs}}, \code{\link{pk.2comp.1abs.m}}, \code{\link{pk.2comp.1abs.ss}}, \code{\link{pk.3comp.iv}}, \code{\link{pk.3comp.iv.ss}}, \code{\link{pk.3comp.1abs}}, \code{\link{pk.3comp.1abs.ss}}, \code{\link{eff.1comp.iv}}, \code{\link{eff.1comp.1abs}}, \code{\link{eff.1comp.1abs.ss}}, \code{\link{eff.2comp.iv}}, \code{\link{eff.2comp.1abs}}, \code{\link{eff.2comp.1abs.ss}}, \code{\link{eff.3comp.1abs}}
 #' @export
-#' @importFrom graphics plot lines segments text
+#' @importFrom graphics plot
+#' @importFrom graphics lines
+#' @importFrom graphics segments
+#' @importFrom graphics text
 #' @examples
 #' # 1comp elimination, 1st-order absorption
 #' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)

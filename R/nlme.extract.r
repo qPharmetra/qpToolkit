@@ -18,10 +18,16 @@
 #' @return list with extracted nlme object information, model summary, model parameter table, or, when method = "samples", a matrix with predictions for data.frame \code{getData(obj)} or \code{newdata}.
 #' @export nlme.extract
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.diag}}, \code{\link{nlme.vpc}},  \code{\link{nlme.simPars}}, \code{\link{nlme.getFixPars}}, \code{\link{nlme.getRanPars}}
-#' @importFrom nlme getData getCovariateFormula fixef ranef
-#' @importFrom nlme getResponseFormula nlme
-#' @importFrom nlme getGroupsFormula pdMatrix intervals
-#' @importFrom stats coef rnorm predict var
+#' @importFrom nlme getData
+#' @importFrom nlme getCovariateFormula
+#' @importFrom nlme fixef ranef
+#' @importFrom nlme ranef
+#' @importFrom nlme getResponseFormula
+#' @importFrom nlme nlme
+#' @importFrom nlme getGroupsFormula
+#' @importFrom nlme intervals
+#' @importFrom nlme pdMatrix
+#' @importFrom nlme intervals
 #' @examples
 #' fm1 <- nlme::nlme(height ~ SSasymp(age, Asym, R0, lrc),
 #' data = Loblolly,
@@ -131,22 +137,22 @@ nlme.extract = function(obj,
 	pV <- obj$modelStruct$varStruct
 	matchVar = match(class(pV)[1], c("NULL", "varPower", "varConstPower", "varFixed"), 0)
 	if(matchVar == 0) WARNINGS = c(WARNINGS, "\nunmatched varStruct model!! only sigma provided!!")
-	varCoef = coef(pV)
+	varCoef = stats::coef(pV)
   varForm = attr(obj$modelStruct$varStruct,"formula")
 	residual = list(sigma = obj$sigma, varCoef = varCoef, varClass = class(pV), varFunc = varForm)
 #      traceback()
 	## this bit for samples across newdata
 	nr = nrow(newdata)
 	if(matchVar == 1) {
-		ss2 = cbind(ss2, data.frame(residual = rnorm(nr, 0, obj$sigma)))
+		ss2 = cbind(ss2, data.frame(residual = stats::rnorm(nr, 0, obj$sigma)))
 	}
 	if(matchVar == 2) {
 		ss2 = cbind(ss2,
-			data.frame(residual = rnorm(nr, 0, obj$sigma * predict(obj,newdata)^varCoef)))
+			data.frame(residual = stats::rnorm(nr, 0, obj$sigma * stats::predict(obj,newdata)^varCoef)))
 	}
 	if(matchVar == 3) {
 		ss2 = cbind(ss2,
-			data.frame(residual = rnorm(nr, 0, varCoef[1] + obj$sigma * predict(obj,newdata)^varCoef[2])))
+			data.frame(residual = stats::rnorm(nr, 0, varCoef[1] + obj$sigma * stats::predict(obj,newdata)^varCoef[2])))
 	}
 	if(matchVar == 4) {
 	## this one needs testing!!!
@@ -154,7 +160,7 @@ nlme.extract = function(obj,
 		WARNINGS = c(WARNINGS, "\nthe sampling routine was not yet validated for the variance function of varFixed class")
 		varCovariate = eval(varForm[[2]], newdata)
 		ss2 = cbind(ss2,
-			data.frame(residual = rnorm(nr, 0, varCovariate * obj$sigma)))
+			data.frame(residual = stats::rnorm(nr, 0, varCovariate * obj$sigma)))
 	}
 	## also need to work on varIdent!!
 
@@ -195,7 +201,7 @@ nlme.extract = function(obj,
 		 simRE[,-msel] = exp(simRE[,-msel])
 		 ranEst[-msel] = exp(ranEst[-msel])
 		}
-		SDs = apply(simRE, 2, function(x) sqrt(var(x)))
+		SDs = apply(simRE, 2, function(x) sqrt(stats::var(x)))
 	 	ranTab = data.frame(Parameter = names(attr(obj$apVar, "Pars")),
   		  Value = signif(ranEst, digits),
         Std.Error = signif(SDs, digits)

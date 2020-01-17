@@ -8,7 +8,8 @@
 #' @note This function is primarily used for demographics tables
 #' @export
 #' @importFrom nlme getCovariateFormula
-#' @importFrom Hmisc %nin% label<-
+#' @importFrom Hmisc %nin%
+#' @importFrom Hmisc label<-
 #' @examples
 #' options(width = 150)
 #' pkpdData = example.pkpdData()

@@ -9,7 +9,9 @@
 #' @param \dots passed to qqplot
 #' @return character vector with the NONMEM output. Each element i the vector represents a line in the NONMEM output file
 #' @export
-#' @importFrom stats var rgamma qqplot
+#' @importFrom stats var
+#' @importFrom stats rgamma
+#' @importFrom stats qqplot
 #' @importFrom graphics abline
 #' @examples
 #' qqGamma(rgamma(100,shape=0.1,scale = 0.2))

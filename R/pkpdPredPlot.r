@@ -11,7 +11,10 @@
 #' @param parms numeric vector (may be a named vector but is not required)
 # @param log logical indicating to log the Y axis
 #' @param output if TRUE the simulation input and outpout is returned as list. If FALSE (default) the plot is created.
-#' @importFrom graphics plot lines segments text
+#' @importFrom graphics plot
+#' @importFrom graphics lines
+#' @importFrom graphics segments
+#' @importFrom graphics text
 #' @return A plot or a list with output
 #' @export pkpdPredPlot
 #'

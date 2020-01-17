@@ -11,6 +11,7 @@
 #' @export
 #' @importFrom latticeExtra useOuterStrips ggplot2like
 #' @importFrom reshape2 melt
+#' @importFrom utils tail
 #' @examples
 #' nm.compare.plot(runs = c("example1","example2")
 #' , path =getOption("qpExampleDir")

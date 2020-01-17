@@ -14,6 +14,7 @@
 #' @return A list with data frame withy summary boostrap results
 #' @export
 #' @importFrom Hmisc unPaste
+#' @importFrom utils read.csv
 #' @examples
 #' \dontrun{
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir")

@@ -35,7 +35,8 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' @param ... Optional arguments passed on to hist
 #' @return Histograms of bootstrapped parameter estimates
 #' @export histogram.bootstrap
-#' @importFrom grDevices dev.cur dev.off
+#' @importFrom grDevices dev.cur
+#' @importFrom grDevices dev.off
 #' @examples
 #' myBoot = read.bootstrap(path = getOption("qpExampleDir"),
 #' filename = "bootstrap/raw_results_bs4011.csv",

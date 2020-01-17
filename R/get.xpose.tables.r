@@ -11,6 +11,7 @@
 #' @param path directory where run directories of runs reside
 #' @return  data frame with all (unique) data items exported in Xpose tables sdtab, patab, catab and cotab
 #' @export
+#' @importFrom utils read.table
 #' @seealso \code{\link{get.multiple.xpose.tables}}
 #' @examples
 #' out.1 = get.xpose.tables(path = getOption("qpExampleDir"), run= "example2")

@@ -13,7 +13,10 @@
 #' @param \dots passed to plot()
 #' @return A histogram
 #' @export
-#' @importFrom graphics plot axis segments polygon
+#' @importFrom graphics plot
+#' @importFrom graphics axis
+#' @importFrom graphics segments
+#' @importFrom graphics polygon
 #' @examples
 #' set.seed(1234567)
 #' myvals = rnorm(10000,50,5)

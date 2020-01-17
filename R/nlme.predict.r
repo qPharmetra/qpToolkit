@@ -24,12 +24,18 @@
 #' @param nrep number of replicates to simulate. Defaults to 20.
 #' @return a graph or a multi-level list with observed and predicted output (class \code{c('nlmefit','fit','list')})
 #' @export nlme.predict
-#' @importFrom Hmisc summarize smean.cl.normal
+#' @importFrom Hmisc summarize
+#' @importFrom Hmisc smean.cl.normal
 #' @importFrom MASS mvrnorm
-#' @importFrom nlme getData getCovariateFormula fixef ranef
-#' @importFrom nlme getResponseFormula nlme getGroups
-#' @importFrom nlme getGroupsFormula random.effects
-#' @importFrom stats coef predict resid approx
+#' @importFrom nlme getData
+#' @importFrom nlme getCovariateFormula
+#' @importFrom nlme fixef
+#' @importFrom nlme ranef
+#' @importFrom nlme getResponseFormula
+#' @importFrom nlme nlme
+#' @importFrom nlme getGroups
+#' @importFrom nlme getGroupsFormula
+#' @importFrom nlme random.effects
 #' @examples
 #' pkpdData = example.pkpdData()
 #' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
@@ -149,7 +155,7 @@ nlme.predict = function(
   allX = all.vars(objectForm)
   allX.func = all.vars(getCovariateFormula(func)[[2]])
 
-  objPars = coef(object)
+  objPars = stats::coef(object)
   fixpars = fixef(object)
   uncPars = data.frame(mvrnorm(nrep, fixpars, object$varFix))
   fixPars = data.frame(matrix(fixpars, nrow=1))
@@ -237,19 +243,19 @@ nlme.predict = function(
       newText = paste("simData[simData$", reference.subset, ", ]", sep = "")
       refData = eval(parse(text = newText))
       refData = refData[rep(1, nrow(simData)), ]
-      refData$ypr = predict(object, refData)
+      refData$ypr = stats::predict(object, refData)
       simData$ypr = simData$ypr - refData$ypr
     }
   }
 
   ## predicted values for new simulation data
   if(method != "partial.residuals" | uncertainty == TRUE){
-    simData$ypr = predict(object, newdata, level = level)
+    simData$ypr = stats::predict(object, newdata, level = level)
     if(!is.null(reference.subset)){
       newText = paste("newdata[newdata$", reference.subset, ", ]", sep = "")
       refData = eval(parse(text = newText))
       refData = refData[rep(1, nrow(newdata)), ]
-      refData$ypr = predict(object, refData)
+      refData$ypr = stats::predict(object, refData)
       simData$ypr = simData$ypr - refData$ypr
     }
   }
@@ -300,14 +306,14 @@ nlme.predict = function(
   qobs = Hmisc::summarize(eval(yfLevel, obsData), sList.obs, smean.cl.normal, stat.name = "Mean")
 
   xObs = eval(xfLevel, obsData)
-  theResiduals = resid(object)[filter.seq]
+  theResiduals = stats::resid(object)[filter.seq]
   yObs = eval(yfLevel, obsData)
-  yPrd = predict(object, level = level)[filter.seq]
+  yPrd = stats::predict(object, level = level)[filter.seq]
    if(!is.null(reference.subset)){
       newText = paste("obsData[obsData$", reference.subset, ", ]", sep = "")
       refData = eval(parse(text = newText))
       refData = refData[rep(1, nrow(obsData)), ]
-      refData$ypr = predict(object, refData)
+      refData$ypr = stats::predict(object, refData)
       yPrd = yPrd - refData$ypr
     }
   qYPred = Hmisc::summarize(yPrd, sList.obs, mean) # predicted mean predict(model.dataset) by X | Z
@@ -321,13 +327,13 @@ nlme.predict = function(
   if(method == "partial.residuals")
   {
   if(length(gfVarNames)==0){
-    obsData$partres = approx(qYPred[, xfVarNames], qYPred$yPrd, xObs)$y + theResiduals
+    obsData$partres = stats::approx(qYPred[, xfVarNames], qYPred$yPrd, xObs)$y + theResiduals
     } else {
       gf.levels = sunique(eval(gfLevel,qYPred))
       for(i in 1 : length(gf.levels)){
         msel.pred = qYPred[, gfVarNames] == gf.levels[i]
         msel.obs = obsData[,gfVarNames] == gf.levels[i]
-        obsData$partres[msel.obs] = approx(qYPred[msel.pred, xfVarNames], qYPred$yPrd[msel.pred], xout = xObs[msel.obs])$y + theResiduals[msel.obs]
+        obsData$partres[msel.obs] = stats::approx(qYPred[msel.pred, xfVarNames], qYPred$yPrd[msel.pred], xout = xObs[msel.obs])$y + theResiduals[msel.obs]
         }
     } ## end else {
 
@@ -337,7 +343,7 @@ nlme.predict = function(
 
   if(method == "residuals")
   {
-    obsData$partres = resid(object)
+    obsData$partres = stats::resid(object)
     qpar = Hmisc::summarize(obsData$partres, sList.obs, smean.cl.normal, stat.name = "Mean")
     qypr$Mean = qpar$Mean
   }

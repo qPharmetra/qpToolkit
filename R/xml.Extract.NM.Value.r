@@ -11,7 +11,8 @@
 #' @param what character string, like 'theta' or 'thetase'
 #' @return Numeric vector
 #' @seealso \code{\link{nm.extract.xml}}
-#' @import XML
+#' @importFrom XML xmlValue
+#' @importFrom XML xmlAttrs
 #' @export xml.Extract.NM.Value
 #' @examples
 #' \dontrun{

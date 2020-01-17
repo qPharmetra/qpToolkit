@@ -51,7 +51,12 @@
 #' @return A tornado plot
 #' @family tornado
 #' @export
-#' @importFrom graphics plot par axis polygon text abline
+#' @importFrom graphics plot
+#' @importFrom graphics par
+#' @importFrom graphics axis
+#' @importFrom graphics polygon
+#' @importFrom graphics text
+#' @importFrom graphics abline
 #' @examples
 #' torn.ds = as.tornado(read.csv(
 #'   file.path(getOption("qpExampleDir"), "../Excel/tornado.ds.csv")

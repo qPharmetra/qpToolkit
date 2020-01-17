@@ -12,6 +12,8 @@
 #' @param obj.type either one of 'data.frame' (default), 'vector' or 'matrix'
 #' @param strings.as.factors logical to treat strings as factors
 #' @param row.names determining row.names
+#' @importFrom utils read.table
+#' @importFrom utils write.table
 #' @export
 
 

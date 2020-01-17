@@ -20,13 +20,22 @@
 #' @return Diagnostic plots
 #' @export nlme.diag
 #' @seealso \code{\link{nlme.run}}, \code{\link{nlme.predict}}
-#' @importFrom nlme getData getCovariateFormula fixef ranef
-#' @importFrom nlme getResponseFormula nlme
+#' @importFrom nlme getData
+#' @importFrom nlme getCovariateFormula
+#' @importFrom nlme fixef
+#' @importFrom nlme ranef
+#' @importFrom nlme nlme
+#' @importFrom nlme getResponseFormula
 #' @importFrom nlme getGroupsFormula
 #' @import lattice
 #' @importFrom reshape2 melt
-#' @importFrom stats residuals fitted predict as.formula median
+#' @importFrom stats residuals
+#' @importFrom stats fitted
+#' @importFrom stats predict
+#' @importFrom stats as.formula
+#' @importFrom stats median
 #' @importFrom Hmisc panel.bpplot
+#' @importFrom utils head
 #' @examples
 #' ## define modeling function
 #' ## adapted from pk.1comp.1abs to make it modeling-ready

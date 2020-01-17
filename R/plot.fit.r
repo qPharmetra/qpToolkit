@@ -27,7 +27,9 @@
 #' @export
 #' @import lattice
 #' @importFrom stats as.formula
-#' @importFrom nlme getResponseFormula getCovariateFormula getGroupsFormula
+#' @importFrom nlme getResponseFormula
+#' @importFrom nlme getCovariateFormula
+#' @importFrom nlme getGroupsFormula
 #' @examples
 #' pkpdData = example.pkpdData()
 #'

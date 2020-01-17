@@ -7,6 +7,8 @@
 #' @param tab filename of the 'vpctab' file
 #' @seealso \code{\link{nm.read.vpc}}, \code{\link{ggvpc_standard}}, \code{\link{ggvpc_xpose}}
 #' @return list of data frames used to plot a VPC
+#' @importFrom xpose4 read.npc.vpc.results
+#' @importFrom utils read.table
 #' @export
 #' @note This function is used by nm.read.vpc and is intended for that purpose only; running this function alone will not help the average R programmer. Please note that qPharmetra's default VPC plot tool is xpose.VPC. Use this tool in case one needs more flexibility to post-process results before plotting, and when stratifcation by more than one variable is needed.
 #' @importFrom xpose4 read.npc.vpc.results

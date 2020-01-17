@@ -7,6 +7,7 @@
 #' @param trNm column names of reference drugs
 #' @return A dataset summarizing the dimensions of the meta-analysis dataset
 #' @return Placeholder for return description
+#' @importFrom utils combn
 #' @seealso \code{\link{meta.map}}
 #' @note not intended to be used as standalone. Is called from qP function meta.map()
 #' @examples

@@ -11,6 +11,7 @@
 #' @param path diretory where the runrecord resides
 #' @return Data.frame with all information extracted from the runrecord.
 #' @export
+#' @importFrom utils read.table
 #' @seealso \code{\link{process.runrec}}
 #' @examples
 #' rr = read.runrec(filename = "AAruninfo.txt"

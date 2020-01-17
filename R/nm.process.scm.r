@@ -11,6 +11,8 @@
 #' @param digits number of significant digits
 #' @return A character vector with processed SCM output, ready for inclusion into a (LaTeX) report
 #' @export
+#' @importFrom utils head
+#' @importFrom utils tail
 #' @examples
 #' library(xtable)
 #' ## the code below works if a number of scmlog.txt files are in folder NONMEM/scm files
