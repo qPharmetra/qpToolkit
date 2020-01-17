@@ -16,7 +16,12 @@
 #' options(width = 150)
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
+<<<<<<< HEAD
 #' tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], digits = 3)
+=======
+#' pkpdData$sex <- factor(pkpdData$sex, levels = c('M','F'))
+#' tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], nSignif = 3)
+>>>>>>> iss38
 #' # check the categorical summary for race
 #' round(table(pkpdData$race[ok], pkpdData$dose[ok]) / apply(table(pkpdData$race[ok],
 #' pkpdData$dose[ok]), 2, sum) * 100)
