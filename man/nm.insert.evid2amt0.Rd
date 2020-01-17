@@ -14,14 +14,14 @@ nm.insert.evid2amt0(data, ..., quiet = TRUE)
 \item{quiet}{when TRUE (default) silences the messages returned}
 }
 \value{
-Data frame with an EVID=2 and AMT=0 record preceding each AMT>0 record
+Data frame with an EVID = 2 and AMT = 0 record preceding each AMT>0 record
 }
 \description{
-To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID=2 & AMT=0 records before each dose given.
+To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID = 2 & AMT = 0 records before each dose given.
 }
 \examples{
 library(dplyr)
-nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
+nmData = example.NONMEM.dataset(TIME = seq(0,24,4))
 nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)
 tbl_df(nmData2[, c('ID','TIME','EVID','AMT','DV')])
 }

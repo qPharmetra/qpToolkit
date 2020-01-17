@@ -80,11 +80,11 @@ tabSummarize <- function(  formula
   names.order = as.character(unique(eval(as.name(allX[1]), data))) ## sorting properly
   theData = theData[, c("parameter", names.order, "All")]
 
-  ## insert (N=xxx)
+  ## insert (N = xxx)
   ndf = theData[1,]
   NNN = tapply(YYY[[1]], BY, length)
   NNN = NNN[names.order]
-  ndf[1,] = c("", paste("(N=",c(as.numeric(NNN), length(YYY[[1]])), ")", sep = ""))#, length(YYY[[1]]))
+  ndf[1,] = c("", paste("(N = ",c(as.numeric(NNN), length(YYY[[1]])), ")", sep = ""))#, length(YYY[[1]]))
   theData = rbind(ndf, theData)
   class(theData) <- c('demoTable', class(theData))
   return(theData)

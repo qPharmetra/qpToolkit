@@ -99,5 +99,5 @@ fit.PD004.pred.nlme = nlme.predict(
   func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals"
 )
 plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
-plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2))
+plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty = 2))
 }

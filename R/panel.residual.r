@@ -23,9 +23,9 @@
 #'           reshape2::melt(
 #'              get.xpose.tables('example1', getOption('qpExampleDir')
 #'              )
-#'              , measure.vars=c('PRED','IPRED')
+#'              , measure.vars = c('PRED','IPRED')
 #'           ), EVID == 0)
-#'        , subset = EVID==0
+#'        , subset = EVID == 0
 #'        , aspect = 1
 #'        , scales = list(x = list(relation = 'free'))
 #'        , panel = panel.residual
@@ -33,17 +33,17 @@
 #'
 #'
 panel.residual <- function(x, y
-                          , abline="identity"
+                          , abline = "identity"
                           , col = obs.color
                           , cex = 1
                           , span = 0.8
-                          , lwd.loess=2
+                          , lwd.loess = 2
                           , smooth.col = smooth.color
                           , ...
                           )
 {
-   panel.xyplot(x,y, cex=cex, col=col, ...)
-   if(abline=="identity") panel.abline(a=0,b=1,col=loi.color, ...)
-   if(length(x)>10) {panel.loess(x,y,col=smooth.col,lwd=lwd.loess,span=span,...)}
+   panel.xyplot(x,y, cex = cex, col = col, ...)
+   if(abline == "identity") panel.abline(a = 0,b = 1,col = loi.color, ...)
+   if(length(x)>10) {panel.loess(x,y,col = smooth.col,lwd = lwd.loess,span = span,...)}
 }
 

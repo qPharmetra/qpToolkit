@@ -15,11 +15,11 @@
 #' @export
 #' @seealso \code{\link{read.ext}} \code{\link{get.ofv}}, \code{\link{get.dOFV}}, \code{\link{get.eigen}}, \code{\link{get.shrinkage}}, \code{\link{get.description}}
 #' @examples
-#' head(read.out(path=getOption("qpExampleDir"), run="example1", file.ext = ".lst"))
+#' head(read.out(path = getOption("qpExampleDir"), run = "example1", file.ext = ".lst"))
 
 read.out <- function(run, path = getOption("nmDir"), file.ext = ".lst", quiet = TRUE)
 {
-  outName = paste(path, paste(run, file.ext, sep=""), sep="/")
-  out = invisible(scan(file = outName, what="character", sep="\n", quiet = quiet))
+  outName = paste(path, paste(run, file.ext, sep = ""), sep = "/")
+  out = invisible(scan(file = outName, what = "character", sep = "\n", quiet = quiet))
   return(out)
 }

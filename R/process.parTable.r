@@ -19,18 +19,18 @@
 #' @examples
 #' process.parTable(
 #'    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"), runIndex = 1)
-#'  , transformations = list(log=c(1:12))
+#'  , transformations = list(log = c(1:12))
 #'  , missing.format = "...."
 #' )
 #' process.parTable(
 #'    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-#'  , transformations = list(logit=c(7,9))
+#'  , transformations = list(logit = c(7,9))
 #'  , plain = TRUE
 #'  , missing.format = "...."
 #' )
 #' process.parTable(
 #'    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-#'  , transformations = list(logit=c(7,9))
+#'  , transformations = list(logit = c(7,9))
 #'  , plain = TRUE
 #'  , formatted = FALSE
 #'  , missing.format = "...."
@@ -46,7 +46,7 @@ process.parTable <- function(
   , align.dot = FALSE
   , transformations
   , Descriptor
-  , plain=FALSE
+  , plain = FALSE
   , missing.format = "....."
   , remove.fixed.sigma = FALSE
 ){
@@ -77,8 +77,8 @@ process.parTable <- function(
     skipTrans = FALSE ## default
     if(!all(is.na(parTab$SE)))
     {
-      cilo = parTab$Estimate[okEst] + qt(p=(1-ci)/2, df = 1e5) * asNumeric(parTab$SE[okEst])
-      ciup = parTab$Estimate[okEst] + qt(p=(1-((1-ci)/2)), df = 1e5) * asNumeric(parTab$SE[okEst])
+      cilo = parTab$Estimate[okEst] + qt(p =(1-ci)/2, df = 1e5) * asNumeric(parTab$SE[okEst])
+      ciup = parTab$Estimate[okEst] + qt(p =(1-((1-ci)/2)), df = 1e5) * asNumeric(parTab$SE[okEst])
       parTab$CI95 = rep("NC", nrow(parTab))
       parTab$CI95[okEst] = paste(
         "(",
@@ -119,9 +119,9 @@ process.parTable <- function(
           parTab$transformed[ok] = rep(nms, length(ok))
           if(!skipTrans)
           {
-            ciloth = myFun(parTab$Estimate[ok] + qt(p=(1-ci)/2, df = 1e5) *
+            ciloth = myFun(parTab$Estimate[ok] + qt(p =(1-ci)/2, df = 1e5) *
                              asNumeric(parTab$SE[ok]), nms)
-            ciupth = myFun(parTab$Estimate[ok] + qt(p=(1-(1-ci)/2), df = 1e5) *
+            ciupth = myFun(parTab$Estimate[ok] + qt(p =(1-(1-ci)/2), df = 1e5) *
                              asNumeric(parTab$SE[ok]), nms)
             parTab$CI95[ok] = paste("(",as.character(mysig(ciloth,digits = digits, formatted = formatted, latex = latex, align.dot = align.dot))," - ",
                                     mysig(ciupth,digits = digits, formatted = formatted, latex = latex, align.dot = align.dot), ")", sep = "")
@@ -169,7 +169,7 @@ process.parTable <- function(
 
     ## Remove fixed sigma
     if(remove.fixed.sigma){
-      parTab = parTab[!(grepl(".*sigma.*",parTab$Parameter)&asNumeric(parTab$Estimate)==1&parTab$SE==0),]
+      parTab = parTab[!(grepl(".*sigma.*",parTab$Parameter)&asNumeric(parTab$Estimate) == 1&parTab$SE == 0),]
     }
 
     ## insert useful parameter names

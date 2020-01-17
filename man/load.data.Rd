@@ -56,19 +56,19 @@ Read data for an analysis from a variety of external typical file types, and ass
 }
 \examples{
 \dontrun{
-load.data(xlsFiles="ExampleInput.xlsx",
-xlsNames="XLinput1",
-xlsSheets=1, doScan=FALSE)
+load.data(xlsFiles = "ExampleInput.xlsx",
+xlsNames = "XLinput1",
+xlsSheets = 1, doScan = FALSE)
 head(XLinput1)
 head(iXLinput1)
-load.data(xlsFiles="ExampleInput.xlsx",
-          xlsNames="XLinput2",
-          xlsSheets=2,            # NOTE We can specify which worksheet (tab) of the Excel file
-          doScan=FALSE)
+load.data(xlsFiles = "ExampleInput.xlsx",
+          xlsNames = "XLinput2",
+          xlsSheets = 2,            # NOTE We can specify which worksheet (tab) of the Excel file
+          doScan = FALSE)
 head(iXLinput2)
-load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),
-          csvNames=c("CSVinput1", "CSVinput2"),
-          doScan=FALSE)
+load.data(csvFiles = c("ExampleInput2.csv","ExampleInput3.csv"),
+          csvNames = c("CSVinput1", "CSVinput2"),
+          doScan = FALSE)
 head(CSVinput1)
 load.data() # loading JUST doing automatic search for files ("scan")
 }

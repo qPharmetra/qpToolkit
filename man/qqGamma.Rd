@@ -30,6 +30,6 @@ character vector with the NONMEM output. Each element i the vector represents a 
 Plot qq-plot for gamma distributed variable
 }
 \examples{
-qqGamma(rgamma(100,shape=0.1,scale = 0.2))
+qqGamma(rgamma(100,shape = 0.1,scale = 0.2))
 
 }

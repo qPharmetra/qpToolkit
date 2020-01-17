@@ -22,6 +22,6 @@ data.frame: a variant of x
 It can be tedious to reorder the columns in a data.frame. This function lets you move specific columns relative to some other named column.
 }
 \examples{
-testData = expand.grid(start=1,middle=LETTERS[1:3], end=c("K","L"))
+testData = expand.grid(start = 1,middle = LETTERS[1:3], end = c("K","L"))
 reorder(testData, who = "start", after = "end")
 }

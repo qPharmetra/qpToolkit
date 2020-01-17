@@ -19,7 +19,7 @@ remove.tex.files <- function(name = "qPharmetra", path)
 {
   #require(Hmisc)
   theFiles = paste(path,
-                   paste(name, c('aux','bbl','blg','toc','log','lot','lof','out'),sep="."), sep="/")
+                   paste(name, c('aux','bbl','blg','toc','log','lot','lof','out'),sep = "."), sep = "/")
   sapply(theFiles, function(x){if(exists(x)) invisible(file.remove(x))})
 }
 

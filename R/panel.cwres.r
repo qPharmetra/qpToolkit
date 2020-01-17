@@ -17,7 +17,7 @@
 #'  out = get.xpose.tables("example2", getOption("qpExampleDir"))
 #'  trellis.strip.color()
 #' xyplot(CWRES ~ value | variable
-#'    , data = subset(reshape2::melt(out, measure.vars = c('PRED','TIME')),EVID==0)
+#'    , data = subset(reshape2::melt(out, measure.vars = c('PRED','TIME')),EVID == 0)
 #'    , aspect = 1
 #'    , scales = list(x = list(relation = "free"))
 #'    , panel = panel.cwres,
@@ -31,7 +31,7 @@ panel.cwres <- function(x,y, ...
                        , family = 'gaussian'
                        )
 {
-   panel.abline(h=c(-2,0,2), lty=c(2,1,2), col = col.line)
+   panel.abline(h = c(-2,0,2), lty = c(2,1,2), col = col.line)
    panel.xyplot(x, y, ..., col = col, pch = pch)
    panel.loess(x,y,..., col = col.loess, lwd = 2, family = family)
 }

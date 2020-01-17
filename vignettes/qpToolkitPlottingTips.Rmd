@@ -76,6 +76,7 @@ ggvpc_standard(vpc, point.size = 2) +
 Since we do not have data available, we quickly scramble some data, duplicate and tweak it
 ```{r}
 vpc = nm.read.vpc(system.file(package = 'qpToolkit','/NONMEM/vpc_final_strt'), PI.ci.area.smooth=T)
+
 vpc = lapply(vpc, function(x) expand.data(x, values=1:2,name = "pat.class"))
 
 vpc$obs$TIME[vpc$obs$pat.class==1] = vpc$obs$TIME[vpc$obs$pat.class==1]/0.5

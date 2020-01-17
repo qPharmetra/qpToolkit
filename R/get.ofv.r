@@ -19,7 +19,7 @@
 
 get.ofv <- function(run, path = getOption("nmDir"), file.ext = ".lst")
 {
-  out = read.out(path=path, run=run, file.ext = file.ext)
+  out = read.out(path = path, run = run, file.ext = file.ext)
   parName = out[grep("#OBJT", out)]
   parName = sub("#OBJT:","", parName)
   parName = sub("[*]+","", parName)

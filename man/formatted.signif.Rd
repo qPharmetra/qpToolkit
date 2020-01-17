@@ -28,13 +28,13 @@ formatted.signif(c(5,4.99, 4.99999,5.0000001,5001),4)
 numvec = c(5,4.99, 4.99999,5.0000001,5001, 0.00005,101,39.9)
 print(
    xtable(
-      data.frame(original=numvec
-                 ,latex.TRUE= formatted.signif(numvec,3, TRUE,FALSE)
-                 ,align.TRUE= formatted.signif(numvec,3, FALSE,TRUE)
+      data.frame(original = numvec
+                 ,latex.TRUE = formatted.signif(numvec,3, TRUE,FALSE)
+                 ,align.TRUE = formatted.signif(numvec,3, FALSE,TRUE)
                  ,all.TRUE = formatted.signif(numvec,3, TRUE,TRUE)
       )
    )
-   , booktabs=TRUE
+   , booktabs = TRUE
    , sanitize.text.function = identity
 )
 # now take this to a LaTeX compiler!

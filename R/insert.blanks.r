@@ -26,7 +26,7 @@ insert.blanks <- function(tab, lines){
   blank.line = tab[1,]
   blank.line[1,] = rep("~", ncol(tab))
 
-  for(i in rev(sort(lines))){#i=15
+  for(i in rev(sort(lines))){#i = 15
     temp = tab[(i+1):nrow(tab),]
     tab = rbind(tab[1:i,], blank.line, temp)
   }
@@ -55,7 +55,7 @@ insert.blank.line <- function(tab, lines){
   blank.line = tab[1,]
   blank.line[1,] = rep("~", ncol(tab))
 
-  for(i in rev(sort(lines))){#i=15
+  for(i in rev(sort(lines))){#i = 15
     temp = tab[(i+1):nrow(tab),]
     tab = rbind(tab[1:i,], blank.line, temp)
   }

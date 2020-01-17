@@ -8,8 +8,10 @@
 #' @seealso \code{\link{extract.varcov}}, \code{\link{get.covmat}}, \code{\link{nm.covmat.extract}}
 #' @importFrom Hmisc unPaste
 #' @examples
-#' nm.unzip(run="example1", extension=".cor", path = file.path(getOption("qpExampleDir"),"example1"))
-#' run1.cormat =  nm.cormat.extract("example1", path = getOption("qpExampleDir"))
+#' nm.unzip(run = "example1", extension = ".cor", 
+#' path = file.path(getOption("qpExampleDir"),"example1"))
+#' run1.cormat =  nm.cormat.extract("example1", 
+#' path = getOption("qpExampleDir"))
 #' names(run1.cormat)
 #' names(run1.cormat[[1]])
 #' lapply(run1.cormat, dim)

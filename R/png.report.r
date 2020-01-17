@@ -15,15 +15,15 @@
 #' @importFrom grDevices png
 #' @seealso \code{\link{png.slide.semi}}, \code{\link{png.slide.full}}
 #' @examples
-#'\dontrun{ png.report(filename="test.png") }
+#'\dontrun{ png.report(filename = "test.png") }
 #' set.seed(1234567)
-#' plot(x=1:25,y=rnorm(25,50,5))
+#' plot(x = 1:25,y = rnorm(25,50,5))
 #' dev.off()
 
 png.report <- function(
   filename,
-  w = 6, h = 4, units="in",
-  psize = 10, bg="transparent", res=600, ...)
+  w = 6, h = 4, units = "in",
+  psize = 10, bg = "transparent", res = 600, ...)
 {
    if(missing(filename)) stop("filename must be provided.")
   png(filename = filename, width = w, height = h,

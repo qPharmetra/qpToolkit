@@ -19,6 +19,6 @@ Shuffles a multi-level list
 Is called by qP function nm.extract.xml
 }
 \examples{
-test = list(A=list(a=1,b=2,c=3), B = list(a=2,b=1,c=0))
+test = list(A = list(a = 1,b = 2,c = 3), B = list(a = 2,b = 1,c = 0))
 shuffle.list(test)
 }

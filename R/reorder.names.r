@@ -10,7 +10,7 @@
 #' @export
 #' @importFrom  stats reorder
 #' @examples
-#' testData = expand.grid(start=1,middle=LETTERS[1:3], end=c("K","L"))
+#' testData = expand.grid(start = 1,middle = LETTERS[1:3], end = c("K","L"))
 #' reorder(testData, who = "start", after = "end")
 
 reorder.data.frame <- function (x, ..., who, after = NA)

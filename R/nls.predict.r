@@ -33,7 +33,7 @@
 
 nls.predict <- function(func,
   object,
-  newdata=NULL,
+  newdata = NULL,
   xrange = 150)
 {
   obsData = getData(object)
@@ -66,8 +66,8 @@ nls.predict <- function(func,
   rpnum = nrow(xnew)
   idx = rep(1 : rpnum, nrow(newdata))
   xnew = data.frame(xnew[idx,])
-  idx = matrix(rep(1:nrow(newdata), rpnum), ncol = nrow(newdata), nrow = rpnum, byrow=TRUE)
-  idx = matrix(idx, ncol=1, byrow=TRUE)
+  idx = matrix(rep(1:nrow(newdata), rpnum), ncol = nrow(newdata), nrow = rpnum, byrow = TRUE)
+  idx = matrix(idx, ncol = 1, byrow = TRUE)
   newdata = as.data.frame(newdata[idx, ])
   newdata[, names(newdata) %in% xfVarNames] = c(xnew)
   names(newdata)
@@ -83,8 +83,8 @@ nls.predict <- function(func,
     names(myList) = nams
     return(myList)
   }
-  sList.sim = if(length(gfVarNames)==0) create.list(newdata, xfVarNames) else create.list(newdata, c(xfVarNames, gfVarNames))
-  sList.obs = if(length(gfVarNames)==0) create.list(obsData, xfVarNames) else create.list(obsData, c(xfVarNames, gfVarNames))
+  sList.sim = if(length(gfVarNames) == 0) create.list(newdata, xfVarNames) else create.list(newdata, c(xfVarNames, gfVarNames))
+  sList.obs = if(length(gfVarNames) == 0) create.list(obsData, xfVarNames) else create.list(obsData, c(xfVarNames, gfVarNames))
 
   ## summarize predicted and observed on the model.dataset
   qypr = Hmisc::summarize(newdata$ypr,     sList.sim, smean.cl.normal, stat.name = "Mean")
@@ -104,7 +104,7 @@ nls.predict <- function(func,
   ## to be merged in from predictNLS2
   uncPred = NULL
 
-  if(length(gfVarNames)==0){
+  if(length(gfVarNames) == 0){
     obsData$partres = approx(qYPred[, xfVarNames], qYPred$yPrd, xObs)$y + theResiduals
     } else {
       gf.levels = sunique(eval(gfLevel,qYPred))

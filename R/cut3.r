@@ -1,5 +1,5 @@
 # name:     cut3
-# purpose:  cut3 is exactly like cut2 from Hmisc but spits result as numeric rather than factor when levels.mean=T
+# purpose:  cut3 is exactly like cut2 from Hmisc but spits result as numeric rather than factor when levels.mean = T
 # input:    numeric or character
 # output:   numeric
 # note:
@@ -20,14 +20,14 @@
 #' @note This function was based on \code{\link[Hmisc]{cut2}} from the Hmisc package. Instead of returning factors it returns numeric values representating the mean of the bins
 #' @examples
 #' pkpdData = example.pkpdData()
-#' sunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
-#' lunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
+#' sunique(cut3(pkpdData$wt, g = 10, levels.mean = TRUE))
+#' lunique(cut3(pkpdData$wt, g = 10, levels.mean = TRUE))
 
 cut3 =
   function (x, cuts, m = 150, g, levels.mean = FALSE, digits, minmax = TRUE,
             oneval = TRUE, onlycuts = FALSE)
   {
-    ## cut3 is exactly like cut2 but spits out numeric results in case levels.mean=T
+    ## cut3 is exactly like cut2 but spits out numeric results in case levels.mean = T
     method <- 1
     x.unique <- sort(unique(c(x[!is.na(x)], if (!missing(cuts)) cuts)))
     min.dif <- min(diff(x.unique))/2

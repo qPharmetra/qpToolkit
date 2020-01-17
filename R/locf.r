@@ -11,24 +11,24 @@
 #' # Note that initial missing values take next value (1),
 #' # so next value carried backward at beginning
 #' # Example with "."
-#' locf(c(".",".",1,".",".",2,".",".",".",".",3), na=".")
+#' locf(c(".",".",1,".",".",2,".",".",".",".",3), na = ".")
 #' # Note, if you have text in the vector, it is all converted to text.
 #' # This is by design so we can use different types.
 #' # Examples with factors
-#' fac=as.factor(c(".",".","A",".",".","B",".",".",".",".","C"))
-#' locf(fac,na=".")
-#' fac=as.factor(c(NA,NA,"A",NA,NA,"B",NA,NA,NA,NA,"C"))
-#' locf(fac,na=NA)
+#' fac = as.factor(c(".",".","A",".",".","B",".",".",".",".","C"))
+#' locf(fac,na = ".")
+#' fac = as.factor(c(NA,NA,"A",NA,NA,"B",NA,NA,NA,NA,"C"))
+#' locf(fac,na = NA)
 
 
 locf <- function(x, na = NA)
 {
-  is.fac = class(x)=="factor"
-  if(is.fac) x=as.character(x)
+  is.fac = class(x) == "factor"
+  if(is.fac) x = as.character(x)
   #replace in x, whatever is na (maybe text value like ".") with last non na value
-  if(!is.na(na)) x[x==na]=NA
-  Y=!is.na(x)
-  x=c(x[Y][1], x[Y])[cumsum(Y)+1]
-  if(is.fac) x=as.factor(x)
+  if(!is.na(na)) x[x == na]=NA
+  Y =!is.na(x)
+  x = c(x[Y][1], x[Y])[cumsum(Y)+1]
+  if(is.fac) x = as.factor(x)
   x
 }

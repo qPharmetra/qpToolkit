@@ -27,8 +27,8 @@ make.symmetric <- function(values, triangle = "upper"){
   }
   .nth <- floor((sqrt(8*length(values) + 1) - 1) / 2)
   .matrix <- matrix(0, .nth, .nth)
-  if(triangle == "upper") .matrix[upper.tri(.matrix, diag=TRUE)] <- values else {
-    .matrix[lower.tri(.matrix, diag=TRUE)] <- values}
+  if(triangle == "upper") .matrix[upper.tri(.matrix, diag = TRUE)] <- values else {
+    .matrix[lower.tri(.matrix, diag = TRUE)] <- values}
   .matrix <- .matrix + t(.matrix) - diag(diag(.matrix))
   .matrix
 }

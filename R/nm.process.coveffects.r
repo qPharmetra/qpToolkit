@@ -12,10 +12,10 @@ globalVariables(c('cov.val', 'pi.lower', 'pi.upper', 'posthoc', 'typical', 'grou
 #' @family coveffects
 #' @export make.eqs
 #' @examples
-#' eqs <- make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
-#'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
+#' eqs <- make.eqs(CL = THETA1*(1 + (GNDR == 0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+#'             ,V1 = THETA2*(1 + (GNDR == 0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#' eqs$label = list(CL = "Clearance (L/h)", V1 = "Volume of Central Compartment (L)")
 #'
 
 # Make a list of named functions (as call objects)
@@ -36,10 +36,10 @@ make.eqs <- function(...) {
 #' @family coveffects
 #' @export eval.eqs
 #' @examples
-#' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
-#'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
+#' eqs = make.eqs(CL = THETA1*(1 + (GNDR == 0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+#'             ,V1 = THETA2*(1 + (GNDR == 0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#' eqs$label = list(CL = "Clearance (L/h)", V1 = "Volume of Central Compartment (L)")
 #'
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
@@ -76,28 +76,28 @@ eval.eqs <- function(.data,  ...)
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export covInfo
 #' @examples
-#' eqs <- make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
-#'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
+#' eqs <- make.eqs(CL = THETA1*(1 + (GNDR == 0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+#'             ,V1 = THETA2*(1 + (GNDR == 0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label <- list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#' eqs$label <- list(CL = "Clearance (L/h)", V1 = "Volume of Central Compartment (L)")
 #'
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
 covInfo <- function(cov.name
                    ,cov.vals
                    ,cov.cat = FALSE
-                   ,cov.center=stats::median(cov.vals)
-                   ,cov.min=min(cov.vals)
-                   ,cov.max=max(cov.vals)
-                   ,cov.label=cov.name
-                   ,cov.breaks=pretty(cov.vals))
+                   ,cov.center = stats::median(cov.vals)
+                   ,cov.min = min(cov.vals)
+                   ,cov.max = max(cov.vals)
+                   ,cov.label = cov.name
+                   ,cov.breaks = pretty(cov.vals))
 {
   if(cov.cat){
-    cov.breaks=unique(cov.vals)
-    cov.center=cov.breaks[which.max(tabulate(match(cov.vals,cov.breaks)))]
+    cov.breaks = unique(cov.vals)
+    cov.center = cov.breaks[which.max(tabulate(match(cov.vals,cov.breaks)))]
   }
-  structure(list(name=cov.name,categorical=cov.cat,center=cov.center,min=cov.min,
-                 max=cov.max,label=cov.label,breaks=cov.breaks),class="covInfo")
+  structure(list(name = cov.name,categorical = cov.cat,center = cov.center,min = cov.min,
+                 max = cov.max,label = cov.label,breaks = cov.breaks),class = "covInfo")
 }
 
 
@@ -134,12 +134,12 @@ print.covInfo <- function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")"
 #' @importFrom stats var sd quantile
 #'
 # make a list of covInfo objects from a dataframe.  User can override elements as desired
-makeCovInfo <- function(df, cnames=names(df), cat.covs="")
+makeCovInfo <- function(df, cnames = names(df), cat.covs = "")
 {
   #df is a data.frame of all the covariates (and maybe other things)
   #cnames, provide list of columns to use otherwise will assume EVERY column is a covariate
   #cat.covs, names of categorical covariates
-  info=list()
+  info = list()
   for(i in names(df)){
     info[[i]] = covInfo(i,df[[i]],i %in% cat.covs)
   }
@@ -149,7 +149,7 @@ makeCovInfo <- function(df, cnames=names(df), cat.covs="")
 # bootsamp: sample an equation with random normals pulled from varcov, other variables from supplied env
 #   returns mean, median, var of sample
 
-bootsamp <- function(equ, .data, varcov, N=10000)
+bootsamp <- function(equ, .data, varcov, N = 10000)
 {
   # .data should be a data.frame by this point
   # take names from varcov out of .data
@@ -165,11 +165,11 @@ bootsamp <- function(equ, .data, varcov, N=10000)
     mu <- rep(mu, each = n) ## not obliged to use a matrix (recycling)
     mu + matrix(stats::rnorm(n * ncols), ncol = ncols) %*% chol(sigma)
   }
-  ran.df=as.data.frame(mvrnormR(N,0,varcov))
+  ran.df = as.data.frame(mvrnormR(N,0,varcov))
 
   # merge fix and ran and eval the eq
-  df=merge(fix.df,ran.df)
-  df=eval.eqs(df,equ)
+  df = merge(fix.df,ran.df)
+  df = eval.eqs(df,equ)
   df
 }
 
@@ -179,7 +179,7 @@ bootsamp <- function(equ, .data, varcov, N=10000)
 
 # internal function to build a coveffect grid
 
-.coveffect <- function(equ, cov.info, ptab, varcov, Nboot=10000, pi.wid=0.9)
+.coveffect <- function(equ, cov.info, ptab, varcov, Nboot = 10000, pi.wid = 0.9)
 { #ptab has parameters (THETA, OMEGA, SIGMA) and is either a 1 row data frame or a flat list
   #cov.inf has covariate center, min, max, breaks
   #equ is the equation to evaluate
@@ -188,33 +188,33 @@ bootsamp <- function(equ, .data, varcov, N=10000)
   stopifnot(cov %in% all.vars(equ[[1]]))
 
   #get typical value (ETAs = 0)
-  coveff.df = data.frame(eval.eqs(ptab,equ), stringsAsFactors=FALSE)
+  coveff.df = data.frame(eval.eqs(ptab,equ), stringsAsFactors = FALSE)
   #get cov,param,group columns if they exist
   cols =c(cov,param)
-  if("group" %in% names(ptab)) cols=c(cols,"group")
-  coveff.df = cbind(Cov=cov, Par=param,
-                    Parameter=paste(param,cov,sep="."),coveff.df[,cols],
-                    stringsAsFactors=FALSE)
+  if("group" %in% names(ptab)) cols = c(cols,"group")
+  coveff.df = cbind(Cov = cov, Par = param,
+                    Parameter = paste(param,cov,sep = "."),coveff.df[,cols],
+                    stringsAsFactors = FALSE)
   names(coveff.df)[4:5]=c("cov.val","typical")
 
   # bootsample for mean, var, sd, 95%PI
   samples.df = plyr::ddply(data.frame(ptab),cov,function(x) bootsamp(equ,x,varcov,Nboot))
   #rename cov and param so we can see them easily in ddply
-  names(samples.df)[which(names(samples.df)==param)]="param"
-  names(samples.df)[which(names(samples.df)==cov)]="cov.val"
+  names(samples.df)[which(names(samples.df) == param)]= "param"
+  names(samples.df)[which(names(samples.df) == cov)]= "cov.val"
   # get sample stats
   #if there is group column, use it for the stats
-  grouping="cov.val"
-  if("group" %in% names(samples.df)) grouping=c(grouping,"group")
+  grouping = "cov.val"
+  if("group" %in% names(samples.df)) grouping = c(grouping,"group")
   summ.df = plyr::ddply(samples.df,grouping,plyr::here(plyr::summarise)
-                  ,mean=mean(param)
-                  ,var=var(param)
-                  ,sd=sd(param)
-                  ,pi.lower=quantile(param,p=(1-pi.wid)/2)
-                  ,pi.upper=quantile(param,p=1-(1-pi.wid)/2)
+                  ,mean = mean(param)
+                  ,var = var(param)
+                  ,sd = sd(param)
+                  ,pi.lower = quantile(param,p =(1-pi.wid)/2)
+                  ,pi.upper = quantile(param,p = 1-(1-pi.wid)/2)
   )
 
-  merge(coveff.df,summ.df,by=grouping)
+  merge(coveff.df,summ.df,by = grouping)
 }
 
 
@@ -231,7 +231,7 @@ bootsamp <- function(equ, .data, varcov, N=10000)
 #' table of post-hoc values -- for each covariate effect; the call list; the list of covInfo
 #' @export nm.process.coveffects
 #'
-nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=10000, pi.wid=0.9)
+nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot = 10000, pi.wid = 0.9)
 {
   #eqs is a list of calls for the structural parameter equations (using THETA, ETA, COV)
   #cov is a list of covEffect objects (S3)
@@ -244,9 +244,9 @@ nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=1
   rownames(omega)<-colnames(omega)<-paste0("ETA",1:n.eta)
 
   #return a list with list of data.frames and list of ggplots
-  coveffs.l=list()
-  plot.l=list()
-  x.l=list()
+  coveffs.l = list()
+  plot.l = list()
+  x.l = list()
   cov.names = names(covs.info)
 
   #add covariate center values into pars
@@ -254,12 +254,12 @@ nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=1
 
   for(par in names(eqs)){
     #which covs are in the equations
-    equ=eqs[par]
-    vars=all.vars(equ[[1]])
+    equ = eqs[par]
+    vars = all.vars(equ[[1]])
     activ.covs = cov.names[cov.names %in% vars]
 
     # Which covs are categorical?
-    activ.cat=character(0)
+    activ.cat = character(0)
     if(length(activ.covs)>0){
       activ.cat = activ.covs[sapply(activ.covs,function(x)covs.info[[x]]$categorical)]
     }
@@ -271,19 +271,19 @@ nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=1
 
     for(i in activ.covs){
 
-      ptab=as.list(pars) #should still be flat/one-row
+      ptab = as.list(pars) #should still be flat/one-row
       # add coveff breaks into ptab as coveff, only if not categorical
       # categorical breaks should be part of ptab
       if(!i %in% activ.cat){
         ptab[[i]] = covs.info[[i]]$breaks
       }
       #convert to data.frame for easier merging
-      ptab=as.data.frame(ptab)
-      cats.group=character(0)
+      ptab = as.data.frame(ptab)
+      cats.group = character(0)
       if(length(activ.cat>0)){
         # add in the categorical breaks and compute groups
         # have to remove activ.cat first
-        ptab=merge(ptab[,names(ptab)[!names(ptab) %in% activ.cat]],cats.df)
+        ptab = merge(ptab[,names(ptab)[!names(ptab) %in% activ.cat]],cats.df)
         # create grouping column for
         # any cats not the current covariate?
         cats.group = activ.cat[activ.cat!=i]
@@ -294,25 +294,25 @@ nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=1
         }
       }
 
-      eff.name=paste0(par,".",i)
+      eff.name = paste0(par,".",i)
       #get the covariate effects on this parameter
-      ce.df=.coveffect(equ,covs.info[[i]],ptab,omega,Nboot,pi.wid)
+      ce.df =.coveffect(equ,covs.info[[i]],ptab,omega,Nboot,pi.wid)
 
       #generate pairlist from xpose data
-      x.df=data.frame(Par=par,Cov=i,cov.val=xpose.df[[i]], Parameter=eff.name,
-                      posthoc=xpose.df[[par]],stringsAsFactors = FALSE)
+      x.df = data.frame(Par = par,Cov = i,cov.val = xpose.df[[i]], Parameter = eff.name,
+                      posthoc = xpose.df[[par]],stringsAsFactors = FALSE)
       if(length(cats.group)>0){
         #add group
-        x.df$group=xpose.df$group
+        x.df$group = xpose.df$group
         #add the grouping covariates, in case user may want to custom plot
         x.df[cats.group]=xpose.df[cats.group]
         #join the groups to the predicted data
-        ce.df=merge(ce.df,group.df,by="group")
+        ce.df = merge(ce.df,group.df,by = "group")
       }
 
       #plot the effect
       p = coveff.plot(x.df,ce.df, covs.info[[i]]$categorical, cats.group) +
-        labs(x=covs.info[[i]]$label,y=eqs$label[[par]])
+        labs(x = covs.info[[i]]$label,y = eqs$label[[par]])
 
       #save stuff
       x.l[[eff.name]]=x.df
@@ -320,8 +320,8 @@ nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=1
       plot.l[[eff.name]]=p
     }
   }
-  structure(list(plot=plot.l, table=coveffs.l, posthoc=x.l,
-                 eq.cov=eqs, covs.info=covs.info), class="covEffects")
+  structure(list(plot = plot.l, table = coveffs.l, posthoc = x.l,
+                 eq.cov = eqs, covs.info = covs.info), class = "covEffects")
 
 }
 
@@ -335,46 +335,46 @@ nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=1
 #' @method plot covEffects
 #'
 
-plot.covEffects <- function(x, y=names(x$plot), ...)
+plot.covEffects <- function(x, y = names(x$plot), ...)
 {
   for(i in y) print(x$plot[[i]])
 }
 coveff.plot <- function(xpose.df, ppred.df, box, grouping)
 {
   #box is T or F and is set T if x axis is categorical covariate
-  cov=as.character(ppred.df$Cov[1])
-  par=as.character(ppred.df$Par[1])
+  cov = as.character(ppred.df$Cov[1])
+  par = as.character(ppred.df$Par[1])
   p = ggplot() + theme_bw()
-  if(length(grouping)==0){
+  if(length(grouping) == 0){
     if(!box){
-      p=p+geom_ribbon(data=ppred.df,aes(x=cov.val,ymin=pi.lower,ymax=pi.upper),
-                      alpha=.2, fill="steelblue") +
-        geom_point(data=xpose.df, aes(x=cov.val,y=posthoc)) +
-        geom_line(data=ppred.df,aes(x=cov.val,y=typical),
-                  color="blue",size=1)
+      p = p+geom_ribbon(data = ppred.df,aes(x = cov.val,ymin = pi.lower,ymax = pi.upper),
+                      alpha =.2, fill = "steelblue") +
+        geom_point(data = xpose.df, aes(x = cov.val,y = posthoc)) +
+        geom_line(data = ppred.df,aes(x = cov.val,y = typical),
+                  color = "blue",size = 1)
     }else{
-      p=p+geom_crossbar(data=ppred.df,aes(x=factor(cov.val),ymin=pi.lower, y=typical,
-                                          ymax=pi.upper), alpha=.2
-                        , fill="steelblue",color="steelblue") +
-        geom_jitter(data=xpose.df, aes(x=factor(cov.val),y=posthoc))
+      p = p+geom_crossbar(data = ppred.df,aes(x = factor(cov.val),ymin = pi.lower, y = typical,
+                                          ymax = pi.upper), alpha =.2
+                        , fill = "steelblue",color = "steelblue") +
+        geom_jitter(data = xpose.df, aes(x = factor(cov.val),y = posthoc))
 
     }
   }
   if(length(grouping)>0){
     if(!box){
-      p=p+geom_ribbon(data=ppred.df,aes(x=cov.val,ymin=pi.lower,
-                                        ymax=pi.upper, fill=group), alpha=.2) +
-        geom_point(data=xpose.df, aes(x=cov.val,y=posthoc,color=group)) +
-        geom_line(data=ppred.df,aes(x=cov.val,y=typical, color=group),size=1)
+      p = p+geom_ribbon(data = ppred.df,aes(x = cov.val,ymin = pi.lower,
+                                        ymax = pi.upper, fill = group), alpha =.2) +
+        geom_point(data = xpose.df, aes(x = cov.val,y = posthoc,color = group)) +
+        geom_line(data = ppred.df,aes(x = cov.val,y = typical, color = group),size = 1)
 
     }else{
-      p=p+geom_crossbar(data=ppred.df,aes(x=factor(cov.val),ymin=pi.lower, y=typical,
-                                          ymax=pi.upper, fill=group, color=group)
-                        , alpha=.2, position="dodge") +
-        geom_point(data=xpose.df, aes(x=factor(cov.val),y=posthoc,color=group, fill=group),
-                   position=position_jitterdodge())
+      p = p+geom_crossbar(data = ppred.df,aes(x = factor(cov.val),ymin = pi.lower, y = typical,
+                                          ymax = pi.upper, fill = group, color = group)
+                        , alpha =.2, position = "dodge") +
+        geom_point(data = xpose.df, aes(x = factor(cov.val),y = posthoc,color = group, fill = group),
+                   position = position_jitterdodge())
     }
-    p=p+labs(color=paste(grouping,collapse="."),fill=paste(grouping,collapse="."))
+    p = p+labs(color = paste(grouping,collapse = "."),fill = paste(grouping,collapse = "."))
   }
   p
 }

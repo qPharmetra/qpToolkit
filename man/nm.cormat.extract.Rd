@@ -18,7 +18,7 @@ Covariate matrix
 Extract correlation matrix from a .cor file
 }
 \examples{
-nm.unzip(run="example1", extension=".cor", path = file.path(getOption("qpExampleDir"),"example1"))
+nm.unzip(run = "example1", extension = ".cor", path = file.path(getOption("qpExampleDir"),"example1"))
 run1.cormat =  nm.cormat.extract("example1", path = getOption("qpExampleDir"))
 names(run1.cormat)
 names(run1.cormat[[1]])

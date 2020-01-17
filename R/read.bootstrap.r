@@ -21,7 +21,7 @@
 #'   , filename = "raw_results_bs4011.csv"
 #'   , structure.filename = "raw_results_structure"
 #'   )
-#' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
+#' bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1))
 #' names(myBoot)
 #' str(myBoot$bootstrap)
 #' myBoot$structure
@@ -37,24 +37,24 @@ read.bootstrap <- function(
   default.names = c("model", "minimization.successful","covariance.step.successful","covariance.step.warnings","estimate.near.boundary")
 
   ## read bootstrap raw results
-  bootstrap.data <- read.csv(file.path(path, filename), header=TRUE)
+  bootstrap.data <- read.csv(file.path(path, filename), header = TRUE)
   ## replace underscores, brackets and commas
   for (i in 1:length(names(bootstrap.data))) {
     names(bootstrap.data)[i] <- gsub("\\_", "\\.", names(bootstrap.data)[i])
   }
 
   ## read and process bootstrap structure file
-  struct = scan(file=paste(path,structure.filename, sep="/"),
-                what="character",sep=  "\n", quiet=TRUE)
-  struct = struct[2:(which(substring(struct,1,3)=="[1]")-1)]
+  struct = scan(file = paste(path,structure.filename, sep = "/"),
+                what = "character",sep =  "\n", quiet = TRUE)
+  struct = struct[2:(which(substring(struct,1,3) == "[1]")-1)]
   struct = struct[substring(struct, 1,12) != "line_numbers"]
   struct = unPaste(struct,sep = "=")
   struct.names = gsub("\\_", "\\.",struct[[1]])
   struct.loc = lapply(unPaste(struct[[2]],sep = ","), asNumeric)
   struct.loc[[1]] = struct.loc[[1]] + 1
 
-  bootlist = lapply(seq(along=struct.names),
-                    function(i, struct.names, struct.loc, bootdf){  #i=1;i=31
+  bootlist = lapply(seq(along = struct.names),
+                    function(i, struct.names, struct.loc, bootdf){  #i = 1;i = 31
                       mySequence = struct.loc[[1]][i]:(struct.loc[[1]][i]+struct.loc[[2]][i]-1)
                       theBootComponent = if(length(mySequence)>1){
                         as.data.frame(bootdf[, mySequence])
@@ -83,7 +83,7 @@ read.bootstrap <- function(
 if(F)
 {
 
-  myBoot = read.bootstrap(path=paste(getwd(),"NONMEM/bootstrap/bs4011", sep = "/"),
+  myBoot = read.bootstrap(path = paste(getwd(),"NONMEM/bootstrap/bs4011", sep = "/"),
                           filename = "raw_results_bs4011.csv",
                           structure.filename = "raw_results_structure")
   names(myBoot)

@@ -10,7 +10,7 @@
 #' @examples
 #' set.seed(1234)
 #'
-#' myDF = data.frame(id=1:100)
+#' myDF = data.frame(id = 1:100)
 #' myDF$wt = with(myDF, signif(rnorm.by.id(id, 76,15)))
 #' myDF$age = with(myDF, signif(sample.by.id(id, samples = seq(18,99))))
 #' myDF$sex = with(myDF, sample.by.id(id, samples = c("F","M")))
@@ -22,15 +22,15 @@
 #' head(stacked.df)
 
 #' library(ggplot2)
-#' ggplot(subset(stacked.df, variable != "sex"), aes(x=as.numeric(value), y = value1)) +
+#' ggplot(subset(stacked.df, variable != "sex"), aes(x = as.numeric(value), y = value1)) +
 #'    geom_point() +
-#'    stat_smooth(method="lm", col = lin.fit.col) +
-#'    facet_grid(variable1 ~ variable,scales="free_y")
+#'    stat_smooth(method = "lm", col = lin.fit.col) +
+#'    facet_grid(variable1 ~ variable,scales = "free_y")
 doubleStack <- function(data, vars1, vars2)
 {
-  stackedData = reshape2::melt(data,measure.vars=vars1)
+  stackedData = reshape2::melt(data,measure.vars = vars1)
   names(stackedData)[names(stackedData) %in% c("value","variable")] = c("variable1","value1")
-  stackedData = reshape2::melt(stackedData, measure.vars=vars2)
+  stackedData = reshape2::melt(stackedData, measure.vars = vars2)
   stackedData
 }
 

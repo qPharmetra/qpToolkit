@@ -9,7 +9,7 @@
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}}, \code{\link{catDataFun}}, \code{\link{tabStats}}, \code{\link{tabSummarize}}
 #' @export
 #' @examples
-#' x=rnorm(1000)
+#' x = rnorm(1000)
 #' conDataFun3(x, 3)
 #'
 conDataFun3 <- function(y, digits = 3, latex = FALSE, align.dot = FALSE)
@@ -41,7 +41,7 @@ conDataFun3 <- function(y, digits = 3, latex = FALSE, align.dot = FALSE)
         align.dot = align.dot
       ),
       ")",
-      sep=""
+      sep = ""
     )
   )
 }

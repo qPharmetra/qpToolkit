@@ -1,7 +1,7 @@
 
 # ROXYGEN Documentation
 #' NONMEM run Eigen values
-#' @description Get the Eigen values from a NONMEM run. Requires the user to have run NONMEM with $COV ... PRINT=E option.
+#' @description Get the Eigen values from a NONMEM run. Requires the user to have run NONMEM with $COV ... PRINT = E option.
 #' @param run run rootname (e.g. \code{run1})
 #' @param path directory where \code{run} resides
 #' @param file.ext extension of the NONMEM output file (.lst)
@@ -16,7 +16,7 @@ get.eigen = function (run, path = getOption("nmDir"), file.ext = ".lst")
 {
   out = read.out(path = path, run = run, file.ext = file.ext)
   if (length(grep("EIGENVALUES", out)) == 0) {
-    message("no eigen values. To obtain eigen values add PRINT=E to $COV in NONMEM")
+    message("no eigen values. To obtain eigen values add PRINT = E to $COV in NONMEM")
     return(NULL)
   }
   txtStart = grep("EIGENVALUES", out) - 1

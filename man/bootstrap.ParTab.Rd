@@ -44,8 +44,8 @@ myBoot = read.bootstrap(
  filename = "bootstrap/raw_results_bs4011.csv",
  structure.filename = "bootstrap/raw_results_structure"
 )
-bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
-bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))[c(13,14,15),]
-bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1),
+bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1))
+bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1))[c(13,14,15),]
+bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1),
 transformations = list(log = 13:14, logit = 15))[c(13,14,15),] # partly fictional
 }

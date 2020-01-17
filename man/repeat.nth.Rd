@@ -28,15 +28,15 @@ Creates a vector in which text is repeated every "nth" item in the result, and i
 repeat.nth(c(1,1,1,1,2,2,2))
 
 ## adding a prefix
-repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=1)
-repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=2)
-repeat.nth(c(1,1,1,1,2,2,2), before="CYCLE", pos=3)
+repeat.nth(c(1,1,1,1,2,2,2), before = "CYCLE", pos = 1)
+repeat.nth(c(1,1,1,1,2,2,2), before = "CYCLE", pos = 2)
+repeat.nth(c(1,1,1,1,2,2,2), before = "CYCLE", pos = 3)
 
 ## addding a suffix
-repeat.nth(c(1,1,1,1,2,2,2), after="CYCLE", pos=1)
-repeat.nth(c(1,1,1,1,2,2,2), after="CYCLE", pos=2)
-repeat.nth(c(1,1,1,1,2,2,2), after="CYCLE", pos=3)
+repeat.nth(c(1,1,1,1,2,2,2), after = "CYCLE", pos = 1)
+repeat.nth(c(1,1,1,1,2,2,2), after = "CYCLE", pos = 2)
+repeat.nth(c(1,1,1,1,2,2,2), after = "CYCLE", pos = 3)
 
 ## both
-repeat.nth(c(1,1,1,1,2,2,2), before="BI", after="CYCLE", pos=1)
+repeat.nth(c(1,1,1,1,2,2,2), before = "BI", after = "CYCLE", pos = 1)
 }

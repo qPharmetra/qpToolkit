@@ -23,7 +23,7 @@
 nm.compare.plot <- function(runs
                            , path = getOption("nmDir")
                            , keep.cols = c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')
-                           , alias = list(DV = "CONC", TIME = "TAFD") ## in case of $INPUT CONC=DV TAFD=TIME etc...
+                           , alias = list(DV = "CONC", TIME = "TAFD") ## in case of $INPUT CONC = DV TAFD = TIME etc...
                            , dot.size = 1 ## relative dot size
                            , text.size = 1 ## relative fontsize
                            , log = FALSE
@@ -39,7 +39,7 @@ nm.compare.plot <- function(runs
     out = lapply(out, function(x, alias)
     {
       if(length(x[, alias$DV])>0) x$DV = x[, alias$DV]
-      if(length(x[, alias$TIME])>0&length(x$TIME)==0) x$TIME = x[, alias$TIME]
+      if(length(x[, alias$TIME])>0&length(x$TIME) == 0) x$TIME = x[, alias$TIME]
       return(x)
     }, alias = alias)
   }
@@ -63,7 +63,7 @@ nm.compare.plot <- function(runs
   molten = reshape2::melt(out, measure.vars = c('TIME','PRED','IPRED'))
   names(molten)[names(molten) %in% c('variable','value')] = c('xVariable', 'xValue')
   molten = reshape2::melt(molten, measure.vars = c('DV','CWRES'))
-  molten$group = paste(molten$variable,molten$xVariable,sep="~")
+  molten$group = paste(molten$variable,molten$xVariable,sep = "~")
   molten = molten[molten$group %nin% c("DV~TIME","CWRES~IPRED"), ]
   molten$variable = as.character(molten$variable )
   tail(molten)

@@ -20,18 +20,18 @@ samples of the prespecified distribution, one for each level of \code{group}
 Populates 1 sample from prespecified distribution for each group (id or subject, or trial, or other)
 }
 \examples{
-my.ids = rep(1:5,each=3)
+my.ids = rep(1:5,each = 3)
 my.ids
 
 set.seed(123456)
-sample.by.id(my.ids, samples=rgamma(1000,1))
+sample.by.id(my.ids, samples = rgamma(1000,1))
 
-my.ids = rep(1:5,times=3)
+my.ids = rep(1:5,times = 3)
 my.ids
-sample.by.id(my.ids, samples=rgamma(1000,1))
+sample.by.id(my.ids, samples = rgamma(1000,1))
 
 #one unique value per id
-sample.by.id(unique(my.ids), samples=rgamma(1000,1))
+sample.by.id(unique(my.ids), samples = rgamma(1000,1))
 tapply(sample.by.id(my.ids, samples = rgamma(1000,1)),my.ids, unique)
 }
 \seealso{

@@ -50,7 +50,7 @@ if(F)
   path = nmDir
   xml.extension = ".xml"
   zip.extension = ".7z"
-  filename = paste(path, run, paste(run, xml.extension,sep=""),sep="/")
+  filename = paste(path, run, paste(run, xml.extension,sep = ""),sep = "/")
   fz = file.path(nmDir,"run31",paste("run31.xml", ".7z", sep = ""))
   ## unzip the xml file in case it is required
   if(file.exists(fz)&file.exists(filename)) file.remove(filename)

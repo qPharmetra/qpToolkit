@@ -20,5 +20,5 @@ Removes items from the end of a numeric vector that are equal to the value suppl
 \examples{
 conc = c(1:30,0,0,0,0)
 conc
-removeTrailing(conc, val=0)
+removeTrailing(conc, val = 0)
 }

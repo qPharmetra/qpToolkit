@@ -34,9 +34,9 @@ panel.nlme.vpc.pred <- function(x, y, OBS, vpc, subscripts, logY, showPredAs, sh
   {
     yl = attr(y, "other")[,1]
     yh = attr(y, "other")[,2]
-    yl2= attr(y, "other")[,3]
-    yh2= attr(y, "other")[,4]
-    if(logY==TRUE) {yh = log10(yh); yl = log10(yl);yh2 = log10(yh2); yl2 = log10(yl2)}
+    yl2 = attr(y, "other")[,3]
+    yh2 = attr(y, "other")[,4]
+    if(logY == TRUE) {yh = log10(yh); yl = log10(yl);yh2 = log10(yh2); yl2 = log10(yl2)}
     llines(x,yl, col = col.scheme$pred$outer,  type = "l", lwd = 1.5)
     llines(x,yh, col = col.scheme$pred$outer,  type = "l", lwd = 1,5)
     llines(x,yl2, col = col.scheme$pred$outer,  type = "l", lwd = 1.5)
@@ -49,9 +49,9 @@ panel.nlme.vpc.pred <- function(x, y, OBS, vpc, subscripts, logY, showPredAs, sh
   {
     yl = attr(y, "other")[,1]
     yh = attr(y, "other")[,2]
-    yl2= attr(y, "other")[,3]
-    yh2= attr(y, "other")[,4]
-    if(logY==TRUE) {  yh = log10(ifelse(yh<=0, 0.01, yh)); yl = log10(ifelse(yl<=0, 0.01, yl));
+    yl2 = attr(y, "other")[,3]
+    yh2 = attr(y, "other")[,4]
+    if(logY == TRUE) {  yh = log10(ifelse(yh<=0, 0.01, yh)); yl = log10(ifelse(yl<=0, 0.01, yl));
                    yh2 = log10(ifelse(yh2<=0, 0.01, yh2)); yl2 = log10(ifelse(yl2<=0, 0.01, yl2))}
     lpolygon(c(x, rev(x)), c(yl, rev(yh)),  col = col.scheme$pred$area,  border = FALSE)
     lpolygon(c(x, rev(x)), c(yl2,rev(yh2)), col = col.scheme$pred$inner, border = FALSE)

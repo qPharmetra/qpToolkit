@@ -36,7 +36,7 @@ print(xtable(scm$scm.latex
       , sanitize.text.function = function(x)x
       , include.rownames = FALSE
       , size = "small"
-      , caption.placement ="top"
+      , caption.placement = "top"
       , booktabs = TRUE
       , tabular.environment = "longtable"
       , floating = FALSE

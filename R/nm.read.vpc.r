@@ -26,15 +26,15 @@
 
 nm.read.vpc <- function(path = getOption("nmDir")
                        , vpc_results = "vpc_results.csv"
-                       , vpctab = dir(path=path,pattern = "^vpctab")[1]
+                       , vpctab = dir(path = path,pattern = "^vpctab")[1]
                        , PI.limits = c(0.025,0.05,0.1,0.30,0.70,0.9,0.95,0.975)
-                       , PI.ci.area.smooth=FALSE
+                       , PI.ci.area.smooth = FALSE
 )
 {
   rootName = unlist(unPaste(path)[(length(unPaste(path)))])
 
   ## parse out the vpc results into predicted (sim) and observed (obs)
-  vpc = read.vpc(path = path, result = vpc_results, tab=vpctab)
+  vpc = read.vpc(path = path, result = vpc_results, tab = vpctab)
 
   sim = vpc$vpc
   obs = vpc$tab
@@ -47,7 +47,7 @@ nm.read.vpc <- function(path = getOption("nmDir")
   ## pull out the correct statistics
   msel.ci = grep(".CI.for.", names(sim$result.tables[[1]]))
   suffix =  unique(sub("([0-9]+).CI.for(.*)","\\1",names(sim$result.tables[[1]])[msel.ci]))
-  msel.ci = grep(paste(suffix,".CI.for.",sep=""), names(sim$result.tables[[1]]))
+  msel.ci = grep(paste(suffix,".CI.for.",sep = ""), names(sim$result.tables[[1]]))
   msel.pi = sub("([0-9]+).CI.for(.*)","\\2",names(sim$result.tables[[1]]))
   msel.pi = sub("to", "", msel.pi)
   msel.pi = sub("from", "", msel.pi)
@@ -90,7 +90,7 @@ nm.read.vpc <- function(path = getOption("nmDir")
   res$xCov = res$lower * (res$idx == 1) + res$upper * (res$idx == 2)
   if(PI.ci.area.smooth) res$xCov = res$xCovm
 
-  return(list(obs = obs, vpc = results.tables, res= res))
+  return(list(obs = obs, vpc = results.tables, res = res))
 }
 
 

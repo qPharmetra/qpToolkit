@@ -38,7 +38,7 @@ odeSim <- function(state, times,  func, parms, simPar, simParValues, method = "l
   cat("performing simulation of",deparse(substitute(func)),"across", simPar, "...\n")
 
   ## Initiate parallel computation
-  sfInit( parallel=ifelse(nodes>1,TRUE,FALSE), cpus=nodes,useRscript=TRUE )
+  sfInit( parallel = ifelse(nodes>1,TRUE,FALSE), cpus = nodes,useRscript = TRUE )
   if( sfParallel() ) {
     cat( "Running in parallel mode on", sfCpus(), "nodes.\n" )
   } else {
@@ -61,11 +61,11 @@ odeSim <- function(state, times,  func, parms, simPar, simParValues, method = "l
     ## Simulate
     myOut = as.data.frame(ode(y = myState, times = myTimes, func = myFunc, parms = myParms, method = myMethod))
     ## Reduce the number of simulated data points (for memory reasons)
-    myOut = myOut[myOut$time%%keepTimeDT==0,]
+    myOut = myOut[myOut$time%%keepTimeDT == 0,]
     ## Return the output combined with the parameters and states used for this particular simulation scenario
     mySimPar[mySimPar%in%names(myState)] =
-      paste(mySimPar[mySimPar%in%names(myState)],"init",sep=".")
-    simVals = data.frame(matrix(x,nrow=nrow(myOut),ncol=length(x),byrow=TRUE))
+      paste(mySimPar[mySimPar%in%names(myState)],"init",sep = ".")
+    simVals = data.frame(matrix(x,nrow = nrow(myOut),ncol = length(x),byrow = TRUE))
     names(simVals) = mySimPar
     cbind(myOut,simVals)
   },

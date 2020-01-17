@@ -39,9 +39,9 @@ A graph written to file in .png format that does not have to be edited when past
 A wrapper function for a call to png(), which opens a plot device (i.e. enables you to "print" a graphic to a file), and provides defaults for various parameters of that graphic suitable for a slide in a presentation. The plot area will over the full slide dimension and does not have to be resized or repositioned after pasting. Note that the plot must be generated and then \code{dev.off()} must be called to close the plot device (i.e. close the output graphic file)
 }
 \examples{
-png.slide.full(filename=file.path(tempdir(),"/myPNGslidefullexample.png"))
+png.slide.full(filename = file.path(tempdir(),"/myPNGslidefullexample.png"))
 set.seed(1234567)
-plot(x=1:25,y=rnorm(25,50,5))
+plot(x = 1:25,y = rnorm(25,50,5))
 dev.off()
 }
 \seealso{

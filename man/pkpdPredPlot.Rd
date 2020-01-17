@@ -32,9 +32,9 @@ PK-PD superposition of multiple doses
 }
 \examples{
 eff.1comp.iv(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25))
-pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
        pk.func = eff.1comp.iv, parms = c(1,10, 0.25))
-pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
             pk.func = pk.1comp.iv, e.func = eff.1comp.iv,
             parms = c(1,10, 0.25))
 }

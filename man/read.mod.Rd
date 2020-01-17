@@ -22,7 +22,7 @@ character vector with the NONMEM output. Each element i the vector represents a 
 Scan and parse the NONMEM control stream (mod file)
 }
 \examples{
-head(read.mod(path=getOption("qpExampleDir"), run="example1", file.ext = ".ctl"))
+head(read.mod(path = getOption("qpExampleDir"), run = "example1", file.ext = ".ctl"))
 }
 \seealso{
 \code{\link{read.ext}}, \code{\link{read.out}}

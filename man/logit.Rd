@@ -20,7 +20,7 @@ Logit-transformed x
 Logit-transforms any value between 0 and 1
 }
 \examples{
-myVector = runif(n = 1000, min=0.001,max = 0.999)
+myVector = runif(n = 1000, min = 0.001,max = 0.999)
 myVector.logit = logit(myVector)
 par(mfrow = c(1,3))
 hist(myVector)

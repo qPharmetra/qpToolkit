@@ -11,7 +11,7 @@
 #' @importFrom Hmisc unPaste
 #' @importFrom gdata trim
 
-makeRandom <- function(sw="omega", ctl, ranEf){
+makeRandom <- function(sw = "omega", ctl, ranEf){
   # sw   = either "omega" or "sigma" for IIV or residual random effects
   # ctl  = the character vector containing the current version of the NONMEM
   #        control stream
@@ -19,8 +19,8 @@ makeRandom <- function(sw="omega", ctl, ranEf){
   #         placed in the new control stream
 
   # Parse random effects and construct new random effects statements
-  str = ifelse(sw=="omega", "\\$OMEGA", "\\$SIGMA")
-  repl = ifelse(sw=="omega", "$OMEGA", "$SIGMA")
+  str = ifelse(sw == "omega", "\\$OMEGA", "\\$SIGMA")
+  repl = ifelse(sw == "omega", "$OMEGA", "$SIGMA")
 
   nRan = length(grep(str,ctl))
   ran = vector("character", nRan)
@@ -29,45 +29,45 @@ makeRandom <- function(sw="omega", ctl, ranEf){
   ranEf = ranEf[ranEf>0]    # remove any zero elements (typically these are unused of diagonal covariances)
 
   # Now parse the output and replace initial values with final estimates
-  for(i in 1:nRan){# i=1
+  for(i in 1:nRan){# i = 1
     # Identify all sections
-    secs = data.frame(sec=ctl[grep("\\$", ctl)], ind=grep("\\$", ctl))
+    secs = data.frame(sec = ctl[grep("\\$", ctl)], ind = grep("\\$", ctl))
     secs$nextS = c(secs$ind[2:nrow(secs)], length(ctl))
     thisSec = grep(str, secs$sec)[i]
     startS = secs$ind[thisSec]
-    endS = ifelse(secs$nextS[thisSec]==length(ctl), length(ctl),
+    endS = ifelse(secs$nextS[thisSec] == length(ctl), length(ctl),
                   secs$nextS[thisSec]-1)
     tmp = unlist(unPaste(ctl[startS:endS]))
     tmp = gdata::trim(sub("FIX", "", tmp))
     tmp = ifelse(regexpr("\\;", tmp) > 1, trim(substring(tmp, 1, regexpr("\\;", tmp)-1)), tmp)  # remove comments
-    tmp = paste(tmp, collapse=" ")
+    tmp = paste(tmp, collapse = " ")
 
     # How many values in the current line
     if(regexpr("BLOCK", tmp)>0) {
-     dimen = as.numeric(substring(tmp,first=regexpr("\\(", tmp)+1, last=regexpr("\\)",tmp)-1))
+     dimen = as.numeric(substring(tmp,first = regexpr("\\(", tmp)+1, last = regexpr("\\)",tmp)-1))
      ival = sum(1:dimen)
-     ivals[i] = ifelse(i==1, ival, ivals[i-1]+ival)
-     ran[i] = ifelse(i==1, paste(repl, " BLOCK(", as.character(dimen), ") ",
-                                 paste(as.character(ranEf[1:ival]), collapse=" "),
+     ivals[i] = ifelse(i == 1, ival, ivals[i-1]+ival)
+     ran[i] = ifelse(i == 1, paste(repl, " BLOCK(", as.character(dimen), ") ",
+                                 paste(as.character(ranEf[1:ival]), collapse = " "),
                                  " FIX",
-                                 sep=""),
+                                 sep = ""),
                            paste(repl, " BLOCK(", as.character(dimen), ") ",
-                                 paste(as.character(ranEf[(ivals[i-1]+1):ivals[i]]), collapse=" "),
+                                 paste(as.character(ranEf[(ivals[i-1]+1):ivals[i]]), collapse = " "),
                                  " FIX",
-                                 sep="")
+                                 sep = "")
                            )
     } else{
-      tmp1 = trim(substring(tmp, first=regexpr(str, tmp)+6))
+      tmp1 = trim(substring(tmp, first = regexpr(str, tmp)+6))
       ival = length(unlist(strsplit(tmp1, " +")))
-      ivals[i] = ifelse(i==1, ival, ivals[i-1]+ival)
-      ran[i] = ifelse(i==1, paste(repl,
-                                  paste(as.character(ranEf[1:ival]), collapse=" "),
+      ivals[i] = ifelse(i == 1, ival, ivals[i-1]+ival)
+      ran[i] = ifelse(i == 1, paste(repl,
+                                  paste(as.character(ranEf[1:ival]), collapse = " "),
                                   "FIX",
-                                  sep=" "),
+                                  sep = " "),
                             paste(repl,
-                                  paste(as.character(ranEf[(ivals[i-1]+1):ivals[i]]), collapse=" "),
+                                  paste(as.character(ranEf[(ivals[i-1]+1):ivals[i]]), collapse = " "),
                                   "FIX",
-                                  sep=" ")
+                                  sep = " ")
                             )
     } # else
   } # for
@@ -90,8 +90,8 @@ uncertainParams <- function(out){
   omLen = length(out$ranef[[len]])
   covMat = out$covariance[[len]]
   expected = c(out$fixef[[len]],out$sigef[[len]], out$ranef[[len]])
-  vec = mvrnorm(n=1, mu=expected, Sigma=covMat)
-  outParams=vector("list")
+  vec = mvrnorm(n = 1, mu = expected, Sigma = covMat)
+  outParams = vector("list")
   outParams$fixed = vec[1:fixLen]
   outParams$sigma = vec[(fixLen+1):(fixLen+sigLen)]
   outParams$omega = vec[(fixLen+sigLen+1):length(vec)]
@@ -146,7 +146,7 @@ nm.create.control <- function(run,
 
   # Remove sections that are either unnecessary or
   # will be replaced with new code
-  remSections=c('COV', 'EST', 'THETA', 'OMEGA', 'SIGMA')
+  remSections = c('COV', 'EST', 'THETA', 'OMEGA', 'SIGMA')
   ctl = nm.remove.section(remSections, ctl)[[1]]
 
   ## create the control stream
@@ -166,16 +166,16 @@ nm.create.control <- function(run,
     tmp = nm.remove.section("TABLE", ctl)
     ctl = tmp[[1]]
     table = unlist(tmp[[2]])
-    table = sub("\\.tab", "sim.tab", table, ignore.case=TRUE)
-    table = sub("\\.par", "sim.par", table, ignore.case=TRUE)
+    table = sub("\\.tab", "sim.tab", table, ignore.case = TRUE)
+    table = sub("\\.par", "sim.par", table, ignore.case = TRUE)
     ctl = c(ctl, table)
   }
 
   ## Insert reference to new dataset if needed
   if(!is.null(newDataFile)){
      dataInd = grep("\\$DATA", ctl)
-     ignore = substring(ctl[dataInd], regexpr("IGNORE=", ctl[dataInd])+7)
-     dataLn = paste("$DATA ", newDataFile, " IGNORE=", ignore, sep="")
+     ignore = substring(ctl[dataInd], regexpr("IGNORE = ", ctl[dataInd])+7)
+     dataLn = paste("$DATA ", newDataFile, " IGNORE = ", ignore, sep = "")
      ctl[dataInd] = dataLn
   }
 

@@ -1,6 +1,6 @@
 # ROXYGEN Documentation
 #' Format runrecord for reports
-#' @description Process the run record into a data frame ready for integration into LaTeX report. Note that the function assumes runrecord has been run with PsN option -maxlvl=0 and the function depends on input from \code{read.runrec}
+#' @description Process the run record into a data frame ready for integration into LaTeX report. Note that the function assumes runrecord has been run with PsN option -maxlvl = 0 and the function depends on input from \code{read.runrec}
 #' @param runrec outut from \code{read.runrec}
 #' @param improvement a list with elements value (numeric) and color (character) to emphasize significant improvements. Value defaults to -6.63, for a p<0.01 improvement for a single parameter added.
 #' @param carryAlong any additional variable to be included (would need to be present in \code{runrec})
@@ -18,7 +18,7 @@
 process.runrec <- function(
   runrec,
   improvement = list(value = -6.63, color = "blue"),
-  carryAlong = NULL, plain=FALSE)
+  carryAlong = NULL, plain = FALSE)
 {
   runrec = runrec[, c('Run','Ref','OFV','dOFV','CondNum','Minimization','Description', carryAlong)]
   runrec$CondNum = round(runrec$CondNum)
@@ -45,6 +45,6 @@ process.runrec <- function(
 
 if(F)
 {
-  ## important - assumes runrecord has been run with maxlvl=0
+  ## important - assumes runrecord has been run with maxlvl = 0
 
 }

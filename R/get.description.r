@@ -12,9 +12,9 @@
 
 get.description <- function(run, path = getOption("nmDir"), file.ext = ".lst")
 {
-  out = read.out(path=path, run=run, file.ext = file.ext)
+  out = read.out(path = path, run = run, file.ext = file.ext)
   desc = substring(out[grep("Description:", out)+1],7)
-  if(length(desc)==0) desc = "No Model Description"
+  if(length(desc) == 0) desc = "No Model Description"
   return(desc)
 }
 

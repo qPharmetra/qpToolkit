@@ -45,12 +45,12 @@ Panel function to plot DV, PRED, IPRED overlays for individual profiles
 \examples{
 library(Hmisc)
 out = get.xpose.tables('example1',getOption('qpExampleDir'))
-out$EVID=0
+out$EVID = 0
 trellis.strip.color()
 xyplot(Cbind(CONC,PRED,IPRED,EVID) ~ TIME
        , groups = ID
        , data = subset(out)
-       , scales = list(x = list(relation = 'free'),y = list(log=10))
+       , scales = list(x = list(relation = 'free'),y = list(log = 10))
        , panel = panel.modelfit
        , logY = TRUE
        , yscale.components = yscale.components.log10

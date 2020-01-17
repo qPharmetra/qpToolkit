@@ -18,9 +18,9 @@
 #' library(lattice)
 #' pkpdData = example.pkpdData()
 #' pkpdData$blq = 0
-#' pkpdData$blq[pkpdData$type=="PK"&pkpdData$value<0.1] = 1
+#' pkpdData$blq[pkpdData$type == "PK"&pkpdData$value<0.1] = 1
 #' xyplot(value ~ time | id
-#' , data = subset(pkpdData, blq==0)
+#' , data = subset(pkpdData, blq == 0)
 #' , subset = type == "PK" & dose == 100 & value > 1e-6
 #' , groups = id
 #' , panel = function(x,y, ...)
@@ -46,9 +46,9 @@ panel.thalf <- function(x, y, ...,
   {
     text.loc = c(current.panel.limits()[[1]][2],current.panel.limits()[[2]][2])
     coefs = coef(lm(as.numeric(y) ~ as.numeric(x)))
-    xx=range(x)
-    yy=coefs[1] + coefs[2]*xx
-    panel.xyplot(xx, yy, type="l", ..., col = line.col)
+    xx = range(x)
+    yy = coefs[1] + coefs[2]*xx
+    panel.xyplot(xx, yy, type = "l", ..., col = line.col)
 
     ## add half life as text to each panel
     coefs = coef(lm(y ~ x))

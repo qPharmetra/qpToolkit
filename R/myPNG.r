@@ -26,8 +26,8 @@
 
 myPNG <- function(
   filename = "C:/Test/test.png",
-  w = 8, h = 6, units="in",
-  psize = 10, bg="transparent", res=600
+  w = 8, h = 6, units = "in",
+  psize = 10, bg = "transparent", res = 600
   , ...)
 {
   grDevices::png(filename = filename, width = w, height = h,
@@ -36,9 +36,9 @@ myPNG <- function(
 
 # Example
 if (F) {
-  myPNG(filename = paste("output/graphs", "myPNGexample.png", sep="/"))
+  myPNG(filename = paste("output/graphs", "myPNGexample.png", sep = "/"))
 
-  graphics::plot(x=1:10,y=31:40)
+  graphics::plot(x = 1:10,y = 31:40)
 
   grDevices::dev.off()
 

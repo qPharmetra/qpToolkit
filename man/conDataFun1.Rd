@@ -22,7 +22,7 @@ Summary: mean (SD)
 This function is primarily used for demographics tables
 }
 \examples{
-x=rnorm(1000)
+x = rnorm(1000)
 conDataFun1(x, 3)
 }
 \seealso{

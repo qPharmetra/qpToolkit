@@ -45,8 +45,8 @@ Many large filews like XML outpout and covariance matrices are zipped by (qPharm
 }
 \examples{
 file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
-nm.unzip(run="example1", extension=".cov",
-path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
+nm.unzip(run = "example1", extension = ".cov",
+path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
 file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 file.exists('c:/progra~1/7-zip/7z.exe')

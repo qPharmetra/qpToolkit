@@ -13,12 +13,12 @@ globalVariables(c('EVID','.'))
 #' @examples
 #' library(dplyr)
 #' ## original data:
-#' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
+#' nmData = example.NONMEM.dataset(TIME = seq(0,24,4))
 #' nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
 #'
 #' ## adding doses to compartments 3, 4 and 5
 #' nmData3 = nm.insert.dose.multiple.compartments(data = nmData
-#'                                                , dose.in.cmt=c(3,4,5)
+#'                                                , dose.in.cmt = c(3,4,5)
 #'                                                , ID, TIME, -EVID
 #'
 #' )
@@ -32,10 +32,10 @@ nm.insert.dose.multiple.compartments <- function(
   my.dots = paste(
     unlist(
       lapply(
-        lazyeval::lazy_dots(...), function(x) paste(as.character(x$expr),collapse="")
+        lazyeval::lazy_dots(...), function(x) paste(as.character(x$expr),collapse = "")
       )
     )
-    ,collapse=", "
+    ,collapse = ", "
   )
 
   data.d2 = subset(data, EVID %in% c(1,3,4))
@@ -47,9 +47,9 @@ nm.insert.dose.multiple.compartments <- function(
     arrange(...)
 
   if(!quiet)
-     message(paste("Doses placed in Compartments (CMT)",paste(dose.in.cmt, collapse=", ")))
+     message(paste("Doses placed in Compartments (CMT)",paste(dose.in.cmt, collapse = ", ")))
 
-  if(nchar(my.dots)==0) {
+  if(nchar(my.dots) == 0) {
      if(!quiet) message("No sorting was performed as no sorting variables were provided.")
   } else {
      if(!quiet) message(paste("Data sorted by", my.dots))

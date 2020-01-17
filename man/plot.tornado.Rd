@@ -64,13 +64,13 @@ torn.ds = as.tornado(read.csv(
   file.path(getOption("qpExampleDir"), "../Excel/tornado.ds.csv")
 , stringsAsFactors = FALSE))
 plot(torn.ds
-             , xlim=c(0,20)
-             , xlab="Dollars"
-             , main="My first tornado"
-             , cex.main=2
-             , bar.width=.50
-             , base.round=1
-             , show.base=FALSE
+             , xlim = c(0,20)
+             , xlab = "Dollars"
+             , main = "My first tornado"
+             , cex.main = 2
+             , bar.width =.50
+             , base.round = 1
+             , show.base = FALSE
 )
 }
 \seealso{

@@ -19,8 +19,8 @@
 #' @export
 #' @examples
 #' file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
-#' nm.unzip(run="example1", extension=".cov",
-#' path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
+#' nm.unzip(run = "example1", extension = ".cov",
+#' path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
 #' file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 #' file.exists('c:/progra~1/7-zip/7z.exe')
@@ -44,7 +44,7 @@ nm.unzip <- function(
    zip.call = sprintf(zip.call, zip.filename)
    if(!quiet) cat("call:",zip.call,"\n")
    setwd(newwd)
-   invisible(system(zip.call, ignore.stdout=quiet, ignore.stderr = quiet))
+   invisible(system(zip.call, ignore.stdout = quiet, ignore.stderr = quiet))
    setwd(currentwd)
    if(!file.exists(zip.filename)){
       stop(sprintf("Unzip failed: %s\nUnzip call:%s", zip.filename, zip.call))

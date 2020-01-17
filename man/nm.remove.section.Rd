@@ -22,7 +22,7 @@ This function is not intended to be called alone, but is called in the wrapper f
 }
 \examples{
 nm.remove.section("EST"
-   , read.mod("example1", path = getOption("qpExampleDir"), file.ext=".ctl")
+   , read.mod("example1", path = getOption("qpExampleDir"), file.ext = ".ctl")
    )[[2]]
 
 }

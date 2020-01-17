@@ -43,7 +43,7 @@ panel.nonmem.vpc <- function(
     yl = info$ypred.lo
     yh = info$ypred.hi
     if(logY) { yh = log10(yh); yl = log10(yl) }
-    #if(logX==T) { x = log10(x)}
+    #if(logX == T) { x = log10(x)}
     llines(x,yl, col = col.scheme$pred$outer,  type = lineType, lwd = 1.5)
     llines(x,yh, col = col.scheme$pred$outer,  type = lineType, lwd = 1.5)
     llines(x,y, ...,  type = lineType, col = col.scheme$pred$central, lwd = 1.5)
@@ -54,7 +54,7 @@ panel.nonmem.vpc <- function(
     yl = info$ypred.lo
     yh = info$ypred.hi
     if(logY) {yh = log10(yh); yl = log10(yl)}
-    #if(logX==T) { x = log10(x)}
+    #if(logX == T) { x = log10(x)}
     lpolygon(c(x,rev(x)), c(yl,rev(yh)), col = col.scheme$pred$area, border = FALSE)
   }
 
@@ -72,7 +72,7 @@ panel.nonmem.vpc <- function(
       yh = log10(yh); yl = log10(yl);yld = log10(yld)
       ylu = log10(ylu);yhd = log10(yhd); yhu = log10(yhu);ycd = log10(ycd); ycu = log10(ycu)
     }
-    #if(logX==T) { x = log10(x)}
+    #if(logX == T) { x = log10(x)}
     lpolygon(c(x,rev(x)), c(ylu,rev(yld)), col = col.scheme$pred$area,outer, border = FALSE)
     lpolygon(c(x,rev(x)), c(yhu,rev(yhd)), col = col.scheme$pred$area.outer, border = FALSE)
     lpolygon(c(x,rev(x)), c(ycu,rev(ycd)), col = col.scheme$pred$area.central, border = FALSE)

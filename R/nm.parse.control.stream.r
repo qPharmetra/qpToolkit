@@ -20,16 +20,16 @@
 nm.parse.control.stream <- function(run
                                    , path = getOption("nmDir")
                                    , file.ext = ".mod"
-                                   , quiet= TRUE
+                                   , quiet = TRUE
 )
 {
-   ctl = read.mod(run=run, path=path, file.ext=file.ext, quiet=quiet)
+   ctl = read.mod(run = run, path = path, file.ext = file.ext, quiet = quiet)
 
    ctlSections = ctl[grep("\\$", ctl)]
-   ctlSections = ctlSections[substring(gsub(" ","",ctlSections),1,1)!=";"]
+   ctlSections = ctlSections[substring(gsub(" ","",ctlSections),1,1)!= ";"]
    ctlSections = unlist(lapply(ctlSections, function(x) unPaste(x,sep = " ")[[1]]))
    ctlSections = substring(unique(ctlSections), 2)
-   ctlSections = ctlSections[ctlSections!=""]
+   ctlSections = ctlSections[ctlSections!= ""]
    nams = ctlSections
 
    ctlSections = lapply(ctlSections

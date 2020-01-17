@@ -38,7 +38,7 @@
 nm.extract.xml <- function(
   run = "run1",
   path = getOption("nmDir"),
-  filename = paste(path, run, paste(run, xml.extension,sep=""),sep="/"),
+  filename = paste(path, run, paste(run, xml.extension,sep = ""),sep = "/"),
   digits = 3,
   digits.se = digits,
   digits.cv = digits,
@@ -53,7 +53,7 @@ nm.extract.xml <- function(
   quiet = TRUE)
 {
   #xml.extension = ".xml";zip.extension = ".7z";remove.obsolete = F;na.value = "n.d.";control_stream = F;  path = paste(getwd(),"NONMEM", run, sep = "/")
-  #digits = 4;digits.se = digits;digits.cv = digits;digits.est = digits;filename = paste(path,run,paste(run, xml.extension,sep=""),sep="/")
+  #digits = 4;digits.se = digits;digits.cv = digits;digits.est = digits;filename = paste(path,run,paste(run, xml.extension,sep = ""),sep = "/")
   #require(XML)
 
   fz = paste(filename, zip.extension, sep = "")
@@ -84,7 +84,7 @@ nm.extract.xml <- function(
                                , digits.cv
                                , digits.se
                                , na.value
-                               , quiet) #tmp=TMP[[1]]
+                               , quiet) #tmp = TMP[[1]]
   {
     estimation.method = xmlValue(tmp[["estimation_method"]])
     if(!quiet) cat("extracting:", estimation.method,"\n")
@@ -138,20 +138,20 @@ nm.extract.xml <- function(
     if(any(names(tmp) %in% "etabar")){ ## test if etabar is there (not for MCMC)
       popNames = as.character(unlist(lapply(asXMLNode(tmp[["etabar"]])$children,
                                             function(x) xmlAttrs(x))))
-      etabar = lapply(asXMLNode(tmp[["etabar"]])$children, xml.Extract.NM.Value, what="")
-      etabarse = lapply(asXMLNode(tmp[["etabarse"]])$children, xml.Extract.NM.Value, what="")
+      etabar = lapply(asXMLNode(tmp[["etabar"]])$children, xml.Extract.NM.Value, what = "")
+      etabarse = lapply(asXMLNode(tmp[["etabarse"]])$children, xml.Extract.NM.Value, what = "")
       etabarpval = if(any(names(tmp) %in% "etabarpval")){  ## we don not have etabarp in case of $MIX
-        lapply(asXMLNode(tmp[["etabarpval"]])$children, xml.Extract.NM.Value, what="")
+        lapply(asXMLNode(tmp[["etabarpval"]])$children, xml.Extract.NM.Value, what = "")
       } else NULL
-      etashrink = lapply(asXMLNode(tmp[["etashrink"]])$children, xml.Extract.NM.Value, what="")
-      epsshrink = lapply(asXMLNode(tmp[["epsshrink"]])$children, xml.Extract.NM.Value, what="")
+      etashrink = lapply(asXMLNode(tmp[["etashrink"]])$children, xml.Extract.NM.Value, what = "")
+      epsshrink = lapply(asXMLNode(tmp[["epsshrink"]])$children, xml.Extract.NM.Value, what = "")
       names(etabar) = names(etabarse) = names(etashrink) = names(epsshrink) = popNames
       if(!is.null(etabarpval)) names(etabarpval) = popNames
     } else
       etabar = etabarse = etabarpval = etashrink = epsshrink = NULL
 
     eigenvalues = as.vector(unlist(lapply(asXMLNode(tmp[["eigenvalues"]])$children,
-                                          xml.Extract.NM.Value, what="")), "numeric")
+                                          xml.Extract.NM.Value, what = "")), "numeric")
 
     parallel_est = if(!is.null(tmp[["parallel_est"]])) xmlAttrs(tmp[["parallel_est"]]) else NULL
     monitor = unlist(lapply(tmp[["monitor"]]$children, xml.Extract.NM.Value))
@@ -185,16 +185,16 @@ nm.extract.xml <- function(
     if(!is.null(table)) row.names(table) = 1:nrow(table)
 
     return(
-      list(fixed=fixed,fixedse=fixedse,omega=omega,omegase=omegase,sigma=sigma,sigmase=sigmase,
-           covariance=covariance,correlation=correlation, table=table,
-           eigenvalues=eigenvalues,etabar=etabar,etabarse=etabarse,etabarpval=etabarpval,
-           etashrink = etashrink, epsshrink = epsshrink,estimation.method=estimation.method,
-           parallel_est=parallel_est,monitor=monitor,termination_status=termination_status,
-           termination_information=termination_information,estimation_elapsed_time=estimation_elapsed_time,
-           covariance_elapsed_time=covariance_elapsed_time,
-           final_objective_function=final_objective_function,
-           final_objective_function_text=final_objective_function_text,
-           final_objective_function_std=final_objective_function_std)
+      list(fixed = fixed,fixedse = fixedse,omega = omega,omegase = omegase,sigma = sigma,sigmase = sigmase,
+           covariance = covariance,correlation = correlation, table = table,
+           eigenvalues = eigenvalues,etabar = etabar,etabarse = etabarse,etabarpval = etabarpval,
+           etashrink = etashrink, epsshrink = epsshrink,estimation.method = estimation.method,
+           parallel_est = parallel_est,monitor = monitor,termination_status = termination_status,
+           termination_information = termination_information,estimation_elapsed_time = estimation_elapsed_time,
+           covariance_elapsed_time = covariance_elapsed_time,
+           final_objective_function = final_objective_function,
+           final_objective_function_text = final_objective_function_text,
+           final_objective_function_std = final_objective_function_std)
     )
   }## end lapply(TMP)
   , remove.obsolete = remove.obsolete
@@ -212,7 +212,7 @@ nm.extract.xml <- function(
     dir(path)[grepl("(sd|pa|ca|co)tab[0-9]+",dir(path))]
   ) > 0
   if(get.xpose.tables & xposeTablesExist)
-    nmTab = get.xpose.tables(run = run, path=path)
+    nmTab = get.xpose.tables(run = run, path = path)
   nmext$XPtable =  nmTab
 
   ## remove XML file that was unzipped

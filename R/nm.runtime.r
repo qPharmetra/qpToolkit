@@ -10,7 +10,7 @@
 #' @export nm.runtime
 nm.runtime <- function(run, path = getOption("nmDir"))
 {
-   out = read.out(run=run, path = path)
+   out = read.out(run = run, path = path)
    meth = gsub(" #METH: ","",out[grep("#METH",out)])
    est = extract.number(out[grep("estimation time",out)])
    covt =  extract.number(out[grep("covariance time",out)])

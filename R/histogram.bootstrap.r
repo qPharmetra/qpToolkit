@@ -95,7 +95,7 @@ histogram.bootstrap <- function(
   for( i in excl.id ) {
     incl.flag <- incl.flag + rowSums( incl.ids == i )
   }
-  p1 <- p1[(incl.flag==0),]
+  p1 <- p1[(incl.flag == 0),]
 
   ## subset bootstrap based on certain convergence criteria
   if (min.failed) {p1 <- subset(p1, minimization.successful == 1)}
@@ -116,25 +116,25 @@ histogram.bootstrap <- function(
 
   for (i in 1:ncol(p1)) {
     if (mode(p1[[i]]) == "numeric" &&
-          sum(p1[[i]],na.rm=TRUE)) {
+          sum(p1[[i]],na.rm = TRUE)) {
       sp <- summary(p1[[i]])
-      dp <- stats::density(p1[[i]], na.rm=TRUE)
+      dp <- stats::density(p1[[i]], na.rm = TRUE)
       parmlabel <- names(p1)[i]
 
       if (total == 0) {
         bspage <- bspage + 1
-        grDevices::png(filename=paste(path,paste(filename.prefix, bspage, ".png", sep=""),
-                           sep = "/"), height=18, width=18, units = "cm",res = 600)
+        grDevices::png(filename = paste(path,paste(filename.prefix, bspage, ".png", sep = ""),
+                           sep = "/"), height = 18, width = 18, units = "cm",res = 600)
         graphics::par(mfrow = c(3,3))
       }
       total <- total + 1
 
-      qu <- stats::quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm=TRUE)
+      qu <- stats::quantile(p1[[i]], c((1-conf.int)/2, 1-(1-conf.int)/2), na.rm = TRUE)
 
-      legend=paste("n = ", nrow(p1), sep="")
-      if (showmean) {legend=paste(legend, "; Mean = ", sp[4], sep="")}
-      if (showmedian) {legend=paste(legend, "; Median = ", sp[3], sep="")}
-      if (showoriginal) {legend=paste(legend, "; Orig = ", o1[[i]], sep="")}
+      legend = paste("n = ", nrow(p1), sep = "")
+      if (showmean) {legend = paste(legend, "; Mean = ", sp[4], sep = "")}
+      if (showmedian) {legend = paste(legend, "; Median = ", sp[3], sep = "")}
+      if (showoriginal) {legend = paste(legend, "; Orig = ", o1[[i]], sep = "")}
 
       graphics::hist(p1[[i]],
            main = parmlabel,
@@ -143,31 +143,31 @@ histogram.bootstrap <- function(
            xlim = c(min(dp$x), max(dp$x)),
            breaks = 20,
            probability = TRUE,
-           sub=legend,
+           sub = legend,
            ...)
 
-      graphics::lines(dp, lwd=1, lty=3, col=densityCol)
+      graphics::lines(dp, lwd = 1, lty = 3, col = densityCol)
 
       if (showquart) {
-        graphics::abline(v=sp[2], lwd= 1, lty=3, col=outerCol) ## 1st quartile
-        graphics::abline(v=sp[5], lwd= 1, lty=3, col=outerCol) ## 3rd quartile
+        graphics::abline(v = sp[2], lwd = 1, lty = 3, col = outerCol) ## 1st quartile
+        graphics::abline(v = sp[5], lwd = 1, lty = 3, col = outerCol) ## 3rd quartile
       }
       if (showmean) {
-        graphics::abline(v=sp[4], lty=1, lwd=2, col=bootCentralCol) ## mean
+        graphics::abline(v = sp[4], lty = 1, lwd = 2, col = bootCentralCol) ## mean
       }
       if (showmedian) {
-        graphics::abline(v=sp[3], lty=1, lwd=2, col=bootCentralCol) ## median
+        graphics::abline(v = sp[3], lty = 1, lwd = 2, col = bootCentralCol) ## median
       }
       if (showoriginal) {
-        graphics::abline(v=o1[[i]], lty=1, lwd=1, col=obsCentralCol) ## original
+        graphics::abline(v = o1[[i]], lty = 1, lwd = 1, col = obsCentralCol) ## original
       }
       if (show95CI) {
-        graphics::abline(v=qu[1], lty=4, lwd=1, col=outerCol) ## 2.5% CL
-        graphics::abline(v=qu[2], lty=4, lwd=1, col=outerCol) ## 97.5% CL
-        graphics::text(qu[1], 0.98*max(dp$y), labels=signif(qu[1], digits = digits), cex = .8,
-             adj = c(0,0), pos='2')
-        graphics::text(qu[2], 0.98*max(dp$y), labels=signif(qu[2], digits = digits), cex = .8,
-             adj = c(0,0), pos='4')
+        graphics::abline(v = qu[1], lty = 4, lwd = 1, col = outerCol) ## 2.5% CL
+        graphics::abline(v = qu[2], lty = 4, lwd = 1, col = outerCol) ## 97.5% CL
+        graphics::text(qu[1], 0.98*max(dp$y), labels = signif(qu[1], digits = digits), cex = .8,
+             adj = c(0,0), pos ='2')
+        graphics::text(qu[2], 0.98*max(dp$y), labels = signif(qu[2], digits = digits), cex = .8,
+             adj = c(0,0), pos ='4')
       }
 
       if (total == 9) {

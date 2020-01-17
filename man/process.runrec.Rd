@@ -24,7 +24,7 @@ process.runrec(
 Either a LaTeX preformatted runrecord table (default) or a fully processed runrecord table without LaTeX preformatting (for inclusion into Microsoft products).
 }
 \description{
-Process the run record into a data frame ready for integration into LaTeX report. Note that the function assumes runrecord has been run with PsN option -maxlvl=0 and the function depends on input from \code{read.runrec}
+Process the run record into a data frame ready for integration into LaTeX report. Note that the function assumes runrecord has been run with PsN option -maxlvl = 0 and the function depends on input from \code{read.runrec}
 }
 \examples{
 rr = read.runrec(

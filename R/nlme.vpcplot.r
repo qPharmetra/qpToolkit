@@ -134,7 +134,7 @@ nlme.vpcplot <- function(
   if(length(ctp) == 0) groupFunc = ""
   if(length(ctp)>0)
   {
-    groupCovs = unlist(lapply(ctp[seq(min(length(ctp),2))], function(xxx) paste("format(",xxx,")", sep="")))
+    groupCovs = unlist(lapply(ctp[seq(min(length(ctp),2))], function(xxx) paste("format(",xxx,")", sep = "")))
     groupFunc = paste("|", groupCovs, sep = " ")
   }
 

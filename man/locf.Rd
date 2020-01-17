@@ -22,12 +22,12 @@ locf(c(NA,NA,1,NA,NA,2,NA,NA,NA,NA,3))
 # Note that initial missing values take next value (1),
 # so next value carried backward at beginning
 # Example with "."
-locf(c(".",".",1,".",".",2,".",".",".",".",3), na=".")
+locf(c(".",".",1,".",".",2,".",".",".",".",3), na = ".")
 # Note, if you have text in the vector, it is all converted to text.
 # This is by design so we can use different types.
 # Examples with factors
-fac=as.factor(c(".",".","A",".",".","B",".",".",".",".","C"))
-locf(fac,na=".")
-fac=as.factor(c(NA,NA,"A",NA,NA,"B",NA,NA,NA,NA,"C"))
-locf(fac,na=NA)
+fac = as.factor(c(".",".","A",".",".","B",".",".",".",".","C"))
+locf(fac,na = ".")
+fac = as.factor(c(NA,NA,"A",NA,NA,"B",NA,NA,NA,NA,"C"))
+locf(fac,na = NA)
 }

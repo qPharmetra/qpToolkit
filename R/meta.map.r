@@ -19,15 +19,15 @@
 #' @seealso \code{\link{make.map}}
 #' @export
 #' @examples
-#' test = c("Ref", paste("comp", 1:5, sep=""))
-#' test.ds = data.frame(drg = rep(test, times=seq(12,2,-2)),
+#' test = c("Ref", paste("comp", 1:5, sep = ""))
+#' test.ds = data.frame(drg = rep(test, times = seq(12,2,-2)),
 #'                      ref.id = c(rep(1:4, 10),1,1))
 #'
 #' names(test.ds)
-#' meta.map(test.ds, compNm="drg", trialNm="ref.id", refNm="Ref", dist=1.4)
+#' meta.map(test.ds, compNm = "drg", trialNm = "ref.id", refNm = "Ref", dist = 1.4)
 
 meta.map <- function(meta.ds, compNm, trialNm, refNm,
-                    ref.col=blue[2], comp.col=green[3],dist=1.35){
+                    ref.col = blue[2], comp.col = green[3],dist = 1.35){
   # Draw a mapping of the relationships in a meta-analysis database, with the
   # size of the nodes being proportional to the fraction that the comparators
   # make up database, and line thickness being proportional to the number of two-way
@@ -47,7 +47,7 @@ meta.map <- function(meta.ds, compNm, trialNm, refNm,
   trials = meta.ds[!duplicated(paste(meta.ds[,trialNm], meta.ds[,compNm])),]
 
   # Find the number of trials for each comparator
-  tabl = data.frame(table(Drug=trials[,compNm]))
+  tabl = data.frame(table(Drug = trials[,compNm]))
   ref = tabl[grepl(refNm, tabl$Drug),]
   comps = tabl[!grepl(refNm, tabl$Drug),]
 
@@ -60,10 +60,10 @@ meta.map <- function(meta.ds, compNm, trialNm, refNm,
   comps$pos.x = 10*cos(ints)
   comps$pos.y = 10*sin(ints)
 
-  combo.m = make.map(ds=meta.ds, cNm=compNm, trNm=trialNm)
+  combo.m = make.map(ds = meta.ds, cNm = compNm, trNm = trialNm)
 
   # find x-coordinates
-  comp.map = data.frame(table(comp=combo.m$comp))
+  comp.map = data.frame(table(comp = combo.m$comp))
   comp.map$comp1 = sub("([a-z,A-Z]) .*", "\\1", as.character(comp.map$comp))
   comp.map$comp2 = sub(".* ([a-z,A-Z])", "\\1", as.character(comp.map$comp))
   comp.map$c1x = comp.map$c1y = comp.map$c2x = comp.map$c2y = rep(0, nrow(comp.map))
@@ -71,36 +71,36 @@ meta.map <- function(meta.ds, compNm, trialNm, refNm,
 
   # Assign positions for lines and line thicknesses
   for(ii in 1:lunique(comps$Drug)){
-    comp.map$c1x[comp.map$comp1==comps$Drug[ii]] = comps$pos.x[ii]
-    comp.map$c2x[comp.map$comp2==comps$Drug[ii]] = comps$pos.x[ii]
-    comp.map$c1y[comp.map$comp1==comps$Drug[ii]] = comps$pos.y[ii]
-    comp.map$c2y[comp.map$comp2==comps$Drug[ii]] = comps$pos.y[ii]
+    comp.map$c1x[comp.map$comp1 == comps$Drug[ii]] = comps$pos.x[ii]
+    comp.map$c2x[comp.map$comp2 == comps$Drug[ii]] = comps$pos.x[ii]
+    comp.map$c1y[comp.map$comp1 == comps$Drug[ii]] = comps$pos.y[ii]
+    comp.map$c2y[comp.map$comp2 == comps$Drug[ii]] = comps$pos.y[ii]
     comp.map$lwds = 30*comp.map$Freq/max(comp.map$Freq)
   }
 
   # make the plot space
   graphics::plot(0,0,
-       xlim=c(-15, 15),
-       ylim=c(-15,15),
+       xlim = c(-15, 15),
+       ylim = c(-15,15),
        type = 'n',
        xlab = " ",
        ylab = " ",
-       axes=FALSE)
+       axes = FALSE)
   # Draw the segments connecting the nodes
-  graphics::segments(x0=comp.map$c1x, y0=comp.map$c1y, x1=comp.map$c2x, y1=comp.map$c2y, lwd=comp.map$lwds, col=gray[5])
+  graphics::segments(x0 = comp.map$c1x, y0 = comp.map$c1y, x1 = comp.map$c2x, y1 = comp.map$c2y, lwd = comp.map$lwds, col = gray[5])
 
   # Draw the Reference at 0,0
-  ell = ellipse(0, scale=1.2*c(1,0.65),centre = c(0,0))
-  graphics::polygon(ell, col=ref.col)
+  ell = ellipse(0, scale = 1.2*c(1,0.65),centre = c(0,0))
+  graphics::polygon(ell, col = ref.col)
 
   # Draw the comparator nodes
   for(i in 1:nrow(comps)){
-    ell = ellipse(0, scale=1.2*sqrt(comps$Freq[i]/ref$Freq)*c(1,.65),centre = c(comps$pos.x[i],comps$pos.y[i]))
-    graphics::polygon(ell, col=comp.col)
+    ell = ellipse(0, scale = 1.2*sqrt(comps$Freq[i]/ref$Freq)*c(1,.65),centre = c(comps$pos.x[i],comps$pos.y[i]))
+    graphics::polygon(ell, col = comp.col)
   }
-  graphics::text(0,0, labels=paste(ref$Drug, "\n", ref$Freq, sep=""), offset=-1, pos=3)
-  # text(comps$pos.x, comps$pos.y, labels=comps$Freq, pos=3, offset=-0.25, cex=0.7)
-  graphics::text(dist*comps$pos.x, dist*comps$pos.y, labels=paste(comps$Drug, "\n", comps$Freq, sep=""),
-       pos=3, offset=-0.25)
+  graphics::text(0,0, labels = paste(ref$Drug, "\n", ref$Freq, sep = ""), offset =-1, pos = 3)
+  # text(comps$pos.x, comps$pos.y, labels = comps$Freq, pos = 3, offset =-0.25, cex = 0.7)
+  graphics::text(dist*comps$pos.x, dist*comps$pos.y, labels = paste(comps$Drug, "\n", comps$Freq, sep = ""),
+       pos = 3, offset =-0.25)
 }
 

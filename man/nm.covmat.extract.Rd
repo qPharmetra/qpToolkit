@@ -18,7 +18,7 @@ Covariate matrix
 Extract covariance matrix from a .cov file
 }
 \examples{
-nm.unzip(run="example1", extension=".cov", path = file.path(getOption("qpExampleDir"),"example1"))
+nm.unzip(run = "example1", extension = ".cov", path = file.path(getOption("qpExampleDir"),"example1"))
 run1.covmat =  nm.covmat.extract("example1", path = getOption("qpExampleDir"))
 names(run1.covmat)
 names(run1.covmat[[1]])

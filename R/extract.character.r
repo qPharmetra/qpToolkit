@@ -7,8 +7,8 @@
 #' @export
 #' @seealso \code{\link{extract.number}}
 #' @examples
-#' extract.character(x="df12Lee31df")
-#' extract.character(x="df1231df", TRUE)
+#' extract.character(x = "df12Lee31df")
+#' extract.character(x = "df1231df", TRUE)
 
 extract.character <- function(x, collapse = FALSE)
 {

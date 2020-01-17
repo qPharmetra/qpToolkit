@@ -23,8 +23,8 @@
 #'                fixed = Asym + R0 + lrc ~ 1,
 #'                random = Asym ~ 1,
 #'                start = c(Asym = 103, R0 = -8.5, lrc = -3.3),
-#'                problem="Initial model",
-#'                reference=0
+#'                problem = "Initial model",
+#'                reference = 0
 #' )
 #' summary(fm1$object) # note one must specify "$object" here
 #' fm1$problem
@@ -36,8 +36,8 @@
 #'                fixed = Asym + R0 + lrc ~ 1,
 #'                random = pdDiag(Asym + lrc ~ 1),
 #'                start = c(Asym = 103, R0 = -8.5, lrc = -3.3),
-#'                problem="Different random effect",
-#'                reference=1
+#'                problem = "Different random effect",
+#'                reference = 1
 #' )
 #' summary(fm2$object)
 #' fm2$problem

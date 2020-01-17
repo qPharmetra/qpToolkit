@@ -29,12 +29,12 @@ globalVariables(c(
 #' @examples
 #' library(Hmisc)
 #' out = get.xpose.tables('example1',getOption('qpExampleDir'))
-#' out$EVID=0
+#' out$EVID = 0
 #' trellis.strip.color()
 #' xyplot(Cbind(CONC,PRED,IPRED,EVID) ~ TIME
 #'        , groups = ID
 #'        , data = subset(out)
-#'        , scales = list(x = list(relation = 'free'),y = list(log=10))
+#'        , scales = list(x = list(relation = 'free'),y = list(log = 10))
 #'        , panel = panel.modelfit
 #'        , logY = TRUE
 #'        , yscale.components = yscale.components.log10
@@ -52,6 +52,6 @@ panel.modelfit <- function(
       okobs = ok & yy[, 3] %nin% c(1,2)
       llines(x[okobs], y[okobs], ..., col = obs.color, type = type.obs)
       llines(x[ok], if(logY) log10(yy[ok,1]) else yy[ok,1], col = pred.color, lty = pred.lty, lwd = 3)
-      llines(x[ok], if(logY) log10(yy[ok,2]) else yy[ok,2], col = ipred.color, lty=ipred.lty, lwd = 1)
+      llines(x[ok], if(logY) log10(yy[ok,2]) else yy[ok,2], col = ipred.color, lty = ipred.lty, lwd = 1)
    }
 }

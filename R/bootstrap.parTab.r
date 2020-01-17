@@ -22,13 +22,13 @@
 #'  filename = "bootstrap/raw_results_bs4011.csv",
 #'  structure.filename = "bootstrap/raw_results_structure"
 #' )
-#' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
-#' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))[c(13,14,15),]
-#' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1),
+#' bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1))
+#' bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1))[c(13,14,15),]
+#' bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1),
 #' transformations = list(log = 13:14, logit = 15))[c(13,14,15),] # partly fictional
 bootstrap.ParTab <- function(
   bootstrap,
-  idx = list(theta=1,omega=1,sigma=1),
+  idx = list(theta = 1,omega = 1,sigma = 1),
   probs = 0.95,
   central = median,
   digits = 3,
@@ -46,16 +46,16 @@ bootstrap.ParTab <- function(
 
   stopifnot(length(probs) == 1)
   ci = c((1-probs)/2,(probs+1)/2)
-  out = data.frame(t(apply(bootstrap$bootstrap[-1,], 2, quantile, probs=ci)))
+  out = data.frame(t(apply(bootstrap$bootstrap[-1,], 2, quantile, probs = ci)))
   names(out) = c('Lower', 'Upper')
   out$Estimate = apply(bootstrap$bootstrap[-1,], 2, central)
   out$Orig.Estimate = unlist(bootstrap$bootstrap[1,])
   out = out[7:nrow(out), ]
-  thn = paste("THETA", idx$theta,sep="")
-  omn = if(!is.null(idx$omega)) paste("OMEGA", idx$omega,sep="") else character(0)
-  sgn = if(!is.null(idx$sigma)) paste("SIGMA", idx$sigma,sep="") else character(0)
+  thn = paste("THETA", idx$theta,sep = "")
+  omn = if(!is.null(idx$omega)) paste("OMEGA", idx$omega,sep = "") else character(0)
+  sgn = if(!is.null(idx$sigma)) paste("SIGMA", idx$sigma,sep = "") else character(0)
   parries = c(thn,omn,sgn)
-  if(length(parries) != nrow(out)) parries = paste("THETA", 1:nrow(out),sep="")
+  if(length(parries) != nrow(out)) parries = paste("THETA", 1:nrow(out),sep = "")
   out$Parameter = parries
   out$Descriptor = row.names(out)
   ## perform transformations if needed

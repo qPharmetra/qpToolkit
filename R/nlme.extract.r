@@ -118,7 +118,7 @@ nlme.extract <- function(obj,
 	names(ss2) = unlist(lapply(tmp, names))
 	if(intervals.OK == TRUE) rvar = nlme.getRanPars(obj)$var
 	if(intervals.OK == FALSE) rvar = NULL
-	ranef = list(ranef = c(val, list(var=rvar)))
+	ranef = list(ranef = c(val, list(var = rvar)))
 
 	## create sampling grid of fixed effects
 	myfix = nlme.getFixPars(obj)$coef
@@ -131,7 +131,7 @@ nlme.extract <- function(obj,
 	dataVars = all.vars(form)
 	dataVars = dataVars[!dataVars %in% c(names(fixef(obj)), ranNames)]
 	ss2 = cbind(ss2, newdata[, dataVars])
-  if(length(dataVars)==1) names(ss2)[length(names(ss2))] = dataVars
+  if(length(dataVars) == 1) names(ss2)[length(names(ss2))] = dataVars
 
 	## work on varStruct component
 	pV <- obj$modelStruct$varStruct

@@ -16,7 +16,7 @@
 #' smean.cl.normal(test.vector) ## arithmetic mean and 95% confidence intervals
 #' sgeomean.cl.normal(test.vector) ## geometic mean and 95% confidence intervals
 
-sgeomean.cl.normal <- function(x, conf.int = 0.95, log.base=exp(1),
+sgeomean.cl.normal <- function(x, conf.int = 0.95, log.base = exp(1),
                               na.rm = TRUE)
 {
   if (na.rm)
@@ -32,6 +32,6 @@ sgeomean.cl.normal <- function(x, conf.int = 0.95, log.base=exp(1),
     mult = 0
   }
   se[is.na(se)] = 0
-  c(Mean = exp(xbar), Lower = exp(xbar - mult * se), Upper = exp(xbar + mult * se), N=n)
+  c(Mean = exp(xbar), Lower = exp(xbar - mult * se), Upper = exp(xbar + mult * se), N = n)
 }
 

@@ -36,12 +36,12 @@ A graph mapping the dimensions of the meta-analysis dataset
 Draw a mapping of a meta-analysis dataset
 }
 \examples{
-test = c("Ref", paste("comp", 1:5, sep=""))
-test.ds = data.frame(drg = rep(test, times=seq(12,2,-2)),
+test = c("Ref", paste("comp", 1:5, sep = ""))
+test.ds = data.frame(drg = rep(test, times = seq(12,2,-2)),
                      ref.id = c(rep(1:4, 10),1,1))
 
 names(test.ds)
-meta.map(test.ds, compNm="drg", trialNm="ref.id", refNm="Ref", dist=1.4)
+meta.map(test.ds, compNm = "drg", trialNm = "ref.id", refNm = "Ref", dist = 1.4)
 }
 \seealso{
 \code{\link{make.map}}

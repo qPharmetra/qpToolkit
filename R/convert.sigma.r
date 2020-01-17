@@ -20,7 +20,7 @@ convert.sigma <- function(x){
   X = names(x)
   X = Hmisc::unPaste(gsub(")", "", substring(X,7)), ",")
   neworder = order(X[[2]])
-  names(x) = paste("SIGMA(",X[[2]], ",", X[[1]], ")", sep="")
+  names(x) = paste("SIGMA(",X[[2]], ",", X[[1]], ")", sep = "")
   x[neworder]
 }
 

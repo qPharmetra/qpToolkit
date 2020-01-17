@@ -5,7 +5,7 @@
 # note:     has not been thoroughly tested for objects with extended random, weights, and/or correlation structures
 
 ## "debug" line: run this line to get objects loaded to debug the function if needed
-#func = value ~ time  | dose; object=  fit.PD004.nlme$object; xrange=50;level=1; method = "partial.residuals";  uncertainty = F ; nrep = 20;   reference.subset = NULL
+#func = value ~ time  | dose; object =  fit.PD004.nlme$object; xrange = 50;level = 1; method = "partial.residuals";  uncertainty = F ; nrep = 20;   reference.subset = NULL
 
 # ROXYGEN Documentation
 #' Prediction tool for nlme object
@@ -85,7 +85,7 @@
 #'   func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals"
 #' )
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
-#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2))
+#' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty = 2))
 
 nlme.predict <- function(
   func,
@@ -138,13 +138,13 @@ nlme.predict <- function(
   ## binning by X if requested
   if(!is.null(nx) & is.numeric(nx))
   {
-    if(length(nx) == 1) ## cut3(x, g=nx)
+    if(length(nx) == 1) ## cut3(x, g = nx)
     {
-      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), g=nx, levels.mean = TRUE)
-      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), g=nx, levels.mean = TRUE)
+      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), g = nx, levels.mean = TRUE)
+      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), g = nx, levels.mean = TRUE)
     } else {
-      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), cuts=nx, levels.mean = TRUE)
-      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), cuts=nx, levels.mean = TRUE)
+      newdata[, xfVarNames] = cut3(as.numeric(newdata[, xfVarNames]), cuts = nx, levels.mean = TRUE)
+      obsData[, xfVarNames] = cut3(as.numeric(obsData[, xfVarNames]), cuts = nx, levels.mean = TRUE)
     }
   }
 
@@ -158,7 +158,7 @@ nlme.predict <- function(
   objPars = stats::coef(object)
   fixpars = fixef(object)
   uncPars = data.frame(mvrnorm(nrep, fixpars, object$varFix))
-  fixPars = data.frame(matrix(fixpars, nrow=1))
+  fixPars = data.frame(matrix(fixpars, nrow = 1))
   names(fixPars) = names(uncPars) = names(fixpars)
 
   covFormVars = unique(c(allX[allX %nin% names(objPars)],  gfVarNames, allX.func))
@@ -212,8 +212,8 @@ nlme.predict <- function(
     rpnum = nrow(xnew)
     idx = rep(1 : rpnum, nrow(mpData))
     xnew = data.frame(xnew[idx,])
-    idx = matrix(rep(1:nrow(mpData), rpnum), ncol = nrow(mpData), nrow = rpnum, byrow=TRUE)
-    idx = matrix(idx, ncol=1, byrow=TRUE)
+    idx = matrix(rep(1:nrow(mpData), rpnum), ncol = nrow(mpData), nrow = rpnum, byrow = TRUE)
+    idx = matrix(idx, ncol = 1, byrow = TRUE)
     simData = as.data.frame(mpData[idx, ])
     simData[, names(simData) %in% xfVarNames] = c(xnew)
     #names(simData)
@@ -298,8 +298,8 @@ nlme.predict <- function(
     names(myList) = nams
     return(myList)
   }
-  sList.sim = if(length(gfVarNames)==0) create.list(simData, xfVarNames) else create.list(simData, c(xfVarNames, gfVarNames))
-  sList.obs = if(length(gfVarNames)==0) create.list(obsData, xfVarNames) else create.list(obsData, c(xfVarNames, gfVarNames))
+  sList.sim = if(length(gfVarNames) == 0) create.list(simData, xfVarNames) else create.list(simData, c(xfVarNames, gfVarNames))
+  sList.obs = if(length(gfVarNames) == 0) create.list(obsData, xfVarNames) else create.list(obsData, c(xfVarNames, gfVarNames))
 
   ## summarize predicted and observed on the model.dataset
   qypr = Hmisc::summarize(simData$ypr,            sList.sim, smean.cl.normal, stat.name = "Mean")
@@ -320,13 +320,13 @@ nlme.predict <- function(
 
   ## create partial residuals
   ##  approximate the predicted relationship for simulation data
-  ##  by adding residuals to arrive at partial residuals (RES=DV+PRED)
+  ##  by adding residuals to arrive at partial residuals (RES = DV+PRED)
   obsData$partres = rep(NA, nrow(obsData))
   qpar = NULL
 
   if(method == "partial.residuals")
   {
-  if(length(gfVarNames)==0){
+  if(length(gfVarNames) == 0){
     obsData$partres = stats::approx(qYPred[, xfVarNames], qYPred$yPrd, xObs)$y + theResiduals
     } else {
       gf.levels = sunique(eval(gfLevel,qYPred))

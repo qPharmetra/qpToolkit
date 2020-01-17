@@ -14,21 +14,21 @@
 #' @export pk.pred pk.1comp.iv pk.1comp.0abs pk.1comp.1abs pk.1comp.1abs.ss pk.1comp.10abs pk.1comp.lag pk.2comp.iv pk.2comp.0abs pk.2comp.1abs pk.2comp.1abs.m pk.2comp.1abs.ss pk.3comp.iv pk.3comp.iv.ss pk.3comp.1abs pk.3comp.1abs.ss eff.1comp.iv eff.1comp.1abs eff.1comp.1abs.ss eff.2comp.iv eff.2comp.1abs eff.2comp.1abs.ss eff.3comp.1abs
 #' @examples
 #' # 1comp elimination, 1st-order absorption
-#' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+#' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 #'    , pk.func = pk.1comp.1abs, parms = c(1,25, 0.1, 5,0.5)
 #' )
 #'
 #' # 2comp elimination, 0-order absoorption
-#' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+#' pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 #'    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE
 #' )
 #'
 #' ## demo effect prediction after single and multiple doses
 #' eff.1comp.1abs(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25, 0.05))
-#' pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+#' pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 #'    , pk.func = eff.1comp.iv, parms = c(1,10, 0.25)
 #' )
-#' pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+#' pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 #'    , pk.func = pk.1comp.1abs, e.func = eff.1comp.1abs
 #'    , parms = c(1,10, 0.25, 0.05)
 #' )
@@ -48,7 +48,7 @@ pk.pred <- function(doses, t.doses, t.obs, pk.func, parms){
 	if(length(doses) != length(t.doses)) stop("Need same number of doses and dose times")
 
 	# find difference between observation time and dose time for each dose
-	t.star = apply(matrix(t.obs, ncol=1), 1
+	t.star = apply(matrix(t.obs, ncol = 1), 1
 						, function(tob, td) ifelse(tob >= td, tob-td, 0)
 						, t.doses)
 
@@ -56,7 +56,7 @@ pk.pred <- function(doses, t.doses, t.obs, pk.func, parms){
 	dose.cont = (t.star>0) * pk.func(doses, t.star, parms)
 
 	# dose.cont is a matrix, columns are times, rows are individual doses
-	dose.cont = matrix(dose.cont, nrow=length(t.doses))
+	dose.cont = matrix(dose.cont, nrow = length(t.doses))
 
 	# Apply superposition -- total concentration is sum of contributions of each
 	# dose at each time
@@ -103,7 +103,7 @@ pk.1comp.0abs <- function(dose, tob, parms){
 
 	return(conc)
 } # pk.1comp.0abs
-#pk.1comp.0abs(100, tob = seq(0,140), parms=  c(1,3,1))
+#pk.1comp.0abs(100, tob = seq(0,140), parms =  c(1,3,1))
 
 # ROXYGEN Documentation
 #' @describeIn pk.pred
@@ -118,7 +118,7 @@ pk.1comp.1abs <- function(dose, tob, parms){
 	return((tob>0) * dose * ka/v/(ka-kel) * (exp(-kel*tob) - exp(-ka*tob)))
 } # pk.1comp.1abs
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.1comp.1abs, parms = c(.5, 25, 1))
 }
 
@@ -145,7 +145,7 @@ pk.1comp.1abs.ss <- function(dose, tob, parms){
 	(tst>0) * (dose*ka/v/(ka-k10)) * (exp(-k10*tst)/(1-exp(-k10*tau)) -
             exp(-ka*tst)/(1-exp(-ka*tau)))
 }	# pk.1comp.1abs.ss
-pk.1comp.1abs.ss(100, seq(0.1,23.99,length=100), c(1,25,0.5,24))
+pk.1comp.1abs.ss(100, seq(0.1,23.99,length = 100), c(1,25,0.5,24))
 
 # ROXYGEN Documentation
 #' @describeIn pk.pred
@@ -171,7 +171,7 @@ pk.1comp.10abs <- function(dose, tob, parms){
 }
 
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.1comp.1abs, parms = c(1,25, 0.1, 5,0.5))
 }
 
@@ -192,7 +192,7 @@ pk.1comp.lag <- function(dose, tob, parms) {
 	(tst > 0)*dose*ka/v/(ka-kel)*(exp(-kel*tst) - exp(-ka*tst))
 } # pk.1comp.lag
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.1comp.lag, parms = c(1,25, 0.1, 2))
 }
 
@@ -226,7 +226,7 @@ pk.2comp.iv <- function(dose, tob, parms){
 	return(conc)
 } # pk.2comp.iv
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.2comp.iv, parms = c(10,30, 3, 90), log = TRUE)
 }
 
@@ -262,7 +262,7 @@ pk.2comp.0abs <- function(dose, tob, parms){
   return((tob <= dur)*k0/v1*t1 + (tob > dur)*k0/v1*t2)
 } ## pk.2comp.0abs
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE)
 }
 
@@ -296,7 +296,7 @@ pk.2comp.1abs <- function(dose, tob, parms){
                         )
 } # pk.2comp.1abs
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.2comp.1abs, parms = c(10,30, 3, 90,100), log = TRUE)
 }
                                                c(10,30, 3, 90)
@@ -327,7 +327,7 @@ pk.2comp.1abs.m <- function(dose, tob, parms){
                         )
 } # pk.2comp.1abs.m
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.2comp.1abs.m, parms = c(10,0.2, 0.03, 0.25, 50), log = TRUE)
 }
 
@@ -451,7 +451,7 @@ pk.3comp.iv <- function(dose, tob, parms){
                       )
 } # pk.3comp.iv
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 	 pk.func = pk.3comp.iv, parms = c(10,3,5,40,2,100))
 }
 
@@ -561,8 +561,8 @@ pk.3comp.1abs <- function(dose, tob, parms){
                       )
 } # pk.3comp.1abs
 if(F){
-  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
-	 pk.func = pk.3comp.1abs, parms = c(3,3,5,40,2,100, 4), log=TRUE)
+  pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
+	 pk.func = pk.3comp.1abs, parms = c(3,3,5,40,2,100, 4), log = TRUE)
 }
 
 # ROXYGEN Documentation
@@ -669,9 +669,9 @@ eff.1comp.1abs <- function(dose, tob, parms){
 }
 if(F){
   eff.1comp.1abs(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25, 0.05))
-  pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
   	pk.func = eff.1comp.iv, parms = c(1,10, 0.25))
-  pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+  pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
   	pk.func = pk.1comp.1abs, e.func = eff.1comp.1abs,
   	parms = c(1,10, 0.25, 0.05))
 }

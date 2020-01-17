@@ -17,15 +17,15 @@
 #' @export
 
 
-cfc <- function(obj.type="data.frame",strings.as.factors=FALSE,row.names=NULL) {
+cfc <- function(obj.type = "data.frame",strings.as.factors = FALSE,row.names = NULL) {
   #copy from clipboard to R
-  if (obj.type == "vector")  result = scan("clipboard", sep="\t")
-  if (obj.type == "matrix")	result = as.matrix(read.table(file="clipboard",header=FALSE,sep="\t"))
-  if (obj.type == "data.frame")	result = read.table(	file="clipboard",
-                                                     header=TRUE,
-                                                     sep="\t",
-                                                     row.names=row.names,
-                                                     stringsAsFactors=strings.as.factors)
+  if (obj.type == "vector")  result = scan("clipboard", sep = "\t")
+  if (obj.type == "matrix")	result = as.matrix(read.table(file = "clipboard",header = FALSE,sep = "\t"))
+  if (obj.type == "data.frame")	result = read.table(	file = "clipboard",
+                                                     header = TRUE,
+                                                     sep = "\t",
+                                                     row.names = row.names,
+                                                     stringsAsFactors = strings.as.factors)
   copy.from.clip = result
 }
 
@@ -85,7 +85,7 @@ if(F) {
 
 
   # select range J3:N16
-  my.df = cfc(row.names=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan2"))
+  my.df = cfc(row.names = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan2"))
   class(my.df)
   my.df
   #               a         b  c  d   e

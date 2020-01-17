@@ -32,7 +32,7 @@ myBoot = read.bootstrap(path = getOption("qpExampleDir")
   , filename = "raw_results_bs4011.csv"
   , structure.filename = "raw_results_structure"
   )
-bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))
+bootstrap.ParTab(myBoot, idx = list(theta = 1:13,omega = 1:7,sigma = 1))
 names(myBoot)
 str(myBoot$bootstrap)
 myBoot$structure

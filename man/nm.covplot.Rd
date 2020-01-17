@@ -97,7 +97,7 @@ head(nmcov$conData.par)# essential: conVariable conValue variable value
 head(nmcov$catData.par)# essential: catVariable catValue variable value
 
 #for continuous plots get kickstarted with:
-# xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable
+# xyplot(value ~ conValue | casefold(variable, upper = TRUE) * conVariable
 #  , data = conData, panel = panel.xyplot)
 #for categorical plots:
 # xyplot(value ~ as.factor(paste(catValue)) | variable * catVariable

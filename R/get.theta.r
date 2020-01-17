@@ -11,11 +11,11 @@ globalVariables('Parameter')
 #' @examples
 #' get.theta("example1",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
 get.theta <- function(run
-                   , path=getOption("nmDir")
+                   , path = getOption("nmDir")
                    , ...
 )
 {
-   partab <- nm.params.table(run=run, path=path, ...)
+   partab <- nm.params.table(run = run, path = path, ...)
    subset(partab,grepl("THETA",Parameter))
 }
 

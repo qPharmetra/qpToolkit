@@ -18,8 +18,8 @@ A character string or vector if the input has multiple character blocks.
 Takes character string and parses the character input from it, if available
 }
 \examples{
-extract.character(x="df12Lee31df")
-extract.character(x="df1231df", TRUE)
+extract.character(x = "df12Lee31df")
+extract.character(x = "df1231df", TRUE)
 }
 \seealso{
 \code{\link{extract.number}}

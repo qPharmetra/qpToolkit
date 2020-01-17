@@ -80,7 +80,7 @@ trellis.strip.color()
 xyplot(CONC ~ TIME
        , data = out
        , groups = ID
-       , subset = EVID==0
+       , subset = EVID == 0
        , aspect = 1
        , scales = list(x = list(relation = "free"), y = list(log = 10))
        , panel = panel.meanspag
@@ -92,7 +92,7 @@ ptimes = seq(min(out$TIME),max(out$TIME), length = 14)
 xyplot(CONC ~ Hmisc::Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))
       , data = out
       , groups = ID
-      , subset = EVID==0
+      , subset = EVID == 0
       , aspect = 1
       , scales = list(x = list(relation = "free"), y = list(log = 10))
       , panel = function(x,y,...)

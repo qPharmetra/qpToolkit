@@ -53,18 +53,18 @@ Process parameter table for inclusion into LaTeX, or MS Excel or Word
 \examples{
 process.parTable(
    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"), runIndex = 1)
- , transformations = list(log=c(1:12))
+ , transformations = list(log = c(1:12))
  , missing.format = "...."
 )
 process.parTable(
    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
- , transformations = list(logit=c(7,9))
+ , transformations = list(logit = c(7,9))
  , plain = TRUE
  , missing.format = "...."
 )
 process.parTable(
    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
- , transformations = list(logit=c(7,9))
+ , transformations = list(logit = c(7,9))
  , plain = TRUE
  , formatted = FALSE
  , missing.format = "...."

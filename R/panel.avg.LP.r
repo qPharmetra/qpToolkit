@@ -20,7 +20,7 @@ panel.avg.LP <- function (x, y, fun = mean
                          , horizontal = TRUE, lwd = reference.line$lwd,
                          lty = reference.line$lty, col, col.line =
                          reference.line$col, type = "l", ...,
-                         identifier = "linejoin", show.points=FALSE)
+                         identifier = "linejoin", show.points = FALSE)
 {# modified version of panel.average so that lines and points can be produced, used
   # in panel.meanspag
   x <- as.numeric(x)
@@ -35,7 +35,7 @@ panel.avg.LP <- function (x, y, fun = mean
     yy <- seq_along(vals)
     xx <- numeric(length(yy))
     for (i in yy) xx[i] <- fun(x[y == vals[i]])
-    if(show.points) panel.points(xx, vals[yy], col = col.line, cex=1.1,..., identifier=identifier)
+    if(show.points) panel.points(xx, vals[yy], col = col.line, cex = 1.1,..., identifier = identifier)
     panel.lines(xx, vals[yy], col = col.line, lty = lty,
                 lwd = lwd, ..., identifier = identifier)
   }
@@ -44,7 +44,7 @@ panel.avg.LP <- function (x, y, fun = mean
     xx <- seq_along(vals)
     yy <- numeric(length(xx))
     for (i in xx) yy[i] <- fun(y[x == vals[i]])
-    if(show.points) panel.points(vals[xx], yy, col = col.line, cex=1.1,..., identifier=identifier)
+    if(show.points) panel.points(vals[xx], yy, col = col.line, cex = 1.1,..., identifier = identifier)
     panel.lines(vals[xx], yy, col = col.line, lty = lty,
                 lwd = lwd, ..., identifier = identifier)
   }

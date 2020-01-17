@@ -93,7 +93,7 @@
 #'    , fit.PD004.nlme$object, method = "residuals")
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1)
-#'    , abline = list(h = 0, lty=2))
+#'    , abline = list(h = 0, lty = 2))
 plot.fit <- function(x, ..., newFunc,
   yLabel, xLabel, label.cex = 1.25,
   xLimits, yLimits,
@@ -180,7 +180,7 @@ plot.fit <- function(x, ..., newFunc,
     lgx = logX,
     lgy = logY,
     panel = function(x, y, subscripts, ..., partres, yfv, xfv, gfv, obsData, pData, lgy, lgx, lc, pc, mnplot, seplot)
-      #subscripts = pData$dose==10
+      #subscripts = pData$dose == 10
     {
       panel.xyplot(x, y,  ..., type = "l", col = lc, lwd = 3)
 
@@ -278,6 +278,6 @@ if(F)
   plot(fit.PD004.pred.nlme)
   fit.PD004.pred.nlme = nlme.predict(func = value ~ time | dose, fit.PD004.nlme$object, method = "residuals")
   plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
-  plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2))
+  plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty = 2))
 
 }

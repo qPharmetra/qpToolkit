@@ -36,8 +36,8 @@
 xml.Extract.NM.Value <- function(x, what = "theta")
 {
   theValues = unlist(lapply(x$children, function(y) as.numeric(xmlValue(y))))
-  theNames = paste(casefold(what,upper=TRUE),
-                   unlist(lapply(x$children, xmlAttrs)), sep="")
+  theNames = paste(casefold(what,upper = TRUE),
+                   unlist(lapply(x$children, xmlAttrs)), sep = "")
   if(!is.null(theValues)) names(theValues) = theNames
   return(theValues)
 }

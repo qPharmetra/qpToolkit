@@ -12,7 +12,7 @@
 #' @param name name of the column to be added
 #' @export
 #' @examples
-#' input.df = data.frame(A=1:2,B=2:3,C=4:5)
+#' input.df = data.frame(A = 1:2,B = 2:3,C = 4:5)
 #' input.df
 #' expand.data(input.df, values = c(1,3,7), "Klaas")
 expand.data <- function(data, values, name = "variable.added")

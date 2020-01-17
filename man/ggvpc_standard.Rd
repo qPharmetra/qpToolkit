@@ -65,25 +65,25 @@ vpc.all = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_str
 ggvpc_standard(vpc.all)
 
 ggvpc_standard(vpc.all) +
-  labs(x="Time (h)", y="Concentration (ng/ml)")
+  labs(x = "Time (h)", y = "Concentration (ng/ml)")
 
 ## different Prediction Interval (PI), let's use 90\% instead of 95\%
 ggvpc_standard(vpc.all, PI = c(0.05,0.95)) +
-  labs(x="Time (h)", y="Concentration (ng/ml)")
+  labs(x = "Time (h)", y = "Concentration (ng/ml)")
 
 ## logging axes
 ggvpc_standard(vpc.all) +
-  labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10() + scale_x_log10()
+  labs(x = "Time (h)", y = "Concentration (ng/ml)") + scale_y_log10() + scale_x_log10()
 
 #modify colors and transparency:
 ggvpc_standard(vpc.all, area.col = indigo, alpha = 1, point.shape = 15) +
-  labs(x="Time (h)", y="Concentration (ng/ml)") + scale_y_log10()
+  labs(x = "Time (h)", y = "Concentration (ng/ml)") + scale_y_log10()
 
 ## dealing with stratification
 myVPC = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_base_strt"))
 
 p = ggvpc_standard(vpc.all, yrange.stretch = c(1,1))
-p = p +  labs(x="Time (h)", y="Concentration (ng/ml)")
+p = p +  labs(x = "Time (h)", y = "Concentration (ng/ml)")
 p +  facet_wrap(~strata) + scale_y_log10()
 }
 \seealso{

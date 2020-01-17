@@ -43,7 +43,7 @@
 #' @importFrom stats as.formula
 nm.vpcplot <- function(path,
          result = "vpc_results.csv",
-         tab = dir(path=path,pattern = "^vpctab")[1],
+         tab = dir(path = path,pattern = "^vpctab")[1],
          PI.limits = c(0.025,0.975),
          subset = NULL,
          output = FALSE,
@@ -90,7 +90,7 @@ nm.vpcplot <- function(path,
                                 area.outer = predcol.area.outer))
 
   ## parse out the vpc results into predicted (sim) and observed (obs)
-  vpc = read.vpc(path = path, result = result, tab=tab)
+  vpc = read.vpc(path = path, result = result, tab = tab)
   sim = vpc$vpc
   obs = vpc$tab
   responseVar = vpc$vpc$dv.var
@@ -118,7 +118,7 @@ nm.vpcplot <- function(path,
   ## pull out the correct statistics
   msel.ci = grep(".CI.for.", names(sim$result.tables[[1]]))
   suffix =  unique(sub("([0-9]+).CI.for(.*)","\\1",names(sim$result.tables[[1]])[msel.ci]))
-  msel.ci = grep(paste(suffix,".CI.for.",sep=""), names(sim$result.tables[[1]]))
+  msel.ci = grep(paste(suffix,".CI.for.",sep = ""), names(sim$result.tables[[1]]))
   msel.pi = sub("([0-9]+).CI.for(.*)","\\2",names(sim$result.tables[[1]]))
   msel.pi = sub("to", "", msel.pi)
   msel.pi = sub("from", "", msel.pi)
@@ -167,7 +167,7 @@ nm.vpcplot <- function(path,
       if(nrow(x) > 1){
         xx[,c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')]
         } else {
-         matrix(xx[c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')],nrow=1)
+         matrix(xx[c('ypred.lo', 'ypred.cen', 'ypred.hi', 'yobs.lo', 'yobs.cen', 'yobs.hi')],nrow = 1)
        }
 
     return(x)
@@ -187,14 +187,14 @@ VPC = do.call("rbind", SIM)
 
 if(logX & any(obs[,xCov] <= 0))
 {
-  obs[,xCov][obs[,xCov] <= 0] = min(obs[,xCov][obs[,xCov] > 0], na.rm=TRUE)
+  obs[,xCov][obs[,xCov] <= 0] = min(obs[,xCov][obs[,xCov] > 0], na.rm = TRUE)
   VPC$xcov[VPC$xcov == 0] = min(obs[,xCov])
 }
 
 
 VPC$strata = c.or.unlist(apply(rbind(vpc$vpc$strata.names, unlist(lapply(SIM, nrow))),
                                2, function(x) rep(x[1],x[2])))
-VPC$strata_no = c.or.unlist(apply(rbind(seq(along=original.strata.names),
+VPC$strata_no = c.or.unlist(apply(rbind(seq(along = original.strata.names),
                                         unlist(lapply(SIM, nrow))),2, function(x) rep(x[1],x[2])))
 names(VPC)[names(VPC) == 'xcov'] = xCov
 if(is.null(relabel.strata)) VPC$strata = gsub(" ", "", VPC$strata)
@@ -292,7 +292,7 @@ vpcdump = VPC
 VPC =
   xyplot(myForm,
          data = VPC,
-         main = paste(rootName, paste((1-PI.limits[1]*2)*100,"% CI",sep=""), subtitle),
+         main = paste(rootName, paste((1-PI.limits[1]*2)*100,"% CI",sep = ""), subtitle),
          panel = panel.nonmem.vpc,
          lineType = lineType,
          central.lwd = central.lwd,

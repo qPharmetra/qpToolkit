@@ -116,7 +116,7 @@ function(runs,                                                          ## runs 
       layout = c(1,lunique(dfr$model)),
       panel = function(x,...)
       {
-       panel.densitystrip(x, y=0, col = col.area, horizontal = TRUE, factor = 1, col.line = gray[5])
+       panel.densitystrip(x, y = 0, col = col.area, horizontal = TRUE, factor = 1, col.line = gray[5])
        panel.abline(v = mean(x), col = col.mean, lwd = 3)
        panel.abline(v = quantile(x,c(0.025,0.975)), lty = 2, col = col.percentiles)
       },

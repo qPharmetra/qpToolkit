@@ -13,7 +13,7 @@
 
 get.nm.version <- function(run, path = getOption("nmDir"), file.ext = ".lst")
 {
-  out = read.out(path=path, run=run, file.ext=file.ext)
+  out = read.out(path = path, run = run, file.ext = file.ext)
   version = if(any(grepl("VERSION", out))) {
     nmversion =  out[grep("VERSION", out)][1]
     nmversion = substring(nmversion, regexpr("VERSION", nmversion)[1]+8)

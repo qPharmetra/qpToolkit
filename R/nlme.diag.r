@@ -61,9 +61,9 @@
 #' summary(fit.nlme.1$object)
 #' nlme.diag(fit.nlme.1$object)
 #' # note here we refer to the $object, given the model was created with nlme.run()
-nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
-  nx=8, output = FALSE, print.eta.norm=TRUE, print.eta.v.var=TRUE,
-  asp.eta.norm=1, asp.eta.v.var=1){
+nlme.diag <- function(obj, subset.modeldata, xvar = "time", xvar.label = NULL,
+  nx = 8, output = FALSE, print.eta.norm = TRUE, print.eta.v.var = TRUE,
+  asp.eta.norm = 1, asp.eta.v.var = 1){
 
   if (is.null(xvar.label)) xvar.label = xvar
 
@@ -72,7 +72,7 @@ nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
 
   keyCovVars = all.vars(nlme::getCovariateFormula(obj)[[2]])
   keyCovVars = keyCovVars[!is.element(keyCovVars, c(names(nlme::fixef(obj)), names(nlme::ranef(obj))))]
-#  if(length(keyCovVars)==0) { plot(ranef(obj)); return()}
+#  if(length(keyCovVars) == 0) { plot(ranef(obj)); return()}
 
   ## deal with subsetting
   filter.seq = rep(TRUE, nrow(ds))
@@ -87,8 +87,8 @@ nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
   ds$resp = eval(nlme::getResponseFormula(obj)[[2]], ds)
   ds$resid = residuals(obj)[filter.seq]
   ds$fitted = fitted(obj)[filter.seq]
-  ds$ipred = if(length(keyCovVars)==0) fitted(obj) else predict(obj, ds)
-  ds$pred = if(length(keyCovVars)==0) fitted(obj, level = 0) else predict(obj, ds, level = 0)
+  ds$ipred = if(length(keyCovVars) == 0) fitted(obj) else predict(obj, ds)
+  ds$pred = if(length(keyCovVars) == 0) fitted(obj, level = 0) else predict(obj, ds, level = 0)
 
   objectGrpName = all.vars(nlme::getGroupsFormula(obj)[[2]])
   if(length(objectGrpName)>1)
@@ -105,9 +105,9 @@ nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
   ds = merge(ds, eta, by = objectGrpName)
 
   ## are etas normally distributed?
-  theETAs = if(length(etaNames)==1) eta else reshape2::melt(data.frame(eta[, etaNames]))
-  names(theETAs) = if(length(etaNames)==1) c('value','variable') else c('variable', 'value')
-  if(length(etaNames)==1) theETAs$variable = rep(etaNames, nrow(theETAs))
+  theETAs = if(length(etaNames) == 1) eta else reshape2::melt(data.frame(eta[, etaNames]))
+  names(theETAs) = if(length(etaNames) == 1) c('value','variable') else c('variable', 'value')
+  if(length(etaNames) == 1) theETAs$variable = rep(etaNames, nrow(theETAs))
   qqplot = qqmath( ~ value | variable, theETAs,
    panel = function(x, ...)
     {
@@ -122,7 +122,7 @@ nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
    keyCovVars = all.vars(getCovariateFormula(obj)[[2]])
    keyCovVars = keyCovVars[!is.element(keyCovVars, c(names(fixef(obj)), etaNames))]
 
-   if(length(keyCovVars)==0) {graphics::plot(qqplot); return()}
+   if(length(keyCovVars) == 0) {graphics::plot(qqplot); return()}
    if(missing(xvar)) xvar = keyCovVars[1]
 
    ## plot eta versus covariate specified in argument xvar
@@ -140,7 +140,7 @@ nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
         panel = function(x,y,...)
         {
           panel.bpplot(x,y,...)
-          panel.abline(v=0,lty = 2)
+          panel.abline(v = 0,lty = 2)
           yyy = tapply(x, as.integer(as.factor(format(y))), median)
           xxx = names(yyy)
           llines(xxx, yyy, lty = 2)

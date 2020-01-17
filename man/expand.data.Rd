@@ -17,7 +17,7 @@ expand.data(data, values, name = "variable.added")
 Multiply data length(values) times and left join the values as a column
 }
 \examples{
-input.df = data.frame(A=1:2,B=2:3,C=4:5)
+input.df = data.frame(A = 1:2,B = 2:3,C = 4:5)
 input.df
 expand.data(input.df, values = c(1,3,7), "Klaas")
 }

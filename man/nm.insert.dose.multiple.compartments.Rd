@@ -29,12 +29,12 @@ To model drug entry into the system from multiple absorption sites this function
 \examples{
 library(dplyr)
 ## original data:
-nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
+nmData = example.NONMEM.dataset(TIME = seq(0,24,4))
 nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
 
 ## adding doses to compartments 3, 4 and 5
 nmData3 = nm.insert.dose.multiple.compartments(data = nmData
-                                               , dose.in.cmt=c(3,4,5)
+                                               , dose.in.cmt = c(3,4,5)
                                                , ID, TIME, -EVID
 
 )

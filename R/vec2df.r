@@ -12,8 +12,8 @@
 #' @note This function is used by \code{nm.covplot}
 #' @export
 #' @examples
-#' vec2df(x=1:10,n=1)
-#' vec2df(x=1:10,n=2)
+#' vec2df(x = 1:10,n = 1)
+#' vec2df(x = 1:10,n = 2)
 
 vec2df <- function(x, n = 1)
 {

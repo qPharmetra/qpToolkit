@@ -22,7 +22,7 @@ character vector with the NONMEM output. Each element i the vector represents a 
 Scan and parse the NONMEM output (lst file) as scanned lines. This function was tested for NONMEM v7.2 and v7.3.
 }
 \examples{
-head(read.out(path=getOption("qpExampleDir"), run="example1", file.ext = ".lst"))
+head(read.out(path = getOption("qpExampleDir"), run = "example1", file.ext = ".lst"))
 }
 \seealso{
 \code{\link{read.ext}} \code{\link{get.ofv}}, \code{\link{get.dOFV}}, \code{\link{get.eigen}}, \code{\link{get.shrinkage}}, \code{\link{get.description}}

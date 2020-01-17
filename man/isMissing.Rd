@@ -16,7 +16,7 @@ A vector of boolean values indicating which x is missing
 Take a vector and return a vector of boolean values indicating which input vector values are missing (NA).
 }
 \examples{
-temp = data.frame(id=1:4, nom.time=c(5,NA,7,NA))
+temp = data.frame(id = 1:4, nom.time = c(5,NA,7,NA))
 isMissing(temp$nom.time)
 temp[isMissing(temp$nom.time),]
 }

@@ -43,7 +43,7 @@ myData = data.frame(  n = c(5,100,332,12,50,74)
 , dose = c(20,25,50,30,40,35)
 , sex = rep(c("M","F"), ea = 3)
 )
-myData = expand.data(myData, values = c(0,1,2,3,4), name= "time")
+myData = expand.data(myData, values = c(0,1,2,3,4), name = "time")
 myData$ypred = myData$value * myData$time ^3/(1 + myData$time^3)
 xyplot(ypred ~ time
        , data = myData

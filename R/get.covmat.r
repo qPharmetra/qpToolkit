@@ -23,20 +23,20 @@
 
 get.covmat <- function(
   run,
-  path = paste(getwd(),"NONMEM", sep="/"),
+  path = paste(getwd(),"NONMEM", sep = "/"),
   ext = "cov",
   zip.extension = "7z"
 )
 {
   check.unzipped = FALSE
-  covFileName = paste(path,run,paste(run,ext,sep="."),sep="/")
-  zipFileName = paste(path,run,paste(run,ext,zip.extension,sep="."),sep="/")
+  covFileName = paste(path,run,paste(run,ext,sep = "."),sep = "/")
+  zipFileName = paste(path,run,paste(run,ext,zip.extension,sep = "."),sep = "/")
   if(!file.exists(covFileName))
   {
     if(file.exists(zipFileName))
     {
       check.unzipped = TRUE
-      nm.unzip(run = run, extension = paste(".",ext,sep=""), path = paste(path, run, sep="/"))
+      nm.unzip(run = run, extension = paste(".",ext,sep = ""), path = paste(path, run, sep = "/"))
     }
   }
   out = NULL

@@ -17,7 +17,7 @@ get.eigen(run, path = getOption("nmDir"), file.ext = ".lst")
 list with named vectors with Eigen values for each estimation method
 }
 \description{
-Get the Eigen values from a NONMEM run. Requires the user to have run NONMEM with $COV ... PRINT=E option.
+Get the Eigen values from a NONMEM run. Requires the user to have run NONMEM with $COV ... PRINT = E option.
 }
 \examples{
 get.eigen(run = "example1", path = getOption("qpExampleDir"))

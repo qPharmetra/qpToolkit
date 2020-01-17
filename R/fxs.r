@@ -12,7 +12,7 @@
 #' @return x reformatted according to pattern
 #' @export
 #' @examples
-#' fxs(c(0,1,34, 50000), pattern="    ")
+#' fxs(c(0,1,34, 50000), pattern = "    ")
 #' fxs(c(0,1,34, 50000), "000000")
 
 fxs <- function(x, pattern = "0000")

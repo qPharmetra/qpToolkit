@@ -34,27 +34,27 @@
 #' @importFrom utils read.delim
 #' @examples
 #' \dontrun{
-#' load.data(xlsFiles="ExampleInput.xlsx",
-#' xlsNames="XLinput1",
-#' xlsSheets=1, doScan=FALSE)
+#' load.data(xlsFiles = "ExampleInput.xlsx",
+#' xlsNames = "XLinput1",
+#' xlsSheets = 1, doScan = FALSE)
 #' head(XLinput1)
 #' head(iXLinput1)
-#' load.data(xlsFiles="ExampleInput.xlsx",
-#'           xlsNames="XLinput2",
-#'           xlsSheets=2,            # NOTE We can specify which worksheet (tab) of the Excel file
-#'           doScan=FALSE)
+#' load.data(xlsFiles = "ExampleInput.xlsx",
+#'           xlsNames = "XLinput2",
+#'           xlsSheets = 2,            # NOTE We can specify which worksheet (tab) of the Excel file
+#'           doScan = FALSE)
 #' head(iXLinput2)
 # Exammple of providing a LIST of files to import
-#' load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),
-#'           csvNames=c("CSVinput1", "CSVinput2"),
-#'           doScan=FALSE)
+#' load.data(csvFiles = c("ExampleInput2.csv","ExampleInput3.csv"),
+#'           csvNames = c("CSVinput1", "CSVinput2"),
+#'           doScan = FALSE)
 #' head(CSVinput1)
 #' load.data() # loading JUST doing automatic search for files ("scan")
 #' }
 load.data <- function(xptFiles, xlsFiles, csvFiles, tabFiles,
   dir = "../project input/client data/data",
-  xlsNames, xptNames, csvNames, tabNames, perl="C:/Perl64/bin/perl.exe",
-  xlsSheets, doScan=TRUE, target.env=parent.frame()) {
+  xlsNames, xptNames, csvNames, tabNames, perl = "C:/Perl64/bin/perl.exe",
+  xlsSheets, doScan = TRUE, target.env = parent.frame()) {
 
   if(!missing(xptNames)) {
     if(missing(xptFiles)|length(xptNames)!=length(xptFiles)) {
@@ -137,60 +137,60 @@ load.data <- function(xptFiles, xlsFiles, csvFiles, tabFiles,
 
   if(length(xptFiles)>0) {  # LH
     for(i in 1:length(xptFiles)) {
-#     fileData = read.xport(paste(dir,xptFiles[i], sep="/"),as.is=T)  KD 18th October 2013
-      fileData = foreign::read.xport(paste(dir,xptFiles[i], sep="/"))
+#     fileData = read.xport(paste(dir,xptFiles[i], sep = "/"),as.is = T)  KD 18th October 2013
+      fileData = foreign::read.xport(paste(dir,xptFiles[i], sep = "/"))
       names(fileData) = tolower(names(fileData))
       fileData$rec.id = 1:nrow(fileData)
-      assign(paste("i", xptNames[i], sep=""), fileData,
+      assign(paste("i", xptNames[i], sep = ""), fileData,
              envir = target.env) # Archival copy of the data
       assign(xptNames[i], fileData,
              envir = target.env) # Working copy
-      print(paste("Created data frame ",xptNames[i],sep=""))
+      print(paste("Created data frame ",xptNames[i],sep = ""))
     }
   }
   if(length(xlsFiles)>0) {  # LH
     for(i in 1:length(xlsFiles)) {
-      fileData = read.xls(paste(dir,xlsFiles[i], sep="/"), perl=perl, sheet=xlsSheets[i])
+      fileData = read.xls(paste(dir,xlsFiles[i], sep = "/"), perl = perl, sheet = xlsSheets[i])
       names(fileData) = tolower(names(fileData))
       fileData$rec.id = 1:nrow(fileData)
-      assign(paste("i", xlsNames[i], sep=""), fileData,
+      assign(paste("i", xlsNames[i], sep = ""), fileData,
              envir = target.env) # Archival copy of the data
       assign(xlsNames[i], fileData,
              envir = target.env) # Working copy
-      print(paste("Created data frame ",xlsNames[i],sep=""))
+      print(paste("Created data frame ",xlsNames[i],sep = ""))
     }
   }
   if(length(csvFiles)>0) {  # LH
     for(i in 1:length(csvFiles)) {
-      fileData = read.csv(paste(dir,csvFiles[i], sep="/"), as.is=TRUE)
+      fileData = read.csv(paste(dir,csvFiles[i], sep = "/"), as.is = TRUE)
       names(fileData) = tolower(names(fileData))
       fileData$rec.id = 1:nrow(fileData)
-      assign(paste("i", csvNames[i], sep=""), fileData,
+      assign(paste("i", csvNames[i], sep = ""), fileData,
              envir = target.env) # Archival copy of the data
       assign(csvNames[i], fileData,
              envir = target.env) # Working copy
-      print(paste("Created data frame ",csvNames[i],sep=""))
+      print(paste("Created data frame ",csvNames[i],sep = ""))
     }
   }
   if(length(tabFiles)>0) {  # LH
     for(i in 1:length(tabFiles)) {
-      fileData = read.delim(paste(dir,tabFiles[i], sep="/"), as.is=TRUE)
+      fileData = read.delim(paste(dir,tabFiles[i], sep = "/"), as.is = TRUE)
       names(fileData) = tolower(names(fileData))
       fileData$rec.id = 1:nrow(fileData)
-      assign(paste("i", tabNames[i], sep=""), fileData,
+      assign(paste("i", tabNames[i], sep = ""), fileData,
              envir = target.env) # Archival copy of the data
       assign(tabNames[i], fileData,
              envir = target.env) # Working copy
-      print(paste("Created data frame ",tabNames[i],sep=""))
+      print(paste("Created data frame ",tabNames[i],sep = ""))
     }
   }
 }
 
 
 if (F) {
-  load.data(xlsFiles="ExampleInput.xlsx",
-            xlsNames="XLinput1",
-            xlsSheets=1, doScan=FALSE)
+  load.data(xlsFiles = "ExampleInput.xlsx",
+            xlsNames = "XLinput1",
+            xlsSheets = 1, doScan = FALSE)
   #[1] "Created data frame XLinput1"
 
   head(XLinput1)
@@ -211,10 +211,10 @@ if (F) {
   #5 28 33.271880 c  57.515641      5
   #6 21 22.987656 c  26.662967      6
 
-  load.data(xlsFiles="ExampleInput.xlsx",
-            xlsNames="XLinput2",
-            xlsSheets=2,            # NOTE WE can specify which worksheet (tab) of the Excel file
-            doScan=FALSE)
+  load.data(xlsFiles = "ExampleInput.xlsx",
+            xlsNames = "XLinput2",
+            xlsSheets = 2,            # NOTE WE can specify which worksheet (tab) of the Excel file
+            doScan = FALSE)
 
   head(iXLinput2)
   #   e        f g        h rec.id
@@ -226,9 +226,9 @@ if (F) {
   #   6 117 52.22399 c 93.71326      6
 
   # Exammple of providing a LIST of files to import
-  load.data(csvFiles=c("ExampleInput2.csv","ExampleInput3.csv"),
-            csvNames=c("CSVinput1", "CSVinput2"),
-            doScan=FALSE)
+  load.data(csvFiles = c("ExampleInput2.csv","ExampleInput3.csv"),
+            csvNames = c("CSVinput1", "CSVinput2"),
+            doScan = FALSE)
   #[1] "Created data frame CSVinput1"
   #[1] "Created data frame CSVinput2"
 

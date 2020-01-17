@@ -29,11 +29,11 @@
 #' meta.analysis.ds = read.csv(file.path(getOption("qpExampleDir")
 #'  , "../Excel/meta.analysis.ds.csv"),stringsAsFactors = FALSE)
 #' table.meta.analysis.summary(meta.analysis.ds
-#'  , cov.cols=c("age","fem.pct","dis.score.bl","drug.ir")
-#'  , cov.cat=c(FALSE,FALSE,FALSE,TRUE)
+#'  , cov.cols = c("age","fem.pct","dis.score.bl","drug.ir")
+#'  , cov.cat = c(FALSE,FALSE,FALSE,TRUE)
 #' )
 
-table.meta.analysis.summary <- function(data, cov.cols=NULL, cov.cat=NULL)
+table.meta.analysis.summary <- function(data, cov.cols = NULL, cov.cat = NULL)
 {
   ##  Each unique study+drug+dose = one arm
   ##
@@ -46,26 +46,26 @@ table.meta.analysis.summary <- function(data, cov.cols=NULL, cov.cat=NULL)
   temp		= temp[!duplicated(paste(temp$study, temp$drug, temp$dose)),]	# ensure we get *starting* sample sizes
 
   n.tab 	= Hmisc::summarize(temp$n
-                            , list(drug=temp$drug, study=temp$study)
+                            , list(drug = temp$drug, study = temp$study)
                             , function(x) round(mean(x))
                             , stat.name = "n.avg"
   )
 
   doses.tab 	= Hmisc::summarize(data$dose
-                                , list(drug=data$drug, study=data$study)
-                                , function(x) paste(sort(unique(round(x,0))), collapse=", ")
+                                , list(drug = data$drug, study = data$study)
+                                , function(x) paste(sort(unique(round(x,0))), collapse = ", ")
                                 , stat.name = "doses"
   )
 
   times.tab 	= Hmisc::summarize(data$time
-                                , list(drug=data$drug, study=data$study)
-                                , function(x) paste(sort(unique(round(x,0))), collapse=", ")
+                                , list(drug = data$drug, study = data$study)
+                                , function(x) paste(sort(unique(round(x,0))), collapse = ", ")
                                 , stat.name = "times"
   )
 
   refs.tab 	= Hmisc::summarize(data$reference
-                               , list(drug=data$drug, study=data$study)
-                               , function(x) paste(sort(unique(round(x,0))), collapse=", ")
+                               , list(drug = data$drug, study = data$study)
+                               , function(x) paste(sort(unique(round(x,0))), collapse = ", ")
                                , stat.name = "references"
   )
 
@@ -76,12 +76,12 @@ table.meta.analysis.summary <- function(data, cov.cols=NULL, cov.cat=NULL)
       this.cov 		= cov.cols[i]
       this.cov.cat 	= cov.cat[i]
       if (this.cov.cat) {
-        this.cov.tab	= Hmisc::summarize(temp[,this.cov], list(drug=temp$drug, study=temp$study),
-                                        function(x) paste(sort(unique(x)), collapse=", "), stat.name=this.cov)
+        this.cov.tab	= Hmisc::summarize(temp[,this.cov], list(drug = temp$drug, study = temp$study),
+                                        function(x) paste(sort(unique(x)), collapse = ", "), stat.name = this.cov)
       }
       else {
-        this.cov.tab	= Hmisc::summarize(temp[,this.cov], list(drug=temp$drug, study=temp$study),
-                                        function(x) round(mean(x)), stat.name=this.cov)
+        this.cov.tab	= Hmisc::summarize(temp[,this.cov], list(drug = temp$drug, study = temp$study),
+                                        function(x) round(mean(x)), stat.name = this.cov)
       }
       cov.tab[,this.cov] = as.vector(this.cov.tab[,this.cov])
     }

@@ -18,7 +18,7 @@ data frame with all (unique) data items exported in Xpose tables sdtab, patab, c
 Get NONMEM output tables in XPOSE format into one data frame. Requires all files to be created without the FIRSTONLY option in $TABLE. Also, ensure ONEHEADER option is consistently used in all $TABLE statements
 }
 \examples{
-out.1 = get.xpose.tables(path = getOption("qpExampleDir"), run= "example2")
+out.1 = get.xpose.tables(path = getOption("qpExampleDir"), run = "example2")
 head(out.1)
 }
 \seealso{

@@ -14,19 +14,19 @@
 #' @importFrom utils read.table
 #' @seealso \code{\link{get.multiple.xpose.tables}}
 #' @examples
-#' out.1 = get.xpose.tables(path = getOption("qpExampleDir"), run= "example2")
+#' out.1 = get.xpose.tables(path = getOption("qpExampleDir"), run = "example2")
 #' head(out.1)
 
 get.xpose.tables <- function(run, path = getOption("nmDir"))
 {
   myPath = file.path(path,run)
   tabNames = dir(myPath)[grepl("(sd|pa|ca|co)tab+",dir(myPath))]
-  read.nmTabs <- function(path.in=myPath,tabNames.in=tabNames) {
+  read.nmTabs <- function(path.in = myPath,tabNames.in = tabNames) {
     if(length(tabNames.in)>0) {
-      nmTab = read.table(paste(path.in,tabNames.in[1],sep="/"),skip=1,header=TRUE)
+      nmTab = read.table(paste(path.in,tabNames.in[1],sep = "/"),skip = 1,header = TRUE)
       if(length(tabNames.in)>1) {
         for(tabName in tabNames[2:length(tabNames)]){
-          tmp = read.table(paste(path.in,tabName,sep="/"),skip=1,header=TRUE)
+          tmp = read.table(paste(path.in,tabName,sep = "/"),skip = 1,header = TRUE)
           if(!all(!(names(tmp)%in%names(nmTab)) == FALSE))
             ## check if there is something to add
            nmTab = cbind(nmTab,tmp[,!(names(tmp)%in%names(nmTab))])

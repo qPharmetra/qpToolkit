@@ -13,8 +13,8 @@
 get.shrinkage <- function(run, path = getOption('nmDir'), file.ext = ".lst")
 
 {
-  out = read.out(path=path, run=run, file.ext = file.ext)
-  version = get.nm.version(path=path, run=run, file.ext = file.ext)
+  out = read.out(path = path, run = run, file.ext = file.ext)
+  version = get.nm.version(path = path, run = run, file.ext = file.ext)
 
   # Here we are going to retrograde the list file to look/act like pre 7.4 list file
   # find all the lines of code containing SHRINKVR
@@ -81,7 +81,7 @@ get.shrinkage <- function(run, path = getOption('nmDir'), file.ext = ".lst")
   names(ebvShrink) = nameParse
   names(epsShrink) = nameParse
 
-  return(list(version=version, eta = etaShrink, ebv = ebvShrink, eps = epsShrink))
+  return(list(version = version, eta = etaShrink, ebv = ebvShrink, eps = epsShrink))
 
 }
 

@@ -23,25 +23,25 @@ get.dOFV <- function(runs = c('run1','run2')
                      , file.ext = ".lst"
 )
 {
-   if(length(runs)<2 || any(sapply(runs, class)!="character"))
+   if(length(runs)<2 || any(sapply(runs, class)!= "character"))
    {
       message("argument 'runs' needs to be a character vector of at least length 2")
    }
 
    ## check which runs are there
-   ok.runs = sapply(runs, function(run) file.exists( paste(path, paste(run, file.ext, sep=""), sep="/")))
+   ok.runs = sapply(runs, function(run) file.exists( paste(path, paste(run, file.ext, sep = ""), sep = "/")))
    if(sum(ok.runs)<=1) {message("only one parseable run.lst found. No model building table created.");return()}
    runs = runs[ok.runs]
 
    ## get the based on number
    lst = sapply(runs, function(x, path, file.ext) read.out(x, path = file.path(path), file.ext = file.ext)
-                , path=path, file.ext = file.ext)
+                , path = path, file.ext = file.ext)
    base = lapply(lst, function(x) x[grep("Based on:", x)])
    base = lapply(base, function(x) extract.number(sub(".*Based on: ([A-Z,a-z,0-9]+)","\\1",x)[1]))
 
    ## get description statement
    Description = lapply(lst, function(x) substring(x[grep("Description:", x)+1],7))
-   Description = lapply(Description, function(x) ifelse(length(x)==0,"No Description",x))
+   Description = lapply(Description, function(x) ifelse(length(x) == 0,"No Description",x))
 
    ## work on OFV and delta OFV
    result = sapply(runs,function(x, path, file.ext) {

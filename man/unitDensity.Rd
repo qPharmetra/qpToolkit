@@ -18,6 +18,6 @@ list of \code{x} and \code{y} with x and y information to generate a plot
 Create a density of inout and normalizes the maximum to be 1
 }
 \examples{
-standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length=1000),0,1))
+standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length = 1000),0,1))
 plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l')
 }

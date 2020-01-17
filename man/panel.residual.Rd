@@ -48,9 +48,9 @@ xyplot(CONC ~ value | variable
           reshape2::melt(
              get.xpose.tables('example1', getOption('qpExampleDir')
              )
-             , measure.vars=c('PRED','IPRED')
+             , measure.vars = c('PRED','IPRED')
           ), EVID == 0)
-       , subset = EVID==0
+       , subset = EVID == 0
        , aspect = 1
        , scales = list(x = list(relation = 'free'))
        , panel = panel.residual

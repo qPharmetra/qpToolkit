@@ -14,11 +14,11 @@
 nm.extract.ext <- function(run, path = getOption("nmDir"))
 {
   version = get.nm.version(run = run, path = path)
-  parTable = nm.params.table(run=run, path = path)
+  parTable = nm.params.table(run = run, path = path)
   final_objective_function = get.ofv(run = run, path = path)
   tables = get.xpose.tables(run = run, path = path)
-  return(list(table=parTable,
-    final_objective_function=final_objective_function,
+  return(list(table = parTable,
+    final_objective_function = final_objective_function,
     XPtable = tables, version = version)
   )
 }

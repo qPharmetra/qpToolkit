@@ -11,9 +11,9 @@ example.xpose.VPC <- function()
 {
    cat("xpose.VPC(file.path(getOption('nmDir'),'vpc1/vpc_results.csv')
        , file.path(getOption('nmDir'),'vpc1/vpctab1')
-       , logy=TRUE
-       , by='STRT'
-       , col=grey(0.4),  cex = 1
+       , logy = TRUE
+       , by ='STRT'
+       , col = grey(0.4),  cex = 1
        , PI.ci.area.smooth = TRUE
        , PI.real.med.col = PI.real.med.col
        , PI.real.down.col = PI.real.down.col
@@ -37,10 +37,10 @@ example.CWRES.plot <- function()
                            reshape2::melt(
                                  get.xpose.tables('example1', getOption('qpExampleDir')
                                  )
-                        , measure.vars=c('PRED','TIME')
+                        , measure.vars = c('PRED','TIME')
                       ), EVID == 0),
              , panel = panel.cwres
-             , xlab = list('Time after Dose',cex=1.25),
+             , xlab = list('Time after Dose',cex = 1.25),
              , ylab = list('Conditional weighted residuals', cex = 1.25),
              , aspect = 1,
              , as.table = TRUE
@@ -59,11 +59,11 @@ example.CWRES.plot <- function()
 #' library(dplyr)
 #' library(magrittr)
 #' nmData = example.NONMEM.dataset()
-#' nmData %>% group_by(DOSE) %>% summarise(nID=lunique(ID), nObs = length(DV))
+#' nmData %>% group_by(DOSE) %>% summarise(nID = lunique(ID), nObs = length(DV))
 #' pkpdData = example.pkpdData()
 #' tbl_df(pkpdData)
 
-example.NONMEM.dataset <- function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
+example.NONMEM.dataset <- function(ID = 3, TIME = seq(0,24,2), DOSE = c(1,2.5,10), ...)
 {
    ## observations
    nmobs = expand.grid(ID = seq(ID*length(DOSE))
@@ -101,7 +101,7 @@ example.NONMEM.dataset <- function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...
 
 example.pkpdData <- function(){
    set.seed(1234)
-   nsub=32
+   nsub = 32
    pkpdData = list(NULL)
    dose = c(0,100,250,500)
    for(i in 1:length(dose))pkpdData[[i]] = expand.grid(id = paste(dose[i],1:nsub), dose = dose[i])

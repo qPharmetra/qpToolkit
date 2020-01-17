@@ -19,7 +19,7 @@ unique values in \code{y}.
 Summary: length (\%)
 }
 \examples{
-catDataFun(data.frame(Sex=rep(c("Female","Male"), times= c(40,60)))$Sex)
+catDataFun(data.frame(Sex = rep(c("Female","Male"), times = c(40,60)))$Sex)
 }
 \seealso{
 \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{tabStats}},  \code{\link{tabStats}}

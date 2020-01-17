@@ -52,7 +52,7 @@ nm.params.table <- function(
   theTab = theTab[[runIndex]]
 
   check = lapply(theExt, function(x) x[x$ITERATION == "-1000000006",])[[runIndex]]
-  if(nrow(check)==0){
+  if(nrow(check) == 0){
     flag = 1
     check[1,] = rep(0, ncol(check))
     message("nm version used is probably lower than 7.3.0.")
@@ -65,7 +65,7 @@ nm.params.table <- function(
   names(check)[1] = "estimated"
 
   theTab$index = extract.number(theTab$Parameter)
-  theTab$level = unlist(lapply(sapply(theTab$Parameter,function(x) extract.character(x)),paste, collapse=""))
+  theTab$level = unlist(lapply(sapply(theTab$Parameter,function(x) extract.character(x)),paste, collapse = ""))
   parTab = theTab[theTab$level %in% c('THETA','SIGMA','OMEGA'),]
   parTab$ord = swap(parTab$level,c('THETA','OMEGA','SIGMA'), 1:3)
   parTab$ord = paste(parTab$ord,format(parTab$index), sep = "")
@@ -77,9 +77,9 @@ nm.params.table <- function(
   if(nrow(parTab) != nrow(check))warning('numbers of rows do not match')
   parTab = dplyr::left_join(parTab, check)
   estimated = parTab$estimated == 0
-  if(flag==1) estimated[asNumeric(parTab$se[estimated]) > 1e+9] = FALSE
+  if(flag == 1) estimated[asNumeric(parTab$se[estimated]) > 1e+9] = FALSE
   #if no se returned set it here
-  if(!"se" %in% names(parTab)) parTab$se=NA
+  if(!"se" %in% names(parTab)) parTab$se = NA
   parTab$prse = NA
   parTab$prse[estimated] = parTab$se[estimated]/parTab$estimate[estimated] *100
   parTab$se[!estimated] = parTab$prse[!estimated] = fixed.text

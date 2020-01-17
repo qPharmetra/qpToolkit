@@ -18,7 +18,7 @@
 
 asNumeric <- function(x, missing.code = c("NA"))
 {
-  # as.numeric function returning NA for isNumeric==F and numeric for isNumeric==T
+  # as.numeric function returning NA for isNumeric == F and numeric for isNumeric == T
   x[x %in% missing.code] = NA
   return(as.numeric(x))
 }

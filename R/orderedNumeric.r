@@ -10,7 +10,7 @@
 #' unique values in \code{x}.
 #' @export
 #' @examples
-#' out = expand.grid(ID=1:5, DOSE = c(0,500,100,4000))
+#' out = expand.grid(ID = 1:5, DOSE = c(0,500,100,4000))
 #' factor(out$DOSE)
 #' #Levels: 0 100 500 4000  ## W H A T ???
 #' orderedNumeric(out$DOSE)
@@ -26,6 +26,6 @@ orderedNumeric <- function(x, prefix = "", suffix = "", paste.function = paste, 
   xx = x
   if(!is.null(special.x) & is.list(special.x)) xx = qpToolkit::swap(xx, special.x[[1]], special.x[[2]])
   theString = do.call(paste.function, list(prefix,xx,suffix))
-  if(!is.null(special.x) & is.list(special.x)) theString[x==special.x[[1]]] = special.x[[2]]
+  if(!is.null(special.x) & is.list(special.x)) theString[x == special.x[[1]]] = special.x[[2]]
   factor(theString, levels = unique(theString[order(x)]))
 }

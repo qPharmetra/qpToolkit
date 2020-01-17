@@ -11,13 +11,13 @@
 #' @seealso \code{\link{meta.map}}
 #' @note not intended to be used as standalone. Is called from qP function meta.map()
 #' @examples
-#' test = c("Ref", paste("comp", 1:5, sep=""))
-#' test.ds = data.frame(drg = rep(test, times=seq(12,2,-2)),
+#' test = c("Ref", paste("comp", 1:5, sep = ""))
+#' test.ds = data.frame(drg = rep(test, times = seq(12,2,-2)),
 #'                      ref.id = c(rep(1:4, 10),1,1))
 #'
 #' names(test.ds)
-#' meta.map(test.ds, compNm="drg", trialNm="ref.id", refNm="Ref", dist=1.4)
-make.map <- function(ds, cNm="drug.abbr", trNm="ref.tr"){
+#' meta.map(test.ds, compNm = "drg", trialNm = "ref.id", refNm = "Ref", dist = 1.4)
+make.map <- function(ds, cNm = "drug.abbr", trNm = "ref.tr"){
   # identify all of the 2-way comparisons among the comparators
   # meta.ds = meta analysis dataset
   # compNm = variable name of the different comparators

@@ -29,21 +29,21 @@ Plots PK predictions based on qP's suite of PK functions
 }
 \examples{
 # 1comp elimination, 1st-order absorption
-pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
    , pk.func = pk.1comp.1abs, parms = c(1,25, 0.1, 5,0.5)
 )
 
 # 2comp elimination, 0-order absoorption
-pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE
 )
 
 ## demo effect prediction after single and multiple doses
 eff.1comp.1abs(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25, 0.05))
-pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
    , pk.func = eff.1comp.iv, parms = c(1,10, 0.25)
 )
-pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
    , pk.func = pk.1comp.1abs, e.func = eff.1comp.1abs
    , parms = c(1,10, 0.25, 0.05)
 )

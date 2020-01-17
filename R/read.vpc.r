@@ -14,12 +14,12 @@
 #' @importFrom xpose4 read.npc.vpc.results
 
 
-read.vpc <- function(path = "./", result = result, tab=tab)
+read.vpc <- function(path = "./", result = result, tab = tab)
 {
-   #if(length(grep(":", path))==0) path = paste(getwd(), path, sep="/")
+   #if(length(grep(":", path)) == 0) path = paste(getwd(), path, sep = "/")
    vpc.results = read.npc.vpc.results(vpc.results =  file.path(path, result))
-   vpc.tab = read.table(paste(path, tab, sep = "/"), header=TRUE, sep = ",")
-   if(length(vpc.tab$"strata_no")==0)
+   vpc.tab = read.table(paste(path, tab, sep = "/"), header = TRUE, sep = ",")
+   if(length(vpc.tab$"strata_no") == 0)
    {
       vpc.results$result.tables = list(vpc.results$result.tables)
       vpc.results$result.tables = c(vpc.results$result.tables, "unstratified")

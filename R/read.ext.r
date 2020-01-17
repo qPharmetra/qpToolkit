@@ -20,10 +20,10 @@
 read.ext <- function(run
                     , path = getOption("nmDir")
                     , file.ext = ".ext"
-                    , quiet=TRUE
+                    , quiet = TRUE
 )
 {
-  x = invisible(scan(file = file.path(path, run, paste(run,gsub("[.]","",file.ext), sep="."))
+  x = invisible(scan(file = file.path(path, run, paste(run,gsub("[.]","",file.ext), sep = "."))
            , what = "character"
            , sep = "\n"
            , quiet = quiet)

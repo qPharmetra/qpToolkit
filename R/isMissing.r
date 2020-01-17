@@ -13,12 +13,12 @@
 #' @export
 #' @seealso \code{\link{isNumeric}}, \code{\link{asNumeric}}
 #' @examples
-#' temp = data.frame(id=1:4, nom.time=c(5,NA,7,NA))
+#' temp = data.frame(id = 1:4, nom.time = c(5,NA,7,NA))
 #' isMissing(temp$nom.time)
 #' temp[isMissing(temp$nom.time),]
 
 isMissing <- function(x) {
   natest = is.na(x)
-  if(class(x)=="character") natest = natest|sub("^[ ]+$","",x)==""|x=="NA"
+  if(class(x) == "character") natest = natest|sub("^[ ]+$","",x) == ""|x == "NA"
   natest
 }

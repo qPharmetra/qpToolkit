@@ -18,10 +18,10 @@
 #' @export
 #' @seealso \code{\link{whichNumeric}}
 #' @examples
-#' my.df = data.frame( analyte.1=c(1,2,3,4,'BLOQ',5,6,'NS',7,'M'),
-#'                    analyte.2=c(1,2,'BLOQ','M',3,'BLOQ',5,6,'NS',7))
-#' tabulate.samples(data=my.df, analyte="analyte.1")
-#' tabulate.samples(data=my.df, analyte="analyte.2")
+#' my.df = data.frame( analyte.1 = c(1,2,3,4,'BLOQ',5,6,'NS',7,'M'),
+#'                    analyte.2 = c(1,2,'BLOQ','M',3,'BLOQ',5,6,'NS',7))
+#' tabulate.samples(data = my.df, analyte = "analyte.1")
+#' tabulate.samples(data = my.df, analyte = "analyte.2")
 
 tabulate.samples <- function(data, analyte = "conc", oddCode = c('BLOQ','NS','M'))
 {

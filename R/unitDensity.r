@@ -8,7 +8,7 @@
 #' @export
 #' @importFrom stats density.default
 #' @examples
-#' standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length=1000),0,1))
+#' standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length = 1000),0,1))
 #' plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l')
 
 unitDensity <- function(x,...){
@@ -18,6 +18,6 @@ unitDensity <- function(x,...){
    )
    arg <- arg[names(arg) %in% names(formals(density.default))]
    res <- do.call(density.default, arg)
-   res$y <- with(res, y/max(y,na.rm=TRUE))
+   res$y <- with(res, y/max(y,na.rm = TRUE))
    res
 }

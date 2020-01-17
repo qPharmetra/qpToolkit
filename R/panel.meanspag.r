@@ -37,7 +37,7 @@
 #' xyplot(CONC ~ TIME
 #'        , data = out
 #'        , groups = ID
-#'        , subset = EVID==0
+#'        , subset = EVID == 0
 #'        , aspect = 1
 #'        , scales = list(x = list(relation = "free"), y = list(log = 10))
 #'        , panel = panel.meanspag
@@ -49,7 +49,7 @@
 #'xyplot(CONC ~ Hmisc::Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))
 #'       , data = out
 #'       , groups = ID
-#'       , subset = EVID==0
+#'       , subset = EVID == 0
 #'       , aspect = 1
 #'       , scales = list(x = list(relation = "free"), y = list(log = 10))
 #'       , panel = function(x,y,...)
@@ -68,13 +68,13 @@ panel.meanspag =
            individual.col = gray[5], type = "l",
            average.lwd = 3, average.col = red[8],
            add.legend = TRUE, legend.panel.row, legend.panel.column, legend.x, legend.y,
-           show.points=FALSE
+           show.points = FALSE
   )
   {
     panel.superpose(x,y, subscripts, groups, ..., col = individual.col, type = type)
 
     panel.avg.LP(x,y, fun = myFun, col = average.col, lwd = average.lwd, horizontal = FALSE
-                 , type="b", show.points=show.points, pch=16)
+                 , type = "b", show.points = show.points, pch = 16)
     if(add.legend) {
       if(missing(legend.panel.row)) legend.panel.row = 1
       if(missing(legend.panel.column)) legend.panel.column = 1
@@ -90,11 +90,11 @@ panel.meanspag =
         }
         panel.lines(c(legend.x,legend.x+0.1*panel.width), rep(legend.y,2),
                     col = average.col, lwd = average.lwd)
-        panel.text(legend.x+0.12*panel.width, legend.y+.003*panel.height, sumText, cex=0.8, adj = 0)
+        panel.text(legend.x+0.12*panel.width, legend.y+.003*panel.height, sumText, cex = 0.8, adj = 0)
         panel.lines(c(legend.x,legend.x+0.1*panel.width),
                     rep(legend.y-0.05*panel.height,2),
                     col = individual.col, type = type)
-        panel.text(legend.x+0.12*panel.width, legend.y-0.047*panel.height, "Observed", cex=0.8, adj = 0)
+        panel.text(legend.x+0.12*panel.width, legend.y-0.047*panel.height, "Observed", cex = 0.8, adj = 0)
       }
     }
   }

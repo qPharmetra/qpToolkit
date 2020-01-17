@@ -15,7 +15,7 @@ read.runrec(filename, path = getOption("nmDir"))
 Data.frame with all information extracted from the runrecord.
 }
 \description{
-Read the run record into readable table. This function assumes runrecord has been run with PsN option -maxlvl=0. It is to be used in conjunction with process.runrec
+Read the run record into readable table. This function assumes runrecord has been run with PsN option -maxlvl = 0. It is to be used in conjunction with process.runrec
 }
 \examples{
 rr = read.runrec(filename = "AAruninfo.txt"

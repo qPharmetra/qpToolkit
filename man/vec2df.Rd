@@ -21,6 +21,6 @@ Turns a vector into a data frame with n repeated instances of the vector.
 This function is used by \code{nm.covplot}
 }
 \examples{
-vec2df(x=1:10,n=1)
-vec2df(x=1:10,n=2)
+vec2df(x = 1:10,n = 1)
+vec2df(x = 1:10,n = 2)
 }

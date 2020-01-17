@@ -71,10 +71,10 @@ library(ggplot2)
  nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt")) -> vpc.all
 
 ggvpc_xpose(vpc.all) +
-  labs(x="Time (h)", y="Concentration (ng/ml)")
+  labs(x = "Time (h)", y = "Concentration (ng/ml)")
 
 ggvpc_xpose(vpc.all) +
-  labs(x="Time (h)", y="Concentration (ng/ml)") +
+  labs(x = "Time (h)", y = "Concentration (ng/ml)") +
   scale_y_log10() + scale_x_log10()
 
 ## demonstration of changing colors & stratification
@@ -83,15 +83,15 @@ ggvpc_xpose(vpc.all
             , area.col.central = qp.blue
             , area.alpha = 1
             , PI = c(0.05,0.95)) +
-  labs(x="Time (h)", y="Concentration (ng/ml)") +
+  labs(x = "Time (h)", y = "Concentration (ng/ml)") +
   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
 
 ## PI smoothed
 nm.read.vpc(path =  file.path(getOption("qpExampleDir"),"vpc_final_strt"),
-PI.ci.area.smooth=TRUE) -> vpc.all
+PI.ci.area.smooth = TRUE) -> vpc.all
 ggvpc_xpose(vpc.all
             , PI = c(0.05,0.95)) +
-  labs(x="Time (h)", y="Concentration (ng/ml)") +
+  labs(x = "Time (h)", y = "Concentration (ng/ml)") +
   scale_y_log10() + scale_x_log10() + facet_grid(~strata)
 
 }

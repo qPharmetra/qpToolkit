@@ -62,7 +62,7 @@
 #' head(nmcov$catData.par)# essential: catVariable catValue variable value
 #'
 #' #for continuous plots get kickstarted with:
-#' # xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable
+#' # xyplot(value ~ conValue | casefold(variable, upper = TRUE) * conVariable
 #' #  , data = conData, panel = panel.xyplot)
 #' #for categorical plots:
 #' # xyplot(value ~ as.factor(paste(catValue)) | variable * catVariable
@@ -179,7 +179,7 @@ nm.covplot <- function(run = "run1",
 
   ## read NONMEM table output
   nmcov = get.xpose.tables(run = run, path = path)
-  names(nmcov) = casefold(names(nmcov), upper=FALSE)
+  names(nmcov) = casefold(names(nmcov), upper = FALSE)
   if(length(nmcov[, id.var]) == 0){
     message(paste(id.var, "does not exist in",run,". nm.covplot.procedure stopped"));return()
   }
@@ -202,7 +202,7 @@ nm.covplot <- function(run = "run1",
   ## remove etas that are all zero (probably fixed)
   all.zero.etas = apply(nmcov, 2, function(x) all(x == 0))
   msel = substring(names(nmcov), 1, 2) == "et"
-  #if(length(which(msel==T))>0) nmcov = nmcov[,-which(msel)]
+  #if(length(which(msel == T))>0) nmcov = nmcov[,-which(msel)]
 
   # assing categorical in case of less than catcov.sep categories
   type = rep("continuous", ncol(nmcov))
@@ -232,11 +232,11 @@ nm.covplot <- function(run = "run1",
 
   if(FALSE)
   {
-    data=nmcov
+    data = nmcov
     data$sex = sample.by.id(data$id, c("F","M"))
     data$race = sample.by.id(data$id, c("Caucasian","Black","Asian", "Other"))
     data$crcl = rnorm.by.id(data$id, 0.6, 0.17)
-    data$wt = sample.by.id(data$id, rpois(n=1000,lambda = 75))
+    data$wt = sample.by.id(data$id, rpois(n = 1000,lambda = 75))
     data$cl = data$cl * (1 + 0.02 * data$wt)
   }
 
@@ -265,7 +265,7 @@ nm.covplot <- function(run = "run1",
      },
      varnames = casefold(eta.list, upper = TRUE),
      pscales = 1,
-     xlab="", ylab = "")
+     xlab = "", ylab = "")
   }
 
 
@@ -304,7 +304,7 @@ nm.covplot <- function(run = "run1",
 
   eta.dens <- function()
   {
-    xyplot(variable ~ value, #x=etas$value; y = etas$variable
+    xyplot(variable ~ value, #x = etas$value; y = etas$variable
 		  data = etas,
 		  tmp = etas,
 		  aspect = 1.5,
@@ -335,13 +335,13 @@ nm.covplot <- function(run = "run1",
          ltext(xtpos, ytpos, expression(paste(eta[sh]," (%)")), cex = 1)
        }
 
-       panel.superpose(x=zx, y = zy, groups = zz, subscripts = TRUE,..., col = red[3], type = "l")
-       panel.segments(x1=0, x2=0, y1=1, y2=max(etas$index)+1.2, col = gray[3])
+       panel.superpose(x = zx, y = zy, groups = zz, subscripts = TRUE,..., col = red[3], type = "l")
+       panel.segments(x1 = 0, x2 = 0, y1 = 1, y2 = max(etas$index)+1.2, col = gray[3])
       },
       ylab = "",
       xlab = "deviation",
-      scales = list(y = list(at=seq(lunique(levels(etas$variable)))
-                             , labels = casefold(levels(etas$variable),upper=TRUE))),
+      scales = list(y = list(at = seq(lunique(levels(etas$variable)))
+                             , labels = casefold(levels(etas$variable),upper = TRUE))),
       as.table = TRUE
     )
   }
@@ -356,7 +356,7 @@ nm.covplot <- function(run = "run1",
   etaContVarPlot <- function()
   {
     useOuterStrips(
-      xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
+      xyplot(value ~ conValue | casefold(variable, upper = TRUE) * conVariable,
      data = conData.eta,
     pcx = pcx,
     panel = function(x,y, ..., pcx)
@@ -364,7 +364,7 @@ nm.covplot <- function(run = "run1",
       panel.xyplot(x,y, ..., col = gray[10], cex = pcx
                    , type = c("p"))#,"r"), col.line = blue[5], lwd = 2)
       llines(lowess(x, y), col = red[7], lwd = 2)
-      panel.abline(h=0, col = gray[5], lwd = 1)
+      panel.abline(h = 0, col = gray[5], lwd = 1)
     },
     scales = list(relation = "free"),
     #between = list(x = 0.5, y = 0.5),
@@ -385,7 +385,7 @@ nm.covplot <- function(run = "run1",
   etaCatVarPlot <- function(show_means = TRUE)
   {
   useOuterStrips(
-    xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
+    xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper = TRUE) * catVariable,
     data = catData.eta,
     horizontal = FALSE,
     panel = function(x,y,...)
@@ -405,7 +405,7 @@ nm.covplot <- function(run = "run1",
   }
 
   ## prepare continuous parameters
-  if(!is.null(parameters) & length(con.list) > 0)            #  parameters=c("tvlamb","disp")
+  if(!is.null(parameters) & length(con.list) > 0)            #  parameters = c("tvlamb","disp")
   {
   conData = reshape2::melt(data, measure.vars = con.list)
   names(conData)[names(conData) %in% c('variable','value')] = c('conVariable', 'conValue')
@@ -414,7 +414,7 @@ nm.covplot <- function(run = "run1",
   parContVarPlot <- function()
   {
     useOuterStrips(
-      xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
+      xyplot(value ~ conValue | casefold(variable, upper = TRUE) * conVariable,
     data = conData.par,
     pcx = pcx,
     panel = function(x,y, ..., pcx)
@@ -443,7 +443,7 @@ nm.covplot <- function(run = "run1",
   parCatVarPlot <- function(){
     useOuterStrips(
        xyplot(
-          # value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
+          # value ~ as.factor(paste(catValue)) | casefold(variable, upper = TRUE) * catVariable,
           value ~ as.factor(catValue) | toupper(variable) * catVariable,
           data = catData.par,
           horizontal = FALSE,

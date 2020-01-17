@@ -24,13 +24,13 @@ Sample from Generalized Poisson distribution
 \examples{
 genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 {
-  rgenpois(n=10000, lambda=22, disp = DISP)
+  rgenpois(n = 10000, lambda = 22, disp = DISP)
 })
 
 # plot across dispersion
 plot(range(genPois.samples), c(0,.25), type = "n", xlim = c(0,100), ylab = "Frequency")
 for(i in 1 : ncol(genPois.samples)){
-  gpDen = density(genPois.samples[,i], bw=1)
+  gpDen = density(genPois.samples[,i], bw = 1)
   lines(gpDen)
   text(mean(genPois.samples[,i])
        , max(gpDen$y)+0.015
@@ -38,6 +38,6 @@ for(i in 1 : ncol(genPois.samples)){
        , cex = 0.5
   )
 }
-lines(density(rpois(10000, 11),bw=1), col = qp.green, lwd = 3)
+lines(density(rpois(10000, 11),bw = 1), col = qp.green, lwd = 3)
 text(3, 0.03, round(mean(rpois(10000, 11)), 1), col = qp.green)
 }

@@ -25,12 +25,12 @@
 #' @examples
 #' pkpdData = example.pkpdData()
 #' ok = duplicated(pkpdData$id) == FALSE
-#' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]))
-#' tabStats(x=pkpdData$race[ok], BY=list(dose = pkpdData$dose[ok]), 
-#' parName = "Race", digits.categorical=0)
+#' tabStats(x = pkpdData$race[ok], BY = list(dose = pkpdData$dose[ok]))
+#' tabStats(x = pkpdData$race[ok], BY = list(dose = pkpdData$dose[ok]), 
+#' parName = "Race", digits.categorical = 0)
 #' tabStats(pkpdData$sex[ok], list(dose = pkpdData$dose[ok]))
-#' tabStats(x=pkpdData$wt, BY = list(dose = pkpdData$dose))
-#' tabStats(x=pkpdData$bmi, BY = list(dose = pkpdData$dose))
+#' tabStats(x = pkpdData$wt, BY = list(dose = pkpdData$dose))
+#' tabStats(x = pkpdData$bmi, BY = list(dose = pkpdData$dose))
 tabStats <- function(x
                     , BY
                     , digits = 3

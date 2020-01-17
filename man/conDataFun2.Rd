@@ -22,7 +22,7 @@ Summary: median (min - max)
 This function is primarily used for demographics tables
 }
 \examples{
-x=rnorm(1000)
+x = rnorm(1000)
 conDataFun2(x, 3)
 }
 \seealso{

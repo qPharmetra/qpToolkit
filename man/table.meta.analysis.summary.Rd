@@ -37,7 +37,7 @@ Whether each covariate is continous or categorical is specified in the "cov.cat"
 meta.analysis.ds = read.csv(file.path(getOption("qpExampleDir")
  , "../Excel/meta.analysis.ds.csv"),stringsAsFactors = FALSE)
 table.meta.analysis.summary(meta.analysis.ds
- , cov.cols=c("age","fem.pct","dis.score.bl","drug.ir")
- , cov.cat=c(FALSE,FALSE,FALSE,TRUE)
+ , cov.cols = c("age","fem.pct","dis.score.bl","drug.ir")
+ , cov.cat = c(FALSE,FALSE,FALSE,TRUE)
 )
 }

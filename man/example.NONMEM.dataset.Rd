@@ -22,7 +22,7 @@ Examples for qPharmetra style NONMEM data set
 library(dplyr)
 library(magrittr)
 nmData = example.NONMEM.dataset()
-nmData \%>\% group_by(DOSE) \%>\% summarise(nID=lunique(ID), nObs = length(DV))
+nmData \%>\% group_by(DOSE) \%>\% summarise(nID = lunique(ID), nObs = length(DV))
 pkpdData = example.pkpdData()
 tbl_df(pkpdData)
 }

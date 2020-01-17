@@ -46,6 +46,6 @@ This function was based on \code{\link[Hmisc]{cut2}} from the Hmisc package. Ins
 }
 \examples{
 pkpdData = example.pkpdData()
-sunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
-lunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
+sunique(cut3(pkpdData$wt, g = 10, levels.mean = TRUE))
+lunique(cut3(pkpdData$wt, g = 10, levels.mean = TRUE))
 }

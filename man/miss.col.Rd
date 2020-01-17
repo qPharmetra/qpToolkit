@@ -18,8 +18,8 @@ Placeholder for return description
 given two data frames, which if any column in the first is not found in the second
 }
 \examples{
-my.df.1 = data.frame(a=1:3,b=4:6,c=7:9)
-my.df.2 = data.frame(a=1:3,b=4:6)
+my.df.1 = data.frame(a = 1:3,b = 4:6,c = 7:9)
+my.df.2 = data.frame(a = 1:3,b = 4:6)
 
 miss.col(my.df.1,my.df.2)
 #"c"

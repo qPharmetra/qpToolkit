@@ -33,7 +33,7 @@ logTicks <- function(lim, loc = 1)
   r = as.numeric(outer(loc, mn, "*"))
   r = r[min(lim) <= r & r <= max(lim)]  # ensure result has no values below or above the vector entered
   len = length(r)
-  theSeq = if(len%%2 == 0) seq(1,len,length=5) else (seq(1,len,length=6))
+  theSeq = if(len%%2 == 0) seq(1,len,length = 5) else (seq(1,len,length = 6))
   unique(r[round(theSeq)])
 }
 

@@ -11,13 +11,13 @@
 #' @examples
 #' genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 #' {
-#'   rgenpois(n=10000, lambda=22, disp = DISP)
+#'   rgenpois(n = 10000, lambda = 22, disp = DISP)
 #' })
 #'
 #' # plot across dispersion
 #' plot(range(genPois.samples), c(0,.25), type = "n", xlim = c(0,100), ylab = "Frequency")
 #' for(i in 1 : ncol(genPois.samples)){
-#'   gpDen = density(genPois.samples[,i], bw=1)
+#'   gpDen = density(genPois.samples[,i], bw = 1)
 #'   lines(gpDen)
 #'   text(mean(genPois.samples[,i])
 #'        , max(gpDen$y)+0.015
@@ -25,11 +25,11 @@
 #'        , cex = 0.5
 #'   )
 #' }
-#' lines(density(rpois(10000, 11),bw=1), col = qp.green, lwd = 3)
+#' lines(density(rpois(10000, 11),bw = 1), col = qp.green, lwd = 3)
 #' text(3, 0.03, round(mean(rpois(10000, 11)), 1), col = qp.green)
 
 
-rgenpois <- function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
+rgenpois <- function(lambda = lambda, disp = disp, n = 1, scan.size = 100)
 {
   if(n<1){message("n must be a non-zero positive integer") ;return()}
   if(n>1 & {length(lambda)>1 | length(disp)>1}) {message("if multiple lambda and/or disp values are specified n can be only 1");return()}
@@ -39,7 +39,7 @@ rgenpois <- function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
     if(min(c(length(lambda),length(disp)))>1) {message("if different lengths, either lambda or disp must have length 1"); return()}
     if(length(lambda) < length(disp)) lambda = rep(lambda, length(disp)) else disp = rep(disp, length(lambda))
   }
-  if(n>1) {lambda=rep(lambda, n); disp=rep(disp,n)}
+  if(n>1) {lambda = rep(lambda, n); disp = rep(disp,n)}
 
   ## scan.size should be 2-fold lambda
 
@@ -59,7 +59,7 @@ rgenpois <- function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
   gp1 = sweep(XXX, 1, sq-1, "^")
   gp2 = sweep(gp1, 2, lambda,  "*")
   interim.disp = sweep(mymat,2,disp,"*")
-  GP = gp2 * exp(-matrix(rep(lambda,ea=nnn+1), nrow=nnn+1, byrow=FALSE)-interim.disp)
+  GP = gp2 * exp(-matrix(rep(lambda,ea = nnn+1), nrow = nnn+1, byrow = FALSE)-interim.disp)
   GP = GP / exp(LFAC)
   GP = apply(GP, 2, cumsum)
   GP = apply(sweep(GP, 2, R), 2, function(x) max(cumsum(x<0)))

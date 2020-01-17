@@ -47,7 +47,7 @@
 #'  vpc.PD004.nlme = nlme.vpc(fit.PD004.nlme$object, nrep = 100)
 #'  nlme.vpcplot(fit.PD004.nlme$object, vpc.PD004.nlme)
 
-nlme.vpc <- function(object, nrep = 10, covariates, fun = smedian.hilow, newdata = NULL, return.samp=FALSE)
+nlme.vpc <- function(object, nrep = 10, covariates, fun = smedian.hilow, newdata = NULL, return.samp = FALSE)
 {
 	#require(Hmisc)
 
@@ -57,7 +57,7 @@ nlme.vpc <- function(object, nrep = 10, covariates, fun = smedian.hilow, newdata
 	vpc.object = sapply(1:nrep, function(x, object, newdata)
 	{
 		if(is.null(newdata))  tmp = nlme.extract(object, method = "samples")
-		if(!is.null(newdata)) tmp = nlme.extract(object, method = "samples", newdata=newdata)
+		if(!is.null(newdata)) tmp = nlme.extract(object, method = "samples", newdata = newdata)
 		ypr = eval(getCovariateFormula(object)[[2]], tmp)
 		return(ypr + tmp$residual)
 	}, object = object, newdata = newdata)
@@ -77,7 +77,7 @@ nlme.vpc <- function(object, nrep = 10, covariates, fun = smedian.hilow, newdata
 	if(any(covariates %in% "time")) covariates = c("time", covariates[covariates %nin% "time"])
 
 	if(!return.samp) return(list(object = object, covariates = covariates, vpc.summary = qsObject))
-	if(return.samp)	 return(list(object = object, covariates = covariates, vpc.summary = qsObject, vpc.samp=vpc.object))
+	if(return.samp)	 return(list(object = object, covariates = covariates, vpc.summary = qsObject, vpc.samp = vpc.object))
 }
 
 

@@ -23,7 +23,7 @@ Not to be called by user.
 \examples{
 library(lattice)
 set.seed(1234)
-datf = data.frame(TIME = exp(rnorm(3000, sd=0.6)), DV = seq(3000))
+datf = data.frame(TIME = exp(rnorm(3000, sd = 0.6)), DV = seq(3000))
 
 xyplot(DV ~ TIME
        , data = datf

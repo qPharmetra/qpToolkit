@@ -29,7 +29,7 @@ get.diag.names <- function(names, sep = ",")
     offDiag = apply(
       apply(
         sapply(myOMEGANames, function(x,sep)
-          unlist(unPaste(x,sep=sep)),sep=sep
+          unlist(unPaste(x,sep = sep)),sep = sep
           ), 1, as.numeric
         ), 1, diff
     )
@@ -43,7 +43,7 @@ get.diag.names <- function(names, sep = ",")
   mySIGMANames = gsub("SIGMA","", mySIGMANames)
   nams = names[isSIGMA]
   if(length(names[isSIGMA]) == 1) diagonal.sigma = TRUE else {
-    offDiag = apply(apply(sapply(mySIGMANames, function(x,sep) unlist(Hmisc::unPaste(x,sep=sep)),sep=sep),1,as.numeric),1,diff)
+    offDiag = apply(apply(sapply(mySIGMANames, function(x,sep) unlist(Hmisc::unPaste(x,sep = sep)),sep = sep),1,as.numeric),1,diff)
     diagonal.sigma = offDiag == 0
   }
   names(diagonal.sigma) = nams

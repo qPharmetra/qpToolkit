@@ -22,7 +22,7 @@ Summary: (95\%.lower - 95\%.upper)
 This function is primarily used for demographics tables
 }
 \examples{
-x=rnorm(1000)
+x = rnorm(1000)
 conDataFun3(x, 3)
 
 }

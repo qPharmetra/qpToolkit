@@ -9,7 +9,7 @@
 #' @examples
 #' library(lattice)
 #' set.seed(1234)
-#' datf = data.frame(DV = exp(rlnorm(1000, sdlog=0.5)), TIME = seq(1000))
+#' datf = data.frame(DV = exp(rlnorm(1000, sdlog = 0.5)), TIME = seq(1000))
 #'
 #' # labels at one log10 unit intervals
 #' xyplot(DV ~ TIME
@@ -48,7 +48,7 @@ xscale.components.log10 <- function(lim, ...){
 #' @examples
 #' library(lattice)
 #' set.seed(1234)
-#' datf = data.frame(TIME = exp(rnorm(3000, sd=0.6)), DV = seq(3000))
+#' datf = data.frame(TIME = exp(rnorm(3000, sd = 0.6)), DV = seq(3000))
 #'
 #' xyplot(DV ~ TIME
 #'        , data = datf

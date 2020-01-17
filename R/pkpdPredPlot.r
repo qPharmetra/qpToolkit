@@ -20,9 +20,9 @@
 #'
 #' @examples
 #' eff.1comp.iv(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25))
-#' pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+#' pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 #'        pk.func = eff.1comp.iv, parms = c(1,10, 0.25))
-#' pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+#' pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 #'             pk.func = pk.1comp.iv, e.func = eff.1comp.iv,
 #'             parms = c(1,10, 0.25))
 pkpdPredPlot <- function(doses, t.doses, t.obs, pk.func, e.func, parms, output = FALSE)
@@ -36,8 +36,8 @@ pkpdPredPlot <- function(doses, t.doses, t.obs, pk.func, e.func, parms, output =
    if(!output){
    plot(rep(t.obs,4), c(ypr.c, ypr.sd.c, ypr.e, ypr.sd.e), type = "n", xlab = "Time (unit)"
         ,ylab = c("Concentration & Effect"))
-   #text(-0.12*max(t.obs), 0.7*max(ypr.c), "Effect", col = blue[5],xpd=T,srt=90,cex =1.3)
-   #text(-0.12*max(t.obs), 0.3*max(ypr.c), "Concentration", col = green[5], xpd=T,srt = 90,cex=1.3)
+   #text(-0.12*max(t.obs), 0.7*max(ypr.c), "Effect", col = blue[5],xpd = T,srt = 90,cex =1.3)
+   #text(-0.12*max(t.obs), 0.3*max(ypr.c), "Concentration", col = green[5], xpd = T,srt = 90,cex = 1.3)
 
    ## plot PK
    lines(t.obs, ypr.c, col = green[7], lwd = 1.5)
@@ -54,6 +54,6 @@ pkpdPredPlot <- function(doses, t.doses, t.obs, pk.func, e.func, parms, output =
    ## depict which function was used
    text(x = 0.075 * max(t.obs), y = 1.075* max(ypr.c),
         substring(deparse(substitute(pk.func)),4), col = "blue", xpd = TRUE)
-   } else list(t.obs=t.obs, ypr.c=ypr.c, ypr.sd.c = ypr.sd.c, ypr.e = ypr.e, ypr.sd.e = ypr.sd.e,
-                    doses = doses, t.doses=t.doses, pk.func = pk.func, e.func = e.func)
+   } else list(t.obs = t.obs, ypr.c = ypr.c, ypr.sd.c = ypr.sd.c, ypr.e = ypr.e, ypr.sd.e = ypr.sd.e,
+                    doses = doses, t.doses = t.doses, pk.func = pk.func, e.func = e.func)
 } ## pkpdPredPlot

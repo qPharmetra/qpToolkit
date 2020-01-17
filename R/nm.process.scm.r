@@ -32,7 +32,7 @@
 #'       , sanitize.text.function = function(x)x
 #'       , include.rownames = FALSE
 #'       , size = "small"
-#'       , caption.placement ="top"
+#'       , caption.placement = "top"
 #'       , booktabs = TRUE
 #'       , tabular.environment = "longtable"
 #'       , floating = FALSE
@@ -40,12 +40,12 @@
 #' )
 
 nm.process.scm <- function(path,digits = 3)
-   #path = paste(getOption("qpExampleDir"), "scm files","Klas", sep="/")
+   #path = paste(getOption("qpExampleDir"), "scm files","Klas", sep = "/")
 {
-  scmpath = paste(path, "scmlog.txt", sep="/")
+  scmpath = paste(path, "scmlog.txt", sep = "/")
   if(!file.exists(scmpath))stop('cannot find ', scmpath)
   scm = readLines(scmpath)
-  scmshortpath = paste(path, "short_scmlog.txt", sep="/")
+  scmshortpath = paste(path, "short_scmlog.txt", sep = "/")
   if(!file.exists(scmshortpath))stop('cannot find ', scmshortpath)
   scmshort = readLines(scmshortpath)
   model = which(substring(scm,1,5) == "MODEL")
@@ -54,7 +54,7 @@ nm.process.scm <- function(path,digits = 3)
 
   scmTITLE = scm[model[1]]
 
-  fullSCM = lapply(seq(along=model), function(x,start, end, scm){
+  fullSCM = lapply(seq(along = model), function(x,start, end, scm){
     as.character(scm[(start[x]+1):(end[x]-1)])
   }
   , start = model
@@ -71,7 +71,7 @@ nm.process.scm <- function(path,digits = 3)
   }
   fullSCM = lapply(fullSCM, function(y) sapply(y, function(x) unravel.scm(x)))
   fullSCM = lapply(fullSCM, function(y) apply(y, 2, function(x) trimSpace(x)))
-  scmlist2df = function(x) if(length(x)==10) data.frame(matrix(c(x), nrow=1)) else data.frame(apply(x, 1, t))
+  scmlist2df = function(x) if(length(x) == 10) data.frame(matrix(c(x), nrow = 1)) else data.frame(apply(x, 1, t))
   fullSCM = lapply(fullSCM, scmlist2df)
 
   ## test if the SCM did not lead to any inclusion of any covariate
@@ -80,13 +80,13 @@ nm.process.scm <- function(path,digits = 3)
 #   if(any(test.it)){
 #     fullSCM = fullSCM[!test.it]
 #     fullSCM = data.frame(lapply(fullSCM, function(x) do.call("rbind",x))[[1]])
-#     fullSCM[,6] = paste("$",fullSCM[,6],"$ ",signif(as.numeric(fullSCM[, 7]),3),sep="")
+#     fullSCM[,6] = paste("$",fullSCM[,6],"$ ",signif(as.numeric(fullSCM[, 7]),3),sep = "")
 #     ok = isNumeric(fullSCM[,10])
 #     fullSCM[ok,10] = substring(sprintf("%4f",signif(asNumeric(fullSCM[ok,10]),4)),1,6)
 #     fullSCM[,10][fullSCM[,10] == "0.0000"] = "$<$0.0001"
 #     fullSCM[,10][fullSCM[,10] == "9999.0"] = "$>$0.9999"
 #     fullSCM = fullSCM[,-7]
-#     fullSCM = rbind(fullSCM, data.frame(matrix(c("$\\textbf{NOTHING ADDED}$",rep("",9)), nrow=1))[,-7])
+#     fullSCM = rbind(fullSCM, data.frame(matrix(c("$\\textbf{NOTHING ADDED}$",rep("",9)), nrow = 1))[,-7])
 #
 #     names(fullSCM)=c("MODEL", "TEST", "OFV$_{base}$","OFV$_{test}$","$\\Delta$OFV","GOAL","$\\Delta$DF","SIGNIFICANT", "P value")
 #     return(fullSCM)
@@ -128,7 +128,7 @@ nm.process.scm <- function(path,digits = 3)
   final.model = scmshort[(tail(relations,1)+1):(tail(dashes,1)-1)]
   final.model = sapply(final.model, function(x) unlist(strsplit(x, "\\s+")))
   final.model = lapply(final.model, function(x){
-     data.frame(Parameter=x[1],Covariates=paste(if(length(x)>1) x[-1] else "", collapse = ", "))
+     data.frame(Parameter = x[1],Covariates = paste(if(length(x)>1) x[-1] else "", collapse = ", "))
   })
   final.model = do.call("rbind",final.model)
   row.names(final.model)=NULL
@@ -143,7 +143,7 @@ nm.process.scm <- function(path,digits = 3)
   allSteps[allSteps == "ADDED --"] = "NOTHING ADDED"
   allSteps[allSteps == "REMOVED --"] = "NOTHING REMOVED"
 
-  step.n=length(nFwd)+length(nBwd)
+  step.n = length(nFwd)+length(nBwd)
   step.labels = character(step.n)
   step.action = allSteps
   for(i in 1:step.n){
@@ -151,9 +151,9 @@ nm.process.scm <- function(path,digits = 3)
                            paste("START FORWARD STEP",i),
                            paste("START BACKWARD STEP",i-length(nFwd)))
   }
-  steps=list()
+  steps = list()
   for(i in 1:step.n){
-     steps[[i]]=list(label=step.labels[i], runs=fullSCM[i], action=step.action[i])
+     steps[[i]]=list(label = step.labels[i], runs = fullSCM[i], action = step.action[i])
   }
 
   ### ---- Perform LaTeX work on fullSCM ----
@@ -169,7 +169,7 @@ nm.process.scm <- function(path,digits = 3)
     ER[2,1] = allSteps[x]
     ER[1,1] = names(fullSCM)[x]
     ER[3,1] = "\\cmidrule{2-8}%"
-    y=data.frame(rbind(ER[1,], fullSCM[[x]], ER[2,],ER[3,]))
+    y = data.frame(rbind(ER[1,], fullSCM[[x]], ER[2,],ER[3,]))
     names(y) = names(fullSCM[[x]])
     return(y)
   }, er = empty.row, fullSCM = fullSCM, allSteps = allSteps
@@ -202,20 +202,20 @@ nm.process.scm <- function(path,digits = 3)
   fullSCM.latex$PVAL[fullSCM.latex$PVAL == "9999.0"] = "$>$0.9999"
 
   aadp = align.around.decimal.point
-  fullSCM.latex$BASE.OFV[ok] = aadp(round(asNumeric(fullSCM.latex$BASE.OFV[ok]), 1), len=max(5,max(nchar(fullSCM.latex$BASE.OFV[ok]))-2))
-  fullSCM.latex$NEW.OFV[ok] = aadp(round(asNumeric(fullSCM.latex$NEW.OFV[ok]), 1), len=max(5,max(nchar(fullSCM.latex$NEW.OFV[ok]))-2))
+  fullSCM.latex$BASE.OFV[ok] = aadp(round(asNumeric(fullSCM.latex$BASE.OFV[ok]), 1), len = max(5,max(nchar(fullSCM.latex$BASE.OFV[ok]))-2))
+  fullSCM.latex$NEW.OFV[ok] = aadp(round(asNumeric(fullSCM.latex$NEW.OFV[ok]), 1), len = max(5,max(nchar(fullSCM.latex$NEW.OFV[ok]))-2))
   fullSCM.latex$DIFF[ok] = aadp(round(asNumeric(fullSCM.latex$DIFF[ok]), 2)
-                          , len=max(nchar(round(extract.number(fullSCM.latex$DIFF[ok])))))
-  fullSCM.latex$TEST[fullSCM.latex$TEST =="PVAL"] = "~"
+                          , len = max(nchar(round(extract.number(fullSCM.latex$DIFF[ok])))))
+  fullSCM.latex$TEST[fullSCM.latex$TEST == "PVAL"] = "~"
 
   names(fullSCM.latex) = c("MODEL", "TEST", "OFV$_{base}$","OFV$_{test}$","$\\Delta$OFV","GOAL","$\\Delta$DF","SIGNIFICANT", "P value")
   fullSCM.latex$TEST = NULL
 
   SCM = structure(list(  full.scm = fullSCM
-             , summary=scm.summary
+             , summary = scm.summary
              , model = final.model
              , steps = steps
              , scm.latex = fullSCM.latex
-  ), class="SCM")
+  ), class = "SCM")
   return(SCM)
 }

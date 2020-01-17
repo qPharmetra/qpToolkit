@@ -42,10 +42,10 @@ Constructs a covInfo (covariate information) object from a vector.
 This function is used with \code{nm.process.coveffects}
 }
 \examples{
-eqs <- make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
-            ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
+eqs <- make.eqs(CL = THETA1*(1 + (GNDR == 0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+            ,V1 = THETA2*(1 + (GNDR == 0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
             )
-eqs$label <- list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+eqs$label <- list(CL = "Clearance (L/h)", V1 = "Volume of Central Compartment (L)")
 
 }
 \seealso{

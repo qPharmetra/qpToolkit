@@ -6,7 +6,7 @@
 
 # ROXYGEN Documentation
 #' Read the runrecord
-#' @description Read the run record into readable table. This function assumes runrecord has been run with PsN option -maxlvl=0. It is to be used in conjunction with process.runrec
+#' @description Read the run record into readable table. This function assumes runrecord has been run with PsN option -maxlvl = 0. It is to be used in conjunction with process.runrec
 #' @param filename filename, e.g. "AAinfo.txt"
 #' @param path diretory where the runrecord resides
 #' @return Data.frame with all information extracted from the runrecord.
@@ -23,7 +23,7 @@
 read.runrec <- function(filename, path = getOption("nmDir"))
 {
    if(missing(filename)) stop("filename must be included.")
-  runrec = read.table(file=file.path(path,filename), sep=";", skip=5, header=FALSE)
+  runrec = read.table(file = file.path(path,filename), sep = ";", skip = 5, header = FALSE)
   runrec = runrec[, 1:18]
   names(runrec) = c(
   	'Run','Ref','OFV','dOFV','CondNum','Minimization','CovStep','Label',

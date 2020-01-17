@@ -32,7 +32,7 @@ unique values in \code{x}.
 like as.ordered with extended formatting
 }
 \examples{
-out = expand.grid(ID=1:5, DOSE = c(0,500,100,4000))
+out = expand.grid(ID = 1:5, DOSE = c(0,500,100,4000))
 factor(out$DOSE)
 #Levels: 0 100 500 4000  ## W H A T ???
 orderedNumeric(out$DOSE)
