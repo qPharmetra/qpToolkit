@@ -52,7 +52,7 @@ Predict residuals, partial residuals or uncertainty predictions for an nlme.obje
 }
 \examples{
 pkpdData = example.pkpdData()
-EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
 {
   # Effect-site concentration for 1-compartment model, 1st-order absorption
 

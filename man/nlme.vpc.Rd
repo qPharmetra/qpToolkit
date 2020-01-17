@@ -35,7 +35,7 @@ Creates a VPC object of an nlme object ready for plotting
 \examples{
 library(nlme)
 pkpdData = example.pkpdData()
- EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+ EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
  {
    # Effect-site concentration for 1-compartment model, 1st-order absorption
 

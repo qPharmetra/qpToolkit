@@ -91,7 +91,7 @@ plot(fm1DNase1.predict)
 fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
 plot(fm1DNase1.predict, logX = TRUE)
 
-EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
 {
   # Effect-site concentration for 1-compartment model, 1st-order absorption
 
