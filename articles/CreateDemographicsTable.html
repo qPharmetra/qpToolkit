@@ -145,7 +145,7 @@
 <p>Then, the wrapper function ‘tabSummarize’ takes a formula of the form g ~ x1 + x2 + … to create a summary of patient characterics x1, x2, … by grouping variable g. Optionally a blank line is added inbetween each patient characteric summary to improve demographics table legibility. The result is the demographics table.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">tabSummarize</span>(<span class="dt">formula =</span> dose <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>wt <span class="op">+</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data =</span> pkpdData[ok, ], <span class="dt">digits =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##         parameter                  0                100                250                500                All
-## 1                             (N=32)             (N=32)             (N=32)             (N=32)            (N=128)
+## 1                           (N = 32)           (N = 32)           (N = 32)           (N = 32)          (N = 128)
 ## 2                                                                                                               
 ## 3            Race                                                                                               
 ## 4           Asian          6 (18.8%)          6 (18.8%)           3 (9.4%)           3 (9.4%)         18 (14.1%)
@@ -174,7 +174,7 @@
 <a class="sourceLine" id="cb15-7" data-line-number="7">)</a>
 <a class="sourceLine" id="cb15-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(demoTable)</a></code></pre></div>
 <pre><code>##         parameter            Placebo         drug 100mg         drug 250mg         drug 500mg                All
-## 1                             (N=32)             (N=32)             (N=32)             (N=32)            (N=128)
+## 1                           (N = 32)           (N = 32)           (N = 32)           (N = 32)          (N = 128)
 ## 2                                                                                                               
 ## 3            Race                                                                                               
 ## 4           Asian          6 (18.8%)          6 (18.8%)           3 (9.4%)           3 (9.4%)         18 (14.1%)
@@ -208,7 +208,7 @@
 <a class="sourceLine" id="cb17-12" data-line-number="12">      , <span class="dt">type =</span> <span class="st">"html"</span></a>
 <a class="sourceLine" id="cb17-13" data-line-number="13">)</a></code></pre></div>
 <!-- html table generated in R 3.6.2 by xtable 1.8-4 package -->
-<!-- Fri Jan 17 20:05:40 2020 -->
+<!-- Fri Jan 17 22:43:52 2020 -->
 <table class="table">
 <caption align="bottom">
 Demographics Table
@@ -238,19 +238,19 @@ All
 
 </td>
 <td>
-(N=32)
+(N = 32)
 </td>
 <td>
-(N=32)
+(N = 32)
 </td>
 <td>
-(N=32)
+(N = 32)
 </td>
 <td>
-(N=32)
+(N = 32)
 </td>
 <td>
-(N=128)
+(N = 128)
 </td>
 </tr>
 <tr>
@@ -582,7 +582,7 @@ M
 ##         c("Weight (kg)", "Height (cm)", "BMI (kg/m2)", "Age (yr)", 
 ##             "Gender", "Creatinine Clearance (mL/min)", "Race"))
 ## }
-## &lt;bytecode: 0x9cc9308&gt;
+## &lt;bytecode: 0x942a578&gt;
 ## &lt;environment: namespace:qpToolkit&gt;</code></pre>
   </div>
 

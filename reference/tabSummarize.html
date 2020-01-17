@@ -196,7 +196,7 @@
 <span class='no'>pkpdData</span> <span class='kw'>=</span> <span class='fu'>example.pkpdData</span>()
 <span class='no'>ok</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span>(<span class='no'>pkpdData</span>$<span class='no'>id</span>) <span class='kw'>==</span> <span class='fl'>FALSE</span>
 <span class='fu'>tabSummarize</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>dose</span> ~ <span class='no'>race</span> + <span class='no'>wt</span> + <span class='no'>bmi</span> + <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>pkpdData</span>[<span class='no'>ok</span>, ], <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt;         parameter                  0                100                250                500                All
-#&gt; 1                             (N=32)             (N=32)             (N=32)             (N=32)            (N=128)
+#&gt; 1                           (N = 32)           (N = 32)           (N = 32)           (N = 32)          (N = 128)
 #&gt; 2                                                                                                               
 #&gt; 3            Race                                                                                               
 #&gt; 4           Asian          6 (18.8%)          6 (18.8%)           3 (9.4%)           3 (9.4%)         18 (14.1%)
@@ -227,7 +227,7 @@
  <span class='fu'>tabSummarize</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>myFormula</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>pkpdData</span>[<span class='no'>ok</span>, ], <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>)
   , <span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>myFormula</span>
 )</div><div class='output co'>#&gt;       ~                        0                    100                  250                  500                  All                 
-#&gt;  [1,] "\\hfill "               "(N=32)"             "(N=32)"             "(N=32)"             "(N=32)"             "(N=128)"           
+#&gt;  [1,] "\\hfill "               "(N = 32)"           "(N = 32)"           "(N = 32)"           "(N = 32)"           "(N = 128)"         
 #&gt;  [2,] "\\hfill "               ""                   ""                   ""                   ""                   ""                  
 #&gt;  [3,] "\\textbf{Race}"         ""                   ""                   ""                   ""                   ""                  
 #&gt;  [4,] "\\hfill Asian"          "6 (18.8\\%)"        "6 (18.8\\%)"        "3 (9.4\\%)"         "3 (9.4\\%)"         "18 (14.1\\%)"      

@@ -258,7 +258,7 @@
 <span class='fu'><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>xyplot</a></span>(<span class='no'>CONC</span> ~ <span class='no'>TIME</span>
        , <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>out</span>
        , <span class='kw'>groups</span> <span class='kw'>=</span> <span class='no'>ID</span>
-       , <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>
+       , <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>EVID</span> <span class='kw'>==</span> <span class='fl'>0</span>
        , <span class='kw'>aspect</span> <span class='kw'>=</span> <span class='fl'>1</span>
        , <span class='kw'>scales</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>relation</span> <span class='kw'>=</span> <span class='st'>"free"</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>log</span> <span class='kw'>=</span> <span class='fl'>10</span>))
        , <span class='kw'>panel</span> <span class='kw'>=</span> <span class='no'>panel.meanspag</span>
@@ -270,7 +270,7 @@
 <span class='fu'><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>xyplot</a></span>(<span class='no'>CONC</span> ~ <span class='kw pkg'>Hmisc</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Hmisc/man/xYplot.html'>Cbind</a></span>(<span class='no'>TIME</span>, <span class='kw pkg'>metrumrg</span><span class='kw ns'>::</span><span class='fu'>snap</span>(<span class='no'>TIME</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='no'>ptimes</span>))
       , <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>out</span>
       , <span class='kw'>groups</span> <span class='kw'>=</span> <span class='no'>ID</span>
-      , <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>
+      , <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>EVID</span> <span class='kw'>==</span> <span class='fl'>0</span>
       , <span class='kw'>aspect</span> <span class='kw'>=</span> <span class='fl'>1</span>
       , <span class='kw'>scales</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>relation</span> <span class='kw'>=</span> <span class='st'>"free"</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>log</span> <span class='kw'>=</span> <span class='fl'>10</span>))
       , <span class='kw'>panel</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>,<span class='no'>y</span>,<span class='no'>...</span>)

@@ -167,7 +167,7 @@
     <div class='dont-index'><p><code>isNumeric</code>, <code>asNumeric</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>temp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>nom.time</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>NA</span>,<span class='fl'>7</span>,<span class='fl'>NA</span>))
+    <pre class="examples"><div class='input'><span class='no'>temp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>nom.time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>NA</span>,<span class='fl'>7</span>,<span class='fl'>NA</span>))
 <span class='fu'>isMissing</span>(<span class='no'>temp</span>$<span class='no'>nom.time</span>)</div><div class='output co'>#&gt; [1] FALSE  TRUE FALSE  TRUE</div><div class='input'><span class='no'>temp</span>[<span class='fu'>isMissing</span>(<span class='no'>temp</span>$<span class='no'>nom.time</span>),]</div><div class='output co'>#&gt;   id nom.time
 #&gt; 2  2       NA
 #&gt; 4  4       NA</div></pre>

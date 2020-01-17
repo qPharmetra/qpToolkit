@@ -125,19 +125,19 @@
 ## [1] 0.144</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"extract.character"</span>)</a></code></pre></div>
 <pre><code>## 
-## extrc.&gt; extract.character(x="df12Lee31df")
+## extrc.&gt; extract.character(x = "df12Lee31df")
 ## [1] "df"  "Lee" "df" 
 ## 
-## extrc.&gt; extract.character(x="df1231df", TRUE)
+## extrc.&gt; extract.character(x = "df1231df", TRUE)
 ## [1] "dfdf"</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"cut3"</span>)</a></code></pre></div>
 <pre><code>## 
 ## cut3&gt; pkpdData = example.pkpdData()
 ## 
-## cut3&gt; sunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
+## cut3&gt; sunique(cut3(pkpdData$wt, g = 10, levels.mean = TRUE))
 ##  [1] 57.867 67.250 71.389 73.429 76.077 78.471 80.455 82.100 86.462 94.917
 ## 
-## cut3&gt; lunique(cut3(pkpdData$wt, g=10, levels.mean=TRUE))
+## cut3&gt; lunique(cut3(pkpdData$wt, g = 10, levels.mean = TRUE))
 ## [1] 10</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"geomean"</span>)</a></code></pre></div>
 <pre><code>## 
@@ -152,7 +152,7 @@
 ## [1] 0.9737534</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"expand.data"</span>)</a></code></pre></div>
 <pre><code>## 
-## expnd.&gt; input.df = data.frame(A=1:2,B=2:3,C=4:5)
+## expnd.&gt; input.df = data.frame(A = 1:2,B = 2:3,C = 4:5)
 ## 
 ## expnd.&gt; input.df
 ##   A B C
@@ -181,17 +181,17 @@
 ## 
 ## frmtt.&gt; print(
 ## frmtt.+    xtable(
-## frmtt.+       data.frame(original=numvec
-## frmtt.+                  ,latex.TRUE= formatted.signif(numvec,3, TRUE,FALSE)
-## frmtt.+                  ,align.TRUE= formatted.signif(numvec,3, FALSE,TRUE)
+## frmtt.+       data.frame(original = numvec
+## frmtt.+                  ,latex.TRUE = formatted.signif(numvec,3, TRUE,FALSE)
+## frmtt.+                  ,align.TRUE = formatted.signif(numvec,3, FALSE,TRUE)
 ## frmtt.+                  ,all.TRUE = formatted.signif(numvec,3, TRUE,TRUE)
 ## frmtt.+       )
 ## frmtt.+    )
-## frmtt.+    , booktabs=TRUE
+## frmtt.+    , booktabs = TRUE
 ## frmtt.+    , sanitize.text.function = identity
 ## frmtt.+ )
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Fri Jan 17 20:06:19 2020
+## % Fri Jan 17 22:44:31 2020
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rrlll}
@@ -216,7 +216,7 @@
 ## frmtt.&gt;</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"fxs"</span>)</a></code></pre></div>
 <pre><code>## 
-## fxs&gt; fxs(c(0,1,34, 50000), pattern="    ")
+## fxs&gt; fxs(c(0,1,34, 50000), pattern = "    ")
 ## [1] "   0"  "   1"  "  34"  "50000"
 ## 
 ## fxs&gt; fxs(c(0,1,34, 50000), "000000")
@@ -279,28 +279,28 @@
 ## locf&gt; # Note that initial missing values take next value (1),
 ## locf&gt; # so next value carried backward at beginning
 ## locf&gt; # Example with "."
-## locf&gt; locf(c(".",".",1,".",".",2,".",".",".",".",3), na=".")
+## locf&gt; locf(c(".",".",1,".",".",2,".",".",".",".",3), na = ".")
 ##  [1] "1" "1" "1" "1" "1" "2" "2" "2" "2" "2" "3"
 ## 
 ## locf&gt; # Note, if you have text in the vector, it is all converted to text.
 ## locf&gt; # This is by design so we can use different types.
 ## locf&gt; # Examples with factors
-## locf&gt; fac=as.factor(c(".",".","A",".",".","B",".",".",".",".","C"))
+## locf&gt; fac = as.factor(c(".",".","A",".",".","B",".",".",".",".","C"))
 ## 
-## locf&gt; locf(fac,na=".")
+## locf&gt; locf(fac,na = ".")
 ##  [1] A A A A A B B B B B C
 ## Levels: A B C
 ## 
-## locf&gt; fac=as.factor(c(NA,NA,"A",NA,NA,"B",NA,NA,NA,NA,"C"))
+## locf&gt; fac = as.factor(c(NA,NA,"A",NA,NA,"B",NA,NA,NA,NA,"C"))
 ## 
-## locf&gt; locf(fac,na=NA)
+## locf&gt; locf(fac,na = NA)
 ##  [1] A A A A A B B B B B C
 ## Levels: A B C</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"miss.col"</span>)</a></code></pre></div>
 <pre><code>## 
-## mss.cl&gt; my.df.1 = data.frame(a=1:3,b=4:6,c=7:9)
+## mss.cl&gt; my.df.1 = data.frame(a = 1:3,b = 4:6,c = 7:9)
 ## 
-## mss.cl&gt; my.df.2 = data.frame(a=1:3,b=4:6)
+## mss.cl&gt; my.df.2 = data.frame(a = 1:3,b = 4:6)
 ## 
 ## mss.cl&gt; miss.col(my.df.1,my.df.2)
 ## [1] "c"
@@ -315,7 +315,7 @@
 ## mss.cl&gt;</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"orderedNumeric"</span>)</a></code></pre></div>
 <pre><code>## 
-## ordrdN&gt; out = expand.grid(ID=1:5, DOSE = c(0,500,100,4000))
+## ordrdN&gt; out = expand.grid(ID = 1:5, DOSE = c(0,500,100,4000))
 ## 
 ## ordrdN&gt; factor(out$DOSE)
 ##  [1] 0    0    0    0    0    500  500  500  500  500  100  100  100  100  100 
@@ -374,30 +374,30 @@
 <pre><code>## Warning in example("repeath.nth"): no help found for 'repeath.nth'</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"sample.by.id"</span>)</a></code></pre></div>
 <pre><code>## 
-## smpl..&gt; my.ids = rep(1:5,each=3)
+## smpl..&gt; my.ids = rep(1:5,each = 3)
 ## 
 ## smpl..&gt; my.ids
 ##  [1] 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
 ## 
 ## smpl..&gt; set.seed(123456)
 ## 
-## smpl..&gt; sample.by.id(my.ids, samples=rgamma(1000,1))
+## smpl..&gt; sample.by.id(my.ids, samples = rgamma(1000,1))
 ##  [1] 1.06230522 1.06230522 1.06230522 0.08504669 0.08504669 0.08504669
 ##  [7] 0.14652876 0.14652876 0.14652876 0.39643961 0.39643961 0.39643961
 ## [13] 0.93801055 0.93801055 0.93801055
 ## 
-## smpl..&gt; my.ids = rep(1:5,times=3)
+## smpl..&gt; my.ids = rep(1:5,times = 3)
 ## 
 ## smpl..&gt; my.ids
 ##  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5
 ## 
-## smpl..&gt; sample.by.id(my.ids, samples=rgamma(1000,1))
+## smpl..&gt; sample.by.id(my.ids, samples = rgamma(1000,1))
 ##  [1] 1.9061611 3.7571760 2.5405527 0.5947255 0.6756686 1.9061611 3.7571760
 ##  [8] 2.5405527 0.5947255 0.6756686 1.9061611 3.7571760 2.5405527 0.5947255
 ## [15] 0.6756686
 ## 
 ## smpl..&gt; #one unique value per id
-## smpl..&gt; sample.by.id(unique(my.ids), samples=rgamma(1000,1))
+## smpl..&gt; sample.by.id(unique(my.ids), samples = rgamma(1000,1))
 ## [1] 1.0475823 1.5491855 0.1169623 0.4625596 0.2991229
 ## 
 ## smpl..&gt; tapply(sample.by.id(my.ids, samples = rgamma(1000,1)),my.ids, unique)
@@ -456,7 +456,7 @@
 ##  0.49431088 -0.44777474</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"shuffle.list"</span>)</a></code></pre></div>
 <pre><code>## 
-## shffl.&gt; test = list(A=list(a=1,b=2,c=3), B = list(a=2,b=1,c=0))
+## shffl.&gt; test = list(A = list(a = 1,b = 2,c = 3), B = list(a = 2,b = 1,c = 0))
 ## 
 ## shffl.&gt; shuffle.list(test)
 ## $a
@@ -489,14 +489,14 @@
 ##  [1] 11 22 22 22 44 44 44 33 33 33 33</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"tabulate.samples"</span>)</a></code></pre></div>
 <pre><code>## 
-## tblt.s&gt; my.df = data.frame( analyte.1=c(1,2,3,4,'BLOQ',5,6,'NS',7,'M'),
-## tblt.s+                    analyte.2=c(1,2,'BLOQ','M',3,'BLOQ',5,6,'NS',7))
+## tblt.s&gt; my.df = data.frame( analyte.1 = c(1,2,3,4,'BLOQ',5,6,'NS',7,'M'),
+## tblt.s+                    analyte.2 = c(1,2,'BLOQ','M',3,'BLOQ',5,6,'NS',7))
 ## 
-## tblt.s&gt; tabulate.samples(data=my.df, analyte="analyte.1")
+## tblt.s&gt; tabulate.samples(data = my.df, analyte = "analyte.1")
 ##           BLOQ             NS              M Numeric.Values            All 
 ##              1              1              1              7             10 
 ## 
-## tblt.s&gt; tabulate.samples(data=my.df, analyte="analyte.2")
+## tblt.s&gt; tabulate.samples(data = my.df, analyte = "analyte.2")
 ##           BLOQ             NS              M Numeric.Values            All 
 ##              2              1              1              6             10</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"trimSpace"</span>)</a></code></pre></div>
@@ -511,7 +511,7 @@
 <a href="#functions-with-graphs" class="anchor"></a>functions with graphs</h2>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"logit.inv"</span>)</a></code></pre></div>
 <pre><code>## 
-## lgt.nv&gt; myVector = runif(n = 1000, min=0.001,max = 0.999)
+## lgt.nv&gt; myVector = runif(n = 1000, min = 0.001,max = 0.999)
 ## 
 ## lgt.nv&gt; myVector.logit = logit(myVector)
 ## 
@@ -525,7 +525,7 @@
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitDensity"</span>)</a></code></pre></div>
 <pre><code>## 
-## untDns&gt; standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length=1000),0,1))
+## untDns&gt; standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length = 1000),0,1))
 ## 
 ## untDns&gt; plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l')</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitHistogram"</span>)</a></code></pre></div>
@@ -539,7 +539,7 @@
 <pre><code>## 
 ## rgenps&gt; genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 ## rgenps+ {
-## rgenps+   rgenpois(n=10000, lambda=22, disp = DISP)
+## rgenps+   rgenpois(n = 10000, lambda = 22, disp = DISP)
 ## rgenps+ })
 ## 
 ## rgenps&gt; # plot across dispersion
@@ -547,7 +547,7 @@
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-4-2.png" width="672"></p>
 <pre><code>## 
 ## rgenps&gt; for(i in 1 : ncol(genPois.samples)){
-## rgenps+   gpDen = density(genPois.samples[,i], bw=1)
+## rgenps+   gpDen = density(genPois.samples[,i], bw = 1)
 ## rgenps+   lines(gpDen)
 ## rgenps+   text(mean(genPois.samples[,i])
 ## rgenps+        , max(gpDen$y)+0.015
@@ -556,7 +556,7 @@
 ## rgenps+   )
 ## rgenps+ }
 ## 
-## rgenps&gt; lines(density(rpois(10000, 11),bw=1), col = qp.green, lwd = 3)
+## rgenps&gt; lines(density(rpois(10000, 11),bw = 1), col = qp.green, lwd = 3)
 ## 
 ## rgenps&gt; text(3, 0.03, round(mean(rpois(10000, 11)), 1), col = qp.green)</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"boxcoxf"</span>)</a></code></pre></div>
@@ -567,7 +567,7 @@
 ## 
 ## boxcxf&gt; x.boxcox.neg = boxcoxf(-3.5,x)
 ## 
-## boxcxf&gt; par(mfrow=c(1,3))
+## boxcxf&gt; par(mfrow = c(1,3))
 ## 
 ## boxcxf&gt; hist(x)</code></pre>
 <pre><code>## 
@@ -579,7 +579,7 @@
 <pre><code>## 
 ## dblStc&gt; set.seed(1234)
 ## 
-## dblStc&gt; myDF = data.frame(id=1:100)
+## dblStc&gt; myDF = data.frame(id = 1:100)
 ## 
 ## dblStc&gt; myDF$wt = with(myDF, signif(rnorm.by.id(id, 76,15)))
 ## 
@@ -613,10 +613,10 @@
 ## 
 ## dblStc&gt; library(ggplot2)
 ## 
-## dblStc&gt; ggplot(subset(stacked.df, variable != "sex"), aes(x=as.numeric(value), y = value1)) +
+## dblStc&gt; ggplot(subset(stacked.df, variable != "sex"), aes(x = as.numeric(value), y = value1)) +
 ## dblStc+    geom_point() +
-## dblStc+    stat_smooth(method="lm", col = lin.fit.col) +
-## dblStc+    facet_grid(variable1 ~ variable,scales="free_y")</code></pre>
+## dblStc+    stat_smooth(method = "lm", col = lin.fit.col) +
+## dblStc+    facet_grid(variable1 ~ variable,scales = "free_y")</code></pre>
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-4-4.png" width="672"></p>
 </div>
 <div id="functions-with-graphs-1" class="section level2">
@@ -624,7 +624,7 @@
 <a href="#functions-with-graphs-1" class="anchor"></a>functions with graphs</h2>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"logit.inv"</span>)</a></code></pre></div>
 <pre><code>## 
-## lgt.nv&gt; myVector = runif(n = 1000, min=0.001,max = 0.999)
+## lgt.nv&gt; myVector = runif(n = 1000, min = 0.001,max = 0.999)
 ## 
 ## lgt.nv&gt; myVector.logit = logit(myVector)
 ## 
@@ -638,7 +638,7 @@
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitDensity"</span>)</a></code></pre></div>
 <pre><code>## 
-## untDns&gt; standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length=1000),0,1))
+## untDns&gt; standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length = 1000),0,1))
 ## 
 ## untDns&gt; plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l')</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitHistogram"</span>)</a></code></pre></div>
@@ -652,7 +652,7 @@
 <pre><code>## 
 ## rgenps&gt; genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 ## rgenps+ {
-## rgenps+   rgenpois(n=10000, lambda=22, disp = DISP)
+## rgenps+   rgenpois(n = 10000, lambda = 22, disp = DISP)
 ## rgenps+ })
 ## 
 ## rgenps&gt; # plot across dispersion
@@ -660,7 +660,7 @@
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-5-2.png" width="672"></p>
 <pre><code>## 
 ## rgenps&gt; for(i in 1 : ncol(genPois.samples)){
-## rgenps+   gpDen = density(genPois.samples[,i], bw=1)
+## rgenps+   gpDen = density(genPois.samples[,i], bw = 1)
 ## rgenps+   lines(gpDen)
 ## rgenps+   text(mean(genPois.samples[,i])
 ## rgenps+        , max(gpDen$y)+0.015
@@ -669,7 +669,7 @@
 ## rgenps+   )
 ## rgenps+ }
 ## 
-## rgenps&gt; lines(density(rpois(10000, 11),bw=1), col = qp.green, lwd = 3)
+## rgenps&gt; lines(density(rpois(10000, 11),bw = 1), col = qp.green, lwd = 3)
 ## 
 ## rgenps&gt; text(3, 0.03, round(mean(rpois(10000, 11)), 1), col = qp.green)</code></pre>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"boxcoxf"</span>)</a></code></pre></div>
@@ -680,7 +680,7 @@
 ## 
 ## boxcxf&gt; x.boxcox.neg = boxcoxf(-3.5,x)
 ## 
-## boxcxf&gt; par(mfrow=c(1,3))
+## boxcxf&gt; par(mfrow = c(1,3))
 ## 
 ## boxcxf&gt; hist(x)</code></pre>
 <pre><code>## 
@@ -692,7 +692,7 @@
 <pre><code>## 
 ## dblStc&gt; set.seed(1234)
 ## 
-## dblStc&gt; myDF = data.frame(id=1:100)
+## dblStc&gt; myDF = data.frame(id = 1:100)
 ## 
 ## dblStc&gt; myDF$wt = with(myDF, signif(rnorm.by.id(id, 76,15)))
 ## 
@@ -726,10 +726,10 @@
 ## 
 ## dblStc&gt; library(ggplot2)
 ## 
-## dblStc&gt; ggplot(subset(stacked.df, variable != "sex"), aes(x=as.numeric(value), y = value1)) +
+## dblStc&gt; ggplot(subset(stacked.df, variable != "sex"), aes(x = as.numeric(value), y = value1)) +
 ## dblStc+    geom_point() +
-## dblStc+    stat_smooth(method="lm", col = lin.fit.col) +
-## dblStc+    facet_grid(variable1 ~ variable,scales="free_y")</code></pre>
+## dblStc+    stat_smooth(method = "lm", col = lin.fit.col) +
+## dblStc+    facet_grid(variable1 ~ variable,scales = "free_y")</code></pre>
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-5-4.png" width="672"></p>
 </div>
   </div>

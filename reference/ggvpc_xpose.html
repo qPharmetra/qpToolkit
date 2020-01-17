@@ -252,9 +252,9 @@
  <span class='fu'>nm.read.vpc</span>(<span class='kw'>path</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"vpc_final_strt"</span>)) <span class='kw'>-&gt;</span> <span class='no'>vpc.all</span>
 
 <span class='fu'>ggvpc_xpose</span>(<span class='no'>vpc.all</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='st'>"Time (h)"</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='st'>"Concentration (ng/ml)"</span>)</div><div class='img'><img src='ggvpc_xpose-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Time (h)"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Concentration (ng/ml)"</span>)</div><div class='img'><img src='ggvpc_xpose-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>ggvpc_xpose</span>(<span class='no'>vpc.all</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='st'>"Time (h)"</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='st'>"Concentration (ng/ml)"</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Time (h)"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Concentration (ng/ml)"</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_log10</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span>()</div><div class='img'><img src='ggvpc_xpose-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## demonstration of changing colors &amp; stratification</span>
 <span class='fu'>ggvpc_xpose</span>(<span class='no'>vpc.all</span>
@@ -262,14 +262,14 @@
             , <span class='kw'>area.col.central</span> <span class='kw'>=</span> <span class='no'>qp.blue</span>
             , <span class='kw'>area.alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>
             , <span class='kw'>PI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.05</span>,<span class='fl'>0.95</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='st'>"Time (h)"</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='st'>"Concentration (ng/ml)"</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Time (h)"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Concentration (ng/ml)"</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_log10</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></span>(~<span class='no'>strata</span>)</div><div class='img'><img src='ggvpc_xpose-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## PI smoothed</span>
 <span class='fu'>nm.read.vpc</span>(<span class='kw'>path</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"vpc_final_strt"</span>),
-<span class='kw'>PI.ci.area.smooth</span><span class='kw'>=</span><span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>vpc.all</span>
+<span class='kw'>PI.ci.area.smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>vpc.all</span>
 <span class='fu'>ggvpc_xpose</span>(<span class='no'>vpc.all</span>
             , <span class='kw'>PI</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.05</span>,<span class='fl'>0.95</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='st'>"Time (h)"</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='st'>"Concentration (ng/ml)"</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Time (h)"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Concentration (ng/ml)"</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_log10</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></span>(~<span class='no'>strata</span>)</div><div class='img'><img src='ggvpc_xpose-4.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

@@ -226,7 +226,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>process.parTable</span>(
    <span class='kw'>nm</span> <span class='kw'>=</span> <span class='fu'>nm.params.table</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>), <span class='kw'>runIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>)
- , <span class='kw'>transformations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>log</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>12</span>))
+ , <span class='kw'>transformations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>log</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>12</span>))
  , <span class='kw'>missing.format</span> <span class='kw'>=</span> <span class='st'>"...."</span>
 )</div><div class='output co'>#&gt; <span class='message'>Joining, by = "Parameter"</span></div><div class='output co'>#&gt;          Parameter Estimate CV.perc      SE estimated              CI95 transformed
 #&gt; 1    $\\theta_{1}$     5.40    ....    .... estimated     (4.96 - 5.88)         log
@@ -245,7 +245,7 @@
 #&gt; 14 $\\omega_{4.4}$    0.150    25.5  0.0382 estimated  (0.0750 - 0.225)          no
 #&gt; 15 $\\sigma_{1.1}$   0.0572    13.2 0.00757 estimated (0.0423 - 0.0720)          no</div><div class='input'><span class='fu'>process.parTable</span>(
    <span class='kw'>nm</span> <span class='kw'>=</span> <span class='fu'>nm.params.table</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>))
- , <span class='kw'>transformations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>logit</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>7</span>,<span class='fl'>9</span>))
+ , <span class='kw'>transformations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>logit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>7</span>,<span class='fl'>9</span>))
  , <span class='kw'>plain</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
  , <span class='kw'>missing.format</span> <span class='kw'>=</span> <span class='st'>"...."</span>
 )</div><div class='output co'>#&gt; <span class='message'>Joining, by = "Parameter"</span></div><div class='output co'>#&gt;    Parameter  Estimate CV.perc      SE estimated               CI95 transformed
@@ -265,7 +265,7 @@
 #&gt; 14  OMEGA4.4     0.150    25.5  0.0382 estimated   (0.0750 - 0.225)          no
 #&gt; 15  SIGMA1.1    0.0572    13.2 0.00757 estimated  (0.0423 - 0.0720)          no</div><div class='input'><span class='fu'>process.parTable</span>(
    <span class='kw'>nm</span> <span class='kw'>=</span> <span class='fu'>nm.params.table</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>))
- , <span class='kw'>transformations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>logit</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>7</span>,<span class='fl'>9</span>))
+ , <span class='kw'>transformations</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>logit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>7</span>,<span class='fl'>9</span>))
  , <span class='kw'>plain</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
  , <span class='kw'>formatted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
  , <span class='kw'>missing.format</span> <span class='kw'>=</span> <span class='st'>"...."</span>

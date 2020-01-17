@@ -171,7 +171,7 @@
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>0.25</span>)
 <span class='no'>x.boxcox.pos</span> <span class='kw'>=</span> <span class='fu'>boxcoxf</span>(<span class='fl'>0.5</span>,<span class='no'>x</span>)
 <span class='no'>x.boxcox.neg</span> <span class='kw'>=</span> <span class='fu'>boxcoxf</span>(-<span class='fl'>3.5</span>,<span class='no'>x</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>))
 <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>x</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>x.boxcox.pos</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>x.boxcox.neg</span>)</div><div class='img'><img src='boxcoxf-1.png' alt='' width='700' height='433' /></div></pre>

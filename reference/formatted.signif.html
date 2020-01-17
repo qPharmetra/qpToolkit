@@ -184,16 +184,16 @@
 <span class='no'>numvec</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>4.99</span>, <span class='fl'>4.99999</span>,<span class='fl'>5.0000001</span>,<span class='fl'>5001</span>, <span class='fl'>0.00005</span>,<span class='fl'>101</span>,<span class='fl'>39.9</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(
    <span class='fu'><a href='https://rdrr.io/pkg/xtable/man/xtable.html'>xtable</a></span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>original</span><span class='kw'>=</span><span class='no'>numvec</span>
-                 ,<span class='kw'>latex.TRUE</span><span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>TRUE</span>,<span class='fl'>FALSE</span>)
-                 ,<span class='kw'>align.TRUE</span><span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>FALSE</span>,<span class='fl'>TRUE</span>)
+      <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>original</span> <span class='kw'>=</span> <span class='no'>numvec</span>
+                 ,<span class='kw'>latex.TRUE</span> <span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>TRUE</span>,<span class='fl'>FALSE</span>)
+                 ,<span class='kw'>align.TRUE</span> <span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>FALSE</span>,<span class='fl'>TRUE</span>)
                  ,<span class='kw'>all.TRUE</span> <span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>TRUE</span>,<span class='fl'>TRUE</span>)
       )
    )
-   , <span class='kw'>booktabs</span><span class='kw'>=</span><span class='fl'>TRUE</span>
+   , <span class='kw'>booktabs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
    , <span class='kw'>sanitize.text.function</span> <span class='kw'>=</span> <span class='no'>identity</span>
 )</div><div class='output co'>#&gt; % latex table generated in R 3.6.2 by xtable 1.8-4 package
-#&gt; % Fri Jan 17 20:04:46 2020
+#&gt; % Fri Jan 17 22:42:59 2020
 #&gt; \begin{table}[ht]
 #&gt; \centering
 #&gt; \begin{tabular}{rrlll}

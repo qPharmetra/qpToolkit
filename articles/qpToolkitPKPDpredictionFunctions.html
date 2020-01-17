@@ -117,12 +117,12 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"pkPredPlot"</span>)</a></code></pre></div>
 <pre><code>## 
 ## pkPrdP&gt; # 1comp elimination, 1st-order absorption
-## pkPrdP&gt; pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+## pkPrdP&gt; pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 ## pkPrdP+    , pk.func = pk.1comp.1abs, parms = c(1,25, 0.1, 5,0.5)
 ## pkPrdP+ )</code></pre>
 <pre><code>## 
 ## pkPrdP&gt; # 2comp elimination, 0-order absoorption
-## pkPrdP&gt; pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+## pkPrdP&gt; pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 ## pkPrdP+    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE
 ## pkPrdP+ )</code></pre>
 <pre><code>## Warning in xy.coords(x, y, xlabel, ylabel, log): 1 y value &lt;= 0 omitted from
@@ -161,7 +161,7 @@
 ## [163] 0.003792704 0.003607803 0.003431912 0.003264594 0.003105431 0.002954025
 ## [169] 0.002809999
 ## 
-## pkPrdP&gt; pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+## pkPrdP&gt; pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 ## pkPrdP+    , pk.func = eff.1comp.iv, parms = c(1,10, 0.25)
 ## pkPrdP+ )
 ##   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025 5.380189
@@ -187,7 +187,7 @@
 ## [161] 2.289230 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082
 ## [169] 1.063911
 ## 
-## pkPrdP&gt; pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
+## pkPrdP&gt; pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7)
 ## pkPrdP+    , pk.func = pk.1comp.1abs, e.func = eff.1comp.1abs
 ## pkPrdP+    , parms = c(1,10, 0.25, 0.05)
 ## pkPrdP+ )</code></pre>
@@ -234,7 +234,7 @@
 ## [161] 1.875586e-06 1.697101e-06 1.535600e-06 1.389468e-06 1.257243e-06
 ## [166] 1.137601e-06 1.029344e-06 9.313886e-07 8.427552e-07
 ## 
-## pkpdPP&gt; pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+## pkpdPP&gt; pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 ## pkpdPP+        pk.func = eff.1comp.iv, parms = c(1,10, 0.25))
 ##   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025 5.380189
 ##   [9] 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960 3.606660 3.326874
@@ -259,7 +259,7 @@
 ## [161] 2.289230 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082
 ## [169] 1.063911
 ## 
-## pkpdPP&gt; pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
+## pkpdPP&gt; pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length = 7), t.obs = seq(0,24*7),
 ## pkpdPP+             pk.func = pk.1comp.iv, e.func = eff.1comp.iv,
 ## pkpdPP+             parms = c(1,10, 0.25))</code></pre>
 <p><img src="qpToolkitPKPDpredictionFunctions_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>

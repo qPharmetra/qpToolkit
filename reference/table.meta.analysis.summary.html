@@ -188,8 +188,8 @@ Whether each covariate is continous or categorical is specified in the "cov.cat"
     <pre class="examples"><div class='input'><span class='no'>meta.analysis.ds</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>)
  , <span class='st'>"../Excel/meta.analysis.ds.csv"</span>),<span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>table.meta.analysis.summary</span>(<span class='no'>meta.analysis.ds</span>
- , <span class='kw'>cov.cols</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>,<span class='st'>"fem.pct"</span>,<span class='st'>"dis.score.bl"</span>,<span class='st'>"drug.ir"</span>)
- , <span class='kw'>cov.cat</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>,<span class='fl'>FALSE</span>,<span class='fl'>FALSE</span>,<span class='fl'>TRUE</span>)
+ , <span class='kw'>cov.cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"age"</span>,<span class='st'>"fem.pct"</span>,<span class='st'>"dis.score.bl"</span>,<span class='st'>"drug.ir"</span>)
+ , <span class='kw'>cov.cat</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>,<span class='fl'>FALSE</span>,<span class='fl'>FALSE</span>,<span class='fl'>TRUE</span>)
 )</div><div class='output co'>#&gt;       drug study        doses             times n.avg references age fem.pct dis.score.bl drug.ir
 #&gt; 1  CompetA NORAD           75 0, 10, 20, 30, 40    74          1  45      42         1015       Y
 #&gt; 2  CompetA RADAR           75         0, 20, 40   227          2  43      29         1013       N

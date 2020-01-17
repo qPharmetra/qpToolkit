@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Insert doses in other compartments — nm.insert.evid2amt0" />
-<meta property="og:description" content="To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID=2 &amp;amp; AMT=0 records before each dose given." />
+<meta property="og:description" content="To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID = 2 &amp;amp; AMT = 0 records before each dose given." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -145,7 +145,7 @@
     </div>
 
     <div class="ref-description">
-    <p>To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID=2 &amp; AMT=0 records before each dose given.</p>
+    <p>To model transit compartment absorption this function allows to turn a NONMEM datset into one EVID = 2 &amp; AMT = 0 records before each dose given.</p>
     </div>
 
     <pre class="usage"><span class='fu'>nm.insert.evid2amt0</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -169,14 +169,14 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame with an EVID=2 and AMT=0 record preceding each AMT&gt;0 record</p>
+    <p>Data frame with an EVID = 2 and AMT = 0 record preceding each AMT&gt;0 record</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>nm.insert.dose.multiple.compartments</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>nmData</span> <span class='kw'>=</span> <span class='fu'>example.NONMEM.dataset</span>(<span class='kw'>TIME</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>,<span class='fl'>4</span>))
+<span class='no'>nmData</span> <span class='kw'>=</span> <span class='fu'>example.NONMEM.dataset</span>(<span class='kw'>TIME</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>,<span class='fl'>4</span>))
 <span class='no'>nmData2</span> <span class='kw'>=</span> <span class='fu'>nm.insert.evid2amt0</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>nmData</span>, <span class='no'>ID</span>, <span class='no'>TIME</span>, -<span class='no'>EVID</span>)
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl_df.html'>tbl_df</a></span>(<span class='no'>nmData2</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'ID'</span>,<span class='st'>'TIME'</span>,<span class='st'>'EVID'</span>,<span class='st'>'AMT'</span>,<span class='st'>'DV'</span>)])</div><div class='output co'>#&gt; # A tibble: 81 x 5
 #&gt;       ID  TIME  EVID   AMT    DV

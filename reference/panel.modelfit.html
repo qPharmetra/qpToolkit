@@ -215,12 +215,12 @@
 #&gt; <span class='message'>    src, summarize</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    format.pval, units</span></div><div class='input'><span class='no'>out</span> <span class='kw'>=</span> <span class='fu'>get.xpose.tables</span>(<span class='st'>'example1'</span>,<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>'qpExampleDir'</span>))
-<span class='no'>out</span>$<span class='no'>EVID</span><span class='kw'>=</span><span class='fl'>0</span>
+<span class='no'>out</span>$<span class='no'>EVID</span> <span class='kw'>=</span> <span class='fl'>0</span>
 <span class='fu'>trellis.strip.color</span>()
 <span class='fu'>xyplot</span>(<span class='fu'><a href='https://rdrr.io/pkg/Hmisc/man/xYplot.html'>Cbind</a></span>(<span class='no'>CONC</span>,<span class='no'>PRED</span>,<span class='no'>IPRED</span>,<span class='no'>EVID</span>) ~ <span class='no'>TIME</span>
        , <span class='kw'>groups</span> <span class='kw'>=</span> <span class='no'>ID</span>
        , <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>out</span>)
-       , <span class='kw'>scales</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>relation</span> <span class='kw'>=</span> <span class='st'>'free'</span>),<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>log</span><span class='kw'>=</span><span class='fl'>10</span>))
+       , <span class='kw'>scales</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>relation</span> <span class='kw'>=</span> <span class='st'>'free'</span>),<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>log</span> <span class='kw'>=</span> <span class='fl'>10</span>))
        , <span class='kw'>panel</span> <span class='kw'>=</span> <span class='no'>panel.modelfit</span>
        , <span class='kw'>logY</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
        , <span class='kw'>yscale.components</span> <span class='kw'>=</span> <span class='no'>yscale.components.log10</span>

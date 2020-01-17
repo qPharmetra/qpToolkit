@@ -186,12 +186,12 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'>## original data:</span>
-<span class='no'>nmData</span> <span class='kw'>=</span> <span class='fu'>example.NONMEM.dataset</span>(<span class='kw'>TIME</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>,<span class='fl'>4</span>))
+<span class='no'>nmData</span> <span class='kw'>=</span> <span class='fu'>example.NONMEM.dataset</span>(<span class='kw'>TIME</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>,<span class='fl'>4</span>))
 <span class='no'>nmData</span>$<span class='no'>CMT</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span>(<span class='no'>nmData</span>, <span class='fu'>swap</span>(<span class='no'>EVID</span>, <span class='fl'>0</span>:<span class='fl'>1</span>, <span class='fl'>2</span>:<span class='fl'>1</span>))
 
 <span class='co'>## adding doses to compartments 3, 4 and 5</span>
 <span class='no'>nmData3</span> <span class='kw'>=</span> <span class='fu'>nm.insert.dose.multiple.compartments</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>nmData</span>
-                                               , <span class='kw'>dose.in.cmt</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span>)
+                                               , <span class='kw'>dose.in.cmt</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span>)
                                                , <span class='no'>ID</span>, <span class='no'>TIME</span>, -<span class='no'>EVID</span>
 
 )

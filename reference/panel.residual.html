@@ -210,9 +210,9 @@
           <span class='kw pkg'>reshape2</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></span>(
              <span class='fu'>get.xpose.tables</span>(<span class='st'>'example1'</span>, <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>'qpExampleDir'</span>)
              )
-             , <span class='kw'>measure.vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'PRED'</span>,<span class='st'>'IPRED'</span>)
+             , <span class='kw'>measure.vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'PRED'</span>,<span class='st'>'IPRED'</span>)
           ), <span class='no'>EVID</span> <span class='kw'>==</span> <span class='fl'>0</span>)
-       , <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>
+       , <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>EVID</span> <span class='kw'>==</span> <span class='fl'>0</span>
        , <span class='kw'>aspect</span> <span class='kw'>=</span> <span class='fl'>1</span>
        , <span class='kw'>scales</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>relation</span> <span class='kw'>=</span> <span class='st'>'free'</span>))
        , <span class='kw'>panel</span> <span class='kw'>=</span> <span class='no'>panel.residual</span>

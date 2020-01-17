@@ -186,7 +186,7 @@
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>magrittr</span>)
 <span class='no'>nmData</span> <span class='kw'>=</span> <span class='fu'>example.NONMEM.dataset</span>()
-<span class='no'>nmData</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>DOSE</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>nID</span><span class='kw'>=</span><span class='fu'>lunique</span>(<span class='no'>ID</span>), <span class='kw'>nObs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>DV</span>))</div><div class='output co'>#&gt; # A tibble: 3 x 3
+<span class='no'>nmData</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>DOSE</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>nID</span> <span class='kw'>=</span> <span class='fu'>lunique</span>(<span class='no'>ID</span>), <span class='kw'>nObs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>DV</span>))</div><div class='output co'>#&gt; # A tibble: 3 x 3
 #&gt;    DOSE   nID  nObs
 #&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
 #&gt; 1   1       3    42

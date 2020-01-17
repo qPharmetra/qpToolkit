@@ -226,7 +226,7 @@
 <pre><code>## 
 ## prcs.T&gt; process.parTable(
 ## prcs.T+    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"), runIndex = 1)
-## prcs.T+  , transformations = list(log=c(1:12))
+## prcs.T+  , transformations = list(log = c(1:12))
 ## prcs.T+  , missing.format = "...."
 ## prcs.T+ )</code></pre>
 <pre><code>## Joining, by = "Parameter"</code></pre>
@@ -265,7 +265,7 @@
 ## 
 ## prcs.T&gt; process.parTable(
 ## prcs.T+    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-## prcs.T+  , transformations = list(logit=c(7,9))
+## prcs.T+  , transformations = list(logit = c(7,9))
 ## prcs.T+  , plain = TRUE
 ## prcs.T+  , missing.format = "...."
 ## prcs.T+ )</code></pre>
@@ -289,7 +289,7 @@
 ## 
 ## prcs.T&gt; process.parTable(
 ## prcs.T+    nm = nm.params.table(run = "example1", path = getOption("qpExampleDir"))
-## prcs.T+  , transformations = list(logit=c(7,9))
+## prcs.T+  , transformations = list(logit = c(7,9))
 ## prcs.T+  , plain = TRUE
 ## prcs.T+  , formatted = FALSE
 ## prcs.T+  , missing.format = "...."
@@ -552,10 +552,10 @@
 ## nm.nzp&gt; file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 ## [1] FALSE
 ## 
-## nm.nzp&gt; nm.unzip(run="example1", extension=".cov",
-## nm.nzp+ path = file.path(getOption("qpExampleDir"),"example1"),quiet=FALSE)
-## path: /tmp/Rtmp2Mce0D/temp_libpath6acbb53d39/qpToolkit/NONMEM/example1 
-## call: 7z e /tmp/Rtmp2Mce0D/temp_libpath6acbb53d39/qpToolkit/NONMEM/example1/example1.cov.7z 
+## nm.nzp&gt; nm.unzip(run = "example1", extension = ".cov",
+## nm.nzp+ path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
+## path: /tmp/Rtmpn9xEVT/temp_libpath372972433f5e/qpToolkit/NONMEM/example1 
+## call: 7z e /tmp/Rtmpn9xEVT/temp_libpath372972433f5e/qpToolkit/NONMEM/example1/example1.cov.7z 
 ## 
 ## nm.nzp&gt; file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 ## [1] TRUE
@@ -577,7 +577,7 @@
 <a href="#nm-cormatcovmat-extract" class="anchor"></a>nm.cormat/covmat.extract</h2>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.covmat.extract"</span>)</a></code></pre></div>
 <pre><code>## 
-## nm.cv.&gt; nm.unzip(run="example1", extension=".cov", path = file.path(getOption("qpExampleDir"),"example1"))
+## nm.cv.&gt; nm.unzip(run = "example1", extension = ".cov", path = file.path(getOption("qpExampleDir"),"example1"))
 ## 
 ## nm.cv.&gt; run1.covmat =  nm.covmat.extract("example1", path = getOption("qpExampleDir"))
 ## 
@@ -614,7 +614,7 @@
 ## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.cormat.extract"</span>)</a></code></pre></div>
 <pre><code>## 
-## nm.cr.&gt; nm.unzip(run="example1", extension=".cor", path = file.path(getOption("qpExampleDir"),"example1"))
+## nm.cr.&gt; nm.unzip(run = "example1", extension = ".cor", path = file.path(getOption("qpExampleDir"),"example1"))
 ## 
 ## nm.cr.&gt; run1.cormat =  nm.cormat.extract("example1", path = getOption("qpExampleDir"))
 ## 
@@ -668,7 +668,7 @@
 ## nm.pr.&gt; # Fail if scm file not found
 ## nm.pr.&gt; foo &lt;- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
 ## Error in nm.process.scm(file.path(getOption("qpExampleDir"), "scm_example0")) : 
-##   cannot find /tmp/Rtmp2Mce0D/temp_libpath6acbb53d39/qpToolkit/NONMEM/scm_example0/scmlog.txt
+##   cannot find /tmp/Rtmpn9xEVT/temp_libpath372972433f5e/qpToolkit/NONMEM/scm_example0/scmlog.txt
 ## 
 ## nm.pr.&gt; scm$summary
 ##      MODEL TEST     BASE.OFV      NEW.OFV       TEST OFV.DROP    GOAL dDF
@@ -689,14 +689,14 @@
 ## nm.pr.+       , sanitize.text.function = function(x)x
 ## nm.pr.+       , include.rownames = FALSE
 ## nm.pr.+       , size = "small"
-## nm.pr.+       , caption.placement ="top"
+## nm.pr.+       , caption.placement = "top"
 ## nm.pr.+       , booktabs = TRUE
 ## nm.pr.+       , tabular.environment = "longtable"
 ## nm.pr.+       , floating = FALSE
 ## nm.pr.+       #  , only.contents = TRUE
 ## nm.pr.+ )
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Fri Jan 17 20:05:54 2020
+## % Fri Jan 17 22:44:06 2020
 ## \begingroup\small
 ## \begin{longtable}{llllllll}
 ## \caption{Full Stepwise Covariate Building output} \\ 
@@ -1135,7 +1135,7 @@
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <pre><code>## 
-## nm..20&gt; nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
+## nm..20&gt; nmData = example.NONMEM.dataset(TIME = seq(0,24,4))
 ## 
 ## nm..20&gt; nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)
 ## 
@@ -1163,13 +1163,13 @@
 ## nm....&gt; library(dplyr)
 ## 
 ## nm....&gt; ## original data:
-## nm....&gt; nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
+## nm....&gt; nmData = example.NONMEM.dataset(TIME = seq(0,24,4))
 ## 
 ## nm....&gt; nmData$CMT = with(nmData, swap(EVID, 0:1, 2:1))
 ## 
 ## nm....&gt; ## adding doses to compartments 3, 4 and 5
 ## nm....&gt; nmData3 = nm.insert.dose.multiple.compartments(data = nmData
-## nm....+                                                , dose.in.cmt=c(3,4,5)
+## nm....+                                                , dose.in.cmt = c(3,4,5)
 ## nm....+                                                , ID, TIME, -EVID
 ## nm....+ 
 ## nm....+ )
@@ -1196,7 +1196,7 @@
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.remove.section"</span>)</a></code></pre></div>
 <pre><code>## 
 ## nm.rm.&gt; nm.remove.section("EST"
-## nm.rm.+    , read.mod("example1", path = getOption("qpExampleDir"), file.ext=".ctl")
+## nm.rm.+    , read.mod("example1", path = getOption("qpExampleDir"), file.ext = ".ctl")
 ## nm.rm.+    )[[2]]
 ## $EST
 ## $EST[[1]]

@@ -236,8 +236,8 @@
                <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='no'>Asym</span> + <span class='no'>R0</span> + <span class='no'>lrc</span> ~ <span class='fl'>1</span>,
                <span class='kw'>random</span> <span class='kw'>=</span> <span class='no'>Asym</span> ~ <span class='fl'>1</span>,
                <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>Asym</span> <span class='kw'>=</span> <span class='fl'>103</span>, <span class='kw'>R0</span> <span class='kw'>=</span> -<span class='fl'>8.5</span>, <span class='kw'>lrc</span> <span class='kw'>=</span> -<span class='fl'>3.3</span>),
-               <span class='kw'>problem</span><span class='kw'>=</span><span class='st'>"Initial model"</span>,
-               <span class='kw'>reference</span><span class='kw'>=</span><span class='fl'>0</span>
+               <span class='kw'>problem</span> <span class='kw'>=</span> <span class='st'>"Initial model"</span>,
+               <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fl'>0</span>
 )
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>fm1</span>$<span class='no'>object</span>) <span class='co'># note one must specify "$object" here</span></div><div class='output co'>#&gt; Nonlinear mixed-effects model fit by maximum likelihood
 #&gt;   Model: height ~ SSasymp(age, Asym, R0, lrc) 
@@ -272,8 +272,8 @@
                <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='no'>Asym</span> + <span class='no'>R0</span> + <span class='no'>lrc</span> ~ <span class='fl'>1</span>,
                <span class='kw'>random</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/pdDiag.html'>pdDiag</a></span>(<span class='no'>Asym</span> + <span class='no'>lrc</span> ~ <span class='fl'>1</span>),
                <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>Asym</span> <span class='kw'>=</span> <span class='fl'>103</span>, <span class='kw'>R0</span> <span class='kw'>=</span> -<span class='fl'>8.5</span>, <span class='kw'>lrc</span> <span class='kw'>=</span> -<span class='fl'>3.3</span>),
-               <span class='kw'>problem</span><span class='kw'>=</span><span class='st'>"Different random effect"</span>,
-               <span class='kw'>reference</span><span class='kw'>=</span><span class='fl'>1</span>
+               <span class='kw'>problem</span> <span class='kw'>=</span> <span class='st'>"Different random effect"</span>,
+               <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>fm2</span>$<span class='no'>object</span>)</div><div class='output co'>#&gt; Nonlinear mixed-effects model fit by maximum likelihood
 #&gt;   Model: height ~ SSasymp(age, Asym, R0, lrc) 
