@@ -8,21 +8,25 @@
 
 <title>Unzip function for zipped PsN output — nm.unzip • qpToolkit</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,15 +34,16 @@
 
 
 
-<meta property="og:title" content="Unzip function for zipped PsN output — nm.unzip" />
 
+<meta property="og:title" content="Unzip function for zipped PsN output — nm.unzip" />
 <meta property="og:description" content="Many large filews like XML outpout and covariance matrices are zipped by (qPharmetra's
  tweaked version of) PsN. To enable the parsing function of the nm.xxx domain to
   operate well this function unzips these files.  The unzip call is pulled from the system environment
-  variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the 
-  basename (no extension) of the file to unzip.  The unzip call can be modified by changine the 
+  variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the
+  basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
   option unzip.call." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -50,6 +55,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -68,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -76,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,10 +103,10 @@
       <a href="../articles/CreateDemographicsTable.html">Creating a Demographics Table</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">Examples_nlme_xxx_Functions_qpToolkit</a>
+      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">qpToolkit Examples for nlme_xxx Functions</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">Examples nm_xxx Functions qpToolkit</a>
+      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">qpToolkit Examples for nm_xxx Functions</a>
     </li>
     <li>
       <a href="../articles/RunaNONMEMAnalysis.html">Run a NONMEM Analysis</a>
@@ -115,7 +121,7 @@
       <a href="../articles/qpToolkitPKPDpredictionFunctions.html">qpToolkit PKPD Prediction Functions</a>
     </li>
     <li>
-      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit General Purpose Functions</a>
+      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit Plotting Tips</a>
     </li>
     <li>
       <a href="../articles/qpToolkitgetFunctions.html">qpToolkit get_xxx Functions</a>
@@ -123,7 +129,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -133,6 +138,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -144,21 +150,25 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Many large filews like XML outpout and covariance matrices are zipped by (qPharmetra's
  tweaked version of) PsN. To enable the parsing function of the <code>nm.xxx</code> domain to
   operate well this function unzips these files.  The unzip call is pulled from the system environment
-  variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the 
-  basename (no extension) of the file to unzip.  The unzip call can be modified by changine the 
+  variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the
+  basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
   option unzip.call.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>nm.unzip</span>(<span class='no'>run</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='no'>run</span>),
-  <span class='kw'>zip.extension</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".xml"</span>,
-  <span class='kw'>zip.call</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"unzip.call"</span>), <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>run</span>, <span class='no'>extension</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>), <span class='kw'>zip.filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>path</span>, <span class='no'>filename</span>), <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>nm.unzip</span>(
+  <span class='no'>run</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='no'>run</span>),
+  <span class='kw'>zip.extension</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".xml"</span>,
+  <span class='kw'>zip.call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"unzip.call"</span>),
+  <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>run</span>, <span class='no'>extension</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
+  <span class='kw'>zip.filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>path</span>, <span class='no'>filename</span>),
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -179,6 +189,10 @@
       <td><p>file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped</p></td>
     </tr>
     <tr>
+      <th>zip.call</th>
+      <td><p>full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e %s.7z" on windows</p></td>
+    </tr>
+    <tr>
       <th>filename</th>
       <td><p>file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults</p></td>
     </tr>
@@ -187,46 +201,50 @@
       <td><p>filename of the zip file to extract. Is automatically populated with qP workflow defaults</p></td>
     </tr>
     <tr>
-      <th>zip.program</th>
-      <td><p>full OS call to zip utility for unzipping. Defauls to "c:/progra~1/7-zip/7z e %s.7z"</p></td>
+      <th>quiet</th>
+      <td><p>whether to suppress process messages</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The zipped file is extracted to disk in the same location. Nothing is returned to R.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/files'>file.exists</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>nm.unzip</span>(<span class='kw'>run</span><span class='kw'>=</span><span class='st'>"example1"</span>, <span class='kw'>extension</span><span class='kw'>=</span><span class='st'>".cov"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>),<span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; path: /home/travis/build/qPharmetra/qpToolkit/NONMEM/example1 
-#&gt; call: 7z e /home/travis/build/qPharmetra/qpToolkit/NONMEM/example1/example1.cov.7z </div><div class='output co'>#&gt; <span class='error'>Error in setwd(newwd): cannot change working directory</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/files'>file.exists</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/files'>file.remove</a></span>( <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>nm.unzip</span>(<span class='kw'>run</span><span class='kw'>=</span><span class='st'>"example1"</span>, <span class='kw'>extension</span><span class='kw'>=</span><span class='st'>".cov"</span>,
+<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>),<span class='kw'>quiet</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; path: /tmp/Rtmp2Mce0D/temp_libpath6acbb53d39/qpToolkit/NONMEM/example1 
+#&gt; call: 7z e /tmp/Rtmp2Mce0D/temp_libpath6acbb53d39/qpToolkit/NONMEM/example1/example1.cov.7z </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='st'>'c:/progra~1/7-zip/7z.exe'</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'># If the above does not exist, consider:
+# options(unzip.call = 'C:/my-zip-path/7z e %s.7z') # or similar
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge <lee.hodge@qpharmetra.com.</p>
+  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

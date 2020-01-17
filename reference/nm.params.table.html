@@ -8,21 +8,25 @@
 
 <title>Create NONMEM Parameter Estimate Table — nm.params.table • qpToolkit</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +34,11 @@
 
 
 
-<meta property="og:title" content="Create NONMEM Parameter Estimate Table — nm.params.table" />
 
+<meta property="og:title" content="Create NONMEM Parameter Estimate Table — nm.params.table" />
 <meta property="og:description" content="Create NONMEM Parameter Estimate Table" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -45,6 +50,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -63,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -71,7 +77,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -92,10 +98,10 @@
       <a href="../articles/CreateDemographicsTable.html">Creating a Demographics Table</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">Examples_nlme_xxx_Functions_qpToolkit</a>
+      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">qpToolkit Examples for nlme_xxx Functions</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">Examples nm_xxx Functions qpToolkit</a>
+      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">qpToolkit Examples for nm_xxx Functions</a>
     </li>
     <li>
       <a href="../articles/RunaNONMEMAnalysis.html">Run a NONMEM Analysis</a>
@@ -110,7 +116,7 @@
       <a href="../articles/qpToolkitPKPDpredictionFunctions.html">qpToolkit PKPD Prediction Functions</a>
     </li>
     <li>
-      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit General Purpose Functions</a>
+      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit Plotting Tips</a>
     </li>
     <li>
       <a href="../articles/qpToolkitgetFunctions.html">qpToolkit get_xxx Functions</a>
@@ -118,7 +124,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -128,6 +133,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -139,14 +145,18 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Create NONMEM Parameter Estimate Table</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>nm.params.table</span>(<span class='no'>run</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='kw'>file.ext</span> <span class='kw'>=</span> <span class='st'>".ext"</span>,
-  <span class='no'>runIndex</span>, <span class='kw'>fixed.text</span> <span class='kw'>=</span> <span class='st'>"....."</span>, <span class='kw'>return.all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>nm.params.table</span>(
+  <span class='no'>run</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"nmDir"</span>),
+  <span class='kw'>file.ext</span> <span class='kw'>=</span> <span class='st'>".ext"</span>,
+  <span class='no'>runIndex</span>,
+  <span class='kw'>fixed.text</span> <span class='kw'>=</span> <span class='st'>"....."</span>,
+  <span class='kw'>return.all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -168,54 +178,91 @@
     </tr>
     <tr>
       <th>fixed.text</th>
-      <td><p>charactre string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream</p></td>
+      <td><p>character string to replace the entries for standard error and coefficient of variation (CV) for parameters that were fixed in the control stream</p></td>
     </tr>
     <tr>
       <th>return.all</th>
       <td><p>logical indicator to return the standard data set for inclusion in reports (default) or if TRUE the data set with everything.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>process.parTable</code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nm.params.table</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in file(file, "r"): cannot open the connection</span></div><div class='input'><span class='fu'>nm.params.table</span>(<span class='st'>"example2"</span>,  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>), <span class='kw'>fixed.text</span> <span class='kw'>=</span> <span class='st'>"(fixed to 0)"</span>, <span class='kw'>return.all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in file(file, "r"): cannot open the connection</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>nm.params.table</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>))</div><div class='output co'>#&gt; <span class='message'>Joining, by = "Parameter"</span></div><div class='output co'>#&gt;    Parameter     Estimate           CV.perc         SE estimated
+#&gt; 1     THETA1  1.686930000  2.55967941764033    0.04318 estimated
+#&gt; 2     THETA2  1.611290000  2.95483122218843  0.0476109 estimated
+#&gt; 3     THETA3  0.819605000  8.53864971541169  0.0699832 estimated
+#&gt; 4     THETA4  2.391610000  2.15700720435188  0.0515872 estimated
+#&gt; 5   OMEGA1.1  0.165061000  16.4708198787115  0.0271869 estimated
+#&gt; 6   OMEGA2.1 -0.000741979  -2803.0712459517  0.0207982 estimated
+#&gt; 7   OMEGA2.2  0.131429000  23.8227484040813    0.03131 estimated
+#&gt; 8   OMEGA3.1  0.012411200  240.912240556916  0.0299001 estimated
+#&gt; 9   OMEGA3.2  0.015956500  223.893711026854  0.0357256 estimated
+#&gt; 10  OMEGA3.3  0.187548000  38.3405848102886   0.071907 estimated
+#&gt; 11  OMEGA4.1 -0.012735500 -185.120332927643   0.023576 estimated
+#&gt; 12  OMEGA4.2  0.013906100  173.090945700088  0.0240702 estimated
+#&gt; 13  OMEGA4.3  0.033270200  127.986005494406  0.0425812 estimated
+#&gt; 14  OMEGA4.4  0.149906000  25.4973116486331   0.038222 estimated
+#&gt; 15  SIGMA1.1  0.057163200  13.2438876759873 0.00757063 estimated</div><div class='input'><span class='fu'>nm.params.table</span>(<span class='st'>"example2"</span>,  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),
+<span class='kw'>fixed.text</span> <span class='kw'>=</span> <span class='st'>"(fixed to 0)"</span>, <span class='kw'>return.all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Joining, by = "Parameter"</span></div><div class='output co'>#&gt;        Estimate           SE     Eigen     CondNum     sd.var   sd.sd.var Parameter index level   ord estimated           CV.perc      Run
+#&gt; 1   3.305220000    0.0326572 0.0258399 158.3920000  0.0000000 0.00000e+00    THETA1   1.0 THETA 1 1.0 estimated 0.988049207011939 example2
+#&gt; 2   3.257970000    0.0286466 0.0276883   0.0258399  0.0000000 0.00000e+00    THETA2   2.0 THETA 1 2.0 estimated 0.879277586963662 example2
+#&gt; 3  -0.611824000   0.00952096 0.0352403   4.0928400  0.0000000 0.00000e+00    THETA3   3.0 THETA 1 3.0 estimated -1.55615994142106 example2
+#&gt; 4  -0.208226000   0.00831004 0.0444284   0.0000000  0.0000000 0.00000e+00    THETA4   4.0 THETA 1 4.0 estimated -3.99087529895402 example2
+#&gt; 5   0.735323000    0.0391716 0.0596110   0.0000000  0.0000000 0.00000e+00    THETA5   5.0 THETA 1 5.0 estimated   5.3271283503984 example2
+#&gt; 6   1.139920000     0.035768 0.2052890   0.0000000  0.0000000 0.00000e+00    THETA6   6.0 THETA 1 6.0 estimated   3.1377640536178 example2
+#&gt; 7   0.336296000    0.0113245 0.2703130   0.0000000  0.0000000 0.00000e+00    THETA7   7.0 THETA 1 7.0 estimated  3.36742036777125 example2
+#&gt; 8   0.191801000    0.0103567 0.2981540   0.0000000  0.0000000 0.00000e+00    THETA8   8.0 THETA 1 8.0 estimated  5.39971115896163 example2
+#&gt; 9   0.694545000    0.0104684 0.4992870   0.0000000  0.0000000 0.00000e+00    THETA9   9.0 THETA 1 9.0 estimated   1.5072313529001 example2
+#&gt; 10  2.301570000   0.00857532 0.5624250   0.0000000  0.0000000 0.00000e+00   THETA10  10.0 THETA 110.0 estimated 0.372585669781932 example2
+#&gt; 11  0.100030000   0.00282728 0.6202310   0.0000000  0.0000000 0.00000e+00   THETA11  11.0 THETA 111.0 estimated  2.82643207037889 example2
+#&gt; 12  0.010282100  0.000968195 1.1033500   0.0000000  0.1014010 4.77410e-03  OMEGA1.1   1.1 OMEGA 2 1.1 estimated  9.41631573316735 example2
+#&gt; 13  0.000191938  0.000827503 1.3254500   0.0000000  0.0212316 9.06201e-02  OMEGA2.1   2.1 OMEGA 2 2.1 estimated  431.130365013702 example2
+#&gt; 14  0.007948230   0.00137461 1.3571500   0.0000000  0.0891528 7.70929e-03  OMEGA2.2   2.2 OMEGA 2 2.2 estimated  17.2945423069035 example2
+#&gt; 15  0.001281790   0.00127722 1.4866100   0.0000000  0.1263650 1.14875e-01  OMEGA3.1   3.1 OMEGA 2 3.1 estimated  99.6434673386436 example2
+#&gt; 16 -0.000170245   0.00143627 1.5644400   0.0000000 -0.0190894 1.62476e-01  OMEGA3.2   3.2 OMEGA 2 3.2 estimated -843.648858997327 example2
+#&gt; 17  0.010006800     0.003046 1.5993100   0.0000000  0.1000340 1.52248e-02  OMEGA3.3   3.3 OMEGA 2 3.3 estimated  30.4393012751329 example2
+#&gt; 18 -0.000595539   0.00100317 2.4044700   0.0000000 -0.0597246 1.04157e-01  OMEGA4.1   4.1 OMEGA 2 4.1 estimated -168.447406467083 example2
+#&gt; 19  0.000542183   0.00109632 2.7388500   0.0000000  0.0618437 1.21953e-01  OMEGA4.2   4.2 OMEGA 2 4.2 estimated  202.204790633421 example2
+#&gt; 20  0.002000550   0.00214226 4.0928400   0.0000000  0.2033690 1.75727e-01  OMEGA4.3   4.3 OMEGA 2 4.3 estimated  107.083552023194 example2
+#&gt; 21  0.009670120   0.00192347 0.0000000   0.0000000  0.0983368 9.78003e-03  OMEGA4.4   4.4 OMEGA 2 4.4 estimated  19.8908596790939 example2
+#&gt; 22  1.000000000 (fixed to 0) 0.6790310   0.0000000  1.0000000 1.00000e+10  SIGMA1.1   1.1 SIGMA 3 1.1     fixed      (fixed to 0) example2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge <lee.hodge@qpharmetra.com.</p>
+  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

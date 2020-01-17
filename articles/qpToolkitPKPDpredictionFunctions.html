@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>qpToolkit PKPD Prediction Functions • qpToolkit</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="qpToolkit PKPD Prediction Functions">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -59,10 +60,10 @@
       <a href="../articles/CreateDemographicsTable.html">Creating a Demographics Table</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">Examples_nlme_xxx_Functions_qpToolkit</a>
+      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">qpToolkit Examples for nlme_xxx Functions</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">Examples nm_xxx Functions qpToolkit</a>
+      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">qpToolkit Examples for nm_xxx Functions</a>
     </li>
     <li>
       <a href="../articles/RunaNONMEMAnalysis.html">Run a NONMEM Analysis</a>
@@ -77,7 +78,7 @@
       <a href="../articles/qpToolkitPKPDpredictionFunctions.html">qpToolkit PKPD Prediction Functions</a>
     </li>
     <li>
-      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit General Purpose Functions</a>
+      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit Plotting Tips</a>
     </li>
     <li>
       <a href="../articles/qpToolkitgetFunctions.html">qpToolkit get_xxx Functions</a>
@@ -94,13 +95,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>qpToolkit PKPD Prediction Functions</h1>
                         <h4 class="author">Klaas Prins</h4>
             
-            <h4 class="date">2019-03-01</h4>
+            <h4 class="date">2020-01-17</h4>
       
       
       <div class="hidden name"><code>qpToolkitPKPDpredictionFunctions.Rmd</code></div>
@@ -112,7 +114,7 @@
 <div id="examples-of-pharmacokinetic-predictions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples-of-pharmacokinetic-predictions" class="anchor"></a>Examples of Pharmacokinetic Predictions</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/example">example</a></span>(<span class="st">"pkPredPlot"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"pkPredPlot"</span>)</a></code></pre></div>
 <pre><code>## 
 ## pkPrdP&gt; # 1comp elimination, 1st-order absorption
 ## pkPrdP&gt; pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
@@ -123,74 +125,66 @@
 ## pkPrdP&gt; pkPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
 ## pkPrdP+    , pk.func = pk.2comp.0abs, parms = c(10,30, 3, 90,10), log = TRUE
 ## pkPrdP+ )</code></pre>
-<pre><code>## Warning in xy.coords(x, y, xlabel, ylabel, log): 1 y value &lt;= 0 omitted
-## from logarithmic plot</code></pre>
+<pre><code>## Warning in xy.coords(x, y, xlabel, ylabel, log): 1 y value &lt;= 0 omitted from
+## logarithmic plot</code></pre>
 <p><img src="qpToolkitPKPDpredictionFunctions_files/figure-html/unnamed-chunk-2-1.png" width="700"><img src="qpToolkitPKPDpredictionFunctions_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
 <pre><code>## 
 ## pkPrdP&gt; ## demo effect prediction after single and multiple doses
 ## pkPrdP&gt; eff.1comp.1abs(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25, 0.05))
-##   [1] 0.000000000 0.054747435 0.192166256 0.380073330 0.594964651
-##   [6] 0.819935447 1.043076158 1.256237489 1.454081520 1.633354335
-##  [11] 1.792330054 1.930387323 2.047688038 2.144934858 2.223189329
-##  [16] 2.283736515 2.327985247 2.357395556 2.373426762 2.377501203
-##  [21] 2.370979740 2.355146053 2.331197455 2.300240475 2.263289895
-##  [26] 2.221270209 2.175018773 2.125290044 2.072760514 2.018033994
-##  [31] 1.961647047 1.904074394 1.845734170 1.786992978 1.728170670
-##  [36] 1.669544825 1.611354936 1.553806270 1.497073425 1.441303599
-##  [41] 1.386619559 1.333122361 1.280893808 1.229998678 1.180486738
-##  [46] 1.132394562 1.085747160 1.040559448 0.996837566 0.954580051
-##  [51] 0.913778894 0.874420475 0.836486405 0.799954266 0.764798273
-##  [56] 0.730989857 0.698498186 0.667290618 0.637333106 0.608590547
-##  [61] 0.581027093 0.554606419 0.529291959 0.505047108 0.481835397
-##  [66] 0.459620643 0.438367076 0.418039449 0.398603128 0.380024165
-##  [71] 0.362269365 0.345306328 0.329103497 0.313630180 0.298856573
-##  [76] 0.284753780 0.271293814 0.258449604 0.246194991 0.234504724
-##  [81] 0.223354451 0.212720704 0.202580888 0.192913263 0.183696925
-##  [86] 0.174911787 0.166538560 0.158558729 0.150954532 0.143708939
-##  [91] 0.136805627 0.130228959 0.123963957 0.117996287 0.112312230
-##  [96] 0.106898660 0.101743026 0.096833328 0.092158095 0.087706367
-## [101] 0.083467672 0.079432009 0.075589827 0.071932008 0.068449847
-## [106] 0.065135039 0.061979657 0.058976139 0.056117270 0.053396171
-## [111] 0.050806281 0.048341343 0.045995393 0.043762744 0.041637977
-## [116] 0.039615925 0.037691666 0.035860509 0.034117984 0.032459833
-## [121] 0.030881999 0.029380617 0.027952006 0.026592660 0.025299240
-## [126] 0.024068566 0.022897609 0.021783487 0.020723453 0.019714893
-## [131] 0.018755318 0.017842358 0.016973757 0.016147368 0.015361146
-## [136] 0.014613146 0.013901514 0.013224489 0.012580391 0.011967623
-## [141] 0.011384666 0.010830072 0.010302465 0.009800534 0.009323033
-## [146] 0.008868774 0.008436629 0.008025522 0.007634432 0.007262386
-## [151] 0.006908456 0.006571763 0.006251469 0.005946775 0.005656922
-## [156] 0.005381189 0.005118889 0.004869368 0.004632003 0.004406204
-## [161] 0.004191407 0.003987077 0.003792704 0.003607803 0.003431912
-## [166] 0.003264594 0.003105431 0.002954025 0.002809999
+##   [1] 0.000000000 0.054747435 0.192166256 0.380073330 0.594964651 0.819935447
+##   [7] 1.043076158 1.256237489 1.454081520 1.633354335 1.792330054 1.930387323
+##  [13] 2.047688038 2.144934858 2.223189329 2.283736515 2.327985247 2.357395556
+##  [19] 2.373426762 2.377501203 2.370979740 2.355146053 2.331197455 2.300240475
+##  [25] 2.263289895 2.221270209 2.175018773 2.125290044 2.072760514 2.018033994
+##  [31] 1.961647047 1.904074394 1.845734170 1.786992978 1.728170670 1.669544825
+##  [37] 1.611354936 1.553806270 1.497073425 1.441303599 1.386619559 1.333122361
+##  [43] 1.280893808 1.229998678 1.180486738 1.132394562 1.085747160 1.040559448
+##  [49] 0.996837566 0.954580051 0.913778894 0.874420475 0.836486405 0.799954266
+##  [55] 0.764798273 0.730989857 0.698498186 0.667290618 0.637333106 0.608590547
+##  [61] 0.581027093 0.554606419 0.529291959 0.505047108 0.481835397 0.459620643
+##  [67] 0.438367076 0.418039449 0.398603128 0.380024165 0.362269365 0.345306328
+##  [73] 0.329103497 0.313630180 0.298856573 0.284753780 0.271293814 0.258449604
+##  [79] 0.246194991 0.234504724 0.223354451 0.212720704 0.202580888 0.192913263
+##  [85] 0.183696925 0.174911787 0.166538560 0.158558729 0.150954532 0.143708939
+##  [91] 0.136805627 0.130228959 0.123963957 0.117996287 0.112312230 0.106898660
+##  [97] 0.101743026 0.096833328 0.092158095 0.087706367 0.083467672 0.079432009
+## [103] 0.075589827 0.071932008 0.068449847 0.065135039 0.061979657 0.058976139
+## [109] 0.056117270 0.053396171 0.050806281 0.048341343 0.045995393 0.043762744
+## [115] 0.041637977 0.039615925 0.037691666 0.035860509 0.034117984 0.032459833
+## [121] 0.030881999 0.029380617 0.027952006 0.026592660 0.025299240 0.024068566
+## [127] 0.022897609 0.021783487 0.020723453 0.019714893 0.018755318 0.017842358
+## [133] 0.016973757 0.016147368 0.015361146 0.014613146 0.013901514 0.013224489
+## [139] 0.012580391 0.011967623 0.011384666 0.010830072 0.010302465 0.009800534
+## [145] 0.009323033 0.008868774 0.008436629 0.008025522 0.007634432 0.007262386
+## [151] 0.006908456 0.006571763 0.006251469 0.005946775 0.005656922 0.005381189
+## [157] 0.005118889 0.004869368 0.004632003 0.004406204 0.004191407 0.003987077
+## [163] 0.003792704 0.003607803 0.003431912 0.003264594 0.003105431 0.002954025
+## [169] 0.002809999
 ## 
 ## pkPrdP&gt; pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
 ## pkPrdP+    , pk.func = eff.1comp.iv, parms = c(1,10, 0.25)
 ## pkPrdP+ )
-##   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025
-##   [8] 5.380189 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960
-##  [15] 3.606660 3.326874 3.059681 2.806988 2.569832 2.348615 2.143289
-##  [22] 1.953482 1.778606 1.617934 1.470653 1.335909 1.212836 1.100577
-##  [29] 0.998303 3.005828 4.357235 5.217835 5.714456 5.944130 5.980855
-##  [36] 5.880838 5.686567 5.429964 5.134839 4.818781 4.494623 4.171582
-##  [43] 3.856127 3.552659 3.264025 2.991921 2.737193 2.500072 2.280349
-##  [50] 2.077512 1.890843 1.719498 1.562558 1.419073 1.288089 1.168672
-##  [57] 1.059920 3.061583 4.407685 5.263486 5.755763 5.981507 6.014675
-##  [64] 5.911441 5.714257 5.455020 5.157511 4.839295 4.513185 4.188378
-##  [71] 3.871325 3.566410 3.276468 3.003180 2.747381 2.509290 2.288690
-##  [78] 2.085059 1.897672 1.725677 1.568149 1.424132 1.292667 1.172814
-##  [85] 1.063668 3.064974 4.410754 5.266263 5.758275 5.983780 6.016732
-##  [92] 5.913302 5.715941 5.456544 5.158890 4.840542 4.514314 4.189399
-##  [99] 3.872249 3.567246 3.277225 3.003865 2.748000 2.509850 2.289197
-## [106] 2.085518 1.898088 1.726053 1.568489 1.424440 1.292945 1.173066
-## [113] 1.063896 3.065181 4.410940 5.266432 5.758428 5.983918 6.016857
-## [120] 5.913415 5.716044 5.456636 5.158974 4.840618 4.514383 4.189461
-## [127] 3.872305 3.567297 3.277271 3.003906 2.748038 2.509884 2.289228
-## [134] 2.085546 1.898113 1.726076 1.568510 1.424458 1.292962 1.173081
-## [141] 1.063910 3.065193 4.410952 5.266442 5.758437 5.983926 6.016865
-## [148] 5.913422 5.716050 5.456642 5.158979 4.840623 4.514387 4.189465
-## [155] 3.872308 3.567300 3.277274 3.003909 2.748040 2.509887 2.289230
-## [162] 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082
+##   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025 5.380189
+##   [9] 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960 3.606660 3.326874
+##  [17] 3.059681 2.806988 2.569832 2.348615 2.143289 1.953482 1.778606 1.617934
+##  [25] 1.470653 1.335909 1.212836 1.100577 0.998303 3.005828 4.357235 5.217835
+##  [33] 5.714456 5.944130 5.980855 5.880838 5.686567 5.429964 5.134839 4.818781
+##  [41] 4.494623 4.171582 3.856127 3.552659 3.264025 2.991921 2.737193 2.500072
+##  [49] 2.280349 2.077512 1.890843 1.719498 1.562558 1.419073 1.288089 1.168672
+##  [57] 1.059920 3.061583 4.407685 5.263486 5.755763 5.981507 6.014675 5.911441
+##  [65] 5.714257 5.455020 5.157511 4.839295 4.513185 4.188378 3.871325 3.566410
+##  [73] 3.276468 3.003180 2.747381 2.509290 2.288690 2.085059 1.897672 1.725677
+##  [81] 1.568149 1.424132 1.292667 1.172814 1.063668 3.064974 4.410754 5.266263
+##  [89] 5.758275 5.983780 6.016732 5.913302 5.715941 5.456544 5.158890 4.840542
+##  [97] 4.514314 4.189399 3.872249 3.567246 3.277225 3.003865 2.748000 2.509850
+## [105] 2.289197 2.085518 1.898088 1.726053 1.568489 1.424440 1.292945 1.173066
+## [113] 1.063896 3.065181 4.410940 5.266432 5.758428 5.983918 6.016857 5.913415
+## [121] 5.716044 5.456636 5.158974 4.840618 4.514383 4.189461 3.872305 3.567297
+## [129] 3.277271 3.003906 2.748038 2.509884 2.289228 2.085546 1.898113 1.726076
+## [137] 1.568510 1.424458 1.292962 1.173081 1.063910 3.065193 4.410952 5.266442
+## [145] 5.758437 5.983926 6.016865 5.913422 5.716050 5.456642 5.158979 4.840623
+## [153] 4.514387 4.189465 3.872308 3.567300 3.277274 3.003909 2.748040 2.509887
+## [161] 2.289230 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082
 ## [169] 1.063911
 ## 
 ## pkPrdP&gt; pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7)
@@ -202,7 +196,7 @@
 <div id="examples-of-pharmacokinetic-pharmacodynamic-predictions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples-of-pharmacokinetic-pharmacodynamic-predictions" class="anchor"></a>Examples of Pharmacokinetic-Pharmacodynamic Predictions</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/example">example</a></span>(<span class="st">"pkpdPredPlot"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"pkpdPredPlot"</span>)</a></code></pre></div>
 <pre><code>## 
 ## pkpdPP&gt; eff.1comp.iv(dose = 100, tob = seq(0,24*7), parms = c(1,10, 0.25))
 ##   [1] 0.000000e+00 2.100611e+00 3.536668e+00 4.474194e+00 5.040677e+00
@@ -242,30 +236,27 @@
 ## 
 ## pkpdPP&gt; pk.pred(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
 ## pkpdPP+        pk.func = eff.1comp.iv, parms = c(1,10, 0.25))
-##   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025
-##   [8] 5.380189 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960
-##  [15] 3.606660 3.326874 3.059681 2.806988 2.569832 2.348615 2.143289
-##  [22] 1.953482 1.778606 1.617934 1.470653 1.335909 1.212836 1.100577
-##  [29] 0.998303 3.005828 4.357235 5.217835 5.714456 5.944130 5.980855
-##  [36] 5.880838 5.686567 5.429964 5.134839 4.818781 4.494623 4.171582
-##  [43] 3.856127 3.552659 3.264025 2.991921 2.737193 2.500072 2.280349
-##  [50] 2.077512 1.890843 1.719498 1.562558 1.419073 1.288089 1.168672
-##  [57] 1.059920 3.061583 4.407685 5.263486 5.755763 5.981507 6.014675
-##  [64] 5.911441 5.714257 5.455020 5.157511 4.839295 4.513185 4.188378
-##  [71] 3.871325 3.566410 3.276468 3.003180 2.747381 2.509290 2.288690
-##  [78] 2.085059 1.897672 1.725677 1.568149 1.424132 1.292667 1.172814
-##  [85] 1.063668 3.064974 4.410754 5.266263 5.758275 5.983780 6.016732
-##  [92] 5.913302 5.715941 5.456544 5.158890 4.840542 4.514314 4.189399
-##  [99] 3.872249 3.567246 3.277225 3.003865 2.748000 2.509850 2.289197
-## [106] 2.085518 1.898088 1.726053 1.568489 1.424440 1.292945 1.173066
-## [113] 1.063896 3.065181 4.410940 5.266432 5.758428 5.983918 6.016857
-## [120] 5.913415 5.716044 5.456636 5.158974 4.840618 4.514383 4.189461
-## [127] 3.872305 3.567297 3.277271 3.003906 2.748038 2.509884 2.289228
-## [134] 2.085546 1.898113 1.726076 1.568510 1.424458 1.292962 1.173081
-## [141] 1.063910 3.065193 4.410952 5.266442 5.758437 5.983926 6.016865
-## [148] 5.913422 5.716050 5.456642 5.158979 4.840623 4.514387 4.189465
-## [155] 3.872308 3.567300 3.277274 3.003909 2.748040 2.509887 2.289230
-## [162] 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082
+##   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025 5.380189
+##   [9] 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960 3.606660 3.326874
+##  [17] 3.059681 2.806988 2.569832 2.348615 2.143289 1.953482 1.778606 1.617934
+##  [25] 1.470653 1.335909 1.212836 1.100577 0.998303 3.005828 4.357235 5.217835
+##  [33] 5.714456 5.944130 5.980855 5.880838 5.686567 5.429964 5.134839 4.818781
+##  [41] 4.494623 4.171582 3.856127 3.552659 3.264025 2.991921 2.737193 2.500072
+##  [49] 2.280349 2.077512 1.890843 1.719498 1.562558 1.419073 1.288089 1.168672
+##  [57] 1.059920 3.061583 4.407685 5.263486 5.755763 5.981507 6.014675 5.911441
+##  [65] 5.714257 5.455020 5.157511 4.839295 4.513185 4.188378 3.871325 3.566410
+##  [73] 3.276468 3.003180 2.747381 2.509290 2.288690 2.085059 1.897672 1.725677
+##  [81] 1.568149 1.424132 1.292667 1.172814 1.063668 3.064974 4.410754 5.266263
+##  [89] 5.758275 5.983780 6.016732 5.913302 5.715941 5.456544 5.158890 4.840542
+##  [97] 4.514314 4.189399 3.872249 3.567246 3.277225 3.003865 2.748000 2.509850
+## [105] 2.289197 2.085518 1.898088 1.726053 1.568489 1.424440 1.292945 1.173066
+## [113] 1.063896 3.065181 4.410940 5.266432 5.758428 5.983918 6.016857 5.913415
+## [121] 5.716044 5.456636 5.158974 4.840618 4.514383 4.189461 3.872305 3.567297
+## [129] 3.277271 3.003906 2.748038 2.509884 2.289228 2.085546 1.898113 1.726076
+## [137] 1.568510 1.424458 1.292962 1.173081 1.063910 3.065193 4.410952 5.266442
+## [145] 5.758437 5.983926 6.016865 5.913422 5.716050 5.456642 5.158979 4.840623
+## [153] 4.514387 4.189465 3.872308 3.567300 3.277274 3.003909 2.748040 2.509887
+## [161] 2.289230 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082
 ## [169] 1.063911
 ## 
 ## pkpdPP&gt; pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
@@ -276,6 +267,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -289,17 +281,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
-  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge <lee.hodge></lee.hodge></p>
+  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

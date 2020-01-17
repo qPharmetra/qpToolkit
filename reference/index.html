@@ -8,21 +8,25 @@
 
 <title>Function reference • qpToolkit</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +34,9 @@
 
 
 
+
 <meta property="og:title" content="Function reference" />
+
 
 
 
@@ -42,6 +48,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -60,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -68,7 +75,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -89,10 +96,10 @@
       <a href="../articles/CreateDemographicsTable.html">Creating a Demographics Table</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">Examples_nlme_xxx_Functions_qpToolkit</a>
+      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">qpToolkit Examples for nlme_xxx Functions</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">Examples nm_xxx Functions qpToolkit</a>
+      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">qpToolkit Examples for nm_xxx Functions</a>
     </li>
     <li>
       <a href="../articles/RunaNONMEMAnalysis.html">Run a NONMEM Analysis</a>
@@ -107,7 +114,7 @@
       <a href="../articles/qpToolkitPKPDpredictionFunctions.html">qpToolkit PKPD Prediction Functions</a>
     </li>
     <li>
-      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit General Purpose Functions</a>
+      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit Plotting Tips</a>
     </li>
     <li>
       <a href="../articles/qpToolkitgetFunctions.html">qpToolkit get_xxx Functions</a>
@@ -115,7 +122,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -125,6 +131,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -151,15 +158,87 @@
       <tr>
         
         <td>
+          <p><code><a href="PI.ci.down.arcol.html">PI.ci.down.arcol</a></code> </p>
+        </td>
+        <td><p>PI.ci.down.arcol (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PI.ci.med.arcol.html">PI.ci.med.arcol</a></code> </p>
+        </td>
+        <td><p>PI.ci.med.arcol (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PI.ci.up.arcol.html">PI.ci.up.arcol</a></code> </p>
+        </td>
+        <td><p>PI.ci.up.arcol (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PI.real.down.col.html">PI.real.down.col</a></code> </p>
+        </td>
+        <td><p>PI.real.down.col (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PI.real.med.col.html">PI.real.med.col</a></code> </p>
+        </td>
+        <td><p>PI.real.med.col (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="PI.real.up.col.html">PI.real.up.col</a></code> </p>
+        </td>
+        <td><p>PI.real.up.col (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="R.installation.validation.html">R.installation.validation()</a></code> </p>
         </td>
         <td><p>R Installation Validation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="align.around.decimal.point.html">align(<i>&lt;around.decimal.point&gt;</i>)</a></code> </p>
+          <p><code><a href="abline.color.html">abline.color</a></code> </p>
+        </td>
+        <td><p>abline.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="abline.color.box.html">abline.color.box</a></code> </p>
+        </td>
+        <td><p>abline.color.box (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="align.around.decimal.point.html">align.around.decimal.point()</a></code> </p>
         </td>
         <td><p>Padding numeric vector around decimal point</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="amber.html">amber</a></code> </p>
+        </td>
+        <td><p>amber</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="apple.html">apple</a></code> </p>
+        </td>
+        <td><p>apple</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as.tornado.html">as.tornado()</a></code> </p>
+        </td>
+        <td><p>Coerce to Tornado</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as.tornado.data.frame.html">as.tornado(<i>&lt;data.frame&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Coerce to Tornado from data.frame</p></td>
       </tr><tr>
         
         <td>
@@ -169,15 +248,33 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="blue.html">blue</a></code> <code><a href="blue.html">blue</a></code> </p>
+        </td>
+        <td><p>blue</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="bootstrap.ParTab.html">bootstrap.ParTab()</a></code> </p>
         </td>
         <td><p>Create parameter table from NONMEM bootsrap</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="box.plot.color.html">box.plot.color</a></code> </p>
+        </td>
+        <td><p>box.plot.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="boxcoxf.html">boxcoxf()</a></code> </p>
         </td>
         <td><p>Box-Cox Transformation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="brown.html">brown</a></code> </p>
+        </td>
+        <td><p>brown</p></td>
       </tr><tr>
         
         <td>
@@ -190,6 +287,12 @@
           <p><code><a href="cfc.html">cfc()</a></code> </p>
         </td>
         <td><p>Create a vector, matrix, or data frame from clipboard object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cobalt.html">cobalt</a></code> </p>
+        </td>
+        <td><p>cobalt</p></td>
       </tr><tr>
         
         <td>
@@ -229,6 +332,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="crimson.html">crimson</a></code> </p>
+        </td>
+        <td><p>crimson</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="ctc.html">ctc()</a></code> </p>
         </td>
         <td><p>Copy a data.frame or matrix to clipboard</p></td>
@@ -241,9 +350,45 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="cyan.html">cyan</a></code> </p>
+        </td>
+        <td><p>cyan</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="doubleStack.html">doubleStack()</a></code> </p>
         </td>
         <td><p>Stack a Value Twice by Two Covariates</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="emerald.html">emerald</a></code> </p>
+        </td>
+        <td><p>emerald</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="eval.eqs.html">eval.eqs()</a></code> </p>
+        </td>
+        <td><p>Evaluate a list of equations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="example.CWRES.plot.html">example.CWRES.plot()</a></code> </p>
+        </td>
+        <td><p>Examples for qPharmetra style CWRES plot</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="example.NONMEM.dataset.html">example.NONMEM.dataset()</a></code> </p>
+        </td>
+        <td><p>Examples for qPharmetra style NONMEM data set</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="example.pkpdData.html">example.pkpdData()</a></code> </p>
+        </td>
+        <td><p>Examples for qPharmetra style PKPD data set</p></td>
       </tr><tr>
         
         <td>
@@ -397,15 +542,51 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="gray.html">gray</a></code> </p>
+        </td>
+        <td><p>gray</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="green.html">green</a></code> <code><a href="green.html">green</a></code> </p>
+        </td>
+        <td><p>green</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="histogram.bootstrap.html">histogram(<i>&lt;bootstrap&gt;</i>)</a></code> </p>
         </td>
         <td><p>Bootstrap Histograms</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="histogram.color.html">histogram.color</a></code> </p>
+        </td>
+        <td><p>histogram.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="indigo.html">indigo</a></code> </p>
+        </td>
+        <td><p>indigo</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="insert.blank.line.html">insert.blank.line()</a></code> </p>
+        </td>
+        <td><p>Inserting blank lines in a table (alias)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="insert.blanks.html">insert.blanks()</a></code> </p>
         </td>
         <td><p>Inserting blank lines in a table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ipred.color.html">ipred.color</a></code> </p>
+        </td>
+        <td><p>ipred.color (Autograph)</p></td>
       </tr><tr>
         
         <td>
@@ -418,6 +599,30 @@
           <p><code><a href="isNumeric.html">isNumeric()</a></code> </p>
         </td>
         <td><p>Check for numeric values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ketchup.html">ketchup</a></code> </p>
+        </td>
+        <td><p>ketchup</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="latex.update.glosssaries.html">latex.update.glosssaries()</a></code> </p>
+        </td>
+        <td><p>Update Glossaries</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="lime.html">lime</a></code> </p>
+        </td>
+        <td><p>lime</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="lin.fit.col.html">lin.fit.col</a></code> </p>
+        </td>
+        <td><p>lin.fit.col (Autograph)</p></td>
       </tr><tr>
         
         <td>
@@ -451,9 +656,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="loi.color.html">loi.color</a></code> </p>
+        </td>
+        <td><p>loi.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="lunique.html">lunique()</a></code> </p>
         </td>
         <td><p>Number of unique values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="magenta.html">magenta</a></code> </p>
+        </td>
+        <td><p>magenta</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="make.eqs.html">make.eqs()</a></code> </p>
+        </td>
+        <td><p>Make a list of equations</p></td>
       </tr><tr>
         
         <td>
@@ -471,7 +694,7 @@
         <td>
           <p><code><a href="makeCovInfo.html">makeCovInfo()</a></code> </p>
         </td>
-        <td><p>Make a list of covInfo objects from a data frame.</p></td>
+        <td><p>Make a list of covInfo objects from a data frame</p></td>
       </tr><tr>
         
         <td>
@@ -484,6 +707,12 @@
           <p><code><a href="match.data.frame.html">match.data.frame()</a></code> </p>
         </td>
         <td><p>Compare two data frames</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mauve.html">mauve</a></code> </p>
+        </td>
+        <td><p>mauve</p></td>
       </tr><tr>
         
         <td>
@@ -662,9 +891,9 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="nm.process.coveffects.html">make.eqs()</a></code> <code><a href="nm.process.coveffects.html">eval.eqs()</a></code> <code><a href="nm.process.coveffects.html">nm.process.coveffects()</a></code> </p>
+          <p><code><a href="nm.process.coveffects.html">nm.process.coveffects()</a></code> </p>
         </td>
-        <td><p>Make a list of equations</p></td>
+        <td><p>Evaluate equations (as a list of calls) over the covariates involved.</p></td>
       </tr><tr>
         
         <td>
@@ -704,9 +933,27 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="obs.color.html">obs.color</a></code> </p>
+        </td>
+        <td><p>obs.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="odeSim.html">odeSim()</a></code> </p>
         </td>
         <td><p>ODE simulation with Multiprocessor Computation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="olive.html">olive</a></code> </p>
+        </td>
+        <td><p>olive</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="orange.html">orange</a></code> </p>
+        </td>
+        <td><p>orange</p></td>
       </tr><tr>
         
         <td>
@@ -782,6 +1029,12 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pink.html">pink</a></code> </p>
+        </td>
+        <td><p>pink</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pk.pred.html">pk.pred()</a></code> <code><a href="pk.pred.html">pk.1comp.iv()</a></code> <code><a href="pk.pred.html">pk.1comp.0abs()</a></code> <code><a href="pk.pred.html">pk.1comp.1abs()</a></code> <code><a href="pk.pred.html">pk.1comp.1abs.ss()</a></code> <code><a href="pk.pred.html">pk.1comp.10abs()</a></code> <code><a href="pk.pred.html">pk.1comp.lag()</a></code> <code><a href="pk.pred.html">pk.2comp.iv()</a></code> <code><a href="pk.pred.html">pk.2comp.0abs()</a></code> <code><a href="pk.pred.html">pk.2comp.1abs()</a></code> <code><a href="pk.pred.html">pk.2comp.1abs.m()</a></code> <code><a href="pk.pred.html">pk.2comp.1abs.ss()</a></code> <code><a href="pk.pred.html">pk.3comp.iv()</a></code> <code><a href="pk.pred.html">pk.3comp.iv.ss()</a></code> <code><a href="pk.pred.html">pk.3comp.1abs()</a></code> <code><a href="pk.pred.html">pk.3comp.1abs.ss()</a></code> <code><a href="pk.pred.html">eff.1comp.iv()</a></code> <code><a href="pk.pred.html">eff.1comp.1abs()</a></code> <code><a href="pk.pred.html">eff.1comp.1abs.ss()</a></code> <code><a href="pk.pred.html">eff.2comp.iv()</a></code> <code><a href="pk.pred.html">eff.2comp.1abs()</a></code> <code><a href="pk.pred.html">eff.2comp.1abs.ss()</a></code> <code><a href="pk.pred.html">eff.3comp.1abs()</a></code> </p>
         </td>
         <td><p>PK predictions using linear equations</p></td>
@@ -836,6 +1089,12 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pred.color.html">pred.color</a></code> </p>
+        </td>
+        <td><p>pred.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="print.covInfo.html">print(<i>&lt;covInfo&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print a covInfo S3 object</p></td>
@@ -854,15 +1113,39 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="qp.blue.html">qp.blue</a></code> </p>
+          <p><code><a href="purple.html">purple</a></code> <code><a href="purple.html">purple</a></code> </p>
+        </td>
+        <td><p>purple</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="qp.blue.html">qp.blue</a></code> <code><a href="qp.blue.html">qp.blue</a></code> </p>
+        </td>
+        <td><p>qp.blue</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="qp.colors.html">qp.colors</a></code> </p>
         </td>
         <td><p>qPharmetra Colors</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="qp.colors.sorted.html">qp.colors.sorted</a></code> </p>
+        </td>
+        <td><p>qP Colors Sorted</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="qp.green.html">qp.green</a></code> </p>
+        </td>
+        <td><p>qp.green</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="qpToolkit.html">qpToolkit</a></code> </p>
         </td>
-        <td><p>qpToolkit: Makes qPharmetra R functions easily available to users</p></td>
+        <td><p>qpToolkit: Tools for population PK/PD modeling, visualization, and reporting.</p></td>
       </tr><tr>
         
         <td>
@@ -908,6 +1191,12 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="red.html">red</a></code> <code><a href="red.html">red</a></code> </p>
+        </td>
+        <td><p>red</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="remove.tex.files.html">remove.tex.files()</a></code> </p>
         </td>
         <td><p>Remove intermediate LaTeX Files</p></td>
@@ -920,7 +1209,7 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="reorder.names.html">reorder(<i>&lt;names&gt;</i>)</a></code> </p>
+          <p><code><a href="reorder.data.frame.html">reorder(<i>&lt;data.frame&gt;</i>)</a></code> </p>
         </td>
         <td><p>Reorder names in a data.frame</p></td>
       </tr><tr>
@@ -968,6 +1257,24 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="smooth.ci.color.html">smooth.ci.color</a></code> </p>
+        </td>
+        <td><p>smooth.ci.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="smooth.color.html">smooth.color</a></code> </p>
+        </td>
+        <td><p>smooth.color (Autograph)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="steel.html">steel</a></code> </p>
+        </td>
+        <td><p>steel</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="sunique.html">sunique()</a></code> </p>
         </td>
         <td><p>Unique values sorted</p></td>
@@ -1010,7 +1317,19 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="transform.log10.html">transform(<i>&lt;log10&gt;</i>)</a></code> </p>
+          <p><code><a href="taupe.html">taupe</a></code> </p>
+        </td>
+        <td><p>taupe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="teal.html">teal</a></code> </p>
+        </td>
+        <td><p>teal</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="transform_log10.html">transform_log10()</a></code> </p>
         </td>
         <td><p>Log10 transformation</p></td>
       </tr><tr>
@@ -1052,6 +1371,12 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="violet.html">violet</a></code> </p>
+        </td>
+        <td><p>violet</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="whichNumeric.html">whichNumeric()</a></code> </p>
         </td>
         <td><p>Which entries are numeric?</p></td>
@@ -1070,15 +1395,33 @@ Create a control stream for simulation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="xscale.components.log10.3.html">xscale.components.log10.3()</a></code> </p>
+        </td>
+        <td><p>Labels 10-logged x axes appropriately in lattice (ticks at powers of 1 and 3)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="xscale.components.log10.html">xscale.components.log10()</a></code> </p>
         </td>
-        <td><p>Nice log10 y axes labels</p></td>
+        <td><p>Labels 10-logged x axes appropriately in lattice</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="yellow.html">yellow</a></code> </p>
+        </td>
+        <td><p>yellow</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="yscale.components.log10.3.html">yscale.components.log10.3()</a></code> </p>
+        </td>
+        <td><p>Labels 10-logged y axes appropriately in lattice (ticks at powers of 1 and 3)</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="yscale.components.log10.html">yscale.components.log10()</a></code> </p>
         </td>
-        <td><p>Nice log10 y axes labels</p></td>
+        <td><p>Labels 10-logged y axes appropriately in lattice</p></td>
       </tr>
     </tbody>
     </table>
@@ -1092,19 +1435,23 @@ Create a control stream for simulation</p></td>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge <lee.hodge@qpharmetra.com.</p>
+  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

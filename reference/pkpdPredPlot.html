@@ -8,21 +8,25 @@
 
 <title>Title — pkpdPredPlot • qpToolkit</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +34,11 @@
 
 
 
-<meta property="og:title" content="Title — pkpdPredPlot" />
 
+<meta property="og:title" content="Title — pkpdPredPlot" />
 <meta property="og:description" content="Plots PK-PD predictions based on qP's suite of PK and Effect Model functions" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -45,6 +50,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -63,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -71,7 +77,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -92,10 +98,10 @@
       <a href="../articles/CreateDemographicsTable.html">Creating a Demographics Table</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">Examples_nlme_xxx_Functions_qpToolkit</a>
+      <a href="../articles/ExamplesnlmexxxFunctionsqpToolkit.html">qpToolkit Examples for nlme_xxx Functions</a>
     </li>
     <li>
-      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">Examples nm_xxx Functions qpToolkit</a>
+      <a href="../articles/ExamplesnmxxxFunctionsqpToolkit.html">qpToolkit Examples for nm_xxx Functions</a>
     </li>
     <li>
       <a href="../articles/RunaNONMEMAnalysis.html">Run a NONMEM Analysis</a>
@@ -110,7 +116,7 @@
       <a href="../articles/qpToolkitPKPDpredictionFunctions.html">qpToolkit PKPD Prediction Functions</a>
     </li>
     <li>
-      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit General Purpose Functions</a>
+      <a href="../articles/qpToolkitPlottingTips.html">qpToolkit Plotting Tips</a>
     </li>
     <li>
       <a href="../articles/qpToolkitgetFunctions.html">qpToolkit get_xxx Functions</a>
@@ -118,7 +124,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -128,6 +133,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -139,14 +145,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Plots PK-PD predictions based on qP's suite of PK and Effect Model functions</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>pkpdPredPlot</span>(<span class='no'>doses</span>, <span class='no'>t.doses</span>, <span class='no'>t.obs</span>, <span class='no'>pk.func</span>, <span class='no'>e.func</span>, <span class='no'>parms</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>pkpdPredPlot</span>(<span class='no'>doses</span>, <span class='no'>t.doses</span>, <span class='no'>t.obs</span>, <span class='no'>pk.func</span>, <span class='no'>e.func</span>, <span class='no'>parms</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -172,29 +175,23 @@
     </tr>
     <tr>
       <th>parms</th>
-      <td><p>numeric vector (may be a named vector but is not required) with</p></td>
+      <td><p>numeric vector (may be a named vector but is not required)</p></td>
     </tr>
     <tr>
       <th>output</th>
       <td><p>if TRUE the simulation input and outpout is returned as list. If FALSE (default) the plot is created.</p></td>
     </tr>
-    <tr>
-      <th>log</th>
-      <td><p>logical indicating to log the Y axis</p></td>
-    </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A plot or a list with output</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>PK-PD superposition of multiple doses</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>eff.1comp.iv</span>(<span class='kw'>dose</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tob</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>), <span class='kw'>parms</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>, <span class='fl'>0.25</span>))</div><div class='output co'>#&gt;   [1] 0.000000e+00 2.100611e+00 3.536668e+00 4.474194e+00 5.040677e+00 5.333764e+00 5.428025e+00 5.380189e+00 5.233228e+00 5.019507e+00 4.763241e+00
+    <pre class="examples"><div class='input'><span class='fu'>eff.1comp.iv</span>(<span class='kw'>dose</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>tob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>), <span class='kw'>parms</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>, <span class='fl'>0.25</span>))</div><div class='output co'>#&gt;   [1] 0.000000e+00 2.100611e+00 3.536668e+00 4.474194e+00 5.040677e+00 5.333764e+00 5.428025e+00 5.380189e+00 5.233228e+00 5.019507e+00 4.763241e+00
 #&gt;  [12] 4.482387e+00 4.190119e+00 3.895960e+00 3.606660e+00 3.326874e+00 3.059681e+00 2.806988e+00 2.569832e+00 2.348615e+00 2.143289e+00 1.953482e+00
 #&gt;  [23] 1.778606e+00 1.617934e+00 1.470653e+00 1.335909e+00 1.212836e+00 1.100577e+00 9.983030e-01 9.052174e-01 8.205664e-01 7.436410e-01 6.737790e-01
 #&gt;  [34] 6.103651e-01 5.528300e-01 5.006487e-01 4.533385e-01 4.104569e-01 3.715987e-01 3.363936e-01 3.045040e-01 2.756220e-01 2.494673e-01 2.257852e-01
@@ -209,8 +206,8 @@
 #&gt; [133] 3.084335e-05 2.790822e-05 2.525240e-05 2.284932e-05 2.067492e-05 1.870744e-05 1.692719e-05 1.531636e-05 1.385881e-05 1.253997e-05 1.134664e-05
 #&gt; [144] 1.026686e-05 9.289839e-06 8.405794e-06 7.605877e-06 6.882082e-06 6.227166e-06 5.634572e-06 5.098372e-06 4.613198e-06 4.174194e-06 3.776967e-06
 #&gt; [155] 3.417541e-06 3.092319e-06 2.798046e-06 2.531777e-06 2.290846e-06 2.072843e-06 1.875586e-06 1.697101e-06 1.535600e-06 1.389468e-06 1.257243e-06
-#&gt; [166] 1.137601e-06 1.029344e-06 9.313886e-07 8.427552e-07</div><div class='input'><span class='fu'>pk.pred</span>(<span class='kw'>doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>100</span>, <span class='fl'>7</span>), <span class='kw'>t.doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>,<span class='kw'>length</span><span class='kw'>=</span><span class='fl'>7</span>), <span class='kw'>t.obs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>),
-       <span class='kw'>pk.func</span> <span class='kw'>=</span> <span class='no'>eff.1comp.iv</span>, <span class='kw'>parms</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>, <span class='fl'>0.25</span>))</div><div class='output co'>#&gt;   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025 5.380189 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960 3.606660 3.326874
+#&gt; [166] 1.137601e-06 1.029344e-06 9.313886e-07 8.427552e-07</div><div class='input'><span class='fu'>pk.pred</span>(<span class='kw'>doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>100</span>, <span class='fl'>7</span>), <span class='kw'>t.doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>,<span class='kw'>length</span><span class='kw'>=</span><span class='fl'>7</span>), <span class='kw'>t.obs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>),
+       <span class='kw'>pk.func</span> <span class='kw'>=</span> <span class='no'>eff.1comp.iv</span>, <span class='kw'>parms</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>, <span class='fl'>0.25</span>))</div><div class='output co'>#&gt;   [1] 0.000000 2.100611 3.536668 4.474194 5.040677 5.333764 5.428025 5.380189 5.233228 5.019507 4.763241 4.482387 4.190119 3.895960 3.606660 3.326874
 #&gt;  [17] 3.059681 2.806988 2.569832 2.348615 2.143289 1.953482 1.778606 1.617934 1.470653 1.335909 1.212836 1.100577 0.998303 3.005828 4.357235 5.217835
 #&gt;  [33] 5.714456 5.944130 5.980855 5.880838 5.686567 5.429964 5.134839 4.818781 4.494623 4.171582 3.856127 3.552659 3.264025 2.991921 2.737193 2.500072
 #&gt;  [49] 2.280349 2.077512 1.890843 1.719498 1.562558 1.419073 1.288089 1.168672 1.059920 3.061583 4.407685 5.263486 5.755763 5.981507 6.014675 5.911441
@@ -220,38 +217,39 @@
 #&gt; [113] 1.063896 3.065181 4.410940 5.266432 5.758428 5.983918 6.016857 5.913415 5.716044 5.456636 5.158974 4.840618 4.514383 4.189461 3.872305 3.567297
 #&gt; [129] 3.277271 3.003906 2.748038 2.509884 2.289228 2.085546 1.898113 1.726076 1.568510 1.424458 1.292962 1.173081 1.063910 3.065193 4.410952 5.266442
 #&gt; [145] 5.758437 5.983926 6.016865 5.913422 5.716050 5.456642 5.158979 4.840623 4.514387 4.189465 3.872308 3.567300 3.277274 3.003909 2.748040 2.509887
-#&gt; [161] 2.289230 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082 1.063911</div><div class='input'><span class='fu'>pkpdPredPlot</span>(<span class='kw'>doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>100</span>, <span class='fl'>7</span>), <span class='kw'>t.doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>,<span class='kw'>length</span><span class='kw'>=</span><span class='fl'>7</span>), <span class='kw'>t.obs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>),
+#&gt; [161] 2.289230 2.085547 1.898114 1.726077 1.568511 1.424459 1.292963 1.173082 1.063911</div><div class='input'><span class='fu'>pkpdPredPlot</span>(<span class='kw'>doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>100</span>, <span class='fl'>7</span>), <span class='kw'>t.doses</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>,<span class='kw'>length</span><span class='kw'>=</span><span class='fl'>7</span>), <span class='kw'>t.obs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>,<span class='fl'>24</span>*<span class='fl'>7</span>),
             <span class='kw'>pk.func</span> <span class='kw'>=</span> <span class='no'>pk.1comp.iv</span>, <span class='kw'>e.func</span> <span class='kw'>=</span> <span class='no'>eff.1comp.iv</span>,
-            <span class='kw'>parms</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>, <span class='fl'>0.25</span>))</div><div class='img'><img src='pkpdPredPlot-1.png' alt='' width='700' height='433' /></div></pre>
+            <span class='kw'>parms</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>, <span class='fl'>0.25</span>))</div><div class='img'><img src='pkpdPredPlot-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge <lee.hodge@qpharmetra.com.</p>
+  <p>Developed by Jason Chittenden, Klaas Prins, Lee Hodge.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
