@@ -28,7 +28,7 @@ panel.cwres(
 
 \item{col.loess}{color of smooth line}
 
-\item{family}{passed to \code{\link[stats]{loess.smooth}} (by way of \code{\link[lattice]{panel.loess}})}
+\item{family}{passed to \code{loess.smooth} (by way of \code{\link[lattice]{panel.loess}})}
 }
 \value{
 Lattice panel output (invisible)

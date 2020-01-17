@@ -21,7 +21,6 @@ Imports:
   foreign(>= 0.8),
   lattice(>= 0.20),
   latticeExtra(>= 0.6),
-  metrumrg(>= 5.55),
   nlme(>= 3.1),
   ggplot2(>= 1.0.0),
   lazyeval,

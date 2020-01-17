@@ -6,7 +6,7 @@
 #' @param pch symbol
 #' @param col.loess color of smooth line
 #' @param col.line color of abline
-#' @param family passed to \code{\link[stats]{loess.smooth}} (by way of \code{\link[lattice]{panel.loess}})
+#' @param family passed to \code{loess.smooth} (by way of \code{\link[lattice]{panel.loess}})
 #' @param ... any other arguments to be passed on to the lattice call
 #' @return Lattice panel output (invisible)
 #' @export

@@ -33,8 +33,8 @@ get.xpose.tables = function(run, path = getOption("nmDir"))
             ## if yes add it, if not go to next
         }
       }
+      return(nmTab)
     }
-    return(nmTab)
   }
  return(read.nmTabs())
 }

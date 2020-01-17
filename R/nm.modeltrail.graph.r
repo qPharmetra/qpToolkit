@@ -41,6 +41,28 @@ function(runs,                                                          ## runs 
   ...
   )
 {
+  panel.densitystrip <- # like metrumrg::panel.densitystrip
+    function (x, y, horizontal, col.line, fill, factor, border = col.line, 
+              col = fill, ...) 
+    {
+      ordinal <- if (horizontal) 
+        x
+      else y
+      level <- if (horizontal) 
+        unique(y)[[1]]
+      else unique(x)[[1]]
+      data <- unitDensity(ordinal, ...)
+      data$y <- data$y * factor + level
+      if (missing(col)) 
+        col <- fill
+      if (is.na(col)) 
+        col <- fill
+      if (horizontal) 
+        panel.polygon(x = data$x, y = data$y, border = border, 
+                      col = col, ...)
+      else panel.polygon(x = data$y, y = data$x, border = border, 
+                         col = col, ...)
+    }
   if(!is.null(relabel) & length(relabel) != length(runs))
   {
     message("length of relabel argument must be the same as length of runs argument")

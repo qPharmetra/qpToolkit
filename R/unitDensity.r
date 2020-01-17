@@ -5,7 +5,6 @@
 #' @param x vector of numeric values to pass on to a \code{density}
 #' @param ... any arguments to be passed on to \code{density default}
 #' @return list of \code{x} and \code{y} with x and y information to generate a plot
-#' @importFrom metrumrg safe.call
 #' @export
 #' @importFrom stats density.default
 #' @examples
@@ -13,7 +12,12 @@
 #' plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l')
 
 unitDensity <- function(x,...){
-  res <- safe.call(density.default,x=x,...)
-  res$y <- with(res, y/max(y,na.rm=TRUE))
-  res
+   arg <- c(
+      list(x = x),
+      list(...)
+   )
+   arg <- arg[names(arg) %in% names(formals(density.default))]
+   res <- do.call(density.default, arg)
+   res$y <- with(res, y/max(y,na.rm=TRUE))
+   res
 }

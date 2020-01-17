@@ -18,7 +18,6 @@
 #' @export
 #' @importFrom Hmisc unPaste Cbind
 #' @importFrom latticeExtra useOuterStrips
-#' @importFrom metrumrg panel.densitystrip panel.stratify
 #' @importFrom reshape2 melt
 #' @importFrom stats lowess qnorm
 #' @import lattice
@@ -87,10 +86,88 @@ nm.covplot = function(run = "run1",
   which.list = 1  ## which element of the list in case multiple regression methods were used
   )
 {
-#   require(Hmisc)
-#   require(latticeExtra)
-#   require(reshape)
-#
+   panel.densitystrip <- # like metrumrg::panel.densitystrip
+   function (x, y, horizontal, col.line, fill, factor, border = col.line, 
+             col = fill, ...) 
+   {
+      ordinal <- if (horizontal) 
+         x
+      else y
+      level <- if (horizontal) 
+         unique(y)[[1]]
+      else unique(x)[[1]]
+      data <- unitDensity(ordinal, ...)
+      data$y <- data$y * factor + level
+      if (missing(col)) 
+         col <- fill
+      if (is.na(col)) 
+         col <- fill
+      if (horizontal) 
+         panel.polygon(x = data$x, y = data$y, border = border, 
+                       col = col, ...)
+      else panel.polygon(x = data$y, y = data$x, border = border, 
+                         col = col, ...)
+   }
+   
+   
+   panel.stratify <- # like metrumrg::panel.stratify
+   function (x, y, type = "p", groups = NULL, pch = if (is.null(groups)) plot.symbol$pch else superpose.symbol$pch, 
+             col, col.line = if (is.null(groups)) plot.line$col else superpose.line$col, 
+             col.symbol = if (is.null(groups)) plot.symbol$col else superpose.symbol$col, 
+             font = if (is.null(groups)) plot.symbol$font else superpose.symbol$font, 
+             fontfamily = if (is.null(groups)) plot.symbol$fontfamily else superpose.symbol$fontfamily, 
+             fontface = if (is.null(groups)) plot.symbol$fontface else superpose.symbol$fontface, 
+             lty = if (is.null(groups)) plot.line$lty else superpose.line$lty, 
+             cex = if (is.null(groups)) plot.symbol$cex else superpose.symbol$cex, 
+             fill = if (is.null(groups)) plot.symbol$fill else superpose.symbol$fill, 
+             lwd = if (is.null(groups)) plot.line$lwd else superpose.line$lwd, 
+             horizontal = FALSE, panel.levels = "panel.xyplot", 
+             ..., jitter.x = FALSE, jitter.y = FALSE, factor = 0.5, amount = NULL) 
+   {
+      if (all(is.na(x) | is.na(y))) 
+         return()
+      x <- as.numeric(x)
+      y <- as.numeric(y)
+      plot.symbol <- trellis.par.get("plot.symbol")
+      plot.line <- trellis.par.get("plot.line")
+      superpose.symbol <- trellis.par.get("superpose.symbol")
+      superpose.line <- trellis.par.get("superpose.line")
+      if (!missing(col)) {
+         if (missing(col.line)) 
+            col.line <- col
+         if (missing(col.symbol)) 
+            col.symbol <- col
+      }
+      if (!is.null(groups)) 
+         panel.superpose(x, y, type = type, groups = groups, pch = pch, 
+                         col.line = col.line, col.symbol = col.symbol, font = font, 
+                         fontfamily = fontfamily, fontface = fontface, lty = lty, 
+                         cex = cex, fill = fill, lwd = lwd, horizontal = horizontal, 
+                         panel.groups = panel.stratify, jitter.x = jitter.x, 
+                         jitter.y = jitter.y, factor = factor, amount = amount, 
+                         panel.levels = panel.levels, ...)
+      else {
+         levels <- if (horizontal) 
+            y
+         else x
+         x <- split(x, levels)
+         y <- split(y, levels)
+         panel.levels <- if (is.function(panel.levels)) 
+            panel.levels
+         else if (is.character(panel.levels)) 
+            get(panel.levels)
+         else eval(panel.levels)
+         for (level in unique(levels)) {
+            panel.levels(x[[as.character(level)]], y[[as.character(level)]], 
+                         type = type, pch = pch, col = col, col.line = col.line, 
+                         col.symbol = col.symbol, font = font, fontfamily = fontfamily, 
+                         fontface = fontface, lty = lty, cex = cex, fill = fill, 
+                         lwd = lwd, horizontal = horizontal, jitter.x = jitter.x, 
+                         jitter.y = jitter.y, factor = factor, amount = amount, 
+                         level = level, levels = levels, ...)
+         }
+      }
+   }
   id.var = casefold(id.var, upper = FALSE)
 
   ## reset everything
@@ -221,7 +298,8 @@ nm.covplot = function(run = "run1",
     names(shrink) = casefold(names(shrink), upper = FALSE)
     shrink = round(shrink[eta.names], 2)
     shrink = data.frame(variable = names(shrink), etashrink = shrink)
-    etas = stableMerge(etas, shrink)
+    if(nrow(etas) != nrow(shrink))warning('numbers of rows differs (eta, shrinkage)')
+    etas = left_join(etas, shrink)
   }
 
   eta.dens = function()
@@ -245,7 +323,7 @@ nm.covplot = function(run = "run1",
         zy = zy + c(apply(zx, 2, function(ooo)unitDensity(ooo)$y)) * 0.5
         zx = c(zx)
 
-       if(ed) metrumrg::panel.stratify(panel.levels = metrumrg::panel.densitystrip,  x = x, y = y, horizontal = TRUE, border = TRUE, col = gray[1], ...)
+       if(ed) panel.stratify(panel.levels = panel.densitystrip,  x = x, y = y, horizontal = TRUE, border = TRUE, col = gray[1], ...)
 
        xtpos = current.panel.limits()$xlim[1] + diff(current.panel.limits()$xlim)*0.1
        ytpos = current.panel.limits()$ylim[1] + diff(current.panel.limits()$ylim)*0.95

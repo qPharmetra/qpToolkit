@@ -15,7 +15,7 @@
 #' @return data frame with parameter name, estimate, coefficient of variation, standard error, and estimated/fixed information.
 #' @export
 #' @seealso \code{\link{process.parTable}}
-#' @importFrom metrumrg stableMerge
+#' @importFrom dplyr left_join
 #' @examples
 #' nm.params.table(run = "example1", path = getOption("qpExampleDir"))
 #' nm.params.table("example2",  path = getOption("qpExampleDir"),
@@ -73,7 +73,9 @@ nm.params.table = function(
   parTab = reorder(parTab, "Parameter")
 
   ## merge the fixed / non-fixed information in
-  parTab = metrumrg::stableMerge(parTab[, names(parTab)[names(parTab) != "estimated"]], check)
+  parTab = parTab[, names(parTab)[names(parTab) != "estimated"]]
+  if(nrow(parTab) != nrow(check))warning('numbers of rows do not match')
+  parTab = dplyr::left_join(parTab, check)
   estimated = parTab$estimated == 0
   if(flag==1) estimated[asNumeric(parTab$se[estimated]) > 1e+9] = FALSE
   #if no se returned set it here
