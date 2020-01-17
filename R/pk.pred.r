@@ -33,7 +33,7 @@
 #'    , parms = c(1,10, 0.25, 0.05)
 #' )
 
-pk.pred = function(doses, t.doses, t.obs, pk.func, parms){
+pk.pred <- function(doses, t.doses, t.obs, pk.func, parms){
 	# Function performs superposition for series of observation times given a
       # series of doses
 	# Function inputs:
@@ -73,7 +73,7 @@ pk.pred = function(doses, t.doses, t.obs, pk.func, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.1comp.iv = function(dose, tob, parms){
+pk.1comp.iv <- function(dose, tob, parms){
 	# 1-compartment model with iv dosing
 	cl	= parms[1]
 	v	= parms[2]
@@ -85,7 +85,7 @@ pk.1comp.iv = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.1comp.0abs = function(dose, tob, parms){
+pk.1comp.0abs <- function(dose, tob, parms){
 	# 1 compartment model with 0-order absorprtion
 	cl	= parms[1]
 	v	= parms[2]
@@ -108,7 +108,7 @@ pk.1comp.0abs = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.1comp.1abs = function(dose, tob, parms){
+pk.1comp.1abs <- function(dose, tob, parms){
 	# 1-compartment model with 1st-order absorption
 	cl 		= parms[1]
 	v		= parms[2]
@@ -125,7 +125,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.1comp.1abs.ss = function(dose, tob, parms){
+pk.1comp.1abs.ss <- function(dose, tob, parms){
 	# Steady-state concentration during the dosing interval for 1-compartment
 	# model with 1st-order absorption
 	# Note that tob is time relative to start of dosing interval, and the diosing
@@ -150,7 +150,7 @@ pk.1comp.1abs.ss(100, seq(0.1,23.99,length=100), c(1,25,0.5,24))
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.1comp.10abs = function(dose, tob, parms){
+pk.1comp.10abs <- function(dose, tob, parms){
   # 1- comparment PK, plus combination of 1st and 0-order absorption
   # Refs:
 	cl	= parms[1]
@@ -178,7 +178,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.1comp.lag = function(dose, tob, parms) {
+pk.1comp.lag <- function(dose, tob, parms) {
   # 1-compartment PK with lagged first-order absorption
   # Refs:
 	cl	= parms[1]
@@ -206,7 +206,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.2comp.iv = function(dose, tob, parms){
+pk.2comp.iv <- function(dose, tob, parms){
   # 2-compartment model with IV bolus dosing
   cl	= parms[1]  # Central clearance
   v1	= parms[2]  # Central volume
@@ -233,7 +233,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.2comp.0abs = function(dose, tob, parms){
+pk.2comp.0abs <- function(dose, tob, parms){
   # 2-compartment model with 0-order infusion
   cl  = parms[1]  # Central clearance
   v1  = parms[2]  # Central volume
@@ -269,7 +269,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.2comp.1abs = function(dose, tob, parms){
+pk.2comp.1abs <- function(dose, tob, parms){
   # 2-compartment model with 1st-order absorption
   cl  = parms[1]  # Central clearance
   v1  = parms[2]  # Central volume
@@ -303,7 +303,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.2comp.1abs.m = function(dose, tob, parms){
+pk.2comp.1abs.m <- function(dose, tob, parms){
   # 2-compartment model with 1st-order absorption, parameterized in
   # macro-constants
   AOB   = parms[1]  # A / B
@@ -334,7 +334,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.2comp.1abs.ss = function(dose, tob, parms){
+pk.2comp.1abs.ss <- function(dose, tob, parms){
   # Steady-State 2-compartment concentration with 1st-order absorption during
   # the dosing interval
   # Note that tob is time relative to the start of the dosing interval
@@ -371,7 +371,7 @@ pk.2comp.1abs.ss = function(dose, tob, parms){
 # ROXYGEN Documentation
 # @describeIn pk.pred
 
-# pk.2comp.1abs.m.ss = function(dose, tob, parms){
+# pk.2comp.1abs.m.ss <- function(dose, tob, parms){
 #   # SS 2-compartment concentration with 1st-order absorption parameterized in
 #   # macro-constants
 #   AOB   = parms[1]  # A / B
@@ -405,7 +405,7 @@ pk.2comp.1abs.ss = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.3comp.iv = function(dose, tob, parms){
+pk.3comp.iv <- function(dose, tob, parms){
   # 3-compartment PK with iv bolus dosing
   cl  = parms[1]  # central clearance
   v1  = parms[2]  # central volume
@@ -458,7 +458,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.3comp.iv.ss = function(dose, tob, parms) {
+pk.3comp.iv.ss <- function(dose, tob, parms) {
   # 3-compartment PK with iv dosing at SS
   # Note that time is relative to the start of the dosing period
   cl  = parms[1]  # central clearance
@@ -512,7 +512,7 @@ pk.3comp.iv.ss = function(dose, tob, parms) {
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.3comp.1abs = function(dose, tob, parms){
+pk.3comp.1abs <- function(dose, tob, parms){
   # 3-compartment PK with 1st-order absorption
   cl  = parms[1]  # central clearance
   v1  = parms[2]  # central volume
@@ -568,7 +568,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-pk.3comp.1abs.ss = function(dose,tob,parms) {
+pk.3comp.1abs.ss <- function(dose,tob,parms) {
   # 3-compartment pk with 1st-order absorption, at SS
   cl  = parms[1]  # central clearance
   v1  = parms[2]  # central volume
@@ -633,7 +633,7 @@ pk.3comp.1abs.ss = function(dose,tob,parms) {
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.1comp.iv = function(dose, tob, parms){
+eff.1comp.iv <- function(dose, tob, parms){
   # Effect-site, 1-compartment, iv bolus dosing
   cl  = parms[1]  # clearance
   v   = parms[2]  # volume
@@ -650,7 +650,7 @@ eff.1comp.iv = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.1comp.1abs = function(dose, tob, parms){
+eff.1comp.1abs <- function(dose, tob, parms){
   # Effect-site concentration for 1-compartment model, 1st-order absorption
   cl  = parms[1]  # clearance
   v   = parms[2]  # volume
@@ -679,7 +679,7 @@ if(F){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.1comp.1abs.ss = function(dose, tob, parms){
+eff.1comp.1abs.ss <- function(dose, tob, parms){
   # Steady-state effect-site concentration for 1-compartment model,
   # 1st-order absorption
   cl  = parms[1]  # clearance
@@ -705,7 +705,7 @@ eff.1comp.1abs.ss = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.2comp.iv = function(dose, tob, parms){
+eff.2comp.iv <- function(dose, tob, parms){
   # effect-site concentration for 2-compartment kinetics, iv dosing
   cl  = parms[1]  # clearance
   v1  = parms[2]  # central volume
@@ -735,7 +735,7 @@ eff.2comp.iv = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.2comp.1abs = function(dose, tob, parms){
+eff.2comp.1abs <- function(dose, tob, parms){
   # Effect site model with 2 compartments, 1st-order absorption
   cl  = parms[1]  # clearance
   v1  = parms[2]  # central volume
@@ -767,7 +767,7 @@ eff.2comp.1abs = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.2comp.1abs.ss = function(dose, tob, parms){
+eff.2comp.1abs.ss <- function(dose, tob, parms){
   # Steady-state effect-site concentration
   cl  = parms[1]  # clearance
   v1  = parms[2]  # central volume
@@ -803,7 +803,7 @@ eff.2comp.1abs.ss = function(dose, tob, parms){
 # ROXYGEN Documentation
 #' @describeIn pk.pred
 #'
-eff.3comp.1abs = function(dose, tob, parms){
+eff.3comp.1abs <- function(dose, tob, parms){
   # 3-compartment PK with 1st-order absorption
   cl  = parms[1]  # central clearance
   v1  = parms[2]  # central volume

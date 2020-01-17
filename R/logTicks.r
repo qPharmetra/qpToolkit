@@ -25,7 +25,7 @@
 #' logTicks(lim = c(109,109,1000,4), loc = 4)
 #' logTicks(lim = c(109,109,1000,4), loc = 2)
 #' logTicks(c(2.,5,10,23,532,140,1240,0.2,5,50), loc = c(1,3))
-logTicks = function(lim, loc = 1)
+logTicks <- function(lim, loc = 1)
 {
   lim = lim[lim>0] # make sure it ignores the zeros
   ii = floor(range(log10(lim)) + c(-1,2))

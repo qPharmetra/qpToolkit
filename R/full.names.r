@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' full.names(c("wt","race","age"))
-full.names = function(x)
+full.names <- function(x)
 {
   swap(x,
                   c('wt','ht','bmi','age','sex','crcl','race'),

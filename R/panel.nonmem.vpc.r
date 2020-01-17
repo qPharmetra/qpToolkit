@@ -31,7 +31,7 @@
 #' @import lattice
 #' @importFrom utils head
 
-panel.nonmem.vpc = function(
+panel.nonmem.vpc <- function(
   x, y, OBS, vpc, subscripts, logY, logX, showPredAs,
   showObsDots, showObsLines, xCov,
  col.scheme, obscex.dot, obspch.dot, lineType, central.lwd, ...

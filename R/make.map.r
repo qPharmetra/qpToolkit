@@ -17,7 +17,7 @@
 #'
 #' names(test.ds)
 #' meta.map(test.ds, compNm="drg", trialNm="ref.id", refNm="Ref", dist=1.4)
-make.map = function(ds, cNm="drug.abbr", trNm="ref.tr"){
+make.map <- function(ds, cNm="drug.abbr", trNm="ref.tr"){
   # identify all of the 2-way comparisons among the comparators
   # meta.ds = meta analysis dataset
   # compNm = variable name of the different comparators

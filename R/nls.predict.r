@@ -31,7 +31,7 @@
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
 #' plot(fm1DNase1.predict, logX = TRUE)
 
-nls.predict = function(func,
+nls.predict <- function(func,
   object,
   newdata=NULL,
   xrange = 150)
@@ -76,7 +76,7 @@ nls.predict = function(func,
   newdata$ypr = predict(object, newdata)
 
   ## summarization lists
-  create.list = function(data, nams)
+  create.list <- function(data, nams)
   {
     myList = list(data[, nams])
     if(length(nams)>1) myList = as.list(data[, nams])

@@ -23,7 +23,7 @@ globalVariables(c('EVID','.'))
 #'
 #' )
 #' tbl_df(nmData3[, c('ID','TIME','EVID','AMT','CMT','DV')])
-nm.insert.dose.multiple.compartments = function(
+nm.insert.dose.multiple.compartments <- function(
   data,
   dose.in.cmt = c(1,2),
   ...,

@@ -33,7 +33,7 @@
 #' xml.Extract.NM.Value(asXMLNode(tmp[["thetase"]]), what = "theta")
 #' }
 
-xml.Extract.NM.Value = function(x, what = "theta")
+xml.Extract.NM.Value <- function(x, what = "theta")
 {
   theValues = unlist(lapply(x$children, function(y) as.numeric(xmlValue(y))))
   theNames = paste(casefold(what,upper=TRUE),

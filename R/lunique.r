@@ -10,5 +10,5 @@
 #' lunique(1:10)
 #' lunique(c(1,1,2,2,3,3,4,4))
 
-lunique = function(x) length(unique(x))
+lunique <- function(x) length(unique(x))
 

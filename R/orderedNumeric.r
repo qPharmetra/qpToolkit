@@ -22,7 +22,7 @@
 #' orderedNumeric(out$DOSE, prefix = "DrugName", suffix = "mcg", special.x = list(0, "Placebo"))
 #' orderedNumeric(out$DOSE, prefix = "DrugName ", suffix = "mcg", special.x = list(0, "Vehicle"),
 #' paste.function = paste0)
-orderedNumeric = function(x, prefix = "", suffix = "", paste.function = paste, special.x = NULL){
+orderedNumeric <- function(x, prefix = "", suffix = "", paste.function = paste, special.x = NULL){
   xx = x
   if(!is.null(special.x) & is.list(special.x)) xx = qpToolkit::swap(xx, special.x[[1]], special.x[[2]])
   theString = do.call(paste.function, list(prefix,xx,suffix))

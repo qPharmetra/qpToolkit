@@ -17,7 +17,7 @@
 #' isMissing(temp$nom.time)
 #' temp[isMissing(temp$nom.time),]
 
-isMissing = function(x) {
+isMissing <- function(x) {
   natest = is.na(x)
   if(class(x)=="character") natest = natest|sub("^[ ]+$","",x)==""|x=="NA"
   natest

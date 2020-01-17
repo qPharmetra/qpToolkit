@@ -40,7 +40,7 @@
 #' ylab = list("Mean Thingy Inhibition (%)", cex=1.2)
 #'))
 
-panel.superpose.arrows = function(x,y, subscripts, groups,...)
+panel.superpose.arrows <- function(x,y, subscripts, groups,...)
 {
   for(i in unique(groups))
   {

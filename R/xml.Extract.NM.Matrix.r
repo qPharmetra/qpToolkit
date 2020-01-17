@@ -35,7 +35,7 @@
 #'
 #' make.symmetric(unlist(omega))
 #' }
-xml.Extract.NM.Matrix = function(y){
+xml.Extract.NM.Matrix <- function(y){
   theNames = lapply(y$children, xmlAttrs)
   theValues = as.numeric(unlist(lapply(y$children, xmlValue)))
   if(!is.null(theValues)) names(theValues) = theNames

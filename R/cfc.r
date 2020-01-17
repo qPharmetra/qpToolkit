@@ -17,7 +17,7 @@
 #' @export
 
 
-cfc = function(obj.type="data.frame",strings.as.factors=FALSE,row.names=NULL) {
+cfc <- function(obj.type="data.frame",strings.as.factors=FALSE,row.names=NULL) {
   #copy from clipboard to R
   if (obj.type == "vector")  result = scan("clipboard", sep="\t")
   if (obj.type == "matrix")	result = as.matrix(read.table(file="clipboard",header=FALSE,sep="\t"))

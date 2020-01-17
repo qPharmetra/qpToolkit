@@ -27,7 +27,7 @@
 #' # If the above does not exist, consider:
 #' # options(unzip.call = 'C:/my-zip-path/7z e %s.7z') # or similar
 
-nm.unzip = function(
+nm.unzip <- function(
    run,
    path = file.path(getOption("nmDir"), run),
    zip.extension = NULL,

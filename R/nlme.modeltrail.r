@@ -15,7 +15,7 @@
 #' @examples
 #' library(nlme)
 #' pkpdData = example.pkpdData()
-#' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+#' EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
 #' {
 #'   # Effect-site concentration for 1-compartment model, 1st-order absorption
 #'
@@ -67,7 +67,7 @@
 #'    problem = "True Model",
 #'    reference = 3)
 #' nlme.modeltrail(fit.PD001.nlme,fit.PD002.nlme,fit.PD003.nlme,fit.PD004.nlme)
-nlme.modeltrail = function(...)
+nlme.modeltrail <- function(...)
 {
   models = as.list(match.call())[-1] #models = as.list(c('fit.PD001.nlme','fit.PD002.nlme','fit.PD003.nlme','fit.PD004.nlme'))
   nams = unlist(lapply(models, as.character))

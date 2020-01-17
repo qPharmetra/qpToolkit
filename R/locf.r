@@ -21,7 +21,7 @@
 #' locf(fac,na=NA)
 
 
-locf = function(x, na = NA)
+locf <- function(x, na = NA)
 {
   is.fac = class(x)=="factor"
   if(is.fac) x=as.character(x)

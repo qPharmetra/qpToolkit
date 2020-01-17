@@ -10,7 +10,7 @@
 #' extract.character(x="df12Lee31df")
 #' extract.character(x="df1231df", TRUE)
 
-extract.character = function(x, collapse = FALSE)
+extract.character <- function(x, collapse = FALSE)
 {
   x = as.character(x)
   w1 = gregexpr("[A-Z]?[a-z]*", x)

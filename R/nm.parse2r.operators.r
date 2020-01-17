@@ -7,7 +7,7 @@
 #' @examples
 #' nm.parse2r.operators(c("DOSE.GT.10","AMT.LE.10","ID.EQ.1000","SEX!=0"))
 
-nm.parse2r.operators = function(nmtext)
+nm.parse2r.operators <- function(nmtext)
 {
    ## find operators
    nmtext = gsub("[.]GT[.]",">", nmtext)

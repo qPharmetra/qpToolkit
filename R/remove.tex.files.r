@@ -15,7 +15,7 @@
 #' @return Intermediate LaTeX files are deleted - no visible R result.
 #' @export
 
-remove.tex.files = function(name = "qPharmetra", path)
+remove.tex.files <- function(name = "qPharmetra", path)
 {
   #require(Hmisc)
   theFiles = paste(path,

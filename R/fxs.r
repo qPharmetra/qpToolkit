@@ -15,7 +15,7 @@
 #' fxs(c(0,1,34, 50000), pattern="    ")
 #' fxs(c(0,1,34, 50000), "000000")
 
-fxs = function(x, pattern = "0000")
+fxs <- function(x, pattern = "0000")
 {
   newString = rep("NA", length(x))
   pattern = rep(pattern, length(x))

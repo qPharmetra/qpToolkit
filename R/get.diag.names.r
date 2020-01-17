@@ -15,7 +15,7 @@
 #' @examples
 #' covMatrix = get.covmat(path = getOption("qpExampleDir"), run = "example2")
 #' get.diag.names(names = sub(" +", "", trimSpace(names(covMatrix[[1]]))))
-get.diag.names = function(names, sep = ",")
+get.diag.names <- function(names, sep = ",")
 {
   isOMEGA = grep("OMEGA",names)
   isSIGMA = grep("SIGMA",names)

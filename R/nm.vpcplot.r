@@ -41,7 +41,7 @@
 #' @import lattice
 #' @importFrom nlme getCovariateFormula
 #' @importFrom stats as.formula
-nm.vpcplot = function(path,
+nm.vpcplot <- function(path,
          result = "vpc_results.csv",
          tab = dir(path=path,pattern = "^vpctab")[1],
          PI.limits = c(0.025,0.975),
@@ -181,7 +181,7 @@ nm.vpcplot = function(path,
 #   }
 
 ## bind stratified results into singe data frame
-c.or.unlist = function(x) if(is.list(x)) unlist(x) else c(x)
+c.or.unlist <- function(x) if(is.list(x)) unlist(x) else c(x)
 ## sometimes the strata appear as list and sometimes as a matrix
 VPC = do.call("rbind", SIM)
 

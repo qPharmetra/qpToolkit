@@ -3,9 +3,9 @@ globalVariables(c('Package','Priority'))
 #'
 #'@importFrom utils read.csv
 #' @return Information
-R.installation.validation = function()
+R.installation.validation <- function()
 {
-   find.in.path = function(path,fname){
+   find.in.path <- function(path,fname){
       parts = unlist(strsplit(path, .Platform$file.sep))
       if(length(parts)==0) return("") #just return empty directory
       if(!file.exists(file.path(path,fname)))

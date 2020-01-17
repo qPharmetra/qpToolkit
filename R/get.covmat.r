@@ -21,7 +21,7 @@
 #' @examples
 #' get.covmat("example2", path = getOption("qpExampleDir"))
 
-get.covmat = function(
+get.covmat <- function(
   run,
   path = paste(getwd(),"NONMEM", sep="/"),
   ext = "cov",

@@ -17,7 +17,7 @@
 #' ## a large one
 #' read.ext(run = "example1", path = getOption("qpExampleDir"))
 
-read.ext = function(run
+read.ext <- function(run
                     , path = getOption("nmDir")
                     , file.ext = ".ext"
                     , quiet=TRUE
@@ -45,7 +45,7 @@ read.ext = function(run
   names(x) = lapply(xnam, function(x) substring(x[2], 2))
 
   ## turn each list into a data frame
-  parse.table = function(y)
+  parse.table <- function(y)
   {
     y = y[-1]
 

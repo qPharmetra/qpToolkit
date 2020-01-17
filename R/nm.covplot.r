@@ -70,7 +70,7 @@
 #'
 
 
-nm.covplot = function(run = "run1",
+nm.covplot <- function(run = "run1",
   path = getOption("nmDir"),
   id.var = "ID",
   iov = FALSE,
@@ -255,7 +255,7 @@ nm.covplot = function(run = "run1",
     }
   #intersect(eta.list, names(data))
 
-  eta.splom = function()
+  eta.splom <- function()
   {
     splom(data[, eta.list],
      panel = function(x, y){
@@ -302,7 +302,7 @@ nm.covplot = function(run = "run1",
     etas = left_join(etas, shrink)
   }
 
-  eta.dens = function()
+  eta.dens <- function()
   {
     xyplot(variable ~ value, #x=etas$value; y = etas$variable
 		  data = etas,
@@ -353,7 +353,7 @@ nm.covplot = function(run = "run1",
   names(conData)[names(conData) %in% c('variable','value')] = c('conVariable', 'conValue')
   conData.eta = reshape2::melt(conData, measure.vars = eta.list)
 
-  etaContVarPlot = function()
+  etaContVarPlot <- function()
   {
     useOuterStrips(
       xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
@@ -382,13 +382,13 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.eta = reshape2::melt(catData, measure.vars = eta.list)
 
-  etaCatVarPlot = function(show_means = TRUE)
+  etaCatVarPlot <- function(show_means = TRUE)
   {
   useOuterStrips(
     xyplot(value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,
     data = catData.eta,
     horizontal = FALSE,
-    panel =  function(x,y,...)
+    panel = function(x,y,...)
     {
       panel.bwplot(x,y,...)
       panel.abline(h = 0, col = gray[5], lwd = 1)
@@ -411,7 +411,7 @@ nm.covplot = function(run = "run1",
   names(conData)[names(conData) %in% c('variable','value')] = c('conVariable', 'conValue')
   conData.par = reshape2::melt(conData, measure.vars = casefold(parameters,upper = FALSE))
 
-  parContVarPlot = function()
+  parContVarPlot <- function()
   {
     useOuterStrips(
       xyplot(value ~ conValue | casefold(variable, upper=TRUE) * conVariable,
@@ -440,7 +440,7 @@ nm.covplot = function(run = "run1",
   names(catData)[names(catData) %in% c('variable','value')] = c('catVariable', 'catValue')
   catData.par = reshape2::melt(catData, measure.vars =  casefold(parameters,upper = FALSE))
 
-  parCatVarPlot = function(){
+  parCatVarPlot <- function(){
     useOuterStrips(
        xyplot(
           # value ~ as.factor(paste(catValue)) | casefold(variable, upper=TRUE) * catVariable,

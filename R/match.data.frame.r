@@ -49,7 +49,7 @@
 #' #[1] 1 2 3
 #'
 #'
-match.data.frame = function(x, table, nomatch = NA, incomparables = FALSE)
+match.data.frame <- function(x, table, nomatch = NA, incomparables = FALSE)
 {
   # x and table are data frames (or lists) of the same length
   # match rows of x against rows of table

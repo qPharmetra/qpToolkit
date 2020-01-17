@@ -15,7 +15,7 @@
 #' input.df = data.frame(A=1:2,B=2:3,C=4:5)
 #' input.df
 #' expand.data(input.df, values = c(1,3,7), "Klaas")
-expand.data = function(data, values, name = "variable.added")
+expand.data <- function(data, values, name = "variable.added")
 {
   ## building on expand.grid functionality
   ## multiply data length(values) times and left join the values as a column

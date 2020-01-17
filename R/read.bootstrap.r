@@ -27,7 +27,7 @@
 #' myBoot$structure
 #' }
 #'
-read.bootstrap = function(
+read.bootstrap <- function(
   path =getOption("nmDir"),       # where do the bootstrap results reside?
   filename   = "raw_results1.csv",  # default filename for bootstrap results
   structure.filename = "raw_results_structure", ## contains

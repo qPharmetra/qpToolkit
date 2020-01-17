@@ -21,6 +21,6 @@
 #' hist(x)
 #' hist(x.boxcox.pos)
 #' hist(x.boxcox.neg)
-boxcoxf = function(shape, distr){
+boxcoxf <- function(shape, distr){
   exp((exp(distr)**shape-1)/shape)
 }

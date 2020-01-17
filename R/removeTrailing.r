@@ -12,7 +12,7 @@
 #' conc
 #' removeTrailing(conc, val=0)
 
-removeTrailing = function(x, val=0){
+removeTrailing <- function(x, val=0){
   xx = rep(1, length(x))
   xx[x==val] = 0
   if(!all(xx==0)){

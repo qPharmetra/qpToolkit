@@ -23,7 +23,7 @@
 #' tabulate.samples(data=my.df, analyte="analyte.1")
 #' tabulate.samples(data=my.df, analyte="analyte.2")
 
-tabulate.samples = function(data, analyte = "conc", oddCode = c('BLOQ','NS','M'))
+tabulate.samples <- function(data, analyte = "conc", oddCode = c('BLOQ','NS','M'))
 {
   if(any(is.na(data[, analyte]))) {
     message("column'",analyte,"' contains NA records. Solve this first.")

@@ -33,7 +33,7 @@
 #'  , cov.cat=c(FALSE,FALSE,FALSE,TRUE)
 #' )
 
-table.meta.analysis.summary = function(data, cov.cols=NULL, cov.cat=NULL)
+table.meta.analysis.summary <- function(data, cov.cols=NULL, cov.cat=NULL)
 {
   ##  Each unique study+drug+dose = one arm
   ##

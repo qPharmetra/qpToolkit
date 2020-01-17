@@ -46,7 +46,7 @@
 #' @examples
 #' # library(nlme)
 #' pkpdData = example.pkpdData()
-#' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+#' EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
 #'  {
 #'    # Effect-site concentration for 1-compartment model, 1st-order absorption
 #'
@@ -74,7 +74,7 @@
 #'  vpc.PD004.nlme = nlme.vpc(fit.PD004.nlme$object, nrep = 100)
 #'  nlme.vpcplot(fit.PD004.nlme$object, vpc.PD004.nlme)
 
-nlme.vpcplot = function(
+nlme.vpcplot <- function(
   object,
   vpc,
   formula,

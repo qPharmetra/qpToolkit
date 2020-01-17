@@ -24,7 +24,7 @@
 #' @return A graph written to file in .png format.
 #' @export
 
-myPNG = function(
+myPNG <- function(
   filename = "C:/Test/test.png",
   w = 8, h = 6, units="in",
   psize = 10, bg="transparent", res=600

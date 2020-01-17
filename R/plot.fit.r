@@ -44,7 +44,7 @@
 #' fm1DNase1.predict = nls.predict(density ~ conc,object = fm1DNase1)
 #' plot(fm1DNase1.predict, logX = TRUE)
 #'
-#' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+#' EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
 #' {
 #'   # Effect-site concentration for 1-compartment model, 1st-order absorption
 #'
@@ -94,7 +94,7 @@
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1)
 #'    , abline = list(h = 0, lty=2))
-plot.fit = function(x, ..., newFunc,
+plot.fit <- function(x, ..., newFunc,
   yLabel, xLabel, label.cex = 1.25,
   xLimits, yLimits,
   title, plot.title = TRUE,
@@ -238,7 +238,7 @@ plot.fit = function(x, ..., newFunc,
 
 if(F)
 {
-  EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+  EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
   {
     # Effect-site concentration for 1-compartment model, 1st-order absorption
 

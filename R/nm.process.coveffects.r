@@ -83,7 +83,7 @@ eval.eqs <- function(.data,  ...)
 #'
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
-covInfo = function(cov.name
+covInfo <- function(cov.name
                    ,cov.vals
                    ,cov.cat = FALSE
                    ,cov.center=stats::median(cov.vals)

@@ -7,7 +7,7 @@ globalVariables('EVID')
 #' @examples
 #' example.xpose.VPC()
 
-example.xpose.VPC = function()
+example.xpose.VPC <- function()
 {
    cat("xpose.VPC(file.path(getOption('nmDir'),'vpc1/vpc_results.csv')
        , file.path(getOption('nmDir'),'vpc1/vpctab1')
@@ -30,7 +30,7 @@ example.xpose.VPC = function()
 #' @examples
 #' example.CWRES.plot()
 
-example.CWRES.plot = function()
+example.CWRES.plot <- function()
 {
    cat("xyplot(CWRES ~ value | variable
              , data = subset(
@@ -63,7 +63,7 @@ example.CWRES.plot = function()
 #' pkpdData = example.pkpdData()
 #' tbl_df(pkpdData)
 
-example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
+example.NONMEM.dataset <- function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
 {
    ## observations
    nmobs = expand.grid(ID = seq(ID*length(DOSE))
@@ -99,7 +99,7 @@ example.NONMEM.dataset = function(ID=3, TIME=seq(0,24,2), DOSE=c(1,2.5,10), ...)
 #' pkpdData = example.pkpdData()
 #' tbl_df(pkpdData)
 
-example.pkpdData = function(){
+example.pkpdData <- function(){
    set.seed(1234)
    nsub=32
    pkpdData = list(NULL)

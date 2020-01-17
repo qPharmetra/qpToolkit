@@ -35,7 +35,7 @@
 #' tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))
 
 
-nm.extract.xml = function(
+nm.extract.xml <- function(
   run = "run1",
   path = getOption("nmDir"),
   filename = paste(path, run, paste(run, xml.extension,sep=""),sep="/"),

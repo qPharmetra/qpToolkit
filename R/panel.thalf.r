@@ -35,7 +35,7 @@
 #' , yscale.components = yscale.components.log10
 #' )
 
-panel.thalf = function(x, y, ...,
+panel.thalf <- function(x, y, ...,
                        text.cex = 0.8,
                        line.col = "blue",
                        digits = 3,  ## number of significant digits

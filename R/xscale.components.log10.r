@@ -27,7 +27,7 @@
 #'        , xscale.components = xscale.components.log10.3
 #' )
 
-xscale.components.log10 = function(lim, ...){
+xscale.components.log10 <- function(lim, ...){
   ans = xscale.components.default(lim  = lim, ...)
   tick.at = logTicks(10^lim, loc = 1)
   ans$bottom$ticks$at = log(tick.at, 10)
@@ -56,7 +56,7 @@ xscale.components.log10 = function(lim, ...){
 #'        , xscale.components = xscale.components.log10.3
 #' )
 
-xscale.components.log10.3 = function(lim, ...){
+xscale.components.log10.3 <- function(lim, ...){
   ans = xscale.components.default(lim  = lim, ...)
   tick.at = logTicks(10^lim, loc = c(1,3))
   ans$bottom$ticks$at = log(tick.at, 10)

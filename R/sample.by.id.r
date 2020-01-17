@@ -23,7 +23,7 @@
 #' tapply(sample.by.id(my.ids, samples = rgamma(1000,1)),my.ids, unique)
 
 
-sample.by.id = function(id, samples, replace = TRUE)
+sample.by.id <- function(id, samples, replace = TRUE)
 {
   # samples can be the output from any function
   len = length(unique(id))

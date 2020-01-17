@@ -14,7 +14,7 @@
 #' sam = rnorm.by.id(df$id, mean = 0, sd = 1)
 #' tapply(sam,df$id, unique)
 
-rnorm.by.id = function(id, mean = 0, sd = 1)
+rnorm.by.id <- function(id, mean = 0, sd = 1)
   {
     len = length(unique(id))
     rnorm(n = len, mean = mean, sd = sd)[tapply(id, id)]

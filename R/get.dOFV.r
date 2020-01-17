@@ -17,7 +17,7 @@
 #' @examples
 #' get.dOFV(runs = c("example1","example2"), path = getOption("qpExampleDir"))
 #' # note this example is for two non-nested models. It has not other value to to illustrate the tool
-get.dOFV =  function(runs = c('run1','run2')
+get.dOFV <- function(runs = c('run1','run2')
                      , path = getOption("nmDir")
                      , conf.level = 0.95
                      , file.ext = ".lst"

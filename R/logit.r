@@ -16,7 +16,7 @@
 #' hist(myVector.logit)
 #' hist(logit.inv(myVector.logit))
 
-logit = function(x, min = 0, max = 1)
+logit <- function(x, min = 0, max = 1)
 {
   xnew = (x - min) / (max-min)
   log(xnew/(1-xnew))

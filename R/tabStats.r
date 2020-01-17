@@ -31,7 +31,7 @@
 #' tabStats(pkpdData$sex[ok], list(dose = pkpdData$dose[ok]))
 #' tabStats(x=pkpdData$wt, BY = list(dose = pkpdData$dose))
 #' tabStats(x=pkpdData$bmi, BY = list(dose = pkpdData$dose))
-tabStats = function(x
+tabStats <- function(x
                     , BY
                     , digits = 3
                     , conFunc1 = conDataFun1

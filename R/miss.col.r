@@ -13,7 +13,7 @@
 #' #"c"
 #' miss.col(my.df.2,my.df.1)
 #' #character(0)
-miss.col = function(df.1, df.2) {
+miss.col <- function(df.1, df.2) {
 
   x = names(df.1)
   x[x %nin% names(df.2)]

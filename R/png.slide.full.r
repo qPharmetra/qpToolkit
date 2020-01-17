@@ -21,7 +21,7 @@
 #' plot(x=1:25,y=rnorm(25,50,5))
 #' dev.off()
 
-png.slide.full = function(
+png.slide.full <- function(
   filename,
   w = 10, h = 7.5, units="in",
   psize = 10, bg="transparent", res=600, ...)

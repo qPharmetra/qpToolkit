@@ -14,7 +14,7 @@
 #' set.trellis.colors ()
 #' xyplot(value~ time | format(dose), data = df, groups = type)
 
-set.trellis.colors = function(symbol = list(fill = gray[2],col = gray[6]), line = list(col = gray[7]))
+set.trellis.colors <- function(symbol = list(fill = gray[2],col = gray[6]), line = list(col = gray[7]))
 {
   tpg = trellis.par.get()
   ln = tpg$superpose.line

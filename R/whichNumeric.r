@@ -10,7 +10,7 @@
 #' whichNumeric(test)
 #' extract.number(test[whichNumeric(test)])
 
-whichNumeric = function(x){
+whichNumeric <- function(x){
   # Identify which members of a character vector will translate to numeric mode
   numsel = grep("[0-9]", x)
   charsel = grep("[:alpha:]", x)

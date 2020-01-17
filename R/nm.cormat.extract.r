@@ -15,7 +15,7 @@
 #' lapply(run1.cormat, dim)
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cor"))
 #'
-nm.cormat.extract = function(run, path = getOption("nmDir"))
+nm.cormat.extract <- function(run, path = getOption("nmDir"))
 {
   internalDir = paste(path, run, run, sep = "/")
   corText   = scan(file = paste(internalDir,".cor", sep = ""),

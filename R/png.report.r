@@ -20,7 +20,7 @@
 #' plot(x=1:25,y=rnorm(25,50,5))
 #' dev.off()
 
-png.report = function(
+png.report <- function(
   filename,
   w = 6, h = 4, units="in",
   psize = 10, bg="transparent", res=600, ...)

@@ -14,7 +14,7 @@
 #' @importFrom xpose4 read.npc.vpc.results
 
 
-read.vpc = function(path = "./", result = result, tab=tab)
+read.vpc <- function(path = "./", result = result, tab=tab)
 {
    #if(length(grep(":", path))==0) path = paste(getwd(), path, sep="/")
    vpc.results = read.npc.vpc.results(vpc.results =  file.path(path, result))

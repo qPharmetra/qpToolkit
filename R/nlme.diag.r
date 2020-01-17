@@ -61,7 +61,7 @@
 #' summary(fit.nlme.1$object)
 #' nlme.diag(fit.nlme.1$object)
 #' # note here we refer to the $object, given the model was created with nlme.run()
-nlme.diag = function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
+nlme.diag <- function(obj, subset.modeldata, xvar="time", xvar.label=NULL,
   nx=8, output = FALSE, print.eta.norm=TRUE, print.eta.v.var=TRUE,
   asp.eta.norm=1, asp.eta.v.var=1){
 

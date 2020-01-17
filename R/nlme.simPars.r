@@ -20,7 +20,7 @@
 #' nlme.getRanPars(fm1)
 #' nlme.simPars(nlme.getFixPars(fm1), N = 10)
 
-nlme.simPars = function(paramList, N = 1)
+nlme.simPars <- function(paramList, N = 1)
 {
   val = MASS::mvrnorm(n = N, mu = paramList$coef, Sigma = paramList$var)
   return(val)

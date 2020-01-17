@@ -19,7 +19,7 @@
 #' set.seed(1234567)
 #' plot(x=1:25,y=rnorm(25,50,5))
 #' dev.off()
-png.slide.semi = function(
+png.slide.semi <- function(
   filename,
   w = 8, h = 6, units="in",
   psize = 10, bg="transparent", res=600, ...)

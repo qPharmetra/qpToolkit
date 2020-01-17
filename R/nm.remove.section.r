@@ -12,7 +12,7 @@
 #'    , read.mod("example1", path = getOption("qpExampleDir"), file.ext=".ctl")
 #'    )[[2]]
 #'
-nm.remove.section = function(secNames, ctl){
+nm.remove.section <- function(secNames, ctl){
     # remove a section of a control stream
     # secNames = character vector containing the names of the sections to remove
     # ctl = character vector containing the NONMEM control stream

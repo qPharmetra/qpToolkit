@@ -23,7 +23,7 @@
 #'    , panel = panel.cwres,
 #'    family = 'symmetric'
 #'    )
-panel.cwres = function(x,y, ...
+panel.cwres <- function(x,y, ...
                        , col = obs.color
                        , col.line = abline.color
                        , pch = 1

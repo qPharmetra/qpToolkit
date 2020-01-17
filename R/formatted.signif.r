@@ -27,7 +27,7 @@
 #' # now take this to a LaTeX compiler!
 
 
-formatted.signif = function(x, digits=3, latex = FALSE, align.dot = FALSE){
+formatted.signif <- function(x, digits=3, latex = FALSE, align.dot = FALSE){
   res = vector(length=length(x))
   for(i in 1:length(x))
   {

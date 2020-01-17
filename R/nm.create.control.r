@@ -11,7 +11,7 @@
 #' @importFrom Hmisc unPaste
 #' @importFrom gdata trim
 
-makeRandom = function(sw="omega", ctl, ranEf){
+makeRandom <- function(sw="omega", ctl, ranEf){
   # sw   = either "omega" or "sigma" for IIV or residual random effects
   # ctl  = the character vector containing the current version of the NONMEM
   #        control stream
@@ -81,7 +81,7 @@ makeRandom = function(sw="omega", ctl, ranEf){
 #' @export
 #' @importFrom MASS mvrnorm
 
-uncertainParams = function(out){
+uncertainParams <- function(out){
   ## Take output from nm.extract and return sampled fixed and random effects
   ## vectors based on the uncertainty matrix
   len = length(out$fixef)
@@ -116,7 +116,7 @@ uncertainParams = function(out){
 #' @export
 #' @importFrom gdata trim
 
-nm.create.control = function(run,
+nm.create.control <- function(run,
   path = getOption("nmDir"),
   outputFile.extension = ".out",
   modelFile.extension = ".ctl",

@@ -12,7 +12,7 @@
 #' x=rnorm(1000)
 #' conDataFun3(x, 3)
 #'
-conDataFun3 = function(y, digits = 3, latex = FALSE, align.dot = FALSE)
+conDataFun3 <- function(y, digits = 3, latex = FALSE, align.dot = FALSE)
 {
   se = sqrt(stats::var(y))/sqrt(length(y))
   ci = stats::qt(c(0.975, 0.025), length(y)) * se + mean(y)

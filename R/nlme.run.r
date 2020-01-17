@@ -45,7 +45,7 @@
 #' fm2$reference
 #' #1
 
-nlme.run = function(...)
+nlme.run <- function(...)
 {
   nlme.arguments = as.list(match.call())
   if(any(c('problem', 'reference') %nin% names(nlme.arguments))) stop("need problem and reference input")

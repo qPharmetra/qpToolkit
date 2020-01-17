@@ -17,7 +17,7 @@
 #' extract.number("c76c7")
 #' extract.number("BLOQ = 0.144")
 
-extract.number = function(x)
+extract.number <- function(x)
 {
   x = as.character(x)
   w1 = regexpr("[+-]?[0-9.]+", x)

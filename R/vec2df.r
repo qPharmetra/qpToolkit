@@ -15,7 +15,7 @@
 #' vec2df(x=1:10,n=1)
 #' vec2df(x=1:10,n=2)
 
-vec2df = function(x, n = 1)
+vec2df <- function(x, n = 1)
 {
   xDF = data.frame(matrix(rep(x, n), ncol = length(x), byrow = TRUE))
   names(xDF) = names(x)

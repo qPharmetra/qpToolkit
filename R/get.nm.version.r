@@ -11,7 +11,7 @@
 #' @examples
 #' get.nm.version(run = "example1", path = getOption("qpExampleDir"))
 
-get.nm.version = function(run, path = getOption("nmDir"), file.ext = ".lst")
+get.nm.version <- function(run, path = getOption("nmDir"), file.ext = ".lst")
 {
   out = read.out(path=path, run=run, file.ext=file.ext)
   version = if(any(grepl("VERSION", out))) {

@@ -17,11 +17,11 @@
 #' out.1 = get.xpose.tables(path = getOption("qpExampleDir"), run= "example2")
 #' head(out.1)
 
-get.xpose.tables = function(run, path = getOption("nmDir"))
+get.xpose.tables <- function(run, path = getOption("nmDir"))
 {
   myPath = file.path(path,run)
   tabNames = dir(myPath)[grepl("(sd|pa|ca|co)tab+",dir(myPath))]
-  read.nmTabs = function(path.in=myPath,tabNames.in=tabNames) {
+  read.nmTabs <- function(path.in=myPath,tabNames.in=tabNames) {
     if(length(tabNames.in)>0) {
       nmTab = read.table(paste(path.in,tabNames.in[1],sep="/"),skip=1,header=TRUE)
       if(length(tabNames.in)>1) {

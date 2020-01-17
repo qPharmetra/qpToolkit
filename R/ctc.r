@@ -9,7 +9,7 @@
 #' @param x any R object to be copied
 #' @export
 
-ctc = function(x) {
+ctc <- function(x) {
   #copy from R to clipboard
   write.table(x,file="clipboard",sep="\t",row.names=FALSE)
 }

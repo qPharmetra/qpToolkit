@@ -45,7 +45,7 @@ globalVariables(c('minimization.successful',  'covariance.step.successful',
 #' cat(temp.dir)
 #' histogram.bootstrap(myBoot, path = temp.dir, filename.prefix = "Test")
 #' ## now take a look there
-histogram.bootstrap = function(
+histogram.bootstrap <- function(
   bootstrap,
   filename.prefix = "bootstrapPage",
   path,

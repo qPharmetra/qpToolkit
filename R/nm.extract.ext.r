@@ -11,7 +11,7 @@
 #' run2.ext = nm.extract.ext("example2", path = getOption("qpExampleDir"))
 #' run2.ext$version; run2.ext$final_objective_function
 
-nm.extract.ext = function(run, path = getOption("nmDir"))
+nm.extract.ext <- function(run, path = getOption("nmDir"))
 {
   version = get.nm.version(run = run, path = path)
   parTable = nm.params.table(run=run, path = path)

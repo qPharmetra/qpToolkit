@@ -23,7 +23,7 @@
 #' @importFrom snowfall sfCpus
 
 ## wrapper function to simulate across model parameters and initial conditions (e.g. doses)
-odeSim = function(state, times,  func, parms, simPar, simParValues, method = "lsoda",
+odeSim <- function(state, times,  func, parms, simPar, simParValues, method = "lsoda",
   nodes = 1, keepTimeDT = 0.1)
   ## state        (vector)     : initial conditions
   ## times        (vector)     : at what times should the system of differential equations be updated

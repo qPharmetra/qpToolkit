@@ -12,7 +12,7 @@
 #' isNumeric("x")
 #' isNumeric(c(1,2,3,"b",5,6))
 
-isNumeric = function(x){
+isNumeric <- function(x){
   # Identify which members of a character vector will translate to numeric mode
   # return a logical vector with true values corresponding to matches
   numsel = grepl("[0-9]", x)

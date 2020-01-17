@@ -11,7 +11,7 @@
 #' pPK = superPosition(15*exp(-0.15*seq(0,84)), time = seq(0,84), tau = 8)
 #' plot(seq(0,84), pPK, type = 'l')
 
-superPosition = function(val, time, tau)
+superPosition <- function(val, time, tau)
 {
   len = ceiling(max(time)/tau)
   newval = matrix(NA, nrow = length(val), ncol = len)

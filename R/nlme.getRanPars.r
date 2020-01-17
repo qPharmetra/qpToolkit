@@ -21,7 +21,7 @@
 #'   )
 #' nlme.getRanPars(fm1)
 
-nlme.getRanPars = function(object)
+nlme.getRanPars <- function(object)
   {
     aux = object$apVar
     if(!is.numeric(aux)) stop(aux)

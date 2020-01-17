@@ -18,7 +18,7 @@
 #' tmp
 #' insert.blank.line(tmp, 2)
 
-insert.blanks = function(tab, lines){
+insert.blanks <- function(tab, lines){
   # tab is the target table
   # lines are the lines in tab to be followed by a blank line
   # make a blank line
@@ -47,7 +47,7 @@ insert.blanks = function(tab, lines){
 #' tmp
 #' insert.blank.line(tmp, 2)
 
-insert.blank.line = function(tab, lines){
+insert.blank.line <- function(tab, lines){
   # tab is the target table
   # lines are the lines in tab to be followed by a blank line
   # make a blank line

@@ -38,7 +38,7 @@
 #' @importFrom nlme random.effects
 #' @examples
 #' pkpdData = example.pkpdData()
-#' EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+#' EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
 #' {
 #'   # Effect-site concentration for 1-compartment model, 1st-order absorption
 #'
@@ -87,7 +87,7 @@
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1))
 #' plot(fit.PD004.pred.nlme, yLimits = c(-1,1), abline = list(h = 0, lty=2))
 
-nlme.predict = function(
+nlme.predict <- function(
   func,
   object,
   newdata = NULL,
@@ -291,7 +291,7 @@ nlme.predict = function(
   } ## end if method
 
   ## summarization lists
-  create.list = function(data, nams)
+  create.list <- function(data, nams)
   {
     myList = list(data[, nams])
     if(length(nams)>1) myList = as.list(data[, nams])

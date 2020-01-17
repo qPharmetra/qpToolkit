@@ -26,7 +26,7 @@
 #'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3)
 #'   , formula = myFormula
 #' )
-tabSummarize = function(  formula
+tabSummarize <- function(  formula
                         , data
                         , digits = 3
                         , extra.blank.line = TRUE

@@ -27,7 +27,7 @@
 #' @import lattice
 
 
-panel.nlme.vpc.pred = function(x, y, OBS, vpc, subscripts, logY, showPredAs, showObsDots, showObsLines, xCov,
+panel.nlme.vpc.pred <- function(x, y, OBS, vpc, subscripts, logY, showPredAs, showObsDots, showObsLines, xCov,
                                col.scheme, obscex.dot, obspch.dot, ...)
 {
   if(showPredAs == "lines")
@@ -61,7 +61,7 @@ panel.nlme.vpc.pred = function(x, y, OBS, vpc, subscripts, logY, showPredAs, sho
 
 if(F)
 {
-  EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+  EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
   {
     # Effect-site concentration for 1-compartment model, 1st-order absorption
 

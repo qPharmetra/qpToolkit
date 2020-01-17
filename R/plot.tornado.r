@@ -71,7 +71,7 @@
 #'              , show.base=FALSE
 #' )
 
-plot.tornado = function(x, ..., main="", xlim=range(c(torn.ds$val.hi,torn.ds$val.lo)), xlab="Output", bar.width=.75, base.round=0, cex.main=1.5,
+plot.tornado <- function(x, ..., main="", xlim=range(c(torn.ds$val.hi,torn.ds$val.lo)), xlab="Output", bar.width=.75, base.round=0, cex.main=1.5,
 					cex.xaxis=cex.main*0.5, cex.yaxis=cex.main*.65, cex.barlab=cex.main*.55,
 					cex.baslab=cex.main*.5, bar.col="#0A41A5", show.base=TRUE, adj.ylabs=0)
 {

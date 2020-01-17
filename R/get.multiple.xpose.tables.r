@@ -26,7 +26,7 @@
 #'        , panel = panel.cwres
 #'        , scales = list(x = list(relation = "free"))
 #' )
-get.multiple.xpose.tables = function(runs, path = getOption("nmDir"), carryAlong = c("DV","DOSE","TIME","EVID"))
+get.multiple.xpose.tables <- function(runs, path = getOption("nmDir"), carryAlong = c("DV","DOSE","TIME","EVID"))
 {
   do.call("rbind"
           , lapply(runs, function(i, path){

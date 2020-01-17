@@ -17,7 +17,7 @@
 #' @examples
 #' nm.parse.control.stream("example1", path = getOption("qpExampleDir"), file.ext = ".ctl")
 #'
-nm.parse.control.stream = function(run
+nm.parse.control.stream <- function(run
                                    , path = getOption("nmDir")
                                    , file.ext = ".mod"
                                    , quiet= TRUE

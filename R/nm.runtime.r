@@ -8,7 +8,7 @@
 #' @examples
 #' nm.runtime(run = "example1", path = getOption("qpExampleDir"))
 #' @export nm.runtime
-nm.runtime = function(run, path = getOption("nmDir"))
+nm.runtime <- function(run, path = getOption("nmDir"))
 {
    out = read.out(run=run, path = path)
    meth = gsub(" #METH: ","",out[grep("#METH",out)])

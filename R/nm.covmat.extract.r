@@ -22,7 +22,7 @@
 #' file.remove( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 #'
 
-nm.covmat.extract = function(run, path = getOption("nmDir"))
+nm.covmat.extract <- function(run, path = getOption("nmDir"))
 {
   internalDir = paste(path, run,run,sep = "/")
   covText   = scan(file = paste(internalDir,".cov", sep = ""),

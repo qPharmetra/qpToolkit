@@ -15,7 +15,7 @@ globalVariables('EVID')
 #' nmData = example.NONMEM.dataset(TIME=seq(0,24,4))
 #' nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)
 #' tbl_df(nmData2[, c('ID','TIME','EVID','AMT','DV')])
-nm.insert.evid2amt0 = function(data, ..., quiet = TRUE)
+nm.insert.evid2amt0 <- function(data, ..., quiet = TRUE)
 {
   my.dots = paste(
     unlist(

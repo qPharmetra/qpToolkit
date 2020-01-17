@@ -10,4 +10,4 @@
 #' @seealso \code{\link{lunique}}
 #' @examples
 #' sunique(round(100*runif(100)))
-sunique = function(x) unique(x)[order(unique(x))]
+sunique <- function(x) unique(x)[order(unique(x))]

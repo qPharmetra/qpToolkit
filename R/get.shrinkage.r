@@ -10,7 +10,7 @@
 #' @seealso \code{\link{get.nm.version}}, \code{\link{get.ofv}}, \code{\link{read.out}}
 #' @examples
 #' get.shrinkage(run = "example1", path = getOption("qpExampleDir"))
-get.shrinkage = function(run, path = getOption('nmDir'), file.ext = ".lst")
+get.shrinkage <- function(run, path = getOption('nmDir'), file.ext = ".lst")
 
 {
   out = read.out(path=path, run=run, file.ext = file.ext)

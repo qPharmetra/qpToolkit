@@ -23,7 +23,7 @@
 #' unitHistogram(myvals, xlab = "My Values", cex.lab = 1.25)
 
 
-unitHistogram = function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type = "box",
+unitHistogram <- function(x, myCuts = NULL, lwd.bar = 4, offset = 0.4, hist.type = "box",
   col.hist = "#D7D7D7", xlim = NULL, ylab = NULL, ...)
 {
   ## create a histogram

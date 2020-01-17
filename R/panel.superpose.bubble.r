@@ -32,7 +32,7 @@
 #'        }
 #' )
 
-panel.superpose.bubble = function(x, y, n, groups, subscripts, cols=NULL, syms=NULL,...)
+panel.superpose.bubble <- function(x, y, n, groups, subscripts, cols=NULL, syms=NULL,...)
 {
   if(is.null(cols)) {
     ds = data.frame(x=x, y=y, n=n[subscripts], groups=groups[subscripts])

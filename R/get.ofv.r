@@ -17,7 +17,7 @@
 #' get.ofv("example2", path = getOption("qpExampleDir"))
 #' sapply(c("example1","example2"), get.ofv, path = getOption("qpExampleDir"))
 
-get.ofv = function(run, path = getOption("nmDir"), file.ext = ".lst")
+get.ofv <- function(run, path = getOption("nmDir"), file.ext = ".lst")
 {
   out = read.out(path=path, run=run, file.ext = file.ext)
   parName = out[grep("#OBJT", out)]

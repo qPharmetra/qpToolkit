@@ -25,7 +25,7 @@
 #' pkpdPredPlot(doses = rep(100, 7), t.doses = seq(0,24*7,length=7), t.obs = seq(0,24*7),
 #'             pk.func = pk.1comp.iv, e.func = eff.1comp.iv,
 #'             parms = c(1,10, 0.25))
-pkpdPredPlot = function(doses, t.doses, t.obs, pk.func, e.func, parms, output = FALSE)
+pkpdPredPlot <- function(doses, t.doses, t.obs, pk.func, e.func, parms, output = FALSE)
 {
    t.obs = sort(unique(c(t.obs, t.doses)))
    ypr.c = pk.pred(doses, t.doses, t.obs, pk.func, parms)

@@ -16,7 +16,7 @@
 #' @examples
 #' qqGamma(rgamma(100,shape=0.1,scale = 0.2))
 #'
-qqGamma = function(x
+qqGamma <- function(x
                   , ylab=deparse(substitute(x))
                   , xlab="Theoretical Quantiles"
                   , main="Gamma Distribution QQ Plot",...)

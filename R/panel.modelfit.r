@@ -40,7 +40,7 @@ globalVariables(c(
 #'        , yscale.components = yscale.components.log10
 #' )
 
-panel.modelfit = function(
+panel.modelfit <- function(
    x, y, groups, subscripts,
    logX = FALSE, logY = FALSE, type.obs = "b",
    pred.lty = 'solid', ipred.lty = 'solid', ...)

@@ -15,7 +15,7 @@
 #' @examples
 #' transform_log10(c(1,10,100), log = TRUE)
 #' transform_log10(c(2,3,200,1000,33330), log = 2)
-transform_log10 = function(x, ..., log)
+transform_log10 <- function(x, ..., log)
 {
   if({is.logical(log) & log == TRUE} || is.numeric(log)) log10(x) else x
 }

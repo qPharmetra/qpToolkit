@@ -12,7 +12,7 @@
 #' @import lattice
 #' @importFrom grDevices rgb
 
-trellis.strip.color = function(
+trellis.strip.color <- function(
   strip.colors = c(	rgb(200/230,200/230,230/255), #    		lightgrey
                     rgb(243/255,243/255,243/255), #      very	lightgrey
                     rgb(249/255,249/255,249/255)) #     ultra	lightgrey

@@ -51,7 +51,7 @@
 #' head(CSVinput1)
 #' load.data() # loading JUST doing automatic search for files ("scan")
 #' }
-load.data = function(xptFiles, xlsFiles, csvFiles, tabFiles,
+load.data <- function(xptFiles, xlsFiles, csvFiles, tabFiles,
   dir = "../project input/client data/data",
   xlsNames, xptNames, csvNames, tabNames, perl="C:/Perl64/bin/perl.exe",
   xlsSheets, doScan=TRUE, target.env=parent.frame()) {

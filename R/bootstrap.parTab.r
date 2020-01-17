@@ -26,7 +26,7 @@
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1))[c(13,14,15),]
 #' bootstrap.ParTab(myBoot, idx = list(theta=1:13,omega=1:7,sigma=1),
 #' transformations = list(log = 13:14, logit = 15))[c(13,14,15),] # partly fictional
-bootstrap.ParTab = function(
+bootstrap.ParTab <- function(
   bootstrap,
   idx = list(theta=1,omega=1,sigma=1),
   probs = 0.95,
@@ -36,7 +36,7 @@ bootstrap.ParTab = function(
   align.dot = FALSE,
   transformations
 ){
-  myFun = function(x, type)
+  myFun <- function(x, type)
   {
     switch(type,
            log = exp(x),

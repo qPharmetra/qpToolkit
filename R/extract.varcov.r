@@ -40,7 +40,7 @@
 #' file.remove(file.path(getOption("qpExampleDir"),"run11","run11.cov")) ## clean things up
 #' }
 
-extract.varcov = function(text)
+extract.varcov <- function(text)
 {
   nams = substring(text[-1], 2, 13)
   covmat = lapply(lapply(substring(text[-1], 15), Hmisc::unPaste, sep = " "),

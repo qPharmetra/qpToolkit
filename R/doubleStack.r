@@ -26,7 +26,7 @@
 #'    geom_point() +
 #'    stat_smooth(method="lm", col = lin.fit.col) +
 #'    facet_grid(variable1 ~ variable,scales="free_y")
-doubleStack = function(data, vars1, vars2)
+doubleStack <- function(data, vars1, vars2)
 {
   stackedData = reshape2::melt(data,measure.vars=vars1)
   names(stackedData)[names(stackedData) %in% c("value","variable")] = c("variable1","value1")

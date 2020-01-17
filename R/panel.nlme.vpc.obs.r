@@ -25,7 +25,7 @@
 #' @importFrom Hmisc summarize
 #' @importFrom Hmisc smedian.hilow
 
-panel.nlme.vpc.obs = function(x, y, logY, showPredAs, showObsDots, showObsLines,
+panel.nlme.vpc.obs <- function(x, y, logY, showPredAs, showObsDots, showObsLines,
                               col.scheme, obscex.dot, obspch.dot, ...)
 {
   if(showObsDots ) panel.xyplot(x,y, ..., cex = obscex.dot, pch = obspch.dot, col = col.scheme$obs$dot, type = 'p')
@@ -40,7 +40,7 @@ panel.nlme.vpc.obs = function(x, y, logY, showPredAs, showObsDots, showObsLines,
 
 if(F)
 {
-  EFF.1comp.1abs = function(dose, tob, cl, v, ka, keo)
+  EFF.1comp.1abs <- function(dose, tob, cl, v, ka, keo)
   {
     # Effect-site concentration for 1-compartment model, 1st-order absorption
 

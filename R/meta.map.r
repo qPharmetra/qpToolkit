@@ -26,7 +26,7 @@
 #' names(test.ds)
 #' meta.map(test.ds, compNm="drg", trialNm="ref.id", refNm="Ref", dist=1.4)
 
-meta.map = function(meta.ds, compNm, trialNm, refNm,
+meta.map <- function(meta.ds, compNm, trialNm, refNm,
                     ref.col=blue[2], comp.col=green[3],dist=1.35){
   # Draw a mapping of the relationships in a meta-analysis database, with the
   # size of the nodes being proportional to the fraction that the comparators

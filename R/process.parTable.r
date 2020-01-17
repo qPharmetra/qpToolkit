@@ -36,7 +36,7 @@
 #'  , missing.format = "...."
 #' )
 
-process.parTable = function(
+process.parTable <- function(
   nm
   , index = 1
   , ci = 0.95
@@ -91,7 +91,7 @@ process.parTable = function(
       parTab$SE = parTab$CI95 = parTab$CV.perc = rep("-", nrow(parTab))
     }
 
-    myFun = function(x, type)
+    myFun <- function(x, type)
     {
       switch(type,
              log = exp(x),
@@ -99,7 +99,7 @@ process.parTable = function(
              logit = logit.inv(x))
     }
 
-    cvFun = function(x,type)
+    cvFun <- function(x,type)
     {
       switch(type,
              log = as.character(round(100*(exp(x)-1))),

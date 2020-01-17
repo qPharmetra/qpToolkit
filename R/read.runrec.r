@@ -20,7 +20,7 @@
 #' rr
 #' process.runrec(rr)
 
-read.runrec = function(filename, path = getOption("nmDir"))
+read.runrec <- function(filename, path = getOption("nmDir"))
 {
    if(missing(filename)) stop("filename must be included.")
   runrec = read.table(file=file.path(path,filename), sep=";", skip=5, header=FALSE)

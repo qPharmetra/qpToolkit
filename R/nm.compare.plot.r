@@ -20,7 +20,7 @@
 #' , text.size = 0.6
 #' )
 
-nm.compare.plot = function(runs
+nm.compare.plot <- function(runs
                            , path = getOption("nmDir")
                            , keep.cols = c('ID','DV','CWRES','PRED','IPRED','TIME','EVID')
                            , alias = list(DV = "CONC", TIME = "TAFD") ## in case of $INPUT CONC=DV TAFD=TIME etc...

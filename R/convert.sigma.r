@@ -13,7 +13,7 @@
 #' @seealso \code{\link{convert.omega}}
 #' @importFrom Hmisc unPaste
 
-convert.sigma = function(x){
+convert.sigma <- function(x){
   ## cov and cor matrix have upper triangle
   ## sigma and sigmase have lower triangle
   ## this function converts sigma and sigmase in upper triangle to match with matrices

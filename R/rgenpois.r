@@ -29,7 +29,7 @@
 #' text(3, 0.03, round(mean(rpois(10000, 11)), 1), col = qp.green)
 
 
-rgenpois = function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
+rgenpois <- function(lambda=lambda, disp = disp, n = 1, scan.size = 100)
 {
   if(n<1){message("n must be a non-zero positive integer") ;return()}
   if(n>1 & {length(lambda)>1 | length(disp)>1}) {message("if multiple lambda and/or disp values are specified n can be only 1");return()}

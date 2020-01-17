@@ -16,7 +16,7 @@
 #' asNumeric(c("3.45","1000","1e6","<BLOQ","NA","<0.100"))
 #' asNumeric(c("3.45","1000","1e6","<BLOQ","NA","<0.100"), missing.code = c("<BLOQ","NA","<0.100"))
 
-asNumeric = function(x, missing.code = c("NA"))
+asNumeric <- function(x, missing.code = c("NA"))
 {
   # as.numeric function returning NA for isNumeric==F and numeric for isNumeric==T
   x[x %in% missing.code] = NA

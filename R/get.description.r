@@ -10,7 +10,7 @@
 #' @examples
 #' get.description(run = "example1", path = getOption("qpExampleDir"))
 
-get.description = function(run, path = getOption("nmDir"), file.ext = ".lst")
+get.description <- function(run, path = getOption("nmDir"), file.ext = ".lst")
 {
   out = read.out(path=path, run=run, file.ext = file.ext)
   desc = substring(out[grep("Description:", out)+1],7)

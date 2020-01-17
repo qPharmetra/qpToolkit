@@ -39,7 +39,7 @@
 #'       #  , only.contents = TRUE
 #' )
 
-nm.process.scm = function(path,digits = 3)
+nm.process.scm <- function(path,digits = 3)
    #path = paste(getOption("qpExampleDir"), "scm files","Klas", sep="/")
 {
   scmpath = paste(path, "scmlog.txt", sep="/")
@@ -63,7 +63,7 @@ nm.process.scm = function(path,digits = 3)
   )
 
   # unravel the elements of each row and make them have fixed length
-  unravel.scm = function(x)
+  unravel.scm <- function(x)
   {
      c(substring(x,1,17),substring(x,18,21),substring(x,22,34),substring(x,35,47)
        ,substring(x,48,67),substring(x,68,70),substring(x,71,80),substring(x,81,85)

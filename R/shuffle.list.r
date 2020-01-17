@@ -15,7 +15,7 @@
 #' test = list(A=list(a=1,b=2,c=3), B = list(a=2,b=1,c=0))
 #' shuffle.list(test)
 
-shuffle.list = function(x)
+shuffle.list <- function(x)
 {
   ## perhaps add a check to match elements in the list
   if(!is.list(x)) {message("-- x is not a list. No shuffle performed.");return()}

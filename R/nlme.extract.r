@@ -36,7 +36,7 @@
 #' start = c(Asym = 103, R0 = -8.5, lrc = -3.3))
 #' fm1.out = nlme.extract(fm1)
 #' fm1.out
-nlme.extract = function(obj,
+nlme.extract <- function(obj,
   method = "components",
   newdata = NULL,
   sample = FALSE,

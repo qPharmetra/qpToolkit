@@ -11,7 +11,7 @@
 #' my.vect = c(1,2,2,2,4,4,4,3,3,3,3)
 #' swap(my.vect,c(1,2,3,4),c(11,22,33,44))
 
-swap = function(x, uniques, newUniques)
+swap <- function(x, uniques, newUniques)
 {
   if(length(uniques) != length(newUniques))
     stop("length(uniques) != length(newUniques)")

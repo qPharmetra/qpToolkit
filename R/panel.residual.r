@@ -32,7 +32,7 @@
 #'        )
 #'
 #'
-panel.residual = function(x, y
+panel.residual <- function(x, y
                           , abline="identity"
                           , col = obs.color
                           , cex = 1

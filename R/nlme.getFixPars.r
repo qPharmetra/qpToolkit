@@ -22,7 +22,7 @@
 #'   )
 #' nlme.getFixPars(fm1)
 
-nlme.getFixPars = function(obj)
+nlme.getFixPars <- function(obj)
 {
   val = list(coef = fixef(obj), var = obj$varFix)
   return(val)

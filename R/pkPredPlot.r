@@ -42,7 +42,7 @@
 #'    , parms = c(1,10, 0.25, 0.05)
 #' )
 
-pkPredPlot = function(doses, t.doses, t.obs, pk.func, parms, log = FALSE, output=FALSE)
+pkPredPlot <- function(doses, t.doses, t.obs, pk.func, parms, log = FALSE, output=FALSE)
 {
   t.obs = sort(unique(c(t.obs, t.doses)))
   ypr = pk.pred(doses, t.doses, t.obs, pk.func, parms)
