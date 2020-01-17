@@ -36,11 +36,6 @@ get.xpose.tables = function(run, path = getOption("nmDir"))
       return(nmTab)
     }
   }
- return(read.nmTabs())
-}
-
-if(F)
-{
-  out116 = get.xpose.tables(path = file.path(nmDir, "run116"))
-  head(out116)
+ out <- read.nmTabs()
+ out
 }

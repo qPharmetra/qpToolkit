@@ -32,7 +32,7 @@
 #'        , panel = panel.meanspag
 #' )
 #'
-#' out = get.xpose.tables(file.path(getOption("qpExampleDir"),"example2"))
+#' out = get.xpose.tables(path = file.path(getOption("qpExampleDir")), run =  "example2")
 #' trellis.strip.color()
 #' xyplot(CONC ~ TIME
 #'        , data = out
@@ -46,7 +46,7 @@
 #'
 #'# in case there are too many times to average by then the following might be #'#better interpretable
 #'ptimes = seq(min(out$TIME),max(out$TIME), length = 14)
-#'xyplot(CONC ~ Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))
+#'xyplot(CONC ~ Hmisc::Cbind(TIME, metrumrg::snap(TIME, rule = ptimes))
 #'       , data = out
 #'       , groups = ID
 #'       , subset = EVID==0

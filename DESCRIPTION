@@ -39,5 +39,4 @@ Suggests:
   xtable
 RoxygenNote: 7.0.2
 Encoding: UTF-8
-Remotes: github::metrumresearchgroup/metrumrg
 LazyData: true
