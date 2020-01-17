@@ -9,9 +9,9 @@
 #' @seealso \code{\link{nm.params.table}}, \code{\link{get.theta}}, \code{\link{get.sigma}}
 #' @examples
 #' get.omega("example2",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
-get.omega=function(run, path=getOption("nmDir"), ...)
+get.omega <- function(run, path = getOption("nmDir"), ...)
 {
-   partab=nm.params.table(run=run, path=path, ...)
+   partab <- nm.params.table(run = run, path = path, ...)
    subset(partab,grepl("OMEGA",Parameter))
 }
 

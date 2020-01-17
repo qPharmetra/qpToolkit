@@ -12,7 +12,7 @@ globalVariables(c('cov.val', 'pi.lower', 'pi.upper', 'posthoc', 'typical', 'grou
 #' @family coveffects
 #' @export make.eqs
 #' @examples
-#' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+#' eqs <- make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
 #'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
 #' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
@@ -44,7 +44,7 @@ make.eqs <- function(...) {
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
 
-eval.eqs=function(.data,  ...)
+eval.eqs <- function(.data,  ...)
 {
   #.data is data.frame, list, or environment
   # env.aux is alternative environment (only) where we can find variables not in .data
@@ -76,10 +76,10 @@ eval.eqs=function(.data,  ...)
 #' @note This function is used with \code{nm.process.coveffects}
 #' @export covInfo
 #' @examples
-#' eqs=make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
+#' eqs <- make.eqs(CL=THETA1*(1 + (GNDR==0)*THETA7)*(AGE/33.72)^THETA6*exp(ETA1)
 #'             ,V1=THETA2*(1 + (GNDR==0)*THETA9)*(AGE/33.72)^THETA8*exp(ETA2)
 #'             )
-#' eqs$label=list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
+#' eqs$label <- list(CL="Clearance (L/h)", V1="Volume of Central Compartment (L)")
 #'
 # Evaluate a list of calls, given a data.frame, list, or environment
 # modified from plyr::mutate
@@ -115,7 +115,7 @@ covInfo = function(cov.name
 #' @method print covInfo
 #'
 #print.covInfo
-print.covInfo = function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
+print.covInfo <- function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")", x$label)
 
 
 #' Make a list of covInfo objects from a data frame
@@ -134,7 +134,7 @@ print.covInfo = function(x, ...) cat(x$name, ": (", x$min, x$center, x$max, ")",
 #' @importFrom stats var sd quantile
 #'
 # make a list of covInfo objects from a dataframe.  User can override elements as desired
-makeCovInfo = function(df, cnames=names(df), cat.covs="")
+makeCovInfo <- function(df, cnames=names(df), cat.covs="")
 {
   #df is a data.frame of all the covariates (and maybe other things)
   #cnames, provide list of columns to use otherwise will assume EVERY column is a covariate
@@ -149,7 +149,7 @@ makeCovInfo = function(df, cnames=names(df), cat.covs="")
 # bootsamp: sample an equation with random normals pulled from varcov, other variables from supplied env
 #   returns mean, median, var of sample
 
-bootsamp = function(equ, .data, varcov, N=10000)
+bootsamp <- function(equ, .data, varcov, N=10000)
 {
   # .data should be a data.frame by this point
   # take names from varcov out of .data
@@ -179,7 +179,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
 
 # internal function to build a coveffect grid
 
-.coveffect = function(equ, cov.info, ptab, varcov, Nboot=10000, pi.wid=0.9)
+.coveffect <- function(equ, cov.info, ptab, varcov, Nboot=10000, pi.wid=0.9)
 { #ptab has parameters (THETA, OMEGA, SIGMA) and is either a 1 row data frame or a flat list
   #cov.inf has covariate center, min, max, breaks
   #equ is the equation to evaluate
@@ -231,7 +231,7 @@ bootsamp = function(equ, .data, varcov, N=10000)
 #' table of post-hoc values -- for each covariate effect; the call list; the list of covInfo
 #' @export nm.process.coveffects
 #'
-nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=10000, pi.wid=0.9)
+nm.process.coveffects <- function(eqs, covs.info, pars, xpose.df, omega, Nboot=10000, pi.wid=0.9)
 {
   #eqs is a list of calls for the structural parameter equations (using THETA, ETA, COV)
   #cov is a list of covEffect objects (S3)
@@ -335,11 +335,11 @@ nm.process.coveffects= function(eqs, covs.info, pars, xpose.df, omega, Nboot=100
 #' @method plot covEffects
 #'
 
-plot.covEffects = function(x, y=names(x$plot), ...)
+plot.covEffects <- function(x, y=names(x$plot), ...)
 {
   for(i in y) print(x$plot[[i]])
 }
-coveff.plot=function(xpose.df, ppred.df, box, grouping)
+coveff.plot <- function(xpose.df, ppred.df, box, grouping)
 {
   #box is T or F and is set T if x axis is categorical covariate
   cov=as.character(ppred.df$Cov[1])

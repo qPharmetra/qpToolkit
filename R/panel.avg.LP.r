@@ -16,7 +16,7 @@
 #' @export
 #' @import lattice
 
-panel.avg.LP = function (x, y, fun = mean
+panel.avg.LP <- function (x, y, fun = mean
                          , horizontal = TRUE, lwd = reference.line$lwd,
                          lty = reference.line$lty, col, col.line =
                          reference.line$col, type = "l", ...,
@@ -48,31 +48,4 @@ panel.avg.LP = function (x, y, fun = mean
     panel.lines(vals[xx], yy, col = col.line, lty = lty,
                 lwd = lwd, ..., identifier = identifier)
   }
-}
-
-
-# Examples
-if (F) {
-  set.seed(123456)
-  pData = data.frame( id=rep(1:50,each=5),
-                      x=rep(1:50,5),
-                      y=rnorm(50*5,30,3))
-
-
-  xyplot(y ~ x, data=pData,
-         panel=function(x,y,...) {
-           panel.avg.LP(x,y, fun=mean, col=red[8], lwd=3, horizontal=FALSE, type="b", show.points=TRUE, pch=16)
-         }
-  )
-
-  # note the panel function "meanspag" itself uses panel.avg.LP()
-  xyplot(y ~ x, data=pData
-                , groups = id
-                , type="l"
-                , panel=function(x,y,...){
-                   panel.meanspag(x,y,..., add.legend=FALSE, show.points=TRUE )
-                }
-                , ylab = list("X stuff", cex=1)
-                , xlab = list("Y stuff", cex=1)
-  )
 }

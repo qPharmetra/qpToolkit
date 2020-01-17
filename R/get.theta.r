@@ -10,12 +10,12 @@ globalVariables('Parameter')
 #' @seealso \code{\link{nm.params.table}}, \code{\link{get.omega}}, \code{\link{get.sigma}}
 #' @examples
 #' get.theta("example1",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
-get.theta=function(run
+get.theta <- function(run
                    , path=getOption("nmDir")
                    , ...
 )
 {
-   partab=nm.params.table(run=run, path=path, ...)
+   partab <- nm.params.table(run=run, path=path, ...)
    subset(partab,grepl("THETA",Parameter))
 }
 
