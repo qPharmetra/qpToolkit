@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -171,8 +171,10 @@
     <div class='dont-index'><p><code>extract.varcov</code>, <code>get.covmat</code>, <code>nm.cormat.extract</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nm.unzip</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".cov"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>))
-<span class='no'>run1.covmat</span> <span class='kw'>=</span>  <span class='fu'>nm.covmat.extract</span>(<span class='st'>"example1"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>))
+    <pre class="examples"><div class='input'><span class='fu'>nm.unzip</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".cov"</span>,
+<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>))
+<span class='no'>run1.covmat</span> <span class='kw'>=</span>  <span class='fu'>nm.covmat.extract</span>(<span class='st'>"example1"</span>,
+<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>run1.covmat</span>)</div><div class='output co'>#&gt; [1] "Iterative Two Stage (No Prior)"                                  "Stochastic Approximation Expectation-Maximization (No Prior)"   
 #&gt; [3] "Objective Function Evaluation by Importance Sampling (No Prior)" "MCMC Bayesian Analysis"                                         
 #&gt; [5] "First Order Conditional Estimation with Interaction (No Prior)" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>run1.covmat</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt;  [1] "THETA1      " "THETA2      " "THETA3      " "THETA4      " "SIGMA(1,1)  " "OMEGA(1,1)  " "OMEGA(2,1)  " "OMEGA(2,2)  " "OMEGA(3,1)  "

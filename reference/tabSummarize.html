@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -214,7 +214,27 @@
 #&gt; 16                                                                                                              
 #&gt; 17         Gender                                                                                               
 #&gt; 18              F         15 (46.9%)         11 (34.4%)         12 (37.5%)         15 (46.9%)         53 (41.4%)
-#&gt; 19              M         17 (53.1%)         21 (65.6%)         20 (62.5%)         17 (53.1%)         75 (58.6%)</div><div class='input'><span class='co'># check the categorical summary for race</span>
+#&gt; 19              M         17 (53.1%)         21 (65.6%)         20 (62.5%)         17 (53.1%)         75 (58.6%)</div><div class='input'><span class='no'>pkpdData</span>$<span class='no'>sex</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span>(<span class='no'>pkpdData</span>$<span class='no'>sex</span>, <span class='kw'>levels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'M'</span>,<span class='st'>'F'</span>))
+<span class='fu'>tabSummarize</span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>dose</span> ~ <span class='no'>race</span> + <span class='no'>wt</span> + <span class='no'>bmi</span> + <span class='no'>sex</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>pkpdData</span>[<span class='no'>ok</span>, ], <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt;         parameter                  0                100                250                500                All
+#&gt; 1                           (N = 32)           (N = 32)           (N = 32)           (N = 32)          (N = 128)
+#&gt; 2                                                                                                               
+#&gt; 3            Race                                                                                               
+#&gt; 4           Asian          6 (18.8%)          6 (18.8%)           3 (9.4%)           3 (9.4%)         18 (14.1%)
+#&gt; 5           Black          5 (15.6%)          6 (18.8%)          5 (15.6%)           2 (6.2%)         18 (14.1%)
+#&gt; 6       Caucasian         18 (56.2%)         18 (56.2%)         24 (75.0%)         23 (71.9%)         83 (64.8%)
+#&gt; 7           Other           3 (9.4%)           2 (6.2%)           0 (0.0%)          4 (12.5%)           9 (7.0%)
+#&gt; 8                                                                                                               
+#&gt; 9     Weight (kg)                                                                                               
+#&gt; 10      Mean (SD)         75.3 (9.0)          76.2 (13)          78.0 (10)          75.7 (10)          76.3 (10)
+#&gt; 11 Median (range) 76.0 (56.0 - 92.0)  74.5 (46.0 - 105) 79.5 (54.0 - 98.0)  78.0 (43.0 - 104)  77.0 (43.0 - 105)
+#&gt; 12                                                                                                              
+#&gt; 13    BMI (kg/m2)                                                                                               
+#&gt; 14      Mean (SD)         22.9 (4.1)         23.6 (5.8)         24.6 (4.8)         24.2 (4.3)         23.8 (4.8)
+#&gt; 15 Median (range) 23.0 (16.7 - 35.5) 23.0 (12.0 - 36.4) 24.6 (16.0 - 38.8) 24.2 (12.0 - 32.8) 23.6 (12.0 - 38.8)
+#&gt; 16                                                                                                              
+#&gt; 17         Gender                                                                                               
+#&gt; 18              M         17 (53.1%)         21 (65.6%)         20 (62.5%)         17 (53.1%)         75 (58.6%)
+#&gt; 19              F         15 (46.9%)         11 (34.4%)         12 (37.5%)         15 (46.9%)         53 (41.4%)</div><div class='input'><span class='co'># check the categorical summary for race</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>pkpdData</span>$<span class='no'>race</span>[<span class='no'>ok</span>], <span class='no'>pkpdData</span>$<span class='no'>dose</span>[<span class='no'>ok</span>]) / <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>pkpdData</span>$<span class='no'>race</span>[<span class='no'>ok</span>],
 <span class='no'>pkpdData</span>$<span class='no'>dose</span>[<span class='no'>ok</span>]), <span class='fl'>2</span>, <span class='no'>sum</span>) * <span class='fl'>100</span>)</div><div class='output co'>#&gt;            
 #&gt;              0 100 250 500
@@ -244,8 +264,8 @@
 #&gt; [15,] "\\hfill Median (range)" "23.0 (16.7 - 35.5)" "23.0 (12.0 - 36.4)" "24.6 (16.0 - 38.8)" "24.2 (12.0 - 32.8)" "23.6 (12.0 - 38.8)"
 #&gt; [16,] "\\hfill "               ""                   ""                   ""                   ""                   ""                  
 #&gt; [17,] "\\textbf{Gender}"       ""                   ""                   ""                   ""                   ""                  
-#&gt; [18,] "\\hfill F"              "15 (46.9\\%)"       "11 (34.4\\%)"       "12 (37.5\\%)"       "15 (46.9\\%)"       "53 (41.4\\%)"      
-#&gt; [19,] "\\hfill M"              "17 (53.1\\%)"       "21 (65.6\\%)"       "20 (62.5\\%)"       "17 (53.1\\%)"       "75 (58.6\\%)"      </div></pre>
+#&gt; [18,] "\\hfill M"              "17 (53.1\\%)"       "21 (65.6\\%)"       "20 (62.5\\%)"       "17 (53.1\\%)"       "75 (58.6\\%)"      
+#&gt; [19,] "\\hfill F"              "15 (46.9\\%)"       "11 (34.4\\%)"       "12 (37.5\\%)"       "15 (46.9\\%)"       "53 (41.4\\%)"      </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

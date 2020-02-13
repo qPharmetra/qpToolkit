@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
       <h1>qpToolkit Examples for nm_xxx Functions</h1>
                         <h4 class="author">Klaas Prins</h4>
             
-            <h4 class="date">2020-01-17</h4>
+            <h4 class="date">2020-02-13</h4>
       
       
       <div class="hidden name"><code>ExamplesnmxxxFunctionsqpToolkit.Rmd</code></div>
@@ -554,8 +554,8 @@
 ## 
 ## nm.nzp&gt; nm.unzip(run = "example1", extension = ".cov",
 ## nm.nzp+ path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
-## path: /tmp/Rtmp59s2Ad/temp_libpath378afcc4f59/qpToolkit/NONMEM/example1 
-## call: 7z e /tmp/Rtmp59s2Ad/temp_libpath378afcc4f59/qpToolkit/NONMEM/example1/example1.cov.7z 
+## path: /tmp/RtmpZDbBgj/temp_libpath43512173b5c8/qpToolkit/NONMEM/example1 
+## call: 7z e /tmp/RtmpZDbBgj/temp_libpath43512173b5c8/qpToolkit/NONMEM/example1/example1.cov.7z 
 ## 
 ## nm.nzp&gt; file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 ## [1] TRUE
@@ -577,9 +577,11 @@
 <a href="#nm-cormatcovmat-extract" class="anchor"></a>nm.cormat/covmat.extract</h2>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.covmat.extract"</span>)</a></code></pre></div>
 <pre><code>## 
-## nm.cv.&gt; nm.unzip(run = "example1", extension = ".cov", path = file.path(getOption("qpExampleDir"),"example1"))
+## nm.cv.&gt; nm.unzip(run = "example1", extension = ".cov", 
+## nm.cv.+ path = file.path(getOption("qpExampleDir"),"example1"))
 ## 
-## nm.cv.&gt; run1.covmat =  nm.covmat.extract("example1", path = getOption("qpExampleDir"))
+## nm.cv.&gt; run1.covmat =  nm.covmat.extract("example1", 
+## nm.cv.+ path = getOption("qpExampleDir"))
 ## 
 ## nm.cv.&gt; names(run1.covmat)
 ## [1] "Iterative Two Stage (No Prior)"                                 
@@ -614,9 +616,11 @@
 ## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.cormat.extract"</span>)</a></code></pre></div>
 <pre><code>## 
-## nm.cr.&gt; nm.unzip(run = "example1", extension = ".cor", path = file.path(getOption("qpExampleDir"),"example1"))
+## nm.cr.&gt; nm.unzip(run = "example1", extension = ".cor", 
+## nm.cr.+ path = file.path(getOption("qpExampleDir"),"example1"))
 ## 
-## nm.cr.&gt; run1.cormat =  nm.cormat.extract("example1", path = getOption("qpExampleDir"))
+## nm.cr.&gt; run1.cormat =  nm.cormat.extract("example1", 
+## nm.cr.+ path = getOption("qpExampleDir"))
 ## 
 ## nm.cr.&gt; names(run1.cormat)
 ## [1] "Iterative Two Stage (No Prior)"                                 
@@ -668,7 +672,7 @@
 ## nm.pr.&gt; # Fail if scm file not found
 ## nm.pr.&gt; foo &lt;- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
 ## Error in nm.process.scm(file.path(getOption("qpExampleDir"), "scm_example0")) : 
-##   cannot find /tmp/Rtmp59s2Ad/temp_libpath378afcc4f59/qpToolkit/NONMEM/scm_example0/scmlog.txt
+##   cannot find /tmp/RtmpZDbBgj/temp_libpath43512173b5c8/qpToolkit/NONMEM/scm_example0/scmlog.txt
 ## 
 ## nm.pr.&gt; scm$summary
 ##      MODEL TEST     BASE.OFV      NEW.OFV       TEST OFV.DROP    GOAL dDF
@@ -696,7 +700,7 @@
 ## nm.pr.+       #  , only.contents = TRUE
 ## nm.pr.+ )
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Fri Jan 17 23:29:36 2020
+## % Thu Feb 13 14:00:19 2020
 ## \begingroup\small
 ## \begin{longtable}{llllllll}
 ## \caption{Full Stepwise Covariate Building output} \\ 
@@ -805,9 +809,12 @@
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.extract.xml"</span>)</a></code></pre></div>
 <pre><code>## 
 ## nm.xt.&gt; tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))</code></pre>
-<pre><code>## Joining, by = "Parameter"Joining, by = "Parameter"Joining, by =
-## "Parameter"Joining, by = "Parameter"Joining, by = "Parameter"Joining, by =
-## "Parameter"</code></pre>
+<pre><code>## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"</code></pre>
 <pre><code>## extraction of example2.xml complete.
 ## 
 ## nm.xt.&gt; names(tmp)
@@ -1098,9 +1105,12 @@
 ## 
 ## 
 ## nm.xt.&gt; tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))</code></pre>
-<pre><code>## Joining, by = "Parameter"Joining, by = "Parameter"Joining, by =
-## "Parameter"Joining, by = "Parameter"Joining, by = "Parameter"Joining, by =
-## "Parameter"</code></pre>
+<pre><code>## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"
+## Joining, by = "Parameter"</code></pre>
 <pre><code>## extraction of example2.xml complete.</code></pre>
 </div>
 <div id="nm-extract-ext" class="section level2">
