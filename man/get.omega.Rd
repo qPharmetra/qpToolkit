@@ -4,12 +4,14 @@
 \alias{get.omega}
 \title{Summary: OMEGA estimates}
 \usage{
-get.omega(run, path = getOption("nmDir"), ...)
+get.omega(run, path = getOption("nmDir"), runIndex, ...)
 }
 \arguments{
 \item{run}{run rootname (e.g. 'run1')}
 
 \item{path}{directory where rootname.ext resides}
+
+\item{runIndex}{passed to \code{\link{nm.params.table}}}
 
 \item{...}{additional arguments passed to \code{nm.params.table}.}
 }

@@ -4,6 +4,7 @@ globalVariables('Parameter')
 #' @description  Subset parameter estimate table by THETAs
 #' @param run run rootname (e.g. run1)
 #' @param path directory where rootname.ext resides
+#' @param runIndex passed to \code{\link{nm.params.table}}
 #' @param ... additional arguments passed to \code{nm.params.table}.
 #' @return data frame with THETA estimates, coefficient of variation, standard error, and estimated/fixed information.
 #' @export
@@ -12,10 +13,11 @@ globalVariables('Parameter')
 #' get.theta("example1",  path = getOption("qpExampleDir"), fixed.text = "(fixed to 0)")
 get.theta <- function(run
                    , path = getOption("nmDir")
+                   , runIndex
                    , ...
 )
 {
-   partab <- nm.params.table(run = run, path = path, ...)
+   partab <- nm.params.table(run = run, path = path, runIndex = runIndex, ...)
    subset(partab,grepl("THETA",Parameter))
 }
 
