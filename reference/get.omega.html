@@ -148,7 +148,7 @@
     <p>Subset parameter estimate table by OMEGAs</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get.omega</span>(<span class='no'>run</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get.omega</span>(<span class='no'>run</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='no'>runIndex</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,6 +160,10 @@
     <tr>
       <th>path</th>
       <td><p>directory where rootname.ext resides</p></td>
+    </tr>
+    <tr>
+      <th>runIndex</th>
+      <td><p>passed to <code>nm.params.table</code></p></td>
     </tr>
     <tr>
       <th>...</th>

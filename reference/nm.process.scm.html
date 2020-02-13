@@ -175,7 +175,7 @@
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>scm</span>)</div><div class='output co'>#&gt; [1] "full.scm"  "summary"   "model"     "steps"     "scm.latex"</div><div class='input'>
 <span class='co'># Fail if scm file not found</span>
 <span class='no'>foo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>nm.process.scm</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"scm_example0"</span>)))</div><div class='output co'>#&gt; Error in nm.process.scm(file.path(getOption("qpExampleDir"), "scm_example0")) : 
-#&gt;   cannot find /tmp/RtmpZDbBgj/temp_libpath43512173b5c8/qpToolkit/NONMEM/scm_example0/scmlog.txt</div><div class='input'>
+#&gt;   cannot find /tmp/RtmpPzKwQp/temp_libpath39fd65923cc4/qpToolkit/NONMEM/scm_example0/scmlog.txt</div><div class='input'>
 <span class='no'>scm</span>$<span class='no'>summary</span></div><div class='output co'>#&gt;      MODEL TEST     BASE.OFV      NEW.OFV       TEST OFV.DROP    GOAL dDF SIGNIFICANT      PVAL
 #&gt; 1 CLGNDR-2 PVAL  -5494.54612  -9557.26778 4062.72165        &gt; 6.63490   1        YES! 0.00e+000
 #&gt; 2  CLAGE-5 PVAL  -9557.26778  -9746.45167  189.18389        &gt; 6.63490   1        YES! 4.79e-043
@@ -194,7 +194,7 @@
       , <span class='kw'>floating</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
       <span class='co'>#  , only.contents = TRUE</span>
 )</div><div class='output co'>#&gt; % latex table generated in R 3.6.2 by xtable 1.8-4 package
-#&gt; % Thu Feb 13 13:59:39 2020
+#&gt; % Thu Feb 13 15:12:43 2020
 #&gt; \begingroup\small
 #&gt; \begin{longtable}{llllllll}
 #&gt; \caption{Full Stepwise Covariate Building output} \\ 
