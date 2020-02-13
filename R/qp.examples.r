@@ -134,6 +134,15 @@ example.pkpdData <- function(){
    pkpdData$v = 10 * exp(rnorm.by.id(pkpdData$id, 0, 0.25)) + (pkpdData$sex == "F") * 5
    pkpdData$keo = 0.05 * exp(rnorm.by.id(pkpdData$id, 0, 0.5))
 
+   pk.1comp.1abs <- function(dose, tob, parms){
+      # 1-compartment model with 1st-order absorption
+      cl 		= parms[1]
+      v		= parms[2]
+      ka		= parms[3]
+      
+      kel = cl / v
+      return((tob>0) * dose * ka/v/(ka-kel) * (exp(-kel*tob) - exp(-ka*tob)))
+   }
    ok = pkpdData$type == "PK"
    pkpdData$value[ok] = unlist(
       lapply(split(pkpdData[ok, ], pkpdData$id[ok]), function(x)
@@ -149,6 +158,23 @@ example.pkpdData <- function(){
       rnorm(sum(pkpdData$type == "PK"), 0, 0.02)
    pkpdData$value[pkpdData$type == "PK" & pkpdData$value<0.05] = 0.05
 
+   eff.1comp.1abs <- function(dose, tob, parms){
+      # Effect-site concentration for 1-compartment model, 1st-order absorption
+      cl  = parms[1]  # clearance
+      v   = parms[2]  # volume
+      ka  = parms[3]  # absorption rate constant
+      keo = parms[4]  # effect-site transfer constant
+      
+      kel = cl / v
+      
+      # Define coefficients
+      A = 1/(kel-ka) / (keo-ka)
+      B = 1/(ka-kel) / (keo-kel)
+      C = 1/(ka-keo) / (kel-keo)
+      
+      # Return effect-site concentration
+      dose*ka*keo/v * (A*exp(-ka*tob) + B*exp(-kel*tob) + C*exp(-keo*tob))
+   }
    ok = pkpdData$type == "PD"
    pkpdData$value[ok] = unlist(
       lapply(split(pkpdData[ok, ], pkpdData$id[ok]), function(x)
