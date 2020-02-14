@@ -17,6 +17,9 @@ library(qpToolkit)
 library(plyr)
 library(knitr)
 library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(encode)
 
 # path to examples NONMEM folder
 # nm.path = file.path(getOption("qpExampleDir"))
@@ -48,8 +51,8 @@ The dataset used in this study is the example1.csv from the NONMEM examples. The
 ### Exploratory Data Analysis
 
 ```{r}
-data.df = read.csv(file.path(nm.path,"example2.csv"),skip=1)
-data.df = rename(data.df,c("E"="EVID","M"="MDV","CONC"="DV"))
+data.df <- read.csv(file.path(nm.path,"example2.csv"),skip=1)
+data.df %<>% dplyr::rename(EVID = E,MDV = M, DV = CONC)
 ```
 
 #### Spaghetti Plot
@@ -150,26 +153,30 @@ cov$etaCatVarPlot()
 
 ### SCM Model Building
 
-Print the steps in the process.  nm.process.scm also gives a Latex output that be used in reports.  Here we grab the results and format them for markdown.
+Print the steps in the process.  Here we grab the results and format them for markdown.
 
 ```{r, results='asis', warning=FALSE}
-
-scm.trail=nm.process.scm(file.path(nm.path, "scm_example2"))
+path <- file.path(nm.path, "scm_example2")
 
 cat("\n#### Summary of Steps \n")
-kable(scm.trail$summary)
-
-cat("\n#### Final Model \n")
-kable(scm.trail$model)
+path %>%
+  nm.process.scm %>%
+  filter(chosen == 1) %>%
+  select(step, model, direction, pvalue) %>%
+  formalize %>%
+  decode %>%
+  kable
 
 cat("\n#### Model Building Steps \n")
+path %>%
+  nm.process.scm %>%
+  #filter(chosen == 1) %>%
+  #select(step, model, direction, pvalue) %>%
+  formalize %>%
+  decode %>%
+  kable
 
-for(i in 1:length(scm.trail$steps))
-  {
-  cat(paste0("\n", scm.trail$steps[[i]]$label,"\n"))
-  print(kable(scm.trail$steps[[i]]$runs[[1]]))
-  cat(paste0("\n", scm.trail$steps[[i]]$action,"\n"))
-  }
+
 ```
 
 

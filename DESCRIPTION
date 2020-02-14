@@ -32,7 +32,8 @@ Imports:
   magrittr,
   knitr,
   plyr,
-  snowfall
+  snowfall,
+  encode
 Suggests:
   testthat,
   pkgdown,

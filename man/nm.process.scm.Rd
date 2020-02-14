@@ -4,42 +4,34 @@
 \alias{nm.process.scm}
 \title{Parsing SCM output}
 \usage{
-nm.process.scm(path, digits = 3)
+nm.process.scm(path, ...)
 }
 \arguments{
 \item{path}{full directory path where scmlog files reside}
 
-\item{digits}{number of significant digits}
+\item{...}{ignored}
 }
 \value{
-A character vector with processed SCM output, ready for inclusion into a (LaTeX) report
+data.frame
 }
 \description{
 Read and process SCM output file such that the output can be directly copied into Microsoft products and LaTeX typesetting.
 }
 \examples{
-library(xtable)
-## the code below works if a number of scmlog.txt files are in folder NONMEM/scm files
-myPath = file.path(getOption("qpExampleDir"),"scm_example2")
-scm = nm.process.scm(myPath)
-names(scm)
-
-# Fail if scm file not found
-foo <- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
-
-scm$summary
-
-# populate an appendix with scm output
-print(xtable(scm$scm.latex
-   , caption = "Full Stepwise Covariate Building output"
-   , label =  'Tab:scmfull')
-      , sanitize.text.function = function(x)x
-      , include.rownames = FALSE
-      , size = "small"
-      , caption.placement = "top"
-      , booktabs = TRUE
-      , tabular.environment = "longtable"
-      , floating = FALSE
-      #  , only.contents = TRUE
-)
+library(encode)
+library(magrittr)
+library(dplyr)
+library(knitr)
+path = file.path(getOption("qpExampleDir"),"scm_example2")
+nm.process.scm(path)
+path \%>\%
+  nm.process.scm \%>\% 
+  filter(chosen == 1) \%>\%                      # summary
+  select(step, model, direction, pvalue) \%>\%
+  formalize \%>\%                                # labels as colum names
+  decode \%>\%                                   # substitute guide values 
+  kable
+ # model:
+ path \%>\% nm.process.scm \%>\% filter(chosen == 1) \%>\%
+ select(model)
 }
