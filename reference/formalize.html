@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Forced length significant digits — formatted.signif • qpToolkit</title>
+<title>Formalize Something — formalize • qpToolkit</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
 
 
 
-<meta property="og:title" content="Forced length significant digits — formatted.signif" />
-<meta property="og:description" content="Forced length significant digits" />
+<meta property="og:title" content="Formalize Something — formalize" />
+<meta property="og:description" content="Formalizes something.
+Generic, with method formalize.data.frame." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,79 +140,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Forced length significant digits</h1>
+    <h1>Formalize Something</h1>
     
-    <div class="hidden name"><code>formatted.signif.Rd</code></div>
+    <div class="hidden name"><code>formalize.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Forced length significant digits</p>
+    <p>Formalizes something.
+Generic, with method <code>formalize.data.frame</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>formatted.signif</span>(<span class='no'>x</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>latex</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>align.dot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>formalize</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a vector of values to be processed into significant digits format</p></td>
+      <td><p>object</p></td>
     </tr>
     <tr>
-      <th>digits</th>
-      <td><p>single value specifying the number of significant digits</p></td>
-    </tr>
-    <tr>
-      <th>latex</th>
-      <td><p>whether to convert scientific notation to latex equivalent (e -&gt; *10^)</p></td>
-    </tr>
-    <tr>
-      <th>align.dot</th>
-      <td><p>whether to decimal-align the result</p></td>
+      <th>...</th>
+      <td><p>passed arguments</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A formatted character vector containing <code>x</code> in with significant <code>digits</code> format</p>
+    <p>see methods</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Round.html'>signif</a></code></p></div>
+    <div class='dont-index'><p>Other formalize: 
+<code>formalize.data.frame()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>xtable</span>)
-<span class='fu'>formatted.signif</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>4.99</span>, <span class='fl'>4.99999</span>,<span class='fl'>5.0000001</span>,<span class='fl'>5001</span>),<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] "5.000" "4.990" "5.000" "5.000" "5001" </div><div class='input'>
-<span class='no'>numvec</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>4.99</span>, <span class='fl'>4.99999</span>,<span class='fl'>5.0000001</span>,<span class='fl'>5001</span>, <span class='fl'>0.00005</span>,<span class='fl'>101</span>,<span class='fl'>39.9</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(
-   <span class='fu'><a href='https://rdrr.io/pkg/xtable/man/xtable.html'>xtable</a></span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>original</span> <span class='kw'>=</span> <span class='no'>numvec</span>
-                 ,<span class='kw'>latex.TRUE</span> <span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>TRUE</span>,<span class='fl'>FALSE</span>)
-                 ,<span class='kw'>align.TRUE</span> <span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>FALSE</span>,<span class='fl'>TRUE</span>)
-                 ,<span class='kw'>all.TRUE</span> <span class='kw'>=</span> <span class='fu'>formatted.signif</span>(<span class='no'>numvec</span>,<span class='fl'>3</span>, <span class='fl'>TRUE</span>,<span class='fl'>TRUE</span>)
-      )
-   )
-   , <span class='kw'>booktabs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-   , <span class='kw'>sanitize.text.function</span> <span class='kw'>=</span> <span class='no'>identity</span>
-)</div><div class='output co'>#&gt; % latex table generated in R 3.6.2 by xtable 1.8-4 package
-#&gt; % Fri Feb 14 03:37:13 2020
-#&gt; \begin{table}[ht]
-#&gt; \centering
-#&gt; \begin{tabular}{rrlll}
-#&gt;   \toprule
-#&gt;  &amp; original &amp; latex.TRUE &amp; align.TRUE &amp; all.TRUE \\ 
-#&gt;   \midrule
-#&gt; 1 &amp; 5.00 &amp; 5.00 &amp; $\phantom{00}$5.00 &amp; $\phantom{00}$5.00 \\ 
-#&gt;   2 &amp; 4.99 &amp; 4.99 &amp; $\phantom{00}$4.99 &amp; $\phantom{00}$4.99 \\ 
-#&gt;   3 &amp; 5.00 &amp; 5.00 &amp; $\phantom{00}$5.00 &amp; $\phantom{00}$5.00 \\ 
-#&gt;   4 &amp; 5.00 &amp; 5.00 &amp; $\phantom{00}$5.00 &amp; $\phantom{00}$5.00 \\ 
-#&gt;   5 &amp; 5001.00 &amp; 5.00$\cdot$10$^{3}$ &amp; $\phantom{00}$5.00e+03 &amp; $\phantom{00}$5.00$\cdot$10$^{3}$ \\ 
-#&gt;   6 &amp; 0.00 &amp; 5.00$\cdot$10$^{-5}$ &amp; $\phantom{00}$5.00e-05 &amp; $\phantom{00}$5.00$\cdot$10$^{-5}$ \\ 
-#&gt;   7 &amp; 101.00 &amp; 101 &amp; $\phantom{}$101 &amp; $\phantom{}$101 \\ 
-#&gt;   8 &amp; 39.90 &amp; 39.9 &amp; $\phantom{0}$39.9 &amp; $\phantom{0}$39.9 \\ 
-#&gt;    \bottomrule
-#&gt; \end{tabular}
-#&gt; \end{table}</div><div class='input'># now take this to a LaTeX compiler!
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -219,7 +180,6 @@
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

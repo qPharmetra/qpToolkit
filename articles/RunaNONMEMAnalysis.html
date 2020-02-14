@@ -102,7 +102,7 @@
       <h1>Run a NONMEM Analysis</h1>
                         <h4 class="author">Klaas Prins &amp; Jason Chittenden</h4>
             
-            <h4 class="date">2020-02-13</h4>
+            <h4 class="date">2020-02-14</h4>
       
       
       <div class="hidden name"><code>RunaNONMEMAnalysis.Rmd</code></div>
@@ -152,11 +152,19 @@
 <pre><code>## Registered S3 method overwritten by 'GGally':
 ##   method from   
 ##   +.gg   ggplot2</code></pre>
+<pre><code>## 
+## Attaching package: 'GGally'</code></pre>
+<pre><code>## The following object is masked from 'package:dplyr':
+## 
+##     nasa</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
 <pre><code>## Loading required package: Formula</code></pre>
 <pre><code>## 
 ## Attaching package: 'Hmisc'</code></pre>
+<pre><code>## The following objects are masked from 'package:dplyr':
+## 
+##     src, summarize</code></pre>
 <pre><code>## The following objects are masked from 'package:plyr':
 ## 
 ##     is.discrete, summarize</code></pre>
@@ -242,99 +250,41 @@
 <div id="scm-model-building" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scm-model-building" class="anchor"></a>SCM Model Building</h3>
-<p>Print the steps in the process. nm.process.scm also gives a Latex output that be used in reports. Here we grab the results and format them for markdown.</p>
+<p>Print the steps in the process. Here we grab the results and format them for markdown.</p>
 <div id="summary-of-steps" class="section level4">
 <h4 class="hasAnchor">
 <a href="#summary-of-steps" class="anchor"></a>Summary of Steps</h4>
 <table class="table">
 <thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
+<th align="right">Step</th>
+<th align="left">Model</th>
+<th align="left">Search Type</th>
+<th align="right">Test P-value</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="right">1</td>
 <td align="left">CLGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.54612</td>
-<td align="left">-9557.26778</td>
-<td align="left">4062.72165</td>
-<td align="left">&gt;</td>
-<td align="left">6.63490</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="left">Addition</td>
+<td align="right">0.0e+00</td>
 </tr>
 <tr class="even">
+<td align="right">2</td>
 <td align="left">CLAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.26778</td>
-<td align="left">-9746.45167</td>
-<td align="left">189.18389</td>
-<td align="left">&gt;</td>
-<td align="left">6.63490</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">4.79e-043</td>
+<td align="left">Addition</td>
+<td align="right">0.0e+00</td>
 </tr>
 <tr class="odd">
+<td align="right">3</td>
 <td align="left">V1AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.45167</td>
-<td align="left">-10176.09933</td>
-<td align="left">429.64766</td>
-<td align="left">&gt;</td>
-<td align="left">6.63490</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="left">Addition</td>
+<td align="right">0.0e+00</td>
 </tr>
 <tr class="even">
+<td align="right">4</td>
 <td align="left">V1GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-10176.09933</td>
-<td align="left">-10195.27729</td>
-<td align="left">19.17797</td>
-<td align="left">&gt;</td>
-<td align="left">6.63490</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.000012</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="final-model" class="section level4">
-<h4 class="hasAnchor">
-<a href="#final-model" class="anchor"></a>Final Model</h4>
-<table class="table">
-<thead><tr class="header">
-<th align="left">Parameter</th>
-<th align="left">Covariates</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">CL</td>
-<td align="left">AGE-5, GNDR-2</td>
-</tr>
-<tr class="even">
-<td align="left">Q</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">V1</td>
-<td align="left">AGE-5, GNDR-2</td>
-</tr>
-<tr class="even">
-<td align="left">V2</td>
-<td align="left"></td>
+<td align="left">Addition</td>
+<td align="right">1.2e-05</td>
 </tr>
 </tbody>
 </table>
@@ -342,528 +292,471 @@
 <div id="model-building-steps" class="section level4">
 <h4 class="hasAnchor">
 <a href="#model-building-steps" class="anchor"></a>Model Building Steps</h4>
-<p>START FORWARD STEP 1</p>
 <table class="table">
 <thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
+<th align="right">Step</th>
+<th align="left">Model</th>
+<th align="right">Base Objective Function Value</th>
+<th align="right">Test Objective Function Value</th>
+<th align="right">Delta Objective Function Value</th>
+<th align="right">Reference Delta Objective Function Value</th>
+<th align="right">Delta Degrees of Freedom</th>
+<th align="left">Significant</th>
+<th align="right">Test P-value</th>
+<th align="left">Effect Was Selected</th>
+<th align="left">Search Type</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="right">1</td>
 <td align="left">CLAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-8791.9</td>
-<td align="left">3297.3</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-8791.872</td>
+<td align="right">3297.32607</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">1</td>
 <td align="left">CLGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-9557.3</td>
-<td align="left">4062.7</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-9557.268</td>
+<td align="right">4062.72165</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">yes</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">1</td>
 <td align="left">QAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-6123.0</td>
-<td align="left">628.5</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-6123.028</td>
+<td align="right">628.48146</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">1</td>
 <td align="left">QGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-8789.9</td>
-<td align="left">3295.4</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-8789.924</td>
+<td align="right">3295.37813</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">1</td>
 <td align="left">V1AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-9145.8</td>
-<td align="left">3651.3</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-9145.808</td>
+<td align="right">3651.26194</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">1</td>
 <td align="left">V1GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-9049.8</td>
-<td align="left">3555.3</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-9049.804</td>
+<td align="right">3555.25789</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">1</td>
 <td align="left">V2AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-8810.1</td>
-<td align="left">3315.6</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-8810.115</td>
+<td align="right">3315.56884</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">1</td>
 <td align="left">V2GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-5494.5</td>
-<td align="left">-8790.2</td>
-<td align="left">3295.7</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-5494.546</td>
+<td align="right">-8790.222</td>
+<td align="right">3295.67624</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
-</tbody>
-</table>
-<p>ADDED CL-GNDR-2</p>
-<p>START FORWARD STEP 2</p>
-<table class="table">
-<thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
-</tr></thead>
-<tbody>
 <tr class="odd">
+<td align="right">2</td>
 <td align="left">CLAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9746.5</td>
-<td align="left">189.2</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">4.79e-043</td>
+<td align="right">-9557.268</td>
+<td align="right">-9746.452</td>
+<td align="right">189.18389</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">yes</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">2</td>
 <td align="left">QAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9560.0</td>
-<td align="left">2.8</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.096031</td>
+<td align="right">-9557.268</td>
+<td align="right">-9560.038</td>
+<td align="right">2.77025</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.0960310</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">2</td>
 <td align="left">QGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9559.5</td>
-<td align="left">2.2</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.136780</td>
+<td align="right">-9557.268</td>
+<td align="right">-9559.482</td>
+<td align="right">2.21381</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.1367800</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">2</td>
 <td align="left">V1AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9658.2</td>
-<td align="left">100.9</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">9.61e-024</td>
+<td align="right">-9557.268</td>
+<td align="right">-9658.181</td>
+<td align="right">100.91305</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">2</td>
 <td align="left">V1GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9565.9</td>
-<td align="left">8.6</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.003310</td>
+<td align="right">-9557.268</td>
+<td align="right">-9565.896</td>
+<td align="right">8.62816</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0033100</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">2</td>
 <td align="left">V2AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9570.1</td>
-<td align="left">12.8</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.000339</td>
+<td align="right">-9557.268</td>
+<td align="right">-9570.108</td>
+<td align="right">12.84003</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0003390</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">2</td>
 <td align="left">V2GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-9557.3</td>
-<td align="left">-9557.3</td>
-<td align="left">0.0</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.951300</td>
-</tr>
-</tbody>
-</table>
-<p>ADDED CL-AGE-5</p>
-<p>START FORWARD STEP 3</p>
-<table class="table">
-<thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">QAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.5</td>
-<td align="left">-9746.7</td>
-<td align="left">0.3</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.616840</td>
+<td align="right">-9557.268</td>
+<td align="right">-9557.272</td>
+<td align="right">0.00373</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.9513000</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
-<td align="left">QGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.5</td>
-<td align="left">-9748.5</td>
-<td align="left">2.1</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.150740</td>
+<td align="right">3</td>
+<td align="left">QAGE-5</td>
+<td align="right">-9746.452</td>
+<td align="right">-9746.702</td>
+<td align="right">0.25034</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.6168400</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">3</td>
+<td align="left">QGNDR-2</td>
+<td align="right">-9746.452</td>
+<td align="right">-9748.516</td>
+<td align="right">2.06474</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.1507400</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
 <td align="left">V1AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.5</td>
-<td align="left">-10176.1</td>
-<td align="left">429.6</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.00e+000</td>
+<td align="right">-9746.452</td>
+<td align="right">-10176.099</td>
+<td align="right">429.64766</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000000</td>
+<td align="left">yes</td>
+<td align="left">Addition</td>
 </tr>
-<tr class="even">
+<tr class="odd">
+<td align="right">3</td>
 <td align="left">V1GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.5</td>
-<td align="left">-9752.9</td>
-<td align="left">6.4</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.011267</td>
+<td align="right">-9746.452</td>
+<td align="right">-9752.874</td>
+<td align="right">6.42272</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.0112670</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
-<tr class="odd">
+<tr class="even">
+<td align="right">3</td>
 <td align="left">V2AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.5</td>
-<td align="left">-9771.7</td>
-<td align="left">25.2</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.000001</td>
+<td align="right">-9746.452</td>
+<td align="right">-9771.672</td>
+<td align="right">25.22079</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000010</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
-<tr class="even">
+<tr class="odd">
+<td align="right">3</td>
 <td align="left">V2GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-9746.5</td>
-<td align="left">-9746.5</td>
-<td align="left">0.0</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.884220</td>
-</tr>
-</tbody>
-</table>
-<p>ADDED V1-AGE-5</p>
-<p>START FORWARD STEP 4</p>
-<table class="table">
-<thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">QAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-10176.1</td>
-<td align="left">-10176.1</td>
-<td align="left">0.0</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.976180</td>
+<td align="right">-9746.452</td>
+<td align="right">-9746.473</td>
+<td align="right">0.02120</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.8842200</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
-<td align="left">QGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-10176.1</td>
-<td align="left">-10177.8</td>
-<td align="left">1.7</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.195560</td>
+<td align="right">4</td>
+<td align="left">QAGE-5</td>
+<td align="right">-10176.099</td>
+<td align="right">-10176.100</td>
+<td align="right">0.00089</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.9761800</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">4</td>
+<td align="left">QGNDR-2</td>
+<td align="right">-10176.099</td>
+<td align="right">-10177.775</td>
+<td align="right">1.67521</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.1955600</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
 <td align="left">V1GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-10176.1</td>
-<td align="left">-10195.3</td>
-<td align="left">19.2</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left">YES!</td>
-<td align="left">0.000012</td>
+<td align="right">-10176.099</td>
+<td align="right">-10195.277</td>
+<td align="right">19.17797</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">yes</td>
+<td align="right">0.0000120</td>
+<td align="left">yes</td>
+<td align="left">Addition</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">V2AGE-5</td>
+<td align="right">-10176.099</td>
+<td align="right">-10176.874</td>
+<td align="right">0.77419</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.3789200</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
-<td align="left">V2AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-10176.1</td>
-<td align="left">-10176.9</td>
-<td align="left">0.8</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.378920</td>
-</tr>
-<tr class="odd">
+<td align="right">4</td>
 <td align="left">V2GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-10176.1</td>
-<td align="left">-10176.2</td>
-<td align="left">0.1</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.717960</td>
+<td align="right">-10176.099</td>
+<td align="right">-10176.230</td>
+<td align="right">0.13045</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.7179600</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
-</tbody>
-</table>
-<p>ADDED V1-GNDR-2</p>
-<p>START FORWARD STEP 5</p>
-<table class="table">
-<thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
-</tr></thead>
-<tbody>
 <tr class="odd">
+<td align="right">5</td>
 <td align="left">QAGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-10195.3</td>
-<td align="left">0.0</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.957780</td>
+<td align="right">-10195.277</td>
+<td align="right">-10195.280</td>
+<td align="right">0.00280</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.9577800</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">5</td>
 <td align="left">QGNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-10197.8</td>
-<td align="left">2.5</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.112620</td>
+<td align="right">-10195.277</td>
+<td align="right">-10197.794</td>
+<td align="right">2.51704</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.1126200</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="odd">
+<td align="right">5</td>
 <td align="left">V2AGE-5</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-10195.9</td>
-<td align="left">0.6</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.438340</td>
+<td align="right">-10195.277</td>
+<td align="right">-10195.878</td>
+<td align="right">0.60062</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.4383400</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
 <tr class="even">
+<td align="right">5</td>
 <td align="left">V2GNDR-2</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-10195.8</td>
-<td align="left">0.5</td>
-<td align="left">&gt;</td>
-<td align="left">6.63</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">0.459810</td>
+<td align="right">-10195.277</td>
+<td align="right">-10195.824</td>
+<td align="right">0.54635</td>
+<td align="right">6.6349</td>
+<td align="right">1</td>
+<td align="left">no</td>
+<td align="right">0.4598100</td>
+<td align="left">no</td>
+<td align="left">Addition</td>
 </tr>
-</tbody>
-</table>
-<p>NOTHING ADDED</p>
-<p>START BACKWARD STEP 1</p>
-<table class="table">
-<thead><tr class="header">
-<th align="left">MODEL</th>
-<th align="left">TEST</th>
-<th align="left">BASE.OFV</th>
-<th align="left">NEW.OFV</th>
-<th align="left">TEST</th>
-<th align="left">OFV.DROP</th>
-<th align="left">GOAL</th>
-<th align="left">dDF</th>
-<th align="left">SIGNIFICANT</th>
-<th align="left">PVAL</th>
-</tr></thead>
-<tbody>
 <tr class="odd">
+<td align="right">7</td>
 <td align="left">CLAGE-1</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-9671.9</td>
-<td align="left">-523.4</td>
-<td align="left">&gt;</td>
-<td align="left">-10.83</td>
-<td align="left">-1</td>
-<td align="left"></td>
-<td align="left">0.00e+000</td>
+<td align="right">-10195.277</td>
+<td align="right">-9671.863</td>
+<td align="right">-523.41471</td>
+<td align="right">-10.8280</td>
+<td align="right">-1</td>
+<td align="left">no</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Deletion</td>
 </tr>
 <tr class="even">
+<td align="right">7</td>
 <td align="left">CLGNDR-1</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-9250.3</td>
-<td align="left">-945.0</td>
-<td align="left">&gt;</td>
-<td align="left">-10.83</td>
-<td align="left">-1</td>
-<td align="left"></td>
-<td align="left">0.00e+000</td>
+<td align="right">-10195.277</td>
+<td align="right">-9250.324</td>
+<td align="right">-944.95348</td>
+<td align="right">-10.8280</td>
+<td align="right">-1</td>
+<td align="left">no</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Deletion</td>
 </tr>
 <tr class="odd">
+<td align="right">7</td>
 <td align="left">V1AGE-1</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-9752.9</td>
-<td align="left">-442.4</td>
-<td align="left">&gt;</td>
-<td align="left">-10.83</td>
-<td align="left">-1</td>
-<td align="left"></td>
-<td align="left">0.00e+000</td>
+<td align="right">-10195.277</td>
+<td align="right">-9752.874</td>
+<td align="right">-442.40292</td>
+<td align="right">-10.8280</td>
+<td align="right">-1</td>
+<td align="left">no</td>
+<td align="right">0.0000000</td>
+<td align="left">no</td>
+<td align="left">Deletion</td>
 </tr>
 <tr class="even">
+<td align="right">7</td>
 <td align="left">V1GNDR-1</td>
-<td align="left">PVAL</td>
-<td align="left">-10195.3</td>
-<td align="left">-10169.0</td>
-<td align="left">-26.3</td>
-<td align="left">&gt;</td>
-<td align="left">-10.83</td>
-<td align="left">-1</td>
-<td align="left"></td>
-<td align="left">2.96e-007</td>
+<td align="right">-10195.277</td>
+<td align="right">-10169.003</td>
+<td align="right">-26.27446</td>
+<td align="right">-10.8280</td>
+<td align="right">-1</td>
+<td align="left">no</td>
+<td align="right">0.0000003</td>
+<td align="left">no</td>
+<td align="left">Deletion</td>
 </tr>
 </tbody>
 </table>
-<p>NOTHING REMOVED</p>
 </div>
 </div>
 </div>
-<div id="final-model-1" class="section level2">
+<div id="final-model" class="section level2">
 <h2 class="hasAnchor">
-<a href="#final-model-1" class="anchor"></a>Final Model</h2>
+<a href="#final-model" class="anchor"></a>Final Model</h2>
 <p><img src="RunaNONMEMAnalysis_files/figure-html/unnamed-chunk-10-1.png" width="700"><img src="RunaNONMEMAnalysis_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
 <div id="parameter-estimates" class="section level3">
 <h3 class="hasAnchor">
@@ -1100,7 +993,7 @@
 <li><a href="#dataset">Dataset</a></li>
       <li><a href="#structural-models">Structural models</a></li>
       <li><a href="#covariate-modeling">Covariate modeling</a></li>
-      <li><a href="#final-model-1">Final Model</a></li>
+      <li><a href="#final-model">Final Model</a></li>
       <li><a href="#how-much-structural-model-variance-is-explained">How much structural model variance is explained?</a></li>
       <li><a href="#covariate-effect-plots">Covariate Effect Plots</a></li>
       <li><a href="#vpc-final-model">VPC Final Model</a></li>

@@ -102,7 +102,7 @@
       <h1>qpToolkit Examples for nm_xxx Functions</h1>
                         <h4 class="author">Klaas Prins</h4>
             
-            <h4 class="date">2020-02-13</h4>
+            <h4 class="date">2020-02-14</h4>
       
       
       <div class="hidden name"><code>ExamplesnmxxxFunctionsqpToolkit.Rmd</code></div>
@@ -554,8 +554,8 @@
 ## 
 ## nm.nzp&gt; nm.unzip(run = "example1", extension = ".cov",
 ## nm.nzp+ path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
-## path: /tmp/RtmpPzKwQp/temp_libpath39fd65923cc4/qpToolkit/NONMEM/example1 
-## call: 7z e /tmp/RtmpPzKwQp/temp_libpath39fd65923cc4/qpToolkit/NONMEM/example1/example1.cov.7z 
+## path: /tmp/Rtmpp7DYKw/temp_libpath3a426f386ec7/qpToolkit/NONMEM/example1 
+## call: 7z e /tmp/Rtmpp7DYKw/temp_libpath3a426f386ec7/qpToolkit/NONMEM/example1/example1.cov.7z 
 ## 
 ## nm.nzp&gt; file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 ## [1] TRUE
@@ -659,115 +659,125 @@
 <a href="#nm-unzip-1" class="anchor"></a>nm.unzip</h2>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.process.scm"</span>)</a></code></pre></div>
 <pre><code>## 
-## nm.pr.&gt; library(xtable)
+## nm.pr.&gt; library(encode)
 ## 
-## nm.pr.&gt; ## the code below works if a number of scmlog.txt files are in folder NONMEM/scm files
-## nm.pr.&gt; myPath = file.path(getOption("qpExampleDir"),"scm_example2")
+## nm.pr.&gt; library(magrittr)
 ## 
-## nm.pr.&gt; scm = nm.process.scm(myPath)
+## nm.pr.&gt; library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
 ## 
-## nm.pr.&gt; names(scm)
-## [1] "full.scm"  "summary"   "model"     "steps"     "scm.latex"
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
 ## 
-## nm.pr.&gt; # Fail if scm file not found
-## nm.pr.&gt; foo &lt;- try(nm.process.scm(file.path(getOption("qpExampleDir"),"scm_example0")))
-## Error in nm.process.scm(file.path(getOption("qpExampleDir"), "scm_example0")) : 
-##   cannot find /tmp/RtmpPzKwQp/temp_libpath39fd65923cc4/qpToolkit/NONMEM/scm_example0/scmlog.txt
+##     intersect, setdiff, setequal, union</code></pre>
+<pre><code>## 
+## nm.pr.&gt; library(knitr)
 ## 
-## nm.pr.&gt; scm$summary
-##      MODEL TEST     BASE.OFV      NEW.OFV       TEST OFV.DROP    GOAL dDF
-## 1 CLGNDR-2 PVAL  -5494.54612  -9557.26778 4062.72165        &gt; 6.63490   1
-## 2  CLAGE-5 PVAL  -9557.26778  -9746.45167  189.18389        &gt; 6.63490   1
-## 3  V1AGE-5 PVAL  -9746.45167 -10176.09933  429.64766        &gt; 6.63490   1
-## 4 V1GNDR-2 PVAL -10176.09933 -10195.27729   19.17797        &gt; 6.63490   1
-##   SIGNIFICANT      PVAL
-## 1        YES! 0.00e+000
-## 2        YES! 4.79e-043
-## 3        YES! 0.00e+000
-## 4        YES!  0.000012
+## nm.pr.&gt; path = file.path(getOption("qpExampleDir"),"scm_example2")
 ## 
-## nm.pr.&gt; # populate an appendix with scm output
-## nm.pr.&gt; print(xtable(scm$scm.latex
-## nm.pr.+    , caption = "Full Stepwise Covariate Building output"
-## nm.pr.+    , label =  'Tab:scmfull')
-## nm.pr.+       , sanitize.text.function = function(x)x
-## nm.pr.+       , include.rownames = FALSE
-## nm.pr.+       , size = "small"
-## nm.pr.+       , caption.placement = "top"
-## nm.pr.+       , booktabs = TRUE
-## nm.pr.+       , tabular.environment = "longtable"
-## nm.pr.+       , floating = FALSE
-## nm.pr.+       #  , only.contents = TRUE
-## nm.pr.+ )
-## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Thu Feb 13 15:13:23 2020
-## \begingroup\small
-## \begin{longtable}{llllllll}
-## \caption{Full Stepwise Covariate Building output} \\ 
-##   \toprule
-## MODEL &amp; OFV$_{base}$ &amp; OFV$_{test}$ &amp; $\Delta$OFV &amp; GOAL &amp; $\Delta$DF &amp; SIGNIFICANT &amp; P value \\ 
-##   \midrule
-## $\textit{START FORWARD STEP 1}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   CLAGE-5 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-8791.9 &amp; $\phantom{}$3297.3 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   CLGNDR-2 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{}$4062.7 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   QAGE-5 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-6123 &amp; $\phantom{0}$628.5 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   QGNDR-2 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-8789.9 &amp; $\phantom{}$3295.4 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V1AGE-5 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-9145.8 &amp; $\phantom{}$3651.3 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V1GNDR-2 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-9049.8 &amp; $\phantom{}$3555.3 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V2AGE-5 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-8810.1 &amp; $\phantom{}$3315.6 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V2GNDR-2 &amp; $\phantom{0}$-5494.5 &amp; $\phantom{0}$-8790.2 &amp; $\phantom{}$3295.7 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   $\textit{ADDED CL-GNDR-2}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   \cmidrule{2-8}% &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   $\textit{START FORWARD STEP 2}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   CLAGE-5 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{0}$189.2 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   QAGE-5 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9560 &amp; $\phantom{000}$2.8 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.0960 \\ 
-##   QGNDR-2 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9559.5 &amp; $\phantom{000}$2.2 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.1370 \\ 
-##   V1AGE-5 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9658.2 &amp; $\phantom{0}$100.9 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V1GNDR-2 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9565.9 &amp; $\phantom{000}$8.6 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; 0.0033 \\ 
-##   V2AGE-5 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9570.1 &amp; $\phantom{00}$12.8 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; 0.0003 \\ 
-##   V2GNDR-2 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{0}$-9557.3 &amp; $\phantom{000}$0 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.9510 \\ 
-##   $\textit{ADDED CL-AGE-5}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   \cmidrule{2-8}% &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   $\textit{START FORWARD STEP 3}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   QAGE-5 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{0}$-9746.7 &amp; $\phantom{000}$0.3 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.6170 \\ 
-##   QGNDR-2 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{0}$-9748.5 &amp; $\phantom{000}$2.1 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.1510 \\ 
-##   V1AGE-5 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{}$-10176.1 &amp; $\phantom{0}$429.6 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V1GNDR-2 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{0}$-9752.9 &amp; $\phantom{000}$6.4 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.0113 \\ 
-##   V2AGE-5 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{0}$-9771.7 &amp; $\phantom{00}$25.2 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V2GNDR-2 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{0}$-9746.5 &amp; $\phantom{000}$0 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.8840 \\ 
-##   $\textit{ADDED V1-AGE-5}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   \cmidrule{2-8}% &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   $\textit{START FORWARD STEP 4}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   QAGE-5 &amp; $\phantom{}$-10176.1 &amp; $\phantom{}$-10176.1 &amp; $\phantom{000}$0 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.9760 \\ 
-##   QGNDR-2 &amp; $\phantom{}$-10176.1 &amp; $\phantom{}$-10177.8 &amp; $\phantom{000}$1.7 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.1960 \\ 
-##   V1GNDR-2 &amp; $\phantom{}$-10176.1 &amp; $\phantom{}$-10195.3 &amp; $\phantom{00}$19.2 &amp; $&gt;$ 6.63 &amp; 1 &amp; YES! &amp; $&lt;$0.0001 \\ 
-##   V2AGE-5 &amp; $\phantom{}$-10176.1 &amp; $\phantom{}$-10176.9 &amp; $\phantom{000}$0.8 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.3790 \\ 
-##   V2GNDR-2 &amp; $\phantom{}$-10176.1 &amp; $\phantom{}$-10176.2 &amp; $\phantom{000}$0.1 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.7180 \\ 
-##   $\textit{ADDED V1-GNDR-2}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   \cmidrule{2-8}% &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   $\textit{START FORWARD STEP 5}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   QAGE-5 &amp; $\phantom{}$-10195.3 &amp; $\phantom{}$-10195.3 &amp; $\phantom{000}$0 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.9580 \\ 
-##   QGNDR-2 &amp; $\phantom{}$-10195.3 &amp; $\phantom{}$-10197.8 &amp; $\phantom{000}$2.5 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.1130 \\ 
-##   V2AGE-5 &amp; $\phantom{}$-10195.3 &amp; $\phantom{}$-10195.9 &amp; $\phantom{000}$0.6 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.4380 \\ 
-##   V2GNDR-2 &amp; $\phantom{}$-10195.3 &amp; $\phantom{}$-10195.8 &amp; $\phantom{000}$0.5 &amp; $&gt;$ 6.63 &amp; 1 &amp;  &amp; 0.4600 \\ 
-##   $\textit{NOTHING ADDED}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   \cmidrule{2-8}% &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   $\textit{START BACKWARD STEP 1}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   CLAGE-1 &amp; $\phantom{}$-10195.3 &amp; $\phantom{0}$-9671.9 &amp; $\phantom{}$-523.4 &amp; $&gt;$ -10.8 &amp; -1 &amp;  &amp; $&lt;$0.0001 \\ 
-##   CLGNDR-1 &amp; $\phantom{}$-10195.3 &amp; $\phantom{0}$-9250.3 &amp; $\phantom{}$-945 &amp; $&gt;$ -10.8 &amp; -1 &amp;  &amp; $&lt;$0.0001 \\ 
-##   V1AGE-1 &amp; $\phantom{}$-10195.3 &amp; $\phantom{0}$-9752.9 &amp; $\phantom{}$-442.4 &amp; $&gt;$ -10.8 &amp; -1 &amp;  &amp; $&lt;$0.0001 \\ 
-##   V1GNDR-1 &amp; $\phantom{}$-10195.3 &amp; $\phantom{}$-10169 &amp; $\phantom{0}$-26.3 &amp; $&gt;$ -10.8 &amp; -1 &amp;  &amp; $&lt;$0.0001 \\ 
-##   $\textit{NOTHING REMOVED}$ &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##   \cmidrule{2-8}% &amp; ~ &amp; ~ &amp; ~ &amp; $~$ ~ &amp; ~ &amp; ~ &amp; ~ \\ 
-##    \bottomrule
-## \label{Tab:scmfull}
-## \end{longtable}
-## \endgroup</code></pre>
+## nm.pr.&gt; nm.process.scm(path)
+##    step    model    ofvbase    ofvtest       dofv     goal deltadf significant
+## 1     1  CLAGE-5  -5494.546  -8791.872 3297.32607   6.6349       1           1
+## 2     1 CLGNDR-2  -5494.546  -9557.268 4062.72165   6.6349       1           1
+## 3     1   QAGE-5  -5494.546  -6123.028  628.48146   6.6349       1           1
+## 4     1  QGNDR-2  -5494.546  -8789.924 3295.37813   6.6349       1           1
+## 5     1  V1AGE-5  -5494.546  -9145.808 3651.26194   6.6349       1           1
+## 6     1 V1GNDR-2  -5494.546  -9049.804 3555.25789   6.6349       1           1
+## 7     1  V2AGE-5  -5494.546  -8810.115 3315.56884   6.6349       1           1
+## 8     1 V2GNDR-2  -5494.546  -8790.222 3295.67624   6.6349       1           1
+## 9     2  CLAGE-5  -9557.268  -9746.452  189.18389   6.6349       1           1
+## 10    2   QAGE-5  -9557.268  -9560.038    2.77025   6.6349       1           0
+## 11    2  QGNDR-2  -9557.268  -9559.482    2.21381   6.6349       1           0
+## 12    2  V1AGE-5  -9557.268  -9658.181  100.91305   6.6349       1           1
+## 13    2 V1GNDR-2  -9557.268  -9565.896    8.62816   6.6349       1           1
+## 14    2  V2AGE-5  -9557.268  -9570.108   12.84003   6.6349       1           1
+## 15    2 V2GNDR-2  -9557.268  -9557.272    0.00373   6.6349       1           0
+## 16    3   QAGE-5  -9746.452  -9746.702    0.25034   6.6349       1           0
+## 17    3  QGNDR-2  -9746.452  -9748.516    2.06474   6.6349       1           0
+## 18    3  V1AGE-5  -9746.452 -10176.099  429.64766   6.6349       1           1
+## 19    3 V1GNDR-2  -9746.452  -9752.874    6.42272   6.6349       1           0
+## 20    3  V2AGE-5  -9746.452  -9771.672   25.22079   6.6349       1           1
+## 21    3 V2GNDR-2  -9746.452  -9746.473    0.02120   6.6349       1           0
+## 22    4   QAGE-5 -10176.099 -10176.100    0.00089   6.6349       1           0
+## 23    4  QGNDR-2 -10176.099 -10177.775    1.67521   6.6349       1           0
+## 24    4 V1GNDR-2 -10176.099 -10195.277   19.17797   6.6349       1           1
+## 25    4  V2AGE-5 -10176.099 -10176.874    0.77419   6.6349       1           0
+## 26    4 V2GNDR-2 -10176.099 -10176.230    0.13045   6.6349       1           0
+## 27    5   QAGE-5 -10195.277 -10195.280    0.00280   6.6349       1           0
+## 28    5  QGNDR-2 -10195.277 -10197.794    2.51704   6.6349       1           0
+## 29    5  V2AGE-5 -10195.277 -10195.878    0.60062   6.6349       1           0
+## 30    5 V2GNDR-2 -10195.277 -10195.824    0.54635   6.6349       1           0
+## 31    7  CLAGE-1 -10195.277  -9671.863 -523.41471 -10.8280      -1           0
+## 32    7 CLGNDR-1 -10195.277  -9250.324 -944.95348 -10.8280      -1           0
+## 33    7  V1AGE-1 -10195.277  -9752.874 -442.40292 -10.8280      -1           0
+## 34    7 V1GNDR-1 -10195.277 -10169.003  -26.27446 -10.8280      -1           0
+##        pvalue chosen direction
+## 1  0.0000e+00      0         +
+## 2  0.0000e+00      1         +
+## 3  0.0000e+00      0         +
+## 4  0.0000e+00      0         +
+## 5  0.0000e+00      0         +
+## 6  0.0000e+00      0         +
+## 7  0.0000e+00      0         +
+## 8  0.0000e+00      0         +
+## 9  4.7900e-43      1         +
+## 10 9.6031e-02      0         +
+## 11 1.3678e-01      0         +
+## 12 9.6100e-24      0         +
+## 13 3.3100e-03      0         +
+## 14 3.3900e-04      0         +
+## 15 9.5130e-01      0         +
+## 16 6.1684e-01      0         +
+## 17 1.5074e-01      0         +
+## 18 0.0000e+00      1         +
+## 19 1.1267e-02      0         +
+## 20 1.0000e-06      0         +
+## 21 8.8422e-01      0         +
+## 22 9.7618e-01      0         +
+## 23 1.9556e-01      0         +
+## 24 1.2000e-05      1         +
+## 25 3.7892e-01      0         +
+## 26 7.1796e-01      0         +
+## 27 9.5778e-01      0         +
+## 28 1.1262e-01      0         +
+## 29 4.3834e-01      0         +
+## 30 4.5981e-01      0         +
+## 31 0.0000e+00      0         -
+## 32 0.0000e+00      0         -
+## 33 0.0000e+00      0         -
+## 34 2.9600e-07      0         -
+## 
+## nm.pr.&gt; path %&gt;%
+## nm.pr.+   nm.process.scm %&gt;% 
+## nm.pr.+   filter(chosen == 1) %&gt;%                      # summary
+## nm.pr.+   select(step, model, direction, pvalue) %&gt;%
+## nm.pr.+   formalize %&gt;%                                # labels as colum names
+## nm.pr.+   decode %&gt;%                                   # substitute guide values 
+## nm.pr.+   kable
+## 
+## 
+##  Step  Model      Search Type    Test P-value
+## -----  ---------  ------------  -------------
+##     1  CLGNDR-2   Addition            0.0e+00
+##     2  CLAGE-5    Addition            0.0e+00
+##     3  V1AGE-5    Addition            0.0e+00
+##     4  V1GNDR-2   Addition            1.2e-05
+## 
+## nm.pr.&gt;  # model:
+## nm.pr.&gt;  path %&gt;% nm.process.scm %&gt;% filter(chosen == 1) %&gt;%
+## nm.pr.+  select(model)
+##      model
+## 1 CLGNDR-2
+## 2  CLAGE-5
+## 3  V1AGE-5
+## 4 V1GNDR-2</code></pre>
 </div>
 <div id="nm-runtime" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-runtime" class="anchor"></a>nm.runtime</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.runtime"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.runtime"</span>)</a></code></pre></div>
 <pre><code>## 
 ## nm.rnt&gt; nm.runtime(run = "example1", path = getOption("qpExampleDir"))
 ## $`Iterative Two Stage (No Prior)`
@@ -788,7 +798,7 @@
 <div id="nm-read-vpc" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-read-vpc" class="anchor"></a>nm.read.vpc</h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.read.vpc"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.read.vpc"</span>)</a></code></pre></div>
 <pre><code>## 
 ## nm.rd.&gt; myVPC = nm.read.vpc(path = file.path(getOption("qpExampleDir"), "vpc_final_strt"))
 ## 
@@ -806,7 +816,7 @@
 <div id="nm-extract-xml" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-extract-xml" class="anchor"></a>nm.extract.xml</h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.extract.xml"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.extract.xml"</span>)</a></code></pre></div>
 <pre><code>## 
 ## nm.xt.&gt; tmp = nm.extract.xml("example2", path = getOption("qpExampleDir"))</code></pre>
 <pre><code>## Joining, by = "Parameter"
@@ -1116,7 +1126,7 @@
 <div id="nm-extract-ext" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-extract-ext" class="anchor"></a>nm.extract.ext</h2>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.extract.ext"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.extract.ext"</span>)</a></code></pre></div>
 <pre><code>## 
 ## nm.xt.&gt; run2.ext = nm.extract.ext("example2", path = getOption("qpExampleDir"))</code></pre>
 <pre><code>## Joining, by = "Parameter"</code></pre>
@@ -1133,18 +1143,10 @@
 <div id="nm-insert-evid2amt0" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-insert-evid2amt0" class="anchor"></a>nm.insert.evid2amt0</h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.insert.evid2amt0"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.insert.evid2amt0"</span>)</a></code></pre></div>
 <pre><code>## 
-## nm..20&gt; library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
+## nm..20&gt; library(dplyr)
 ## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre><code>## 
 ## nm..20&gt; nmData = example.NONMEM.dataset(TIME = seq(0,24,4))
 ## 
 ## nm..20&gt; nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)
