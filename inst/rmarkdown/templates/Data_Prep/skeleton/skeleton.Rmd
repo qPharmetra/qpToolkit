@@ -86,7 +86,7 @@ We will combine both datasets into a single PK/PD dataset.
 
 When loading the PK data, note that the header is not formatted consistently with the data.  Header is not comma delimited.
 
-* Get the names by loading as whitespace seperated.
+* Get the names by loading as whitespace separated.
 * Load the data without the names
 * Apply the names and change CID to ID
 

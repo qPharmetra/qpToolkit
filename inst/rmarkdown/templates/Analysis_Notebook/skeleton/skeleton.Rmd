@@ -11,10 +11,13 @@ output:
 
 ```{r, include=F}
 # FIRST THING, source the .Rprofile to find the project info file and turn on packrat
-source("../.Rprofile")
 library(qpToolkit)
 library(plyr)
 library(reshape)
+library(knitr)
+library(ggplot2)
+library(lattice)
+library(Hmisc)
 
 
 # path to examples NONMEM folder
@@ -113,7 +116,7 @@ This starts a subreport on run: example 1
 run="Example1"
 options("nmDir"=nm.path)
 ```
-```{r child="ModelReportChild.rmd"}
+```{r child="ModelReportChild.Rmd"}
 
 ```
 
@@ -174,7 +177,7 @@ for(i in 1:length(scm.trail$steps))
 ```{r}
 run="example3"
 ```
-```{r child="ModelReportChild.rmd"}
+```{r child="ModelReportChild.Rmd"}
 
 ```
 
@@ -242,10 +245,15 @@ Print the plots
 
 ```{r }
 tmp=nm.extract.xml("example3",nm.path)
-coveffs.l=nm.process.coveffects(eqs,covs.info,data.frame(params.l),xpose.df,
-                             make.symmetric(unlist(tmp$omega),triangle = "lower"))
+# coveffs.l=nm.process.coveffects(
+#   eqs,covs.info,data.frame(params.l),xpose.df,
+#   make.symmetric(unlist(tmp$omega),triangle = "lower")
+# )
+# This example temporarily unavailable.  Check back later!
 
-plot(coveffs.l)
+#plot(coveffs.l)
+plot(cos)
+
 
 ```
 
