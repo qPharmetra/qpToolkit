@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
       <h1>qpToolkit General Purpose Functions</h1>
                         <h4 class="author">Klaas Prins</h4>
             
-            <h4 class="date">2020-02-14</h4>
+            <h4 class="date">2020-03-18</h4>
       
       
       <div class="hidden name"><code>qpToolkitGeneralPurposeFunctions.Rmd</code></div>
@@ -191,7 +191,7 @@
 ## frmtt.+    , sanitize.text.function = identity
 ## frmtt.+ )
 ## % latex table generated in R 3.6.2 by xtable 1.8-4 package
-## % Fri Feb 14 03:38:38 2020
+## % Wed Mar 18 19:04:18 2020
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rrlll}
@@ -617,12 +617,13 @@
 ## dblStc+    geom_point() +
 ## dblStc+    stat_smooth(method = "lm", col = lin.fit.col) +
 ## dblStc+    facet_grid(variable1 ~ variable,scales = "free_y")</code></pre>
+<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-4-4.png" width="672"></p>
 </div>
 <div id="functions-with-graphs-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#functions-with-graphs-1" class="anchor"></a>functions with graphs</h2>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"logit.inv"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"logit.inv"</span>)</a></code></pre></div>
 <pre><code>## 
 ## lgt.nv&gt; myVector = runif(n = 1000, min = 0.001,max = 0.999)
 ## 
@@ -636,19 +637,19 @@
 <pre><code>## 
 ## lgt.nv&gt; hist(logit.inv(myVector.logit))</code></pre>
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitDensity"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitDensity"</span>)</a></code></pre></div>
 <pre><code>## 
 ## untDns&gt; standardNormal = unitDensity(qnorm(seq(0.0001,0.9999,length = 1000),0,1))
 ## 
 ## untDns&gt; plot(standardNormal$x, standardNormal$y, col = qp.blue, type = 'l')</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitHistogram"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"unitHistogram"</span>)</a></code></pre></div>
 <pre><code>## 
 ## untHst&gt; set.seed(1234567)
 ## 
 ## untHst&gt; myvals = rnorm(10000,50,5)
 ## 
 ## untHst&gt; unitHistogram(myvals, xlab = "My Values", cex.lab = 1.25)</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"rgenpois"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"rgenpois"</span>)</a></code></pre></div>
 <pre><code>## 
 ## rgenps&gt; genPois.samples = sapply(seq(0.3,-1.1,-0.2), function (DISP)
 ## rgenps+ {
@@ -672,7 +673,7 @@
 ## rgenps&gt; lines(density(rpois(10000, 11),bw = 1), col = qp.green, lwd = 3)
 ## 
 ## rgenps&gt; text(3, 0.03, round(mean(rpois(10000, 11)), 1), col = qp.green)</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"boxcoxf"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"boxcoxf"</span>)</a></code></pre></div>
 <pre><code>## 
 ## boxcxf&gt; x = rnorm(1000, mean = 0, sd = 0.25)
 ## 
@@ -688,7 +689,7 @@
 <pre><code>## 
 ## boxcxf&gt; hist(x.boxcox.neg)</code></pre>
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-5-3.png" width="672"></p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"doubleStack"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"doubleStack"</span>)</a></code></pre></div>
 <pre><code>## 
 ## dblStc&gt; set.seed(1234)
 ## 
@@ -730,6 +731,7 @@
 ## dblStc+    geom_point() +
 ## dblStc+    stat_smooth(method = "lm", col = lin.fit.col) +
 ## dblStc+    facet_grid(variable1 ~ variable,scales = "free_y")</code></pre>
+<pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <p><img src="qpToolkitGeneralPurposeFunctions_files/figure-html/unnamed-chunk-5-4.png" width="672"></p>
 </div>
   </div>
