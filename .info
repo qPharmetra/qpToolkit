@@ -1,3 +1,3 @@
-image: docker.qpharmetra.io/qp_renv:3.5.1
+image: docker.qpharmetra.io/qp_renv:3.6.2
 container: repos_qpToolkit
-Rversion: 3.5.1
+Rversion: 3.6.2
