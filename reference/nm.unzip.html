@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,13 +40,14 @@
 
 
 <meta property="og:title" content="Unzip function for zipped PsN output — nm.unzip" />
-<meta property="og:description" content="Many large filews like XML outpout and covariance matrices are zipped by (qPharmetra's
+<meta property="og:description" content="Many large files like XML outpout and covariance matrices are zipped by (qPharmetra's
  tweaked version of) PsN. To enable the parsing function of the nm.xxx domain to
-  operate well this function unzips these files.  The unzip call is pulled from the system environment
-  variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the
-  basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
-  option unzip.call." />
-<meta name="twitter:card" content="summary" />
+ operate well this function unzips these files.  The unzip call is pulled from the system environment
+ variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the
+ basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
+ option unzip.call. 
+In fact, you need only specify target and command, i.e. what you expect and how
+ you expect to get it. Paths are relative to the current directory." />
 
 
 
@@ -60,7 +65,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.2</span>
       </span>
     </div>
 
@@ -150,23 +155,30 @@
     </div>
 
     <div class="ref-description">
-    <p>Many large filews like XML outpout and covariance matrices are zipped by (qPharmetra's
+    <p>Many large files like XML outpout and covariance matrices are zipped by (qPharmetra's
  tweaked version of) PsN. To enable the parsing function of the <code>nm.xxx</code> domain to
-  operate well this function unzips these files.  The unzip call is pulled from the system environment
-  variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the
-  basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
-  option unzip.call.</p>
+ operate well this function unzips these files.  The unzip call is pulled from the system environment
+ variable UNZIP_CALL on startup, or defaulted as stated below.  the %s in the call is replaced with the
+ basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
+ option unzip.call.</p> 
+<p>In fact, you need only specify target and command, i.e. what you expect and how
+ you expect to get it. Paths are relative to the current directory.</p>
     </div>
 
     <pre class="usage"><span class='fu'>nm.unzip</span>(
   <span class='no'>run</span>,
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='no'>run</span>),
-  <span class='kw'>zip.extension</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".xml"</span>,
-  <span class='kw'>zip.call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"unzip.call"</span>),
   <span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>run</span>, <span class='no'>extension</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>),
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"nmDir"</span>), <span class='no'>run</span>),
+  <span class='kw'>tmpdir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"subdir"</span>),
+  <span class='kw'>temp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>outdir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='no'>temp</span>, <span class='no'>tmpdir</span>, <span class='no'>path</span>),
   <span class='kw'>zip.filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>path</span>, <span class='no'>filename</span>),
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>zip.call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"unzip.call"</span>),
+  <span class='kw'>command</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='no'>zip.call</span>, <span class='no'>zip.filename</span>), <span class='st'>" -o"</span>, <span class='no'>outdir</span>),
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>outdir</span>, <span class='no'>filename</span>),
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -177,54 +189,80 @@
       <td><p>run rootname (e.g. <code>run1</code>)</p></td>
     </tr>
     <tr>
-      <th>path</th>
-      <td><p>directory where <code>run</code> resides</p></td>
-    </tr>
-    <tr>
-      <th>zip.extension</th>
-      <td><p>extension of the zip program. Defaults to ".7z"</p></td>
-    </tr>
-    <tr>
       <th>extension</th>
       <td><p>file extension of the file to unzip. Could be ".xml", or ".cov", or ".cor" or anything else that has been zipped</p></td>
-    </tr>
-    <tr>
-      <th>zip.call</th>
-      <td><p>full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e %s.7z" on windows</p></td>
     </tr>
     <tr>
       <th>filename</th>
       <td><p>file name (excluding path) of the filename to extract. Is automatically populated with qP workflow defaults</p></td>
     </tr>
     <tr>
+      <th>path</th>
+      <td><p>directory where <code>run</code> resides</p></td>
+    </tr>
+    <tr>
+      <th>tmpdir</th>
+      <td><p>directory to use if temp is true</p></td>
+    </tr>
+    <tr>
+      <th>temp</th>
+      <td><p>if true, unzip to a unique temporary file path</p></td>
+    </tr>
+    <tr>
+      <th>outdir</th>
+      <td><p>location for unzipped file</p></td>
+    </tr>
+    <tr>
       <th>zip.filename</th>
       <td><p>filename of the zip file to extract. Is automatically populated with qP workflow defaults</p></td>
+    </tr>
+    <tr>
+      <th>zip.call</th>
+      <td><p>full OS call to zip utility for unzipping. Defaults to "c:/progra~1/7-zip/7z e %s.7z" on windows. Option "-o" is currently appended by nm.unzip().</p></td>
+    </tr>
+    <tr>
+      <th>command</th>
+      <td><p>zip.call with filename substituted; passes to system</p></td>
+    </tr>
+    <tr>
+      <th>target</th>
+      <td><p>path for expected result; possibly identical to zip.filename</p></td>
     </tr>
     <tr>
       <th>quiet</th>
       <td><p>whether to suppress process messages</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>ignored arguments</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The zipped file is extracted to disk in the same location. Nothing is returned to R.</p>
+    <p>(invisible) path to the unzipped file: especially useful if temp is true.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>nm.unzip</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".cov"</span>,
-<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>),<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; path: /tmp/Rtmpn31PfR/temp_libpath6ed74d2be310/qpToolkit/NONMEM/example1 
-#&gt; call: 7z e /tmp/Rtmpn31PfR/temp_libpath6ed74d2be310/qpToolkit/NONMEM/example1/example1.cov.7z </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='st'>'c:/progra~1/7-zip/7z.exe'</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'># If the above does not exist, consider:
-# options(unzip.call = 'C:/my-zip-path/7z e %s.7z') # or similar
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>nm.unzip</span>(<span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".cov"</span>,
+<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1"</span>),<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; path: /tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1 
+#&gt; file: /tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1/example1.cov 
+#&gt; call: 7z e /tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1/example1.cov.7z -o/tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.remove</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='st'>'c:/progra~1/7-zip/7z.exe'</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='co'># If the above does not exist, consider:</span>
+<span class='co'># options(unzip.call = 'C:/my-zip-path/7z e %s.7z') # or similar</span>
+<span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>nm.unzip</span>(
+  <span class='kw'>run</span> <span class='kw'>=</span> <span class='st'>"example1"</span>,
+  <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>".cov"</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(
+    <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),
+    <span class='st'>"example1"</span>
+  ),
+ <span class='kw'>temp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
+<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>( <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),<span class='st'>"example1/example1.cov"</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='no'>tmp</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -235,7 +273,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

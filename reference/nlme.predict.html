@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Prediction tool for nlme object — nlme.predict" />
 <meta property="og:description" content="Predict residuals, partial residuals or uncertainty predictions for an nlme.object. This function will also take different data set (argument newdata) to simulate out of the box although the nlme object does require the predictors, independent variable, and the grouping variable to be present." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.2</span>
       </span>
     </div>
 
@@ -197,7 +200,7 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Either one of 'partial.residuals' (default), 'prediction' (the traditional <code><a href='https://rdrr.io/r/stats/predict.html'>predict(nlme.object)</a></code>), or 'residuals' (doing <code><a href='https://rdrr.io/r/graphics/plot.html'>plot(resid ~ any.column)</a></code>.</p></td>
+      <td><p>Either one of 'partial.residuals' (default), 'prediction' (the traditional <code><a href='https://rdrr.io/r/stats/predict.html'>predict(nlme.object)</a></code>), or 'residuals' (doing <code><a href='https://rdrr.io/r/base/plot.html'>plot(resid ~ any.column)</a></code>.</p></td>
     </tr>
     <tr>
       <th>use.etas</th>
@@ -247,26 +250,22 @@
   <span class='kw'>problem</span> <span class='kw'>=</span> <span class='st'>"True Model"</span>,
   <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='error'>Error in nlme.formula(model = value ~ base + EFF.1comp.1abs(dose, time,     cl * exp(cl.eta), v, ka, keo), data = pkpdData[pkpdData$type ==     "PD" &amp; pkpdData$dose &gt; 0 &amp; pkpdData$value &gt; 0.5, ], fixed = base +     cl + v + ka + keo ~ 1, random = cl.eta ~ 1, groups = ~id,     start = c(base = 1, cl = 1, v = 10, ka = 1, keo = 0.01)): object 'pkpdData' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in summary(fit.PD004.nlme$object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'>nlme.extract</span>(<span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>)$<span class='no'>table</span></div><div class='output co'>#&gt; <span class='error'>Error in nlme.extract(fit.PD004.nlme$object): object 'fit.PD004.nlme' not found</span></div><div class='input'>
 <span class='co'># simple fit vs time</span>
-<span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(<span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> , <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(
+<span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(<span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> , <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(
   <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> , <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"partial.residuals"</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>) <span class='co'>## this is the same: PARTIAL RESIDUALS</span></div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(
+)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>) <span class='co'>## this is the same: PARTIAL RESIDUALS</span></div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(
   <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> , <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"prediction"</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>) <span class='co'>## now we get simply the prediction for all xCovariate</span></div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>) <span class='co'>## now we get simply the prediction for all xCovariate</span></div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'>
 <span class='co'>## note that prediction and partial residual type of model fit plots are very different</span>
 
 <span class='co'># fit vs time by dose</span>
-<span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(<span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> <span class='kw'>|</span> <span class='no'>dose</span>, <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(
+<span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(<span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> <span class='kw'>|</span> <span class='no'>dose</span>, <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='no'>fit.PD004.pred.nlme</span> <span class='kw'>=</span> <span class='fu'>nlme.predict</span>(
   <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>value</span> ~ <span class='no'>time</span> <span class='kw'>|</span> <span class='no'>dose</span>, <span class='no'>fit.PD004.nlme</span>$<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"residuals"</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>, <span class='kw'>yLimits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>1</span>))</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme, yLimits = c(-1, 1)): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>, <span class='kw'>yLimits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>1</span>), <span class='kw'>abline</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme, yLimits = c(-1, 1), abline = list(h = 0,     lty = 2)): object 'fit.PD004.pred.nlme' not found</span></div></pre>
+)</div><div class='output co'>#&gt; <span class='error'>Error in getData(object): object 'fit.PD004.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>, <span class='kw'>yLimits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>1</span>))</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme, yLimits = c(-1, 1)): object 'fit.PD004.pred.nlme' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>fit.PD004.pred.nlme</span>, <span class='kw'>yLimits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1</span>,<span class='fl'>1</span>), <span class='kw'>abline</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='output co'>#&gt; <span class='error'>Error in plot(fit.PD004.pred.nlme, yLimits = c(-1, 1), abline = list(h = 0,     lty = 2)): object 'fit.PD004.pred.nlme' not found</span></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -277,7 +276,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
