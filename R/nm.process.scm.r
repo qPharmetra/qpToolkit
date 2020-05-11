@@ -13,7 +13,6 @@ globalVariables(c('V1','V2','V3','V4','V5','V6','V7','V8','V9','Step','step','di
 #' @importFrom dplyr ungroup
 #' @importFrom dplyr mutate_at
 #' @importFrom magrittr %>%
-#' @importFrom magrittr %<>%
 #' @examples
 #' library(encode)
 #' library(magrittr)
@@ -41,7 +40,15 @@ nm.process.scm <- function (path, ...) {
   # x[grepl('V1AGE-5', scm)]
   #  "V1AGE-5          PVAL  -9746.45167-10176.09933            429.64766      6.63490    1        YES!  0.00e+000"
   
-  x <- gsub('([0-9])-([0-9])','\\1 -\\2',x)
+  # x <- gsub('([0-9])-([0-9])','\\1 -\\2',x) # breaks for CLCRCL1-5
+  
+  headers <- x[grepl('BASE OFV',x)]
+  locations <- regexpr('BASE OFV', headers)
+  start <- unique(locations)
+  if(length(start) != 1)stop("can't find consistent location of BASE OFV")
+  expression <- paste0('(^.{', start + 7, '})')
+  x <- sub(expression,'\\1 ',x)
+  x <- sub('chose n', 'chosen', x)
   
   updatetext <- function(x) {
     x <- gsub("TEST OFV (DROP)", " TestOFV ", x, fixed = TRUE)
@@ -55,18 +62,19 @@ nm.process.scm <- function (path, ...) {
   
   skip <- c("Model", "--------------------", "CRITERION",
             "BASE_MODEL_OFV", "CHOSEN_MODEL_OFV",
-            "Relations", "--------------------", "MODEL")
+            "Relations", "--------------------", "MODEL", "", "No")
   
   `%nin%` <- Negate(`%in%`)
   
-  x <- read.table(textConnection(x), fill = TRUE)
-  x %<>% filter(V9 !="" | V8!="" | V7!="") 
-  x %<>% filter(V1 %nin% skip) 
-  x %<>% mutate(Chosen = ifelse(grepl("-", V8), ifelse(grepl("e", V8), NA, V8), NA)) 
-  x %<>% mutate(V9 = paste(V8, V9, sep=" "))
-  x %<>% mutate(V8 = ifelse(grepl("YES!", V8), "YES", ""))
-  x %<>% mutate(row = as.numeric(rownames(.)))
-  x %<>% mutate(Step = ifelse(
+  x <- read.table(textConnection(x), fill = TRUE, header = FALSE)
+  x <- x %>% filter(V9 !="" | V8!="" | V7!="") 
+  x <- x %>% filter(V1 %nin% skip) 
+  x <- x %>% mutate(Chosen = ifelse(grepl("-", V8), ifelse(grepl("e", V8), NA, V8), NA)) 
+  if(all(is.na(x$Chosen))) x$Chosen <- 0
+  x <- x %>% mutate(V9 = paste(V8, V9, sep=" "))
+  x <- x %>% mutate(V8 = ifelse(grepl("YES!", V8), "YES", ""))
+  x <- x %>% mutate(row = as.numeric(rownames(.)))
+  x <- x %>% mutate(Step = ifelse(
       grepl("forward", V6), 
       "Forward",
       ifelse(
@@ -85,28 +93,28 @@ nm.process.scm <- function (path, ...) {
         )
       )
     )
-  x %<>% mutate_at(vars(V3:V6),function(x)suppressWarnings(as.numeric(x)))
-  x %<>% rename(direction = Step)
-  x %<>% mutate(step = cumsum(!is.na(direction)))
-  x %<>% mutate(direction = locf(direction))
-  x %<>% mutate(Chosen = rev(locf(rev(Chosen))))
-  x %<>% mutate(Chosen = as.integer(V1 == sub('-','',Chosen)))
+  x <- x %>% mutate_at(vars(V3:V6),function(x)suppressWarnings(as.numeric(x)))
+  x <- x %>% rename(direction = Step)
+  x <- x %>% mutate(step = cumsum(!is.na(direction)))
+  x <- x %>% mutate(direction = locf(direction))
+  x <- x %>% mutate(Chosen = rev(locf(rev(Chosen))))
+  x <- x %>% mutate(Chosen = as.integer(V1 == sub('-','',Chosen)))
   
-  x %<>% mutate(V1 = gsub("Parameter-covariate", "", V1, fixed = TRUE))
-  x %<>% mutate(V1 = gsub("Forward", "", V1))
-  x %<>% mutate(V7 = gsub("step:", "", V7, fixed = TRUE))
-  x %<>% mutate(V7 = gsub("inside", "", V7))
-  x %<>% filter(V1 != '')
-  if(!all(x$V2 == 'PVAL'))warning('expecting PVAL; seeing ',paste(unique(x$V2),collapse = ', '))
-  x %<>% select(-V2)
+  x <- x %>% mutate(V1 = gsub("Parameter-covariate", "", V1, fixed = TRUE))
+  x <- x %>% mutate(V1 = gsub("Forward", "", V1))
+  x <- x %>% mutate(V7 = gsub("step:", "", V7, fixed = TRUE))
+  x <- x %>% mutate(V7 = gsub("inside", "", V7))
+  x <- x %>% filter(V1 != '')
+# if(!all(x$V2 == 'PVAL'))warning('expecting PVAL; seeing ',paste(unique(x$V2),collapse = ', '))
+  x <- x %>% select(-V2)
   
-  x %<>% select(step, V1, V3, V4, V5, V6, V7, V8, V9, Chosen, direction)
+  x <- x %>% select(step, V1, V3, V4, V5, V6, V7, V8, V9, Chosen, direction)
   names(x) <- c("step", "model", "ofvbase", "ofvtest", "dofv", "goal", "deltadf", "significant", "pvalue", "chosen", "direction")
   text2decimal <- function (x) as.numeric(sub("^[^0-9.+-]*([0-9.eE+-]+).*$", "\\1", as.character(x)))
-  x %<>% mutate(pvalue = text2decimal(pvalue))
-  #x %<>% mutate(pvalue = readr::parse_number(pvalue)) 
-  x %<>% mutate(deltadf = suppressWarnings(as.numeric(deltadf))) 
-  # x %<>% mutate(
+  x <- x %>% mutate(pvalue = text2decimal(pvalue))
+  #x <- x %>% mutate(pvalue = readr::parse_number(pvalue)) 
+  x <- x %>% mutate(deltadf = suppressWarnings(as.numeric(deltadf))) 
+  # x <- x %>% mutate(
   #   pvalue = ifelse(
   #     as.numeric(pvalue) > 0.9999, 
   #     "> 0.9999",
@@ -117,9 +125,9 @@ nm.process.scm <- function (path, ...) {
   #     )
   #   )
   # )
-  x %<>% mutate(significant = ifelse(significant == 'YES',1,0))
-  x %<>% mutate(direction = sub('Forward','+', direction))
-  x %<>% mutate(direction = sub('Backward','-', direction))
+  x <- x %>% mutate(significant = ifelse(significant == 'YES',1,0))
+  x <- x %>% mutate(direction = sub('Forward','+', direction))
+  x <- x %>% mutate(direction = sub('Backward','-', direction))
                               
   
   attr(x$step, 'label') <- 'Step'
