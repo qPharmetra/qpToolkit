@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.3</span>
       </span>
     </div>
 
@@ -284,7 +284,7 @@
     <pre class="examples"><div class='input'><span class='no'>myBoot</span> <span class='kw'>=</span> <span class='fu'>read.bootstrap</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"qpExampleDir"</span>),
 <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"bootstrap/raw_results_bs4011.csv"</span>,
 <span class='kw'>structure.filename</span> <span class='kw'>=</span> <span class='st'>"bootstrap/raw_results_structure"</span>)</div><div class='output co'>#&gt; read 1000 bootstrap replicates</div><div class='input'><span class='no'>temp.dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>temp.dir</span>)</div><div class='output co'>#&gt; /tmp/RtmpjPPFU4</div><div class='input'><span class='fu'>histogram.bootstrap</span>(<span class='no'>myBoot</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>temp.dir</span>, <span class='kw'>filename.prefix</span> <span class='kw'>=</span> <span class='st'>"Test"</span>)</div><div class='output co'>#&gt; pdf 
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>temp.dir</span>)</div><div class='output co'>#&gt; /tmp/RtmpIkXyMe</div><div class='input'><span class='fu'>histogram.bootstrap</span>(<span class='no'>myBoot</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>temp.dir</span>, <span class='kw'>filename.prefix</span> <span class='kw'>=</span> <span class='st'>"Test"</span>)</div><div class='output co'>#&gt; pdf 
 #&gt;   2 </div><div class='input'>## now take a look there
 </div></pre>
   </div>

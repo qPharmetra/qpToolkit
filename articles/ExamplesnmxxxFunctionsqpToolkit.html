@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.3</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
       <h1 data-toc-skip>qpToolkit Examples for nm_xxx Functions</h1>
                         <h4 class="author">Klaas Prins</h4>
             
-            <h4 class="date">2020-05-05</h4>
+            <h4 class="date">2020-05-11</h4>
       
       
       <div class="hidden name"><code>ExamplesnmxxxFunctionsqpToolkit.Rmd</code></div>
@@ -557,9 +557,9 @@
 ## 
 ## nm.nzp&gt; nm.unzip(run = "example1", extension = ".cov",
 ## nm.nzp+ path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
-## path: /tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1 
-## file: /tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1/example1.cov 
-## call: 7z e /tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1/example1.cov.7z -o/tmp/RtmpTuZOdw/temp_libpath7337d5f9445/qpToolkit/NONMEM/example1 
+## path: /tmp/RtmpsDcIBG/temp_libpath3b45613857d3/qpToolkit/NONMEM/example1 
+## file: /tmp/RtmpsDcIBG/temp_libpath3b45613857d3/qpToolkit/NONMEM/example1/example1.cov 
+## call: 7z e /tmp/RtmpsDcIBG/temp_libpath3b45613857d3/qpToolkit/NONMEM/example1/example1.cov.7z -o/tmp/RtmpsDcIBG/temp_libpath3b45613857d3/qpToolkit/NONMEM/example1 
 ## 
 ## nm.nzp&gt; file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 ## [1] TRUE
@@ -725,10 +725,10 @@
 ## 28    5  QGNDR-2 -10195.277 -10197.794    2.51704   6.6349       1           0
 ## 29    5  V2AGE-5 -10195.277 -10195.878    0.60062   6.6349       1           0
 ## 30    5 V2GNDR-2 -10195.277 -10195.824    0.54635   6.6349       1           0
-## 31    7  CLAGE-1 -10195.277  -9671.863 -523.41471 -10.8280      -1           0
-## 32    7 CLGNDR-1 -10195.277  -9250.324 -944.95348 -10.8280      -1           0
-## 33    7  V1AGE-1 -10195.277  -9752.874 -442.40292 -10.8280      -1           0
-## 34    7 V1GNDR-1 -10195.277 -10169.003  -26.27446 -10.8280      -1           0
+## 31    6  CLAGE-1 -10195.277  -9671.863 -523.41471 -10.8280      -1           0
+## 32    6 CLGNDR-1 -10195.277  -9250.324 -944.95348 -10.8280      -1           0
+## 33    6  V1AGE-1 -10195.277  -9752.874 -442.40292 -10.8280      -1           0
+## 34    6 V1GNDR-1 -10195.277 -10169.003  -26.27446 -10.8280      -1           0
 ##        pvalue chosen direction
 ## 1  0.0000e+00      0         +
 ## 2  0.0000e+00      1         +
@@ -760,10 +760,10 @@
 ## 28 1.1262e-01      0         +
 ## 29 4.3834e-01      0         +
 ## 30 4.5981e-01      0         +
-## 31 0.0000e+00      0         -
-## 32 0.0000e+00      0         -
-## 33 0.0000e+00      0         -
-## 34 2.9600e-07      0         -
+## 31 0.0000e+00      0         +
+## 32 0.0000e+00      0         +
+## 33 0.0000e+00      0         +
+## 34 2.9600e-07      0         +
 ## 
 ## nm.pr.&gt; path %&gt;%
 ## nm.pr.+   nm.process.scm %&gt;% 
