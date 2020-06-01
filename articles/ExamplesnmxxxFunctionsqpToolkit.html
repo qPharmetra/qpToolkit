@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qpToolkit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
       <h1 data-toc-skip>qpToolkit Examples for nm_xxx Functions</h1>
                         <h4 class="author">Klaas Prins</h4>
             
-            <h4 class="date">2020-05-12</h4>
+            <h4 class="date">2020-06-01</h4>
       
       
       <div class="hidden name"><code>ExamplesnmxxxFunctionsqpToolkit.Rmd</code></div>
@@ -557,9 +557,9 @@
 ## 
 ## nm.nzp&gt; nm.unzip(run = "example1", extension = ".cov",
 ## nm.nzp+ path = file.path(getOption("qpExampleDir"),"example1"),quiet = FALSE)
-## path: /tmp/RtmpbnV6jT/temp_libpath3c0a1dc78003/qpToolkit/NONMEM/example1 
-## file: /tmp/RtmpbnV6jT/temp_libpath3c0a1dc78003/qpToolkit/NONMEM/example1/example1.cov 
-## call: 7z e /tmp/RtmpbnV6jT/temp_libpath3c0a1dc78003/qpToolkit/NONMEM/example1/example1.cov.7z -o/tmp/RtmpbnV6jT/temp_libpath3c0a1dc78003/qpToolkit/NONMEM/example1 
+## path: /tmp/Rtmp6huqAk/temp_libpath3cbb3aab18c4/qpToolkit/NONMEM/example1 
+## file: /tmp/Rtmp6huqAk/temp_libpath3cbb3aab18c4/qpToolkit/NONMEM/example1/example1.cov 
+## call: 7z e /tmp/Rtmp6huqAk/temp_libpath3cbb3aab18c4/qpToolkit/NONMEM/example1/example1.cov.7z -o/tmp/Rtmp6huqAk/temp_libpath3cbb3aab18c4/qpToolkit/NONMEM/example1 
 ## 
 ## nm.nzp&gt; file.exists( file.path(getOption("qpExampleDir"),"example1/example1.cov"))
 ## [1] TRUE
@@ -1167,8 +1167,12 @@
 ## 
 ## nm..20&gt; nmData2 = nm.insert.evid2amt0(data = nmData, ID, TIME, -EVID)
 ## 
-## nm..20&gt; tbl_df(nmData2[, c('ID','TIME','EVID','AMT','DV')])
-## # A tibble: 81 x 5
+## nm..20&gt; tbl_df(nmData2[, c('ID','TIME','EVID','AMT','DV')])</code></pre>
+<pre><code>## Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.
+## Please use `tibble::as_tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>## # A tibble: 81 x 5
 ##       ID  TIME  EVID   AMT    DV
 ##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ##  1     1     0     2     0     0
@@ -1186,7 +1190,7 @@
 <div id="nm-insert-dose-multiple-compartments" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-insert-dose-multiple-compartments" class="anchor"></a>nm.insert.dose.multiple.compartments</h2>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.insert.dose.multiple.compartments"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.insert.dose.multiple.compartments"</span>)</pre></body></html></div>
 <pre><code>## 
 ## nm....&gt; library(dplyr)
 ## 
@@ -1221,7 +1225,7 @@
 <div id="nm-remove-section" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nm-remove-section" class="anchor"></a>nm.remove.section</h2>
-<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.remove.section"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"nm.remove.section"</span>)</pre></body></html></div>
 <pre><code>## 
 ## nm.rm.&gt; nm.remove.section("EST"
 ## nm.rm.+    , read.mod("example1", path = getOption("qpExampleDir"), file.ext = ".ctl")
