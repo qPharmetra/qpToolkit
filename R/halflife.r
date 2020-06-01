@@ -1,29 +1,28 @@
 #' Calculates coefficients and exponents based on microconstants for 3-compartment IV popPK (post-hoc) parameter estimates
 #'
-#' @param ds          # select the dataset
-#' @param subjVar     # select the variable that represents the subject identifier
-#' @param Dose        # select the variables that represents the dose
-#' @param V1          # select the variables that represents the central volume of distribution
-#' @param k10         # select the variables that represents the microconstant k10
-#' @param k12         # select the variables that represents the microconstant k12
-#' @param k13         # select the variables that represents the microconstant k13
-#' @param k21         # select the variables that represents the microconstant k21
-#' @param k31         # select the variables that represents the microconstant k31
-#' @param nsig        # select the number of significant digits
-#' @return            # returns a data.frame with coefficients, exponents and derived parameters
-#' @importFrom        # rlang::enexprs() 
-#' @importFrom        # dplyr::select()
-#' @author            # Koen Jolling, Max Lagraauw
-#' @references        # Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
-#' @references        # Upton J Pharmacol Toxicol Methods. 2004 Jan-Feb;49(1):65-8.
-#'
+#' @param ds data frame
+#' @param subjVar name of the variable that represents the subject identifier
+#' @param Dose name of the variable that represents the dose
+#' @param V1 name of the variable that represents the central volume of distribution
+#' @param k10 name of the variable that represents the microconstant k10
+#' @param k12 name of the variable that represents the microconstant k12
+#' @param k13 name of the variable that represents the microconstant k13
+#' @param k21 name of the variable that represents the microconstant k21
+#' @param k31 name of the variable that represents the microconstant k31
+#' @param nsig the number of significant digits
+#' @return returns a data.frame with coefficients, exponents and derived parameters
+#' @importFrom rlang enexprs 
+#' @importFrom dplyr select
+#' @author Koen Jolling, Max Lagraauw
+#' @references Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
+#' @references Upton J Pharmacol Toxicol Methods. 2004 Jan-Feb;49(1):65-8.
+#' @export
 #' @examples
 #'
 #' X <- data
 #'
 #' ConvertPK.iv.Vk.3comp(x)
 #'
-#' @export
 #' 
 
 ConvertPK.iv.Vk.3comp  = function(ds, subjVar="ID", Dose="DOSE", V1="V1", k10="K10", k12="K12", k21="K21", k13="K13", k31="K31", nsig=3, ...){
@@ -138,28 +137,27 @@ ConvertPK.iv.Vk.3comp  = function(ds, subjVar="ID", Dose="DOSE", V1="V1", k10="K
 
 #' Calculates coefficients and exponents based on microconstants for 2-compartment IV popPK (post-hoc) parameter estimates
 #'
-#' @param ds          # select the dataset
-#' @param subjVar     # select the variable that represents the subject identifier
-#' @param Dose        # select the variables that represents the dose
-#' @param V1          # select the variables that represents the central volume of distribution
-#' @param k10         # select the variables that represents the microconstant k10
-#' @param k12         # select the variables that represents the microconstant k12
-#' @param k21         # select the variables that represents the microconstant k21
-#' @param nsig        # select the number of significant digits
-#' @return            # returns a data.frame with coefficients, exponents and derived parameters
-#' @importFrom        # rlang::enexprs() 
-#' @importFrom        # dplyr::select()
-#' @author            # Koen Jolling, Max Lagraauw
-#' @references        # Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
-#' @references        # Toutain, P. L., Bousquet-Melou, A. Plasma terminal half-life. J. vet. Pharmacol.Therap. 27, 427-439
-#'
+#' @param ds data frame
+#' @param subjVar name of the variable that represents the subject identifier
+#' @param Dosename name of the variable that represents the dose
+#' @param V1  name of the variable that represents the central volume of distribution
+#' @param k10 name of the variable that represents the microconstant k10
+#' @param k12 name of the variable that represents the microconstant k12
+#' @param k21 name of the variable that represents the microconstant k21
+#' @param nsig the number of significant digits
+#' @return returns a data.frame with coefficients, exponents and derived parameters
+#' @importFrom rlang enexprs 
+#' @importFrom dplyr select
+#' @author Koen Jolling, Max Lagraauw
+#' @references Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
+#' @references Toutain, P. L., Bousquet-Melou, A. Plasma terminal half-life. J. vet. Pharmacol.Therap. 27, 427-439
+#' @export
 #' @examples
 #'
 #' X <- data
 #'
 #' ConvertPK.iv.Vk.2comp(x)
 #'
-#' @export
 #' 
 
 ConvertPK.iv.Vk.2comp  = function(ds, subjVar="ID", Dose="DOSE", V1="V1", k10="K10", k12="K12", k21="K21", nsig=3, ...){
@@ -252,28 +250,24 @@ ConvertPK.iv.Vk.2comp  = function(ds, subjVar="ID", Dose="DOSE", V1="V1", k10="K
 
 #' Calculates coefficients and exponents based on microconstants for 1-compartment IV popPK (post-hoc) parameter estimates
 #'
-#' @param ds          # select the dataset
-#' @param subjVar     # select the variable that represents the subject identifier
-#' @param Dose        # select the variables that represents the dose
-#' @param V1          # select the variables that represents the central volume of distribution
-#' @param k10         # select the variables that represents the microconstant k10
-#' @param nsig        # select the number of significant digits
-#' @return            # returns a data.frame with coefficients, exponents and derived parameters
-#' @importFrom        # rlang::enexprs() 
-#' @importFrom        # dplyr::select()
-#' @author            # Koen Jolling, Max Lagraauw
-#' @references        # Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
-#'
+#' @param ds data frame
+#' @param subjVar name of the variable that represents the subject identifier
+#' @param Dosename name of the variable that represents the dose
+#' @param V1  name of the variable that represents the central volume of distribution
+#' @param k10 name of the variable that represents the microconstant k10
+#' @param nsig the number of significant digits
+#' @return returns a data.frame with coefficients, exponents and derived parameters
+#' @importFrom rlang enexprs 
+#' @importFrom dplyr select
+#' @author Koen Jolling, Max Lagraauw
+#' @references Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
+#' @export
 #' @examples
 #'
 #' X <- data
 #'
 #' ConvertPK.iv.Vk.1comp(x)
 #'
-#' @export
-#' 
-
-
 
 ConvertPK.iv.Vk.1comp  = function(ds, subjVar="ID", Dose="DOSE", V1="V1", k10="K10", nsig=3, ...){
   

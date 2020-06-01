@@ -35,7 +35,7 @@ Imports:
   knitr,
   plyr,
   snowfall,
-  encode
+  readr
 Suggests:
   testthat,
   pkgdown,

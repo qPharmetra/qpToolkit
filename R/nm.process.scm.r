@@ -13,18 +13,17 @@ globalVariables(c('V1','V2','V3','V4','V5','V6','V7','V8','V9','Step','step','di
 #' @importFrom dplyr ungroup
 #' @importFrom dplyr mutate_at
 #' @importFrom magrittr %>%
+#' @importFrom readr read_fwf
 #' @examples
-#' library(encode)
 #' library(magrittr)
 #' library(dplyr)
 #' library(knitr)
 #' path = file.path(getOption("qpExampleDir"),"scm_example2")
 #' nm.process.scm(path)
-#' path %>%
 #'   nm.process.scm %>% 
 #'   filter(chosen == 1) %>%                      # summary
 #'   select(step, model, direction, pvalue) %>%
-#'   formalize %>%                                # labels as colum names
+#'   formalize %>%                                # labels as column names
 #'   decode %>%                                   # substitute guide values 
 #'   kable
 #'  # model:
@@ -37,98 +36,24 @@ nm.process.scm <- function (path, ...) {
   
   x <- readLines(file.path(path, 'scmlog.txt'))
   
-  # x[grepl('V1AGE-5', scm)]
-  #  "V1AGE-5          PVAL  -9746.45167-10176.09933            429.64766      6.63490    1        YES!  0.00e+000"
+  # step  model  ofvbase    ofvtest       dofv       goal  deltadf significant             pvalue chosen direction
+  #    1      1  CLAGE-5  -5494.546  -8791.872 3297.32607   6.6349       1           1 0.0000e+00      0         +
+  #    2      1 CLGNDR-2  -5494.546  -9557.268 4062.72165   6.6349       1           1 0.0000e+00      1         +
   
-  # x <- gsub('([0-9])-([0-9])','\\1 -\\2',x) # breaks for CLCRCL1-5
+  b <- grepl('Starting backward search',x)
+  stopifnot(sum(b) <= 1)
   
-  headers <- x[grepl('BASE OFV',x)]
-  locations <- regexpr('BASE OFV', headers)
-  start <- unique(locations)
-  if(length(start) != 1)stop("can't find consistent location of BASE OFV")
-  expression <- paste0('(^.{', start + 7, '})')
-  x <- sub(expression,'\\1 ',x)
-  x <- sub('chose n', 'chosen', x)
+  b <- cumsum(b)
   
-  updatetext <- function(x) {
-    x <- gsub("TEST OFV (DROP)", " TestOFV ", x, fixed = TRUE)
-    x <- gsub("BASE OFV", " BaseOFV", x)
-    x <- gsub("NEW OFV", " NewOFV", x)
-    x <- gsub(">", " ", x)
-    return(x)
-  }
+  f <- scm_search(x[b == 0], direction = "+")
+  b <- scm_search(x[b == 1], direction = "-")
   
-  x <- updatetext(x)
+  if(nrow(b)){
+    b$step <- b$step + max(f$step)
+    f <- bind_rows(f,b)
+  } 
   
-  skip <- c("Model", "--------------------", "CRITERION",
-            "BASE_MODEL_OFV", "CHOSEN_MODEL_OFV",
-            "Relations", "--------------------", "MODEL", "", "No")
-  
-  `%nin%` <- Negate(`%in%`)
-  
-  x <- read.table(textConnection(x), fill = TRUE, header = FALSE)
-  x <- x %>% filter(V9 !="" | V8!="" | V7!="") 
-  x <- x %>% filter(V1 %nin% skip) 
-  x <- x %>% mutate(Chosen = ifelse(grepl("-", V8), ifelse(grepl("e", V8), NA, V8), NA)) 
-  if(all(is.na(x$Chosen))) x$Chosen <- 0
-  x <- x %>% mutate(V9 = paste(V8, V9, sep=" "))
-  x <- x %>% mutate(V8 = ifelse(grepl("YES!", V8), "YES", ""))
-  x <- x %>% mutate(row = as.numeric(rownames(.)))
-  x <- x %>% mutate(Step = ifelse(
-      grepl("forward", V6), 
-      "Forward",
-      ifelse(
-        grepl(
-          "backward", V6), 
-          "Backward",
-          ifelse(
-            row==1, 
-            "Forward",
-            ifelse(
-              grepl("inside", V7), 
-              "Backward", 
-              NA
-            )
-          )
-        )
-      )
-    )
-  x <- x %>% mutate_at(vars(V3:V6),function(x)suppressWarnings(as.numeric(x)))
-  x <- x %>% rename(direction = Step)
-  x <- x %>% mutate(step = cumsum(!is.na(direction)))
-  x <- x %>% mutate(direction = locf(direction))
-  x <- x %>% mutate(Chosen = rev(locf(rev(Chosen))))
-  x <- x %>% mutate(Chosen = as.integer(V1 == sub('-','',Chosen)))
-  
-  x <- x %>% mutate(V1 = gsub("Parameter-covariate", "", V1, fixed = TRUE))
-  x <- x %>% mutate(V1 = gsub("Forward", "", V1))
-  x <- x %>% mutate(V7 = gsub("step:", "", V7, fixed = TRUE))
-  x <- x %>% mutate(V7 = gsub("inside", "", V7))
-  x <- x %>% filter(V1 != '')
-# if(!all(x$V2 == 'PVAL'))warning('expecting PVAL; seeing ',paste(unique(x$V2),collapse = ', '))
-  x <- x %>% select(-V2)
-  
-  x <- x %>% select(step, V1, V3, V4, V5, V6, V7, V8, V9, Chosen, direction)
-  names(x) <- c("step", "model", "ofvbase", "ofvtest", "dofv", "goal", "deltadf", "significant", "pvalue", "chosen", "direction")
-  text2decimal <- function (x) as.numeric(sub("^[^0-9.+-]*([0-9.eE+-]+).*$", "\\1", as.character(x)))
-  x <- x %>% mutate(pvalue = text2decimal(pvalue))
-  #x <- x %>% mutate(pvalue = readr::parse_number(pvalue)) 
-  x <- x %>% mutate(deltadf = suppressWarnings(as.numeric(deltadf))) 
-  # x <- x %>% mutate(
-  #   pvalue = ifelse(
-  #     as.numeric(pvalue) > 0.9999, 
-  #     "> 0.9999",
-  #     ifelse(
-  #       as.numeric(pvalue)<0.0001, 
-  #       "< 0.0001",
-  #       as.character(signif(as.numeric(pvalue), digits = digits))
-  #     )
-  #   )
-  # )
-  x <- x %>% mutate(significant = ifelse(significant == 'YES',1,0))
-  x <- x %>% mutate(direction = sub('Forward','+', direction))
-  x <- x %>% mutate(direction = sub('Backward','-', direction))
-                              
+  x <- f
   
   attr(x$step, 'label') <- 'Step'
   attr(x$model, 'label') <- 'Model'
@@ -138,13 +63,105 @@ nm.process.scm <- function (path, ...) {
   attr(x$goal, 'label') <- 'Reference Delta Objective Function Value'
   attr(x$deltadf, 'label') <- 'Delta Degrees of Freedom'
   attr(x$significant, 'label') <- 'Significant'
-  attr(x$significant, 'guide') <- '//0/no//1/yes//'
+  attr(x$significant, 'guide') <- list(no = 0, yes = 1)
   attr(x$pvalue, 'label') <- 'Test P-value'
   attr(x$chosen, 'label') <- 'Effect Was Selected'
-  attr(x$chosen, 'guide') <- '//0/no//1/yes//'
+  attr(x$chosen, 'guide') <- list(no = 0, yes = 1)
   attr(x$direction, 'label') <- 'Search Type'
-  attr(x$direction, 'guide') <- '//+/Addition//-/Deletion//'
+  attr(x$direction, 'guide') <- list(Addition = '+', Deletion = '-')
   class(x) <- union('decorated', class(x))
   class(x) <- union('scm', class(x))
   return(x)
 }
+
+scm_search <- function(x, direction, ...){
+  step <- grepl('^MODEL', x)
+  step <- cumsum(step)
+  x <- x[step > 0]
+  step <- step[step > 0]
+  x <- split(x, f = step)
+  x <- lapply(x, scm_step, direction = direction, ...)
+  for(s in seq_along(x)){
+    if(nrow(x[[s]])) x[[s]]$step <- s
+  }
+  x <- do.call(bind_rows, x, ...)
+  x
+}
+  
+  
+scm_step <- function(x, direction, ...){
+  
+  chosen <- grepl('Parameter-covariate relation', x)
+  chosen <- cumsum(chosen)
+  stopifnot(all(chosen <= 1))
+  select <- scm_chosen(x[chosen == 1])
+  
+  y <- scm_table(x[chosen == 0], direction = direction, ...)
+  
+  if(nrow(y)){
+    y$chosen[y$model == select] <- 1
+    stopifnot(sum(y$chosen) <= 1)
+  }
+  y
+}
+
+scm_table <- function(x, direction, ...){
+  x <- x[x != '']             # can't be empty
+  x <- x[!grepl('^\\s', x)]   # can't start with whitespace
+  x <- x[!grepl('^-', x)]     # can't start with dash
+  x <- x[!grepl('MODEL', x)]  # drop header, expect 10 columns
+  if(length(x) == 0) return(
+    data.frame(
+      step = integer(0),
+      model = character(0),
+      ofvbase = numeric(0),
+      ofvtest = numeric(0),
+      dofv = numeric(0), 
+      goal = numeric(0),
+      deltadf = integer(0), 
+      significant = integer(0),
+      pvalue = numeric(0), 
+      chosen = integer(0), 
+      direction = character(0)
+    )
+  )
+  if(length(x) == 1) x <- paste0(x,'\n')
+  z <- read_fwf(
+    x,
+    col_positions = fwf_positions(
+      col_names = c( 
+        'model','test',  'ofvbase',  'ofvtest',  
+        'dofv','gt' , 'goal',  'deltadf',
+        'significant', 'pvalue'
+      ),
+      start = c(1, 18, 22, 35, 48, 69, 72, 82, 87, 99),
+      end =   c(   17, 21, 34, 47, 68, 71, 81, 86, 98, NA)
+    ),
+    col_types = c('ccnnncnicn')
+  )
+  
+  z <- data.frame(z)
+  z$gt <- NULL
+  z$step <- 0L
+  z$chosen <- 0L
+  z$direction <- direction
+  z <- z[,c(
+    'step','model','ofvbase','ofvtest',
+    'dofv','goal','deltadf','significant',
+    'pvalue', 'chosen','direction'
+  )]
+  z$significant <- as.integer(!is.na(z$significant))
+  z
+}
+
+
+scm_chosen <- function(x, ...){
+  if(!length(x)) return('')
+  x <- x[[1]]
+  x <- sub('[^:]+: +','', x)
+  x <- sub('-','', x)
+  x
+}
+
+
+
