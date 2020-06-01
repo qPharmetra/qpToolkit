@@ -9,3 +9,5 @@
 index.lock
 .info$
 ^data-raw$
+^inst/SCMs
+^R/qP_halflife_calculation_IVpopPKparameters.r
