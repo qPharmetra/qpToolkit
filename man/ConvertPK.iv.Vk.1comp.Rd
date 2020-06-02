@@ -15,20 +15,20 @@ ConvertPK.iv.Vk.1comp(
 )
 }
 \arguments{
-\item{ds}{# select the dataset}
+\item{ds}{data frame}
 
-\item{subjVar}{# select the variable that represents the subject identifier}
+\item{subjVar}{name of the variable that represents the subject identifier}
 
-\item{Dose}{# select the variables that represents the dose}
+\item{V1}{name of the variable that represents the central volume of distribution}
 
-\item{V1}{# select the variables that represents the central volume of distribution}
+\item{k10}{name of the variable that represents the microconstant k10}
 
-\item{k10}{# select the variables that represents the microconstant k10}
+\item{nsig}{the number of significant digits}
 
-\item{nsig}{# select the number of significant digits}
+\item{Dosename}{name of the variable that represents the dose}
 }
 \value{
-# returns a data.frame with coefficients, exponents and derived parameters
+returns a data.frame with coefficients, exponents and derived parameters
 }
 \description{
 Calculates coefficients and exponents based on microconstants for 1-compartment IV popPK (post-hoc) parameter estimates
@@ -41,8 +41,8 @@ ConvertPK.iv.Vk.1comp(x)
 
 }
 \references{
-# Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
+Dennis Fisher & Steven Shafer NONMEM Workshop - Basic Concepts (2007)
 }
 \author{
-# Koen Jolling, Max Lagraauw
+Koen Jolling, Max Lagraauw
 }
