@@ -141,7 +141,7 @@ plot.fit <- function(x, ..., newFunc,
   if(x$method == "residuals" & !mnplot) yLimits = range(c(x$obsData$partres), na.rm = TRUE)
 
   ## scales
-  myXscale = myYscale = list(cex = label.cex)
+  myXscale = myYscale = list(log = FALSE, cex = label.cex)
   if(logY) myYscale = list(log = 10, cex = label.cex)
   if(logX) myXscale = list(log = 10, cex = label.cex)
   myScales = list(x = myXscale, y = myYscale)
@@ -199,10 +199,10 @@ plot.fit <- function(x, ..., newFunc,
            yup  = yup[mySubs]
            ylo  = ylo[mySubs]
         }
-        xpar = transform_log10(xpar, lgx)
-        ypar = transform_log10(ypar, lgy)
-        ylo  = transform_log10(ylo, lgy)
-        yup  = transform_log10(yup, lgy)
+        xpar = transform_log10(xpar, log = lgx)
+        ypar = transform_log10(ypar, log = lgy)
+        ylo  = transform_log10(ylo, log = lgy)
+        yup  = transform_log10(yup, log = lgy)
 
       ## partial residuals
       lpoints(xpar, ypar, cex = 2, col = pc)

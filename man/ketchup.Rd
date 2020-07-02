@@ -4,7 +4,9 @@
 \name{ketchup}
 \alias{ketchup}
 \title{ketchup}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 ketchup
 }

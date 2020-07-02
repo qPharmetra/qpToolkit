@@ -4,7 +4,9 @@
 \name{teal}
 \alias{teal}
 \title{teal}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 teal
 }

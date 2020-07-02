@@ -1,7 +1,7 @@
 Package: qpToolkit
 Type: Package
 Title: qPharmetra R Tools
-Version: 0.2.5
+Version: 0.2.6
 Authors@R: as.person(c(
     "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
     "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
@@ -35,13 +35,15 @@ Imports:
   knitr,
   plyr,
   snowfall,
-  readr
+  readr,
+  rlang
 Suggests:
   testthat,
   pkgdown,
   covr,
   GGally,
-  xtable
-RoxygenNote: 7.0.2
+  xtable,
+  yamlet
+RoxygenNote: 7.1.0
 Encoding: UTF-8
 LazyData: true

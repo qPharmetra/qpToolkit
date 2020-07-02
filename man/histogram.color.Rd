@@ -4,7 +4,9 @@
 \name{histogram.color}
 \alias{histogram.color}
 \title{histogram.color (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 histogram.color
 }

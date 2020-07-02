@@ -4,7 +4,11 @@
 \name{blue}
 \alias{blue}
 \title{blue}
-\format{An object of class \code{character} of length 10.}
+\format{
+An object of class \code{character} of length 10.
+
+An object of class \code{character} of length 10.
+}
 \usage{
 blue
 

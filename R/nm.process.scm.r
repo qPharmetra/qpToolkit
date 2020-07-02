@@ -14,17 +14,19 @@ globalVariables(c('V1','V2','V3','V4','V5','V6','V7','V8','V9','Step','step','di
 #' @importFrom dplyr mutate_at
 #' @importFrom magrittr %>%
 #' @importFrom readr read_fwf
+#' @importFrom readr fwf_positions
 #' @examples
 #' library(magrittr)
 #' library(dplyr)
 #' library(knitr)
+#' library(yamlet)
 #' path = file.path(getOption("qpExampleDir"),"scm_example2")
 #' nm.process.scm(path)
-#'   nm.process.scm %>% 
+#' nm.process.scm(path) %>% 
 #'   filter(chosen == 1) %>%                      # summary
 #'   select(step, model, direction, pvalue) %>%
-#'   formalize %>%                                # labels as column names
-#'   decode %>%                                   # substitute guide values 
+#'   alias %>%                                    # labels as column names
+#'   resolve %>%                                  # substitute guide values 
 #'   kable
 #'  # model:
 #'  path %>% nm.process.scm %>% filter(chosen == 1) %>%
@@ -45,8 +47,8 @@ nm.process.scm <- function (path, ...) {
   
   b <- cumsum(b)
   
-  f <- scm_search(x[b == 0], direction = "+")
-  b <- scm_search(x[b == 1], direction = "-")
+  f <- scm_search(x[b == 0], direction = 1)
+  b <- scm_search(x[b == 1], direction = -1)
   
   if(nrow(b)){
     b$step <- b$step + max(f$step)
@@ -68,7 +70,7 @@ nm.process.scm <- function (path, ...) {
   attr(x$chosen, 'label') <- 'Effect Was Selected'
   attr(x$chosen, 'guide') <- list(no = 0, yes = 1)
   attr(x$direction, 'label') <- 'Search Type'
-  attr(x$direction, 'guide') <- list(Addition = '+', Deletion = '-')
+  attr(x$direction, 'guide') <- list(Addition = 1, Deletion = -1)
   class(x) <- union('decorated', class(x))
   class(x) <- union('scm', class(x))
   return(x)

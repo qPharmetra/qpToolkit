@@ -4,7 +4,9 @@
 \name{PI.real.med.col}
 \alias{PI.real.med.col}
 \title{PI.real.med.col (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 PI.real.med.col
 }

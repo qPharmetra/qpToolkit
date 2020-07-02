@@ -8,7 +8,7 @@ nm.unzip(
   run,
   extension = ".xml",
   filename = paste(run, extension, sep = ""),
-  path = file.path(getOption("nmDir"), run),
+  path = file.path(getOption("nmDir", ""), run),
   tmpdir = tempfile("subdir"),
   temp = FALSE,
   outdir = ifelse(temp, tmpdir, path),
@@ -56,10 +56,7 @@ Many large files like XML output and covariance matrices are zipped by (qPharmet
  operate well this function unzips these files.  The unzip call is pulled from the system environment
  variable UNZIP_CALL on startup, or defaulted as stated below.  the \%s in the call is replaced with the
  basename (no extension) of the file to unzip.  The unzip call can be modified by changing the
- option unzip.call.
- 
- In fact, you need only specify target and command, i.e. what you expect and how
- you expect to get it. Paths are relative to the current directory.
+ option unzip.call.  Paths are specified relative to the current directory.
 }
 \examples{
 file.exists( file.path(getOption("qpExampleDir"),"example1"))

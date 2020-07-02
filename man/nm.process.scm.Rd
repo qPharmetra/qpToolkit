@@ -21,13 +21,14 @@ Read and process SCM output file such that the output can be directly copied int
 library(magrittr)
 library(dplyr)
 library(knitr)
+library(yamlet)
 path = file.path(getOption("qpExampleDir"),"scm_example2")
 nm.process.scm(path)
-  nm.process.scm \%>\% 
+nm.process.scm(path) \%>\% 
   filter(chosen == 1) \%>\%                      # summary
   select(step, model, direction, pvalue) \%>\%
-  formalize \%>\%                                # labels as column names
-  decode \%>\%                                   # substitute guide values 
+  alias \%>\%                                    # labels as column names
+  resolve \%>\%                                  # substitute guide values 
   kable
  # model:
  path \%>\% nm.process.scm \%>\% filter(chosen == 1) \%>\%

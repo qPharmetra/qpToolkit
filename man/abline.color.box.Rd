@@ -4,7 +4,9 @@
 \name{abline.color.box}
 \alias{abline.color.box}
 \title{abline.color.box (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 abline.color.box
 }

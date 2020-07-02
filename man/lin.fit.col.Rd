@@ -4,7 +4,9 @@
 \name{lin.fit.col}
 \alias{lin.fit.col}
 \title{lin.fit.col (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 lin.fit.col
 }

@@ -4,7 +4,9 @@
 \name{obs.color}
 \alias{obs.color}
 \title{obs.color (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 obs.color
 }

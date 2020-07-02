@@ -4,7 +4,9 @@
 \name{qp.colors}
 \alias{qp.colors}
 \title{qPharmetra Colors}
-\format{An object of class \code{character} of length 22.}
+\format{
+An object of class \code{character} of length 22.
+}
 \usage{
 qp.colors
 }

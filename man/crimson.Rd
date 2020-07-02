@@ -4,7 +4,9 @@
 \name{crimson}
 \alias{crimson}
 \title{crimson}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 crimson
 }
