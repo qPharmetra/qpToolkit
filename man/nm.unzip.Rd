@@ -51,7 +51,7 @@ nm.unzip(
 (invisible) path to the unzipped file: especially useful if temp is true.
 }
 \description{
-Many large files like XML outpout and covariance matrices are zipped by (qPharmetra's
+Many large files like XML output and covariance matrices are zipped by (qPharmetra's
  tweaked version of) PsN. To enable the parsing function of the \code{nm.xxx} domain to
  operate well this function unzips these files.  The unzip call is pulled from the system environment
  variable UNZIP_CALL on startup, or defaulted as stated below.  the \%s in the call is replaced with the
