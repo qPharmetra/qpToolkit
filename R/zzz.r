@@ -26,11 +26,11 @@
 }
 
 .onAttach <- function(libname, pkgname){
-  packageStartupMessage(qP.welcome(Sys.getenv("USERNAME")))
-  packageStartupMessage(paste("package path = ", path.package("qpToolkit")))
+  #packageStartupMessage(qP.welcome(Sys.getenv("USERNAME")))
+  #packageStartupMessage(paste("package path = ", path.package("qpToolkit")))
   #packageStartupMessage(paste(R.installation.validation()$IQ.message))
-  packageStartupMessage("Installation Qualification disabled.  Unvalidated System.")
-  packageStartupMessage("setting stringsAsFactors to FALSE as qPharmetra default.")
+  #packageStartupMessage("Installation Qualification disabled.  Unvalidated System.")
+  #packageStartupMessage("setting stringsAsFactors to FALSE as qPharmetra default.")
   if(getOption("stringsAsFactors")) {
      options(stringsAsFactors = FALSE)
   }

@@ -1,3 +1,4 @@
+globalVariables(c('CL','fracA', 'fracB', 'fracC', 'k10', 'k12', 'k13', 'k21', 'k31'))
 #' Convert Micro Parameters to Macro Parameters
 #' 
 #' Conditionally converts a list of micro parameters to macro parameters

@@ -13,13 +13,13 @@ editor_options:
 
 
 ```{r, include=F}
-library(qpToolkit)
 library(plyr)
+library(qpToolkit)
 library(knitr)
 library(ggplot2)
 library(magrittr)
 library(dplyr)
-library(encode)
+library(yamlet)
 
 # path to examples NONMEM folder
 # nm.path = file.path(getOption("qpExampleDir"))
@@ -163,8 +163,8 @@ path %>%
   nm.process.scm %>%
   filter(chosen == 1) %>%
   select(step, model, direction, pvalue) %>%
-  formalize %>%
-  decode %>%
+  alias %>%
+  resolve %>%
   kable
 
 cat("\n#### Model Building Steps \n")
@@ -172,8 +172,8 @@ path %>%
   nm.process.scm %>%
   #filter(chosen == 1) %>%
   #select(step, model, direction, pvalue) %>%
-  formalize %>%
-  decode %>%
+  alias %>%
+  resolve %>%
   kable
 
 
