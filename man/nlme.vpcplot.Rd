@@ -14,8 +14,8 @@
   xLimits,
   yLimits,
   logY = FALSE,
-  color.style = list(observed = rgb(0.2, 0.2, 0.2), central = blue[10], inner =
-    blue[4], outer = blue[1]),
+  color.style = list(observed = rgb(0.2, 0.2, 0.2), central = blue[10], inner = blue[4],
+    outer = blue[1]),
   symbol = list(pch = 15, cex = 0.5),
   aspect = 1,
   cex.label = 1.5,

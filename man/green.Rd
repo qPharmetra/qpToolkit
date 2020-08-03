@@ -4,11 +4,7 @@
 \name{green}
 \alias{green}
 \title{green}
-\format{
-An object of class \code{character} of length 10.
-
-An object of class \code{character} of length 10.
-}
+\format{An object of class \code{character} of length 10.}
 \usage{
 green
 

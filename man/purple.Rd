@@ -4,11 +4,7 @@
 \name{purple}
 \alias{purple}
 \title{purple}
-\format{
-An object of class \code{character} of length 10.
-
-An object of class \code{character} of length 10.
-}
+\format{An object of class \code{character} of length 10.}
 \usage{
 purple
 

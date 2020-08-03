@@ -36,6 +36,7 @@ x = data.frame(
 )
 
 library(pmxTools)
+library(magrittr)
 # 3 CMT
 x \%>\%  transform_micro( calc_derived )
 # 2 CMT

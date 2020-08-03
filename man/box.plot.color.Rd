@@ -4,9 +4,7 @@
 \name{box.plot.color}
 \alias{box.plot.color}
 \title{box.plot.color (Autograph)}
-\format{
-An object of class \code{character} of length 1.
-}
+\format{An object of class \code{character} of length 1.}
 \usage{
 box.plot.color
 }

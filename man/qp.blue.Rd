@@ -4,11 +4,7 @@
 \name{qp.blue}
 \alias{qp.blue}
 \title{qp.blue}
-\format{
-An object of class \code{character} of length 1.
-
-An object of class \code{character} of length 1.
-}
+\format{An object of class \code{character} of length 1.}
 \usage{
 qp.blue
 

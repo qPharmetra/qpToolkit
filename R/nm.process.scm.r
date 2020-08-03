@@ -127,7 +127,9 @@ scm_table <- function(x, direction, ...){
       direction = character(0)
     )
   )
-  if(length(x) == 1) x <- paste0(x,'\n')
+  #if(length(x) == 1) x <- paste0(x,'\n')
+  # paste unconditionally to work around error in readr 1.1.1 (1.3.1 okay)
+  x <- paste0(x,'\n') 
   z <- read_fwf(
     x,
     col_positions = fwf_positions(

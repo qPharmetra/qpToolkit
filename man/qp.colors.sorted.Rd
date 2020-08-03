@@ -4,9 +4,7 @@
 \name{qp.colors.sorted}
 \alias{qp.colors.sorted}
 \title{qP Colors Sorted}
-\format{
-An object of class \code{character} of length 22.
-}
+\format{An object of class \code{character} of length 22.}
 \usage{
 qp.colors.sorted
 }

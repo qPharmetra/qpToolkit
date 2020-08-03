@@ -4,9 +4,7 @@
 \name{pred.color}
 \alias{pred.color}
 \title{pred.color (Autograph)}
-\format{
-An object of class \code{character} of length 1.
-}
+\format{An object of class \code{character} of length 1.}
 \usage{
 pred.color
 }

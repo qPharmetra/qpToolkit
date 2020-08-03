@@ -4,9 +4,7 @@
 \name{yellow}
 \alias{yellow}
 \title{yellow}
-\format{
-An object of class \code{character} of length 1.
-}
+\format{An object of class \code{character} of length 1.}
 \usage{
 yellow
 }

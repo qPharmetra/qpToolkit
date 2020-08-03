@@ -22,6 +22,7 @@ Returns CL, V1, and (conditionally) Q2, V2, Q3, and V3.
 \examples{
 
 library(pmxTools)
+library(magrittr)
 list(
     V1  =  c(2, 3),
     k10 = c(1.2, 1.3), 

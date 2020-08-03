@@ -4,9 +4,7 @@
 \name{mauve}
 \alias{mauve}
 \title{mauve}
-\format{
-An object of class \code{character} of length 1.
-}
+\format{An object of class \code{character} of length 1.}
 \usage{
 mauve
 }
