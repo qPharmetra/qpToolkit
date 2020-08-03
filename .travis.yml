@@ -1,6 +1,22 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
+language: r
+jobs:
+  include:
+    - r: oldrel
+    - r: release
+    - r: 3.4.4
+      repos:
+        CRAN: "https://mran.microsoft.com/snapshot/2018-04-23"
+    - r: 3.5.1
+      repos:
+        CRAN: "https://mran.microsoft.com/snapshot/2018-12-20"
+    - r: 3.5.2
+      repos:
+        CRAN: "https://mran.microsoft.com/snapshot/2019-03-11"        
+    - r: 3.6.0
+      repos:
+        CRAN: "https://mran.microsoft.com/snapshot/2019-09-10"
 sudo: false
 cache: packages
 
