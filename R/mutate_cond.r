@@ -6,7 +6,7 @@
 #' @param envir environment - this parameter is best left alone, as the default setting allows use as standalone as well as in piping calls
 #' @return the dataset with the conditional mutation
 #' @importFrom dplyr mutate
-#' @importFrom magrittr `%>%`
+#' @importFrom magrittr %>%
 #' @export mutate_cond
 #' @examples
 #' library(magrittr)

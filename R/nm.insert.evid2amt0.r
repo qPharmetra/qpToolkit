@@ -7,7 +7,7 @@ globalVariables('EVID')
 #' @return Data frame with an EVID = 2 and AMT = 0 record preceding each AMT>0 record
 #' @export nm.insert.evid2amt0
 #' @importFrom lazyeval lazy_dots
-#' @importFrom magrittr `%>%`
+#' @importFrom magrittr %>%
 #' @importFrom dplyr filter mutate arrange bind_rows
 #' @seealso \code{\link{nm.insert.dose.multiple.compartments}}
 #' @examples

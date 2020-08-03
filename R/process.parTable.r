@@ -1,3 +1,4 @@
+globalVariables('logit.inv')
 #' Format parameter estimate table
 #' @description Process parameter table for inclusion into LaTeX, or MS Excel or Word
 #' @param nm output from \code{nm.params.table}

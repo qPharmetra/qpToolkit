@@ -8,11 +8,12 @@ globalVariables(c('CL','fracA', 'fracB', 'fracC', 'k10', 'k12', 'k13', 'k21', 'k
 #' @param ... named parameters V1, k10, and (conditionally) k12, k21, k13, k31
 #' @param drop exclude micro parameters from the result
 #' @return a list
-#' @importFrom magrittr `%<>%`
+#' @importFrom magrittr %<>%
 #' @export
 #' @examples
 #' 
 #' library(pmxTools)
+#' library(magrittr)
 #' list(
 #'     V1  =  c(2, 3),
 #'     k10 = c(1.2, 1.3), 
@@ -80,7 +81,7 @@ micro2macro <- function( ..., drop = TRUE ){
 #' @param FUN a list-based function to transform micro parameters, e.g., pmxTools::calc_derived()
 #' @param digits places of significance for numerics, or NULL for raw results
 #' @param ... passed to FUN
-#' @importFrom magrittr `%<>%`
+#' @importFrom magrittr %<>%
 #' @return data.frame
 #'
 #' @examples 
@@ -96,6 +97,7 @@ micro2macro <- function( ..., drop = TRUE ){
 #' )
 #' 
 #' library(pmxTools)
+#' library(magrittr)
 #' # 3 CMT
 #' x %>%  transform_micro( calc_derived )
 #' # 2 CMT
