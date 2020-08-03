@@ -6,8 +6,9 @@
 ^\.Rprofile$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-index.lock
+.git/index.lock
 .info$
 ^data-raw$
 ^inst/SCMs
 ^R/qP_halflife_calculation_IVpopPKparameters.r
+.git$
