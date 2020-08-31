@@ -1,7 +1,7 @@
 Package: qpToolkit
 Type: Package
 Title: qPharmetra R Tools
-Version: 0.2.7
+Version: 0.2.8
 Authors@R: as.person(c(
     "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
     "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
@@ -43,7 +43,7 @@ Suggests:
   covr,
   GGally,
   xtable,
-  yamlet,
+  yamlet (>= 0.4.8),
   pmxTools
 RoxygenNote: 7.1.0
 Encoding: UTF-8
