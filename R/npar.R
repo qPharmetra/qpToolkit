@@ -96,7 +96,7 @@ get.theta.npar = function(model, path=getOption("nmDir"),prefix = 'run', ...){
 #' @export
 #' @examples
 #' 
-#' \dontrun{\donttest{{
+#' \dontrun{\donttest{
 #' models = c(101,102,104:109,111,115, 141:145, 147:149, 151, 153:156)
 #' get.omega.npar(models)
 #' }}

@@ -23,6 +23,14 @@ Calculates the number of OMEGA parameters
 that are estimated (and not fixed) 
 in the NONMEM model file.
 }
+\examples{
+
+\dontrun{\donttest{
+models = c(101,102,104:109,111,115, 141:145, 147:149, 151, 153:156)
+get.omega.npar(models)
+}}
+
+}
 \author{
 Koen Jolling
 }
