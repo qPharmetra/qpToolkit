@@ -4,7 +4,9 @@
 \name{magenta}
 \alias{magenta}
 \title{magenta}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 magenta
 }

@@ -4,7 +4,9 @@
 \name{PI.real.up.col}
 \alias{PI.real.up.col}
 \title{PI.real.up.col (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 PI.real.up.col
 }

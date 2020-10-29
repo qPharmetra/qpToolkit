@@ -4,7 +4,9 @@
 \name{PI.ci.med.arcol}
 \alias{PI.ci.med.arcol}
 \title{PI.ci.med.arcol (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 PI.ci.med.arcol
 }

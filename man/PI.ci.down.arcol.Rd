@@ -4,7 +4,9 @@
 \name{PI.ci.down.arcol}
 \alias{PI.ci.down.arcol}
 \title{PI.ci.down.arcol (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 PI.ci.down.arcol
 }

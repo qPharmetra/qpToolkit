@@ -4,7 +4,9 @@
 \name{smooth.color}
 \alias{smooth.color}
 \title{smooth.color (Autograph)}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 smooth.color
 }
