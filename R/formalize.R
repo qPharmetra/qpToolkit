@@ -16,11 +16,13 @@ formalize <- function(x, ...)UseMethod('formalize')
 #' Formalizes data.frame.
 #' Replaces column names with labels, where present.
 #' Stores column name as 'alias' attribute.
+#' Deprecated in favor of yamlet::alias().
 #' 
 #' @param x data.frame
 #' @param ... passed arguments
 #' @export
 #' @family formalize
+#' @keywords internal
 #' @return formalized data.frame
 #' @examples
 #' x <- data.frame(x = 1:10, y = 1:10, z = 1:10)

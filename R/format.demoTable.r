@@ -3,7 +3,7 @@
 #' @param x output from \code{\link{tabSummarize}} of class \code{demoTable}
 #' @param \dots ignored
 #' @param formula the same formula as used to create the \code{tabSummarize} output
-#' @return Table with summarized data formatted for inclusion in LaTeX
+#' @return Table with summarized data formatted for inclusion in LaTeX (character matrix)
 #' @seealso \code{\link{tabStats}}, \code{\link{tabSummarize}}
 #' @note This function is primarily used for demographics tables
 #' @export
@@ -19,7 +19,9 @@
 #'  tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3),
 #'   formula = myFormula
 #' )
-#' print(my.formatted.demoTable
+#' library(xtable)
+#' my.xtable <- xtable(my.formatted.demoTable)
+#' print(my.xtable
 #'   , sanitize.text.function = identity
 #'   , booktabs = TRUE
 #' )

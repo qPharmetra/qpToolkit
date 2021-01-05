@@ -46,3 +46,4 @@ file.remove(file.path(getOption("qpExampleDir"),"run11","run11.cov")) ## clean t
 \seealso{
 \code{\link{nm.covmat.extract}}, \code{\link{get.covmat}}
 }
+\keyword{internal}

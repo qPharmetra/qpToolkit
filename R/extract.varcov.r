@@ -17,6 +17,7 @@
 #' used (e.g. "First Order Conditional Estimation with Interaction").  That named item will be a
 #' data frame containing the covariance matrix.
 #' @importFrom Hmisc unPaste
+#' @keywords internal
 #' @export extract.varcov
 #' @seealso \code{\link{nm.covmat.extract}}, \code{\link{get.covmat}}
 #' @examples

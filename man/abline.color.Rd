@@ -17,6 +17,7 @@ abline.color (Autograph)
 Other qpcolors: 
 \code{\link{PI.ci.down.arcol}},
 \code{\link{PI.ci.med.arcol}},
+\code{\link{PI.ci.up.arcol}},
 \code{\link{PI.real.down.col}},
 \code{\link{PI.real.med.col}},
 \code{\link{PI.real.up.col}},
@@ -38,6 +39,7 @@ Other qpcolors:
 \code{\link{ketchup}},
 \code{\link{lime}},
 \code{\link{lin.fit.col}},
+\code{\link{loi.color}},
 \code{\link{magenta}},
 \code{\link{mauve}},
 \code{\link{obs.color}},
@@ -59,4 +61,4 @@ Other qpcolors:
 \code{\link{yellow}}
 }
 \concept{qpcolors}
-\keyword{datasets}
+\keyword{internal}

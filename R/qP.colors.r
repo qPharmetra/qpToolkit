@@ -71,7 +71,9 @@
 
 #' qp.blue
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
+
 'qp.blue'
 # foo <- Hmisc::Cs(
 #    qp.blue,
@@ -135,240 +137,288 @@
 # }
 #' qp.blue
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "qp.blue"
 
 #' qp.green
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "qp.green"
 
 #' blue
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "blue"
 
 #' green
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "green"
 
 #' red
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "red"
 
 #' purple
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "purple"
 
 #' gray
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "gray"
 
 #' blue
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "blue"
 
 #' green
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "green"
 
 #' red
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "red"
 
 #' purple
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "purple"
 
 #' lime
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "lime"
 
 #' apple
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "apple"
 
 #' emerald
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "emerald"
 
 #' teal
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "teal"
 
 #' cyan
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "cyan"
 
 #' cobalt
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "cobalt"
 
 #' indigo
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "indigo"
 
 #' violet
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "violet"
 
 #' pink
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "pink"
 
 #' magenta
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "magenta"
 
 #' crimson
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "crimson"
 
 #' ketchup
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "ketchup"
 
 #' orange
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "orange"
 
 #' amber
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "amber"
 
 #' yellow
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "yellow"
 
 #' brown
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "brown"
 
 #' olive
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "olive"
 
 #' steel
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "steel"
 
 #' mauve
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "mauve"
 
 #' taupe
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "taupe"
 
 #' obs.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "obs.color"
 
 #' loi.color (Autograph)
 #'
-#' @family qpcolors (Autograph)
+#' @family qpcolors 
+#' @keywords internal (Autograph)
 "loi.color"
 
 #' smooth.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "smooth.color"
 
 #' smooth.ci.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "smooth.ci.color"
 
 #' lin.fit.col (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "lin.fit.col"
 
 #' abline.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "abline.color"
 
 #' box.plot.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "box.plot.color"
 
 #' histogram.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "histogram.color"
 
 #' abline.color.box (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "abline.color.box"
 
 #' pred.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "pred.color"
 
 #' ipred.color (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "ipred.color"
 
 #' PI.ci.med.arcol (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "PI.ci.med.arcol"
 
 #' PI.real.med.col (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "PI.real.med.col"
 
 #' PI.real.down.col (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "PI.real.down.col"
 
 #' PI.real.up.col (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "PI.real.up.col"
 
 #' PI.ci.down.arcol (Autograph)
 #'
-#' @family qpcolors
+#' @family qpcolors 
+#' @keywords internal
 "PI.ci.down.arcol"
 
 #' PI.ci.up.arcol (Autograph)
 #'
-#' @family qpcolors (Autograph)
+#' @family qpcolors 
+#' @keywords internal (Autograph)
 "PI.ci.up.arcol"
