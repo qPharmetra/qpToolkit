@@ -5,6 +5,7 @@
 #' @param digits number of significant digits in output
 #' @param extra.blank.line a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility
 #' @param digits.categorical passed to \code{\link{tabStats}}
+#' @param na.rm passed to \code{\link{tabStats}}
 #' @return Table with summarized data, of class \code{demoTable}
 #' @seealso \code{\link{conDataFun1}},  \code{\link{conDataFun2}},  \code{\link{conDataFun3}},  \code{\link{catDataFun}},  \code{\link{tabStats}}
 #' @note This function is primarily used for demographics tables
@@ -32,7 +33,9 @@ tabSummarize <- function(  formula
                         , data
                         , digits = 3
                         , extra.blank.line = TRUE
-                        , digits.categorical = 1)
+                        , digits.categorical = 1
+                        , na.rm = FALSE
+                )
 {
   allX = all.vars(nlme::getResponseFormula(formula)[[2]])
   allY = all.vars(nlme::getCovariateFormula(formula)[[2]])
@@ -46,20 +49,16 @@ tabSummarize <- function(  formula
 
   YYY = lapply(allY, function(yyy, data) eval(as.name(yyy), data), data = data)
   names(YYY) = allY
-  theData = do.call("rbind"
-                    , lapply(1:length(YYY),
-                            function(z
-                                     , YYY
-                                     , BY
-                                     , extra.blank.line
-                                     , digits
-                                     , digits.categorical)
-                            {
+  theFunction = function(
+    z, YYY, BY, extra.blank.line, 
+    digits, digits.categorical, na.rm
+  ){
                               stats = tabStats(x = YYY[[z]]
                                                , BY = BY
                                                , parName = names(YYY)[z]
                                                , digits = digits
                                                , digits.categorical = digits.categorical
+                                               , na.rm = na.rm
                               )
                               if(extra.blank.line == TRUE)
                               {
@@ -69,12 +68,17 @@ tabSummarize <- function(  formula
                               }
                               return(stats)
                             }
-                            , YYY = YYY
-                            , BY = BY
-                            , extra.blank.line = extra.blank.line
-                            , digits = digits
-                            , digits.categorical = digits.categorical
-                    )
+  theData = do.call(
+    "rbind", 
+    lapply(1:length(YYY),
+      theFunction,
+      YYY = YYY,
+      BY = BY,
+      extra.blank.line = extra.blank.line,
+      digits = digits,
+      digits.categorical = digits.categorical,
+      na.rm = na.rm
+    )
   )
   row.names(theData) = 1 : nrow(theData)
 

@@ -4,7 +4,7 @@
 \alias{conDataFun1}
 \title{Summary: mean (SD)}
 \usage{
-conDataFun1(y, digits = 3, latex = FALSE, align.dot = FALSE)
+conDataFun1(y, digits = 3, latex = FALSE, align.dot = FALSE, na.rm = FALSE)
 }
 \arguments{
 \item{y}{numeric vector to summarize}
@@ -14,6 +14,8 @@ conDataFun1(y, digits = 3, latex = FALSE, align.dot = FALSE)
 \item{latex}{passed to \code{\link{formatted.signif}}}
 
 \item{align.dot}{passed to \code{\link{formatted.signif}}}
+
+\item{na.rm}{passed to \code{\link{mean}}, \code{\link{var}}}
 }
 \description{
 Summary: mean (SD)

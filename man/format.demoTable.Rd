@@ -14,7 +14,7 @@
 \item{formula}{the same formula as used to create the \code{tabSummarize} output}
 }
 \value{
-Table with summarized data formatted for inclusion in LaTeX
+Table with summarized data formatted for inclusion in LaTeX (character matrix)
 }
 \description{
 Format a tabulated summary for LaTeX
@@ -31,7 +31,9 @@ my.formatted.demoTable = format(
  tabSummarize(formula = myFormula, data = pkpdData[ok, ], digits = 3),
   formula = myFormula
 )
-print(my.formatted.demoTable
+library(xtable)
+my.xtable <- xtable(my.formatted.demoTable)
+print(my.xtable
   , sanitize.text.function = identity
   , booktabs = TRUE
 )

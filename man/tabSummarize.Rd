@@ -9,7 +9,8 @@ tabSummarize(
   data,
   digits = 3,
   extra.blank.line = TRUE,
-  digits.categorical = 1
+  digits.categorical = 1,
+  na.rm = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ tabSummarize(
 \item{extra.blank.line}{a logical indicating if an empty line needs to be inserted between two summaries to improve layout and legibility}
 
 \item{digits.categorical}{passed to \code{\link{tabStats}}}
+
+\item{na.rm}{passed to \code{\link{tabStats}}}
 }
 \value{
 Table with summarized data, of class \code{demoTable}

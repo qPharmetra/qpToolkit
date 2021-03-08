@@ -4,7 +4,7 @@
 \alias{conDataFun3}
 \title{Summary: (95\%.lower - 95\%.upper)}
 \usage{
-conDataFun3(y, digits = 3, latex = FALSE, align.dot = FALSE)
+conDataFun3(y, digits = 3, latex = FALSE, align.dot = FALSE, na.rm = FALSE)
 }
 \arguments{
 \item{y}{numeric vector to summarize}
@@ -14,6 +14,8 @@ conDataFun3(y, digits = 3, latex = FALSE, align.dot = FALSE)
 \item{latex}{passed to \code{\link{formatted.signif}}}
 
 \item{align.dot}{passed to \code{\link{formatted.signif}}}
+
+\item{na.rm}{passed to \code{\link{mean}}}
 }
 \description{
 Summary: (95\%.lower - 95\%.upper)

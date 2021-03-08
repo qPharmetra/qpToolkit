@@ -12,3 +12,5 @@
 ^inst/SCMs
 ^R/qP_halflife_calculation_IVpopPKparameters.r
 .git$
+goal.Rmd$
+^R/nonmem\.yaml

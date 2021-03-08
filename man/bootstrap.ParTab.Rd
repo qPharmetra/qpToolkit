@@ -2,7 +2,7 @@
 % Please edit documentation in R/bootstrap.parTab.r
 \name{bootstrap.ParTab}
 \alias{bootstrap.ParTab}
-\title{Create parameter table from NONMEM bootsrap}
+\title{Create Parameter Table from NONMEM Bootsrap}
 \usage{
 bootstrap.ParTab(
   bootstrap,
@@ -36,7 +36,7 @@ bootstrap.ParTab(
 A data.frame with the bootstrap estimates.
 }
 \description{
-Create parameter table from NONMEM bootsrap
+Creates parameter table from NONMEM bootstrap.
 }
 \examples{
 myBoot = read.bootstrap(

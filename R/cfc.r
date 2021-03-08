@@ -1,33 +1,38 @@
-# name: cfc
-# purpose: read data elements off of the Windows clipboard and put into an R vector, matrix,
-#       or data frame.
-# input: an appropriate selection of data elements must have been copied to the Windows clipboard
-#       (e.g., using ctrl+c), the type of object to create (vector, matrix, data frame), whether
-#       x
-# output: a vector, matrix, or data frame.
-# note:
-
-# ROXYGEN Documentation
-#' Create a vector, matrix, or data frame from clipboard object
+#' Create a Vector, Matrix, or Data Frame from Clipboard object
+#' 
+#' Creates vector, matrix, or data.frame from clipboard object.
 #' @param obj.type either one of 'data.frame' (default), 'vector' or 'matrix'
 #' @param strings.as.factors logical to treat strings as factors
 #' @param row.names determining row.names
 #' @importFrom utils read.table
 #' @importFrom utils write.table
+#' @return see obj.type
 #' @export
 
 
-cfc <- function(obj.type = "data.frame",strings.as.factors = FALSE,row.names = NULL) {
-  #copy from clipboard to R
-  if (obj.type == "vector")  result = scan("clipboard", sep = "\t")
-  if (obj.type == "matrix")	result = as.matrix(read.table(file = "clipboard",header = FALSE,sep = "\t"))
-  if (obj.type == "data.frame")	result = read.table(	file = "clipboard",
-                                                     header = TRUE,
-                                                     sep = "\t",
-                                                     row.names = row.names,
-                                                     stringsAsFactors = strings.as.factors)
-  copy.from.clip = result
-}
+cfc <-
+  function(obj.type = "data.frame",
+           strings.as.factors = FALSE,
+           row.names = NULL) {
+    #copy from clipboard to R
+    if (obj.type == "vector")
+      result = scan("clipboard", sep = "\t")
+    if (obj.type == "matrix")
+      result = as.matrix(read.table(
+        file = "clipboard",
+        header = FALSE,
+        sep = "\t"
+      ))
+    if (obj.type == "data.frame")
+      result = read.table(
+        file = "clipboard",
+        header = TRUE,
+        sep = "\t",
+        row.names = row.names,
+        stringsAsFactors = strings.as.factors
+      )
+    copy.from.clip = result
+  }
 
 # Examples
 if(F) {

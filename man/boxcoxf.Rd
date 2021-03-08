@@ -2,20 +2,20 @@
 % Please edit documentation in R/boxcoxf.r
 \name{boxcoxf}
 \alias{boxcoxf}
-\title{Box-Cox Transformation}
+\title{Apply a Box-Cox Transformation to a Vector}
 \usage{
 boxcoxf(shape, distr)
 }
 \arguments{
-\item{shape}{The shape parameter.}
+\item{shape}{shape parameter}
 
-\item{distr}{The distribution parameter.}
+\item{distr}{the distribution}
 }
 \value{
 Box-Cox tranformation of \code{distr} with \code{shape}.
 }
 \description{
-Apply a Box-Cox Transformation to a vector
+Applies a Box-Cox transformation to a vector.
 }
 \examples{
 x = rnorm(1000, mean = 0, sd = 0.25)

@@ -18,6 +18,7 @@ formalized data.frame
 Formalizes data.frame.
 Replaces column names with labels, where present.
 Stores column name as 'alias' attribute.
+Deprecated in favor of yamlet::alias().
 }
 \examples{
 x <- data.frame(x = 1:10, y = 1:10, z = 1:10)
@@ -31,3 +32,4 @@ Other formalize:
 \code{\link{formalize}()}
 }
 \concept{formalize}
+\keyword{internal}

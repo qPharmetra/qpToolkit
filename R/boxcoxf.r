@@ -1,16 +1,8 @@
-# name:     boxcoxf
-# purpose:  transforms vector to Box-Cox transformation
-# input:    numeric vector,
-# output:   numeric vector - boxcox tranformed input
-# note:
-
-
-
-# ROXYGEN Documentation
-#' Box-Cox Transformation
-#' @description Apply a Box-Cox Transformation to a vector
-#' @param shape The shape parameter.
-#' @param distr The distribution parameter.
+#' Apply a Box-Cox Transformation to a Vector
+#' 
+#' Applies a Box-Cox transformation to a vector.
+#' @param shape shape parameter
+#' @param distr the distribution
 #' @return Box-Cox tranformation of \code{distr} with \code{shape}.
 #' @export
 #' @examples

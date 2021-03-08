@@ -2,7 +2,7 @@
 % Please edit documentation in R/asNumeric.r
 \name{asNumeric}
 \alias{asNumeric}
-\title{Convert character to numeric, with NA substitution}
+\title{Convert Character to Numeric with NA Substitution}
 \usage{
 asNumeric(x, missing.code = c("NA"))
 }
@@ -15,7 +15,7 @@ asNumeric(x, missing.code = c("NA"))
 A numeric vector with NA in place of \code{missing.code} .
 }
 \description{
-Convert character to numeric, with NA substitution
+Converts character to numeric with NA substitution.
 }
 \examples{
 as.numeric(c("3.45","1000","1e6","<BLOQ","NA","<0.100"))

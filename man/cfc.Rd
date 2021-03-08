@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfc.r
 \name{cfc}
 \alias{cfc}
-\title{Create a vector, matrix, or data frame from clipboard object}
+\title{Create a Vector, Matrix, or Data Frame from Clipboard object}
 \usage{
 cfc(obj.type = "data.frame", strings.as.factors = FALSE, row.names = NULL)
 }
@@ -13,6 +13,9 @@ cfc(obj.type = "data.frame", strings.as.factors = FALSE, row.names = NULL)
 
 \item{row.names}{determining row.names}
 }
+\value{
+see obj.type
+}
 \description{
-Create a vector, matrix, or data frame from clipboard object
+Creates vector, matrix, or data.frame from clipboard object.
 }

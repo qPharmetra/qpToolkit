@@ -4,7 +4,7 @@
 \alias{conDataFun2}
 \title{Summary: median (min - max)}
 \usage{
-conDataFun2(y, digits = 3, latex = FALSE, align.dot = FALSE)
+conDataFun2(y, digits = 3, latex = FALSE, align.dot = FALSE, na.rm = FALSE)
 }
 \arguments{
 \item{y}{numeric vector to summarize}
@@ -14,9 +14,14 @@ conDataFun2(y, digits = 3, latex = FALSE, align.dot = FALSE)
 \item{latex}{passed to \code{\link{formatted.signif}}}
 
 \item{align.dot}{passed to \code{\link{formatted.signif}}}
+
+\item{na.rm}{passed to \code{\link{median}}, \code{\link{min}}, \code{\link{max}}}
+}
+\value{
+character
 }
 \description{
-Summary: median (min - max)
+Creates a summary of median (min -max) of input.
 }
 \note{
 This function is primarily used for demographics tables

@@ -16,6 +16,7 @@
 #' @param conFunc2  defaults to conDataFun2
 #' @param catFunc  defaults to catDataFun
 #' @param digits.categorical passed to catFunc
+#' @param na.rm passed to conFunc1 and conFunc2
 #' @param parName is automatically populated but the parameter name can be specified here by the user.
 #' @return Appropriate statistic for x
 #' @note This function is primarily used for demographics tables
@@ -39,6 +40,7 @@ tabStats <- function(x
                     , catFunc = catDataFun
                     , digits.categorical = 1
                     , parName
+                    , na.rm = FALSE
 ){
   if (missing(parName)) {
     parName = deparse((match.call()[2]))
@@ -61,10 +63,10 @@ tabStats <- function(x
  }
   if (is.numeric(x)) {
     x = c(x, x)
-    tmp1 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits)
-      conFunc1(y, digits = digits), digits = digits)))
-    tmp2 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits)
-      conFunc2(y, digits = digits), digits = digits)))
+    tmp1 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits, na.rm)
+      conFunc1(y, digits = digits, na.rm = na.rm), digits = digits, na.rm = na.rm)))
+    tmp2 = data.frame(t(aggregate(x, by = BY, FUN = function(y, digits, na.rm)
+      conFunc2(y, digits = digits, na.rm = na.rm), digits = digits, na.rm = na.rm)))
     tmp = rbind(tmp1, tmp2[2,])
   }
   names(tmp) = levels(as.factor(unlist(BY)))

@@ -2,7 +2,7 @@
 % Please edit documentation in R/align.around.decimal.point.r
 \name{align.around.decimal.point}
 \alias{align.around.decimal.point}
-\title{Padding numeric vector around decimal point}
+\title{Pad Numeric Vector Around Decimal Point}
 \usage{
 align.around.decimal.point(x, sep = '\\\\.', len)
 }
@@ -18,7 +18,7 @@ A character vector with members of length \code{len}, with \code{sep} located in
 of each member.
 }
 \description{
-Pads a vector of numeric values so that the decimal is at the same ordinal location
+Pads a vector of numeric values so that the decimal is at the same ordinal location.
 }
 \examples{
 align.around.decimal.point(c(1,100, 0.01))

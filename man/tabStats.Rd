@@ -12,7 +12,8 @@ tabStats(
   conFunc2 = conDataFun2,
   catFunc = catDataFun,
   digits.categorical = 1,
-  parName
+  parName,
+  na.rm = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ tabStats(
 \item{digits.categorical}{passed to catFunc}
 
 \item{parName}{is automatically populated but the parameter name can be specified here by the user.}
+
+\item{na.rm}{passed to conFunc1 and conFunc2}
 }
 \value{
 Appropriate statistic for x

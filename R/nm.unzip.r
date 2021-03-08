@@ -1,4 +1,3 @@
-# ROXYGEN Documentation
 #' Unzip function for zipped PsN output
 #' @description Many large files like XML output and covariance matrices are zipped by (qPharmetra's
 #'  tweaked version of) PsN. To enable the parsing function of the \code{nm.xxx} domain to

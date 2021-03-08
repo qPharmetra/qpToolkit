@@ -43,7 +43,11 @@ tabStats(x=pkpdData$wt, BY = list(dose = pkpdData$dose))
 Then, the wrapper function 'tabSummarize' takes a formula of the form g ~ x1 + x2 + ... to create a summary of patient characterics x1, x2, ... by grouping variable g. Optionally a blank line is added inbetween each patient characteric summary to improve demographics table legibility. The result is the demographics table.
 
 ```{r, echo = T}
-tabSummarize(formula = dose ~ race + wt + bmi + sex, data = pkpdData[ok, ], digits = 3)
+tabSummarize(
+  formula = dose ~ race + wt + bmi + sex, 
+  data = pkpdData[ok, ], 
+  digits = 3
+)
 ```
 
 The grouping variable can be changed ahead of the tabSummarize call to make nicer groupings of course. Automatically, the function full.names is called that swaps shorthand column names into full names (with untis for example). Check full names and expand the function to match the patient characteristics that will be embedded in the demographics table. We will also add an extra blank line to the table.

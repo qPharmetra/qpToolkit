@@ -1,5 +1,3 @@
-
-# ROXYGEN Documentation
 #' Summary: length (\%)
 #' @param y a vector of values to be summarised.
 #' @param digits.categorical number of digits to round to
