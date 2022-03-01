@@ -14,7 +14,8 @@ nm.unzip(
   outdir = ifelse(temp, tmpdir, path),
   zip.filename = file.path(path, filename),
   zip.call = getOption("unzip.call"),
-  command = paste0(sprintf(zip.call, zip.filename), " -o", outdir),
+  command = paste0(sprintf(zip.call, gsub(" ", "\\\\ ", zip.filename)), " -o",
+    gsub(" ", "\\\\ ", outdir)),
   target = file.path(outdir, filename),
   quiet = TRUE,
   ...

@@ -1,7 +1,7 @@
 Package: qpToolkit
 Type: Package
 Title: qPharmetra R Tools
-Version: 0.3.1
+Version: 0.3.2
 Authors@R: as.person(c(
     "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
     "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
