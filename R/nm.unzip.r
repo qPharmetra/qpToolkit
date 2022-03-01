@@ -56,10 +56,10 @@ nm.unzip <- function(
    command = paste0(
       sprintf(
          zip.call, 
-         gsub(' ', '\\ ', zip.filename)
+         gsub(' ', '\\\\ ', zip.filename)
       ), 
       ' -o',
-      gsub(' ', '\\ ', outdir)
+      gsub(' ', '\\\\ ', outdir)
    ),
    target = file.path(outdir, filename),
    quiet = TRUE,
