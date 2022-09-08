@@ -19,6 +19,6 @@
 
 isMissing <- function(x) {
   natest = is.na(x)
-  if(class(x) == "character") natest = natest|sub("^[ ]+$","",x) == ""|x == "NA"
+  if(is.character(x)) natest = natest|sub("^[ ]+$","",x) == ""|x == "NA"
   natest
 }

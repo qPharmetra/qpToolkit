@@ -286,7 +286,7 @@ nm.covplot <- function(run = "run1",
   if(shrinkage)
   {
     shrink = invisible(try(get.shrinkage(run, path = path)$eta))
-    if(class(shrink) == "try-error")
+    if(inherits(shrink, "try-error"))
     {
       shrink = with(etas, reapply(Cbind(value,est.value)
                                   , INDEX = list(variable)

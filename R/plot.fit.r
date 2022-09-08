@@ -190,7 +190,7 @@ plot.fit <- function(x, ..., newFunc,
         ypar = partres$Mean
         yup = partres$Upper
         ylo = partres$Lower
-        if(class(partres[, gfv]) != "data.frame" & length(gfv)>0)
+        if(!(inherits(partres[, gfv], "data.frame")) & length(gfv)>0)
         {
            origSubs = unique(pData[, gfv][subscripts])
            mySubs = partres[, gfv] == origSubs
