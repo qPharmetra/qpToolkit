@@ -6,4 +6,6 @@
 [![Coverage status](https://codecov.io/gh/qPharmetra/qpToolkit/branch/master/graph/badge.svg)](https://codecov.io/github/qPharmetra/qpToolkit?branch=master)
 <!-- badges: end -->
 
-Tools for population PK modeling, visualization, and reporting
+Tools for population PK modeling, visualization, and reporting.
+
+Install with the usual mechanisms: e.g. `devtools::install_github('qpharmetra/qpToolkit')` or perhaps download qpToolkit-x.y.z, then `install.packages(repos = NULL, 'qpToolkit-x.y.z')`.
