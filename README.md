@@ -8,4 +8,4 @@
 
 Tools for population PK modeling, visualization, and reporting.
 
-Install with the usual mechanisms: e.g. `devtools::install_github('qpharmetra/qpToolkit')` or perhaps download qpToolkit-x.y.z from the "code" tab, then `install.packages(repos = NULL, 'qpToolkit-x.y.z')`.
+Install with the usual mechanisms: e.g. `devtools::install_github('qpharmetra/qpToolkit')` or perhaps download qpToolkit-x.y.zip from the "code" tab, then `install.packages(repos = NULL, 'qpToolkit-x.y.zip')`.
