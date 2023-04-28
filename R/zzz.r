@@ -31,7 +31,7 @@
   #packageStartupMessage(paste(R.installation.validation()$IQ.message))
   #packageStartupMessage("Installation Qualification disabled.  Unvalidated System.")
   #packageStartupMessage("setting stringsAsFactors to FALSE as qPharmetra default.")
-  if(getOption("stringsAsFactors")) {
+  if(getOption("stringsAsFactors", FALSE)) {
      options(stringsAsFactors = FALSE)
   }
   if(is.null(getOption("qpExampleDir"))) options(qpExampleDir = file.path(path.package("qpToolkit"),"NONMEM"))
