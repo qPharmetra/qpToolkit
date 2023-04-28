@@ -4,7 +4,7 @@
   #check and set default options
 
   if(is.null(getOption("nmDir"))) options(nmDir = file.path(getwd(),"NONMEM"))
-  if(getOption("stringsAsFactors")) {
+  if(getOption("stringsAsFactors", FALSE)) {
     options(stringsAsFactors = FALSE)
   }
    if(Sys.getenv("UNZIP_CALL") == "" |Sys.getenv("ZIP_CALL") == "" ){
