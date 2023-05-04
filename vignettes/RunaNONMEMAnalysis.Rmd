@@ -20,6 +20,7 @@ library(ggplot2)
 library(magrittr)
 library(dplyr)
 library(yamlet)
+library(lattice)
 
 # path to examples NONMEM folder
 # nm.path = file.path(getOption("qpExampleDir"))
