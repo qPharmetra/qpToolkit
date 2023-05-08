@@ -47,19 +47,21 @@ nm.unzip <- function(
    run,
    extension = ".xml",
    filename = paste(run, extension, sep = ""),
-   path = file.path(getOption("nmDir",''), run),
+   path = file.path(getOption('nmDir', ''), 
+     run
+   ),
    tmpdir = tempfile('subdir'),
    temp = FALSE,
    outdir = ifelse(temp, tmpdir, path),
    zip.filename = file.path(path, filename),
    zip.call = getOption("unzip.call"),
    command = paste0(
-      sprintf(
-         zip.call, 
-         gsub(' ', '\\\\ ', zip.filename)
-      ), 
-      ' -o',
-      gsub(' ', '\\\\ ', outdir)
+     sprintf(
+       zip.call,
+       gsub(' ', '\\\\ ', zip.filename)
+     ),
+     ' -o',
+     gsub(' ', '\\\\ ', outdir)
    ),
    target = file.path(outdir, filename),
    quiet = TRUE,
@@ -69,9 +71,9 @@ nm.unzip <- function(
    if(!quiet) cat("path:", path, "\n")
    if(!quiet) cat("file:", zip.filename, "\n")
    if(temp) dir.create(tmpdir)
-   if(temp)stopifnot(file.exists(tmpdir))
-   if(!quiet) cat("call:",command,"\n")
+   if(temp) stopifnot(file.exists(tmpdir))
+   if(!quiet) cat("call:", command, "\n")
    res <- system(command, ignore.stdout = quiet, ignore.stderr = quiet)
-   if(!file.exists(target))stop('unzip failed: ',res)
+   if(!file.exists(target)) stop('unzip failed: ', res)
    invisible(target)
 }

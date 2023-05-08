@@ -28,6 +28,7 @@ globalVariables(c(
 #' @import lattice
 #' @examples
 #' library(Hmisc)
+#' library(lattice)
 #' out = get.xpose.tables('example1',getOption('qpExampleDir'))
 #' out$EVID = 0
 #' trellis.strip.color()

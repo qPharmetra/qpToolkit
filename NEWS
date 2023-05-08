@@ -1,34 +1,35 @@
-0.1.7
-   Ported to github and R>3.2.2
-0.1.6
-   disable IQ checks for exporting projects
-0.1.5
-   fixed ggvpc_standard improved argument use aligned with autograph color scheme
-   fixed ggvpc_xpose improved argument use aligned with autograph color scheme
-   fixed qp.colors all colors are defined in qp.colors script and they are aligned with autograph color scheme
-   fixed nm.covplot failed on certain runs
-   fixed nm.modeltrail.graph wrong path
-   fixed panel.residual aligned with autographs
-   fixed panel.cwres aligned with autographs
-   fixed convert.omega now returns OMEGA names really in the correct order
-   added a quiet argument (default=F) to all functions that return sometimes informative messages about the extraction/parsing process
-   added panel.modelfit from autographs
-   added doubleStack, orderedNumeric, formatted.signif, get.theta, get.omega, get.sigma, nm.parse2r.operators
-   added nm.insert.dose.multiple.compartments, nm.insert.evid2amt0 mutate_cond format.demoTable
-   added read.mod and aligned it's arguments with functions read.out and read.ext
-   major overhaul of nearly all roxygen/examples and tested them all. all examples passed
-   added vignettes
-   added plyr and dplyr as dependencies. They are thus installed and loaded by default (in correct order) after library(qpToolkit)
-0.1.4
-   fixed nm.covplots: now returns etas
-   exported additional qP.colors
-   remove packrat from IQ check
-0.1.3
-   fixed bootstrap.parTab probs argument usage
-   fixed get.shrinkage function trimSpace
-0.1.2
-   fixed nm.params.table for case where se is missing in run
-0.1.1 
-   Revision of Installation Qualification (IQ) checks
-   fixed load.data to attach variables in parent.frame(1) by default
-0.1 Initial development
+qpToolkit v0.1.7
+ * Ported to github and R>3.2.2
+qpToolkit v0.1.6
+ * disable IQ checks for exporting projects
+qpToolkit v0.1.5
+ * fixed ggvpc_standard improved argument use aligned with autograph color scheme
+ * fixed ggvpc_xpose improved argument use aligned with autograph color scheme
+ * fixed qp.colors all colors are defined in qp.colors script and they are aligned with autograph color scheme
+ * fixed nm.covplot failed on certain runs
+ * fixed nm.modeltrail.graph wrong path
+ * fixed panel.residual aligned with autographs
+ * fixed panel.cwres aligned with autographs
+ * fixed convert.omega now returns OMEGA names really in the correct order
+ * added a quiet argument (default=F) to all functions that return sometimes informative messages about the extraction/parsing process
+ * added panel.modelfit from autographs
+ * added doubleStack, orderedNumeric, formatted.signif, get.theta, get.omega, get.sigma, nm.parse2r.operators
+ * added nm.insert.dose.multiple.compartments, nm.insert.evid2amt0 mutate_cond format.demoTable
+ * added read.mod and aligned it's arguments with functions read.out and read.ext
+ * major overhaul of nearly all roxygen/examples and tested them all. all examples passed
+ * added vignettes
+ * added plyr and dplyr as dependencies. They are thus installed and loaded by default (in correct order) after library(qpToolkit)
+qpToolkit v0.1.4
+ * fixed nm.covplots: now returns etas
+ * exported additional qP.colors
+ * remove packrat from IQ check
+qpToolkit v0.1.3
+ * fixed bootstrap.parTab probs argument usage
+ * fixed get.shrinkage function trimSpace
+qpToolkit v0.1.2
+ * fixed nm.params.table for case where se is missing in run
+qpToolkit v0.1.1 
+ * Revision of Installation Qualification (IQ) checks
+ * fixed load.data to attach variables in parent.frame(1) by default
+qpToolkit vqpToolkit v0.1 
+ * Initial development

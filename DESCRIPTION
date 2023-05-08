@@ -1,7 +1,7 @@
 Package: qpToolkit
 Type: Package
 Title: qPharmetra R Tools
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: as.person(c(
     "Jason Chittenden <jason.chittenden@qpharmetra.com> [cre, aut]",
     "Klaas Prins <klaas.prins@qpharmetra.com> [aut]",
@@ -47,6 +47,6 @@ Suggests:
   nonmemica,
   tidyr,
   tidyselect
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 LazyData: true

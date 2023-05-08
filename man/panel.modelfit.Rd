@@ -44,6 +44,7 @@ Panel function to plot DV, PRED, IPRED overlays for individual profiles
 }
 \examples{
 library(Hmisc)
+library(lattice)
 out = get.xpose.tables('example1',getOption('qpExampleDir'))
 out$EVID = 0
 trellis.strip.color()
