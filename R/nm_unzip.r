@@ -5,7 +5,7 @@
 #' 
 #' @export
 #' @keywords internal
-#' @seealso [nm.unzip()]
+#' @seealso \code{\link{nm.unzip}}
 #' @param run character (run name)
 #' @param extension character: extension to append to run
 #' @param filename character: supersedes run, extension
