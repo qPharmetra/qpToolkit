@@ -1,11 +1,11 @@
 #' Unzip a NONMEM File
-#' 
+#'
 #' Unzips a NONMEM file, by default the xml output
 #' of a NONMEM run.  Uses 7z decompression.
-#' 
+#'
 #' @export
 #' @keywords internal
-#' @seealso \code{\link{nm.unzip}}
+#' @family nm
 #' @param run character (run name)
 #' @param extension character: extension to append to run
 #' @param filename character: supersedes run, extension
@@ -19,9 +19,9 @@
 nm_unzip <- function(
    run,
    extension = ".xml",
-   filename = paste0(run, extension),
+   filename = paste0(run, fxs(extension, '.   ')),
    path = file.path(
-      normalizePath(getOption('nmDir',getwd())), 
+      normalizePath(getOption('nmDir',getwd())),
      run
    ),
    tmpdir = tempdir(),
@@ -36,7 +36,7 @@ nm_unzip <- function(
    if(!quiet) cat("path:", path, "\n")
    if(!quiet) cat("file:", zip.filename, "\n")
    if(temp) stopifnot(file.exists(tmpdir))
-   
+
    command = paste0(
       sprintf(
          zip.call,
@@ -46,7 +46,7 @@ nm_unzip <- function(
       outdir
    )
    target = file.path(outdir, filename)
-   
+
    if(!quiet) cat("call:", command, "\n")
    res <- system(command, ignore.stdout = quiet, ignore.stderr = quiet)
    if(!file.exists(target)) stop('unzip failed: ', res)
