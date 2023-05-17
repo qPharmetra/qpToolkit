@@ -7,7 +7,7 @@
 nm_unzip(
   run,
   extension = ".xml",
-  filename = paste0(run, extension),
+  filename = paste0(run, fxs(extension, ".   ")),
   path = file.path(normalizePath(getOption("nmDir", getwd())), run),
   tmpdir = tempdir(),
   temp = FALSE,
@@ -41,7 +41,5 @@ nm_unzip(
 Unzips a NONMEM file, by default the xml output
 of a NONMEM run.  Uses 7z decompression.
 }
-\seealso{
-[nm.unzip()]
-}
+\concept{nm}
 \keyword{internal}
